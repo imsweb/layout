@@ -1,0 +1,97 @@
+import org.gradle.internal.jvm.Jvm
+
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'findbugs'
+    id 'com.bmuschko.nexus' version '2.3.1'
+}
+
+group = 'com.imsweb'
+version = file('VERSION').text
+description = 'Framework that allows defining file formats (layouts) and use them to read and write data files.'
+
+println "Starting build using ${Jvm.current()}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'au.com.bytecode:opencsv:2.4'
+    compile 'com.thoughtworks.xstream:xstream:1.4.7'
+    testCompile 'junit:junit:4.12'
+}
+
+// enforce UTF-8 for all compilation tasks
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+// display the compilation warnings
+compileJava.options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+compileTestJava.options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+
+// customize the manifest
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'Information Management Services Inc.',
+                'Created-By': System.properties['java.vm.version'] + ' (' + System.properties['java.vm.vendor'] + ')',
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+        )
+    }
+}
+
+// checkstyle plugin settings
+checkstyle {
+    ignoreFailures = true
+    configFile = file('config/checkstyle/checkstyle.xml')
+}
+
+// findbugs plugin settings
+findbugs {
+    ignoreFailures = true
+    effort = 'max'
+    excludeFilter = file('config/findbugs/findbugs-exclude.xml')
+}
+
+// needed to deploy to Maven Central
+modifyPom {
+    project {
+        name 'Layout Framework'
+        description 'Framework that allows defining file formats (layouts) and use them to read and write data files.'
+        url 'https://github.com/imsweb/layout'
+        inceptionYear '2015'
+
+        scm {
+            url 'https://github.com/imsweb/layout'
+            connection 'scm:https://github.com/imsweb/layout.git'
+            developerConnection 'scm:git@github.com:imsweb/layout.git'
+        }
+
+        licenses {
+            license {
+                name 'A modified BSD License (BSD)'
+                url 'https://github.com/imsweb/layout/blob/master/LICENSE'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id 'depryf'
+                name 'Fabian Depry'
+                email 'depryf@imsweb.com'
+            }
+        }
+    }
+}
+
+// Gradle wrapper, this allows to build the project without having to install Gradle!
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
+
+

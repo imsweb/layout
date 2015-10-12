@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fixed-column-layout id="test-state-requestor-items-1" name="Test State Requestor Items 1" length="3339" extend-layout="naaccr-15-incidence">
+    <field name="stateRequestorItems" start="2340" end="3339" short-label="State Req Item" long-label="State/Requestor Items" naaccr-item-num="2220" trim="false">
+        <field name="registryField1" start="2340" end="2340" short-label="Reg Fd 1" long-label="Registry Field 1"/>
+        <!-- other 9999 characters are trailing gap -->
+    </field>
+</fixed-column-layout>

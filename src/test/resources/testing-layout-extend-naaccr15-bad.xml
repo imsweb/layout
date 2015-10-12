@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fixed-column-layout id="test-extend-naaccr12" name="Test Extend NAACCR 12" length="22824" extend-layout="naaccr-12-abstract">
+    <field name="registryField1" start="2340" end="2340" short-label="Reg Fd 1" long-label="Registry Field 1"/>
+    <field name="registryField2" start="2341" end="2341" short-label="Reg Fd 2" long-label="Registry Field 2"/>
+    <field name="registryField3" start="2342" end="2343" short-label="Reg Fd 3" long-label="Registry Field 3"/>
+</fixed-column-layout>

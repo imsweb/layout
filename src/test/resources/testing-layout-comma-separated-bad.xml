@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<comma-separated-layout id="test-csv" version="1.0" description="Just for testing..." num-fields="3">
+    <field name="recordType" index="1" short-label="Rec Type" long-label="Record Type" naaccr-item-num="10" default-value="X"/>
+    <field name="field1" index="2" short-label="Field 1" long-label="Field 1"/>
+    <field name="field2" index="3" short-label="Field 2" long-label="Field 2"/>
+</comma-separated-layout>

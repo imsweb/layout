@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fixed-column-layout id="test-extend-naaccr15" name="Test Extend NAACCR 15" length="22824" extend-layout="naaccr-15-abstract">
+    <field name="stateRequestorItems" start="2340" end="3339" short-label="State Req Item" long-label="State/Requestor Items" naaccr-item-num="2220" trim="false">
+        <field name="registryField1" start="2340" end="2340" short-label="Reg Fd 1" long-label="Registry Field 1"/>
+        <field name="registryField2" start="2341" end="2341" short-label="Reg Fd 2" long-label="Registry Field 2"/>
+        <field name="registryField3" start="2342" end="2343" short-label="Reg Fd 3" long-label="Registry Field 3"/>
+    </field>
+</fixed-column-layout>
