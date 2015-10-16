@@ -3,7 +3,10 @@
  */
 package com.imsweb.layout.record.csv;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,22 +65,61 @@ public class CommaSeparatedLayout extends RecordLayout {
      */
     protected Map<Integer, CommaSeparatedField> _cachedByNaaccrItemNumber = new HashMap<>();
 
+    /**
+     * Default constructor.
+     */
     public CommaSeparatedLayout() {
         super();
 
         _ignoreFirstLine = Boolean.TRUE;
     }
 
-    public CommaSeparatedLayout(CommaSeparatedLayoutXmlDto layoutXmlDto) throws IOException {
-        this();
-        init(layoutXmlDto);
-    }
-
+    /**
+     * Constructor.
+     * @param layoutUrl URL to the XML definition, cannot be null
+     * @throws IOException if the XML definition is not valid
+     */
     public CommaSeparatedLayout(URL layoutUrl) throws IOException {
         this();
+
         if (layoutUrl == null)
-            throw new IOException("Unable to read from provided URL, URL is null");
-        init(LayoutUtils.readCommaSeparatedLayout(layoutUrl.openStream()));
+            throw new NullPointerException("Unable to create layout from null URL");
+
+        try (InputStream is = layoutUrl.openStream()) {
+            init(LayoutUtils.readCommaSeparatedLayout(is));
+        }
+    }
+
+    /**
+     * Constructor.
+     * @param layoutFile XML definition, cannot be null, must exists
+     * @throws IOException if the XML definition is not valid
+     */
+    public CommaSeparatedLayout(File layoutFile) throws IOException {
+        this();
+
+        if (layoutFile == null)
+            throw new NullPointerException("Unable to create layout from null file");
+        if (!layoutFile.exists())
+            throw new IOException("Unable to read from " + layoutFile.getPath());
+
+        try (InputStream is = new FileInputStream(layoutFile)) {
+            init(LayoutUtils.readCommaSeparatedLayout(is));
+        }
+    }
+
+    /**
+     * Constructor.
+     * @param layoutXmlDto java representation of the XML definition, cannot be null
+     * @throws IOException if the XML definition is not valid
+     */
+    public CommaSeparatedLayout(CommaSeparatedLayoutXmlDto layoutXmlDto) throws IOException {
+        this();
+
+        if (layoutXmlDto == null)
+            throw new NullPointerException("Unable to create layout from null XML object");
+
+        init(layoutXmlDto);
     }
 
     protected void init(CommaSeparatedLayoutXmlDto layoutXmlDto) throws IOException {

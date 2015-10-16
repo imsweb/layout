@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,9 +38,39 @@ public class CommaSeparatedLayoutTest {
     @Test
     public void testLayout() throws Exception {
 
-        // for this test, let's use a fake layout (let's trim values, let's enforce the format)
+        // test loading the layout from a URL
         CommaSeparatedLayout layout = new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml"));
-        layout.setTrimValues(true);
+        Assert.assertEquals("test-csv", layout.getLayoutId());
+        Assert.assertEquals("Test CSV", layout.getLayoutName());
+        Assert.assertEquals("1.0", layout.getLayoutVersion());
+        Assert.assertEquals("Just for testing...", layout.getLayoutDescription());
+        Assert.assertEquals(',', layout.getSeparator());
+        Assert.assertTrue(layout.ignoreFirstLine());
+        Assert.assertEquals(3, layout.getLayoutNumberOfFields().intValue());
+
+        // test loading the layout from a file
+        layout = new CommaSeparatedLayout(new File(System.getProperty("user.dir") + "/src/test/resources/testing-layout-comma-separated.xml"));
+                Assert.assertEquals("test-csv", layout.getLayoutId());
+        Assert.assertEquals("Test CSV", layout.getLayoutName());
+        Assert.assertEquals("1.0", layout.getLayoutVersion());
+        Assert.assertEquals("Just for testing...", layout.getLayoutDescription());
+        Assert.assertEquals(',', layout.getSeparator());
+        Assert.assertTrue(layout.ignoreFirstLine());
+        Assert.assertEquals(3, layout.getLayoutNumberOfFields().intValue());
+
+        // test loading the layout from an object
+        try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("testing-layout-comma-separated.xml")) {
+            layout = new CommaSeparatedLayout(LayoutUtils.readCommaSeparatedLayout(is));
+            Assert.assertEquals("test-csv", layout.getLayoutId());
+            Assert.assertEquals("Test CSV", layout.getLayoutName());
+            Assert.assertEquals("1.0", layout.getLayoutVersion());
+            Assert.assertEquals("Just for testing...", layout.getLayoutDescription());
+            Assert.assertEquals(',', layout.getSeparator());
+            Assert.assertTrue(layout.ignoreFirstLine());
+            Assert.assertEquals(3, layout.getLayoutNumberOfFields().intValue());
+        }
+
+        // let's enforce the format
         layout.setEnforceStrictFormat(true);
 
         // test layout info

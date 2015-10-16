@@ -3,7 +3,10 @@
  */
 package com.imsweb.layout.record.fixed;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,20 +56,59 @@ public class FixedColumnsLayout extends RecordLayout {
      */
     protected Map<Integer, FixedColumnsField> _cachedByNaaccrItemNumber = new HashMap<>();
 
+    /**
+     * Default constructor.
+     */
     public FixedColumnsLayout() {
         super();
     }
 
-    public FixedColumnsLayout(FixedColumnLayoutXmlDto layoutXmlDto) throws IOException {
-        this();
-        init(layoutXmlDto);
-    }
-
+    /**
+     * Constructor.
+     * @param layoutUrl URL to the XML definition, cannot be null
+     * @throws IOException if the XML definition is not valid
+     */
     public FixedColumnsLayout(URL layoutUrl) throws IOException {
         this();
+        
         if (layoutUrl == null)
-            throw new IOException("Unable to read from provided URL, URL is null");
-        init(LayoutUtils.readFixedColumnsLayout(layoutUrl.openStream()));
+            throw new NullPointerException("Unable to create layout from null URL");
+        
+        try (InputStream is = layoutUrl.openStream()) {
+            init(LayoutUtils.readFixedColumnsLayout(is));
+        }
+    }
+
+    /**
+     * Constructor.
+     * @param layoutFile XML definition, cannot be null, must exists
+     * @throws IOException if the XML definition is not valid
+     */
+    public FixedColumnsLayout(File layoutFile) throws IOException {
+        this();
+
+        if (layoutFile == null)
+            throw new NullPointerException("Unable to create layout from null file");
+        if (!layoutFile.exists())
+            throw new IOException("Unable to read from " + layoutFile.getPath());
+
+        try (InputStream is = new FileInputStream(layoutFile)) {
+            init(LayoutUtils.readFixedColumnsLayout(is));
+        }
+    }
+
+    /**
+     * Constructor.
+     * @param layoutXmlDto java representation of the XML definition, cannot be null
+     * @throws IOException if the XML definition is not valid
+     */
+    public FixedColumnsLayout(FixedColumnLayoutXmlDto layoutXmlDto) throws IOException {
+        this();
+
+        if (layoutXmlDto == null)
+            throw new NullPointerException("Unable to create layout from null XML object");
+        
+        init(layoutXmlDto);
     }
 
     protected void init(FixedColumnLayoutXmlDto layoutXmlDto) throws IOException {

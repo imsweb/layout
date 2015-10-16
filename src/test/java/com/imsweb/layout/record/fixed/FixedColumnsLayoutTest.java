@@ -3,7 +3,9 @@
  */
 package com.imsweb.layout.record.fixed;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,30 +18,48 @@ import com.imsweb.layout.record.RecordLayout;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
-/** 
+/**
  * Created on Jun 25, 2012 by depryf
  * @author depryf
  */
 public class FixedColumnsLayoutTest {
 
-    /** 
+    /**
      * Created on Jun 25, 2012 by depryf
      * @throws Exception
      */
     @Test
     public void testLayout() throws Exception {
 
-        // for this test, let's use a fake layout (let's trim values, let's enforce the format)
+        // test loading the layout from a URL
         FixedColumnsLayout layout = new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-fixed-columns.xml"));
-        layout.setTrimValues(true);
-        layout.setEnforceStrictFormat(true);
-
-        // test layout info
         Assert.assertEquals("test", layout.getLayoutId());
         Assert.assertEquals("Test", layout.getLayoutName());
         Assert.assertEquals("1.0", layout.getLayoutVersion());
         Assert.assertEquals("Just for testing...", layout.getLayoutDescription());
         Assert.assertEquals(16, layout.getLayoutLineLength().intValue());
+
+        // test loading the layout from a file
+        layout = new FixedColumnsLayout(new File(System.getProperty("user.dir") + "/src/test/resources/testing-layout-fixed-columns.xml"));
+        Assert.assertEquals("test", layout.getLayoutId());
+        Assert.assertEquals("Test", layout.getLayoutName());
+        Assert.assertEquals("1.0", layout.getLayoutVersion());
+        Assert.assertEquals("Just for testing...", layout.getLayoutDescription());
+        Assert.assertEquals(16, layout.getLayoutLineLength().intValue());
+
+        // test loading the layout from an object
+        try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("testing-layout-fixed-columns.xml")) {
+            layout = new FixedColumnsLayout(LayoutUtils.readFixedColumnsLayout(is));
+            Assert.assertEquals("test", layout.getLayoutId());
+            Assert.assertEquals("Test", layout.getLayoutName());
+            Assert.assertEquals("1.0", layout.getLayoutVersion());
+            Assert.assertEquals("Just for testing...", layout.getLayoutDescription());
+            Assert.assertEquals(16, layout.getLayoutLineLength().intValue());
+        }
+
+        // let's trim values, let's enforce the format
+        layout.setTrimValues(true);
+        layout.setEnforceStrictFormat(true);
 
         // test field getters
         Assert.assertEquals(6, layout.getAllFields().size());
@@ -279,7 +299,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertTrue(exception);
     }
 
-    /** 
+    /**
      * Created on Jul 21, 2012 by Fabian
      */
     @Test
