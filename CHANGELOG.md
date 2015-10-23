@@ -4,7 +4,7 @@ Layout Framework Version History
 **Changes in version 1.3**
 
  - Added support for NAACCR 16 layout and documentation.
- - Restructure the Layout class hierarchy to allow support for non-single-line-based formats like XML.
+ - Restructured the Layout class hierarchy to allow support for non-single-line-based formats like XML.
  - Replaced JAXB by XStream for all XML operations.
  - This library now requires Java 7.
 
