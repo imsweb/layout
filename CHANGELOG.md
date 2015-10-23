@@ -1,5 +1,4 @@
-Layout Framework Version History
---------------------------------
+## Layout Framework Version History
 
 **Changes in version 1.3**
 
