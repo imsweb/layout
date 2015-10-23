@@ -1,6 +1,9 @@
 Layout Framework
 ================
 
+[![Build Status](https://travis-ci.org/imsweb/layout.svg?branch=master)](https://travis-ci.org/imsweb/layout)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.imsweb/layout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.imsweb/layout)
+
 The layout framework allows file formats to be declared using XML definition files; those formats can then be used to read and write corresponding data files.
 
 Features
