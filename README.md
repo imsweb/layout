@@ -15,7 +15,9 @@ those formats can then be used to read and write corresponding data files.
 
 ## Download
 
-The library will soon be available on Maven Central.
+The library is available on [Maven Central](http://search.maven.org/); type `g:"com.imsweb" AND a:"layout"` in the search to find it.
+
+You can check out the [release page](https://github.com/imsweb/layout/releases) for a list of the releases and their changes.
 
 ## Usage
 
