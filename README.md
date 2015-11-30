@@ -17,7 +17,7 @@ those formats can then be used to read and write corresponding data files.
 
 The library is available on [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.imsweb%22%20AND%20a%3A%22layout%22).
 
-To include it to your Maven or Gradle project, use the group `com.imsweb` and the name `layout`.
+To include it to your Maven or Gradle project, use the group ID `com.imsweb` and the artifact ID `layout`.
 
 You can check out the [release page](https://github.com/imsweb/layout/releases) for a list of the releases and their changes.
 
