@@ -2,7 +2,8 @@
 
 **Changes in version 1.3.1**
 
- - CSV layouts setup to ignore first line were not ignoring it in the "readAllRecords" methods.
+ - CSV layouts setup to ignore first line were not ignoring it in the "readAllRecords" methods (issue #2).
+ - Fixed documentation for a few new NAACCR 16 fields (SEER derived); removed code 90 (issue #1).
 
 **Changes in version 1.3**
 
