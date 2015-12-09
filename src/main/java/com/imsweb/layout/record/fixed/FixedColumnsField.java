@@ -25,6 +25,13 @@ public class FixedColumnsField extends Field {
     protected List<FixedColumnsField> _subFields;
 
     /**
+     * Constructor.
+     */
+    public FixedColumnsField() {
+        super();
+    }
+
+    /**
      * @return Returns the start.
      */
     public Integer getStart() {
@@ -65,7 +72,6 @@ public class FixedColumnsField extends Field {
     public void setSubFields(List<FixedColumnsField> subFields) {
         this._subFields = subFields;
     }
-
 
     @Override
     public String toString() {

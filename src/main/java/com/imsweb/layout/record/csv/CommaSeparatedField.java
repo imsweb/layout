@@ -18,6 +18,13 @@ public class CommaSeparatedField extends Field {
     protected Integer _maxLength;
 
     /**
+     * Constructor.
+     */
+    public CommaSeparatedField() {
+        super();
+    }
+
+    /**
      * @return Returns the index.
      */
     public Integer getIndex() {

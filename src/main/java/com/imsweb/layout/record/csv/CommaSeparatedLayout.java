@@ -49,7 +49,8 @@ public class CommaSeparatedLayout extends RecordLayout {
     /**
      * Ignore (header) first line (this is purely informational; the read/write methods do not use this field, it is the caller's responsibility to use it)
      */
-    protected Boolean _ignoreFirstLine;
+    protected boolean _ignoreFirstLine;
+
     /**
      * The fields for this layout
      */
@@ -71,7 +72,7 @@ public class CommaSeparatedLayout extends RecordLayout {
     public CommaSeparatedLayout() {
         super();
 
-        _ignoreFirstLine = Boolean.TRUE;
+        _ignoreFirstLine = true;
     }
 
     /**
@@ -130,7 +131,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         _layoutDesc = layoutXmlDto.getDescription();
         _numFields = layoutXmlDto.getNumFields();
         _separator = layoutXmlDto.getSeparator() == null ? ',' : layoutXmlDto.getSeparator().charAt(0);
-        _ignoreFirstLine = layoutXmlDto.getIgnoreFirstLine() == null ? Boolean.TRUE : layoutXmlDto.getIgnoreFirstLine();
+        _ignoreFirstLine = layoutXmlDto.getIgnoreFirstLine() == null ? true : layoutXmlDto.getIgnoreFirstLine();
 
         // are we extending another layout?
         CommaSeparatedLayout parentLayout = null;
@@ -255,7 +256,7 @@ public class CommaSeparatedLayout extends RecordLayout {
      * Getter for the ignore-first-line param.
      * @return the ignore-first-line param
      */
-    public Boolean ignoreFirstLine() {
+    public boolean ignoreFirstLine() {
         return _ignoreFirstLine;
     }
 
@@ -263,7 +264,7 @@ public class CommaSeparatedLayout extends RecordLayout {
      * Setter for the ignore-first-line param.
      * @param ignoreFirstLine ignore-first-line param
      */
-    public void setIgnoreFirstLine(Boolean ignoreFirstLine) {
+    public void setIgnoreFirstLine(boolean ignoreFirstLine) {
         _ignoreFirstLine = ignoreFirstLine;
     }
 
@@ -423,10 +424,6 @@ public class CommaSeparatedLayout extends RecordLayout {
         // number of fields is required
         if (_separator == '\0')
             throw new RuntimeException("Separator is required");
-
-        // ignore first line is required (it has a default value in the xml file)
-        if (_ignoreFirstLine == null)
-            throw new RuntimeException("Layout ignore-first-line is required");
 
         if (!_fields.isEmpty()) {
 

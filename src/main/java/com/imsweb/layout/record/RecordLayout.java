@@ -25,6 +25,7 @@ import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 
 /**
  * Abstract implementation of a layout, contains the logic/fields that is common to all record layouts.
@@ -354,6 +355,11 @@ public abstract class RecordLayout implements Layout {
             r = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntry), "UTF-8"));
 
             String line;
+
+            // some CSV layout need to ignore the first line (see issue #2)
+            if (this instanceof CommaSeparatedLayout && ((CommaSeparatedLayout)this).ignoreFirstLine())
+                r.readLine();
+
             while ((line = r.readLine()) != null)
                 result.add(createRecordFromLine(line, r.getLineNumber()));
         }

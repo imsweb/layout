@@ -104,6 +104,13 @@ public class Field {
     protected String _section;
 
     /**
+     * Constructor.
+     */
+    public Field() {
+        _trim = Boolean.TRUE;
+    }
+
+    /**
      * @return Returns the name.
      */
     public String getName() {

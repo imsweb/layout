@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.3.1**
+
+ - CSV layouts setup to ignore first line were not ignoring it in the "readAllRecords" methods.
+
 **Changes in version 1.3**
 
  - Added support for NAACCR 16 layout and documentation.

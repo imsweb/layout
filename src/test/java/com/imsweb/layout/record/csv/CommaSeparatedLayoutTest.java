@@ -323,6 +323,7 @@ public class CommaSeparatedLayoutTest {
         };
         layout.setLayoutId("naaccr-partial-csv");
         layout.setLayoutName("NAACCR Partial CSV");
+        layout.setIgnoreFirstLine(true);
         layout.setLayoutNumberOfFields(fields.size());
         layout.setSeparator(',');
         layout.setFields(fields);
@@ -335,7 +336,6 @@ public class CommaSeparatedLayoutTest {
 
         // read the data file using the new layout
         List<Map<String, String>> records = layout.readAllRecords(file);
-        records.remove(0);
         Assert.assertEquals(3, records.size());
         for (Map<String, String> record : records) {
             Assert.assertNotNull(record.get("recordType"));
@@ -355,7 +355,6 @@ public class CommaSeparatedLayoutTest {
         // same test, but this time the values aren't trimmed...
         layout.setTrimValues(false);
         records = layout.readAllRecords(file);
-        records.remove(0);
         Assert.assertEquals("20100615", records.get(0).get("birthDate"));
         Assert.assertEquals("2010", records.get(0).get("birthDateYear"));
         Assert.assertEquals("06", records.get(0).get("birthDateMonth"));
@@ -365,6 +364,11 @@ public class CommaSeparatedLayoutTest {
         Assert.assertEquals("  ", records.get(1).get("birthDateMonth"));
         Assert.assertEquals("  ", records.get(1).get("birthDateDay"));
         Assert.assertFalse(records.get(2).containsKey("birthDate"));
+
+        // test reading an empty file
+        file = new File(System.getProperty("user.dir") + "/src/test/resources/fake-naaccr-csv-empty.txt");
+        records = layout.readAllRecords(file);
+        Assert.assertEquals(0, records.size());
 
         // try to write some values with that layout: the children are written, not the parent values
         Map<String, String> toWrite = new HashMap<>();

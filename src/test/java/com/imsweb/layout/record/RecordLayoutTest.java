@@ -24,6 +24,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.record.csv.CommaSeparatedField;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
@@ -94,7 +96,7 @@ public class RecordLayoutTest {
             Assert.assertNull(rec);
         }
 
-        // readd all from file
+        // read all from file
         List<Map<String, String>> recs = layout.readAllRecords(file);
         Assert.assertEquals(2, recs.size());
         Assert.assertEquals("A", recs.get(0).get("field1"));
@@ -115,6 +117,25 @@ public class RecordLayoutTest {
             List<Map<String, String>> recs3 = layout.readAllRecords(fis, StandardCharsets.US_ASCII.name());
             Assert.assertEquals(recs, recs3);
         }
+
+        // read all from a CSV file that needs to ignore the first row
+        file = new File(System.getProperty("user.dir") + "/build/rec-layout-read-test.csv");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write("HEADER\nA\nB\n".getBytes()); // two data lines with one header
+        }
+        CommaSeparatedLayout csvLayout = new CommaSeparatedLayout();
+        csvLayout.setLayoutId("test-layout-csv");
+        csvLayout.setLayoutName("Test Layout CSV");
+        csvLayout.setLayoutNumberOfFields(1);
+        CommaSeparatedField field = new CommaSeparatedField();
+        field.setName("field1");
+        field.setIndex(1);
+        csvLayout.setFields(Collections.singletonList(field));
+        LayoutFactory.registerLayout(csvLayout);
+        recs = csvLayout.readAllRecords(file);
+        Assert.assertEquals(2, recs.size());
+        Assert.assertEquals("A", recs.get(0).get("field1"));
+        Assert.assertEquals("B", recs.get(1).get("field1"));
     }
 
     @Test
