@@ -1,7 +1,8 @@
 ## Layout Framework Version History
 
 **Changes in version 1.3.2**
- - NPCR field (item number 3720) shouldn't be trimmed.
+
+ - NPCR field (item number 3720) shouldn't be trimmed (issue #3).
 
 **Changes in version 1.3.1**
 
