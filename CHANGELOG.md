@@ -1,5 +1,8 @@
 ## Layout Framework Version History
 
+**Changes in version 1.3.2**
+ - NPCR field (item number 3720) shouldn't be trimmed.
+
 **Changes in version 1.3.1**
 
  - CSV layouts setup to ignore first line were not ignoring it in the "readAllRecords" methods (issue #2).

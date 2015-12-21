@@ -296,7 +296,7 @@
     <field name="secondaryDiagnosis8" start="1285" end="1291" short-label="Sec Dx 8" long-label="Secondary Diagnosis 8" naaccr-item-num="3794" section="Stage/Prognostic Factors"/>
     <field name="secondaryDiagnosis9" start="1292" end="1298" short-label="Sec Dx 9" long-label="Secondary Diagnosis 9" naaccr-item-num="3796" section="Stage/Prognostic Factors"/>
     <field name="secondaryDiagnosis10" start="1299" end="1305" short-label="Sec Dx 10" long-label="Secondary Diagnosis 10" naaccr-item-num="3798" section="Stage/Prognostic Factors"/>
-    <field name="npcrSpecificField" start="1306" end="1380" short-label="NPCR Spec Fld" long-label="NPCR Specific Field" naaccr-item-num="3720" section="Stage/Prognostic Factors"/>
+    <field name="npcrSpecificField" start="1306" end="1380" short-label="NPCR Spec Fld" long-label="NPCR Specific Field" naaccr-item-num="3720" trim="false" section="Stage/Prognostic Factors"/>
     <field name="dateOfInitialRx" start="1436" end="1443" short-label="Init RX Dt" long-label="Date Initial RX SEER" naaccr-item-num="1260" section="Treatment-1st Course">
         <field name="dateOfInitialRxYear" start="1436" end="1439" short-label="Init RX Yr" long-label="Date Initial RX SEER (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
         <field name="dateOfInitialRxMonth" start="1440" end="1441" short-label="Init RX Mth" long-label="Date Initial RX SEER (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
