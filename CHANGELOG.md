@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.3.3**
+
+ - NAACCR 16 layout XML file was using wrong ID and name (issue #5).
+
 **Changes in version 1.3.2**
 
  - NPCR field (item number 3720) shouldn't be trimmed (issue #3).
