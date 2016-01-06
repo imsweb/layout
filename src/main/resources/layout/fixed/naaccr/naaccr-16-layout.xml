@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<fixed-column-layout id="naaccr-15" name="NAACCR 15" version="150" description="Latest version of NAACCR 15 (15.0)" length="22824">
+<fixed-column-layout id="naaccr-16" name="NAACCR 16" version="160" description="Latest version of NAACCR 16 (16.0)" length="22824">
     <field name="recordType" start="1" end="1" short-label="Rec Type" long-label="Record Type" naaccr-item-num="10" default-value="A" section="Record ID"/>
     <field name="registryType" start="2" end="2" short-label="Reg Type" long-label="Registry Type" naaccr-item-num="30" section="Record ID"/>
-    <field name="naaccrRecordVersion" start="17" end="19" short-label="NAACCR Rec Ver" long-label="NAACCR Record Version" naaccr-item-num="50" default-value="150" section="Record ID"/>
+    <field name="naaccrRecordVersion" start="17" end="19" short-label="NAACCR Rec Ver" long-label="NAACCR Record Version" naaccr-item-num="50" default-value="160" section="Record ID"/>
     <field name="registryIdNpi" start="20" end="29" short-label="NPI Reg ID" long-label="NPI--Registry ID" naaccr-item-num="45" section="Record ID"/>
     <field name="registryId" start="30" end="39" short-label="Reg ID" long-label="Registry ID" naaccr-item-num="40" align="right" pad-char="0" section="Record ID"/>
     <field name="tumorRecordNumber" start="40" end="41" short-label="Tum Rec#" long-label="Tumor Record Number" naaccr-item-num="60" align="right" pad-char="0" section="Record ID"/>
