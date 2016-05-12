@@ -1,14 +1,14 @@
 /*********************************************************************************************************
- *     Use this scritp to generate the NAACCR documentation from their website. 
+ *     Use this script to generate the NAACCR documentation from their website. 
  *
  *     !!!!    MAKE SURE TO AUTO-FORMAT THE ENTIRE FOLDER AFTER CREATING THE FILES    !!!!
  *
  *     This script also creates the styles that need to be copied into the AbstractNaaccrLayout class.
  *
- *     After creting the files with this script, use the "NaaccrDocViewer" and review every created file;
+ *     After creating the files with this script, use the "NaaccrDocViewer" and review every created file;
  *     that utility class is in the SEER*Utils GUI project (test/naaccr)
  *
- *     2014/10/25 FPD - didn't need to redo the styles for NAACCR 15, they were the same as NAACCR 14...
+ *     2014/10/25 FPD - didn't need to redo the styles for NAACCR 15/16, they were the same as NAACCR 14...
  *
  *********************************************************************************************************/
 
@@ -18,10 +18,10 @@
 
 
 // output directory
-def outputDir = new File('C:\\dev\\projects\\layout\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr16')
+def outputDir = new File('C:\\dev\\projects_github\\layout\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr16')
 
 // the layout to use to gather the fields
-def layout = new File(outputDir, '..\\..\\naaccr-16-layout.xml')
+def layout = new File('C:\\dev\\projects_github\\layout\\src\\main\\resources\\layout\\fixed\\naaccr\\naaccr-16-layout.xml')
 
 // this is the URL to read the full HTML page from
 def url = 'http://www.naaccr.org/Applications/ContentReader/Default.aspx?c=10'
