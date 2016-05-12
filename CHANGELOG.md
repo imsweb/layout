@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.3.4**
+
+ - Fixed the NAACCR 16 documentation; many fields had the wrong columns information (issue #6).
+
 **Changes in version 1.3.3**
 
  - NAACCR 16 layout XML file was using wrong ID and name (issue #5).
