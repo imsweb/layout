@@ -435,7 +435,7 @@ public class FixedColumnsLayout extends RecordLayout {
             // why are we instanciating a new String? http://blog.mikemccandless.com/2010/06/beware-stringsubstrings-memory-usage.html
             String value = new String(line.substring(start - 1, end));
             String trimmedValue = value.trim();
-            if (trimValues && field.getTrim()) {
+            if (trimValues && (field.getTrim() || trimmedValue.isEmpty())) {
                 // never trim a group field unless it's completely empty (or we would lose the info of which child value is which)
                 if (field.getSubFields() == null || trimmedValue.isEmpty())
                     value = trimmedValue;

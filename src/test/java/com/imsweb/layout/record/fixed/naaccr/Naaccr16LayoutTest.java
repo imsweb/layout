@@ -35,7 +35,7 @@ public class Naaccr16LayoutTest {
         Assert.assertEquals(22824, ((FixedColumnsLayout)layout).getLayoutLineLength().intValue());
 
         // test fields
-        Assert.assertEquals(533, layout.getAllFields().size());
+        Assert.assertEquals(553, layout.getAllFields().size()); // includes the reserved gaps
         Assert.assertEquals("recordType", layout.getFieldByName("recordType").getName());
         Assert.assertEquals("Rec Type", layout.getFieldByName("recordType").getShortLabel());
         Assert.assertEquals("Record Type", layout.getFieldByName("recordType").getLongLabel());
@@ -67,6 +67,7 @@ public class Naaccr16LayoutTest {
         Assert.assertEquals("I", (rec.get("recordType")));
         Assert.assertEquals("C400", (rec.get("primarySite")));
         Assert.assertNull(rec.get("nameLast"));
+        Assert.assertNull(rec.get("reserved01"));
 
         // test write methods        
         File file = new File(System.getProperty("user.dir") + "/build/naaccr16.txt");
@@ -75,6 +76,7 @@ public class Naaccr16LayoutTest {
         rec.put("recordType", "I");
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
+        rec.put("reserved01", "Some test with spaces at the end   ");
         layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE);
         Assert.assertEquals(3339, layout.createLineFromRecord(rec).length());
         layout.writeRecord(file, rec); // write into a file
@@ -83,6 +85,7 @@ public class Naaccr16LayoutTest {
         Assert.assertEquals("I", rec.get("recordType"));
         Assert.assertEquals("C400", rec.get("primarySite"));
         Assert.assertNull(rec.get("nameLast"));
+        Assert.assertEquals("Some test with spaces at the end     ", rec.get("reserved01")); // two extra space at the end since we don't trim and field length is 37
         file.delete();
 
         rec.clear();
