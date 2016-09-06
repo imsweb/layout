@@ -17,6 +17,7 @@ import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
@@ -215,11 +216,17 @@ public class NaaccrLayout extends FixedColumnsLayout {
     public String getFieldDocByName(String name) {
         String result = null;
 
-        Field field = getFieldByName(name);
+        FixedColumnsField field = getFieldByName(name);
         if (field == null)
             return null;
 
-        URL docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + name + ".html");
+        boolean reservedField = field.getName().startsWith("reserved");
+        
+        URL docPath;
+        if (reservedField)
+            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/reserved.html");
+        else
+            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + name + ".html");
         if (docPath == null)
             return null;
 
@@ -245,6 +252,9 @@ public class NaaccrLayout extends FixedColumnsLayout {
         catch (IOException e) {
             /* do nothing, result will be null, as per specs */
         }
+        
+        if (reservedField && result != null)
+            result = result.replace("[:ITEM_NUM:]", field.getNaaccrItemNum().toString()).replace("[:COLUMNS:]", field.getStart() + " - " + field.getEnd());
 
         return result;
     }
@@ -255,7 +265,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
 
     @Override
     public String getFieldDocDefaultCssStyle() {
-        // I know, the correct way to do this is to use the class hierarch, but I don't want to repeat the CSS in all the NAACCR sub-classes...
+        // I know, the correct way to do this is to use the class hierarchy, but I don't want to repeat the CSS in all the NAACCR sub-classes...
         String docFolder = getDocFolder();
 
         StringBuilder buf = new StringBuilder();

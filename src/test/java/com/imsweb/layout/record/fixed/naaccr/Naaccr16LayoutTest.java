@@ -85,7 +85,7 @@ public class Naaccr16LayoutTest {
         Assert.assertEquals("I", rec.get("recordType"));
         Assert.assertEquals("C400", rec.get("primarySite"));
         Assert.assertNull(rec.get("nameLast"));
-        Assert.assertEquals("Some test with spaces at the end     ", rec.get("reserved01")); // two extra space at the end since we don't trim and field length is 37
+        Assert.assertEquals("Some test with spaces at the end     ", rec.get("reserved01")); // two extra space at the end since 
         file.delete();
 
         rec.clear();
