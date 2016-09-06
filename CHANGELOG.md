@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 1.4**
+
+ - Fields that are completely blank in the data file won't be included in the resulting map even if their definition says they can't be trimmed.
+ - Added support for NAACCR reserved fields; this feature is only available for NAACCR 16 and later.
+
 **Changes in version 1.3.4**
 
  - Fixed the NAACCR 16 documentation; many fields had the wrong columns information (issue #6).
