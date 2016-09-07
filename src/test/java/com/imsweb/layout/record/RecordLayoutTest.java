@@ -42,8 +42,6 @@ public class RecordLayoutTest {
         layout.setLayoutDescription("Description");
         layout.setLayoutVersion("1.0");
         layout.setLayoutLineLength(1);
-        layout.setTrimValues(false);
-        layout.setEnforceStrictFormat(true);
         FixedColumnsField field = new FixedColumnsField();
         field.setName("field1");
         field.setStart(1);

@@ -61,21 +61,23 @@ public abstract class RecordLayout implements Layout {
     protected String _parentLayoutId;
 
     /**
-     * If set to true, the read values will be trimmed; defaults to true
+     * Options used for all read/write operations
      */
-    protected boolean _trimValues;
+    protected RecordLayoutOptions _options;
 
     /**
-     * If set to true, the format will be strictly enforced (for example the line length will be checked against the records type); default to false
+     * Default Constructor.
      */
-    protected boolean _enforceStrictFormat;
+    public RecordLayout() {
+        this(null);
+    }
 
     /**
      * Constructor.
+     * @param options read/write options
      */
-    public RecordLayout() {
-        _trimValues = true;
-        _enforceStrictFormat = false;
+    public RecordLayout(RecordLayoutOptions options) {
+        _options = options == null ? new RecordLayoutOptions() : new RecordLayoutOptions(options);
     }
 
     @Override
@@ -122,6 +124,14 @@ public abstract class RecordLayout implements Layout {
         return _parentLayoutId;
     }
 
+    public RecordLayoutOptions getOptions() {
+        return _options == null ? new RecordLayoutOptions() : _options;
+    }
+
+    public void setOptions(RecordLayoutOptions options) {
+        _options = new RecordLayoutOptions(options);
+    }
+
     @Override
     public String getFieldDocByName(String name) {
         if (_parentLayoutId != null)
@@ -141,28 +151,6 @@ public abstract class RecordLayout implements Layout {
         if (_parentLayoutId != null)
             return LayoutFactory.getLayout(_parentLayoutId).getFieldDocDefaultCssStyle();
         return "";
-    }
-
-    /**
-     * If set to true, the values will be trimmed when read (unless the XML explicitely says not to trim the field).
-     * <p/>
-     * Default value is true.
-     * <p/>
-     * Created on Aug 16, 2011 by depryf
-     */
-    public void setTrimValues(boolean trimValues) {
-        _trimValues = trimValues;
-    }
-
-    /**
-     * If set to false, some layout implementations will be less strict when validating the raw records.
-     * <p/>
-     * Default value is false.
-     * <p/>
-     * Created on Aug 16, 2011 by depryf
-     */
-    public void setEnforceStrictFormat(boolean enforceStrictFormat) {
-        _enforceStrictFormat = enforceStrictFormat;
     }
 
     /**
@@ -258,8 +246,8 @@ public abstract class RecordLayout implements Layout {
         try {
             out = new BufferedOutputStream(new FileOutputStream(file));
             for (Map<String, String> record : records) {
-                out.write(createLineFromRecord(record).getBytes("UTF-8"));
-                out.write(System.getProperty("line.separator").getBytes("UTF-8"));
+                out.write(createLineFromRecord(record).getBytes(StandardCharsets.UTF_8));
+                out.write(System.getProperty("line.separator").getBytes(StandardCharsets.UTF_8));
             }
         }
         finally {
@@ -299,7 +287,7 @@ public abstract class RecordLayout implements Layout {
         if (encoding != null)
             r = new LineNumberReader(new InputStreamReader(inputStream, encoding));
         else
-            r = new LineNumberReader(new InputStreamReader(inputStream, "UTF-8"));
+            r = new LineNumberReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         String line;
         while ((line = r.readLine()) != null)
             result.add(createRecordFromLine(line, r.getLineNumber()));
@@ -352,7 +340,7 @@ public abstract class RecordLayout implements Layout {
 
         LineNumberReader r = null;
         try {
-            r = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntry), "UTF-8"));
+            r = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntry), StandardCharsets.UTF_8));
 
             String line;
 
@@ -405,22 +393,7 @@ public abstract class RecordLayout implements Layout {
      * @return a map representing a record
      * @throws IOException
      */
-    public Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException {
-        return createRecordFromLine(line, lineNumber, _trimValues, _enforceStrictFormat);
-    }
-
-    /**
-     * Converts the given data line into a map representing a record.
-     * <p/>
-     * Created on Jul 14, 2011 by murphyr
-     * @param line data line
-     * @param lineNumber line number (use null if no line number available)
-     * @param trimValues whether the values should be trimmed or not; overrides the global setting
-     * @param enforceStrictFormat whether the line length should be enforced or not, overrides the global setting
-     * @return a map representing a record
-     * @throws IOException
-     */
-    public abstract Map<String, String> createRecordFromLine(String line, Integer lineNumber, boolean trimValues, boolean enforceStrictFormat) throws IOException;
+    public abstract Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException;
 
     /**
      * Converts the provided record into a data line.

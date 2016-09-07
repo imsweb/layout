@@ -350,10 +350,11 @@ public class FixedColumnsLayout extends RecordLayout {
                         int length = subEnd - subStart + 1;
                         if (value.length() > length)
                             throw new IOException("value too long for field '" + child.getName() + "'");
-                        if (child.getAlign() == FieldAlignment.RIGHT)
-                            value = LayoutUtils.pad(value, length, value.isEmpty() ? " " : child.getPadChar(), true);
+                        String paddingChar = !value.isEmpty() && getOptions().applyPadding() ? child.getPadChar() : " ";
+                        if (getOptions().applyAlignment() && child.getAlign() == FieldAlignment.RIGHT)
+                            value = LayoutUtils.pad(value, length, paddingChar, true);
                         else
-                            value = LayoutUtils.pad(value, length, value.isEmpty() ? " " : child.getPadChar(), false);
+                            value = LayoutUtils.pad(value, length, paddingChar, false);
                         result.append(cleanValue(value, child));
                         currentIndex = subEnd + 1;
                     }
@@ -372,10 +373,11 @@ public class FixedColumnsLayout extends RecordLayout {
                 int length = end - start + 1;
                 if (value.length() > length)
                     throw new IOException("value too long for field '" + field.getName() + "'");
-                if (field.getAlign() == FieldAlignment.RIGHT)
-                    value = LayoutUtils.pad(value, length, value.isEmpty() ? " " : field.getPadChar(), true);
+                String paddingChar = !value.isEmpty() && getOptions().applyPadding() ? field.getPadChar() : " ";
+                if (getOptions().applyAlignment() && field.getAlign() == FieldAlignment.RIGHT)
+                    value = LayoutUtils.pad(value, length, paddingChar, true);
                 else
-                    value = LayoutUtils.pad(value, length, value.isEmpty() ? " " : field.getPadChar(), false);
+                    value = LayoutUtils.pad(value, length, paddingChar, false);
                 result.append(cleanValue(value, field));
                 currentIndex = end + 1;
             }
@@ -403,14 +405,14 @@ public class FixedColumnsLayout extends RecordLayout {
 
     @Override
     @SuppressWarnings("RedundantStringConstructorCall")
-    public Map<String, String> createRecordFromLine(String line, Integer lineNumber, boolean trimValues, boolean enforceStrictFormat) throws IOException {
+    public Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException {
         Map<String, String> result = new HashMap<>();
 
         Integer lineNumberSafe = lineNumber == null ? Integer.valueOf(1) : lineNumber;
 
         // handle special case
         if (line == null || line.isEmpty()) {
-            if (enforceStrictFormat)
+            if (getOptions().enforceStrictFormat())
                 throw new IOException("line " + lineNumberSafe + ": got en empty line");
             else
                 return result;
@@ -418,7 +420,7 @@ public class FixedColumnsLayout extends RecordLayout {
 
         // if we need to enforce the format, get the expected line length; otherwise read until the EOL
         int formatLength = line.length();
-        if (enforceStrictFormat) {
+        if (getOptions().enforceStrictFormat()) {
             String validationMsg = validateLine(line, lineNumberSafe);
             if (validationMsg != null)
                 throw new IOException(validationMsg);
@@ -440,7 +442,7 @@ public class FixedColumnsLayout extends RecordLayout {
             if (field.getSubFields() != null)
                 childPreventsTrimming = field.getSubFields().stream().anyMatch(subField -> !subField.getTrim());
             String trimmedValue = value.trim();
-            if (trimValues && (field.getTrim() || (trimmedValue.isEmpty() && !childPreventsTrimming))) {
+            if (getOptions().trimValues() && (field.getTrim() || (trimmedValue.isEmpty() && !childPreventsTrimming))) {
                 // never trim a group field unless it's completely empty (or we would lose the info of which child value is which)
                 if (field.getSubFields() == null || trimmedValue.isEmpty())
                     value = trimmedValue;
@@ -456,7 +458,7 @@ public class FixedColumnsLayout extends RecordLayout {
                         end = ((FixedColumnsField)child).getEnd();
 
                         value = new String(line.substring(start - 1, end));
-                        if (trimValues && child.getTrim())
+                        if (getOptions().trimValues() && child.getTrim())
                             value = value.trim();
 
                         if (!value.isEmpty()) {

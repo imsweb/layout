@@ -22,6 +22,7 @@ import com.imsweb.layout.Field.FieldAlignment;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
@@ -71,7 +72,10 @@ public class CommaSeparatedLayoutTest {
         }
 
         // let's enforce the format
-        layout.setEnforceStrictFormat(true);
+        RecordLayoutOptions options = new RecordLayoutOptions();
+        options.setTrimValues(true);
+        options.setEnforceStrictFormat(true);
+        layout.setOptions(options);
 
         // test layout info
         Assert.assertEquals("test-csv", layout.getLayoutId());
@@ -106,10 +110,7 @@ public class CommaSeparatedLayoutTest {
         Assert.assertEquals("456", rec.get("field2"));
         rec = layout.createRecordFromLine(",,");
         Assert.assertTrue(rec.isEmpty());
-        rec = layout.createRecordFromLine(" ,   ,   ", null, false, true); // test overriding the trimming options
-        Assert.assertEquals(" ", rec.get("recordType"));
-        Assert.assertEquals("   ", rec.get("field1"));
-        Assert.assertEquals("   ", rec.get("field2"));
+
         boolean exception = false;
         try {
             layout.createRecordFromLine("x"); // we are using strict validation, so a bad line should generate an exception
@@ -145,8 +146,9 @@ public class CommaSeparatedLayoutTest {
         Assert.assertEquals("X,,", layout.createLineFromRecord(rec)); // first field has a default value
 
         // **** re-do some of the read/write test with a layout that doesn't trim and doesn't enforce the format
-        layout.setTrimValues(false);
-        layout.setEnforceStrictFormat(false);
+        options.setTrimValues(false);
+        options.setEnforceStrictFormat(false);
+        layout.setOptions(options);
 
         // test validate line
         Assert.assertNull(layout.validateLine("1,2,3", 1));
@@ -162,10 +164,7 @@ public class CommaSeparatedLayoutTest {
         Assert.assertNull(rec.get("field2"));
         rec = layout.createRecordFromLine(",,");
         Assert.assertTrue(rec.isEmpty());
-        rec = layout.createRecordFromLine(" ,   ,   ", null, false, true); // test overriding the trimming options
-        Assert.assertEquals(" ", rec.get("recordType"));
-        Assert.assertEquals("   ", rec.get("field1"));
-        Assert.assertEquals("   ", rec.get("field2"));
+
         exception = false;
         try {
             layout.createRecordFromLine("x"); // we are not using strict validation, so a bad line should not generate an exception
@@ -260,8 +259,8 @@ public class CommaSeparatedLayoutTest {
         // create the fake layout
         CommaSeparatedLayout layout = new CommaSeparatedLayout() {
             @Override
-            public Map<String, String> createRecordFromLine(String line, Integer lineNumber, boolean trimValues, boolean enforceStrictFormat) throws IOException {
-                Map<String, String> result = super.createRecordFromLine(line, lineNumber, trimValues, enforceStrictFormat);
+            public Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException {
+                Map<String, String> result = super.createRecordFromLine(line, lineNumber);
 
                 // handle subfields
                 for (CommaSeparatedField field : _fields) {
@@ -271,7 +270,7 @@ public class CommaSeparatedLayoutTest {
                         if (originalValue != null && originalValue.length() >= fields.get(fields.size() - 1).getEnd()) {
                             for (FixedColumnsField child : fields) {
                                 String value = new String(originalValue.substring(child.getStart() - 1, child.getEnd()));
-                                if (trimValues)
+                                if (getOptions().trimValues())
                                     value = value.trim();
                                 if (!value.isEmpty())
                                     result.put(child.getName(), value);
@@ -327,7 +326,6 @@ public class CommaSeparatedLayoutTest {
         layout.setLayoutNumberOfFields(fields.size());
         layout.setSeparator(',');
         layout.setFields(fields);
-        layout.setTrimValues(true);
         LayoutFactory.registerLayout(layout);
 
         // make sure we can now recognize the file
@@ -353,7 +351,9 @@ public class CommaSeparatedLayoutTest {
         Assert.assertFalse(records.get(2).containsKey("birthDate"));
 
         // same test, but this time the values aren't trimmed...
-        layout.setTrimValues(false);
+        RecordLayoutOptions options = new RecordLayoutOptions();
+        options.setTrimValues(false);
+        layout.setOptions(options);
         records = layout.readAllRecords(file);
         Assert.assertEquals("20100615", records.get(0).get("birthDate"));
         Assert.assertEquals("2010", records.get(0).get("birthDateYear"));

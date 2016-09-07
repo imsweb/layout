@@ -11,7 +11,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -152,17 +151,10 @@ public class CommaSeparatedLayout extends RecordLayout {
             for (CommaSeparatedLayoutFieldXmlDto fieldXmlDto : layoutXmlDto.getField())
                 addField(createFieldFromXmlField(fieldXmlDto));
         if (parentLayout != null)
-            for (CommaSeparatedField field : parentLayout.getAllFields())
-                if (!_cachedByName.containsKey(field.getName()))
-                    addField(field);
+            parentLayout.getAllFields().stream().filter(field -> !_cachedByName.containsKey(field.getName())).forEach(this::addField);
 
         // sort the fields by index
-        Collections.sort(_fields, new Comparator<CommaSeparatedField>() {
-            @Override
-            public int compare(CommaSeparatedField f1, CommaSeparatedField f2) {
-                return f1.getIndex().compareTo(f2.getIndex());
-            }
-        });
+        Collections.sort(_fields, (f1, f2) -> f1.getIndex().compareTo(f2.getIndex()));
 
         // final verifications
         try {
@@ -208,16 +200,10 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     public void setFields(Collection<CommaSeparatedField> fields) {
         _fields.clear();
-        for (CommaSeparatedField field : fields)
-            addField(field);
+        fields.forEach(this::addField);
 
         // sort the fields by index
-        Collections.sort(_fields, new Comparator<CommaSeparatedField>() {
-            @Override
-            public int compare(CommaSeparatedField f1, CommaSeparatedField f2) {
-                return f1.getIndex().compareTo(f2.getIndex());
-            }
-        });
+        Collections.sort(_fields, (f1, f2) -> f1.getIndex().compareTo(f2.getIndex()));
 
         // verify they make sense
         verify();
@@ -339,21 +325,21 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     @Override
     @SuppressWarnings("RedundantStringConstructorCall")
-    public Map<String, String> createRecordFromLine(String line, Integer lineNumber, boolean trimValues, boolean enforceStrictFormat) throws IOException {
+    public Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException {
         Map<String, String> result = new HashMap<>();
 
         Integer lineNumberSafe = lineNumber == null ? Integer.valueOf(1) : lineNumber;
 
         // handle special case
         if (line == null || line.isEmpty()) {
-            if (enforceStrictFormat)
+            if (getOptions().enforceStrictFormat())
                 throw new IOException("line " + lineNumberSafe + ": got en empty line");
             else
                 return result;
         }
 
         // if we need to enforce the format, validate the line
-        if (enforceStrictFormat) {
+        if (getOptions().enforceStrictFormat()) {
             String validationMsg = validateLine(line, lineNumberSafe);
             if (validationMsg != null)
                 throw new IOException(validationMsg);
@@ -370,7 +356,7 @@ public class CommaSeparatedLayout extends RecordLayout {
 
             String value = values[index];
             String trimmedValue = value.trim();
-            if (trimValues && field.getTrim())
+            if (getOptions().trimValues() && field.getTrim())
                 value = trimmedValue;
 
             if (!value.isEmpty())
@@ -395,7 +381,7 @@ public class CommaSeparatedLayout extends RecordLayout {
                 }
             }
             catch (IOException e) {
-                /** do nothing */
+                // ignored
             }
         }
 

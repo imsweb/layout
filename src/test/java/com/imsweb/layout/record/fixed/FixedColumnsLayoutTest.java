@@ -15,6 +15,7 @@ import org.junit.Test;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
@@ -58,8 +59,10 @@ public class FixedColumnsLayoutTest {
         }
 
         // let's trim values, let's enforce the format
-        layout.setTrimValues(true);
-        layout.setEnforceStrictFormat(true);
+        RecordLayoutOptions options = new RecordLayoutOptions();
+        options.setTrimValues(true);
+        options.setEnforceStrictFormat(true);
+        layout.setOptions(options);
 
         // test field getters
         Assert.assertEquals(6, layout.getAllFields().size());
@@ -104,11 +107,6 @@ public class FixedColumnsLayoutTest {
         Assert.assertEquals(2, rec.size());  // the record should still contain the fields that aren't trimmed
         Assert.assertTrue(rec.containsKey("field5"));
         Assert.assertTrue(rec.containsKey("field5b"));
-        rec = layout.createRecordFromLine("                ", null, false, true); // test overriding the trimming options
-        Assert.assertEquals(" ", rec.get("recordType"));
-        Assert.assertEquals("   ", rec.get("field1"));
-        Assert.assertEquals("   ", rec.get("field2"));
-        Assert.assertEquals("   ", rec.get("field3"));
         boolean exception = false;
         try {
             layout.createRecordFromLine("x"); // we are using strict validation, so a line too short should generate an exception
@@ -158,6 +156,17 @@ public class FixedColumnsLayoutTest {
         rec.put("field4a", "Y");
         rec.put("field4b", "Z");
         Assert.assertEquals("Xa  bXX00cYZ    ", layout.createLineFromRecord(rec));
+        // same test but disable the padding
+        options.setApplyPadding(false);
+        layout.setOptions(options);
+        Assert.assertEquals("Xa  b    cYZ    ", layout.createLineFromRecord(rec));
+        // same test but disable alignment
+        options.setApplyAlignment(false);
+        layout.setOptions(options);
+        Assert.assertEquals("Xa  b  c  YZ    ", layout.createLineFromRecord(rec));
+        options.setApplyPadding(true);
+        options.setApplyAlignment(true);
+        layout.setOptions(options);
 
         // now parent and children don't agree -> no exception, use the children
         rec.put("field4", "01");
@@ -187,8 +196,9 @@ public class FixedColumnsLayoutTest {
         Assert.assertTrue(exception);
 
         // **** re-do some of the read/write test with a layout that doesn't trim and doesn't enforce the format
-        layout.setTrimValues(false);
-        layout.setEnforceStrictFormat(false);
+        options.setTrimValues(false);
+        options.setEnforceStrictFormat(false);
+        layout.setOptions(options);
 
         // test validate line
         Assert.assertNull(layout.validateLine("012345678901    ", 1));
@@ -247,7 +257,10 @@ public class FixedColumnsLayoutTest {
         Assert.assertFalse(exception);
 
         // test main writing method
-        rec = layout.createRecordFromLine("01234567890199  ", null, true, false);
+        options.setTrimValues(true);
+        options.setEnforceStrictFormat(false);
+        layout.setOptions(options);
+        rec = layout.createRecordFromLine("01234567890199  ");
         Assert.assertEquals("01234567890199  ", layout.createLineFromRecord(rec));
         rec.clear();
         rec.put("recordType", "0");
