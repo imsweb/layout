@@ -2,9 +2,9 @@
 
 **Changes in version 1.4**
 
- - Added support for read/write options in the record-based layout, see RecordLayoutOptions class.
+ - Added support for read/write options in the record-based layout, see RecordLayoutOptions class (issue #7).
  - Fields that are completely blank in the data file won't be included in the resulting map even if their definition says they can't be trimmed.
- - Added support for NAACCR reserved fields; this feature is only available for NAACCR 16 and later.
+ - Added support for NAACCR reserved fields; this feature is only available for NAACCR 16 and later (issue #4).
  - This library now requires Java 8.
 
 **Changes in version 1.3.4**
