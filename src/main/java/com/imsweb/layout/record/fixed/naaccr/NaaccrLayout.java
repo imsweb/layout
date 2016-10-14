@@ -173,7 +173,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
                 // do not add the fields pass the required line length
                 List<FixedColumnLayoutFieldXmlDto> fields = new ArrayList<>();
                 for (FixedColumnLayoutFieldXmlDto f : tmpXmlLayout.getField())
-                    if (f.getStart() <= getNaaccrLineLength())
+                    if (f.getStart() <= getNaaccrLineLength() || f.getStart() > tmpXmlLayout.getLength()) // allow fields greater than the max length will ensure errors are properly reported...
                         fields.add(f);
                 xmlLayout.setField(fields);
 

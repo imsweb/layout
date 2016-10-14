@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.4.1**
+
+ - Fixed wrong start columns for reserved11 field in NAACCR 16 layout (issue #8)
+
 **Changes in version 1.4**
 
  - Added support for read/write options in the record-based layout, see RecordLayoutOptions class (issue #7).

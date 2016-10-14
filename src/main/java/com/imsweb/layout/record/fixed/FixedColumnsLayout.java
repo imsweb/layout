@@ -70,10 +70,10 @@ public class FixedColumnsLayout extends RecordLayout {
      */
     public FixedColumnsLayout(URL layoutUrl) throws IOException {
         this();
-        
+
         if (layoutUrl == null)
             throw new NullPointerException("Unable to create layout from null URL");
-        
+
         try (InputStream is = layoutUrl.openStream()) {
             init(LayoutUtils.readFixedColumnsLayout(is));
         }
@@ -107,7 +107,7 @@ public class FixedColumnsLayout extends RecordLayout {
 
         if (layoutXmlDto == null)
             throw new NullPointerException("Unable to create layout from null XML object");
-        
+
         init(layoutXmlDto);
     }
 
@@ -436,7 +436,7 @@ public class FixedColumnsLayout extends RecordLayout {
 
             // why are we instanciating a new String? http://blog.mikemccandless.com/2010/06/beware-stringsubstrings-memory-usage.html
             String value = new String(line.substring(start - 1, end));
-            
+
             // can we trim the value?
             boolean childPreventsTrimming = false;
             if (field.getSubFields() != null)
@@ -516,9 +516,18 @@ public class FixedColumnsLayout extends RecordLayout {
             if (_fields.get(_fields.size() - 1).getEnd() > _layoutLineLength)
                 throw new RuntimeException("Last field end column must be smaller or equals to defined line length");
 
-            // verify there is no overlapping
+            // verify each field
             for (int i = 0; i < _fields.size() - 1; i++) {
                 FixedColumnsField f1 = _fields.get(i);
+
+                // verify field start is within the allowed range
+                if (f1.getStart() <= 0 || f1.getStart() > _layoutLineLength)
+                    throw new RuntimeException("Field " + f1.getName() + " start value is invalid, must be within 1-" + _layoutLineLength + " but got " + f1.getStart());
+                // verify field end is within the allowed range
+                if (f1.getEnd() <= 0 || f1.getEnd() > _layoutLineLength)
+                    throw new RuntimeException("Field " + f1.getName() + " end value is invalid, must be within 1-" + _layoutLineLength + " but got " + f1.getStart());
+
+                // verify there is no overlapping
                 FixedColumnsField f2 = _fields.get(i + 1);
                 if (f1.getEnd() >= f2.getStart())
                     throw new RuntimeException("Fields " + f1.getName() + " and " + f2.getName() + " are overlapping");

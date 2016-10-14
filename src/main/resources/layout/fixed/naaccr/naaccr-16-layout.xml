@@ -691,7 +691,7 @@
     <field name="institutionReferredFrom" start="4315" end="4324" short-label="Inst Ref From" long-label="Institution Referred From" naaccr-item-num="2410" align="right" pad-char="0" section="Hospital-Confidential"/>
     <field name="institutionReferredToNpi" start="4325" end="4334" short-label="NPI Inst Ref To" long-label="NPI--Inst Referred To" naaccr-item-num="2425" section="Hospital-Confidential"/>
     <field name="institutionReferredTo" start="4335" end="4344" short-label="Inst Ref To" long-label="Institution Referred To" naaccr-item-num="2420" align="right" pad-char="0" section="Hospital-Confidential"/>
-    <field name="reserved11" start="40345" end="4394" short-label="Res11" long-label="Reserved 11" naaccr-item-num="1900" trim="false" section="Hospital-Confidential"/>
+    <field name="reserved11" start="4345" end="4394" short-label="Res11" long-label="Reserved 11" naaccr-item-num="1900" trim="false" section="Hospital-Confidential"/>
     <field name="physicianManagingNpi" start="4395" end="4404" short-label="Manag Phys NPI" long-label="NPI--Physician--Managing" naaccr-item-num="2465" section="Other-Confidential"/>
     <field name="physicianManaging" start="4405" end="4412" short-label="Manag Phys ID" long-label="Physician--Managing" naaccr-item-num="2460" section="Other-Confidential"/>
     <field name="physicianFollowUpNpi" start="4413" end="4422" short-label="FU Phys NPI" long-label="NPI--Physician--Follow-Up" naaccr-item-num="2475" section="Other-Confidential"/>
