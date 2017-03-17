@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Information Management Services, Inc.
  */
-package com.imsweb.layout.hl7;
+package com.imsweb.layout.hl7.entity;
 
 public class Hl7SubComponent {
 
@@ -32,10 +32,6 @@ public class Hl7SubComponent {
     }
 
     public void setValue(String value) {
-        _value = value;
-    }
-
-    public void withValue(String value) {
         _value = value;
     }
 }
