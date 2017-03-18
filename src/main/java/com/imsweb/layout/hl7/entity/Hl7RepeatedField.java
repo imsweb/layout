@@ -12,8 +12,17 @@ public class Hl7RepeatedField {
 
     private Map<Integer, Hl7Component> _components;
 
-    public Hl7RepeatedField() {
+    public Hl7RepeatedField(Hl7Field field) {
+        _field = field;
         _components = new HashMap<>();
+
+        if (field != null)
+            field.addRepeatedField(this);
+    }
+
+    public Hl7RepeatedField(Hl7Field field, String value) {
+        this(field);
+        addComponent(new Hl7Component(this, 1, value));
     }
 
     public Hl7Field getField() {
@@ -21,6 +30,8 @@ public class Hl7RepeatedField {
     }
 
     public void setField(Hl7Field field) {
+        if (field == null)
+            throw new RuntimeException("Parent field cannot be null");
         _field = field;
     }
 
@@ -29,15 +40,21 @@ public class Hl7RepeatedField {
     }
 
     public void setComponents(Map<Integer, Hl7Component> components) {
-        _components = components;
+        _components = components == null ? new HashMap<>() : components;
     }
 
-    public void addComponent(Hl7Component component) {
+    public Hl7Component addComponent(Hl7Component component) {
         _components.put(component.getIndex(), component);
+        return component;
     }
 
     public Hl7Component getComponent(int componentIdx) {
-        Hl7Component component = _components.get(componentIdx);
-        return component == null ? new Hl7Component() : component;
+        Hl7Component result = _components.get(componentIdx);
+        return result == null ? new Hl7Component(null, componentIdx) : result;
+    }
+
+    public String getValue() {
+        String value = Hl7Utils.repeatedFieldToString(this);
+        return value.isEmpty() ? null : value;
     }
 }

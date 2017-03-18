@@ -14,8 +14,22 @@ public class Hl7Component {
 
     private Map<Integer, Hl7SubComponent> _subComponents;
 
-    public Hl7Component() {
+    public Hl7Component(Hl7RepeatedField repeatedField, Integer index) {
+        if (index == null)
+            throw new RuntimeException("Index is required");
+        if (index < 1 || index > 99)
+            throw new RuntimeException("Index must be between 1 and 99");
+        _repeatedField = repeatedField;
+        _index = index;
         _subComponents = new HashMap<>();
+
+        if (repeatedField != null)
+            repeatedField.addComponent(this);
+    }
+
+    public Hl7Component(Hl7RepeatedField repeatedField, Integer index, String value) {
+        this(repeatedField, index);
+        addSubComponent(new Hl7SubComponent(this, index, value));
     }
 
     public Hl7RepeatedField getRepeatedField() {
@@ -23,6 +37,8 @@ public class Hl7Component {
     }
 
     public void setRepeatedField(Hl7RepeatedField repeatedField) {
+        if (repeatedField == null)
+            throw new RuntimeException("Parent repeated field cannot be null");
         _repeatedField = repeatedField;
     }
 
@@ -31,6 +47,10 @@ public class Hl7Component {
     }
 
     public void setIndex(Integer index) {
+        if (index == null)
+            throw new RuntimeException("Index is required");
+        if (index < 1 || index > 99)
+            throw new RuntimeException("Index must be between 1 and 99");
         _index = index;
     }
 
@@ -39,23 +59,21 @@ public class Hl7Component {
     }
 
     public void setSubComponents(Map<Integer, Hl7SubComponent> subComponents) {
-        _subComponents = subComponents;
+        _subComponents = subComponents == null ? new HashMap<>() : subComponents;
     }
 
-    public void addSubComponent(Hl7SubComponent subComponent) {
+    public Hl7SubComponent addSubComponent(Hl7SubComponent subComponent) {
         _subComponents.put(subComponent.getIndex(), subComponent);
+        return subComponent;
     }
 
     public Hl7SubComponent getSubComponent(int subComponentIdx) {
-        Hl7SubComponent subComponent = _subComponents.get(subComponentIdx);
-        return subComponent == null ? new Hl7SubComponent() : subComponent;
+        Hl7SubComponent result = _subComponents.get(subComponentIdx);
+        return result == null ? new Hl7SubComponent(null, subComponentIdx, null) : result;
     }
 
     public String getValue() {
-        return getValue(1);
-    }
-
-    public String getValue(Integer subComponentIdx) {
-        return getSubComponent(subComponentIdx).getValue();
+        String value = Hl7Utils.componentToString(this);
+        return value.isEmpty() ? null : value;
     }
 }

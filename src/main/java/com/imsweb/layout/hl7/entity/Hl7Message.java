@@ -5,8 +5,6 @@ package com.imsweb.layout.hl7.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Hl7Message {
 
@@ -24,8 +22,53 @@ public class Hl7Message {
         _segments = segments;
     }
 
-    public void addSegment(Hl7Segment segment) {
+    public Hl7Segment addSegment(Hl7Segment segment) {
         _segments.add(segment);
+        return segment;
+    }
+
+    public String getFieldSeparator() {
+        String value = getMshFieldValue(1);
+        return value == null ? "|" : value;
+    }
+
+    public String getComponentSeparator() {
+        String value = getMshFieldValue(2);
+        return value == null || value.length() != 4 ? "^" : String.valueOf(value.charAt(0));
+    }
+
+    public String getRepetitionSeparator() {
+        String value = getMshFieldValue(2);
+        return value == null || value.length() != 4 ? "~" : String.valueOf(value.charAt(1));
+    }
+
+    public String getEscapeCharacter() {
+        String value = getMshFieldValue(2);
+        return value == null || value.length() != 4 ? "\\" : String.valueOf(value.charAt(2));
+    }
+
+    public String getSubComponentSeparator() {
+        String value = getMshFieldValue(2);
+        return value == null || value.length() != 4 ? "&" : String.valueOf(value.charAt(3));
+    }
+
+    private String getMshFieldValue(int fieldIdx) {
+        Hl7Segment segment = getSegment("MSH");
+        if (segment != null) {
+            Hl7Field field = segment.getField(fieldIdx);
+            if (field != null) {
+                Hl7RepeatedField repeatedField = field.getRepeatedField(1);
+                if (repeatedField != null) {
+                    Hl7Component component = repeatedField.getComponent(1);
+                    if (component != null) {
+                        Hl7SubComponent subComponent = component.getSubComponent(1);
+                        if (subComponent != null)
+                            return subComponent.getValue();
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     public Hl7Segment getSegment(String id) {
@@ -42,20 +85,7 @@ public class Hl7Message {
         Hl7Segment segment = getSegment(segmentId);
         if (segment != null)
             return segment.getField(fieldIdx);
-        return new Hl7Field();
-    }
-
-    public Hl7Component getComponent(String id) {
-        Pattern pattern = Pattern.compile("([A-Z][A-Z][A-Z])-(\\d+)\\.(\\d+)");
-        Matcher matcher = pattern.matcher(id);
-        if (matcher.matches()) {
-            Hl7Segment segment = getSegment(matcher.group(1));
-            if (segment != null)
-                return segment.getField(Integer.parseInt(matcher.group(2))).getComponent(Integer.parseInt(matcher.group(3)));
-            else
-                return new Hl7Component();
-        }
-        else
-            return new Hl7Component();
+        return null;
+        //return new Hl7Field(segment, 1);
     }
 }

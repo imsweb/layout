@@ -13,7 +13,7 @@ import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 public class Hl7MessageBuilder {
 
     public static Hl7MessageBuilder createMessage() {
-        return new Hl7MessageBuilder();
+        return new Hl7MessageBuilder(new Hl7Message());
     }
 
     private Hl7Message _message;
@@ -28,16 +28,12 @@ public class Hl7MessageBuilder {
 
     private Hl7SubComponent _currentSubComponent;
 
-    public Hl7MessageBuilder() {
-        _message = new Hl7Message();
+    public Hl7MessageBuilder(Hl7Message message) {
+        _message = message;
     }
 
     public Hl7MessageBuilder withSegment(String id) {
-        Hl7Segment segment = new Hl7Segment();
-        segment.setMessage(_message);
-        segment.setId(id);
-        _message.addSegment(segment);
-        _currentSegment = segment;
+        _currentSegment = new Hl7Segment(_message, id);
         _currentField = null;
         _currentRepeatedField = null;
         _currentComponent = null;
@@ -48,11 +44,7 @@ public class Hl7MessageBuilder {
     public Hl7MessageBuilder withField(Integer index) {
         if (_currentSegment == null)
             throw new RuntimeException("no segment has been created yet");
-        Hl7Field field = new Hl7Field();
-        field.setSegment(_currentSegment);
-        field.setIndex(index);
-        _currentSegment.addField(field);
-        _currentField = field;
+        _currentField = new Hl7Field(_currentSegment, index);
         _currentRepeatedField = null;
         _currentComponent = null;
         _currentSubComponent = null;
@@ -62,10 +54,7 @@ public class Hl7MessageBuilder {
     public Hl7MessageBuilder withRepeatedField() {
         if (_currentField == null)
             throw new RuntimeException("no field has been created yet");
-        Hl7RepeatedField repeatedField = new Hl7RepeatedField();
-        repeatedField.setField(_currentField);
-        _currentField.addRepeatedField(repeatedField);
-        _currentRepeatedField = repeatedField;
+        _currentRepeatedField = new Hl7RepeatedField(_currentField);
         _currentComponent = null;
         _currentSubComponent = null;
         return this;
@@ -74,22 +63,12 @@ public class Hl7MessageBuilder {
     public Hl7MessageBuilder withComponent(Integer index, String... values) {
         if (_currentRepeatedField == null)
             withRepeatedField(); // TODO need to make sure no more fields are added...
-        Hl7Component component = new Hl7Component();
-        component.setRepeatedField(_currentRepeatedField);
-        component.setIndex(index);
-        _currentRepeatedField.addComponent(component);
-
-        if (values != null) {
-            for (int subCompIdx = 0; subCompIdx < values.length; subCompIdx++) {
-                Hl7SubComponent subComponent = new Hl7SubComponent();
-                subComponent.setComponent(component);
-                subComponent.setIndex(subCompIdx + 1);
-                subComponent.setValue(values[subCompIdx]);
-                component.addSubComponent(subComponent);
-            }
-        }
-        _currentComponent = component;
+        _currentComponent = new Hl7Component(_currentRepeatedField, index);
         _currentSubComponent = null;
+
+        if (values != null)
+            for (int subCompIdx = 0; subCompIdx < values.length; subCompIdx++)
+                new Hl7SubComponent(_currentComponent, subCompIdx + 1, values[subCompIdx]);
         return this;
     }
 
@@ -100,12 +79,7 @@ public class Hl7MessageBuilder {
     public Hl7MessageBuilder withSubComponent(Integer index, String value) {
         if (_currentComponent == null)
             throw new RuntimeException("no component has been created yet");
-        Hl7SubComponent subComponent = new Hl7SubComponent();
-        subComponent.setComponent(_currentComponent);
-        subComponent.setIndex(index);
-        subComponent.setValue(value);
-        _currentComponent.addSubComponent(subComponent);
-        _currentSubComponent = subComponent;
+        _currentSubComponent = new Hl7SubComponent(_currentComponent, index, value);
         return this;
     }
 
