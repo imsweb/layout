@@ -1,13 +1,20 @@
 /*
  * Copyright (C) 2017 Information Management Services, Inc.
  */
-package com.imsweb.layout.hl7.entity;
+package com.imsweb.layout.hl7;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import com.imsweb.layout.hl7.entity.Hl7Component;
+import com.imsweb.layout.hl7.entity.Hl7Field;
+import com.imsweb.layout.hl7.entity.Hl7Message;
+import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
+import com.imsweb.layout.hl7.entity.Hl7Segment;
+import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
 public final class Hl7Utils {
 

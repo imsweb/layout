@@ -6,6 +6,8 @@ package com.imsweb.layout.hl7.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.imsweb.layout.hl7.Hl7Utils;
+
 public class Hl7Field {
 
     private Hl7Segment _segment;

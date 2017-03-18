@@ -18,7 +18,6 @@ import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.hl7.entity.Hl7Message;
-import com.imsweb.layout.hl7.entity.Hl7Utils;
 
 public class NaaccrHl7Layout implements Layout {
 

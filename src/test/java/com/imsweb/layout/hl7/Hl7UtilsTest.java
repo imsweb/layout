@@ -12,7 +12,6 @@ import com.imsweb.layout.hl7.entity.Hl7Message;
 import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
-import com.imsweb.layout.hl7.entity.Hl7Utils;
 
 public class Hl7UtilsTest {
 

@@ -6,6 +6,8 @@ package com.imsweb.layout.hl7.entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.imsweb.layout.hl7.Hl7Utils;
+
 public class Hl7Component {
 
     private Hl7RepeatedField _repeatedField;
