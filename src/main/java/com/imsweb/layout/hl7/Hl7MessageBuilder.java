@@ -51,6 +51,16 @@ public class Hl7MessageBuilder {
         return this;
     }
 
+    public Hl7MessageBuilder withField(Integer index, String... values) {
+        if (_currentSegment == null)
+            throw new RuntimeException("no segment has been created yet");
+        _currentField = new Hl7Field(_currentSegment, index, values);
+        _currentRepeatedField = null;
+        _currentComponent = null;
+        _currentSubComponent = null;
+        return this;
+    }
+
     public Hl7MessageBuilder withRepeatedField() {
         if (_currentField == null)
             throw new RuntimeException("no field has been created yet");
@@ -63,12 +73,8 @@ public class Hl7MessageBuilder {
     public Hl7MessageBuilder withComponent(Integer index, String... values) {
         if (_currentRepeatedField == null)
             withRepeatedField(); // TODO need to make sure no more fields are added...
-        _currentComponent = new Hl7Component(_currentRepeatedField, index);
+        _currentComponent = new Hl7Component(_currentRepeatedField, index, values);
         _currentSubComponent = null;
-
-        if (values != null)
-            for (int subCompIdx = 0; subCompIdx < values.length; subCompIdx++)
-                new Hl7SubComponent(_currentComponent, subCompIdx + 1, values[subCompIdx]);
         return this;
     }
 

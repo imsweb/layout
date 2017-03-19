@@ -16,7 +16,7 @@ public class Hl7Field {
 
     private List<Hl7RepeatedField> _repeatedFields;
 
-    public Hl7Field(Hl7Segment segment, Integer index) {
+    public Hl7Field(Hl7Segment segment, Integer index, String... values) {
         if (index == null)
             throw new RuntimeException("Index is required");
         if (index < 1 || index > 99)
@@ -27,11 +27,12 @@ public class Hl7Field {
 
         if (segment != null)
             segment.addField(this);
-    }
 
-    public Hl7Field(Hl7Segment segment, Integer index, String value) {
-        this(segment, index);
-        addRepeatedField(new Hl7RepeatedField(this, value));
+        if (values != null) {
+            Hl7RepeatedField repeatedField = new Hl7RepeatedField(this);
+            for (int i = 0; i < values.length; i++)
+                new Hl7Component(repeatedField, i + 1, values[i]);
+        }
     }
 
     public Hl7Segment getSegment() {

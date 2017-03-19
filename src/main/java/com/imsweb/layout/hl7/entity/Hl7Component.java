@@ -16,7 +16,7 @@ public class Hl7Component {
 
     private Map<Integer, Hl7SubComponent> _subComponents;
 
-    public Hl7Component(Hl7RepeatedField repeatedField, Integer index) {
+    public Hl7Component(Hl7RepeatedField repeatedField, Integer index, String... values) {
         if (index == null)
             throw new RuntimeException("Index is required");
         if (index < 1 || index > 99)
@@ -27,11 +27,10 @@ public class Hl7Component {
 
         if (repeatedField != null)
             repeatedField.addComponent(this);
-    }
 
-    public Hl7Component(Hl7RepeatedField repeatedField, Integer index, String value) {
-        this(repeatedField, index);
-        addSubComponent(new Hl7SubComponent(this, index, value));
+        if (values != null)
+            for (int i = 0; i < values.length; i++)
+                new Hl7SubComponent(this, i + 1, values[i]);
     }
 
     public Hl7RepeatedField getRepeatedField() {

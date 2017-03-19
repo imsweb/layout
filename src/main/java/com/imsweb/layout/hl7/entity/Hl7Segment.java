@@ -26,13 +26,13 @@ public class Hl7Segment {
         _fields = new HashMap<>();
 
         if ("MSH".equals(id)) {
-            addField(new Hl7Field(this, 1, "|"));
-            addField(new Hl7Field(this, 2, "^~\\&"));
-            addField(new Hl7Field(this, 7, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss.SSS"))));
-            addField(new Hl7Field(this, 9, "ORU^R01^ORU_R01"));
-            addField(new Hl7Field(this, 11, "P"));
-            addField(new Hl7Field(this, 12, "2.5.1"));
-            addField(new Hl7Field(this, 21, "VOL_V_40_ORU_R01^NAACCR_CP"));
+            new Hl7Field(this, 1, "|");
+            new Hl7Field(this, 2, "^~\\&");
+            new Hl7Field(this, 7, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss.SSS")));
+            new Hl7Field(this, 9, "ORU", "R01", "ORU_R01");
+            new Hl7Field(this, 11, "P");
+            new Hl7Field(this, 12, "2.5.1");
+            new Hl7Field(this, 21, "VOL_V_40_ORU_R01", "NAACCR_CP");
         }
 
         if (message != null)

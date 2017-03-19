@@ -4,7 +4,10 @@
 package com.imsweb.layout.hl7;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -14,23 +17,27 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
+import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
 public class Hl7Viewer extends JFrame {
 
     public Hl7Viewer() {
-        this.setTitle("NAACCR HL7 Utility 0.1");
+        this.setTitle("NAACCR HL7 Viewer 0.1");
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(new BorderLayout());
 
@@ -39,7 +46,9 @@ public class Hl7Viewer extends JFrame {
         centerPnl.setLayout(new BorderLayout());
         this.getContentPane().add(centerPnl, BorderLayout.CENTER);
 
-        Hl7Message message = Hl7MessageBuilder.createMessage()
+        List<Hl7Message> messages = new ArrayList<>();
+        messages.add(Hl7MessageBuilder.createMessage()
+                .withSegment("MSH")
                 .withSegment("PID")
                 .withField(3)
                 .withRepeatedField()
@@ -53,19 +62,52 @@ public class Hl7Viewer extends JFrame {
                 .withComponent(1, "97 810430")
                 .withComponent(5, "PI")
                 .withComponent(6, "HITECK PATH LAB-ATL", "3D932840", "CLIA")
-                .withField(5)
-                .withComponent(1, "DEPRY")
-                .withComponent(2, "FABIAN")
-                .withComponent(3, "P")
-                .build();
+                .withField(5, "DEPRY", "FABIAN", "P")
+                .withField(10, "2106-3", "White", "HL70005")
+                .withSegment("OBR")
+                .withField(1, "1")
+                .withField(3, "06-123456-MH")
+                .withField(4, "22049-1", "Flow Cytometry Analysis", "LN")
+                .withSegment("OBX")
+                .withField(1, "1")
+                .withField(2, "TX")
+                .withField(3, "22633-2", "nature of specimen", "LN")
+                .withField(5, "Bone Marrow")
+                .build());
 
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Message");
-        message.getSegments().forEach(s -> root.add(createNodeForSegment(s)));
-        JTree tree = new JTree(root);
-        centerPnl.add(tree, BorderLayout.CENTER);
+        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Messages");
+        for (Hl7Message message : messages)
+            rootNode.add(createNodeForMessage(message));
+        JTree tree = new JTree(rootNode);
+        tree.setBorder(new EmptyBorder(2, 5, 2, 5));
 
-        for (int i = 0; i < tree.getRowCount(); ++i)
-            tree.expandRow(i);
+        //DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer)tree.getCellRenderer();
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
+            @Override
+            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+                Component comp = super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+                if (leaf) {
+                    comp.setFont(comp.getFont().deriveFont(Font.BOLD));
+                    comp.setForeground(Color.BLACK);
+                }
+                else {
+                    comp.setFont(comp.getFont().deriveFont(Font.PLAIN));
+                    comp.setForeground(Color.DARK_GRAY);
+                }
+                return comp;
+            }
+        };
+        renderer.setLeafIcon(null);
+        renderer.setClosedIcon(null);
+        renderer.setOpenIcon(null);
+        tree.setCellRenderer(renderer);
+
+        JScrollPane scrollPane = new JScrollPane(tree);
+        scrollPane.setBorder(null);
+        centerPnl.add(scrollPane, BorderLayout.CENTER);
+
+        //for (int i = 0; i < tree.getRowCount(); ++i)
+        //    tree.expandRow(i);
 
         Thread.setDefaultUncaughtExceptionHandler((t, e) -> SwingUtilities.invokeLater(() -> {
             String msg = "An unexpected error happened, it is recommended to close the application.\n\n   Error: " + (e.getMessage() == null ? "null access" : e.getMessage());
@@ -73,54 +115,127 @@ public class Hl7Viewer extends JFrame {
         }));
     }
 
-    private static DefaultMutableTreeNode createNodeForSegment(Hl7Segment segment) {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(segment.getId());
-        segment.getFields().values().forEach(f -> createNodeForField(f).forEach(node::add));
+    private static DefaultMutableTreeNode createNodeForMessage(Hl7Message message) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(message));
+        message.getSegments().forEach(s -> node.add(createNodeForSegment(s)));
         return node;
     }
 
-    private static List<DefaultMutableTreeNode> createNodeForField(Hl7Field field) {
-        Hl7Segment segment = field.getSegment();
-        List<DefaultMutableTreeNode> nodes = new ArrayList<>();
+    private static DefaultMutableTreeNode createNodeForSegment(Hl7Segment segment) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(segment));
+        segment.getFields().keySet().stream().sorted().forEach(idx -> node.add(createNodeForField(segment.getField(idx))));
+        return node;
+    }
+
+    private static DefaultMutableTreeNode createNodeForField(Hl7Field field) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(field));
         if (field.getRepeatedFields().size() == 1) {
-            // TODO simplify this if single component?
-            DefaultMutableTreeNode node = new DefaultMutableTreeNode(segment.getId() + "-" + field.getIndex());
-            field.getRepeatedField(1).getComponents().values().forEach(c -> node.add(createNodeForComponent(c)));
-            nodes.add(node);
+            Hl7RepeatedField repeatedField = field.getRepeatedField(1);
+            if (repeatedField.getComponents().size() == 1 && repeatedField.getComponents().keySet().contains(1))
+                node.add(createNodeForValue(repeatedField.getComponent(1).getValue()));
+            else
+                repeatedField.getComponents().values().forEach(c -> node.add(createNodeForComponent(c)));
         }
-        else if (field.getRepeatedFields().size() > 1) {
-            for (int i = 1; i <= field.getRepeatedFields().size(); i++) {
-                DefaultMutableTreeNode node = new DefaultMutableTreeNode(segment.getId() + "-" + field.getIndex() + " (Repetition " + i + " of " + field.getRepeatedFields().size() + ")");
-                field.getRepeatedField(i).getComponents().values().forEach(c -> node.add(createNodeForComponent(c)));
-                nodes.add(node);
-            }
-        }
-        return nodes;
+        else if (field.getRepeatedFields().size() > 1)
+            field.getRepeatedFields().forEach(f -> node.add(createNodeForRepeatedField(f)));
+        return node;
+    }
+
+    private static DefaultMutableTreeNode createNodeForRepeatedField(Hl7RepeatedField repeatedField) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(repeatedField));
+        repeatedField.getComponents().keySet().stream().sorted().forEach(idx -> node.add(createNodeForComponent(repeatedField.getComponent(idx))));
+        return node;
     }
 
     private static DefaultMutableTreeNode createNodeForComponent(Hl7Component component) {
-        Hl7Field field = component.getRepeatedField().getField();
-        Hl7Segment segment = field.getSegment();
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(segment.getId() + "-" + field.getIndex() + "." + component.getIndex());
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(component));
         // TODO FD this simplification should check the fields definition instead of checking the size/index...
         if (component.getSubComponents().size() == 1 && component.getSubComponents().keySet().contains(1))
             node.add(createNodeForValue(component.getSubComponent(1).getValue()));
         else
-            component.getSubComponents().values().forEach(s -> node.add(createNodeForSubComponent(s)));
+            component.getSubComponents().keySet().stream().sorted().forEach(idx -> node.add(createNodeForSubComponent(component.getSubComponent(idx))));
         return node;
     }
 
     private static DefaultMutableTreeNode createNodeForSubComponent(Hl7SubComponent subComponent) {
-        Hl7Component component = subComponent.getComponent();
-        Hl7Field field = component.getRepeatedField().getField();
-        Hl7Segment segment = field.getSegment();
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(segment.getId() + "-" + field.getIndex() + "." + component.getIndex() + "." + subComponent.getIndex());
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(subComponent));
         node.add(createNodeForValue(subComponent.getValue()));
         return node;
     }
 
     private static DefaultMutableTreeNode createNodeForValue(String value) {
-        return new DefaultMutableTreeNode(value == null ? "<blank>" : value);
+        return new DefaultMutableTreeNode(new EntityWrapper(value == null ? "<blank>" : value));
+    }
+
+    private static class EntityWrapper {
+
+        private Object _entity;
+
+        public EntityWrapper(Object entity) {
+            _entity = entity;
+        }
+
+        @Override
+        public String toString() {
+            String result;
+            switch (_entity.getClass().getSimpleName()) {
+                case "String":
+                    result = (String)_entity;
+                    break;
+                case "Hl7SubComponent":
+                    result = subComponentToString((Hl7SubComponent)_entity);
+                    break;
+                case "Hl7Component":
+                    result = componentToString((Hl7Component)_entity);
+                    break;
+                case "Hl7RepeatedField":
+                    result = repeatedFieldToString((Hl7RepeatedField)_entity);
+                    break;
+                case "Hl7Field":
+                    result = fieldToString((Hl7Field)_entity);
+                    break;
+                case "Hl7Segment":
+                    result = segmentToString((Hl7Segment)_entity);
+                    break;
+                case "Hl7Message":
+                    result = messageToString((Hl7Message)_entity);
+                    break;
+                default:
+                    result = _entity.getClass().getSimpleName();
+            }
+            return result;
+        }
+
+        private static String messageToString(Hl7Message message) {
+            return "Message";
+        }
+
+        private static String segmentToString(Hl7Segment segment) {
+            return segment.getId();
+        }
+
+        private static String fieldToString(Hl7Field field) {
+            Hl7Segment segment = field.getSegment();
+            return segment.getId() + "-" + field.getIndex();
+        }
+
+        private static String repeatedFieldToString(Hl7RepeatedField repeatedField) {
+            Hl7Field field = repeatedField.getField();
+            return "Repetition #" + (field.getRepeatedFields().indexOf(repeatedField) + 1);
+        }
+
+        private static String componentToString(Hl7Component component) {
+            Hl7Field field = component.getRepeatedField().getField();
+            Hl7Segment segment = field.getSegment();
+            return segment.getId() + "-" + field.getIndex() + "." + component.getIndex();
+        }
+
+        private static String subComponentToString(Hl7SubComponent subComponent) {
+            Hl7Component component = subComponent.getComponent();
+            Hl7Field field = component.getRepeatedField().getField();
+            Hl7Segment segment = field.getSegment();
+            return segment.getId() + "-" + field.getIndex() + "." + component.getIndex() + "." + subComponent.getIndex();
+        }
     }
 
     public static void main(String[] args) {

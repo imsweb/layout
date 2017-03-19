@@ -14,17 +14,16 @@ public class Hl7RepeatedField {
 
     private Map<Integer, Hl7Component> _components;
 
-    public Hl7RepeatedField(Hl7Field field) {
+    public Hl7RepeatedField(Hl7Field field, String... values) {
         _field = field;
         _components = new HashMap<>();
 
         if (field != null)
             field.addRepeatedField(this);
-    }
 
-    public Hl7RepeatedField(Hl7Field field, String value) {
-        this(field);
-        addComponent(new Hl7Component(this, 1, value));
+        if (values != null)
+            for (String value : values)
+                new Hl7Component(this, 1, value);
     }
 
     public Hl7Field getField() {
