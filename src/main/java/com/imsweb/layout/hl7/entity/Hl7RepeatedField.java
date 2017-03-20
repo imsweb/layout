@@ -21,7 +21,7 @@ public class Hl7RepeatedField {
         if (field != null)
             field.addRepeatedField(this);
 
-        if (values != null)
+        if (values != null && values.length != 0)
             for (String value : values)
                 new Hl7Component(this, 1, value);
     }

@@ -19,8 +19,8 @@ public class Hl7Segment {
     public Hl7Segment(Hl7Message message, String id) {
         if (id == null)
             throw new RuntimeException("ID is required");
-        if (!id.matches("[A-Z]{3}"))
-            throw new RuntimeException("Index must be 3 uppercase characters");
+        if (!id.matches("[A-Z0-9]{3}"))
+            throw new RuntimeException("Index must be a mix of 3 uppercase letters and/or digits");
         _message = message;
         _id = id;
         _fields = new HashMap<>();

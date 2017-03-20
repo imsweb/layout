@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,6 +76,13 @@ public class Hl7Viewer extends JFrame {
                 .withField(3, "22633-2", "nature of specimen", "LN")
                 .withField(5, "Bone Marrow")
                 .build());
+
+        try {
+            messages.addAll(new NaaccrHl7Layout().readAllMessages(new File("C:\\dev\\projects\\seerdms\\app\\src\\test\\resources\\importer\\hl7_naaccr_good1.txt")));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
         DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Messages");
         for (Hl7Message message : messages)

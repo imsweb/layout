@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<hl7-layout id="naaccr-hl7-2.5.1" name="NAACCR HL7 2.5.1" version="2.5.1" description="NAACCR HL7 version 2.5.1">
+    <segment identifier="MSH">
+        <!-- TODO -->
+    </segment>
+    <segment identifier="SFT">
+        <!-- TODO -->
+    </segment>    
+    <segment identifier="PID">
+        <field name="patientIdentifierList" identifer="PID-3" long-label="Patient Identifier List" type="CX" min-occurrence="1" max-occurence="8">
+            <component name="patIdNumber" identifier="PID-3.1" long-label="ID Number" type="ST"/>
+            <component name="patIdCheckDigit" identifier="PID-3.2" long-label="ID Check Digit" type="ST"/>
+            <component name="patIdCheckScheme" identifier="PID-3.3" long-label="ID Check Scheme" type="ID"/>
+            <component name="patIdAssigningAuthority" identifier="PID-3.4" long-label="Assigning Authority" type="HD">
+                <subcomponent name="patIdAuthNamespaceId" identifier="PID-3.4.1" long-label="Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="patIdAuthUniversalId" identifier="PID-3.4.2" long-label="Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="patIdAuthUniversalIdType" identifier="PID-3.4.3" long-label="Assigning Authority Universal ID Type" type="ID"/>
+            </component>
+        </field>
+    </segment>
+    <segment identifier="NKI">
+        <!-- TODO -->
+    </segment>
+    <segment identifier="PV1">
+        <!-- TODO -->
+    </segment>
+    <segment identifier="ORC">
+        <!-- TODO -->
+    </segment>
+    <segment identifier=" OBR">
+        <!-- TODO -->
+    </segment>
+    <segment identifier="NTE">
+        <!-- TODO -->
+    </segment>
+    <segment identifier="OBX">
+        <!-- TODO -->
+    </segment>
+    <segment identifier="SPM">
+        <!-- TODO -->
+    </segment>
+    <!-- DSC not supported -->
+</hl7-layout>

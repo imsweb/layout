@@ -28,7 +28,7 @@ public class Hl7Component {
         if (repeatedField != null)
             repeatedField.addComponent(this);
 
-        if (values != null)
+        if (values != null && values.length != 0)
             for (int i = 0; i < values.length; i++)
                 new Hl7SubComponent(this, i + 1, values[i]);
     }

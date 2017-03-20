@@ -16,6 +16,16 @@ import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 public class Hl7UtilsTest {
 
     @Test
+    public void testReadFixedColumnsLayout() {
+        Assert.fail("TODO - make sure this test uses only fake XML resources");
+    }
+
+    @Test
+    public void testWriteFixedColumnsLayout() {
+        Assert.fail("TODO - make sure this test uses the build folder to write the testing files");
+    }
+
+    @Test
     public void testSegmentFromString() {
 
         Hl7Segment segment = Hl7Utils.segmentFromString(new Hl7Message(), "TST|VAL");

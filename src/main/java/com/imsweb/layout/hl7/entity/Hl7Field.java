@@ -28,7 +28,7 @@ public class Hl7Field {
         if (segment != null)
             segment.addField(this);
 
-        if (values != null) {
+        if (values != null && values.length != 0) {
             Hl7RepeatedField repeatedField = new Hl7RepeatedField(this);
             for (int i = 0; i < values.length; i++)
                 new Hl7Component(repeatedField, i + 1, values[i]);
