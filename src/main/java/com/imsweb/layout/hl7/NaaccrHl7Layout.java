@@ -5,11 +5,14 @@ package com.imsweb.layout.hl7;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +85,7 @@ public class NaaccrHl7Layout implements Layout {
 
     public List<Hl7Message> readAllMessages(File file) throws IOException {
         List<Hl7Message> result = new ArrayList<>();
-        try (LineNumberReader reader = new LineNumberReader(new FileReader(file))) {
+        try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
             Hl7Message message = readNextMessage(reader);
             while (message != null) {
                 result.add(message);
@@ -98,7 +101,7 @@ public class NaaccrHl7Layout implements Layout {
     }
 
     public void writeMessages(File file, List<Hl7Message> messages) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
             for (Hl7Message message : messages)
                 writeMessage(writer, message);
         }

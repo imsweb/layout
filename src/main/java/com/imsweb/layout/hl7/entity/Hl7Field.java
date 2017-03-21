@@ -81,8 +81,7 @@ public class Hl7Field {
     public Hl7Component getComponent(int componentIdx) {
         if (_repeatedFields.isEmpty())
             return new Hl7Component(null, componentIdx);
-        Hl7Component result = _repeatedFields.get(0).getComponent(componentIdx);
-        return result == null ? new Hl7Component(null, componentIdx) : result;
+        return _repeatedFields.get(0).getComponent(componentIdx);
     }
 
     public String getValue() {
