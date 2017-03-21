@@ -184,6 +184,8 @@ public final class Hl7Utils {
 
         // get maximum index
         int max = segment.getFields().keySet().stream().max(Integer::compareTo).orElse(0);
+        if ("MSH".equals(segment.getId()))
+            max++;
 
         // create a list that takes into account the gaps
         List<Hl7Field> list = new ArrayList<>(Collections.nCopies(max, null));
