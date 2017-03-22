@@ -3,8 +3,14 @@
  */
 package com.imsweb.layout.hl7.xml;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+
+import com.imsweb.layout.hl7.entity.Hl7Segment;
 
 @XStreamAlias("hl7-layout")
 public class Hl7LayoutDefinitionXmlDto {
@@ -20,8 +26,9 @@ public class Hl7LayoutDefinitionXmlDto {
 
     @XStreamAsAttribute
     private String description;
-    
-    // TODO add list of segments here
+
+    @XStreamImplicit
+    private List<Hl7Segment> _hl7Segments;
 
     public String getId() {
         return id;
@@ -53,5 +60,11 @@ public class Hl7LayoutDefinitionXmlDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Hl7Segment> getHl7Segments() {
+        if (_hl7Segments == null)
+            _hl7Segments = new ArrayList<>();
+        return _hl7Segments;
     }
 }
