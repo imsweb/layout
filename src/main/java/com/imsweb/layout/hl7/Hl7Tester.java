@@ -3,11 +3,6 @@
  */
 package com.imsweb.layout.hl7;
 
-import java.io.File;
-import java.io.StringWriter;
-import java.nio.file.Paths;
-import java.util.List;
-
 import com.imsweb.layout.hl7.entity.Hl7Message;
 
 public class Hl7Tester {
@@ -36,25 +31,25 @@ public class Hl7Tester {
             .build();
         // @formatter:on 
 
-        // TODO add methods to retrieve the data more gracefully...
-        System.out.println(msg.getField("PID-5").getComponent(1).getValue());
-        //System.out.println(msg.getComponent("PID-5.1").getValue()); // TODO not sure I like this one, it's weird to call getComponent from a message!
-
-        File file = new File("C:\\dev\\projects\\seerdms\\app\\src\\test\\resources\\importer\\hl7_naaccr_good1.txt");
-
-        NaaccrHl7Layout layout = new NaaccrHl7Layout();
-
-        try (StringWriter writer = new StringWriter()) {
-            layout.writeMessage(writer, msg);
-            System.out.println(writer.toString());
-        }
-
-        List<Hl7Message> messages = layout.readAllMessages(file);
-        System.out.println("read " + messages.size() + " messages from " + file.getPath());
-
-        File newFile = Paths.get("build/test.txt").toFile();
-        layout.writeMessages(newFile, messages);
-        System.out.println("Wrote messages to " + newFile.getPath());
+//        // TODO add methods to retrieve the data more gracefully...
+//        System.out.println(msg.getField("PID-5").getComponent(1).getValue());
+//        //System.out.println(msg.getComponent("PID-5.1").getValue()); // TODO not sure I like this one, it's weird to call getComponent from a message!
+//
+//        File file = new File("C:\\dev\\projects\\seerdms\\app\\src\\test\\resources\\importer\\hl7_naaccr_good1.txt");
+//
+//        NaaccrHl7Layout layout = new NaaccrHl7Layout();
+//
+//        try (StringWriter writer = new StringWriter()) {
+//            layout.writeMessage(writer, msg);
+//            System.out.println(writer.toString());
+//        }
+//
+//        List<Hl7Message> messages = layout.readAllMessages(file);
+//        System.out.println("read " + messages.size() + " messages from " + file.getPath());
+//
+//        File newFile = Paths.get("build/test.txt").toFile();
+//        layout.writeMessages(newFile, messages);
+//        System.out.println("Wrote messages to " + newFile.getPath());
 
         // TODO there is a bug for ^ and & starting a field. I am not outputting the correct number of separators. Maybe it's time for unit tests...
     }
