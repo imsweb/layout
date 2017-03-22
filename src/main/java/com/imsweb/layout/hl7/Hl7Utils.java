@@ -184,16 +184,17 @@ public final class Hl7Utils {
 
         // get maximum index
         int max = segment.getFields().keySet().stream().max(Integer::compareTo).orElse(0);
-        if ("MSH".equals(segment.getId()))
-            max++;
+
+        // we need to adjust a few things for MSH because the first field is the separator but we don't want to output it
+        boolean msh = "MSH".equals(segment.getId());
 
         // create a list that takes into account the gaps
         List<Hl7Field> list = new ArrayList<>(Collections.nCopies(max, null));
-        segment.getFields().values().forEach(f -> list.set("MSH".equals(segment.getId()) ? f.getIndex() : f.getIndex() - 1, f));
+        segment.getFields().values().stream().filter(f -> !msh || f.getIndex() != 1).forEach(f -> list.set(msh && f.getIndex() == 2 ? 0 : f.getIndex() - 1, f));
 
         // write each element with a separator between them
         String separator = segment.getMessage().getFieldSeparator();
-        return list.stream().map(Hl7Utils::fieldToString).collect(Collectors.joining(separator));
+        return segment.getId() + separator + list.stream().map(Hl7Utils::fieldToString).collect(Collectors.joining(separator));
     }
 
     /**
