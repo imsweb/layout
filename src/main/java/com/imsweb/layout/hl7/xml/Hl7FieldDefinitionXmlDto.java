@@ -8,51 +8,87 @@ import java.util.List;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamConverter;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
-import com.thoughtworks.xstream.converters.extended.ToAttributedValueConverter;
 
-import com.imsweb.layout.hl7.entity.Hl7Component;
-import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
-
-@XStreamAlias("hl7-field")
-@XStreamConverter(value = ToAttributedValueConverter.class, strings = {"_value"})
+@XStreamAlias("field")
 public class Hl7FieldDefinitionXmlDto {
 
-    private String _value;
-
+    @XStreamAlias("name")
     @XStreamAsAttribute
-    private Integer _index;
+    private String _name;
+
+    @XStreamAlias("identifier")
+    @XStreamAsAttribute
+    private String _identifier;
+
+    @XStreamAlias("long-label")
+    @XStreamAsAttribute
+    private String _longLabel;
+
+    @XStreamAlias("type")
+    @XStreamAsAttribute
+    private String _type;
+
+    @XStreamAlias("min-occurrence")
+    @XStreamAsAttribute
+    private String _minOccurrence;
+
+    @XStreamAlias("max-occurrence")
+    @XStreamAsAttribute
+    private String _maxOccurrence;
 
     @XStreamImplicit
-    private List<Hl7RepeatedField> _hl7RepeatedFields;
+    private List<Hl7ComponentDefinitionXmlDto> _hl7Components;
 
-    @XStreamImplicit
-    private List<Hl7Component> _hl7Components;
-
-    public String getValue() {
-        return _value;
+    public String getName() {
+        return _name;
     }
 
-    public void setValue(String value) {
-        _value = value;
+    public void setName(String name) {
+        _name = name;
     }
 
-    public Integer getIndex() {
-        return _index;
+    public String getIdentifier() {
+        return _identifier;
     }
 
-    public void setIndex(Integer index) {
-        _index = index;
+    public void setIdentifier(String identifier) {
+        _identifier = identifier;
     }
 
-    public List<Hl7RepeatedField> getHl7RepeatedField() {
-        if (_hl7RepeatedFields == null)
-            _hl7RepeatedFields = new ArrayList<>();
-        return _hl7RepeatedFields;
+    public String getLongLabel() {
+        return _longLabel;
     }
 
-    public List<Hl7Component> getHl7Components() {
+    public void setLongLabel(String longLabel) {
+        _longLabel = longLabel;
+    }
+
+    public String getType() {
+        return _type;
+    }
+
+    public void setType(String type) {
+        _type = type;
+    }
+
+    public String getMinOccurrence() {
+        return _minOccurrence;
+    }
+
+    public void setMinOccurrence(String minOccurrence) {
+        _minOccurrence = minOccurrence;
+    }
+
+    public String getMaxOccurrence() {
+        return _maxOccurrence;
+    }
+
+    public void setMaxOccurrence(String maxOccurrence) {
+        _maxOccurrence = maxOccurrence;
+    }
+
+    public List<Hl7ComponentDefinitionXmlDto> getHl7Components() {
         if (_hl7Components == null)
             _hl7Components = new ArrayList<>();
         return _hl7Components;

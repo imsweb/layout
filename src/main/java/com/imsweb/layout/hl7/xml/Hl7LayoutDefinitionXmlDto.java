@@ -10,59 +10,61 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
-import com.imsweb.layout.hl7.entity.Hl7Segment;
-
 @XStreamAlias("hl7-layout")
 public class Hl7LayoutDefinitionXmlDto {
 
+    @XStreamAlias("id")
     @XStreamAsAttribute
-    private String id;
+    private String _id;
 
+    @XStreamAlias("name")
     @XStreamAsAttribute
-    private String name;
+    private String _name;
 
+    @XStreamAlias("version")
     @XStreamAsAttribute
-    private String version;
+    private String _version;
 
+    @XStreamAlias("description")
     @XStreamAsAttribute
-    private String description;
+    private String _description;
 
     @XStreamImplicit
-    private List<Hl7Segment> _hl7Segments;
+    private List<Hl7SegmentDefinitionXmlDto> _hl7Segments;
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        _id = id;
     }
 
     public String getName() {
-        return name;
+        return _name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        _name = name;
     }
 
     public String getVersion() {
-        return version;
+        return _version;
     }
 
     public void setVersion(String version) {
-        this.version = version;
+        _version = version;
     }
 
     public String getDescription() {
-        return description;
+        return _description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        _description = description;
     }
 
-    public List<Hl7Segment> getHl7Segments() {
+    public List<Hl7SegmentDefinitionXmlDto> getHl7Segments() {
         if (_hl7Segments == null)
             _hl7Segments = new ArrayList<>();
         return _hl7Segments;
