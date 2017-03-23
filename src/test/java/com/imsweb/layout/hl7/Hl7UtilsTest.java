@@ -15,6 +15,8 @@ import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
 public class Hl7UtilsTest {
 
+    private static final String _LINE_SEPARATOR = System.getProperty("line.separator");
+
     @Test
     public void testReadFixedColumnsLayout() {
         // TODO - make sure this test uses only fake XML resources
@@ -50,14 +52,131 @@ public class Hl7UtilsTest {
 
     @Test
     public void testMessageToString() {
-        // TODO
-        Assert.assertTrue(true);
+        // no component
+        Hl7Message message = new Hl7Message();
+        Assert.assertEquals("", Hl7Utils.messageToString(message));
+
+        // invalid id
+        message = new Hl7Message();
+        assertInvalidSegmentId(message, null);
+        assertInvalidSegmentId(message, "");
+        assertInvalidSegmentId(message, "   ");
+        assertInvalidSegmentId(message, "VAL1");
+
+        // one id
+        message = new Hl7Message();
+        addSegment(message, "VL1", "VAL1|VAL2");
+        Assert.assertEquals("VL1|VAL1|VAL2", Hl7Utils.messageToString(message));
+
+        // three ids
+        message = new Hl7Message();
+        addSegment(message, "VL1", "VAL1");
+        addSegment(message, "VL2", "VAL2|VAL3");
+        addSegment(message, "VL3", "VAL4|VAL5|VAL6");
+        Assert.assertEquals("VL1|VAL1" + _LINE_SEPARATOR + "VL2|VAL2|VAL3" + _LINE_SEPARATOR + "VL3|VAL4|VAL5|VAL6", Hl7Utils.messageToString(message));
+
+        // four ids with some null values
+        message = new Hl7Message();
+        addSegment(message, "VL1", null);
+        addSegment(message, "VL2", " ");
+        addSegment(message, "VL3", "VAL1");
+        addSegment(message, "VL4", "");
+        Assert.assertEquals("VL1|" + _LINE_SEPARATOR + "VL2| " + _LINE_SEPARATOR + "VL3|VAL1" + _LINE_SEPARATOR + "VL4|", Hl7Utils.messageToString(message));
     }
 
     @Test
     public void testSegmentToString() {
-        // TODO
-        Assert.assertTrue(true);
+        Hl7Message message = new Hl7Message();
+
+        // no component
+        Hl7Segment segment = new Hl7Segment(message, "TST");
+        Assert.assertEquals("", Hl7Utils.segmentToString(segment));
+
+        // null value (TST|)
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, null);
+        Assert.assertEquals("TST|", Hl7Utils.segmentToString(segment));
+
+        // blank value (TST|)
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, "");
+        Assert.assertEquals("TST|", Hl7Utils.segmentToString(segment));
+
+        // spaces (TST|   )
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, "   ");
+        Assert.assertEquals("TST|   ", Hl7Utils.segmentToString(segment));
+
+        // TST|VAL1
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, "VAL1");
+        Assert.assertEquals("TST|VAL1", Hl7Utils.segmentToString(segment));
+
+        // TST||VAL1 (with intermediate fields provided)
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, null);
+        addField(segment, 2, "VAL1");
+        Assert.assertEquals("TST||VAL1", Hl7Utils.segmentToString(segment));
+
+        // TST||VAL1 (with intermediate fields NOT provided)
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 2, "VAL1");
+        Assert.assertEquals("TST||VAL1", Hl7Utils.segmentToString(segment));
+
+        // TST|VAL1|
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, "VAL1");
+        addField(segment, 2, null);
+        Assert.assertEquals("TST|VAL1|", Hl7Utils.segmentToString(segment));
+
+        // TST|| ||VAL1 (with intermediate fields provided)
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, null);
+        addField(segment, 2, " ");
+        addField(segment, 3, "");
+        addField(segment, 4, "VAL1");
+        Assert.assertEquals("TST|| ||VAL1", Hl7Utils.segmentToString(segment));
+
+        // TST||||VAL1 (with intermediate fields NOT provided)
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 4, "VAL1");
+        Assert.assertEquals("TST||||VAL1", Hl7Utils.segmentToString(segment));
+
+        // TST|VAL1|||
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, "VAL1");
+        addField(segment, 4, null);
+        Assert.assertEquals("TST|VAL1|||", Hl7Utils.segmentToString(segment));
+
+        // TST|VAL1|VAL2
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, "VAL1");
+        addField(segment, 2, "VAL2");
+        Assert.assertEquals("TST|VAL1|VAL2", Hl7Utils.segmentToString(segment));
+
+        // TST|VAL1||VAL2
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, "VAL1");
+        addField(segment, 3, "VAL2");
+        Assert.assertEquals("TST|VAL1||VAL2", Hl7Utils.segmentToString(segment));
+
+        // TST||VAL1||VAL2|||VAL3 (with intermediate fields provided)
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 1, null);
+        addField(segment, 2, "VAL1");
+        addField(segment, 3, null);
+        addField(segment, 4, "VAL2");
+        addField(segment, 5, null);
+        addField(segment, 6, null);
+        addField(segment, 7, "VAL3");
+        Assert.assertEquals("TST||VAL1||VAL2|||VAL3", Hl7Utils.segmentToString(segment));
+
+        // TST||VAL1||VAL2|||VAL3 (with intermediate fields NOT provided)
+        segment = new Hl7Segment(message, "TST");
+        addField(segment, 2, "VAL1");
+        addField(segment, 4, "VAL2");
+        addField(segment, 7, "VAL3");
+        Assert.assertEquals("TST||VAL1||VAL2|||VAL3", Hl7Utils.segmentToString(segment));
     }
 
     @Test
@@ -292,6 +411,28 @@ public class Hl7UtilsTest {
         addSubComponent(comp, 4, "VAL2");
         addSubComponent(comp, 7, "VAL3");
         Assert.assertEquals("&VAL1&&VAL2&&&VAL3", Hl7Utils.componentToString(comp));
+    }
+
+    // helper
+    private void assertInvalidSegmentId(Hl7Message message, String id) {
+        boolean invalidId = false;
+        try {
+            addSegment(message, id, null);
+        }
+        catch (RuntimeException e) {
+            invalidId = true;
+        }
+        Assert.assertTrue(invalidId);
+    }
+
+    // helper
+    private void addSegment(Hl7Message message, String id, String value) {
+        addField(new Hl7Segment(message, id), 1, value);
+    }
+
+    // helper
+    private void addField(Hl7Segment segment, Integer index, String value) {
+        addRepeatedField(new Hl7Field(segment, index), value);
     }
 
     // helper
