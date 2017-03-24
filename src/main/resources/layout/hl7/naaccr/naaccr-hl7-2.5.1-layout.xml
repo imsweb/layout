@@ -1,12 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <hl7-layout id="naaccr-hl7-2.5.1" name="NAACCR HL7 2.5.1" version="2.5.1" description="NAACCR HL7 version 2.5.1">
     <segment identifier="MSH">
-        <!-- TODO -->
+        <field name="fieldSeparator" identifer="MSH-1" long-label="Field Separator" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="encodingCharacters" identifer="MSH-2" long-label="Encoding Characters" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="sendingApplication" identifer="MSH-3" long-label="Sending Application" type="HD" min-occurrence="0" max-occurence="1">
+            <component name="sendAppNamespaceId" identifier="MSH-3.1" long-label="Namespace ID" type="IS"/>
+            <component name="sendAppUniversalId" identifier="MSH-3.2" long-label="Universal ID" type="ST"/>
+            <component name="sendAppUniversalIdType" identifier="MSH-3.3" long-label="Universal ID Type" type="ID"/>
+        </field>
+        <field name="sendingFacility" identifer="MSH-4" long-label="Sending Facility" type="HD" min-occurrence="1" max-occurence="1">
+            <component name="sendFacNamespaceId" identifier="MSH-4.1" long-label="Namespace ID" type="IS"/>
+            <component name="sendFacUniversalId" identifier="MSH-4.2" long-label="Universal ID" type="ST"/>
+            <component name="sendFacUniversalIdType" identifier="MSH-4.3" long-label="Universal ID Type" type="ID"/>
+        </field>
+        <field name="receivingApplication" identifer="MSH-5" long-label="Receiving Application" type="HD" min-occurrence="0" max-occurence="1">
+            <component name="receiveAppNamespaceId" identifier="MSH-5.1" long-label="Namespace ID" type="IS"/>
+            <component name="receiveAppUniversalId" identifier="MSH-5.2" long-label="Universal ID" type="ST"/>
+            <component name="receiveAppUniversalIdType" identifier="MSH-5.3" long-label="Universal ID Type" type="ID"/>
+        </field>
+        <field name="receivingFacility" identifer="MSH-6" long-label="Receiving Facility" type="HD" min-occurrence="0" max-occurence="1">
+            <component name="receiveFacNamespaceId" identifier="MSH-6.1" long-label="Namespace ID" type="IS"/>
+            <component name="receiveFacUniversalId" identifier="MSH-6.2" long-label="Universal ID" type="ST"/>
+            <component name="receiveFacUniversalIdType" identifier="MSH-6.3" long-label="Universal ID Type" type="ID"/>
+        </field>
+        <field name="dateTimeOfMessage" identifer="MSH-7" long-label="Date and Time of Message" type="TS" min-occurrence="1" max-occurence="1"/>
+        <field name="security" identifer="MSH-8" long-label="Security" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="messageType" identifer="MSH-9" long-label="Message Type" type="MSG" min-occurrence="1" max-occurence="1">
+            <component name="messageTypeId" identifier="MSH-9.1" long-label="Message Type" type="ID"/>
+            <component name="triggerEventId" identifier="MSH-9.2" long-label="Trigger Event" type="ID"/>
+            <component name="messageStructureId" identifier="MSH-9.3" long-label="Message Structure" type="ID"/>
+        </field>
+        <field name="messageControlId" identifer="MSH-10" long-label="Message Control ID" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="processingId" identifer="MSH-11" long-label="Processing ID" type="PT" min-occurrence="1" max-occurence="1">
+            <component name="processingId" identifier="MSH-11.1" long-label="Processing ID" type="ID"/>
+            <component name="processingModeId" identifier="MSH-11.2" long-label="Processing Mode ID" type="ID"/>
+        </field>
+        <field name="versionId" identifer="MSH-12" long-label="Version ID" type="VID" min-occurrence="1" max-occurence="1">
+            <component name="versionId" identifier="MSH-9.1" long-label="Version ID" type="ID"/>
+            <component name="internationalizationCode" identifier="MSH-9.2" long-label="Internationalization Code" type="CE"/>
+            <component name="internationalVersionId" identifier="MSH-9.3" long-label="International Version ID" type="CE"/>
+        </field>
+        <field name="sequenceNumber" identifer="MSH-13" long-label="Sequence Number" type="NM" min-occurrence="0" max-occurence="1"/>
+        <field name="continuationPointer" identifer="MSH-14" long-label="Continuation Pointer" type="ST" min-occurrence="0" max-occurence="1"/>
+        <field name="acceptAcknowledgmentType" identifer="MSH-15" long-label="Accept Acknowledgment Type" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="appAcknowledgmentType" identifer="MSH-16" long-label="Application Acknowledgment Type" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="countryCode" identifer="MSH-17" long-label="Country Code" type="ID" min-occurrence="0" max-occurence="1"/>
+        <field name="characterSet" identifer="MSH-18" long-label="Character Set" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="principalLanguageOfMsg" identifer="MSH-19" long-label="Principal Language of Message" type="CE" min-occurrence="0" max-occurence="1"/>
+        <field name="altCharacterSetScheme" identifer="MSH-20" long-label="Alternate Character Set Handling Scheme" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="messageProfileIdentifier" identifer="MSH-21" long-label="Message Profile Identifier" type="EI" min-occurrence="0" max-occurence="1"/>
     </segment>
     <segment identifier="SFT">
-        <!-- TODO -->
-    </segment>    
+        <field name="softwareVendorOrganization" identifer="SFT-1" long-label="Software Vendor Organization" type="XON" min-occurrence="1" max-occurence="1">
+            <component name="softwareVendorOrgName" identifier="SFT-1.1" long-label="Organization Name" type="St"/>
+            <component name="softwareVendorOrgNameTypeCode" identifier="SFT-1.2" long-label="Organization Name Type Code" type="IS"/>
+            <component name="softwareVendorDeprecatedIdNumber" identifier="SFT-1.3" long-label="Deprecated ID Number" type="NM"/>
+            <component name="softwareVendorCheckDigit" identifier="SFT-1.4" long-label="Check Digit" type="NM"/>
+            <component name="softwareVendorCheckDigitScheme" identifier="SFT-1.5" long-label="Check Digit Scheme" type="ID"/>
+            <component name="softwareVendorAssigningAuthority" identifier="SFT-1.6" long-label="Assigning Authority" type="HD"/>
+            <component name="softwareVendorIdentifierTypeCode" identifier="SFT-1.7" long-label="Identifier Type Code" type="ID"/>
+            <component name="softwareVendorAssigningFacility" identifier="SFT-1.8" long-label="Assigning Facility" type="HD"/>
+            <component name="softwareVendorNameRepresentationCode" identifier="SFT-1.9" long-label="Name Representation Code" type="ID"/>
+            <component name="softwareVendorOrgIdentifier" identifier="SFT-1.10" long-label="Organization Identifier" type="ST"/>
+        </field>
+        <field name="softwareCertVersionOrReleaseNum" identifer="SFT-2" long-label="Software Certified Version or Release Number" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="softwareProductName" identifer="SFT-3" long-label="Software Product Name" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="softwareBinaryId" identifer="SFT-4" long-label="Software Binary ID" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="softwareProductInfo" identifer="SFT-5" long-label="Software Product Information" type="TX" min-occurrence="0" max-occurence="1"/>
+        <field name="softwareInstallDate" identifer="SFT-6" long-label="Software Install Date" type="TS" min-occurrence="0" max-occurence="1">
+            <component name="encodeCharTime" identifier="SFT-6.1" long-label="Time" type="DTM"/>
+            <component name="encodeCharDegreeOfPrecision" identifier="SFT-6.2" long-label="Degree of Precision" type="ID"/>
+        </field>
+    </segment>
     <segment identifier="PID">
+        <field name="setId" identifer="PID-1" long-label="Set ID" type="SI" min-occurrence="1" max-occurence="1"/>
+        <field name="externalPatientId" identifer="PID-2" long-label="External Patient ID" type="CX" min-occurrence="0" max-occurence="1">
+
+        </field>
         <field name="patientIdentifierList" identifer="PID-3" long-label="Patient Identifier List" type="CX" min-occurrence="1" max-occurence="8">
             <component name="patIdNumber" identifier="PID-3.1" long-label="ID Number" type="ST"/>
             <component name="patIdCheckDigit" identifier="PID-3.2" long-label="ID Check Digit" type="ST"/>
@@ -16,6 +86,42 @@
                 <subcomponent name="patIdAuthUniversalId" identifier="PID-3.4.2" long-label="Assigning Authority Universal ID" type="ST"/>
                 <subcomponent name="patIdAuthUniversalIdType" identifier="PID-3.4.3" long-label="Assigning Authority Universal ID Type" type="ID"/>
             </component>
+        </field>
+        <field name="alternatePatientId" identifer="PID-4" long-label="Alternate Patient ID" type="CX" min-occurrence="0" max-occurence="0"/>
+        <field name="patientName" identifer="PID-5" long-label="Patient Name" type="XPN" min-occurrence="1" max-occurence="8">
+            <component name="patFamilyName" identifier="PID-5.1" long-label="Family Name" type="ST">
+                <subcomponent name="patLastNamePrefix" identifier="PID-5.1.1" long-label="Last Name Prefix" type="ST"/>
+            </component>
+            <component name="patGivenName" identifier="PID-5.2" long-label="Given Name" type="ST"/>
+            <component name="patMiddleName" identifier="PID-5.3" long-label="Middle Initial or Name" type="ST"/>
+            <component name="patSuffix" identifier="PID-5.4" long-label="Suffix" type="ST"/>
+            <component name="patPrefix" identifier="PID-5.5" long-label="Prefix" type="ST"/>
+            <component name="patDegree" identifier="PID-5.6" long-label="Degree" type="IS"/>
+            <component name="patNameTypeCode" identifier="PID-5.7" long-label="Name Type Code" type="ID"/>
+            <component name="patNameRepresentationCode" identifier="PID-5.8" long-label="Name Representation Code" type="ID"/>
+        </field>
+        <field name="motherMaidenName" identifer="PID-6" long-label="Mother's Maiden Name" type="XPN" min-occurrence="0" max-occurence="0"/>
+        <field name="dateTimeOfBirth" identifer="PID-7" long-label="Date and Time of Birth" type="TS" min-occurrence="0" max-occurence="1"/>
+        <field name="sex" identifer="PID-8" long-label="Sex" type="IS" min-occurrence="0" max-occurence="1"/>
+        <field name="patientAlias" identifer="PID-9" long-label="Patient Alias" type="XPN" min-occurrence="0" max-occurence="8">
+            <component name="patAliasFamilyName" identifier="PID-9.1" long-label="Family Name" type="ST">
+                <subcomponent name="patAliasLastNamePrefix" identifier="PID-9.1.1" long-label="Last Name Prefix" type="ST"/>
+            </component>
+            <component name="patAliasGivenName" identifier="PID-9.2" long-label="Given Name" type="ST"/>
+            <component name="patAliasMiddleName" identifier="PID-9.3" long-label="Middle Initial or Name" type="ST"/>
+            <component name="patAliasSuffix" identifier="PID-9.4" long-label="Suffix" type="ST"/>
+            <component name="patAliasPrefix" identifier="PID-9.5" long-label="Prefix" type="ST"/>
+            <component name="patAliasDegree" identifier="PID-9.6" long-label="Degree" type="IS"/>
+            <component name="patAliasNameTypeCode" identifier="PID-9.7" long-label="Name Type Code" type="ID"/>
+            <component name="patAliasNameRepresentationCode" identifier="PID-9.8" long-label="Name Representation Code" type="ID"/>
+        </field>
+        <field name="race" identifer="PID-10" long-label="Race" type="CE" min-occurrence="0" max-occurence="6">
+            <component name="raceIdentifier" identifier="PID-10.1" long-label="Identifier" type="ST"/>
+            <component name="raceText" identifier="PID-10.2" long-label="Text" type="ST"/>
+            <component name="raceNameOfCodingSystem" identifier="PID-10.3" long-label="Name of Coding System" type="ST"/>
+            <component name="raceAlternateIdentifier" identifier="PID-10.4" long-label="Alternate Identifier" type="ST"/>
+            <component name="raceAlternateText" identifier="PID-10.5" long-label="Alternate Text" type="ST"/>
+            <component name="raceNameOfAlternateCodingSystem" identifier="PID-10.6" long-label="Name of Alternate Coding System" type="ST"/>
         </field>
     </segment>
     <segment identifier="NKI">
