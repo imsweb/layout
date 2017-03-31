@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStreamWriter;
@@ -16,32 +17,42 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
 import com.imsweb.layout.Field;
 import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.hl7.entity.Hl7Message;
+import com.imsweb.layout.hl7.xml.Hl7LayoutDefinitionXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SegmentDefinitionXmlDto;
 
 public class NaaccrHl7Layout implements Layout {
 
+    public static final String NAACCR_HL7_VERSION = "2.5.1";
+
+    private static final String _NAACCR_HL7_LAYOUT_ID = "naaccr-hl7";
+    private static final String _NAACCR_HL7_LAYOUT_NAME = "NAACCR HL7";
+
     @Override
     public String getLayoutId() {
-        return "naaccr-hl7";
+        return _NAACCR_HL7_LAYOUT_ID;
     }
 
     @Override
     public String getLayoutName() {
-        return "NAACCR HL7";
+        return _NAACCR_HL7_LAYOUT_NAME;
     }
 
     @Override
     public String getLayoutVersion() {
-        return "2.5.1";
+        return NAACCR_HL7_VERSION;
     }
 
     @Override
     public String getLayoutDescription() {
-        return "NAACCR HL7";
+        return _NAACCR_HL7_LAYOUT_NAME;
     }
 
     @Override
@@ -77,6 +88,28 @@ public class NaaccrHl7Layout implements Layout {
     @Override
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
         return null; // TODO
+    }
+
+    public NaaccrHl7Layout(File hl7LayoutFile) throws IOException {
+        if (hl7LayoutFile == null)
+            throw new NullPointerException("Unable to create an hl7-layout, the URL cannot be null");
+        if (!hl7LayoutFile.exists())
+            throw new IOException("Unable to read from " + hl7LayoutFile.getPath());
+
+        try (InputStream is = new FileInputStream(hl7LayoutFile)) {
+            // create xstream for hl7-layout
+            XStream xStream = new XStream(new StaxDriver());
+            xStream.autodetectAnnotations(true);
+            xStream.alias("hl7-layout", Hl7LayoutDefinitionXmlDto.class);
+            Hl7LayoutDefinitionXmlDto dto = (Hl7LayoutDefinitionXmlDto)xStream.fromXML(is);
+
+            // extract components from dto
+            if (dto.getHl7Segments() != null) {
+                for (Hl7SegmentDefinitionXmlDto segmentXmlDto : dto.getHl7Segments()) {
+
+                }
+            }
+        }
     }
 
     public Hl7Message readNextMessage(LineNumberReader reader) throws IOException {
