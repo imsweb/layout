@@ -367,10 +367,46 @@
         <field name="commentType" identifer="NTE-4" long-label="Comment Type" type="CE" min-occurrence="0" max-occurence="1"/>
     </segment>
     <segment identifier="SPM">
-        <field name="setId" identifer="SPM-1" long-label="Set ID" type="SI" min-occurrence="0" max-occurence="1"/>
-        <field name="specimenId" identifer="SPM-2" long-label="Specimen ID" type="EIP" min-occurrence="1" max-occurence="1"/>
-        <field name="specimenParentIds" identifer="SPM-3" long-label="Specimen Parent IDs" type="EIP" min-occurrence="0" max-occurence="1"/>
-        <field name="specimenType" identifer="SPM-4" long-label="Specimen Type" type="CWE" min-occurrence="1" max-occurence="1"/>
+        <field name="setIdSpm" identifer="SPM-1" long-label="Set SPM-ID" type="SI" min-occurrence="0" max-occurence="1"/>
+        <field name="specimenId" identifer="SPM-2" long-label="Specimen ID" type="EIP" min-occurrence="1" max-occurence="1">
+            <component name="specPlacerAssignedId" identifier="SPM-2.1" long-label="Specimen Placer Assigned Identifier" type="EI">
+                <subcomponent name="specPlacerEntityId" identifier="SPM-2.1.1" long-label="Specimen Placer Entity Identifier" type="ST"/>
+                <subcomponent name="specPlacerNamespaceId" identifier="SPM-2.1.2" long-label="Specimen Placer Namespace ID" type="IS"/>
+                <subcomponent name="specPlacerUniversalId" identifier="SPM-2.1.3" long-label="Specimen Placer Universal ID" type="ST"/>
+                <subcomponent name="specPlacerUniversalIdType" identifier="SPM-2.1.4" long-label="Specimen Placer Universal ID Type" type="ID"/>
+            </component>
+            <component name="specFillerAssignedId" identifier="SPM-2.2" long-label="Specimen Filler Assigned Identifier" type="EI">
+                <subcomponent name="specFillerEntityId" identifier="SPM-2.2.1" long-label="Specimen Filler Entity Identifier" type="ST"/>
+                <subcomponent name="specFillerNamespaceId" identifier="SPM-2.2.2" long-label="Specimen Filler Namespace ID" type="IS"/>
+                <subcomponent name="specFillerUniversalId" identifier="SPM-2.2.3" long-label="Specimen Filler Universal ID" type="ST"/>
+                <subcomponent name="specFillerUniversalIdType" identifier="SPM-2.2.4" long-label="Specimen Filler Universal ID Type" type="ID"/>
+            </component>
+        </field>
+        <field name="specimenParentIds" identifer="SPM-3" long-label="Specimen Parent IDs" type="EIP" min-occurrence="0" max-occurence="1">
+            <component name="specParentPlacerAssignedId" identifier="SPM-3.1" long-label="Specimen Parent Placer Assigned Identifier" type="EI">
+                <subcomponent name="specParentPlacerEntityId" identifier="SPM-3.1.1" long-label="Specimen Parent Placer Entity Identifier" type="ST"/>
+                <subcomponent name="specParentPlacerNamespaceId" identifier="SPM-3.1.2" long-label="Specimen Parent Placer Namespace ID" type="IS"/>
+                <subcomponent name="specParentPlacerUniversalId" identifier="SPM-3.1.3" long-label="Specimen Parent Placer Universal ID" type="ST"/>
+                <subcomponent name="specParentPlacerUniversalIdType" identifier="SPM-3.1.4" long-label="Specimen Parent Placer Universal ID Type" type="ID"/>
+            </component>
+            <component name="specParentFillerAssignedId" identifier="SPM-3.2" long-label="Specimen Parent Filler Assigned Identifier" type="EI">
+                <subcomponent name="specParentFillerEntityId" identifier="SPM-3.2.1" long-label="Specimen Parent Filler Entity Identifier" type="ST"/>
+                <subcomponent name="specParentFillerNamespaceId" identifier="SPM-3.2.2" long-label="Specimen Parent Filler Namespace ID" type="IS"/>
+                <subcomponent name="specParentFillerUniversalId" identifier="SPM-3.2.3" long-label="Specimen Parent Filler Universal ID" type="ST"/>
+                <subcomponent name="specParentFillerUniversalIdType" identifier="SPM-3.2.4" long-label="Specimen Parent Filler Universal ID Type" type="ID"/>
+            </component>
+        </field>
+        <field name="specimenType" identifer="SPM-4" long-label="Specimen Type" type="CWE" min-occurrence="1" max-occurence="1">
+            <component name="specTypeId" identifier="SPM-4.1" long-label="Specimen Type Identifier" type="ST"/>
+            <component name="specTypeText" identifier="SPM-4.2" long-label="Specimen Type Text" type="ST"/>
+            <component name="specTypeSystemName" identifier="SPM-4.3" long-label="Specimen Type Coding System Name" type="ID"/>
+            <component name="specTypeAlternateId" identifier="SPM-4.4" long-label="Specimen Type Alternate Identifier " type="ST"/>
+            <component name="specTypeAlternateText" identifier="SPM-4.5" long-label="Specimen Type Alternate Text" type="ST"/>
+            <component name="specTypeAltSystemName" identifier="SPM-4.6" long-label="Specimen Type Alternate Coding System Name" type="ID"/>
+            <component name="specTypeSystemVersionId" identifier="SPM-4.7" long-label="Specimen Type Coding System Version ID" type="ST"/>
+            <component name="specTypeAltSystemVersionId" identifier="SPM-4.8" long-label="Specimen Type Alternate Coding System Version ID" type="ST"/>
+            <component name="specTypeOriginalText" identifier="SPM-4.9" long-label="Specimen Type Original Text" type="ST"/>
+        </field>
         <field name="specimenTypeModifier" identifer="SPM-5" long-label="Specimen Type Modifier" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="specimenAdditives" identifer="SPM-6" long-label="Specimen Additives" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="specimenCollectionMethod" identifer="SPM-7" long-label="Specimen Collection Method" type="CWE" min-occurrence="0" max-occurence="0"/>
@@ -379,25 +415,87 @@
         <field name="specimenCollectionSite" identifer="SPM-10" long-label="Specimen Collection Site" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="specimenRole" identifer="SPM-11" long-label="Specimen Role" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="specimenCollectionAmount" identifer="SPM-12" long-label="Specimen Collection Amount" type="CQ" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenGroupedCount" identifer="SPM-13" long-label="Grouped Specimen Count" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="groupedSpecimenCount" identifer="SPM-13" long-label="Grouped Specimen Count" type="NM" min-occurrence="0" max-occurence="0"/>
         <field name="specimenDescription" identifer="SPM-14" long-label="Specimen Description" type="ST" min-occurrence="0" max-occurence="0"/>
         <field name="specimenHandlingCode" identifer="SPM-15" long-label="Specimen Handling Code" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="specimenRiskCode" identifer="SPM-16" long-label="Specimen Risk Code" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenCollectionDate" identifer="SPM-17" long-label="Specimen Collection Date and Time" type="DR" min-occurrence="0" max-occurence="1"/>
-        <field name="specimenReceivedDate" identifer="SPM-18" long-label="Specimen Received Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="specimenExpirationDate" identifer="SPM-19" long-label="Specimen Expiration Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenCollectionDateTime" identifer="SPM-17" long-label="Specimen Collection Date and Time" type="DR" min-occurrence="0" max-occurence="1">
+            <component name="specRangeStartDateTime" identifier="SPM-17.1" long-label="Range Start Date and Time" type="TS">
+                <subcomponent name="specRangeStartTime" identifier="SPM-17.1.1" long-label="Specimen Range Start Time" type="DTM"/>
+                <subcomponent name="specRangeStartDegreeOfPrecision" identifier="SPM-17.1.2" long-label="Specimen Range Start Degree of Precision" type="ID"/>
+            </component>
+            <component name="specRangeEndDateTime" identifier="SPM-17.2" long-label="Range End Date and Time" type="TS">
+                <subcomponent name="specRangeEndTime" identifier="SPM-17.2.1" long-label="Specimen Range End Time" type="DTM"/>
+                <subcomponent name="specRangeEndDegreeOfPrecision" identifier="SPM-17.2.2" long-label="Specimen Range End Degree of Precision" type="ID"/>
+            </component>
+        </field>
+        <field name="specimenReceivedDate" identifer="SPM-18" long-label="Specimen Received Date and Time" type="TS" min-occurrence="0" max-occurence="1">
+            <component name="specReceivedTime" identifier="SPM-18.1" long-label="Specimen Received Time" type="DTM"/>
+            <component name="specReceivedDegreeOfPrecision" identifier="SPM-18.2" long-label="Specimen Received Degree of Precision" type="DTM"/>
+        </field>
+        <field name="specimenExpirationDateTime" identifer="SPM-19" long-label="Specimen Expiration Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
         <field name="specimenAvailability" identifer="SPM-20" long-label="Specimen Availability" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenRejectReason" identifer="SPM-21" long-label="Specimen Reject Reason" type="CWE" min-occurrence="0" max-occurence="2"/>
+        <field name="specimenRejectReason" identifer="SPM-21" long-label="Specimen Reject Reason" type="CWE" min-occurrence="0" max-occurence="2">
+            <component name="specRejectId" identifier="SPM-21.1" long-label="Specimen Reject Reason ID" type="ST"/>
+            <component name="specRejectText" identifier="SPM-21.2" long-label="Specimen Reject Reason Text" type="ST"/>
+            <component name="specRejectSystemName" identifier="SPM-21.3" long-label="Specimen Reject Reason Coding System Name" type="ID"/>
+            <component name="specRejectAlternateId" identifier="SPM-21.4" long-label="Specimen Reject Reason Alternate Identifier " type="ST"/>
+            <component name="specRejectAlternateText" identifier="SPM-21.5" long-label="Specimen Reject Reason Alternate Text" type="ST"/>
+            <component name="specRejectAltSystemName" identifier="SPM-21.6" long-label="Specimen Reject Reason Alternate Coding System Name" type="ID"/>
+            <component name="specRejectSystemVersionId" identifier="SPM-21.7" long-label="Specimen Reject Reason Coding System Version ID" type="ST"/>
+            <component name="specRejectAltSystemVersionId" identifier="SPM-21.8" long-label="Specimen Reject Reason Alternate Coding System Version ID" type="ST"/>
+            <component name="specRejectOriginalText" identifier="SPM-21.9" long-label="Specimen Reject Reason Original Text" type="ST"/>
+        </field>
         <field name="specimenQuality" identifer="SPM-22" long-label="Specimen Quality" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="specimenAppropriateness" identifer="SPM-23" long-label="Specimen Appropriateness" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="specimenCondition" identifer="SPM-24" long-label="Specimen Condition" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="specimenCurrentQuantity" identifer="SPM-25" long-label="Specimen Current Quantity" type="CQ" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenContainerNum" identifer="SPM-26" long-label="Specimen Container Number" type="NM" min-occurrence="0" max-occurence="1"/>
+        <field name="numberOfSpecimenContainers" identifer="SPM-26" long-label="Number of Specimen Containers" type="NM" min-occurrence="0" max-occurence="1"/>
         <field name="containerType" identifer="SPM-27" long-label="Container Type" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="containerCondition" identifer="SPM-28" long-label="Container Condition" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenChildRole" identifer="SPM-29" long-label="Specimen Child Role" type="CWE" min-occurrence="0" max-occurence="1"/>
-        <field name="accessionId" identifer="SPM-30" long-label="Accession ID" type="CX" min-occurrence="0" max-occurence="25"/>
-        <field name="specimenIdOther" identifer="SPM-31" long-label="Other Specimen ID" type="CX" min-occurrence="0" max-occurence="300"/>
+        <field name="specimenChildRole" identifer="SPM-29" long-label="Specimen Child Role" type="CWE" min-occurrence="0" max-occurence="1">
+            <component name="specChildId" identifier="SPM-29.1" long-label="Specimen Child Identifier" type="ST"/>
+            <component name="specChildText" identifier="SPM-29.2" long-label="Specimen Child Text" type="ST"/>
+            <component name="specChildSystemName" identifier="SPM-29.3" long-label="Specimen Child Coding System Name" type="ID"/>
+            <component name="specChildAlternateId" identifier="SPM-29.4" long-label="Specimen Child Alternate Identifier" type="ST"/>
+            <component name="specChildAlternateText" identifier="SPM-29.5" long-label="Specimen Child Alternate Text" type="ST"/>
+            <component name="specChildAltSystemName" identifier="SPM-29.6" long-label="Specimen Child Alternate Coding System Name" type="ID"/>
+            <component name="specChildSystemVersionId" identifier="SPM-29.7" long-label="Specimen Child Coding System Version ID" type="ST"/>
+            <component name="specChildAltSystemVersionId" identifier="SPM-29.8" long-label="Specimen Child Alternate Coding System Version ID" type="ST"/>
+            <component name="specChildOriginalText" identifier="SPM-29.9" long-label="Specimen Child Original Text" type="ST"/>
+        </field>
+        <field name="accessionId" identifer="SPM-30" long-label="Accession ID" type="CX" min-occurrence="0" max-occurence="25">
+            <component name="accessionIdNumber" identifier="SPM-30.1" long-label="Accession ID Number" type="ST"/>
+            <component name="accessionCheckDigit" identifier="SPM-30.2" long-label="Accession Check Digit" type="ST"/>
+            <component name="accessionCodeCheckDigit" identifier="SPM-30.3" long-label="Accession Code Identifying Check Digit" type="ID"/>
+            <component name="accessionAssigningAuthority" identifier="SPM-30.4" long-label="Accession Assigning Authority" type="HD">
+                <subcomponent name="accessionAuthNamespaceId" identifier="SPM-30.4.1" long-label="Accession Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="accessionAuthUniversalId" identifier="SPM-30.4.2" long-label="Accession Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="accessionAuthUniversalIdType" identifier="SPM-30.4.3" long-label="Accession Assigning Authority Universal ID Type" type="ID"/>
+            </component>
+            <component name="accessionIdTypeCode" identifier="SPM-30.5" long-label="Accession Identifier Type Code" type="IS"/>
+            <component name="accessionAssigningFacility" identifier="SPM-30.6" long-label="Accession Assigning Facility" type="HD">
+                <subcomponent name="accessionFacNamespaceId" identifier="SPM-30.6.1" long-label="Accession Assigning Facility Namespace ID" type="IS"/>
+                <subcomponent name="accessionFacUniversalId" identifier="SPM-30.6.2" long-label="Accession Assigning Facility Universal ID" type="ST"/>
+                <subcomponent name="accessionFacUniversalIdType" identifier="SPM-30.6.3" long-label="Accession Assigning Facility Universal ID Type" type="ID"/>
+            </component>
+        </field>
+        <field name="otherSpecimenId" identifer="SPM-31" long-label="Other Specimen ID" type="CX" min-occurrence="0" max-occurence="300">
+            <component name="otherSpecIdNumber" identifier="SPM-31.1" long-label="Specimen Child ID" type="ST"/>
+            <component name="otherSpecCheckDigit" identifier="SPM-31.2" long-label="Specimen Child Text" type="ST"/>
+            <component name="otherSpecCodeCheckDigit" identifier="SPM-31.3" long-label="Specimen Child Coding System Name" type="ID"/>
+            <component name="otherSpecAssigningAuthority" identifier="SPM-31.4" long-label="Specimen Child Alternate Identifier " type="HD">
+                <subcomponent name="otherSpecAuthNamespaceId" identifier="SPM-31.4.1" long-label="Other Specimen Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="otherSpecAuthUniversalId" identifier="SPM-31.4.2" long-label="Other Specimen Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="otherSpecAuthUniversalIdType" identifier="SPM-31.4.3" long-label="Other Specimen Assigning Authority Universal ID Type" type="ID"/>
+            </component>
+            <component name="otherSpecTypeCode" identifier="SPM-31.5" long-label="Specimen Child Alternate Text" type="IS"/>
+            <component name="otherSpecAssigningFacility" identifier="SPM-31.6" long-label="Specimen Child Alternate Coding System Name" type="HD">
+                <subcomponent name="otherSpecFacNamespaceId" identifier="SPM-31.6.1" long-label="Other Specimen Assigning Facility Namespace ID" type="IS"/>
+                <subcomponent name="otherSpecFacUniversalId" identifier="SPM-31.6.2" long-label="Other Specimen Assigning Facility Universal ID" type="ST"/>
+                <subcomponent name="otherSpecFacUniversalIdType" identifier="SPM-31.6.3" long-label="Other Specimen Assigning Facility Universal ID Type" type="ID"/>
+            </component>
+        </field>
     </segment>
     <!-- DSC not supported -->
 </hl7-layout>
