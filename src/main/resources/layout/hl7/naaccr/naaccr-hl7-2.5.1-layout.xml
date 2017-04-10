@@ -52,7 +52,7 @@
     </segment>
     <segment identifier="SFT">
         <field name="softwareVendorOrganization" identifer="SFT-1" long-label="Software Vendor Organization" type="XON" min-occurrence="1" max-occurence="1">
-            <component name="softwareVendorOrgName" identifier="SFT-1.1" long-label="Software Vendor Organization Name" type="St"/>
+            <component name="softwareVendorOrgName" identifier="SFT-1.1" long-label="Software Vendor Organization Name" type="ST"/>
             <component name="softwareVendorOrgNameTypeCode" identifier="SFT-1.2" long-label="Software Vendor Organization Name Type Code" type="IS"/>
             <component name="softwareVendorIdNumber" identifier="SFT-1.3" long-label="Software Vendor ID Number" type="NM"/>
             <component name="softwareVendorCheckDigit" identifier="SFT-1.4" long-label="Software Vendor Check Digit" type="NM"/>
@@ -74,82 +74,239 @@
     </segment>
     <segment identifier="PID">
         <field name="setPidId" identifer="PID-1" long-label="Set PID ID" type="SI" min-occurrence="1" max-occurence="1"/>
-        <field name="externalPatientId" identifer="PID-2" long-label="External Patient ID" type="CX" min-occurrence="0" max-occurence="1">
-
+        <field name="patientId" identifer="PID-2" long-label="Patient ID" type="CX" min-occurrence="0" max-occurence="1">
+            <component name="patIdNumber" identifier="PID-2.1" long-label="Patient ID Number" type="ST"/>
+            <component name="patIdCheckDigit" identifier="PID-2.2" long-label="Patient ID Check Digit" type="ST"/>
+            <component name="patIdCheckDigitScheme" identifier="PID-2.3" long-label="Patient ID Check Digit Scheme" type="ID"/>
+            <component name="patIdAssigningAuthority" identifier="PID-2.4" long-label="Patient ID Assigning Authority" type="HD">
+                <subcomponent name="patIdAuthNamespaceId" identifier="PID-2.4.1" long-label="Patient ID Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="patIdAuthUniversalId" identifier="PID-2.4.2" long-label="Patient ID Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="patIdAuthUniversalIdType" identifier="PID-2.4.3" long-label="Patient ID Assigning Authority Universal ID Type" type="IS"/>
+            </component>
+            <component name="patIdTypeCode" identifier="PID-2.5" long-label="Patient ID Identifier Type Code" type="IS"/>
+            <component name="patIdAssigningFacility" identifier="PID-2.6" long-label="Patient ID Assigning Facility" type="HD">
+                <subcomponent name="patIdFacNamespaceId" identifier="PID-2.4.1" long-label="Patient ID Assigning Facility Namespace ID" type="IS"/>
+                <subcomponent name="patIdFacUniversalId" identifier="PID-2.4.2" long-label="Patient ID Assigning Facility Universal ID" type="ST"/>
+                <subcomponent name="patIdFacUniversalIdType" identifier="PID-2.4.3" long-label="Patient ID Assigning Facility Universal ID Type" type="ID"/>
+            </component>
+            <component name="patIdEffectiveDate" identifier="PID-2.7" long-label="Patient ID Effective Date" type="DT"/>
+            <component name="patIdExpirationDate" identifier="PID-2.8" long-label="Patient ID Expiration Date" type="DT"/>
+            <component name="patIdAssigningJurisdiction" identifier="PID-2.9" long-label="Patient ID Assigning Jurisdiction" type="CWE">
+                <subcomponent name="patIdJurisId" identifier="PID-2.9.1" long-label="Patient ID Jurisdiction Id" type="ST"/>
+                <subcomponent name="patIdJurisText" identifier="PID-2.9.2" long-label="Patient ID Jurisdiction Text" type="ST"/>
+                <subcomponent name="patIdJurisSystemName" identifier="PID-2.9.3" long-label="Patient ID Jurisdiction Coding System Name" type="ID"/>
+                <subcomponent name="patIdJurisAlternateId" identifier="PID-2.9.4" long-label="Patient ID Jurisdiction Alternate Identifier" type="ST"/>
+                <subcomponent name="patIdJurisAlternateText" identifier="PID-2.9.5" long-label="Patient ID Jurisdiction Alternate Text" type="ST"/>
+                <subcomponent name="patIdJurisAltSystemName" identifier="PID-2.9.6" long-label="Patient ID Jurisdiction Alternate Coding System Name" type="ID"/>
+                <subcomponent name="patIdJurisSystemVersionId" identifier="PID-2.9.7" long-label="Patient ID Jurisdiction Coding System Version ID" type="ST"/>
+                <subcomponent name="patIdJurisAltSystemVersionId" identifier="PID-2.9.8" long-label="Patient ID Jurisdiction Alternate Coding System Version ID" type="ST"/>
+                <subcomponent name="patIdJurisOriginalText" identifier="PID-2.9.9" long-label="Patient ID Jurisdiction Original Text" type="ST"/>
+            </component>
+            <component name="patIdAssigningAgency" identifier="PID-2.10" long-label="Patient ID Assigning Agency or Department" type="CWE">
+                <subcomponent name="patIdAgencyId" identifier="PID-2.10.1" long-label="Patient ID Agency Id" type="ST"/>
+                <subcomponent name="patIdAgencyText" identifier="PID-2.10.2" long-label="Patient ID Agency Text" type="ST"/>
+                <subcomponent name="patIdAgencySystemName" identifier="PID-2.10.3" long-label="Patient ID Agency Coding System Name" type="ID"/>
+                <subcomponent name="patIdAgencyAlternateId" identifier="PID-2.10.4" long-label="Patient ID Agency Alternate Identifier" type="ST"/>
+                <subcomponent name="patIdAgencyAlternateText" identifier="PID-2.10.5" long-label="Patient ID Agency Alternate Text" type="ST"/>
+                <subcomponent name="patIdAgencyAltSystemName" identifier="PID-2.10.6" long-label="Patient ID Agency Alternate Coding System Name" type="ID"/>
+                <subcomponent name="patIdAgencySystemVersionId" identifier="PID-2.10.7" long-label="Patient ID Agency Coding System Version ID" type="ST"/>
+                <subcomponent name="patIdAgencyAltSystemVersionId" identifier="PID-2.10.8" long-label="Patient ID Agency Alternate Coding System Version ID" type="ST"/>
+                <subcomponent name="patIdAgencyOriginalText" identifier="PID-2.10.9" long-label="Patient ID Agency Original Text" type="ST"/>
+            </component>
         </field>
         <field name="patientIdentifierList" identifer="PID-3" long-label="Patient Identifier List" type="CX" min-occurrence="1" max-occurence="8">
-            <component name="patIdNumber" identifier="PID-3.1" long-label="ID Number" type="ST"/>
-            <component name="patIdCheckDigit" identifier="PID-3.2" long-label="ID Check Digit" type="ST"/>
-            <component name="patIdCheckScheme" identifier="PID-3.3" long-label="ID Check Scheme" type="ID"/>
-            <component name="patIdAssigningAuthority" identifier="PID-3.4" long-label="Assigning Authority" type="HD">
-                <subcomponent name="patIdAuthNamespaceId" identifier="PID-3.4.1" long-label="Assigning Authority Namespace ID" type="IS"/>
-                <subcomponent name="patIdAuthUniversalId" identifier="PID-3.4.2" long-label="Assigning Authority Universal ID" type="ST"/>
-                <subcomponent name="patIdAuthUniversalIdType" identifier="PID-3.4.3" long-label="Assigning Authority Universal ID Type" type="ID"/>
+            <component name="patIdListNumber" identifier="PID-3.1" long-label="Patient Identifier List Number" type="ST"/>
+            <component name="patIdListCheckDigit" identifier="PID-3.2" long-label="Patient Identifier List Check Digit" type="ST"/>
+            <component name="patIdListheckDigitScheme" identifier="PID-3.3" long-label="Patient Identifier List Check Digit Scheme" type="ID"/>
+            <component name="patIdListAssigningAuthority" identifier="PID-3.4" long-label="Patient Identifier List Assigning Authority" type="HD">
+                <subcomponent name="patIdListAuthNamespaceId" identifier="PID-3.4.1" long-label="Patient Identifier List Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="patIdListAuthUniversalId" identifier="PID-3.4.2" long-label="Patient Identifier List Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="patIdListAuthUniversalIdType" identifier="PID-3.4.3" long-label="Patient Identifier List Assigning Authority Universal ID Type" type="IS"/>
+            </component>
+            <component name="patIdListTypeCode" identifier="PID-3.5" long-label="Patient Identifier List Identifier Type Code" type="IS"/>
+            <component name="patIdListAssigningFacility" identifier="PID-3.6" long-label="Patient Identifier List Assigning Facility" type="HD">
+                <subcomponent name="patIdListFacNamespaceId" identifier="PID-3.4.1" long-label="Patient Identifier List Assigning Facility Namespace ID" type="IS"/>
+                <subcomponent name="patIdListFacUniversalId" identifier="PID-3.4.2" long-label="Patient Identifier List Assigning Facility Universal ID" type="ST"/>
+                <subcomponent name="patIdListFacUniversalIdType" identifier="PID-3.4.3" long-label="Patient Identifier List Assigning Facility Universal ID Type" type="ID"/>
+            </component>
+            <component name="patIdListEffectiveDate" identifier="PID-3.7" long-label="Patient Identifier List Effective Date" type="DT"/>
+            <component name="patIdListExpirationDate" identifier="PID-3.8" long-label="Patient Identifier List Expiration Date" type="DT"/>
+            <component name="patIdListAssigningJurisdiction" identifier="PID-3.9" long-label="Patient Identifier List Jurisdiction" type="CWE">
+                <subcomponent name="patIdListJurisId" identifier="PID-3.9.1" long-label="Patient Identifier List Jurisdiction Id" type="ST"/>
+                <subcomponent name="patIdListJurisText" identifier="PID-3.9.2" long-label="Patient Identifier List Jurisdiction Text" type="ST"/>
+                <subcomponent name="patIdListJurisSystemName" identifier="PID-3.9.3" long-label="Patient Identifier List Jurisdiction Coding System Name" type="ID"/>
+                <subcomponent name="patIdListJurisAlternateId" identifier="PID-3.9.4" long-label="Patient Identifier List Jurisdiction Alternate Identifier" type="ST"/>
+                <subcomponent name="patIdListJurisAlternateText" identifier="PID-3.9.5" long-label="Patient Identifier List Jurisdiction Alternate Text" type="ST"/>
+                <subcomponent name="patIdListJurisAltSystemName" identifier="PID-3.9.6" long-label="Patient Identifier List Jurisdiction Alternate Coding System Name" type="ID"/>
+                <subcomponent name="patIdListJurisSystemVersionId" identifier="PID-3.9.7" long-label="Patient Identifier List Jurisdiction Coding System Version ID" type="ST"/>
+                <subcomponent name="patIdListJurisAltSystemVersionId" identifier="PID-3.9.8" long-label="Patient Identifier List Jurisdiction Alternate Coding System Version ID" type="ST"/>
+                <subcomponent name="patIdListJurisOriginalText" identifier="PID-3.9.9" long-label="Patient Identifier List Jurisdiction Original Text" type="ST"/>
+            </component>
+            <component name="patIdListAssigningAgency" identifier="PID-3.10" long-label="Patient Identifier List Assigning Agency or Department" type="CWE">
+                <subcomponent name="patIdListAgencyId" identifier="PID-3.10.1" long-label="Patient Identifier List Agency Id" type="ST"/>
+                <subcomponent name="patIdListAgencyText" identifier="PID-3.10.2" long-label="Patient Identifier List Agency Text" type="ST"/>
+                <subcomponent name="patIdListAgencySystemName" identifier="PID-3.10.3" long-label="Patient Identifier List Agency Coding System Name" type="ID"/>
+                <subcomponent name="patIdListAgencyAlternateId" identifier="PID-3.10.4" long-label="Patient Identifier List Agency Alternate Identifier" type="ST"/>
+                <subcomponent name="patIdListAgencyAlternateText" identifier="PID-3.10.5" long-label="Patient Identifier List Agency Alternate Text" type="ST"/>
+                <subcomponent name="patIdListAgencyAltSystemName" identifier="PID-3.10.6" long-label="Patient Identifier List Agency Alternate Coding System Name" type="ID"/>
+                <subcomponent name="patIdListAgencySystemVersionId" identifier="PID-3.10.7" long-label="Patient Identifier List Agency Coding System Version ID" type="ST"/>
+                <subcomponent name="patIdListAgencyAltSystemVersionId" identifier="PID-3.10.8" long-label="Patient Identifier List Agency Alternate Coding System Version ID" type="ST"/>
+                <subcomponent name="patIdListAgencyOriginalText" identifier="PID-3.10.9" long-label="Patient Identifier List Original Text" type="ST"/>
             </component>
         </field>
         <field name="alternatePatientId" identifer="PID-4" long-label="Alternate Patient ID" type="CX" min-occurrence="0" max-occurence="0"/>
         <field name="patientName" identifer="PID-5" long-label="Patient Name" type="XPN" min-occurrence="1" max-occurence="8">
-            <component name="patFamilyName" identifier="PID-5.1" long-label="Family Name" type="ST">
-                <subcomponent name="patLastNamePrefix" identifier="PID-5.1.1" long-label="Last Name Prefix" type="ST"/>
+            <component name="patFamilyName" identifier="PID-5.1" long-label="Patient Family Name" type="ST">
+                <subcomponent name="patLastNamePrefix" identifier="PID-5.1.1" long-label="Patient Last Name Prefix" type="ST"/>
             </component>
-            <component name="patGivenName" identifier="PID-5.2" long-label="Given Name" type="ST"/>
-            <component name="patMiddleName" identifier="PID-5.3" long-label="Middle Initial or Name" type="ST"/>
-            <component name="patSuffix" identifier="PID-5.4" long-label="Suffix" type="ST"/>
-            <component name="patPrefix" identifier="PID-5.5" long-label="Prefix" type="ST"/>
-            <component name="patDegree" identifier="PID-5.6" long-label="Degree" type="IS"/>
-            <component name="patNameTypeCode" identifier="PID-5.7" long-label="Name Type Code" type="ID"/>
-            <component name="patNameRepresentationCode" identifier="PID-5.8" long-label="Name Representation Code" type="ID"/>
+            <component name="patGivenName" identifier="PID-5.2" long-label="Patient Given Name" type="ST"/>
+            <component name="patMiddleName" identifier="PID-5.3" long-label="Patient Middle Initial or Name" type="ST"/>
+            <component name="patSuffix" identifier="PID-5.4" long-label="Patient Suffix" type="ST"/>
+            <component name="patPrefix" identifier="PID-5.5" long-label="Patient Prefix" type="ST"/>
+            <component name="patDegree" identifier="PID-5.6" long-label="Patient Degree" type="IS"/>
+            <component name="patNameTypeCode" identifier="PID-5.7" long-label="Patient Name Type Code" type="ID"/>
+            <component name="patNameRepresentationCode" identifier="PID-5.8" long-label="Patient Name Representation Code" type="ID"/>
         </field>
         <field name="motherMaidenName" identifer="PID-6" long-label="Mother's Maiden Name" type="XPN" min-occurrence="0" max-occurence="0"/>
         <field name="dateTimeOfBirth" identifer="PID-7" long-label="Date and Time of Birth" type="TS" min-occurrence="0" max-occurence="1"/>
         <field name="sex" identifer="PID-8" long-label="Sex" type="IS" min-occurrence="0" max-occurence="1"/>
         <field name="patientAlias" identifer="PID-9" long-label="Patient Alias" type="XPN" min-occurrence="0" max-occurence="8">
-            <component name="patAliasFamilyName" identifier="PID-9.1" long-label="Family Name" type="ST">
-                <subcomponent name="patAliasLastNamePrefix" identifier="PID-9.1.1" long-label="Last Name Prefix" type="ST"/>
+            <component name="patAliasFamilyName" identifier="PID-9.1" long-label="Patient Alias Family Name" type="ST">
+                <subcomponent name="patAliasLastNamePrefix" identifier="PID-9.1.1" long-label="Patient Alias Last Name Prefix" type="ST"/>
             </component>
-            <component name="patAliasGivenName" identifier="PID-9.2" long-label="Given Name" type="ST"/>
-            <component name="patAliasMiddleName" identifier="PID-9.3" long-label="Middle Initial or Name" type="ST"/>
-            <component name="patAliasSuffix" identifier="PID-9.4" long-label="Suffix" type="ST"/>
-            <component name="patAliasPrefix" identifier="PID-9.5" long-label="Prefix" type="ST"/>
-            <component name="patAliasDegree" identifier="PID-9.6" long-label="Degree" type="IS"/>
-            <component name="patAliasNameTypeCode" identifier="PID-9.7" long-label="Name Type Code" type="ID"/>
-            <component name="patAliasNameRepresentationCode" identifier="PID-9.8" long-label="Name Representation Code" type="ID"/>
+            <component name="patAliasGivenName" identifier="PID-9.2" long-label="Patient Alias Given Name" type="ST"/>
+            <component name="patAliasMiddleName" identifier="PID-9.3" long-label="Patient Alias Middle Initial or Name" type="ST"/>
+            <component name="patAliasSuffix" identifier="PID-9.4" long-label="Patient Alias Suffix" type="ST"/>
+            <component name="patAliasPrefix" identifier="PID-9.5" long-label="Patient Alias Prefix" type="ST"/>
+            <component name="patAliasDegree" identifier="PID-9.6" long-label="Patient Alias Degree" type="IS"/>
+            <component name="patAliasNameTypeCode" identifier="PID-9.7" long-label="Patient Alias Name Type Code" type="ID"/>
+            <component name="patAliasNameRepresentationCode" identifier="PID-9.8" long-label="Patient Alias Name Representation Code" type="ID"/>
         </field>
         <field name="race" identifer="PID-10" long-label="Race" type="CE" min-occurrence="0" max-occurence="6">
-            <component name="raceIdentifier" identifier="PID-10.1" long-label="Identifier" type="ST"/>
-            <component name="raceText" identifier="PID-10.2" long-label="Text" type="ST"/>
-            <component name="raceNameOfCodingSystem" identifier="PID-10.3" long-label="Name of Coding System" type="ST"/>
-            <component name="raceAlternateIdentifier" identifier="PID-10.4" long-label="Alternate Identifier" type="ST"/>
-            <component name="raceAlternateText" identifier="PID-10.5" long-label="Alternate Text" type="ST"/>
-            <component name="raceNameOfAlternateCodingSystem" identifier="PID-10.6" long-label="Name of Alternate Coding System" type="ST"/>
+            <component name="raceIdentifier" identifier="PID-10.1" long-label="Race Identifier" type="ST"/>
+            <component name="raceText" identifier="PID-10.2" long-label="Race Text" type="ST"/>
+            <component name="raceCodingSystemName" identifier="PID-10.3" long-label="Race Name of Coding System" type="ST"/>
+            <component name="raceAlternateIdentifier" identifier="PID-10.4" long-label="Race Alternate Identifier" type="ST"/>
+            <component name="raceAlternateText" identifier="PID-10.5" long-label="Race Alternate Text" type="ST"/>
+            <component name="raceAlternateCodingSystemName" identifier="PID-10.6" long-label="Race Name of Alternate Coding System" type="ST"/>
         </field>
         <field name="patientAddress" identifer="PID-11" long-label="Patient Address" type="XAD" min-occurrence="0" max-occurence="4">
-
+            <component name="patAddressStreet" identifier="PID-11.1" long-label="Patient Street Address" type="SAD">
+                <subcomponent name="patAddressStreetMailing" identifier="PID-11.1.1" long-label="Patient Address Street or Mailing" type="ST"/>
+                <subcomponent name="patAddressStreetName" identifier="PID-11.1.2" long-label="Patient Address Street Name" type="ST"/>
+                <subcomponent name="patAddressStreetDwellingNumber" identifier="PID-11.1.3" long-label="Patient Address Street Dwelling Number" type="ST"/>
+            </component>
+            <component name="patAddressOtherDesignation" identifier="PID-11.2" long-label="Patient Address Other Designation" type="ST"/>
+            <component name="patAddressCity" identifier="PID-11.3" long-label="Patient Address City" type="ST"/>
+            <component name="patAddressStateOrProvince" identifier="PID-11.4" long-label="Patient Address State or Province" type="ST"/>
+            <component name="patAddressPostalCode" identifier="PID-11.5" long-label="Patient Address Zip or Postal Code" type="ST"/>
+            <component name="patAddressCountry" identifier="PID-11.6" long-label="Patient Address Country" type="ID"/>
+            <component name="patAddressType" identifier="PID-11.7" long-label="Patient Address Type" type="ID"/>
+            <component name="patAddressOtherGeoDesignation" identifier="PID-11.8" long-label="Patient Address Other Geographic Designation" type="ST"/>
+            <component name="patAddressCountyCode" identifier="PID-11.9" long-label="Patient Address County or Parish Code" type="IS"/>
+            <component name="patAddressCensusTract" identifier="PID-11.10" long-label="Patient Address Census Tract" type="IS"/>
+            <component name="patAddressRepresentationCode" identifier="PID-11.11" long-label="Patient Address Representation Code" type="ID"/>
+            <component name="patAddressValidityRange" identifier="PID-11.12" long-label="Patient Address Validity Range" type="DR"/>
+            <component name="patAddressEffectiveDate" identifier="PID-11.13" long-label="Patient Address Effective Date" type="TS"/>
+            <component name="patAddressExpirationDate" identifier="PID-11.14" long-label="Patient Address Expiration Date" type="TS"/>
         </field>
         <field name="countyCode" identifer="PID-12" long-label="County Code" type="IS" min-occurrence="0" max-occurence="0"/>
         <field name="homePhoneNumber" identifer="PID-13" long-label="Home Phone Number" type="XTN" min-occurrence="0" max-occurence="8">
-
+            <component name="homePhonePrimaryNumber" identifier="PID-13.1" long-label="Home Phone Primary Number" type=""/>
+            <component name="homePhoneTelecommUseCode" identifier="PID-13.2" long-label="Home Phone Telecommunication Use Code" type="ID"/>
+            <component name="homePhoneTelecommEquipmentType" identifier="PID-13.3" long-label="Home Phone Telecommunication Equipment Type" type="ID"/>
+            <component name="homePhoneEmailAddress" identifier="PID-13.4" long-label="Home Phone Email Address" type="ST"/>
+            <component name="homePhoneCountryCode" identifier="PID-13.5" long-label="Home Phone Country Code" type="NM"/>
+            <component name="homePhoneAreaCode" identifier="PID-13.6" long-label="Home Phone Area or City Code" type="NM"/>
+            <component name="homePhoneNumberCurrent" identifier="PID-13.7" long-label="Home Phone Number Current" type="NM"/>
+            <component name="homePhoneExtension" identifier="PID-13.8" long-label="Home Phone Extension" type="NM"/>
+            <component name="homePhoneAnyText" identifier="PID-13.9" long-label="Home Phone Any Text" type="ST"/>
         </field>
         <field name="businessPhoneNumber" identifer="PID-14" long-label="Business Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
-
+            <component name="businessPhonePrimaryNumber" identifier="PID-14.1" long-label="Business Phone Primary Number" type=""/>
+            <component name="businessPhoneTelecommUseCode" identifier="PID-14.2" long-label="Business Phone Telecommunication Use Code" type="ID"/>
+            <component name="businessPhoneTelecommEquipmentType" identifier="PID-14.3" long-label="Business Phone Telecommunication Equipment Type" type="ID"/>
+            <component name="businessPhoneEmailAddress" identifier="PID-14.4" long-label="Business Phone Email Address" type="ST"/>
+            <component name="businessPhoneCountryCode" identifier="PID-14.5" long-label="Business Phone Country Code" type="NM"/>
+            <component name="businessPhoneAreaCode" identifier="PID-14.6" long-label="Business Phone Area or City Code" type="NM"/>
+            <component name="businessPhoneNumberCurrent" identifier="PID-14.7" long-label="Business Phone Number Current" type="NM"/>
+            <component name="businessPhoneExtension" identifier="PID-14.8" long-label="Business Phone Extension" type="NM"/>
+            <component name="businessPhoneAnyText" identifier="PID-14.9" long-label="Business Phone Any Text" type="ST"/>
         </field>
         <field name="primaryLanguage" identifer="PID-15" long-label="Primary Language" type="CE" min-occurrence="0" max-occurence="1">
-
+            <component name="primaryLanguageId" identifier="PID-15.1" long-label="Primary Language Identifier" type="ST"/>
+            <component name="primaryLanguageText" identifier="PID-15.2" long-label="Primary Language Text" type="ST"/>
+            <component name="primaryLanguageCodingSystemName" identifier="PID-15.3" long-label="Primary Language Name of Coding System" type="ST"/>
+            <component name="primaryLanguageAltId" identifier="PID-15.4" long-label="Primary Language Alternate Identifier" type="ST"/>
+            <component name="primaryLanguageAltText" identifier="PID-15.5" long-label="Primary Language Alternate Text" type="ST"/>
+            <component name="primaryLanguageAltCodingSystemName" identifier="PID-15.6" long-label="Primary Language Name of Alternate Coding System" type="ST"/>
         </field>
         <field name="maritalStatus" identifer="PID-16" long-label="Marital Status" type="CE" min-occurrence="0" max-occurence="1">
-
+            <component name="maritalStatusId" identifier="PID-16.1" long-label="Marital Status Identifier" type="ST"/>
+            <component name="maritalStatusText" identifier="PID-16.2" long-label="Marital Status Text" type="ST"/>
+            <component name="maritalStatusCodingSystemName" identifier="PID-16.3" long-label="Marital Status Name of Coding System" type="ST"/>
+            <component name="maritalStatusAltId" identifier="PID-16.4" long-label="Marital Status Alternate Identifier" type="ST"/>
+            <component name="maritalStatusAltText" identifier="PID-16.5" long-label="Marital Status Alternate Text" type="ST"/>
+            <component name="maritalStatusAltCodingSystemName" identifier="PID-16.6" long-label="Marital Status Name of Alternate Coding System" type="ST"/>
         </field>
         <field name="religion" identifer="PID-17" long-label="Religion" type="CE" min-occurrence="0" max-occurence="1">
-
+            <component name="religionId" identifier="PID-17.1" long-label="Religion Identifier" type="ST"/>
+            <component name="religionText" identifier="PID-17.2" long-label="Religion Text" type="ST"/>
+            <component name="religionCodingSystemName" identifier="PID-17.3" long-label="Religion Name of Coding System" type="ST"/>
+            <component name="religionAltId" identifier="PID-17.4" long-label="Religion Alternate Identifier" type="ST"/>
+            <component name="religionAltText" identifier="PID-17.5" long-label="Religion Alternate Text" type="ST"/>
+            <component name="religionAltCodingSystemName" identifier="PID-17.6" long-label="Religion Name of Alternate Coding System" type="ST"/>
         </field>
         <field name="patientAccountNumber" identifer="PID-18" long-label="Patient Account Number" type="CX" min-occurrence="0" max-occurence="1">
-
+            <component name="patAccountId" identifier="PID-18.1" long-label="Patient Account ID" type="ST"/>
+            <component name="patAccountCheckDigit" identifier="PID-18.2" long-label="Patient Account Check Digit" type="ST"/>
+            <component name="patAccountCheckDigitScheme" identifier="PID-18.3" long-label="Patient Account Check Digit Scheme" type="ID"/>
+            <component name="patAccountAssigningAuthority" identifier="PID-18.4" long-label="Patient Account Assigning Authority" type="HD">
+                <subcomponent name="patAccountAuthNamespaceId" identifier="PID-18.4.1" long-label="Patient Account Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="patAccountAuthUniversalId" identifier="PID-18.4.2" long-label="Patient Account Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="patAccountAuthUniversalIdType" identifier="PID-18.4.3" long-label="Patient Account Assigning Authority Universal ID Type" type="IS"/>
+            </component>
+            <component name="patAccountTypeCode" identifier="PID-18.5" long-label="Patient Account Identifier Type Code" type="IS"/>
+            <component name="patAccountAssigningFacility" identifier="PID-18.6" long-label="Patient Account Assigning Facility" type="HD">
+                <subcomponent name="patAccountFacNamespaceId" identifier="PID-18.4.1" long-label="Patient Account Assigning Facility Namespace ID" type="IS"/>
+                <subcomponent name="patAccountFacUniversalId" identifier="PID-18.4.2" long-label="Patient Account Assigning Facility Universal ID" type="ST"/>
+                <subcomponent name="patAccountFacUniversalIdType" identifier="PID-18.4.3" long-label="Patient Account Assigning Facility Universal ID Type" type="ID"/>
+            </component>
+            <component name="patAccountEffectiveDate" identifier="PID-18.7" long-label="Patient Account Effective Date" type="DT"/>
+            <component name="patAccountExpirationDate" identifier="PID-18.8" long-label="Patient Account Expiration Date" type="DT"/>
+            <component name="patAccountAssigningJurisdiction" identifier="PID-18.9" long-label="Patient Account Assigning Jurisdiction" type="CWE">
+                <subcomponent name="patAccountJurisId" identifier="PID-18.9.1" long-label="Patient Account Jurisdiction Id" type="ST"/>
+                <subcomponent name="patAccountJurisText" identifier="PID-18.9.2" long-label="Patient Account Jurisdiction Text" type="ST"/>
+                <subcomponent name="patAccountJurisSystemName" identifier="PID-18.9.3" long-label="Patient Account Jurisdiction Coding System Name" type="ID"/>
+                <subcomponent name="patAccountJurisAlternateId" identifier="PID-18.9.4" long-label="Patient Account Jurisdiction Alternate Identifier" type="ST"/>
+                <subcomponent name="patAccountJurisAlternateText" identifier="PID-18.9.5" long-label="Patient Account Jurisdiction Alternate Text" type="ST"/>
+                <subcomponent name="patAccountJurisAltSystemName" identifier="PID-18.9.6" long-label="Patient Account Jurisdiction Alternate Coding System Name" type="ID"/>
+                <subcomponent name="patAccountJurisSystemVersionId" identifier="PID-18.9.7" long-label="Patient Account Jurisdiction Coding System Version ID" type="ST"/>
+                <subcomponent name="patAccountJurisAltSystemVersionId" identifier="PID-18.9.8" long-label="Patient Account Jurisdiction Alternate Coding System Version ID" type="ST"/>
+                <subcomponent name="patAccountJurisOriginalText" identifier="PID-18.9.9" long-label="Patient Account Jurisdiction Original Text" type="ST"/>
+            </component>
+            <component name="patAccountAssigningAgency" identifier="PID-18.10" long-label="Patient Account Assigning Agency or Department" type="CWE">
+                <subcomponent name="patAccountAgencyId" identifier="PID-18.10.1" long-label="Patient Account Agency Id" type="ST"/>
+                <subcomponent name="patAccountAgencyText" identifier="PID-18.10.2" long-label="Patient Account Agency Text" type="ST"/>
+                <subcomponent name="patAccountAgencySystemName" identifier="PID-18.10.3" long-label="Patient Account Agency Coding System Name" type="ID"/>
+                <subcomponent name="patAccountAgencyAlternateId" identifier="PID-18.10.4" long-label="Patient Account Agency Alternate Identifier" type="ST"/>
+                <subcomponent name="patAccountAgencyAlternateText" identifier="PID-1810.5" long-label="Patient Account Agency Alternate Text" type="ST"/>
+                <subcomponent name="patAccountAgencyAltSystemName" identifier="PID-18.10.6" long-label="Patient Account Agency Alternate Coding System Name" type="ID"/>
+                <subcomponent name="patAccountAgencySystemVersionId" identifier="PID-18.10.7" long-label="Patient Account Agency Coding System Version ID" type="ST"/>
+                <subcomponent name="patAccountAgencyAltSystemVersionId" identifier="PID-18.10.8" long-label="Patient Account Agency Alternate Coding System Version ID" type="ST"/>
+                <subcomponent name="patAccountAgencyOriginalText" identifier="PID-18.10.9" long-label="Patient Account Agency Original Text" type="ST"/>
+            </component>
         </field>
         <field name="patientSsn" identifer="PID-19" long-label="Patient SSN" type="ST" min-occurrence="0" max-occurence="1"/>
         <field name="patDriversLicenseNumber" identifer="PID-20" long-label="Patient Driver's License Number" type="DLN" min-occurrence="0" max-occurence="0"/>
         <field name="mothersId" identifer="PID-21" long-label="Mother's Identifier" type="CX" min-occurrence="0" max-occurence="0"/>
         <field name="ethnicGroup" identifer="PID-22" long-label="Ethnic Group" type="CE" min-occurrence="0" max-occurence="4">
-
+            <component name="ethnicGroupId" identifier="PID-22.1" long-label="Ethnic Group Identifier" type="ST"/>
+            <component name="ethnicGroupText" identifier="PID-22.2" long-label="Ethnic Group Text" type="ST"/>
+            <component name="ethnicGroupCodingSystemName" identifier="PID-22.3" long-label="Ethnic Group Name of Coding System" type="ST"/>
+            <component name="ethnicGroupAltId" identifier="PID-22.4" long-label="Ethnic Group Alternate Identifier" type="ST"/>
+            <component name="ethnicGroupAltText" identifier="PID-22.5" long-label="Ethnic Group Alternate Text" type="ST"/>
+            <component name="ethnicGroupAltCodingSystemName" identifier="PID-22.6" long-label="Ethnic Group Name of Alternate Coding System" type="ST"/>
         </field>
         <field name="birthPlace" identifer="PID-23" long-label="Birth Place" type="ST" min-occurrence="0" max-occurence="1"/>
         <field name="multipleBirthIndicator" identifer="PID-24" long-label="Multiple Birth Indicator" type="ID" min-occurrence="0" max-occurence="0"/>
@@ -211,9 +368,9 @@
             <component name="phoneEmailAddress" identifier="NK1-5.4" long-label="Phone Email Address" type="ST"/>
             <component name="phoneCountryCode" identifier="NK1-5.5" long-label="Phone Country Code" type="NM"/>
             <component name="phoneAreaCode" identifier="NK1-5.6" long-label="Phone Area or City Code" type="NM"/>
-            <component name="phoneNumberCurrent" identifier="NK1-5.6" long-label="Phone Number Current" type="NM"/>
-            <component name="phoneExtension" identifier="NK1-5.6" long-label="Phone Extension" type="NM"/>
-            <component name="phoneAnyText" identifier="NK1-5.6" long-label="Phone Any Text" type="ST"/>
+            <component name="phoneNumberCurrent" identifier="NK1-5.7" long-label="Phone Number Current" type="NM"/>
+            <component name="phoneExtension" identifier="NK1-5.8" long-label="Phone Extension" type="NM"/>
+            <component name="phoneAnyText" identifier="NK1-5.9" long-label="Phone Any Text" type="ST"/>
         </field>
         <field name="businessPhoneNumber" identifer="NK1-6" long-label="Business Phone Number" type="XTN" min-occurrence="0" max-occurence="0"/>
         <field name="contactRole" identifer="NK1-7" long-label="Contact Role" type="CE" min-occurrence="0" max-occurence="0"/>
@@ -310,8 +467,8 @@
         <field name="fillerOrderNumber" identifer="ORC-3" long-label="Filler Order Number" type="EI" min-occurrence="0" max-occurence="0"/>
         <field name="placerGroupNumber" identifer="ORC-4" long-label="Placer Group Number" type="EI" min-occurrence="0" max-occurence="0"/>
         <field name="orderStatus" identifer="ORC-5" long-label="Order Status" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="responseFlag" identifer="ORC-6" long-label="Response flag" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="quantityTiming" identifer="ORC-7" long-label="Quantity and Timing" type="TQ" min-occurrence="0" max-occurence="0"/>
+        <field name="responseFlag" identifer="ORC-6" long-label="Response Flag" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="quantityAndTiming" identifer="ORC-7" long-label="Quantity and Timing" type="TQ" min-occurrence="0" max-occurence="0"/>
         <field name="parent" identifer="ORC-8" long-label="Parent" type="EIP" min-occurrence="0" max-occurence="0"/>
         <field name="dateTimeOfTransaction" identifer="ORC-9" long-label="Date and Time of Transaction" type="TS" min-occurrence="0" max-occurence="0"/>
         <field name="enteredBy" identifer="ORC-10" long-label="Entered By" type="XCN" min-occurrence="0" max-occurence="0"/>
@@ -325,99 +482,402 @@
         <field name="enteringDevice" identifer="ORC-18" long-label="Entering Device" type="CE" min-occurrence="0" max-occurence="0"/>
         <field name="actionBy" identifer="ORC-19" long-label="Action By" type="XCN" min-occurrence="0" max-occurence="0"/>
         <field name="advBeneficiaryNoticeCode" identifer="ORC-20" long-label="Advanced Beneficiary Notice Code" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="orderingFacName" identifer="ORC-21" long-label="Ordering Facility Name" type="XON" min-occurrence="0" max-occurence="4"/>
-        <field name="orderingFacAddress" identifer="ORC-22" long-label="Ordering Facility Address" type="XAD" min-occurrence="0" max-occurence="4"/>
-        <field name="orderingFacPhoneNumber" identifer="ORC-23" long-label="Ordering Facility Phone Number" type="XTN" min-occurrence="0" max-occurence="4"/>
-        <field name="orderingProvAddress" identifer="ORC-24" long-label="Ordering Provider Address" type="XAD" min-occurrence="0" max-occurence="4"/>
+        <field name="orderingFacName" identifer="ORC-21" long-label="Ordering Facility Name" type="XON" min-occurrence="0" max-occurence="4">
+            <component name="orderingFacOrgName" identifier="ORC-21.1" long-label="Ordering Facility Organization Name" type="ST"/>
+            <component name="orderingFacOrgNameTypeCode" identifier="ORC-21.2" long-label="Ordering Facility Organization Name Type Code" type="IS"/>
+            <component name="orderingFacIdNumber" identifier="ORC-21.3" long-label="Ordering Facility ID Number" type="NM"/>
+            <component name="orderingFacCheckDigit" identifier="ORC-21.4" long-label="Ordering Facility Check Digit" type="NM"/>
+            <component name="orderingFacCheckDigitScheme" identifier="ORC-21.5" long-label="Ordering Facility Check Digit Scheme" type="ID"/>
+            <component name="orderingFacAssigningAuthority" identifier="ORC-21.6" long-label="Ordering Facility Assigning Authority" type="HD">
+                <subcomponent name="facAuthNamespaceId" identifier="ORC-21.6.1" long-label="Ordering Facility Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="facAuthUniversalId" identifier="ORC-21.6.2" long-label="Ordering Facility Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="facAuthUniversalIdType" identifier="ORC-21.6.3" long-label="Ordering Facility Assigning Authority Universal ID Type" type="ID"/>
+            </component>
+            <component name="orderingFacIdTypeCode" identifier="ORC-21.7" long-label="Ordering Facility Identifier Type Code" type="ID"/>
+            <component name="orderingFacAssigningFacility" identifier="ORC-21.8" long-label="Ordering Facility Assigning Facility" type="HD">
+                <subcomponent name="facFacNamespaceId" identifier="ORC-21.8.1" long-label="Ordering Facility Assigning Facility Namespace ID" type="IS"/>
+                <subcomponent name="facFacUniversalId" identifier="ORC-21.8.2" long-label="Ordering Facility Assigning Facility Universal ID" type="ST"/>
+                <subcomponent name="facFacUniversalIdType" identifier="ORC-21.8.3" long-label="Ordering Facility Assigning Facility Universal ID Type" type="ID"/>
+            </component>
+            <component name="orderingFacNameRepCode" identifier="ORC-21.9" long-label="Ordering Facility Name Representation Code" type="ID"/>
+            <component name="orderingFacOrgIdentifier" identifier="ORC-21.10" long-label="Ordering Facility Organization Identifier" type="ST"/>
+        </field>
+        <field name="orderingFacAddress" identifer="ORC-22" long-label="Ordering Facility Address" type="XAD" min-occurrence="0" max-occurence="4">
+            <component name="ordFacAddressStreet" identifier="ORC-22.1" long-label="Ordering Facility Street Address" type="ST"/>
+            <component name="ordFacAddressOtherDesignation" identifier="ORC-22.2" long-label="Ordering Facility Address Other Designation" type="ST"/>
+            <component name="ordFacAddressCity" identifier="ORC-22.3" long-label="Ordering Facility Address City" type="ST"/>
+            <component name="ordFacAddressStateOrProvince" identifier="ORC-22.4" long-label="Ordering Facility Address State or Province" type="ST"/>
+            <component name="ordFacAddressPostalCode" identifier="ORC-22.5" long-label="Ordering Facility Address Zip or Postal Code" type="ST"/>
+            <component name="ordFacAddressCountry" identifier="ORC-22.6" long-label="Ordering Facility Address Country" type="ID"/>
+            <component name="ordFacAddressType" identifier="ORC-22.7" long-label="Ordering Facility Address Type" type="ID"/>
+            <component name="ordFacAddressOtherGeoDesignation" identifier="ORC-22.8" long-label="Ordering Facility Address Other Geographic Designation" type="ST"/>
+            <component name="ordFacAddressCountyCode" identifier="ORC-22.9" long-label="Ordering Facility Address County or Parish Code" type="IS"/>
+            <component name="ordFacAddressCensusTract" identifier="ORC-22.10" long-label="Ordering Facility Address Census Tract" type="IS"/>
+            <component name="ordFacAddressRepresentationCode" identifier="ORC-22.11" long-label="Ordering Facility Address Representation Code" type="ID"/>
+        </field>
+        <field name="orderingFacPhoneNumber" identifer="ORC-23" long-label="Ordering Facility Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
+            <component name="ordFacPhonePrimaryNumber" identifier="ORC-23.1" long-label="Ordering Facility Phone Primary Number" type=""/>
+            <component name="ordFacPhoneTelecommUseCode" identifier="ORC-23.2" long-label="Ordering Facility Phone Telecommunication Use Code" type="ID"/>
+            <component name="ordFacPhoneTelecommEquipmentType" identifier="ORC-23.3" long-label="Ordering Facility Phone Telecommunication Equipment Type" type="ID"/>
+            <component name="ordFacPhoneEmailAddress" identifier="ORC-23.4" long-label="Ordering Facility Phone Email Address" type="ST"/>
+            <component name="ordFacPhoneCountryCode" identifier="ORC-23.5" long-label="Ordering Facility Phone Country Code" type="NM"/>
+            <component name="ordFacPhoneAreaCode" identifier="ORC-23.6" long-label="Ordering Facility Phone Area or City Code" type="NM"/>
+            <component name="ordFacPhoneNumberCurrent" identifier="ORC-23.7" long-label="Ordering Facility Phone Number Current" type="NM"/>
+            <component name="ordFacPhoneExtension" identifier="ORC-23.8" long-label="Ordering Facility Phone Extension" type="NM"/>
+            <component name="ordFacPhoneAnyText" identifier="ORC-23.9" long-label="Ordering Facility Phone Any Text" type="ST"/>
+        </field>
+        <field name="orderingProviderAddress" identifer="ORC-24" long-label="Ordering Provider Address" type="XAD" min-occurrence="0" max-occurence="4">
+            <component name="ordProvAddressStreet" identifier="ORC-24.1" long-label="Ordering Provider Street Address" type="ST"/>
+            <component name="ordProvFacAddressOtherDesignation" identifier="ORC-24.2" long-label="Ordering Provider Address Other Designation" type="ST"/>
+            <component name="ordProvAddressCity" identifier="ORC-24.3" long-label="Ordering Provider Address City" type="ST"/>
+            <component name="ordProvAddressStateOrProvince" identifier="ORC-24.4" long-label="Ordering Provider Address State or Province" type="ST"/>
+            <component name="ordProvAddressPostalCode" identifier="ORC-24.5" long-label="Ordering Provider Address Zip or Postal Code" type="ST"/>
+            <component name="ordProvAddressCountry" identifier="ORC-24.6" long-label="Ordering Provider Address Country" type="ID"/>
+            <component name="ordProvAddressType" identifier="ORC-24.7" long-label="Ordering Provider Address Type" type="ID"/>
+            <component name="ordProvAddressOtherGeoDesignation" identifier="ORC-24.8" long-label="Ordering Provider Address Other Geographic Designation" type="ST"/>
+            <component name="ordProvAddressCountyCode" identifier="ORC-24.9" long-label="Ordering Provider Address County or Parish Code" type="IS"/>
+            <component name="ordProvAddressCensusTract" identifier="ORC-24.10" long-label="Ordering Provider Address Census Tract" type="IS"/>
+            <component name="ordProvAddressRepresentationCode" identifier="ORC-24.11" long-label="Ordering Provider Address Representation Code" type="ID"/>
+        </field>
         <field name="orderStatusModifier" identifer="ORC-25" long-label="Order Status Modifier" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="advBeneficiaryReason" identifer="ORC-26" long-label="Advanced Beneficiary Reason" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="fillersExpectedAvail" identifer="ORC-27" long-label="Filler's Expected Availability Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="confidentialityCode" identifer="ORC-28" long-label="Confidentiality Code" type="CWE" min-occurrence="0" max-occurence="1"/>
+        <field name="advBeneficiaryReason" identifer="ORC-26" long-label="Advanced Beneficiary Notice Override Reason" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="fillersExpAvailDateTime" identifer="ORC-27" long-label="Filler's Expected Availability Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="confidentialityCode" identifer="ORC-28" long-label="Confidentiality Code" type="CWE" min-occurrence="0" max-occurence="1">
+            <component name="confCodeId" identifier="ORC-28.1" long-label="Confidentiality Code Identifier" type="ST"/>
+            <component name="confCodeText" identifier="ORC-28.2" long-label="Confidentiality Code Text" type="ST"/>
+            <component name="confCodeSystemName" identifier="ORC-28.3" long-label="Confidentiality Code Coding System Name" type="ID"/>
+            <component name="confCodeAlternateId" identifier="ORC-28.4" long-label="Confidentiality Code Alternate Identifier" type="ST"/>
+            <component name="confCodeAlternateText" identifier="ORC-28.5" long-label="Confidentiality Code Alternate Text" type="ST"/>
+            <component name="confCodeAltSystemName" identifier="ORC-28.6" long-label="Confidentiality Code Alternate Coding System Name" type="ID"/>
+            <component name="confCodeSystemVersionId" identifier="ORC-28.7" long-label="Confidentiality Code Coding System Version ID" type="ST"/>
+            <component name="confCodeAltSystemVersionId" identifier="ORC-28.8" long-label="Confidentiality Code Alternate Coding System Version ID" type="ST"/>
+            <component name="confCodeOriginalText" identifier="ORC-28.9" long-label="Confidentiality Code Original Text" type="ST"/>
+        </field>
         <field name="orderType" identifer="ORC-29" long-label="Order Type" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="entererAuthMode" identifer="ORC-30" long-label="Enterer Authorization Mode" type="CNE" min-occurrence="0" max-occurence="0"/>
-        <field name="parentUnivServId" identifer="ORC-31" long-label="Parent Universal Service Identifier" type="CWE" min-occurrence="0" max-occurence="1"/>
+        <field name="parentUnivServId" identifer="ORC-31" long-label="Parent Universal Service Identifier" type="CWE" min-occurrence="0" max-occurence="1">
+            <component name="parentUnivServIdNumber" identifier="ORC-31.1" long-label="Parent Universal Service Identifier Number" type="ST"/>
+            <component name="parentUnivServText" identifier="ORC-31.2" long-label="Parent Universal Service Text" type="ST"/>
+            <component name="parentUnivServSystemName" identifier="ORC-31.3" long-label="Parent Universal Service Coding System Name" type="ID"/>
+            <component name="parentUnivServAlternateId" identifier="ORC-31.4" long-label="Parent Universal Service Alternate Identifier" type="ST"/>
+            <component name="parentUnivServAlternateText" identifier="ORC-31.5" long-label="Parent Universal Service Alternate Text" type="ST"/>
+            <component name="parentUnivServAltSystemName" identifier="ORC-31.6" long-label="Parent Universal Service Alternate Coding System Name" type="ID"/>
+            <component name="parentUnivServSystemVersionId" identifier="ORC-31.7" long-label="Parent Universal Service Coding System Version ID" type="ST"/>
+            <component name="parentUnivServAltSystemVersionId" identifier="ORC-31.8" long-label="Parent Universal Service Alternate Coding System Version ID" type="ST"/>
+            <component name="parentUnivServOriginalText" identifier="ORC-31.9" long-label="Parent Universal Service Original Text" type="ST"/>
+        </field>
     </segment>
     <segment identifier=" OBR">
-        <field name="setId" identifer="OBR-1" long-label="Set ID" type="SI" min-occurrence="1" max-occurence="1"/>
-        <field name="placerOrderNumber" identifer="OBR-2" long-label="Placer Order Number" type="EI" min-occurrence="0" max-occurence="1"/>
-        <field name="FillerOrderNumber" identifer="OBR-3" long-label="Filler Order Number" type="EI" min-occurrence="1" max-occurence="1"/>
-        <field name="universalServiceId" identifer="OBR-4" long-label="Universal Service ID" type="CE" min-occurrence="1" max-occurence="1"/>
+        <field name="setObrId" identifer="OBR-1" long-label="Set OBR ID" type="SI" min-occurrence="1" max-occurence="1"/>
+        <field name="placerOrderNumber" identifer="OBR-2" long-label="Placer Order Number" type="EI" min-occurrence="0" max-occurence="1">
+            <component name="placerOrderEntityId" identifier="OBR-2.1" long-label="Placer Order Entity ID" type="ST"/>
+            <component name="placerOrderNamespaceId" identifier="OBR-2.2" long-label="Placer Order Namespace ID" type="IS"/>
+            <component name="placerOrderUniversalId" identifier="OBR-2.3" long-label="Placer Order Universal ID" type="ST"/>
+            <component name="placerOrderUniversalIdType" identifier="OBR-2.4" long-label="Placer Order Universal ID Type" type="ID"/>
+        </field>
+        <field name="FillerOrderNumber" identifer="OBR-3" long-label="Filler Order Number" type="EI" min-occurrence="1" max-occurence="1">
+            <component name="fillerOrderEntityId" identifier="OBR-3.1" long-label="Filler Order Entity ID" type="ST"/>
+            <component name="fillerOrderNamespaceId" identifier="OBR-3.2" long-label="Filler Order Namespace ID" type="IS"/>
+            <component name="fillerOrderUniversalId" identifier="OBR-3.3" long-label="Filler Order Universal ID" type="ST"/>
+            <component name="fillerOrderUniversalIdType" identifier="OBR-3.4" long-label="Filler Order Universal ID Type" type="ID"/>
+        </field>
+        <field name="universalServiceId" identifer="OBR-4" long-label="Universal Service ID" type="CE" min-occurrence="1" max-occurence="1">
+            <component name="univServiceIdCurrent" identifier="OBR-4.1" long-label="Universal Service Identifier Current" type="ST"/>
+            <component name="univServiceText" identifier="OBR-4.2" long-label="Universal Service Text" type="ST"/>
+            <component name="univServiceCodingSystemName" identifier="OBR-4.3" long-label="Universal Service Coding System Name" type="ST"/>
+            <component name="univServiceAltId" identifier="OBR-4.4" long-label="Universal Service Alternate Identifier" type="ST"/>
+            <component name="univServiceAltText" identifier="OBR-4.5" long-label="Universal Service Alternate Text" type="ST"/>
+            <component name="univServiceAltCodingSystemName" identifier="OBR-4.6" long-label="Universal Service Alternate Coding System Name" type="ST"/>
+        </field>
         <field name="priority" identifer="OBR-5" long-label="Priority" type="ID" min-occurrence="0" max-occurence="0"/>
         <field name="requestedDateTime" identifer="OBR-6" long-label="Requested Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
         <field name="observationDateTime" identifer="OBR-7" long-label="Observation Date and Time" type="TS" min-occurrence="1" max-occurence="1"/>
         <field name="observationEndDateTime" identifer="OBR-8" long-label="Observation End Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
         <field name="collectionVolume" identifer="OBR-9" long-label="Collection Volume" type="CQ" min-occurrence="0" max-occurence="0"/>
-        <field name="collectorIdentifier" identifer="OBR-10" long-label="Collector Identifier" type="XCN" min-occurrence="0" max-occurence="4"/>
+        <field name="collectorId" identifer="OBR-10" long-label="Collector Identifier" type="XCN" min-occurrence="0" max-occurence="4"/>
         <field name="specimenActionCode" identifer="OBR-11" long-label="Specimen Action Code" type="ID" min-occurrence="0" max-occurence="0"/>
         <field name="dangerCode" identifer="OBR-12" long-label="Danger Code" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="relevantClinicalInfo" identifer="OBR-13" long-label="Relevant Clinical Info" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="relevantClinicalInfo" identifer="OBR-13" long-label="Relevant Clinical Information" type="ST" min-occurrence="0" max-occurence="0"/>
         <field name="specimenReceivedDateTime" identifer="OBR-14" long-label="Specimen Received Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="specimenSource" identifer="OBR-15" long-label="Specimen Source" type="SPS" min-occurrence="0" max-occurence="1"/>
-        <field name="orderingProvider" identifer="OBR-16" long-label="Ordering Provider" type="XCN" min-occurrence="0" max-occurence="4"/>
-        <field name="orderCallbackPhoneNumber" identifer="OBR-17" long-label="Order Callback Phone Number" type="XTN" min-occurrence="0" max-occurence="4"/>
+        <field name="specimenSource" identifer="OBR-15" long-label="Specimen Source" type="SPS" min-occurrence="0" max-occurence="1">
+            <component name="specSourceName" identifier="OBR-15.1" long-label="Specimen Source Name or Code" type="CE">
+                <subcomponent name="specSourceNameId" identifier="OBR-15.1.1" long-label="Specimen Source Name ID" type="ST"/>
+                <subcomponent name="specSourceNameText" identifier="OBR-15.1.2" long-label="Specimen Source Name Text" type="ST"/>
+                <subcomponent name="specSourceNameCodingSystemName" identifier="OBR-15.1.3" long-label="Specimen Source Name Coding System Name" type="ST"/>
+                <subcomponent name="specSourceNameAltId" identifier="OBR-15.1.4" long-label="Specimen Source Name Alternate ID" type="ST"/>
+                <subcomponent name="specSourceNameAltText" identifier="OBR-15.1.5" long-label="Specimen Source Name Alternate Text" type="ST"/>
+                <subcomponent name="specSourceNameAltCodingSystemName" identifier="OBR-15.1.6" long-label="Specimen Source Name Alternate Coding System Name" type="ST"/>
+            </component>
+            <component name="specSourceAdditives" identifier="OBR-15.2" long-label="Specimen Source Additives" type="TX"/>
+            <component name="specSourceFreeText" identifier="OBR-15.3" long-label="Specimen Source Free Text" type="TX"/>
+            <component name="specSourceBodySite" identifier="OBR-15.4" long-label="Specimen Source Body Site" type="CE">
+                <subcomponent name="specSourceBodySiteId" identifier="OBR-15.4.1" long-label="Specimen Source Body Site ID" type="ST"/>
+                <subcomponent name="specSourceBodySiteText" identifier="OBR-15.4.2" long-label="Specimen Source Body Site Text" type="ST"/>
+                <subcomponent name="specSourceBodySiteCodingSystemName" identifier="OBR-15.4.3" long-label="Specimen Source Body Site Coding System Name" type="ST"/>
+                <subcomponent name="specSourceBodySiteAltId" identifier="OBR-15.4.4" long-label="Specimen Source Body Site Alternate ID" type="ST"/>
+                <subcomponent name="specSourceBodySiteAltText" identifier="OBR-15.4.5" long-label="Specimen Source Body Site Alternate Text" type="ST"/>
+                <subcomponent name="specSourceBodySiteAltCodingSystemName" identifier="OBR-15.4.6" long-label="Specimen Source Body Site Alternate Coding System Name" type="ST"/>
+            </component>
+            <component name="specSourceSiteModifier" identifier="OBR-15.5" long-label="Specimen Source Site Modifier" type="CE">
+                <component name="specSourceSiteModId" identifier="OBR-15.5.1" long-label="Specimen Source Site Modifier ID" type="ST"/>
+                <component name="specSourceSiteModText" identifier="OBR-15.5.2" long-label="Specimen Source Site Modifier Text" type="ST"/>
+                <component name="specSourceSiteModCodingSystemName" identifier="OBR-15.5.3" long-label="Specimen Source Site Modifier Coding System Name" type="ST"/>
+                <component name="specSourceSiteModAltId" identifier="OBR-15.5.4" long-label="Specimen Source Site Modifier Alternate ID" type="ST"/>
+                <component name="specSourceSiteModAltText" identifier="OBR-15.5.5" long-label="Specimen Source Site Modifier Alternate Text" type="ST"/>
+                <component name="specSourceSiteModAltCodingSystemName" identifier="OBR-15.5.6" long-label="Specimen Source Site Modifier Alternate Coding System Name" type="ST"/>
+            </component>
+            <component name="specSourceMethodModCode" identifier="OBR-15.6" long-label="Specimen Source Collection Method Modifier Code" type="CE">
+                <subcomponent name="specSourceMethodModCodeId" identifier="OBR-15.6.1" long-label="Specimen Source Collection Method Modifier Code ID" type="ST"/>
+                <subcomponent name="specSourceMethodModCodeText" identifier="OBR-15.6.2" long-label="Specimen Source Collection Method Modifier Code Text" type="ST"/>
+                <subcomponent name="specSourceMethodModCodingSystemName" identifier="OBR-15.6.3" long-label="Specimen Source Collection Method Modifier Coding System Name" type="ST"/>
+                <subcomponent name="specSourceMethodModCodeAltId" identifier="OBR-15.6.4" long-label="Specimen Source Collection Method Modifier Code Alternate ID" type="ST"/>
+                <subcomponent name="specSourceMethodModCodeAltText" identifier="OBR-15.6.5" long-label="Specimen Source Collection Method Modifier Code Alternate Text" type="ST"/>
+                <subcomponent name="specSourceMethodModAltCodingSystemName" identifier="OBR-15.6.6" long-label="Specimen Source Collection Method Modifier Alternate Coding System Name" type="ST"/>
+            </component>
+        </field>
+        <field name="orderingProvider" identifer="OBR-16" long-label="Ordering Provider" type="XCN" min-occurrence="0" max-occurence="4">
+            <component name="orderingProvId" identifier="OBR-16.1" long-label="Ordering Provider ID" type="ST"/>
+            <component name="orderingProvFamilyName" identifier="OBR-16.2" long-label="Ordering Provider Family Name" type="ST">
+                <subcomponent name="orderingProvLastNamePrefix" identifier="OBX-16.2.1" long-label="Ordering Provider Last Name Prefix" type="ST"/>
+            </component>
+            <component name="orderingProvGivenName" identifier="OBR-16.3" long-label="Ordering Provider Given Name" type="ST"/>
+            <component name="orderingProvMiddleName" identifier="OBR-16.4" long-label="Ordering Provider Middle Initial or Name" type="ST"/>
+            <component name="orderingProvSuffix" identifier="OBR-16.5" long-label="Ordering Provider Suffix" type="ST"/>
+            <component name="orderingProvPrefix" identifier="OBR-16.6" long-label="Ordering Provider Prefix" type="ST"/>
+            <component name="orderingProvDegree" identifier="OBR-16.7" long-label="Ordering Provider Degree" type="IS"/>
+            <component name="orderingProvSourceTable" identifier="OBR-16.8" long-label="Ordering Provider Source Table" type="IS"/>
+            <component name="orderingProvAssigningAuthority" identifier="OBR-16.9" long-label="Ordering Provider Assigning Authority" type="HD">
+                <subcomponent name="orderingProvAssigningAuthNamespaceId" identifier="OBR-16.9.1" long-label="Ordering Provider Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="orderingProvAssigningAuthUniversalId" identifier="OBR-16.9.2" long-label="Ordering Provider Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="orderingProvAssigningAuthUniversalIdType" identifier="OBR-16.9.3" long-label="Ordering Provider Assigning Authority Universal ID Type" type="ID"/>
+            </component>
+            <component name="orderingProvNameTypeCode" identifier="OBR-16.10" long-label="Ordering Provider Source Name Type Code" type="ID"/>
+            <component name="orderingProvIdCheckDigit" identifier="OBR-16.11" long-label="Ordering Provider Source Table Check Digit" type="ST"/>
+            <component name="orderingProvIdCheckDigitScheme" identifier="OBR-16.12" long-label="Ordering Provider Code Identifying Check Digit Scheme" type="ID"/>
+            <component name="orderingProvIdTypeCode" identifier="OBR-16.13" long-label="Ordering Provider Identifier Type Code" type="IS"/>
+            <component name="orderingProvAssigningFacilityId" identifier="OBR-16.14" long-label="Ordering Provider Assigning Facility ID" type="HD">
+                <subcomponent name="orderingProvAssigningFacNamespaceId" identifier="OBR-16.14.1" long-label="Ordering Provider Assigning Facility Namespace ID" type="IS"/>
+                <subcomponent name="orderingProvAssigningFacUniversalId" identifier="OBR-16.14.2" long-label="Ordering Provider Assigning Facility Universal ID" type="ST"/>
+                <subcomponent name="orderingProvAssigningFacUniversalIdType" identifier="OBR-16.14.3" long-label="Ordering Provider Assigning Facility Universal ID Type" type="ID"/>
+            </component>
+            <component name="orderingProvNameRepCode" identifier="OBR-16.15" long-label="Ordering Provider Name Representation Code" type="ID"/>
+        </field>
+        <field name="orderCallbackPhoneNumber" identifer="OBR-17" long-label="Order Callback Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
+            <component name="callbackPhonePrimaryNumber" identifier="OBR-17.1" long-label="Order Callback Phone Primary Number" type=""/>
+            <component name="callbackPhoneTelecommUseCode" identifier="OBR-17.2" long-label="Order Callback Phone Telecommunication Use Code" type="ID"/>
+            <component name="callbackPhoneTelecommEquipmentType" identifier="OBR-17.3" long-label="Order Callback Phone Telecommunication Equipment Type" type="ID"/>
+            <component name="callbackPhoneEmailAddress" identifier="OBR-17.4" long-label="Order Callback Phone Email Address" type="ST"/>
+            <component name="callbackPhoneCountryCode" identifier="OBR-17.5" long-label="Order Callback Phone Country Code" type="NM"/>
+            <component name="callbackPhoneAreaCode" identifier="OBR-17.6" long-label="Order Callback Phone Area or City Code" type="NM"/>
+            <component name="callbackPhoneNumberCurrent" identifier="OBR-17.7" long-label="Order Callback Phone Number Current" type="NM"/>
+            <component name="callbackPhoneExtension" identifier="OBR-17.8" long-label="Order Callback Phone Extension" type="NM"/>
+            <component name="callbackPhoneAnyText" identifier="OBR-17.9" long-label="Order Callback Phone Any Text" type="ST"/>
+        </field>
         <field name="placerField1" identifer="OBR-18" long-label="Placer Field 1" type="ST" min-occurrence="0" max-occurence="0"/>
         <field name="placerField2" identifer="OBR-19" long-label="Placer Field 2" type="ST" min-occurrence="0" max-occurence="0"/>
         <field name="fillerField1" identifer="OBR-20" long-label="Filler Field 1" type="ST" min-occurrence="0" max-occurence="0"/>
         <field name="fillerField2" identifer="OBR-21" long-label="Filler Field 2" type="ST" min-occurrence="0" max-occurence="1"/>
-        <field name="resultsRptStatusChange" identifer="OBR-22" long-label="Results Report Status Change" type="TS" min-occurrence="0" max-occurence="1"/>
+        <field name="resultsRptDateTime" identifer="OBR-22" long-label="Results Report or Status Change Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
         <field name="chargeToPractice" identifer="OBR-23" long-label="Charge to Practice" type="MOC" min-occurrence="0" max-occurence="0"/>
-        <field name="diagnosticServSectId" identifer="OBR-24" long-label="Diagnostic Serv Sect ID" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="diagnosticServiceSectId" identifer="OBR-24" long-label="Diagnostic Service Sect ID" type="ID" min-occurrence="0" max-occurence="0"/>
         <field name="resultStatus" identifer="OBR-25" long-label="Result Status" type="ID" min-occurrence="1" max-occurence="1"/>
-        <field name="parentResult" identifer="OBR-26" long-label="Parent Result" type="PRL" min-occurrence="0" max-occurence="1"/>
-        <field name="quantityTiming" identifer="OBR-27" long-label="Quantity and Timing" type="TQ" min-occurrence="0" max-occurence="0"/>
+        <field name="parentResult" identifer="OBR-26" long-label="Parent Result" type="PRL" min-occurrence="0" max-occurence="1">
+            <component name="parentResultObsId" identifier="OBR-26.1" long-label="Parent Result Observation Identifier" type="CE"/>
+            <component name="parentResultObsSubId" identifier="OBR-26.2" long-label="Parent Result Observation Sub-Identifier" type="ST"/>
+            <component name="parentResultObsValueDescriptor" identifier="OBR-26.3" long-label="Parent Result Observation Identifier" type="TX"/>
+        </field>
+        <field name="quantityAndTiming" identifer="OBR-27" long-label="Quantity and Timing" type="TQ" min-occurrence="0" max-occurence="0"/>
         <field name="resultCopiesTo" identifer="OBR-28" long-label="Result Copies To" type="XCN" min-occurrence="0" max-occurence="0"/>
-        <field name="parent" identifer="OBR-29" long-label="Parent" type="EIP" min-occurrence="0" max-occurence="1"/>
+        <field name="parent" identifer="OBR-29" long-label="Parent" type="EIP" min-occurrence="0" max-occurence="1">
+            <component name="parentsPlacerOrderNumber" identifier="OBR-29.1" long-label="Parent's Placer Order Number" type="EI">
+                <subcomponent name="parentsPlacerOrderEntityId" identifier="OBR-29.1.1" long-label="Parent's Placer Order Entity Identifier" type="ST"/>
+                <subcomponent name="parentsPlacerOrderNamespaceId" identifier="OBR-29.1.2" long-label="Parent's Placer Order Namespace ID" type="IS"/>
+                <subcomponent name="parentsPlacerOrderUniversalId" identifier="OBR-29.1.3" long-label="Parent's Placer Order Universal ID" type="ST"/>
+                <subcomponent name="parentsPlacerOrderUniversalIdType" identifier="OBR-29.1.4" long-label="Parent's Placer Order Universal ID Type" type="ID"/>
+            </component>
+            <component name="parentsFillerOrderNumber" identifier="OBR-29.2" long-label="Parent's Filler Order Number" type="EI">
+                <subcomponent name="parentsFillerOrderEntityId" identifier="OBR-29.2.1" long-label="Parent's Filler Order Entity Identifier" type="ST"/>
+                <subcomponent name="parentsFillerOrderNamespaceId" identifier="OBR-29.2.2" long-label="Parent's Filler Order Namespace ID" type="IS"/>
+                <subcomponent name="parentsFillerOrderUniversalId" identifier="OBR-29.2.3" long-label="Parent's Filler Order Universal ID" type="ST"/>
+                <subcomponent name="parentsFillerOrderUniversalIdType" identifier="OBR-29.2.4" long-label="Parent's Filler Order Universal ID Type" type="ID"/>
+            </component>
+        </field>
         <field name="transportationMode" identifer="OBR-30" long-label="Transportation Mode" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="reasonForStudy" identifer="OBR-31" long-label="Reason for Study" type="CE" min-occurrence="0" max-occurence="20"/>
-        <field name="principalResultInterpreter" identifer="OBR-32" long-label="Principal Result Interpreter" type="NDL" min-occurrence="0" max-occurence="1"/>
+        <field name="reasonForStudy" identifer="OBR-31" long-label="Reason for Study" type="CE" min-occurrence="0" max-occurence="20">
+            <component name="reasonForStudyId" identifier="OBR-31.1" long-label="Reason for Study Identifier" type="ST"/>
+            <component name="reasonForStudyText" identifier="OBR-31.2" long-label="Reason for Study Text" type="ST"/>
+            <component name="reasonForStudyCodingSystemName" identifier="OBR-31.3" long-label="Reason for Study Name of Coding System" type="ST"/>
+            <component name="reasonForStudyAlternateId" identifier="OBR-31.4" long-label="Reason for Study Alternate Identifier" type="ST"/>
+            <component name="reasonForStudyAlternateText" identifier="OBR-31.5" long-label="Reason for Study Alternate Text" type="ST"/>
+            <component name="reasonForStudyAltCodingSystemName" identifier="OBR-31.6" long-label="Reason for Study Name of Alternate Coding System" type="ST"/>
+        </field>
+        <field name="principalResultInterpreter" identifer="OBR-32" long-label="Principal Result Interpreter" type="NDL" min-occurrence="0" max-occurence="1">
+            <component name="resultIntName" identifier="OBR-32.1" long-label="Principal Result Interpreter Name" type="CNN">
+                <subcomponent name="resultIntNameIdNumber" identifier="OBR-32.1.1" long-label="Principal Result Interpreter Name ID Number" type="ST"/>
+                <subcomponent name="resultIntFamilyName" identifier="OBR-32.1.2" long-label="Principal Result Interpreter Family Name" type="ST"/>
+                <subcomponent name="resultIntGivenName" identifier="OBR-32.1.3" long-label="Principal Result Interpreter Given Name" type="ST"/>
+                <subcomponent name="resultIntFurtherGivenNames" identifier="OBR-32.1.4" long-label="Principal Result Interpreter Second and Further Given Names" type="ST"/>
+                <subcomponent name="resultIntNameSuffix" identifier="OBR-32.1.5" long-label="Principal Result Interpreter Name Suffix" type="ST"/>
+                <subcomponent name="resultIntNamePrefix" identifier="OBR-32.1.6" long-label="Principal Result Interpreter Name Prefix" type="ST"/>
+                <subcomponent name="resultIntNameDegree" identifier="OBR-32.1.7" long-label="Principal Result Interpreter Name Degree" type="ST"/>
+                <subcomponent name="resultIntNameSourceTable" identifier="OBR-32.1.8" long-label="Principal Result Interpreter Name Source Table" type="IS"/>
+                <subcomponent name="resultIntNameAuthNamespaceId" identifier="OBR-32.1.9" long-label="Principal Result Interpreter Name Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="resultIntNameAuthUniversalId" identifier="OBR-32.1.10" long-label="Principal Result Interpreter Name Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="resultIntNameAuthUniversalIdType" identifier="OBR-32.1.11" long-label="Principal Result Interpreter Assigning Authority Universal ID Type" type="ID"/>
+            </component>
+            <component name="resultIntStartDateTime" identifier="OBR-32.2" long-label="Principal Result Interpreter Start Date and Time" type="TS"/>
+            <component name="resultIntEndDateTime" identifier="OBR-32.3" long-label="Principal Result Interpreter End Date and Time" type="TS"/>
+            <component name="resultIntPointOfCare" identifier="OBR-32.4" long-label="Principal Result Interpreter Point of Care" type="IS"/>
+            <component name="resultIntRoom" identifier="OBR-32.5" long-label="Principal Result Interpreter Room" type="IS"/>
+            <component name="resultIntBed" identifier="OBR-32.6" long-label="Principal Result Interpreter Bed" type="IS"/>
+            <component name="resultIntFacility" identifier="OBR-32.7" long-label="Principal Result Interpreter Facility" type="HD">
+                <subcomponent name="resultIntFacNamespaceId" identifier="OBR-32.7.1" long-label="Principal Result Interpreter Facility Namespace ID" type="IS"/>
+                <subcomponent name="resultIntFacUniversalId" identifier="OBR-32.7.2" long-label="Principal Result Interpreter Facility Universal ID" type="ST"/>
+                <subcomponent name="resultIntFacUniversalIdType" identifier="OBR-32.7.3" long-label="Principal Result Interpreter Facility Universal ID Type" type="ID"/>
+            </component>
+            <component name="resultIntLocationStatus" identifier="OBR-32.8" long-label="Principal Result Interpreter Location Status" type="IS"/>
+            <component name="resultIntPatLocationType" identifier="OBR-32.9" long-label="Principal Result Interpreter Patient Location Type" type="IS"/>
+            <component name="resultIntBuilding" identifier="OBR-32.10" long-label="Principal Result Interpreter Building" type="IS"/>
+            <component name="resultIntFloor" identifier="OBR-32.11" long-label="Principal Result Interpreter Floor" type="IS"/>
+        </field>
         <field name="assistantResultInterpreter" identifer="OBR-33" long-label="Assistant Result Interpreter" type="NDL" min-occurrence="0" max-occurence="0"/>
         <field name="technician" identifer="OBR-34" long-label="Technician" type="NDL" min-occurrence="0" max-occurence="0"/>
         <field name="transcriptionist" identifer="OBR-35" long-label="Transcriptionist" type="NDL" min-occurrence="0" max-occurence="0"/>
         <field name="scheduledDateTime" identifer="OBR-36" long-label="Scheduled Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="sampleContainerNum" identifer="OBR-37" long-label="Number of Sample Containers" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="numberOfSampleContainers" identifer="OBR-37" long-label="Number of Sample Containers" type="NM" min-occurrence="0" max-occurence="0"/>
         <field name="transportLogistics" identifer="OBR-38" long-label="Transport Logistics of Collected Sample" type="CE" min-occurrence="0" max-occurence="0"/>
         <field name="collectorsComment" identifer="OBR-39" long-label="Collector's Comment" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="transportResponsibility" identifer="OBR-40" long-label="Transport Arrangement Responsibility" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="transportArrangedResp" identifer="OBR-40" long-label="Transport Arrangement Responsibility" type="CE" min-occurrence="0" max-occurence="0"/>
         <field name="transportArranged" identifer="OBR-41" long-label="Transport Arranged" type="ID" min-occurrence="0" max-occurence="0"/>
         <field name="escortRequired" identifer="OBR-42" long-label="Escort Required" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="patientTransportComment" identifer="OBR-43" long-label="Planned Patient Transport Comment" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="procedureCode" identifer="OBR-44" long-label="Procedure Code" type="CWE" min-occurrence="0" max-occurence="1"/>
+        <field name="plannedPatTransportComment" identifer="OBR-43" long-label="Planned Patient Transport Comment" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="procedureCode" identifer="OBR-44" long-label="Procedure Code" type="CWE" min-occurrence="0" max-occurence="1">
+            <component name="procedureCodeId" identifier="OBR-44.1" long-label="Procedure Code Identifier" type="ST"/>
+            <component name="procedureCodeText" identifier="OBR-44.2" long-label="Procedure Code Text" type="ST"/>
+            <component name="procedureCodeCodingSystemName" identifier="OBR-44.3" long-label="OProcedure Code Name of Coding System" type="ST"/>
+            <component name="procedureCodeAlternateId" identifier="OBR-44.4" long-label="Procedure Code Alternate Identifier" type="ST"/>
+            <component name="procedureCodeAlternateText" identifier="OBR-44.5" long-label="Procedure Code Alternate Text" type="ST"/>
+            <component name="procedureCodeAltCodingSystemName" identifier="OBR-44.6" long-label="Procedure Code Name of Alternate Coding System" type="ST"/>
+            <component name="procedureCodeCodingSystemVerId" identifier="OBR-44.7" long-label="Procedure Code Coding System Version ID" type="ST"/>
+            <component name="procedureCodeAltCodingSystemVerId" identifier="OBR-44.8" long-label="Procedure Code Alternate Coding System Version ID" type="ST"/>
+            <component name="procedureCodeOriginalText" identifier="OBR-44.9" long-label="Procedure Code Original Text" type="ST"/>
+        </field>
         <field name="procedureCodeModifier" identifer="OBR-45" long-label="Procedure Code Modifier" type="CE" min-occurrence="0" max-occurence="0"/>
         <field name="placerSuppServiceInfo" identifer="OBR-46" long-label="Placer Supplemental Service Information" type="CE" min-occurrence="0" max-occurence="0"/>
         <field name="fillerSuppServiceInfo" identifer="OBR-47" long-label="Filler Supplemental Service Information" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="dupProcedureReason" identifer="OBR-48" long-label="Duplicate Procedure Reason" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="dupProcedureReason" identifer="OBR-48" long-label="Medically Necessary Duplicate Procedure Reason" type="CWE" min-occurrence="0" max-occurence="0"/>
         <field name="resultHandling" identifer="OBR-49" long-label="Result Handling" type="IS" min-occurrence="0" max-occurence="1"/>
         <field name="parentUniversalServiceId" identifer="OBR-50" long-label="Parent Universal Service Identifier" type="CWE" min-occurrence="0" max-occurence="1"/>
     </segment>
     <segment identifier="OBX">
-        <field name="setId" identifer="OBX-1" long-label="Set ID" type="SI" min-occurrence="1" max-occurence="1"/>
+        <field name="setObxId" identifer="OBX-1" long-label="Set OBX ID" type="SI" min-occurrence="1" max-occurence="1"/>
         <field name="valueType" identifer="OBX-2" long-label="Value Type" type="ID" min-occurrence="1" max-occurence="1"/>
-        <field name="observationId" identifer="OBX-3" long-label="Observation Identifier" type="CE" min-occurrence="1" max-occurence="1"/>
+        <field name="observationId" identifer="OBX-3" long-label="Observation Identifier" type="CE" min-occurrence="1" max-occurence="1">
+            <component name="observationIdCurrent" identifier="OBX-3.1" long-label="Observation Identifier Current" type="ST"/>
+            <component name="observationText" identifier="OBX-3.2" long-label="Observation Text" type="ST"/>
+            <component name="observationCodingSystemName" identifier="OBX-3.3" long-label="Observation Name of Coding System" type="ST"/>
+            <component name="observationAlternateId" identifier="OBX-3.4" long-label="Observation Alternate Identifier" type="ST"/>
+            <component name="observationAlternateText" identifier="OBX-3.5" long-label="Observation Alternate Text" type="ST"/>
+            <component name="observationAltCodingSystemName" identifier="OBX-3.6" long-label="Observation Name of Alternate Coding System" type="ST"/>
+        </field>
         <field name="observationSubId" identifer="OBX-4" long-label="Observation Sub-ID" type="ST" min-occurrence="0" max-occurence="1"/>
         <field name="observationValue" identifer="OBX-5" long-label="Observation Value" type="" min-occurrence="1" max-occurence="12"/>
-        <field name="units" identifer="OBX-6" long-label="Units" type="CE" min-occurrence="0" max-occurence="1"/>
+        <field name="units" identifer="OBX-6" long-label="Units" type="CE" min-occurrence="0" max-occurence="1">
+            <component name="unitsId" identifier="OBX-6.1" long-label="Units" type="ST"/>
+            <component name="unitsText" identifier="OBX-6.2" long-label="Units Text" type="ST"/>
+            <component name="unitsCodingSystemName" identifier="OBX-6.3" long-label="Units Name of Coding System" type="ST"/>
+            <component name="unitsAlternateId" identifier="OBX-6.4" long-label="Units Alternate Identifier" type="ST"/>
+            <component name="unitsAlternateText" identifier="OBX-6.5" long-label="Units Alternate Text" type="ST"/>
+            <component name="unitsAltCodingSystemName" identifier="OBX-6.6" long-label="Units Name of Alternate Coding System" type="ST"/>
+        </field>
         <field name="referenceRanges" identifer="OBX-7" long-label="Reference Ranges" type="ST" min-occurrence="0" max-occurence="1"/>
-        <field name="abnormalFlags" identifer="OBX-8" long-label="Abnormal Flags" type="IS" min-occurrence="0" max-occurence="5"/>
+        <field name="abnormalFlags" identifer="OBX-8" long-label="Abnormal Flags" type="ID" min-occurrence="0" max-occurence="5"/>
         <field name="probability" identifer="OBX-9" long-label="Probability" type="NM" min-occurrence="0" max-occurence="1"/>
-        <field name="natureAbnormalTest" identifer="OBX-10" long-label="Nature of Abnormal Test" type="ID" min-occurrence="0" max-occurence="5"/>
+        <field name="natureOfAbnormalTest" identifer="OBX-10" long-label="Nature of Abnormal Test" type="ID" min-occurrence="0" max-occurence="5"/>
         <field name="obsResultStatus" identifer="OBX-11" long-label="Observation Result Status" type="ID" min-occurrence="1" max-occurence="1"/>
         <field name="dateRefRangeValues" identifer="OBX-12" long-label="Date of Reference Range Values" type="TS" min-occurrence="0" max-occurence="0"/>
         <field name="userDefAccessChecks" identifer="OBX-13" long-label="User Defined Access Checks" type="ST" min-occurrence="0" max-occurence="0"/>
         <field name="dateTimeOfObservation" identifer="OBX-14" long-label="Date and Time of Observation" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="producersReference" identifer="OBX-15" long-label="Producers Reference" type="CE" min-occurrence="1" max-occurence="1"/>
-        <field name="responsibleObserver" identifer="OBX-16" long-label="Responsible Observer" type="XCN" min-occurrence="0" max-occurence="5"/>
-        <field name="observationMethod" identifer="OBX-17" long-label="Observation Method" type="CE" min-occurrence="0" max-occurence="6"/>
+        <field name="producersReference" identifer="OBX-15" long-label="Producer's Reference" type="CE" min-occurrence="1" max-occurence="1">
+            <component name="producersRefId" identifier="OBX-15.1" long-label="Producer's Reference Identifier" type="ST"/>
+            <component name="producersRefText" identifier="OBX-15.2" long-label="Producer's Reference Text" type="ST"/>
+            <component name="producersRefCodingSystemName" identifier="OBX-15.3" long-label="Producer's Reference Name of Coding System" type="ST"/>
+            <component name="producersRefAlternateId" identifier="OBX-15.4" long-label="Producer's Reference Alternate Identifier" type="ST"/>
+            <component name="producersRefAlternateText" identifier="OBX-15.5" long-label="Producer's Reference Alternate Text" type="ST"/>
+            <component name="producersRefAltCodingSystemName" identifier="OBX-15.6" long-label="Producer's Reference Name of Alternate Coding System" type="ST"/>
+        </field>
+        <field name="responsibleObserver" identifer="OBX-16" long-label="Responsible Observer" type="XCN" min-occurrence="0" max-occurence="5">
+            <component name="respObsIdNumber" identifier="OBX-16.1" long-label="Responsible Observer ID Number" type="ST"/>
+            <component name="respObsFamilyName" identifier="OBX-16.2" long-label="Responsible Observer Family Name" type="ST">
+                <subcomponent name="respObsLastNamePrefix" identifier="OBX-16.2.1" long-label="Responsible Observer Last Name Prefix" type="ST"/>
+            </component>
+            <component name="respObsGivenName" identifier="OBX-16.3" long-label="Responsible Observer Given Name" type="ST"/>
+            <component name="respObsMiddleName" identifier="OBX-16.4" long-label="Responsible Observer Middle Initial or Name" type="ST"/>
+            <component name="respObsSuffix" identifier="OBX-16.5" long-label="Responsible Observer Suffix" type="ST"/>
+            <component name="respObsPrefix" identifier="OBX-16.6" long-label="Responsible Observer Prefix" type="ST"/>
+            <component name="respObsDegree" identifier="OBX-16.7" long-label="Responsible Observer Degree" type="IS"/>
+            <component name="respObsSourceTable" identifier="OBX-16.8" long-label="Responsible Observer Source Table" type="IS"/>
+            <component name="respObsAssigningAuthority" identifier="OBX-16.9" long-label="Responsible Observer Assigning Authority" type="HD">
+                <subcomponent name="respObsAssigningAuthNamespaceId" identifier="OBX-16.9.1" long-label="Responsible Observer Assigning Authority Namespace ID" type="IS"/>
+                <subcomponent name="respObsAssigningAuthUniversalId" identifier="OBX-16.9.2" long-label="Responsible Observer Assigning Authority Universal ID" type="ST"/>
+                <subcomponent name="respObsAssigningAuthUniversalIdType" identifier="OBX-16.9.3" long-label="Responsible Observer Assigning Authority Universal ID Type" type="ID"/>
+            </component>
+            <component name="respObsNameTypeCode" identifier="OBX-16.10" long-label="Responsible Observer Source Name Type Code" type="ID"/>
+            <component name="respObsIdCheckDigit" identifier="OBX-16.11" long-label="Responsible Observer Source Table Check Digit" type="ST"/>
+            <component name="respObsIdCheckDigitScheme" identifier="OBX-16.12" long-label="Responsible Observer Code Identifying Check Digit Scheme" type="ID"/>
+            <component name="respObsIdTypeCode" identifier="OBX-16.13" long-label="Responsible Observer Identifier Type Code" type="IS"/>
+            <component name="respObsAssigningFacilityId" identifier="OBX-16.14" long-label="Responsible Observer Assigning Facility ID" type="HD">
+                <subcomponent name="respObsAssigningFacNamespaceId" identifier="OBX-16.14.1" long-label="Responsible Observer Assigning Facility Namespace ID" type="IS"/>
+                <subcomponent name="respObsAssigningFacUniversalId" identifier="OBX-16.14.2" long-label="Responsible Observer Assigning Facility Universal ID" type="ST"/>
+                <subcomponent name="respObsAssigningFacUniversalIdType" identifier="OBX-16.14.3" long-label="Responsible Observer Assigning Facility Universal ID Type" type="ID"/>
+            </component>
+            <component name="respObsNameRepCode" identifier="OBX-16.15" long-label="Responsible Observer Name Representation Code" type="ID"/>
+        </field>
+        <field name="observationMethod" identifer="OBX-17" long-label="Observation Method" type="CE" min-occurrence="0" max-occurence="6">
+            <component name="obsMethodId" identifier="OBX-3.1" long-label="Observation Method Identifier" type="ST"/>
+            <component name="obsMethodText" identifier="OBX-3.2" long-label="Observation Method Text" type="ST"/>
+            <component name="obsMethodCodingSystemName" identifier="OBX-3.3" long-label="Observation Method Name of Coding System" type="ST"/>
+            <component name="obsMethodAlternateId" identifier="OBX-3.4" long-label="Observation Method Alternate Identifier" type="ST"/>
+            <component name="obsMethodAlternateText" identifier="OBX-3.5" long-label="Observation Method Alternate Text" type="ST"/>
+            <component name="obsMethodAltCodingSystemName" identifier="OBX-3.6" long-label="Observation Method Name of Alternate Coding System" type="ST"/>
+        </field>
         <field name="equipmentInstanceId" identifer="OBX-18" long-label="Equipment Instance ID" type="EI" min-occurrence="0" max-occurence="1"/>
         <field name="dateTimeOfAnalysis" identifer="OBX-19" long-label="Date and Time of Analysis" type="TS" min-occurrence="0" max-occurence="1"/>
         <field name="reserved" identifer="OBX-20" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
         <field name="reserved" identifer="OBX-21" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
         <field name="reserved" identifer="OBX-22" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
-        <field name="performingOrgName" identifer="OBX-23" long-label="Performing Organization Name" type="XON" min-occurrence="0" max-occurence="1"/>
-        <field name="performingOrgAddress" identifer="OBX-24" long-label="Performing Organization Address" type="XAD" min-occurrence="0" max-occurence="1"/>
+        <field name="performingOrgName" identifer="OBX-23" long-label="Performing Organization Name" type="XON" min-occurrence="0" max-occurence="1">
+            <component name="perfOrgNameCurrent" identifier="OBX-23.1" long-label="Performing Organization Name Current" type="ST"/>
+            <component name="perfOrgNameTypeCode" identifier="OBX-23.2" long-label="Performing Organization Name Type Code" type="IS"/>
+            <component name="perfOrgIdNumber" identifier="OBX-23.3" long-label="Performing Organization ID Number" type="NM"/>
+            <component name="perfOrgCheckDigit" identifier="OBX-23.4" long-label="Performing Organization Check Digit" type="NM"/>
+            <component name="perfOrgCheckDigitScheme" identifier="OBX-23.5" long-label="Performing Organization Check Digit Scheme" type="ID"/>
+            <component name="perfOrgAssigningAuthority" identifier="OBX-23.6" long-label="Performing Organization Assigning Authority" type="HD"/>
+            <component name="perfOrgIdentifierTypeCode" identifier="OBX-23.7" long-label="Performing Organization Identifier Type Code" type="ID"/>
+            <component name="perfOrgAssigningFacility" identifier="OBX-23.8" long-label="Performing Organization Assigning Facility" type="HD"/>
+            <component name="perfOrgNameRepresentationCode" identifier="OBX-23.9" long-label="Performing Organization Name Representation Code" type="ID"/>
+            <component name="perfOrgIdentifier" identifier="OBX-23.10" long-label="Performing Organization Identifier" type="ST"/>
+        </field>
+        <field name="performingOrgAddress" identifer="OBX-24" long-label="Performing Organization Address" type="XAD" min-occurrence="0" max-occurence="1">
+            <component name="perfOrgAddressStreet" identifier="OBX-24.1" long-label="Performing Organization Street Address" type="SAD"/>
+            <component name="perfOrgAddressOtherDesignation" identifier="OBX-24.2" long-label="Performing Organization Address Other Designation" type="ST"/>
+            <component name="perfOrgAddressCity" identifier="OBX-24.3" long-label="Performing Organization Address City" type="ST"/>
+            <component name="perfOrgAddressStateOrProvince" identifier="OBX-24.4" long-label="Performing Organization Address State or Province" type="ST"/>
+            <component name="perfOrgAddressPostalCode" identifier="OBX-24.5" long-label="Performing Organization Address Zip or Postal Code" type="ST"/>
+            <component name="perfOrgAddressCountry" identifier="OBX-24.6" long-label="Performing Organization Address Country" type="ID"/>
+            <component name="perfOrgAddressType" identifier="OBX-24.7" long-label="Performing Organization Address Type" type="ID"/>
+            <component name="perfOrgAddressOtherGeoDesignation" identifier="OBX-24.8" long-label="Performing Organization Address Other Geographic Designation" type="ST"/>
+            <component name="perfOrgAddressCountyCode" identifier="OBX-249" long-label="Performing Organization Address County or Parish Code" type="IS"/>
+            <component name="perfOrgAddressCensusTract" identifier="OBX-24.10" long-label="Performing Organization Address Census Tract" type="IS"/>
+            <component name="perfOrgAddressRepresentationCode" identifier="OBX-24.11" long-label="Performing Organization Address Representation Code" type="ID"/>
+            <component name="perfOrgAddressValidityRange" identifier="OBX-24.12" long-label="Performing Organization Address Representation Code" type="DR"/>
+            <component name="perfOrgAddressEffectiveDate" identifier="OBX-24.13" long-label="Performing Organization Address Effective Date" type="TS"/>
+            <component name="perfOrgAddressExpirationDate" identifier="OBX-24.14" long-label="Performing Organization Address Expiration Date" type="TS"/>
+        </field>
         <field name="performingOrgMedDirector" identifer="OBX-25" long-label="Performing Organization Medical Director" type="XCN" min-occurrence="0" max-occurence="0"/>
     </segment>
     <segment identifier="NTE">
-        <field name="setId" identifer="NTE-1" long-label="Set ID" type="SI" min-occurrence="0" max-occurence="1"/>
+        <field name="setNteId" identifer="NTE-1" long-label="Set NTE ID" type="SI" min-occurrence="0" max-occurence="1"/>
         <field name="sourceOfComment" identifer="NTE-2" long-label="Source of Comment" type="ID" min-occurrence="0" max-occurence="1"/>
         <field name="comment" identifer="NTE-3" long-label="Comment" type="FT" min-occurrence="0" max-occurence="4"/>
         <field name="commentType" identifer="NTE-4" long-label="Comment Type" type="CE" min-occurrence="0" max-occurence="1"/>
