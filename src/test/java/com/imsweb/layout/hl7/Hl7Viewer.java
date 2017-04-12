@@ -34,6 +34,9 @@ import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
+// TODO use the layout to provide a label to the field/components and subcomponents
+// Allow every node to be expanded/collapsed, and apply to its children
+// handle batch transmission segments
 public class Hl7Viewer extends JFrame {
 
     public Hl7Viewer() {
