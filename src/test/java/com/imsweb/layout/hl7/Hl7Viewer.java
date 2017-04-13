@@ -11,8 +11,12 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -34,9 +38,12 @@ import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
+// TODO use the layout to provide a label to the field/components and subcomponents
+// Allow every node to be expanded/collapsed, and apply to its children
+// handle batch transmission segments
 public class Hl7Viewer extends JFrame {
 
-    public Hl7Viewer() {
+    public Hl7Viewer() throws IOException {
         this.setTitle("NAACCR HL7 Viewer 0.1");
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(new BorderLayout());
@@ -45,6 +52,33 @@ public class Hl7Viewer extends JFrame {
         centerPnl.setBorder(null);
         centerPnl.setLayout(new BorderLayout());
         this.getContentPane().add(centerPnl, BorderLayout.CENTER);
+
+        Map<String, String> entityNames = new HashMap<>();
+        // TODO I can't read the current layout, hopefully that will be fixed soon...
+        //        Hl7LayoutDefinitionXmlDto layout = Hl7Utils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/hl7/naaccr/naaccr-hl7-2.5.1-layout.xml"));
+        //        for (Hl7SegmentDefinitionXmlDto segment : layout.getHl7Segments()) {
+        //            for (Hl7FieldDefinitionXmlDto field : segment.getHl7Fields()) {
+        //                entityNames.put(field.getIdentifier(), field.getLongLabel());
+        //                for (Hl7ComponentDefinitionXmlDto component : field.getHl7Components()) {
+        //                    entityNames.put(component.getIdentifier(), component.getLongLabel());
+        //                    for (Hl7SubComponentDefinitionXmlDto subcomponent : component.getHl7SubComponents())
+        //                        entityNames.put(subcomponent.getIdentifier(), subcomponent.getLongLabel());
+        //                }
+        //            }
+        //        }
+        entityNames.put("PID-3", "Patient Identifier List");
+        entityNames.put("PID-3.1", "Patient Identifier List Number");
+        entityNames.put("PID-3.2", "Patient Identifier List Check Digit");
+        entityNames.put("PID-3.3", "Patient Identifier List Check Digit Scheme");
+        entityNames.put("PID-3.4", "Patient Identifier List Assigning Authority");
+        entityNames.put("PID-3.4.1", "Patient Identifier List Assigning Authority Namespace ID");
+        entityNames.put("PID-3.4.2", "Patient Identifier List Assigning Authority Universal ID");
+        entityNames.put("PID-3.4.3", "Patient Identifier List Assigning Authority Universal ID Type");
+        entityNames.put("PID-3.5", "Patient Identifier List Identifier Type Code");
+        entityNames.put("PID-3.6", "Patient Identifier List Assigning Facility");
+        entityNames.put("PID-3.6.1", "Patient Identifier List Assigning Facility Namespace ID");
+        entityNames.put("PID-3.6.2", "Patient Identifier List Assigning Facility Universal ID");
+        entityNames.put("PID-3.6.3", "Patient Identifier List Assigning Facility Universal ID Type");
 
         List<Hl7Message> messages = new ArrayList<>();
         messages.add(Hl7MessageBuilder.createMessage()
@@ -82,9 +116,12 @@ public class Hl7Viewer extends JFrame {
         //            e.printStackTrace();
         //        }
 
+        // TODO FP let user select a file, support starting line for messages
+
         DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Messages");
+        int startLine = 1;
         for (Hl7Message message : messages)
-            rootNode.add(createNodeForMessage(message));
+            rootNode.add(createNodeForMessage(message, new File("sample.hl7"), startLine++, entityNames));
         JTree tree = new JTree(rootNode);
         tree.setBorder(new EmptyBorder(2, 5, 2, 5));
 
@@ -122,64 +159,74 @@ public class Hl7Viewer extends JFrame {
         }));
     }
 
-    private static DefaultMutableTreeNode createNodeForMessage(Hl7Message message) {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(message));
-        message.getSegments().forEach(s -> node.add(createNodeForSegment(s)));
+    private static DefaultMutableTreeNode createNodeForMessage(Hl7Message message, File file, Integer startLine, Map<String, String> entityNames) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(message, file, startLine));
+        message.getSegments().forEach(s -> node.add(createNodeForSegment(s, entityNames)));
         return node;
     }
 
-    private static DefaultMutableTreeNode createNodeForSegment(Hl7Segment segment) {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(segment));
-        segment.getFields().keySet().stream().sorted().forEach(idx -> node.add(createNodeForField(segment.getField(idx))));
+    private static DefaultMutableTreeNode createNodeForSegment(Hl7Segment segment, Map<String, String> entityNames) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(segment, entityNames));
+        segment.getFields().keySet().stream().sorted().forEach(idx -> node.add(createNodeForField(segment.getField(idx), entityNames)));
         return node;
     }
 
-    private static DefaultMutableTreeNode createNodeForField(Hl7Field field) {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(field));
+    private static DefaultMutableTreeNode createNodeForField(Hl7Field field, Map<String, String> entityNames) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(field, entityNames));
         if (field.getRepeatedFields().size() == 1) {
             Hl7RepeatedField repeatedField = field.getRepeatedField(1);
             if (repeatedField.getComponents().size() == 1 && repeatedField.getComponents().keySet().contains(1))
                 node.add(createNodeForValue(repeatedField.getComponent(1).getValue()));
             else
-                repeatedField.getComponents().values().forEach(c -> node.add(createNodeForComponent(c)));
+                repeatedField.getComponents().values().forEach(c -> node.add(createNodeForComponent(c, entityNames)));
         }
         else if (field.getRepeatedFields().size() > 1)
-            field.getRepeatedFields().forEach(f -> node.add(createNodeForRepeatedField(f)));
+            field.getRepeatedFields().forEach(f -> node.add(createNodeForRepeatedField(f, entityNames)));
         return node;
     }
 
-    private static DefaultMutableTreeNode createNodeForRepeatedField(Hl7RepeatedField repeatedField) {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(repeatedField));
-        repeatedField.getComponents().keySet().stream().sorted().forEach(idx -> node.add(createNodeForComponent(repeatedField.getComponent(idx))));
+    private static DefaultMutableTreeNode createNodeForRepeatedField(Hl7RepeatedField repeatedField, Map<String, String> entityNames) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(repeatedField, entityNames));
+        repeatedField.getComponents().keySet().stream().sorted().forEach(idx -> node.add(createNodeForComponent(repeatedField.getComponent(idx), entityNames)));
         return node;
     }
 
-    private static DefaultMutableTreeNode createNodeForComponent(Hl7Component component) {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(component));
+    private static DefaultMutableTreeNode createNodeForComponent(Hl7Component component, Map<String, String> entityNames) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(component, entityNames));
         // TODO FD this simplification should check the fields definition instead of checking the size/index...
         if (component.getSubComponents().size() == 1 && component.getSubComponents().keySet().contains(1))
             node.add(createNodeForValue(component.getSubComponent(1).getValue()));
         else
-            component.getSubComponents().keySet().stream().sorted().forEach(idx -> node.add(createNodeForSubComponent(component.getSubComponent(idx))));
+            component.getSubComponents().keySet().stream().sorted().forEach(idx -> node.add(createNodeForSubComponent(component.getSubComponent(idx), entityNames)));
         return node;
     }
 
-    private static DefaultMutableTreeNode createNodeForSubComponent(Hl7SubComponent subComponent) {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(subComponent));
+    private static DefaultMutableTreeNode createNodeForSubComponent(Hl7SubComponent subComponent, Map<String, String> entityNames) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(subComponent, entityNames));
         node.add(createNodeForValue(subComponent.getValue()));
         return node;
     }
 
     private static DefaultMutableTreeNode createNodeForValue(String value) {
-        return new DefaultMutableTreeNode(new EntityWrapper(value == null ? "<blank>" : value));
+        return new DefaultMutableTreeNode(new EntityWrapper(value == null ? "<blank>" : value, null));
     }
 
     private static class EntityWrapper {
 
         private Object _entity;
+        private File _file;
+        private Integer _startLine;
+        private Map<String, String> _entityNames;
 
-        public EntityWrapper(Object entity) {
+        public EntityWrapper(Hl7Message message, File file, Integer startLine) {
+            _entity = message;
+            _file = file;
+            _startLine = startLine;
+        }
+
+        public EntityWrapper(Object entity, Map<String, String> entityNames) {
             _entity = entity;
+            _entityNames = entityNames;
         }
 
         @Override
@@ -190,22 +237,22 @@ public class Hl7Viewer extends JFrame {
                     result = (String)_entity;
                     break;
                 case "Hl7SubComponent":
-                    result = subComponentToString((Hl7SubComponent)_entity);
+                    result = subComponentToString((Hl7SubComponent)_entity, _entityNames);
                     break;
                 case "Hl7Component":
-                    result = componentToString((Hl7Component)_entity);
+                    result = componentToString((Hl7Component)_entity, _entityNames);
                     break;
                 case "Hl7RepeatedField":
-                    result = repeatedFieldToString((Hl7RepeatedField)_entity);
+                    result = repeatedFieldToString((Hl7RepeatedField)_entity, _entityNames);
                     break;
                 case "Hl7Field":
-                    result = fieldToString((Hl7Field)_entity);
+                    result = fieldToString((Hl7Field)_entity, _entityNames);
                     break;
                 case "Hl7Segment":
                     result = segmentToString((Hl7Segment)_entity);
                     break;
                 case "Hl7Message":
-                    result = messageToString((Hl7Message)_entity);
+                    result = messageToString((Hl7Message)_entity, _file, _startLine);
                     break;
                 default:
                     result = _entity.getClass().getSimpleName();
@@ -213,39 +260,54 @@ public class Hl7Viewer extends JFrame {
             return result;
         }
 
-        private static String messageToString(Hl7Message message) {
-            return "Message";
+        private static String messageToString(Hl7Message message, File file, Integer startLine) {
+            if (file == null)
+                return "Message";
+            else
+                return "Message (file " + file.getName() + "; line " + startLine + ")";
         }
 
         private static String segmentToString(Hl7Segment segment) {
             return segment.getId();
         }
 
-        private static String fieldToString(Hl7Field field) {
+        private static String fieldToString(Hl7Field field, Map<String, String> entityNames) {
             Hl7Segment segment = field.getSegment();
-            return segment.getId() + "-" + field.getIndex();
+            String id = segment.getId() + "-" + field.getIndex();
+            if (entityNames.containsKey(id))
+                return id + " - " + entityNames.get(id);
+            else
+                return id;
         }
 
-        private static String repeatedFieldToString(Hl7RepeatedField repeatedField) {
+        private static String repeatedFieldToString(Hl7RepeatedField repeatedField, Map<String, String> entityNames) {
             Hl7Field field = repeatedField.getField();
             return "Repetition #" + (field.getRepeatedFields().indexOf(repeatedField) + 1);
         }
 
-        private static String componentToString(Hl7Component component) {
+        private static String componentToString(Hl7Component component, Map<String, String> entityNames) {
             Hl7Field field = component.getRepeatedField().getField();
             Hl7Segment segment = field.getSegment();
-            return segment.getId() + "-" + field.getIndex() + "." + component.getIndex();
+            String id = segment.getId() + "-" + field.getIndex() + "." + component.getIndex();
+            if (entityNames.containsKey(id))
+                return id + " - " + entityNames.get(id);
+            else
+                return id;
         }
 
-        private static String subComponentToString(Hl7SubComponent subComponent) {
+        private static String subComponentToString(Hl7SubComponent subComponent, Map<String, String> entityNames) {
             Hl7Component component = subComponent.getComponent();
             Hl7Field field = component.getRepeatedField().getField();
             Hl7Segment segment = field.getSegment();
-            return segment.getId() + "-" + field.getIndex() + "." + component.getIndex() + "." + subComponent.getIndex();
+            String id = segment.getId() + "-" + field.getIndex() + "." + component.getIndex() + "." + subComponent.getIndex();
+            if (entityNames.containsKey(id))
+                return id + " - " + entityNames.get(id);
+            else
+                return id;
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             try {
