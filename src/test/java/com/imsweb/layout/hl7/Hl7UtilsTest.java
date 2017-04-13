@@ -45,8 +45,8 @@ public class Hl7UtilsTest {
         field.setIdentifier("MSH-1");
         field.setLongLabel("Field 1");
         field.setType("F1");
-        field.setMinOccurrence("1");
-        field.setMaxOccurrence("1");
+        field.setMinOccurrence(1);
+        field.setMaxOccurrence(1);
         Hl7ComponentDefinitionXmlDto component = new Hl7ComponentDefinitionXmlDto();
         component.setName("component1");
         component.setIdentifier("MSH-1.1");
@@ -68,17 +68,20 @@ public class Hl7UtilsTest {
         }
 
         try (InputStream fis = new FileInputStream(file)) {
+            // layout
             Hl7LayoutDefinitionXmlDto layout2 = Hl7Utils.readFixedColumnsLayout(fis);
             Assert.assertEquals(layout.getId(), layout2.getId());
             Assert.assertEquals(layout.getName(), layout2.getName());
             Assert.assertEquals(layout.getDescription(), layout2.getDescription());
             Assert.assertEquals(layout.getVersion(), layout2.getVersion());
 
+            // segment
             Assert.assertEquals(layout.getHl7Segments().size(), layout2.getHl7Segments().size());
             Hl7SegmentDefinitionXmlDto segment1 = layout.getHl7Segments().get(0);
             Hl7SegmentDefinitionXmlDto segment2 = layout2.getHl7Segments().get(0);
             Assert.assertEquals(segment1.getIdentifier(), segment2.getIdentifier());
 
+            // field
             Assert.assertEquals(segment1.getHl7Fields().size(), segment2.getHl7Fields().size());
             Hl7FieldDefinitionXmlDto field1 = segment1.getHl7Fields().get(0);
             Hl7FieldDefinitionXmlDto field2 = segment2.getHl7Fields().get(0);
@@ -89,6 +92,7 @@ public class Hl7UtilsTest {
             Assert.assertEquals(field1.getMinOccurrence(), field2.getMinOccurrence());
             Assert.assertEquals(field1.getMaxOccurrence(), field2.getMaxOccurrence());
 
+            // component
             Assert.assertEquals(field1.getHl7Components().size(), field2.getHl7Components().size());
             Hl7ComponentDefinitionXmlDto component1 = field1.getHl7Components().get(0);
             Hl7ComponentDefinitionXmlDto component2 = field2.getHl7Components().get(0);
@@ -97,6 +101,7 @@ public class Hl7UtilsTest {
             Assert.assertEquals(component1.getLongLabel(), component2.getLongLabel());
             Assert.assertEquals(component1.getType(), component2.getType());
 
+            // subcomponent
             Assert.assertEquals(component1.getHl7SubComponents().size(), component2.getHl7SubComponents().size());
             Hl7SubComponentDefinitionXmlDto subComponent1 = component1.getHl7SubComponents().get(0);
             Hl7SubComponentDefinitionXmlDto subComponent2 = component2.getHl7SubComponents().get(0);
