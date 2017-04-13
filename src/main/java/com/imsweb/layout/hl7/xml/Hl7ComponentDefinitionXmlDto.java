@@ -69,4 +69,8 @@ public class Hl7ComponentDefinitionXmlDto {
             _hl7SubComponents = new ArrayList<>();
         return _hl7SubComponents;
     }
+
+    public void setHl7SubComponents(List<Hl7SubComponentDefinitionXmlDto> hl7SubComponents) {
+        _hl7SubComponents = hl7SubComponents;
+    }
 }

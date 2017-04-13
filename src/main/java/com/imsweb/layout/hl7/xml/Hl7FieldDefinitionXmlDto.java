@@ -93,4 +93,8 @@ public class Hl7FieldDefinitionXmlDto {
             _hl7Components = new ArrayList<>();
         return _hl7Components;
     }
+
+    public void setHl7Components(List<Hl7ComponentDefinitionXmlDto> hl7Components) {
+        _hl7Components = hl7Components;
+    }
 }

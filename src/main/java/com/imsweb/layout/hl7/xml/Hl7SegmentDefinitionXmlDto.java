@@ -33,4 +33,8 @@ public class Hl7SegmentDefinitionXmlDto {
             _hl7Fields = new ArrayList<>();
         return _hl7Fields;
     }
+
+    public void setHl7Fields(List<Hl7FieldDefinitionXmlDto> hl7Fields) {
+        _hl7Fields = hl7Fields;
+    }
 }

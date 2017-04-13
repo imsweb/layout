@@ -20,8 +20,11 @@ import com.imsweb.layout.hl7.entity.Hl7Message;
 import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
+import com.imsweb.layout.hl7.xml.Hl7ComponentDefinitionXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7FieldDefinitionXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutDefinitionXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SegmentDefinitionXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SubComponentDefinitionXmlDto;
 
 public class Hl7UtilsTest {
 
@@ -36,7 +39,27 @@ public class Hl7UtilsTest {
         layout.setDescription("Description");
         layout.setVersion("1.0");
         Hl7SegmentDefinitionXmlDto segment = new Hl7SegmentDefinitionXmlDto();
-        segment.setIdentifier("MSH-1");
+        segment.setIdentifier("MSH");
+        Hl7FieldDefinitionXmlDto field = new Hl7FieldDefinitionXmlDto();
+        field.setName("field1");
+        field.setIdentifier("MSH-1");
+        field.setLongLabel("Field 1");
+        field.setType("F1");
+        field.setMinOccurrence("1");
+        field.setMaxOccurrence("1");
+        Hl7ComponentDefinitionXmlDto component = new Hl7ComponentDefinitionXmlDto();
+        component.setName("component1");
+        component.setIdentifier("MSH-1.1");
+        component.setLongLabel("Component 1");
+        component.setType("C1");
+        Hl7SubComponentDefinitionXmlDto subComponent = new Hl7SubComponentDefinitionXmlDto();
+        subComponent.setName("subcomponent1");
+        subComponent.setIdentifier("MSH-1.1.1");
+        subComponent.setLongLabel("Subcomponent 1");
+        subComponent.setType("S1");
+        component.setHl7SubComponents(Collections.singletonList(subComponent));
+        field.setHl7Components(Collections.singletonList(component));
+        segment.setHl7Fields(Collections.singletonList(field));
         layout.setHl7Segments(Collections.singletonList(segment));
 
         File file = new File(System.getProperty("user.dir") + "/build/hl7-layout-test.xml");
@@ -50,7 +73,37 @@ public class Hl7UtilsTest {
             Assert.assertEquals(layout.getName(), layout2.getName());
             Assert.assertEquals(layout.getDescription(), layout2.getDescription());
             Assert.assertEquals(layout.getVersion(), layout2.getVersion());
-            System.out.println(layout.getHl7Segments());
+
+            Assert.assertEquals(layout.getHl7Segments().size(), layout2.getHl7Segments().size());
+            Hl7SegmentDefinitionXmlDto segment1 = layout.getHl7Segments().get(0);
+            Hl7SegmentDefinitionXmlDto segment2 = layout2.getHl7Segments().get(0);
+            Assert.assertEquals(segment1.getIdentifier(), segment2.getIdentifier());
+
+            Assert.assertEquals(segment1.getHl7Fields().size(), segment2.getHl7Fields().size());
+            Hl7FieldDefinitionXmlDto field1 = segment1.getHl7Fields().get(0);
+            Hl7FieldDefinitionXmlDto field2 = segment2.getHl7Fields().get(0);
+            Assert.assertEquals(field1.getName(), field2.getName());
+            Assert.assertEquals(field1.getIdentifier(), field2.getIdentifier());
+            Assert.assertEquals(field1.getLongLabel(), field2.getLongLabel());
+            Assert.assertEquals(field1.getType(), field2.getType());
+            Assert.assertEquals(field1.getMinOccurrence(), field2.getMinOccurrence());
+            Assert.assertEquals(field1.getMaxOccurrence(), field2.getMaxOccurrence());
+
+            Assert.assertEquals(field1.getHl7Components().size(), field2.getHl7Components().size());
+            Hl7ComponentDefinitionXmlDto component1 = field1.getHl7Components().get(0);
+            Hl7ComponentDefinitionXmlDto component2 = field2.getHl7Components().get(0);
+            Assert.assertEquals(component1.getName(), component2.getName());
+            Assert.assertEquals(component1.getIdentifier(), component2.getIdentifier());
+            Assert.assertEquals(component1.getLongLabel(), component2.getLongLabel());
+            Assert.assertEquals(component1.getType(), component2.getType());
+
+            Assert.assertEquals(component1.getHl7SubComponents().size(), component2.getHl7SubComponents().size());
+            Hl7SubComponentDefinitionXmlDto subComponent1 = component1.getHl7SubComponents().get(0);
+            Hl7SubComponentDefinitionXmlDto subComponent2 = component2.getHl7SubComponents().get(0);
+            Assert.assertEquals(subComponent1.getName(), subComponent2.getName());
+            Assert.assertEquals(subComponent1.getIdentifier(), subComponent2.getIdentifier());
+            Assert.assertEquals(subComponent1.getLongLabel(), subComponent2.getLongLabel());
+            Assert.assertEquals(subComponent1.getType(), subComponent2.getType());
         }
     }
 
