@@ -3,22 +3,11 @@
  */
 package com.imsweb.layout.hl7;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
-import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
-import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
@@ -26,69 +15,10 @@ import com.imsweb.layout.hl7.entity.Hl7Message;
 import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
-import com.imsweb.layout.hl7.xml.Hl7LayoutDefinitionXmlDto;
 
 public final class Hl7Utils {
 
     private Hl7Utils() {
-    }
-
-    private static XStream createNaaccrHl7XStream() {
-        XStream xstream = new XStream(new StaxDriver() {
-            @Override
-            public HierarchicalStreamWriter createWriter(Writer out) {
-                return new PrettyPrintWriter(out, "    ");
-            }
-        });
-        xstream.autodetectAnnotations(true);
-        xstream.alias("hl7-layout", Hl7LayoutDefinitionXmlDto.class);
-        return xstream;
-    }
-
-    /**
-     * Reads the layout from the provided URL, expects XML format.
-     * <p/>
-     * The provided stream will be closed when this method returns
-     * <p/>
-     * Created on Mar 20, 2017 by depryf
-     * @param stream <code>InputStream</code> to the data file, cannot be null
-     * @return a <code>Hl7LayoutDefinitionXmlDto</code>, never null
-     * @throws IOException
-     */
-    public static Hl7LayoutDefinitionXmlDto readFixedColumnsLayout(InputStream stream) throws IOException {
-        if (stream == null)
-            throw new IOException("Unable to read layout, target input stream is null");
-
-        try (InputStream is = stream) {
-            return (Hl7LayoutDefinitionXmlDto)createNaaccrHl7XStream().fromXML(is);
-        }
-        catch (RuntimeException e) {
-            throw new IOException("Unable to read XML layout: " + e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Writes the layout to the provided output stream, using XML format.
-     * <p/>
-     * Created on Mar 20, 2017 by depryf
-     * @param stream <code>OutputStream</code> to the data file, cannot be null
-     * @param layout the <code>Hl7LayoutDefinitionXmlDto</code> to write, cannot be null
-     * @throws IOException
-     */
-    public static void writeFixedColumnsLayout(OutputStream stream, Hl7LayoutDefinitionXmlDto layout) throws IOException {
-        if (layout == null)
-            throw new IOException("Unable to write NULL layout");
-        if (stream == null)
-            throw new IOException("Unable to write layout for '" + layout.getId() + "', target output stream is null");
-
-        try (Writer writer = new OutputStreamWriter(stream, StandardCharsets.UTF_8)) {
-            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-            writer.write(System.lineSeparator());
-            createNaaccrHl7XStream().toXML(layout, writer);
-        }
-        catch (RuntimeException e) {
-            throw new IOException("Unable to write XML layout: " + e.getMessage(), e);
-        }
     }
 
     /**

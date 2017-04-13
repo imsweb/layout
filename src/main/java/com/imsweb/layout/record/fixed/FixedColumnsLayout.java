@@ -81,7 +81,7 @@ public class FixedColumnsLayout extends RecordLayout {
 
     /**
      * Constructor.
-     * @param layoutFile XML definition, cannot be null, must exists
+     * @param layoutFile XML definition, cannot be null, must exist
      * @throws IOException if the XML definition is not valid
      */
     public FixedColumnsLayout(File layoutFile) throws IOException {

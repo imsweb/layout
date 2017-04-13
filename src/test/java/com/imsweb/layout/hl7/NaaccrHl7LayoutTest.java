@@ -9,6 +9,8 @@ import java.io.InputStream;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.imsweb.layout.LayoutUtils;
+
 public class NaaccrHl7LayoutTest {
 
     @Test
@@ -30,7 +32,7 @@ public class NaaccrHl7LayoutTest {
 
         // test loading the layout from an object
         try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("testing-layout-hl7.xml")) {
-            layout = new NaaccrHl7Layout(Hl7Utils.readFixedColumnsLayout(is));
+            layout = new NaaccrHl7Layout(LayoutUtils.readHl7Layout(is));
             Assert.assertEquals("test", layout.getLayoutId());
             Assert.assertEquals("Test", layout.getLayoutName());
             Assert.assertEquals("1.0", layout.getLayoutVersion());

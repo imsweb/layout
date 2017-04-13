@@ -64,12 +64,12 @@ public class Hl7UtilsTest {
 
         File file = new File(System.getProperty("user.dir") + "/build/hl7-layout-test.xml");
         try (OutputStream fos = new FileOutputStream(file)) {
-            Hl7Utils.writeFixedColumnsLayout(fos, layout);
+            Hl7Utils.writeHl7Layout(fos, layout);
         }
 
         try (InputStream fis = new FileInputStream(file)) {
             // layout
-            Hl7LayoutDefinitionXmlDto layout2 = Hl7Utils.readFixedColumnsLayout(fis);
+            Hl7LayoutDefinitionXmlDto layout2 = Hl7Utils.readHl7Layout(fis);
             Assert.assertEquals(layout.getId(), layout2.getId());
             Assert.assertEquals(layout.getName(), layout2.getName());
             Assert.assertEquals(layout.getDescription(), layout2.getDescription());
