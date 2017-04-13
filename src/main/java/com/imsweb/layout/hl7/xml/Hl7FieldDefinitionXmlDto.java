@@ -31,11 +31,11 @@ public class Hl7FieldDefinitionXmlDto {
 
     @XStreamAlias("min-occurrence")
     @XStreamAsAttribute
-    private String _minOccurrence;
+    private Integer _minOccurrence;
 
     @XStreamAlias("max-occurrence")
     @XStreamAsAttribute
-    private String _maxOccurrence;
+    private Integer _maxOccurrence;
 
     @XStreamImplicit
     private List<Hl7ComponentDefinitionXmlDto> _hl7Components;
@@ -72,19 +72,19 @@ public class Hl7FieldDefinitionXmlDto {
         _type = type;
     }
 
-    public String getMinOccurrence() {
+    public Integer getMinOccurrence() {
         return _minOccurrence;
     }
 
-    public void setMinOccurrence(String minOccurrence) {
+    public void setMinOccurrence(Integer minOccurrence) {
         _minOccurrence = minOccurrence;
     }
 
-    public String getMaxOccurrence() {
+    public Integer getMaxOccurrence() {
         return _maxOccurrence;
     }
 
-    public void setMaxOccurrence(String maxOccurrence) {
+    public void setMaxOccurrence(Integer maxOccurrence) {
         _maxOccurrence = maxOccurrence;
     }
 

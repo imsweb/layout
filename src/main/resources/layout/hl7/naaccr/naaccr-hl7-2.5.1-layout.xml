@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <hl7-layout id="naaccr-hl7-2.5.1" name="NAACCR HL7 2.5.1" version="2.5.1" description="NAACCR HL7 version 2.5.1">
     <segment identifier="MSH">
-        <field name="fieldSeparator" identifer="MSH-1" long-label="Field Separator" type="ST" min-occurrence="1" max-occurence="1"/>
-        <field name="encodingCharacters" identifer="MSH-2" long-label="Encoding Characters" type="ST" min-occurrence="1" max-occurence="1"/>
-        <field name="sendingApplication" identifer="MSH-3" long-label="Sending Application" type="HD" min-occurrence="0" max-occurence="1">
+        <field name="fieldSeparator" identifier="MSH-1" long-label="Field Separator" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="encodingCharacters" identifier="MSH-2" long-label="Encoding Characters" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="sendingApplication" identifier="MSH-3" long-label="Sending Application" type="HD" min-occurrence="0" max-occurence="1">
             <component name="sendingAppNamespaceId" identifier="MSH-3.1" long-label="Sending Application Namespace ID" type="IS"/>
             <component name="sendingAppUniversalId" identifier="MSH-3.2" long-label="Sending Application Universal ID" type="ST"/>
             <component name="sendingAppUniversalIdType" identifier="MSH-3.3" long-label="Sending Application Universal ID Type" type="ID"/>
         </field>
-        <field name="sendingFacility" identifer="MSH-4" long-label="Sending Facility" type="HD" min-occurrence="1" max-occurence="1">
+        <field name="sendingFacility" identifier="MSH-4" long-label="Sending Facility" type="HD" min-occurrence="1" max-occurence="1">
             <component name="sendingFacNamespaceId" identifier="MSH-4.1" long-label="Sending Facility Namespace ID" type="IS"/>
             <component name="sendingFacUniversalId" identifier="MSH-4.2" long-label="Sending Facility Universal ID" type="ST"/>
             <component name="sendingFacUniversalIdType" identifier="MSH-4.3" long-label="Sending Facility Universal ID Type" type="ID"/>
         </field>
-        <field name="receivingApplication" identifer="MSH-5" long-label="Receiving Application" type="HD" min-occurrence="0" max-occurence="1">
+        <field name="receivingApplication" identifier="MSH-5" long-label="Receiving Application" type="HD" min-occurrence="0" max-occurence="1">
             <component name="receivingAppNamespaceId" identifier="MSH-5.1" long-label="Receiving Application Namespace ID" type="IS"/>
             <component name="receivingAppUniversalId" identifier="MSH-5.2" long-label="Receiving Application Universal ID" type="ST"/>
             <component name="receivingAppUniversalIdType" identifier="MSH-5.3" long-label="Receiving Application Universal ID Type" type="ID"/>
         </field>
-        <field name="receivingFacility" identifer="MSH-6" long-label="Receiving Facility" type="HD" min-occurrence="0" max-occurence="1">
+        <field name="receivingFacility" identifier="MSH-6" long-label="Receiving Facility" type="HD" min-occurrence="0" max-occurence="1">
             <component name="receivingFacNamespaceId" identifier="MSH-6.1" long-label="Receiving Facility Namespace ID" type="IS"/>
             <component name="receivingFacUniversalId" identifier="MSH-6.2" long-label="Receiving Facility Universal ID" type="ST"/>
             <component name="receivingFacUniversalIdType" identifier="MSH-6.3" long-label="Receiving Facility Universal ID Type" type="ID"/>
         </field>
-        <field name="dateTimeOfMessage" identifer="MSH-7" long-label="Date and Time of Message" type="TS" min-occurrence="1" max-occurence="1"/>
-        <field name="security" identifer="MSH-8" long-label="Security" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="messageType" identifer="MSH-9" long-label="Message Type" type="MSG" min-occurrence="1" max-occurence="1">
+        <field name="dateTimeOfMessage" identifier="MSH-7" long-label="Date and Time of Message" type="TS" min-occurrence="1" max-occurence="1"/>
+        <field name="security" identifier="MSH-8" long-label="Security" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="messageType" identifier="MSH-9" long-label="Message Type" type="MSG" min-occurrence="1" max-occurence="1">
             <component name="messageTypeCurrent" identifier="MSH-9.1" long-label="Message Type Current" type="ID"/>
             <component name="messageTriggerEvent" identifier="MSH-9.2" long-label="Message Trigger Event" type="ID"/>
             <component name="messageStructure" identifier="MSH-9.3" long-label="Message Structure" type="ID"/>
         </field>
-        <field name="messageControlId" identifer="MSH-10" long-label="Message Control ID" type="ST" min-occurrence="1" max-occurence="1"/>
-        <field name="processingId" identifer="MSH-11" long-label="Processing ID" type="PT" min-occurrence="1" max-occurence="1">
+        <field name="messageControlId" identifier="MSH-10" long-label="Message Control ID" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="processingId" identifier="MSH-11" long-label="Processing ID" type="PT" min-occurrence="1" max-occurence="1">
             <component name="processingIdCurrent" identifier="MSH-11.1" long-label="Processing ID Current" type="ID"/>
             <component name="processingModeId" identifier="MSH-11.2" long-label="Processing Mode ID" type="ID"/>
         </field>
-        <field name="versionId" identifer="MSH-12" long-label="Version ID" type="VID" min-occurrence="1" max-occurence="1">
+        <field name="versionId" identifier="MSH-12" long-label="Version ID" type="VID" min-occurrence="1" max-occurence="1">
             <component name="versionIdCurrent" identifier="MSH-9.1" long-label="Version ID Current" type="ID"/>
             <component name="versionInternationalizationCode" identifier="MSH-9.2" long-label="Version Internationalization Code" type="CE"/>
             <component name="versionInternationalId" identifier="MSH-9.3" long-label="International Version ID" type="CE"/>
         </field>
-        <field name="sequenceNumber" identifer="MSH-13" long-label="Sequence Number" type="NM" min-occurrence="0" max-occurence="1"/>
-        <field name="continuationPointer" identifer="MSH-14" long-label="Continuation Pointer" type="ST" min-occurrence="0" max-occurence="1"/>
-        <field name="acceptAcknowledgmentType" identifer="MSH-15" long-label="Accept Acknowledgment Type" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="appAcknowledgmentType" identifer="MSH-16" long-label="Application Acknowledgment Type" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="countryCode" identifer="MSH-17" long-label="Country Code" type="ID" min-occurrence="0" max-occurence="1"/>
-        <field name="characterSet" identifer="MSH-18" long-label="Character Set" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="principalLanguageOfMessage" identifer="MSH-19" long-label="Principal Language of Message" type="CE" min-occurrence="0" max-occurence="1"/>
-        <field name="altCharacterSetScheme" identifer="MSH-20" long-label="Alternate Character Set Handling Scheme" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="messageProfileIdentifier" identifer="MSH-21" long-label="Message Profile Identifier" type="EI" min-occurrence="0" max-occurence="1"/>
+        <field name="sequenceNumber" identifier="MSH-13" long-label="Sequence Number" type="NM" min-occurrence="0" max-occurence="1"/>
+        <field name="continuationPointer" identifier="MSH-14" long-label="Continuation Pointer" type="ST" min-occurrence="0" max-occurence="1"/>
+        <field name="acceptAcknowledgmentType" identifier="MSH-15" long-label="Accept Acknowledgment Type" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="appAcknowledgmentType" identifier="MSH-16" long-label="Application Acknowledgment Type" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="countryCode" identifier="MSH-17" long-label="Country Code" type="ID" min-occurrence="0" max-occurence="1"/>
+        <field name="characterSet" identifier="MSH-18" long-label="Character Set" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="principalLanguageOfMessage" identifier="MSH-19" long-label="Principal Language of Message" type="CE" min-occurrence="0" max-occurence="1"/>
+        <field name="altCharacterSetScheme" identifier="MSH-20" long-label="Alternate Character Set Handling Scheme" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="messageProfileIdentifier" identifier="MSH-21" long-label="Message Profile Identifier" type="EI" min-occurrence="0" max-occurence="1"/>
     </segment>
     <segment identifier="SFT">
-        <field name="softwareVendorOrganization" identifer="SFT-1" long-label="Software Vendor Organization" type="XON" min-occurrence="1" max-occurence="1">
+        <field name="softwareVendorOrganization" identifier="SFT-1" long-label="Software Vendor Organization" type="XON" min-occurrence="1" max-occurence="1">
             <component name="softwareVendorOrgName" identifier="SFT-1.1" long-label="Software Vendor Organization Name" type="ST"/>
             <component name="softwareVendorOrgNameTypeCode" identifier="SFT-1.2" long-label="Software Vendor Organization Name Type Code" type="IS"/>
             <component name="softwareVendorIdNumber" identifier="SFT-1.3" long-label="Software Vendor ID Number" type="NM"/>
@@ -63,18 +63,18 @@
             <component name="softwareVendorNameRepresentationCode" identifier="SFT-1.9" long-label="Software Vendor Name Representation Code" type="ID"/>
             <component name="softwareVendorOrgIdentifier" identifier="SFT-1.10" long-label="Software Vendor Organization Identifier" type="ST"/>
         </field>
-        <field name="softwareCertVersionOrReleaseNum" identifer="SFT-2" long-label="Software Certified Version or Release Number" type="ST" min-occurrence="1" max-occurence="1"/>
-        <field name="softwareProductName" identifer="SFT-3" long-label="Software Product Name" type="ST" min-occurrence="1" max-occurence="1"/>
-        <field name="softwareBinaryId" identifer="SFT-4" long-label="Software Binary ID" type="ST" min-occurrence="1" max-occurence="1"/>
-        <field name="softwareProductInfo" identifer="SFT-5" long-label="Software Product Information" type="TX" min-occurrence="0" max-occurence="1"/>
-        <field name="softwareInstallDate" identifer="SFT-6" long-label="Software Install Date" type="TS" min-occurrence="0" max-occurence="1">
+        <field name="softwareCertVersionOrReleaseNum" identifier="SFT-2" long-label="Software Certified Version or Release Number" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="softwareProductName" identifier="SFT-3" long-label="Software Product Name" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="softwareBinaryId" identifier="SFT-4" long-label="Software Binary ID" type="ST" min-occurrence="1" max-occurence="1"/>
+        <field name="softwareProductInfo" identifier="SFT-5" long-label="Software Product Information" type="TX" min-occurrence="0" max-occurence="1"/>
+        <field name="softwareInstallDate" identifier="SFT-6" long-label="Software Install Date" type="TS" min-occurrence="0" max-occurence="1">
             <component name="softwareInstallTime" identifier="SFT-6.1" long-label="Software Install Time" type="DTM"/>
             <component name="softwareInstallDegreeOfPrecision" identifier="SFT-6.2" long-label="Software Install Degree of Precision" type="ID"/>
         </field>
     </segment>
     <segment identifier="PID">
-        <field name="setPidId" identifer="PID-1" long-label="Set PID ID" type="SI" min-occurrence="1" max-occurence="1"/>
-        <field name="patientId" identifer="PID-2" long-label="Patient ID" type="CX" min-occurrence="0" max-occurence="1">
+        <field name="setPidId" identifier="PID-1" long-label="Set PID ID" type="SI" min-occurrence="1" max-occurence="1"/>
+        <field name="patientId" identifier="PID-2" long-label="Patient ID" type="CX" min-occurrence="0" max-occurence="1">
             <component name="patIdNumber" identifier="PID-2.1" long-label="Patient ID Number" type="ST"/>
             <component name="patIdCheckDigit" identifier="PID-2.2" long-label="Patient ID Check Digit" type="ST"/>
             <component name="patIdCheckDigitScheme" identifier="PID-2.3" long-label="Patient ID Check Digit Scheme" type="ID"/>
@@ -114,7 +114,7 @@
                 <subcomponent name="patIdAgencyOriginalText" identifier="PID-2.10.9" long-label="Patient ID Agency Original Text" type="ST"/>
             </component>
         </field>
-        <field name="patientIdentifierList" identifer="PID-3" long-label="Patient Identifier List" type="CX" min-occurrence="1" max-occurence="8">
+        <field name="patientIdentifierList" identifier="PID-3" long-label="Patient Identifier List" type="CX" min-occurrence="1" max-occurence="8">
             <component name="patIdListNumber" identifier="PID-3.1" long-label="Patient Identifier List Number" type="ST"/>
             <component name="patIdListCheckDigit" identifier="PID-3.2" long-label="Patient Identifier List Check Digit" type="ST"/>
             <component name="patIdListheckDigitScheme" identifier="PID-3.3" long-label="Patient Identifier List Check Digit Scheme" type="ID"/>
@@ -154,8 +154,8 @@
                 <subcomponent name="patIdListAgencyOriginalText" identifier="PID-3.10.9" long-label="Patient Identifier List Original Text" type="ST"/>
             </component>
         </field>
-        <field name="alternatePatientId" identifer="PID-4" long-label="Alternate Patient ID" type="CX" min-occurrence="0" max-occurence="0"/>
-        <field name="patientName" identifer="PID-5" long-label="Patient Name" type="XPN" min-occurrence="1" max-occurence="8">
+        <field name="alternatePatientId" identifier="PID-4" long-label="Alternate Patient ID" type="CX" min-occurrence="0" max-occurence="0"/>
+        <field name="patientName" identifier="PID-5" long-label="Patient Name" type="XPN" min-occurrence="1" max-occurence="8">
             <component name="patFamilyName" identifier="PID-5.1" long-label="Patient Family Name" type="ST">
                 <subcomponent name="patLastNamePrefix" identifier="PID-5.1.1" long-label="Patient Last Name Prefix" type="ST"/>
             </component>
@@ -167,10 +167,10 @@
             <component name="patNameTypeCode" identifier="PID-5.7" long-label="Patient Name Type Code" type="ID"/>
             <component name="patNameRepresentationCode" identifier="PID-5.8" long-label="Patient Name Representation Code" type="ID"/>
         </field>
-        <field name="motherMaidenName" identifer="PID-6" long-label="Mother's Maiden Name" type="XPN" min-occurrence="0" max-occurence="0"/>
-        <field name="dateTimeOfBirth" identifer="PID-7" long-label="Date and Time of Birth" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="sex" identifer="PID-8" long-label="Sex" type="IS" min-occurrence="0" max-occurence="1"/>
-        <field name="patientAlias" identifer="PID-9" long-label="Patient Alias" type="XPN" min-occurrence="0" max-occurence="8">
+        <field name="motherMaidenName" identifier="PID-6" long-label="Mother's Maiden Name" type="XPN" min-occurrence="0" max-occurence="0"/>
+        <field name="dateTimeOfBirth" identifier="PID-7" long-label="Date and Time of Birth" type="TS" min-occurrence="0" max-occurence="1"/>
+        <field name="sex" identifier="PID-8" long-label="Sex" type="IS" min-occurrence="0" max-occurence="1"/>
+        <field name="patientAlias" identifier="PID-9" long-label="Patient Alias" type="XPN" min-occurrence="0" max-occurence="8">
             <component name="patAliasFamilyName" identifier="PID-9.1" long-label="Patient Alias Family Name" type="ST">
                 <subcomponent name="patAliasLastNamePrefix" identifier="PID-9.1.1" long-label="Patient Alias Last Name Prefix" type="ST"/>
             </component>
@@ -182,7 +182,7 @@
             <component name="patAliasNameTypeCode" identifier="PID-9.7" long-label="Patient Alias Name Type Code" type="ID"/>
             <component name="patAliasNameRepresentationCode" identifier="PID-9.8" long-label="Patient Alias Name Representation Code" type="ID"/>
         </field>
-        <field name="race" identifer="PID-10" long-label="Race" type="CE" min-occurrence="0" max-occurence="6">
+        <field name="race" identifier="PID-10" long-label="Race" type="CE" min-occurrence="0" max-occurence="6">
             <component name="raceIdentifier" identifier="PID-10.1" long-label="Race Identifier" type="ST"/>
             <component name="raceText" identifier="PID-10.2" long-label="Race Text" type="ST"/>
             <component name="raceCodingSystemName" identifier="PID-10.3" long-label="Race Name of Coding System" type="ST"/>
@@ -190,7 +190,7 @@
             <component name="raceAlternateText" identifier="PID-10.5" long-label="Race Alternate Text" type="ST"/>
             <component name="raceAlternateCodingSystemName" identifier="PID-10.6" long-label="Race Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="patientAddress" identifer="PID-11" long-label="Patient Address" type="XAD" min-occurrence="0" max-occurence="4">
+        <field name="patientAddress" identifier="PID-11" long-label="Patient Address" type="XAD" min-occurrence="0" max-occurence="4">
             <component name="patAddressStreet" identifier="PID-11.1" long-label="Patient Street Address" type="SAD">
                 <subcomponent name="patAddressStreetMailing" identifier="PID-11.1.1" long-label="Patient Address Street or Mailing" type="ST"/>
                 <subcomponent name="patAddressStreetName" identifier="PID-11.1.2" long-label="Patient Address Street Name" type="ST"/>
@@ -210,8 +210,8 @@
             <component name="patAddressEffectiveDate" identifier="PID-11.13" long-label="Patient Address Effective Date" type="TS"/>
             <component name="patAddressExpirationDate" identifier="PID-11.14" long-label="Patient Address Expiration Date" type="TS"/>
         </field>
-        <field name="countyCode" identifer="PID-12" long-label="County Code" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="homePhoneNumber" identifer="PID-13" long-label="Home Phone Number" type="XTN" min-occurrence="0" max-occurence="8">
+        <field name="countyCode" identifier="PID-12" long-label="County Code" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="homePhoneNumber" identifier="PID-13" long-label="Home Phone Number" type="XTN" min-occurrence="0" max-occurence="8">
             <component name="homePhonePrimaryNumber" identifier="PID-13.1" long-label="Home Phone Primary Number" type=""/>
             <component name="homePhoneTelecommUseCode" identifier="PID-13.2" long-label="Home Phone Telecommunication Use Code" type="ID"/>
             <component name="homePhoneTelecommEquipmentType" identifier="PID-13.3" long-label="Home Phone Telecommunication Equipment Type" type="ID"/>
@@ -222,7 +222,7 @@
             <component name="homePhoneExtension" identifier="PID-13.8" long-label="Home Phone Extension" type="NM"/>
             <component name="homePhoneAnyText" identifier="PID-13.9" long-label="Home Phone Any Text" type="ST"/>
         </field>
-        <field name="businessPhoneNumber" identifer="PID-14" long-label="Business Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
+        <field name="businessPhoneNumber" identifier="PID-14" long-label="Business Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
             <component name="businessPhonePrimaryNumber" identifier="PID-14.1" long-label="Business Phone Primary Number" type=""/>
             <component name="businessPhoneTelecommUseCode" identifier="PID-14.2" long-label="Business Phone Telecommunication Use Code" type="ID"/>
             <component name="businessPhoneTelecommEquipmentType" identifier="PID-14.3" long-label="Business Phone Telecommunication Equipment Type" type="ID"/>
@@ -233,7 +233,7 @@
             <component name="businessPhoneExtension" identifier="PID-14.8" long-label="Business Phone Extension" type="NM"/>
             <component name="businessPhoneAnyText" identifier="PID-14.9" long-label="Business Phone Any Text" type="ST"/>
         </field>
-        <field name="primaryLanguage" identifer="PID-15" long-label="Primary Language" type="CE" min-occurrence="0" max-occurence="1">
+        <field name="primaryLanguage" identifier="PID-15" long-label="Primary Language" type="CE" min-occurrence="0" max-occurence="1">
             <component name="primaryLanguageId" identifier="PID-15.1" long-label="Primary Language Identifier" type="ST"/>
             <component name="primaryLanguageText" identifier="PID-15.2" long-label="Primary Language Text" type="ST"/>
             <component name="primaryLanguageCodingSystemName" identifier="PID-15.3" long-label="Primary Language Name of Coding System" type="ST"/>
@@ -241,7 +241,7 @@
             <component name="primaryLanguageAltText" identifier="PID-15.5" long-label="Primary Language Alternate Text" type="ST"/>
             <component name="primaryLanguageAltCodingSystemName" identifier="PID-15.6" long-label="Primary Language Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="maritalStatus" identifer="PID-16" long-label="Marital Status" type="CE" min-occurrence="0" max-occurence="1">
+        <field name="maritalStatus" identifier="PID-16" long-label="Marital Status" type="CE" min-occurrence="0" max-occurence="1">
             <component name="maritalStatusId" identifier="PID-16.1" long-label="Marital Status Identifier" type="ST"/>
             <component name="maritalStatusText" identifier="PID-16.2" long-label="Marital Status Text" type="ST"/>
             <component name="maritalStatusCodingSystemName" identifier="PID-16.3" long-label="Marital Status Name of Coding System" type="ST"/>
@@ -249,7 +249,7 @@
             <component name="maritalStatusAltText" identifier="PID-16.5" long-label="Marital Status Alternate Text" type="ST"/>
             <component name="maritalStatusAltCodingSystemName" identifier="PID-16.6" long-label="Marital Status Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="religion" identifer="PID-17" long-label="Religion" type="CE" min-occurrence="0" max-occurence="1">
+        <field name="religion" identifier="PID-17" long-label="Religion" type="CE" min-occurrence="0" max-occurence="1">
             <component name="religionId" identifier="PID-17.1" long-label="Religion Identifier" type="ST"/>
             <component name="religionText" identifier="PID-17.2" long-label="Religion Text" type="ST"/>
             <component name="religionCodingSystemName" identifier="PID-17.3" long-label="Religion Name of Coding System" type="ST"/>
@@ -257,7 +257,7 @@
             <component name="religionAltText" identifier="PID-17.5" long-label="Religion Alternate Text" type="ST"/>
             <component name="religionAltCodingSystemName" identifier="PID-17.6" long-label="Religion Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="patientAccountNumber" identifer="PID-18" long-label="Patient Account Number" type="CX" min-occurrence="0" max-occurence="1">
+        <field name="patientAccountNumber" identifier="PID-18" long-label="Patient Account Number" type="CX" min-occurrence="0" max-occurence="1">
             <component name="patAccountId" identifier="PID-18.1" long-label="Patient Account ID" type="ST"/>
             <component name="patAccountCheckDigit" identifier="PID-18.2" long-label="Patient Account Check Digit" type="ST"/>
             <component name="patAccountCheckDigitScheme" identifier="PID-18.3" long-label="Patient Account Check Digit Scheme" type="ID"/>
@@ -297,10 +297,10 @@
                 <subcomponent name="patAccountAgencyOriginalText" identifier="PID-18.10.9" long-label="Patient Account Agency Original Text" type="ST"/>
             </component>
         </field>
-        <field name="patientSsn" identifer="PID-19" long-label="Patient SSN" type="ST" min-occurrence="0" max-occurence="1"/>
-        <field name="patDriversLicenseNumber" identifer="PID-20" long-label="Patient Driver's License Number" type="DLN" min-occurrence="0" max-occurence="0"/>
-        <field name="mothersId" identifer="PID-21" long-label="Mother's Identifier" type="CX" min-occurrence="0" max-occurence="0"/>
-        <field name="ethnicGroup" identifer="PID-22" long-label="Ethnic Group" type="CE" min-occurrence="0" max-occurence="4">
+        <field name="patientSsn" identifier="PID-19" long-label="Patient SSN" type="ST" min-occurrence="0" max-occurence="1"/>
+        <field name="patDriversLicenseNumber" identifier="PID-20" long-label="Patient Driver's License Number" type="DLN" min-occurrence="0" max-occurence="0"/>
+        <field name="mothersId" identifier="PID-21" long-label="Mother's Identifier" type="CX" min-occurrence="0" max-occurence="0"/>
+        <field name="ethnicGroup" identifier="PID-22" long-label="Ethnic Group" type="CE" min-occurrence="0" max-occurence="4">
             <component name="ethnicGroupId" identifier="PID-22.1" long-label="Ethnic Group Identifier" type="ST"/>
             <component name="ethnicGroupText" identifier="PID-22.2" long-label="Ethnic Group Text" type="ST"/>
             <component name="ethnicGroupCodingSystemName" identifier="PID-22.3" long-label="Ethnic Group Name of Coding System" type="ST"/>
@@ -308,27 +308,27 @@
             <component name="ethnicGroupAltText" identifier="PID-22.5" long-label="Ethnic Group Alternate Text" type="ST"/>
             <component name="ethnicGroupAltCodingSystemName" identifier="PID-22.6" long-label="Ethnic Group Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="birthPlace" identifer="PID-23" long-label="Birth Place" type="ST" min-occurrence="0" max-occurence="1"/>
-        <field name="multipleBirthIndicator" identifer="PID-24" long-label="Multiple Birth Indicator" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="birthOrder" identifer="PID-25" long-label="Birth Order" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="citizenship" identifer="PID-26" long-label="Citizenship" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="veteransMilitaryStatus" identifer="PID-27" long-label="Veterans Military Status" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="nationality" identifer="PID-28" long-label="Nationality" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="patientDeathDateTime" identifer="PID-29" long-label="Patient Death Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="patientDeathIndicator" identifer="PID-30" long-label="Patient Death Indicator" type="ID" min-occurrence="0" max-occurence="1"/>
-        <field name="identityUnknownIndicator" identifer="PID-31" long-label="Identity Unknown Indicator" type="ID" min-occurrence="0" max-occurence="1"/>
-        <field name="identityReliabilityCode" identifer="PID-32" long-label="Identity Reliability Code" type="IS" min-occurrence="0" max-occurence="3"/>
-        <field name="lastUpdateDateTime" identifer="PID-33" long-label="Last Update Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="lastUpdateFacility" identifer="PID-34" long-label="Last Update Facility" type="HD" min-occurrence="0" max-occurence="0"/>
-        <field name="speciesCode" identifer="PID-35" long-label="Species Code" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="breedCode" identifer="PID-36" long-label="Breed Code" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="strain" identifer="PID-37" long-label="Strain" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="productionClassCode" identifer="PID-38" long-label="Production Class Code" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="tribalCitizenship" identifer="PID-39" long-label="Tribal Citizenship" type="CWE" min-occurrence="0" max-occurence="5"/>
+        <field name="birthPlace" identifier="PID-23" long-label="Birth Place" type="ST" min-occurrence="0" max-occurence="1"/>
+        <field name="multipleBirthIndicator" identifier="PID-24" long-label="Multiple Birth Indicator" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="birthOrder" identifier="PID-25" long-label="Birth Order" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="citizenship" identifier="PID-26" long-label="Citizenship" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="veteransMilitaryStatus" identifier="PID-27" long-label="Veterans Military Status" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="nationality" identifier="PID-28" long-label="Nationality" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="patientDeathDateTime" identifier="PID-29" long-label="Patient Death Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
+        <field name="patientDeathIndicator" identifier="PID-30" long-label="Patient Death Indicator" type="ID" min-occurrence="0" max-occurence="1"/>
+        <field name="identityUnknownIndicator" identifier="PID-31" long-label="Identity Unknown Indicator" type="ID" min-occurrence="0" max-occurence="1"/>
+        <field name="identityReliabilityCode" identifier="PID-32" long-label="Identity Reliability Code" type="IS" min-occurrence="0" max-occurence="3"/>
+        <field name="lastUpdateDateTime" identifier="PID-33" long-label="Last Update Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="lastUpdateFacility" identifier="PID-34" long-label="Last Update Facility" type="HD" min-occurrence="0" max-occurence="0"/>
+        <field name="speciesCode" identifier="PID-35" long-label="Species Code" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="breedCode" identifier="PID-36" long-label="Breed Code" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="strain" identifier="PID-37" long-label="Strain" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="productionClassCode" identifier="PID-38" long-label="Production Class Code" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="tribalCitizenship" identifier="PID-39" long-label="Tribal Citizenship" type="CWE" min-occurrence="0" max-occurence="5"/>
     </segment>
     <segment identifier="NK1">
-        <field name="setNk1Id" identifer="NK1-1" long-label="Set NK1 ID" type="SI" min-occurrence="1" max-occurence="1"/>
-        <field name="name" identifer="NK1-2" long-label="Name" type="XPN" min-occurrence="0" max-occurence="4">
+        <field name="setNk1Id" identifier="NK1-1" long-label="Set NK1 ID" type="SI" min-occurrence="1" max-occurence="1"/>
+        <field name="name" identifier="NK1-2" long-label="Name" type="XPN" min-occurrence="0" max-occurence="4">
             <component name="nameFamily" identifier="NK1-2.1" long-label="Family Name" type="ST">
                 <subcomponent name="nameLastPrefix" identifier="NK1-2.1.1" long-label="Last Name Prefix" type="ST"/>
             </component>
@@ -340,7 +340,7 @@
             <component name="nameTypeCode" identifier="NK1-2.7" long-label="Name Type Code" type="ID"/>
             <component name="nameRepresentationCode" identifier="NK1-2.8" long-label="Name Representation Code" type="ID"/>
         </field>
-        <field name="relationship" identifer="NK1-3" long-label="Relationship" type="CE" min-occurrence="0" max-occurence="1">
+        <field name="relationship" identifier="NK1-3" long-label="Relationship" type="CE" min-occurrence="0" max-occurence="1">
             <component name="relationshipId" identifier="NK1-3.1" long-label="Relationship Identifier" type="ST"/>
             <component name="relationshipText" identifier="NK1-3.2" long-label="Relationship Text" type="ST"/>
             <component name="relationshipSystemName" identifier="NK1-3.3" long-label="Relationship Coding System Name" type="ST"/>
@@ -348,7 +348,7 @@
             <component name="relationshipAlternateText" identifier="NK1-3.5" long-label="Relationship Alternate Text" type="ST"/>
             <component name="relationshipAltSystemName" identifier="NK1-3.6" long-label="Relationship Alternate Coding System Name" type="ID"/>
         </field>
-        <field name="address" identifer="NK1-4" long-label="Address" type="XAD" min-occurrence="0" max-occurence="4">
+        <field name="address" identifier="NK1-4" long-label="Address" type="XAD" min-occurrence="0" max-occurence="4">
             <component name="addressStreet" identifier="NK1-4.1" long-label="Street Address" type="ST"/>
             <component name="addressOtherDesignation" identifier="NK1-4.2" long-label="Address Other Designation" type="ST"/>
             <component name="addressCity" identifier="NK1-4.3" long-label="Address City" type="ST"/>
@@ -361,7 +361,7 @@
             <component name="addressCensusTract" identifier="NK1-4.10" long-label="Address Census Tract" type="IS"/>
             <component name="addressRepresentationCode" identifier="NK1-4.11" long-label="Address Representation Code" type="ID"/>
         </field>
-        <field name="phoneNumber" identifer="NK1-5" long-label="Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
+        <field name="phoneNumber" identifier="NK1-5" long-label="Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
             <component name="phonePrimaryNumber" identifier="NK1-5.1" long-label="Phone Primary Number" type=""/>
             <component name="phoneTelecommUseCode" identifier="NK1-5.2" long-label="Phone Telecommunication Use Code" type="ID"/>
             <component name="phoneTelecommEquipmentType" identifier="NK1-5.3" long-label="Phone Telecommunication Equipment Type" type="ID"/>
@@ -372,117 +372,117 @@
             <component name="phoneExtension" identifier="NK1-5.8" long-label="Phone Extension" type="NM"/>
             <component name="phoneAnyText" identifier="NK1-5.9" long-label="Phone Any Text" type="ST"/>
         </field>
-        <field name="businessPhoneNumber" identifer="NK1-6" long-label="Business Phone Number" type="XTN" min-occurrence="0" max-occurence="0"/>
-        <field name="contactRole" identifer="NK1-7" long-label="Contact Role" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="startDate" identifer="NK1-8" long-label="Start Date" type="DT" min-occurrence="0" max-occurence="0"/>
-        <field name="endDate" identifer="NK1-9" long-label="End Date" type="DT" min-occurrence="0" max-occurence="0"/>
-        <field name="apJobTitle" identifer="NK1-10" long-label="Next of Kin or AP Job Title" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="apJobCode" identifer="NK1-11" long-label="Next of Kin or AP Job Code" type="JCC" min-occurrence="0" max-occurence="0"/>
-        <field name="apEmployeeNumber" identifer="NK1-12" long-label="Next of Kin or AP Employee Number" type="CX" min-occurrence="0" max-occurence="0"/>
-        <field name="organizationName" identifer="NK1-13" long-label="Organization Name" type="XON" min-occurrence="0" max-occurence="0"/>
-        <field name="maritalStatus" identifer="NK1-14" long-label="Marital Status" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="sex" identifer="NK1-15" long-label="Sex" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="dateTimeOfBirth" identifer="NK1-16" long-label="Date and Time of Birth" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="livingDependency" identifer="NK1-17" long-label="Living Dependency" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="ambulatoryStatus" identifer="NK1-18" long-label="Ambulatory Status" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="citizenship" identifer="NK1-19" long-label="Citizenship" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="primaryLanguage" identifer="NK1-20" long-label="Primary Language" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="livingArrangement" identifer="NK1-21" long-label="Living Arrangement" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="publicityCode" identifer="NK1-22" long-label="Publicity Code" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="protectionIndicator" identifer="NK1-23" long-label="Protection Indicator" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="studentIndicator" identifer="NK1-24" long-label="Student Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="religion" identifer="NK1-25" long-label="Religion" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="mothersMaidenName" identifer="NK1-26" long-label="Mother's Maiden Name" type="XPN" min-occurrence="0" max-occurence="0"/>
-        <field name="nationality" identifer="NK1-27" long-label="Nationality" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="ethnicGroup" identifer="NK1-28" long-label="Ethnic Group" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="contactReason" identifer="NK1-29" long-label="Contact Reason" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="contactName" identifer="NK1-30" long-label="Contact Name" type="XPN" min-occurrence="0" max-occurence="0"/>
-        <field name="contactPhoneNumber" identifer="NK1-31" long-label="Contact Phone Number" type="XTN" min-occurrence="0" max-occurence="0"/>
-        <field name="contactAddress" identifer="NK1-32" long-label="Contact Address" type="XAD" min-occurrence="0" max-occurence="0"/>
-        <field name="apsIdentifier" identifer="NK1-33" long-label="Next of Kin or AP's Identifier" type="CX" min-occurrence="0" max-occurence="0"/>
-        <field name="jobStatus" identifer="NK1-34" long-label="Job Status" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="race" identifer="NK1-35" long-label="Race" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="handicap" identifer="NK1-36" long-label="Handicap" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="contactPersonSsn" identifer="NK1-37" long-label="Contact Person SSN" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="nextOfKinBirthPlace" identifer="NK1-38" long-label="Next of Kin Birth Place" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="vipIndicator" identifer="NK1-39" long-label="VIP Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="businessPhoneNumber" identifier="NK1-6" long-label="Business Phone Number" type="XTN" min-occurrence="0" max-occurence="0"/>
+        <field name="contactRole" identifier="NK1-7" long-label="Contact Role" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="startDate" identifier="NK1-8" long-label="Start Date" type="DT" min-occurrence="0" max-occurence="0"/>
+        <field name="endDate" identifier="NK1-9" long-label="End Date" type="DT" min-occurrence="0" max-occurence="0"/>
+        <field name="apJobTitle" identifier="NK1-10" long-label="Next of Kin or AP Job Title" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="apJobCode" identifier="NK1-11" long-label="Next of Kin or AP Job Code" type="JCC" min-occurrence="0" max-occurence="0"/>
+        <field name="apEmployeeNumber" identifier="NK1-12" long-label="Next of Kin or AP Employee Number" type="CX" min-occurrence="0" max-occurence="0"/>
+        <field name="organizationName" identifier="NK1-13" long-label="Organization Name" type="XON" min-occurrence="0" max-occurence="0"/>
+        <field name="maritalStatus" identifier="NK1-14" long-label="Marital Status" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="sex" identifier="NK1-15" long-label="Sex" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="dateTimeOfBirth" identifier="NK1-16" long-label="Date and Time of Birth" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="livingDependency" identifier="NK1-17" long-label="Living Dependency" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="ambulatoryStatus" identifier="NK1-18" long-label="Ambulatory Status" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="citizenship" identifier="NK1-19" long-label="Citizenship" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="primaryLanguage" identifier="NK1-20" long-label="Primary Language" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="livingArrangement" identifier="NK1-21" long-label="Living Arrangement" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="publicityCode" identifier="NK1-22" long-label="Publicity Code" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="protectionIndicator" identifier="NK1-23" long-label="Protection Indicator" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="studentIndicator" identifier="NK1-24" long-label="Student Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="religion" identifier="NK1-25" long-label="Religion" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="mothersMaidenName" identifier="NK1-26" long-label="Mother's Maiden Name" type="XPN" min-occurrence="0" max-occurence="0"/>
+        <field name="nationality" identifier="NK1-27" long-label="Nationality" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="ethnicGroup" identifier="NK1-28" long-label="Ethnic Group" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="contactReason" identifier="NK1-29" long-label="Contact Reason" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="contactName" identifier="NK1-30" long-label="Contact Name" type="XPN" min-occurrence="0" max-occurence="0"/>
+        <field name="contactPhoneNumber" identifier="NK1-31" long-label="Contact Phone Number" type="XTN" min-occurrence="0" max-occurence="0"/>
+        <field name="contactAddress" identifier="NK1-32" long-label="Contact Address" type="XAD" min-occurrence="0" max-occurence="0"/>
+        <field name="apsIdentifier" identifier="NK1-33" long-label="Next of Kin or AP's Identifier" type="CX" min-occurrence="0" max-occurence="0"/>
+        <field name="jobStatus" identifier="NK1-34" long-label="Job Status" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="race" identifier="NK1-35" long-label="Race" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="handicap" identifier="NK1-36" long-label="Handicap" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="contactPersonSsn" identifier="NK1-37" long-label="Contact Person SSN" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="nextOfKinBirthPlace" identifier="NK1-38" long-label="Next of Kin Birth Place" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="vipIndicator" identifier="NK1-39" long-label="VIP Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
     </segment>
     <segment identifier="PV1">
-        <field name="setPv1Id" identifer="PV1-1" long-label="Set PV1 ID" type="SI" min-occurrence="0" max-occurence="1"/>
-        <field name="patientClass" identifer="PV1-2" long-label="Patient Class" type="IS" min-occurrence="1" max-occurence="1"/>
-        <field name="assignedPatientLocation" identifer="PV1-3" long-label="Assigned Patient Location" type="PL" min-occurrence="0" max-occurence="0"/>
-        <field name="admissionType" identifer="PV1-4" long-label="Admission Type" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="preadmitNumber" identifer="PV1-5" long-label="Preadmit Number" type="CX" min-occurrence="0" max-occurence="0"/>
-        <field name="priorPatientLocation" identifer="PV1-6" long-label="Prior Patient Location" type="PL" min-occurrence="0" max-occurence="0"/>
-        <field name="attendingDoctor" identifer="PV1-7" long-label="Attending Doctor" type="XCN" min-occurrence="0" max-occurence="2"/>
-        <field name="referringDoctor" identifer="PV1-8" long-label="Referring Doctor" type="XCN" min-occurrence="0" max-occurence="2"/>
-        <field name="consultingDoctor" identifer="PV1-9" long-label="Consulting Doctor" type="XCN" min-occurrence="0" max-occurence="2"/>
-        <field name="hospitalService" identifer="PV1-10" long-label="Hospital Service" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="temporaryLocation" identifer="PV1-11" long-label="Temporary Location" type="PL" min-occurrence="0" max-occurence="0"/>
-        <field name="preadmitTestIndicator" identifer="PV1-12" long-label="Preadmit Test Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="readmissionIndicator" identifer="PV1-13" long-label="Re-admission Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="admitSource" identifer="PV1-14" long-label="Admit Source" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="ambulatoryStatus" identifer="PV1-15" long-label="Ambulatory Status" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="vipIndicator" identifer="PV1-16" long-label="VIP Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="admittingDoctor" identifer="PV1-17" long-label="Admitting Doctor" type="XCN" min-occurrence="0" max-occurence="2"/>
-        <field name="patientType" identifer="PV1-18" long-label="Patient Type" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="visitNumber" identifer="PV1-19" long-label="Visit Number" type="CX" min-occurrence="0" max-occurence="0"/>
-        <field name="financialClass" identifer="PV1-20" long-label="Financial Class" type="FC" min-occurrence="0" max-occurence="0"/>
-        <field name="chargePriceIndicator" identifer="PV1-21" long-label="Charge Price Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="courtesyCode" identifer="PV1-22" long-label="Courtesy Code" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="creditRating" identifer="PV1-23" long-label="Credit Rating" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="contractCode" identifer="PV1-24" long-label="Contract Code" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="contractEffectiveDate" identifer="PV1-25" long-label="Contract Effective Date" type="DT" min-occurrence="0" max-occurence="0"/>
-        <field name="contractAmount" identifer="PV1-26" long-label="Contract Amount" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="contractPeriod" identifer="PV1-27" long-label="Contract Period" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="interestCode" identifer="PV1-28" long-label="Interest Code" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="transferToBadDebtCode" identifer="PV1-29" long-label="Transfer to Bad Debt Code" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="transferToBadDebtDate" identifer="PV1-30" long-label="Transfer to Bad Debt Date" type="DT" min-occurrence="0" max-occurence="0"/>
-        <field name="badDebtAgencyCode" identifer="PV1-31" long-label="Bad Debt Agency Code" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="badDebtTransferAmount" identifer="PV1-32" long-label="Bad Debt Transfer Amount" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="badDebtRecoveryAmount" identifer="PV1-33" long-label="Bad Debt Recovery Amount" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="deleteAccountIndicator" identifer="PV1-34" long-label="Delete Account Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="deleteAccountDate" identifer="PV1-35" long-label="Delete Account Date" type="DT" min-occurrence="0" max-occurence="0"/>
-        <field name="dischargeDisposition" identifer="PV1-36" long-label="Discharge Disposition" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="dischargedToLocation" identifer="PV1-37" long-label="Discharged to Location" type="DLD" min-occurrence="0" max-occurence="0"/>
-        <field name="dietType" identifer="PV1-38" long-label="Diet Type" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="servicingFacility" identifer="PV1-39" long-label="Servicing Facility" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="bedStatus" identifer="PV1-40" long-label="Bed Status" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="accountStatus" identifer="PV1-41" long-label="Account Status" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="pendingLocation" identifer="PV1-42" long-label="Pending Location" type="PL" min-occurrence="0" max-occurence="0"/>
-        <field name="priorTemporaryLocation" identifer="PV1-43" long-label="Prior Temporary Location" type="PL" min-occurrence="0" max-occurence="0"/>
-        <field name="admitDateTime" identifer="PV1-44" long-label="Admit Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="dischargeDateTime" identifer="PV1-45" long-label="Discharge Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="currPatientBalance" identifer="PV1-46" long-label="Current Patient Balance" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="totalCharges" identifer="PV1-47" long-label="Total Charges" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="totalAdjustments" identifer="PV1-48" long-label="Total Adjustments" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="totalPayments" identifer="PV1-49" long-label="Total Payments" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="alternateVisitId" identifer="PV1-50" long-label="Alternate Visit ID" type="CX" min-occurrence="0" max-occurence="0"/>
-        <field name="visitIndicator" identifer="PV1-51" long-label="Visit Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
-        <field name="otherHealthcareProvider" identifer="PV1-52" long-label="Other Healthcare Provider" type="XCN" min-occurrence="0" max-occurence="0"/>
+        <field name="setPv1Id" identifier="PV1-1" long-label="Set PV1 ID" type="SI" min-occurrence="0" max-occurence="1"/>
+        <field name="patientClass" identifier="PV1-2" long-label="Patient Class" type="IS" min-occurrence="1" max-occurence="1"/>
+        <field name="assignedPatientLocation" identifier="PV1-3" long-label="Assigned Patient Location" type="PL" min-occurrence="0" max-occurence="0"/>
+        <field name="admissionType" identifier="PV1-4" long-label="Admission Type" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="preadmitNumber" identifier="PV1-5" long-label="Preadmit Number" type="CX" min-occurrence="0" max-occurence="0"/>
+        <field name="priorPatientLocation" identifier="PV1-6" long-label="Prior Patient Location" type="PL" min-occurrence="0" max-occurence="0"/>
+        <field name="attendingDoctor" identifier="PV1-7" long-label="Attending Doctor" type="XCN" min-occurrence="0" max-occurence="2"/>
+        <field name="referringDoctor" identifier="PV1-8" long-label="Referring Doctor" type="XCN" min-occurrence="0" max-occurence="2"/>
+        <field name="consultingDoctor" identifier="PV1-9" long-label="Consulting Doctor" type="XCN" min-occurrence="0" max-occurence="2"/>
+        <field name="hospitalService" identifier="PV1-10" long-label="Hospital Service" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="temporaryLocation" identifier="PV1-11" long-label="Temporary Location" type="PL" min-occurrence="0" max-occurence="0"/>
+        <field name="preadmitTestIndicator" identifier="PV1-12" long-label="Preadmit Test Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="readmissionIndicator" identifier="PV1-13" long-label="Re-admission Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="admitSource" identifier="PV1-14" long-label="Admit Source" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="ambulatoryStatus" identifier="PV1-15" long-label="Ambulatory Status" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="vipIndicator" identifier="PV1-16" long-label="VIP Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="admittingDoctor" identifier="PV1-17" long-label="Admitting Doctor" type="XCN" min-occurrence="0" max-occurence="2"/>
+        <field name="patientType" identifier="PV1-18" long-label="Patient Type" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="visitNumber" identifier="PV1-19" long-label="Visit Number" type="CX" min-occurrence="0" max-occurence="0"/>
+        <field name="financialClass" identifier="PV1-20" long-label="Financial Class" type="FC" min-occurrence="0" max-occurence="0"/>
+        <field name="chargePriceIndicator" identifier="PV1-21" long-label="Charge Price Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="courtesyCode" identifier="PV1-22" long-label="Courtesy Code" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="creditRating" identifier="PV1-23" long-label="Credit Rating" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="contractCode" identifier="PV1-24" long-label="Contract Code" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="contractEffectiveDate" identifier="PV1-25" long-label="Contract Effective Date" type="DT" min-occurrence="0" max-occurence="0"/>
+        <field name="contractAmount" identifier="PV1-26" long-label="Contract Amount" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="contractPeriod" identifier="PV1-27" long-label="Contract Period" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="interestCode" identifier="PV1-28" long-label="Interest Code" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="transferToBadDebtCode" identifier="PV1-29" long-label="Transfer to Bad Debt Code" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="transferToBadDebtDate" identifier="PV1-30" long-label="Transfer to Bad Debt Date" type="DT" min-occurrence="0" max-occurence="0"/>
+        <field name="badDebtAgencyCode" identifier="PV1-31" long-label="Bad Debt Agency Code" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="badDebtTransferAmount" identifier="PV1-32" long-label="Bad Debt Transfer Amount" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="badDebtRecoveryAmount" identifier="PV1-33" long-label="Bad Debt Recovery Amount" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="deleteAccountIndicator" identifier="PV1-34" long-label="Delete Account Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="deleteAccountDate" identifier="PV1-35" long-label="Delete Account Date" type="DT" min-occurrence="0" max-occurence="0"/>
+        <field name="dischargeDisposition" identifier="PV1-36" long-label="Discharge Disposition" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="dischargedToLocation" identifier="PV1-37" long-label="Discharged to Location" type="DLD" min-occurrence="0" max-occurence="0"/>
+        <field name="dietType" identifier="PV1-38" long-label="Diet Type" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="servicingFacility" identifier="PV1-39" long-label="Servicing Facility" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="bedStatus" identifier="PV1-40" long-label="Bed Status" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="accountStatus" identifier="PV1-41" long-label="Account Status" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="pendingLocation" identifier="PV1-42" long-label="Pending Location" type="PL" min-occurrence="0" max-occurence="0"/>
+        <field name="priorTemporaryLocation" identifier="PV1-43" long-label="Prior Temporary Location" type="PL" min-occurrence="0" max-occurence="0"/>
+        <field name="admitDateTime" identifier="PV1-44" long-label="Admit Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="dischargeDateTime" identifier="PV1-45" long-label="Discharge Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="currPatientBalance" identifier="PV1-46" long-label="Current Patient Balance" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="totalCharges" identifier="PV1-47" long-label="Total Charges" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="totalAdjustments" identifier="PV1-48" long-label="Total Adjustments" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="totalPayments" identifier="PV1-49" long-label="Total Payments" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="alternateVisitId" identifier="PV1-50" long-label="Alternate Visit ID" type="CX" min-occurrence="0" max-occurence="0"/>
+        <field name="visitIndicator" identifier="PV1-51" long-label="Visit Indicator" type="IS" min-occurrence="0" max-occurence="0"/>
+        <field name="otherHealthcareProvider" identifier="PV1-52" long-label="Other Healthcare Provider" type="XCN" min-occurrence="0" max-occurence="0"/>
     </segment>
     <segment identifier="ORC">
-        <field name="orderControl" identifer="ORC-1" long-label="Order Control" type="ID" min-occurrence="1" max-occurence="1"/>
-        <field name="placerOrderNumber" identifer="ORC-2" long-label="Placer Order Number" type="EI" min-occurrence="0" max-occurence="0"/>
-        <field name="fillerOrderNumber" identifer="ORC-3" long-label="Filler Order Number" type="EI" min-occurrence="0" max-occurence="0"/>
-        <field name="placerGroupNumber" identifer="ORC-4" long-label="Placer Group Number" type="EI" min-occurrence="0" max-occurence="0"/>
-        <field name="orderStatus" identifer="ORC-5" long-label="Order Status" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="responseFlag" identifer="ORC-6" long-label="Response Flag" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="quantityAndTiming" identifer="ORC-7" long-label="Quantity and Timing" type="TQ" min-occurrence="0" max-occurence="0"/>
-        <field name="parent" identifer="ORC-8" long-label="Parent" type="EIP" min-occurrence="0" max-occurence="0"/>
-        <field name="dateTimeOfTransaction" identifer="ORC-9" long-label="Date and Time of Transaction" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="enteredBy" identifer="ORC-10" long-label="Entered By" type="XCN" min-occurrence="0" max-occurence="0"/>
-        <field name="verifiedBy" identifer="ORC-11" long-label="Verified By" type="XCN" min-occurrence="0" max-occurence="0"/>
-        <field name="orderingProvider" identifer="ORC-12" long-label="Ordering Provider" type="XCN" min-occurrence="0" max-occurence="0"/>
-        <field name="enterersLocation" identifer="ORC-13" long-label="Enterer's Location" type="PL" min-occurrence="0" max-occurence="0"/>
-        <field name="callbackPhoneNumber" identifer="ORC-14" long-label="Callback Phone Number" type="XTN" min-occurrence="0" max-occurence="0"/>
-        <field name="orderEffectiveDateTime" identifer="ORC-15" long-label="Order Effective Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="orderControlCodeReason" identifer="ORC-16" long-label="Order Control Code Reason" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="enteringOrganization" identifer="ORC-17" long-label="Entering Organization" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="enteringDevice" identifer="ORC-18" long-label="Entering Device" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="actionBy" identifer="ORC-19" long-label="Action By" type="XCN" min-occurrence="0" max-occurence="0"/>
-        <field name="advBeneficiaryNoticeCode" identifer="ORC-20" long-label="Advanced Beneficiary Notice Code" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="orderingFacName" identifer="ORC-21" long-label="Ordering Facility Name" type="XON" min-occurrence="0" max-occurence="4">
+        <field name="orderControl" identifier="ORC-1" long-label="Order Control" type="ID" min-occurrence="1" max-occurence="1"/>
+        <field name="placerOrderNumber" identifier="ORC-2" long-label="Placer Order Number" type="EI" min-occurrence="0" max-occurence="0"/>
+        <field name="fillerOrderNumber" identifier="ORC-3" long-label="Filler Order Number" type="EI" min-occurrence="0" max-occurence="0"/>
+        <field name="placerGroupNumber" identifier="ORC-4" long-label="Placer Group Number" type="EI" min-occurrence="0" max-occurence="0"/>
+        <field name="orderStatus" identifier="ORC-5" long-label="Order Status" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="responseFlag" identifier="ORC-6" long-label="Response Flag" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="quantityAndTiming" identifier="ORC-7" long-label="Quantity and Timing" type="TQ" min-occurrence="0" max-occurence="0"/>
+        <field name="parent" identifier="ORC-8" long-label="Parent" type="EIP" min-occurrence="0" max-occurence="0"/>
+        <field name="dateTimeOfTransaction" identifier="ORC-9" long-label="Date and Time of Transaction" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="enteredBy" identifier="ORC-10" long-label="Entered By" type="XCN" min-occurrence="0" max-occurence="0"/>
+        <field name="verifiedBy" identifier="ORC-11" long-label="Verified By" type="XCN" min-occurrence="0" max-occurence="0"/>
+        <field name="orderingProvider" identifier="ORC-12" long-label="Ordering Provider" type="XCN" min-occurrence="0" max-occurence="0"/>
+        <field name="enterersLocation" identifier="ORC-13" long-label="Enterer's Location" type="PL" min-occurrence="0" max-occurence="0"/>
+        <field name="callbackPhoneNumber" identifier="ORC-14" long-label="Callback Phone Number" type="XTN" min-occurrence="0" max-occurence="0"/>
+        <field name="orderEffectiveDateTime" identifier="ORC-15" long-label="Order Effective Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="orderControlCodeReason" identifier="ORC-16" long-label="Order Control Code Reason" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="enteringOrganization" identifier="ORC-17" long-label="Entering Organization" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="enteringDevice" identifier="ORC-18" long-label="Entering Device" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="actionBy" identifier="ORC-19" long-label="Action By" type="XCN" min-occurrence="0" max-occurence="0"/>
+        <field name="advBeneficiaryNoticeCode" identifier="ORC-20" long-label="Advanced Beneficiary Notice Code" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="orderingFacName" identifier="ORC-21" long-label="Ordering Facility Name" type="XON" min-occurrence="0" max-occurence="4">
             <component name="orderingFacOrgName" identifier="ORC-21.1" long-label="Ordering Facility Organization Name" type="ST"/>
             <component name="orderingFacOrgNameTypeCode" identifier="ORC-21.2" long-label="Ordering Facility Organization Name Type Code" type="IS"/>
             <component name="orderingFacIdNumber" identifier="ORC-21.3" long-label="Ordering Facility ID Number" type="NM"/>
@@ -502,7 +502,7 @@
             <component name="orderingFacNameRepCode" identifier="ORC-21.9" long-label="Ordering Facility Name Representation Code" type="ID"/>
             <component name="orderingFacOrgIdentifier" identifier="ORC-21.10" long-label="Ordering Facility Organization Identifier" type="ST"/>
         </field>
-        <field name="orderingFacAddress" identifer="ORC-22" long-label="Ordering Facility Address" type="XAD" min-occurrence="0" max-occurence="4">
+        <field name="orderingFacAddress" identifier="ORC-22" long-label="Ordering Facility Address" type="XAD" min-occurrence="0" max-occurence="4">
             <component name="ordFacAddressStreet" identifier="ORC-22.1" long-label="Ordering Facility Street Address" type="ST"/>
             <component name="ordFacAddressOtherDesignation" identifier="ORC-22.2" long-label="Ordering Facility Address Other Designation" type="ST"/>
             <component name="ordFacAddressCity" identifier="ORC-22.3" long-label="Ordering Facility Address City" type="ST"/>
@@ -515,7 +515,7 @@
             <component name="ordFacAddressCensusTract" identifier="ORC-22.10" long-label="Ordering Facility Address Census Tract" type="IS"/>
             <component name="ordFacAddressRepresentationCode" identifier="ORC-22.11" long-label="Ordering Facility Address Representation Code" type="ID"/>
         </field>
-        <field name="orderingFacPhoneNumber" identifer="ORC-23" long-label="Ordering Facility Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
+        <field name="orderingFacPhoneNumber" identifier="ORC-23" long-label="Ordering Facility Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
             <component name="ordFacPhonePrimaryNumber" identifier="ORC-23.1" long-label="Ordering Facility Phone Primary Number" type=""/>
             <component name="ordFacPhoneTelecommUseCode" identifier="ORC-23.2" long-label="Ordering Facility Phone Telecommunication Use Code" type="ID"/>
             <component name="ordFacPhoneTelecommEquipmentType" identifier="ORC-23.3" long-label="Ordering Facility Phone Telecommunication Equipment Type" type="ID"/>
@@ -526,7 +526,7 @@
             <component name="ordFacPhoneExtension" identifier="ORC-23.8" long-label="Ordering Facility Phone Extension" type="NM"/>
             <component name="ordFacPhoneAnyText" identifier="ORC-23.9" long-label="Ordering Facility Phone Any Text" type="ST"/>
         </field>
-        <field name="orderingProviderAddress" identifer="ORC-24" long-label="Ordering Provider Address" type="XAD" min-occurrence="0" max-occurence="4">
+        <field name="orderingProviderAddress" identifier="ORC-24" long-label="Ordering Provider Address" type="XAD" min-occurrence="0" max-occurence="4">
             <component name="ordProvAddressStreet" identifier="ORC-24.1" long-label="Ordering Provider Street Address" type="ST"/>
             <component name="ordProvFacAddressOtherDesignation" identifier="ORC-24.2" long-label="Ordering Provider Address Other Designation" type="ST"/>
             <component name="ordProvAddressCity" identifier="ORC-24.3" long-label="Ordering Provider Address City" type="ST"/>
@@ -539,10 +539,10 @@
             <component name="ordProvAddressCensusTract" identifier="ORC-24.10" long-label="Ordering Provider Address Census Tract" type="IS"/>
             <component name="ordProvAddressRepresentationCode" identifier="ORC-24.11" long-label="Ordering Provider Address Representation Code" type="ID"/>
         </field>
-        <field name="orderStatusModifier" identifer="ORC-25" long-label="Order Status Modifier" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="advBeneficiaryReason" identifer="ORC-26" long-label="Advanced Beneficiary Notice Override Reason" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="fillersExpAvailDateTime" identifer="ORC-27" long-label="Filler's Expected Availability Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="confidentialityCode" identifer="ORC-28" long-label="Confidentiality Code" type="CWE" min-occurrence="0" max-occurence="1">
+        <field name="orderStatusModifier" identifier="ORC-25" long-label="Order Status Modifier" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="advBeneficiaryReason" identifier="ORC-26" long-label="Advanced Beneficiary Notice Override Reason" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="fillersExpAvailDateTime" identifier="ORC-27" long-label="Filler's Expected Availability Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="confidentialityCode" identifier="ORC-28" long-label="Confidentiality Code" type="CWE" min-occurrence="0" max-occurence="1">
             <component name="confCodeId" identifier="ORC-28.1" long-label="Confidentiality Code Identifier" type="ST"/>
             <component name="confCodeText" identifier="ORC-28.2" long-label="Confidentiality Code Text" type="ST"/>
             <component name="confCodeSystemName" identifier="ORC-28.3" long-label="Confidentiality Code Coding System Name" type="ID"/>
@@ -553,9 +553,9 @@
             <component name="confCodeAltSystemVersionId" identifier="ORC-28.8" long-label="Confidentiality Code Alternate Coding System Version ID" type="ST"/>
             <component name="confCodeOriginalText" identifier="ORC-28.9" long-label="Confidentiality Code Original Text" type="ST"/>
         </field>
-        <field name="orderType" identifer="ORC-29" long-label="Order Type" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="entererAuthMode" identifer="ORC-30" long-label="Enterer Authorization Mode" type="CNE" min-occurrence="0" max-occurence="0"/>
-        <field name="parentUnivServId" identifer="ORC-31" long-label="Parent Universal Service Identifier" type="CWE" min-occurrence="0" max-occurence="1">
+        <field name="orderType" identifier="ORC-29" long-label="Order Type" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="entererAuthMode" identifier="ORC-30" long-label="Enterer Authorization Mode" type="CNE" min-occurrence="0" max-occurence="0"/>
+        <field name="parentUnivServId" identifier="ORC-31" long-label="Parent Universal Service Identifier" type="CWE" min-occurrence="0" max-occurence="1">
             <component name="parentUnivServIdNumber" identifier="ORC-31.1" long-label="Parent Universal Service Identifier Number" type="ST"/>
             <component name="parentUnivServText" identifier="ORC-31.2" long-label="Parent Universal Service Text" type="ST"/>
             <component name="parentUnivServSystemName" identifier="ORC-31.3" long-label="Parent Universal Service Coding System Name" type="ID"/>
@@ -568,20 +568,20 @@
         </field>
     </segment>
     <segment identifier=" OBR">
-        <field name="setObrId" identifer="OBR-1" long-label="Set OBR ID" type="SI" min-occurrence="1" max-occurence="1"/>
-        <field name="placerOrderNumber" identifer="OBR-2" long-label="Placer Order Number" type="EI" min-occurrence="0" max-occurence="1">
+        <field name="setObrId" identifier="OBR-1" long-label="Set OBR ID" type="SI" min-occurrence="1" max-occurence="1"/>
+        <field name="placerOrderNumber" identifier="OBR-2" long-label="Placer Order Number" type="EI" min-occurrence="0" max-occurence="1">
             <component name="placerOrderEntityId" identifier="OBR-2.1" long-label="Placer Order Entity ID" type="ST"/>
             <component name="placerOrderNamespaceId" identifier="OBR-2.2" long-label="Placer Order Namespace ID" type="IS"/>
             <component name="placerOrderUniversalId" identifier="OBR-2.3" long-label="Placer Order Universal ID" type="ST"/>
             <component name="placerOrderUniversalIdType" identifier="OBR-2.4" long-label="Placer Order Universal ID Type" type="ID"/>
         </field>
-        <field name="FillerOrderNumber" identifer="OBR-3" long-label="Filler Order Number" type="EI" min-occurrence="1" max-occurence="1">
+        <field name="FillerOrderNumber" identifier="OBR-3" long-label="Filler Order Number" type="EI" min-occurrence="1" max-occurence="1">
             <component name="fillerOrderEntityId" identifier="OBR-3.1" long-label="Filler Order Entity ID" type="ST"/>
             <component name="fillerOrderNamespaceId" identifier="OBR-3.2" long-label="Filler Order Namespace ID" type="IS"/>
             <component name="fillerOrderUniversalId" identifier="OBR-3.3" long-label="Filler Order Universal ID" type="ST"/>
             <component name="fillerOrderUniversalIdType" identifier="OBR-3.4" long-label="Filler Order Universal ID Type" type="ID"/>
         </field>
-        <field name="universalServiceId" identifer="OBR-4" long-label="Universal Service ID" type="CE" min-occurrence="1" max-occurence="1">
+        <field name="universalServiceId" identifier="OBR-4" long-label="Universal Service ID" type="CE" min-occurrence="1" max-occurence="1">
             <component name="univServiceIdCurrent" identifier="OBR-4.1" long-label="Universal Service Identifier Current" type="ST"/>
             <component name="univServiceText" identifier="OBR-4.2" long-label="Universal Service Text" type="ST"/>
             <component name="univServiceCodingSystemName" identifier="OBR-4.3" long-label="Universal Service Coding System Name" type="ST"/>
@@ -589,17 +589,17 @@
             <component name="univServiceAltText" identifier="OBR-4.5" long-label="Universal Service Alternate Text" type="ST"/>
             <component name="univServiceAltCodingSystemName" identifier="OBR-4.6" long-label="Universal Service Alternate Coding System Name" type="ST"/>
         </field>
-        <field name="priority" identifer="OBR-5" long-label="Priority" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="requestedDateTime" identifer="OBR-6" long-label="Requested Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="observationDateTime" identifer="OBR-7" long-label="Observation Date and Time" type="TS" min-occurrence="1" max-occurence="1"/>
-        <field name="observationEndDateTime" identifer="OBR-8" long-label="Observation End Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="collectionVolume" identifer="OBR-9" long-label="Collection Volume" type="CQ" min-occurrence="0" max-occurence="0"/>
-        <field name="collectorId" identifer="OBR-10" long-label="Collector Identifier" type="XCN" min-occurrence="0" max-occurence="4"/>
-        <field name="specimenActionCode" identifer="OBR-11" long-label="Specimen Action Code" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="dangerCode" identifer="OBR-12" long-label="Danger Code" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="relevantClinicalInfo" identifer="OBR-13" long-label="Relevant Clinical Information" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenReceivedDateTime" identifer="OBR-14" long-label="Specimen Received Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="specimenSource" identifer="OBR-15" long-label="Specimen Source" type="SPS" min-occurrence="0" max-occurence="1">
+        <field name="priority" identifier="OBR-5" long-label="Priority" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="requestedDateTime" identifier="OBR-6" long-label="Requested Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="observationDateTime" identifier="OBR-7" long-label="Observation Date and Time" type="TS" min-occurrence="1" max-occurence="1"/>
+        <field name="observationEndDateTime" identifier="OBR-8" long-label="Observation End Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="collectionVolume" identifier="OBR-9" long-label="Collection Volume" type="CQ" min-occurrence="0" max-occurence="0"/>
+        <field name="collectorId" identifier="OBR-10" long-label="Collector Identifier" type="XCN" min-occurrence="0" max-occurence="4"/>
+        <field name="specimenActionCode" identifier="OBR-11" long-label="Specimen Action Code" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="dangerCode" identifier="OBR-12" long-label="Danger Code" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="relevantClinicalInfo" identifier="OBR-13" long-label="Relevant Clinical Information" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenReceivedDateTime" identifier="OBR-14" long-label="Specimen Received Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
+        <field name="specimenSource" identifier="OBR-15" long-label="Specimen Source" type="SPS" min-occurrence="0" max-occurence="1">
             <component name="specSourceName" identifier="OBR-15.1" long-label="Specimen Source Name or Code" type="CE">
                 <subcomponent name="specSourceNameId" identifier="OBR-15.1.1" long-label="Specimen Source Name ID" type="ST"/>
                 <subcomponent name="specSourceNameText" identifier="OBR-15.1.2" long-label="Specimen Source Name Text" type="ST"/>
@@ -635,7 +635,7 @@
                 <subcomponent name="specSourceMethodModAltCodingSystemName" identifier="OBR-15.6.6" long-label="Specimen Source Collection Method Modifier Alternate Coding System Name" type="ST"/>
             </component>
         </field>
-        <field name="orderingProvider" identifer="OBR-16" long-label="Ordering Provider" type="XCN" min-occurrence="0" max-occurence="4">
+        <field name="orderingProvider" identifier="OBR-16" long-label="Ordering Provider" type="XCN" min-occurrence="0" max-occurence="4">
             <component name="orderingProvId" identifier="OBR-16.1" long-label="Ordering Provider ID" type="ST"/>
             <component name="orderingProvFamilyName" identifier="OBR-16.2" long-label="Ordering Provider Family Name" type="ST">
                 <subcomponent name="orderingProvLastNamePrefix" identifier="OBX-16.2.1" long-label="Ordering Provider Last Name Prefix" type="ST"/>
@@ -662,7 +662,7 @@
             </component>
             <component name="orderingProvNameRepCode" identifier="OBR-16.15" long-label="Ordering Provider Name Representation Code" type="ID"/>
         </field>
-        <field name="orderCallbackPhoneNumber" identifer="OBR-17" long-label="Order Callback Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
+        <field name="orderCallbackPhoneNumber" identifier="OBR-17" long-label="Order Callback Phone Number" type="XTN" min-occurrence="0" max-occurence="4">
             <component name="callbackPhonePrimaryNumber" identifier="OBR-17.1" long-label="Order Callback Phone Primary Number" type=""/>
             <component name="callbackPhoneTelecommUseCode" identifier="OBR-17.2" long-label="Order Callback Phone Telecommunication Use Code" type="ID"/>
             <component name="callbackPhoneTelecommEquipmentType" identifier="OBR-17.3" long-label="Order Callback Phone Telecommunication Equipment Type" type="ID"/>
@@ -673,22 +673,22 @@
             <component name="callbackPhoneExtension" identifier="OBR-17.8" long-label="Order Callback Phone Extension" type="NM"/>
             <component name="callbackPhoneAnyText" identifier="OBR-17.9" long-label="Order Callback Phone Any Text" type="ST"/>
         </field>
-        <field name="placerField1" identifer="OBR-18" long-label="Placer Field 1" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="placerField2" identifer="OBR-19" long-label="Placer Field 2" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="fillerField1" identifer="OBR-20" long-label="Filler Field 1" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="fillerField2" identifer="OBR-21" long-label="Filler Field 2" type="ST" min-occurrence="0" max-occurence="1"/>
-        <field name="resultsRptDateTime" identifer="OBR-22" long-label="Results Report or Status Change Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="chargeToPractice" identifer="OBR-23" long-label="Charge to Practice" type="MOC" min-occurrence="0" max-occurence="0"/>
-        <field name="diagnosticServiceSectId" identifer="OBR-24" long-label="Diagnostic Service Sect ID" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="resultStatus" identifer="OBR-25" long-label="Result Status" type="ID" min-occurrence="1" max-occurence="1"/>
-        <field name="parentResult" identifer="OBR-26" long-label="Parent Result" type="PRL" min-occurrence="0" max-occurence="1">
+        <field name="placerField1" identifier="OBR-18" long-label="Placer Field 1" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="placerField2" identifier="OBR-19" long-label="Placer Field 2" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="fillerField1" identifier="OBR-20" long-label="Filler Field 1" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="fillerField2" identifier="OBR-21" long-label="Filler Field 2" type="ST" min-occurrence="0" max-occurence="1"/>
+        <field name="resultsRptDateTime" identifier="OBR-22" long-label="Results Report or Status Change Date and Time" type="TS" min-occurrence="0" max-occurence="1"/>
+        <field name="chargeToPractice" identifier="OBR-23" long-label="Charge to Practice" type="MOC" min-occurrence="0" max-occurence="0"/>
+        <field name="diagnosticServiceSectId" identifier="OBR-24" long-label="Diagnostic Service Sect ID" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="resultStatus" identifier="OBR-25" long-label="Result Status" type="ID" min-occurrence="1" max-occurence="1"/>
+        <field name="parentResult" identifier="OBR-26" long-label="Parent Result" type="PRL" min-occurrence="0" max-occurence="1">
             <component name="parentResultObsId" identifier="OBR-26.1" long-label="Parent Result Observation Identifier" type="CE"/>
             <component name="parentResultObsSubId" identifier="OBR-26.2" long-label="Parent Result Observation Sub-Identifier" type="ST"/>
             <component name="parentResultObsValueDescriptor" identifier="OBR-26.3" long-label="Parent Result Observation Identifier" type="TX"/>
         </field>
-        <field name="quantityAndTiming" identifer="OBR-27" long-label="Quantity and Timing" type="TQ" min-occurrence="0" max-occurence="0"/>
-        <field name="resultCopiesTo" identifer="OBR-28" long-label="Result Copies To" type="XCN" min-occurrence="0" max-occurence="0"/>
-        <field name="parent" identifer="OBR-29" long-label="Parent" type="EIP" min-occurrence="0" max-occurence="1">
+        <field name="quantityAndTiming" identifier="OBR-27" long-label="Quantity and Timing" type="TQ" min-occurrence="0" max-occurence="0"/>
+        <field name="resultCopiesTo" identifier="OBR-28" long-label="Result Copies To" type="XCN" min-occurrence="0" max-occurence="0"/>
+        <field name="parent" identifier="OBR-29" long-label="Parent" type="EIP" min-occurrence="0" max-occurence="1">
             <component name="parentsPlacerOrderNumber" identifier="OBR-29.1" long-label="Parent's Placer Order Number" type="EI">
                 <subcomponent name="parentsPlacerOrderEntityId" identifier="OBR-29.1.1" long-label="Parent's Placer Order Entity Identifier" type="ST"/>
                 <subcomponent name="parentsPlacerOrderNamespaceId" identifier="OBR-29.1.2" long-label="Parent's Placer Order Namespace ID" type="IS"/>
@@ -702,8 +702,8 @@
                 <subcomponent name="parentsFillerOrderUniversalIdType" identifier="OBR-29.2.4" long-label="Parent's Filler Order Universal ID Type" type="ID"/>
             </component>
         </field>
-        <field name="transportationMode" identifer="OBR-30" long-label="Transportation Mode" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="reasonForStudy" identifer="OBR-31" long-label="Reason for Study" type="CE" min-occurrence="0" max-occurence="20">
+        <field name="transportationMode" identifier="OBR-30" long-label="Transportation Mode" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="reasonForStudy" identifier="OBR-31" long-label="Reason for Study" type="CE" min-occurrence="0" max-occurence="20">
             <component name="reasonForStudyId" identifier="OBR-31.1" long-label="Reason for Study Identifier" type="ST"/>
             <component name="reasonForStudyText" identifier="OBR-31.2" long-label="Reason for Study Text" type="ST"/>
             <component name="reasonForStudyCodingSystemName" identifier="OBR-31.3" long-label="Reason for Study Name of Coding System" type="ST"/>
@@ -711,7 +711,7 @@
             <component name="reasonForStudyAlternateText" identifier="OBR-31.5" long-label="Reason for Study Alternate Text" type="ST"/>
             <component name="reasonForStudyAltCodingSystemName" identifier="OBR-31.6" long-label="Reason for Study Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="principalResultInterpreter" identifer="OBR-32" long-label="Principal Result Interpreter" type="NDL" min-occurrence="0" max-occurence="1">
+        <field name="principalResultInterpreter" identifier="OBR-32" long-label="Principal Result Interpreter" type="NDL" min-occurrence="0" max-occurence="1">
             <component name="resultIntName" identifier="OBR-32.1" long-label="Principal Result Interpreter Name" type="CNN">
                 <subcomponent name="resultIntNameIdNumber" identifier="OBR-32.1.1" long-label="Principal Result Interpreter Name ID Number" type="ST"/>
                 <subcomponent name="resultIntFamilyName" identifier="OBR-32.1.2" long-label="Principal Result Interpreter Family Name" type="ST"/>
@@ -740,18 +740,18 @@
             <component name="resultIntBuilding" identifier="OBR-32.10" long-label="Principal Result Interpreter Building" type="IS"/>
             <component name="resultIntFloor" identifier="OBR-32.11" long-label="Principal Result Interpreter Floor" type="IS"/>
         </field>
-        <field name="assistantResultInterpreter" identifer="OBR-33" long-label="Assistant Result Interpreter" type="NDL" min-occurrence="0" max-occurence="0"/>
-        <field name="technician" identifer="OBR-34" long-label="Technician" type="NDL" min-occurrence="0" max-occurence="0"/>
-        <field name="transcriptionist" identifer="OBR-35" long-label="Transcriptionist" type="NDL" min-occurrence="0" max-occurence="0"/>
-        <field name="scheduledDateTime" identifer="OBR-36" long-label="Scheduled Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="numberOfSampleContainers" identifer="OBR-37" long-label="Number of Sample Containers" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="transportLogistics" identifer="OBR-38" long-label="Transport Logistics of Collected Sample" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="collectorsComment" identifer="OBR-39" long-label="Collector's Comment" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="transportArrangedResp" identifer="OBR-40" long-label="Transport Arrangement Responsibility" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="transportArranged" identifer="OBR-41" long-label="Transport Arranged" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="escortRequired" identifer="OBR-42" long-label="Escort Required" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="plannedPatTransportComment" identifer="OBR-43" long-label="Planned Patient Transport Comment" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="procedureCode" identifer="OBR-44" long-label="Procedure Code" type="CWE" min-occurrence="0" max-occurence="1">
+        <field name="assistantResultInterpreter" identifier="OBR-33" long-label="Assistant Result Interpreter" type="NDL" min-occurrence="0" max-occurence="0"/>
+        <field name="technician" identifier="OBR-34" long-label="Technician" type="NDL" min-occurrence="0" max-occurence="0"/>
+        <field name="transcriptionist" identifier="OBR-35" long-label="Transcriptionist" type="NDL" min-occurrence="0" max-occurence="0"/>
+        <field name="scheduledDateTime" identifier="OBR-36" long-label="Scheduled Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="numberOfSampleContainers" identifier="OBR-37" long-label="Number of Sample Containers" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="transportLogistics" identifier="OBR-38" long-label="Transport Logistics of Collected Sample" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="collectorsComment" identifier="OBR-39" long-label="Collector's Comment" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="transportArrangedResp" identifier="OBR-40" long-label="Transport Arrangement Responsibility" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="transportArranged" identifier="OBR-41" long-label="Transport Arranged" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="escortRequired" identifier="OBR-42" long-label="Escort Required" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="plannedPatTransportComment" identifier="OBR-43" long-label="Planned Patient Transport Comment" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="procedureCode" identifier="OBR-44" long-label="Procedure Code" type="CWE" min-occurrence="0" max-occurence="1">
             <component name="procedureCodeId" identifier="OBR-44.1" long-label="Procedure Code Identifier" type="ST"/>
             <component name="procedureCodeText" identifier="OBR-44.2" long-label="Procedure Code Text" type="ST"/>
             <component name="procedureCodeCodingSystemName" identifier="OBR-44.3" long-label="OProcedure Code Name of Coding System" type="ST"/>
@@ -762,17 +762,17 @@
             <component name="procedureCodeAltCodingSystemVerId" identifier="OBR-44.8" long-label="Procedure Code Alternate Coding System Version ID" type="ST"/>
             <component name="procedureCodeOriginalText" identifier="OBR-44.9" long-label="Procedure Code Original Text" type="ST"/>
         </field>
-        <field name="procedureCodeModifier" identifer="OBR-45" long-label="Procedure Code Modifier" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="placerSuppServiceInfo" identifer="OBR-46" long-label="Placer Supplemental Service Information" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="fillerSuppServiceInfo" identifer="OBR-47" long-label="Filler Supplemental Service Information" type="CE" min-occurrence="0" max-occurence="0"/>
-        <field name="dupProcedureReason" identifer="OBR-48" long-label="Medically Necessary Duplicate Procedure Reason" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="resultHandling" identifer="OBR-49" long-label="Result Handling" type="IS" min-occurrence="0" max-occurence="1"/>
-        <field name="parentUniversalServiceId" identifer="OBR-50" long-label="Parent Universal Service Identifier" type="CWE" min-occurrence="0" max-occurence="1"/>
+        <field name="procedureCodeModifier" identifier="OBR-45" long-label="Procedure Code Modifier" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="placerSuppServiceInfo" identifier="OBR-46" long-label="Placer Supplemental Service Information" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="fillerSuppServiceInfo" identifier="OBR-47" long-label="Filler Supplemental Service Information" type="CE" min-occurrence="0" max-occurence="0"/>
+        <field name="dupProcedureReason" identifier="OBR-48" long-label="Medically Necessary Duplicate Procedure Reason" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="resultHandling" identifier="OBR-49" long-label="Result Handling" type="IS" min-occurrence="0" max-occurence="1"/>
+        <field name="parentUniversalServiceId" identifier="OBR-50" long-label="Parent Universal Service Identifier" type="CWE" min-occurrence="0" max-occurence="1"/>
     </segment>
     <segment identifier="OBX">
-        <field name="setObxId" identifer="OBX-1" long-label="Set OBX ID" type="SI" min-occurrence="1" max-occurence="1"/>
-        <field name="valueType" identifer="OBX-2" long-label="Value Type" type="ID" min-occurrence="1" max-occurence="1"/>
-        <field name="observationId" identifer="OBX-3" long-label="Observation Identifier" type="CE" min-occurrence="1" max-occurence="1">
+        <field name="setObxId" identifier="OBX-1" long-label="Set OBX ID" type="SI" min-occurrence="1" max-occurence="1"/>
+        <field name="valueType" identifier="OBX-2" long-label="Value Type" type="ID" min-occurrence="1" max-occurence="1"/>
+        <field name="observationId" identifier="OBX-3" long-label="Observation Identifier" type="CE" min-occurrence="1" max-occurence="1">
             <component name="observationIdCurrent" identifier="OBX-3.1" long-label="Observation Identifier Current" type="ST"/>
             <component name="observationText" identifier="OBX-3.2" long-label="Observation Text" type="ST"/>
             <component name="observationCodingSystemName" identifier="OBX-3.3" long-label="Observation Name of Coding System" type="ST"/>
@@ -780,9 +780,9 @@
             <component name="observationAlternateText" identifier="OBX-3.5" long-label="Observation Alternate Text" type="ST"/>
             <component name="observationAltCodingSystemName" identifier="OBX-3.6" long-label="Observation Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="observationSubId" identifer="OBX-4" long-label="Observation Sub-ID" type="ST" min-occurrence="0" max-occurence="1"/>
-        <field name="observationValue" identifer="OBX-5" long-label="Observation Value" type="" min-occurrence="1" max-occurence="12"/>
-        <field name="units" identifer="OBX-6" long-label="Units" type="CE" min-occurrence="0" max-occurence="1">
+        <field name="observationSubId" identifier="OBX-4" long-label="Observation Sub-ID" type="ST" min-occurrence="0" max-occurence="1"/>
+        <field name="observationValue" identifier="OBX-5" long-label="Observation Value" type="" min-occurrence="1" max-occurence="12"/>
+        <field name="units" identifier="OBX-6" long-label="Units" type="CE" min-occurrence="0" max-occurence="1">
             <component name="unitsId" identifier="OBX-6.1" long-label="Units" type="ST"/>
             <component name="unitsText" identifier="OBX-6.2" long-label="Units Text" type="ST"/>
             <component name="unitsCodingSystemName" identifier="OBX-6.3" long-label="Units Name of Coding System" type="ST"/>
@@ -790,15 +790,15 @@
             <component name="unitsAlternateText" identifier="OBX-6.5" long-label="Units Alternate Text" type="ST"/>
             <component name="unitsAltCodingSystemName" identifier="OBX-6.6" long-label="Units Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="referenceRanges" identifer="OBX-7" long-label="Reference Ranges" type="ST" min-occurrence="0" max-occurence="1"/>
-        <field name="abnormalFlags" identifer="OBX-8" long-label="Abnormal Flags" type="ID" min-occurrence="0" max-occurence="5"/>
-        <field name="probability" identifer="OBX-9" long-label="Probability" type="NM" min-occurrence="0" max-occurence="1"/>
-        <field name="natureOfAbnormalTest" identifer="OBX-10" long-label="Nature of Abnormal Test" type="ID" min-occurrence="0" max-occurence="5"/>
-        <field name="obsResultStatus" identifer="OBX-11" long-label="Observation Result Status" type="ID" min-occurrence="1" max-occurence="1"/>
-        <field name="dateRefRangeValues" identifer="OBX-12" long-label="Date of Reference Range Values" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="userDefAccessChecks" identifer="OBX-13" long-label="User Defined Access Checks" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="dateTimeOfObservation" identifer="OBX-14" long-label="Date and Time of Observation" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="producersReference" identifer="OBX-15" long-label="Producer's Reference" type="CE" min-occurrence="1" max-occurence="1">
+        <field name="referenceRanges" identifier="OBX-7" long-label="Reference Ranges" type="ST" min-occurrence="0" max-occurence="1"/>
+        <field name="abnormalFlags" identifier="OBX-8" long-label="Abnormal Flags" type="ID" min-occurrence="0" max-occurence="5"/>
+        <field name="probability" identifier="OBX-9" long-label="Probability" type="NM" min-occurrence="0" max-occurence="1"/>
+        <field name="natureOfAbnormalTest" identifier="OBX-10" long-label="Nature of Abnormal Test" type="ID" min-occurrence="0" max-occurence="5"/>
+        <field name="obsResultStatus" identifier="OBX-11" long-label="Observation Result Status" type="ID" min-occurrence="1" max-occurence="1"/>
+        <field name="dateRefRangeValues" identifier="OBX-12" long-label="Date of Reference Range Values" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="userDefAccessChecks" identifier="OBX-13" long-label="User Defined Access Checks" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="dateTimeOfObservation" identifier="OBX-14" long-label="Date and Time of Observation" type="TS" min-occurrence="0" max-occurence="1"/>
+        <field name="producersReference" identifier="OBX-15" long-label="Producer's Reference" type="CE" min-occurrence="1" max-occurence="1">
             <component name="producersRefId" identifier="OBX-15.1" long-label="Producer's Reference Identifier" type="ST"/>
             <component name="producersRefText" identifier="OBX-15.2" long-label="Producer's Reference Text" type="ST"/>
             <component name="producersRefCodingSystemName" identifier="OBX-15.3" long-label="Producer's Reference Name of Coding System" type="ST"/>
@@ -806,7 +806,7 @@
             <component name="producersRefAlternateText" identifier="OBX-15.5" long-label="Producer's Reference Alternate Text" type="ST"/>
             <component name="producersRefAltCodingSystemName" identifier="OBX-15.6" long-label="Producer's Reference Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="responsibleObserver" identifer="OBX-16" long-label="Responsible Observer" type="XCN" min-occurrence="0" max-occurence="5">
+        <field name="responsibleObserver" identifier="OBX-16" long-label="Responsible Observer" type="XCN" min-occurrence="0" max-occurence="5">
             <component name="respObsIdNumber" identifier="OBX-16.1" long-label="Responsible Observer ID Number" type="ST"/>
             <component name="respObsFamilyName" identifier="OBX-16.2" long-label="Responsible Observer Family Name" type="ST">
                 <subcomponent name="respObsLastNamePrefix" identifier="OBX-16.2.1" long-label="Responsible Observer Last Name Prefix" type="ST"/>
@@ -833,7 +833,7 @@
             </component>
             <component name="respObsNameRepCode" identifier="OBX-16.15" long-label="Responsible Observer Name Representation Code" type="ID"/>
         </field>
-        <field name="observationMethod" identifer="OBX-17" long-label="Observation Method" type="CE" min-occurrence="0" max-occurence="6">
+        <field name="observationMethod" identifier="OBX-17" long-label="Observation Method" type="CE" min-occurrence="0" max-occurence="6">
             <component name="obsMethodId" identifier="OBX-3.1" long-label="Observation Method Identifier" type="ST"/>
             <component name="obsMethodText" identifier="OBX-3.2" long-label="Observation Method Text" type="ST"/>
             <component name="obsMethodCodingSystemName" identifier="OBX-3.3" long-label="Observation Method Name of Coding System" type="ST"/>
@@ -841,12 +841,12 @@
             <component name="obsMethodAlternateText" identifier="OBX-3.5" long-label="Observation Method Alternate Text" type="ST"/>
             <component name="obsMethodAltCodingSystemName" identifier="OBX-3.6" long-label="Observation Method Name of Alternate Coding System" type="ST"/>
         </field>
-        <field name="equipmentInstanceId" identifer="OBX-18" long-label="Equipment Instance ID" type="EI" min-occurrence="0" max-occurence="1"/>
-        <field name="dateTimeOfAnalysis" identifer="OBX-19" long-label="Date and Time of Analysis" type="TS" min-occurrence="0" max-occurence="1"/>
-        <field name="reserved" identifer="OBX-20" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
-        <field name="reserved" identifer="OBX-21" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
-        <field name="reserved" identifer="OBX-22" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
-        <field name="performingOrgName" identifer="OBX-23" long-label="Performing Organization Name" type="XON" min-occurrence="0" max-occurence="1">
+        <field name="equipmentInstanceId" identifier="OBX-18" long-label="Equipment Instance ID" type="EI" min-occurrence="0" max-occurence="1"/>
+        <field name="dateTimeOfAnalysis" identifier="OBX-19" long-label="Date and Time of Analysis" type="TS" min-occurrence="0" max-occurence="1"/>
+        <field name="reserved" identifier="OBX-20" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
+        <field name="reserved" identifier="OBX-21" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
+        <field name="reserved" identifier="OBX-22" long-label="Reserved V2.6" type="" min-occurrence="0" max-occurence="0"/>
+        <field name="performingOrgName" identifier="OBX-23" long-label="Performing Organization Name" type="XON" min-occurrence="0" max-occurence="1">
             <component name="perfOrgNameCurrent" identifier="OBX-23.1" long-label="Performing Organization Name Current" type="ST"/>
             <component name="perfOrgNameTypeCode" identifier="OBX-23.2" long-label="Performing Organization Name Type Code" type="IS"/>
             <component name="perfOrgIdNumber" identifier="OBX-23.3" long-label="Performing Organization ID Number" type="NM"/>
@@ -858,7 +858,7 @@
             <component name="perfOrgNameRepresentationCode" identifier="OBX-23.9" long-label="Performing Organization Name Representation Code" type="ID"/>
             <component name="perfOrgIdentifier" identifier="OBX-23.10" long-label="Performing Organization Identifier" type="ST"/>
         </field>
-        <field name="performingOrgAddress" identifer="OBX-24" long-label="Performing Organization Address" type="XAD" min-occurrence="0" max-occurence="1">
+        <field name="performingOrgAddress" identifier="OBX-24" long-label="Performing Organization Address" type="XAD" min-occurrence="0" max-occurence="1">
             <component name="perfOrgAddressStreet" identifier="OBX-24.1" long-label="Performing Organization Street Address" type="SAD"/>
             <component name="perfOrgAddressOtherDesignation" identifier="OBX-24.2" long-label="Performing Organization Address Other Designation" type="ST"/>
             <component name="perfOrgAddressCity" identifier="OBX-24.3" long-label="Performing Organization Address City" type="ST"/>
@@ -874,17 +874,17 @@
             <component name="perfOrgAddressEffectiveDate" identifier="OBX-24.13" long-label="Performing Organization Address Effective Date" type="TS"/>
             <component name="perfOrgAddressExpirationDate" identifier="OBX-24.14" long-label="Performing Organization Address Expiration Date" type="TS"/>
         </field>
-        <field name="performingOrgMedDirector" identifer="OBX-25" long-label="Performing Organization Medical Director" type="XCN" min-occurrence="0" max-occurence="0"/>
+        <field name="performingOrgMedDirector" identifier="OBX-25" long-label="Performing Organization Medical Director" type="XCN" min-occurrence="0" max-occurence="0"/>
     </segment>
     <segment identifier="NTE">
-        <field name="setNteId" identifer="NTE-1" long-label="Set NTE ID" type="SI" min-occurrence="0" max-occurence="1"/>
-        <field name="sourceOfComment" identifer="NTE-2" long-label="Source of Comment" type="ID" min-occurrence="0" max-occurence="1"/>
-        <field name="comment" identifer="NTE-3" long-label="Comment" type="FT" min-occurrence="0" max-occurence="4"/>
-        <field name="commentType" identifer="NTE-4" long-label="Comment Type" type="CE" min-occurrence="0" max-occurence="1"/>
+        <field name="setNteId" identifier="NTE-1" long-label="Set NTE ID" type="SI" min-occurrence="0" max-occurence="1"/>
+        <field name="sourceOfComment" identifier="NTE-2" long-label="Source of Comment" type="ID" min-occurrence="0" max-occurence="1"/>
+        <field name="comment" identifier="NTE-3" long-label="Comment" type="FT" min-occurrence="0" max-occurence="4"/>
+        <field name="commentType" identifier="NTE-4" long-label="Comment Type" type="CE" min-occurrence="0" max-occurence="1"/>
     </segment>
     <segment identifier="SPM">
-        <field name="setSpmId" identifer="SPM-1" long-label="Set SPM-ID" type="SI" min-occurrence="0" max-occurence="1"/>
-        <field name="specimenId" identifer="SPM-2" long-label="Specimen ID" type="EIP" min-occurrence="1" max-occurence="1">
+        <field name="setSpmId" identifier="SPM-1" long-label="Set SPM-ID" type="SI" min-occurrence="0" max-occurence="1"/>
+        <field name="specimenId" identifier="SPM-2" long-label="Specimen ID" type="EIP" min-occurrence="1" max-occurence="1">
             <component name="specPlacerAssignedId" identifier="SPM-2.1" long-label="Specimen Placer Assigned Identifier" type="EI">
                 <subcomponent name="specPlacerEntityId" identifier="SPM-2.1.1" long-label="Specimen Placer Entity Identifier" type="ST"/>
                 <subcomponent name="specPlacerNamespaceId" identifier="SPM-2.1.2" long-label="Specimen Placer Namespace ID" type="IS"/>
@@ -898,7 +898,7 @@
                 <subcomponent name="specFillerUniversalIdType" identifier="SPM-2.2.4" long-label="Specimen Filler Universal ID Type" type="ID"/>
             </component>
         </field>
-        <field name="specimenParentIds" identifer="SPM-3" long-label="Specimen Parent IDs" type="EIP" min-occurrence="0" max-occurence="1">
+        <field name="specimenParentIds" identifier="SPM-3" long-label="Specimen Parent IDs" type="EIP" min-occurrence="0" max-occurence="1">
             <component name="specParentPlacerAssignedId" identifier="SPM-3.1" long-label="Specimen Parent Placer Assigned Identifier" type="EI">
                 <subcomponent name="specParentPlacerEntityId" identifier="SPM-3.1.1" long-label="Specimen Parent Placer Entity Identifier" type="ST"/>
                 <subcomponent name="specParentPlacerNamespaceId" identifier="SPM-3.1.2" long-label="Specimen Parent Placer Namespace ID" type="IS"/>
@@ -912,7 +912,7 @@
                 <subcomponent name="specParentFillerUniversalIdType" identifier="SPM-3.2.4" long-label="Specimen Parent Filler Universal ID Type" type="ID"/>
             </component>
         </field>
-        <field name="specimenType" identifer="SPM-4" long-label="Specimen Type" type="CWE" min-occurrence="1" max-occurence="1">
+        <field name="specimenType" identifier="SPM-4" long-label="Specimen Type" type="CWE" min-occurrence="1" max-occurence="1">
             <component name="specTypeId" identifier="SPM-4.1" long-label="Specimen Type Identifier" type="ST"/>
             <component name="specTypeText" identifier="SPM-4.2" long-label="Specimen Type Text" type="ST"/>
             <component name="specTypeSystemName" identifier="SPM-4.3" long-label="Specimen Type Coding System Name" type="ID"/>
@@ -923,19 +923,19 @@
             <component name="specTypeAltSystemVersionId" identifier="SPM-4.8" long-label="Specimen Type Alternate Coding System Version ID" type="ST"/>
             <component name="specTypeOriginalText" identifier="SPM-4.9" long-label="Specimen Type Original Text" type="ST"/>
         </field>
-        <field name="specimenTypeModifier" identifer="SPM-5" long-label="Specimen Type Modifier" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenAdditives" identifer="SPM-6" long-label="Specimen Additives" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenCollectionMethod" identifer="SPM-7" long-label="Specimen Collection Method" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenSourceSite" identifer="SPM-8" long-label="Specimen Source Site" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenSourceSiteModifier" identifer="SPM-9" long-label="Specimen Source Site Modifier" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenCollectionSite" identifer="SPM-10" long-label="Specimen Collection Site" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenRole" identifer="SPM-11" long-label="Specimen Role" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenCollectionAmount" identifer="SPM-12" long-label="Specimen Collection Amount" type="CQ" min-occurrence="0" max-occurence="0"/>
-        <field name="groupedSpecimenCount" identifer="SPM-13" long-label="Grouped Specimen Count" type="NM" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenDescription" identifer="SPM-14" long-label="Specimen Description" type="ST" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenHandlingCode" identifer="SPM-15" long-label="Specimen Handling Code" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenRiskCode" identifer="SPM-16" long-label="Specimen Risk Code" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenCollectionDateTime" identifer="SPM-17" long-label="Specimen Collection Date and Time" type="DR" min-occurrence="0" max-occurence="1">
+        <field name="specimenTypeModifier" identifier="SPM-5" long-label="Specimen Type Modifier" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenAdditives" identifier="SPM-6" long-label="Specimen Additives" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenCollectionMethod" identifier="SPM-7" long-label="Specimen Collection Method" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenSourceSite" identifier="SPM-8" long-label="Specimen Source Site" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenSourceSiteModifier" identifier="SPM-9" long-label="Specimen Source Site Modifier" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenCollectionSite" identifier="SPM-10" long-label="Specimen Collection Site" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenRole" identifier="SPM-11" long-label="Specimen Role" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenCollectionAmount" identifier="SPM-12" long-label="Specimen Collection Amount" type="CQ" min-occurrence="0" max-occurence="0"/>
+        <field name="groupedSpecimenCount" identifier="SPM-13" long-label="Grouped Specimen Count" type="NM" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenDescription" identifier="SPM-14" long-label="Specimen Description" type="ST" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenHandlingCode" identifier="SPM-15" long-label="Specimen Handling Code" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenRiskCode" identifier="SPM-16" long-label="Specimen Risk Code" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenCollectionDateTime" identifier="SPM-17" long-label="Specimen Collection Date and Time" type="DR" min-occurrence="0" max-occurence="1">
             <component name="specRangeStartDateTime" identifier="SPM-17.1" long-label="Range Start Date and Time" type="TS">
                 <subcomponent name="specRangeStartTime" identifier="SPM-17.1.1" long-label="Specimen Range Start Time" type="DTM"/>
                 <subcomponent name="specRangeStartDegreeOfPrecision" identifier="SPM-17.1.2" long-label="Specimen Range Start Degree of Precision" type="ID"/>
@@ -945,13 +945,13 @@
                 <subcomponent name="specRangeEndDegreeOfPrecision" identifier="SPM-17.2.2" long-label="Specimen Range End Degree of Precision" type="ID"/>
             </component>
         </field>
-        <field name="specimenReceivedDate" identifer="SPM-18" long-label="Specimen Received Date and Time" type="TS" min-occurrence="0" max-occurence="1">
+        <field name="specimenReceivedDate" identifier="SPM-18" long-label="Specimen Received Date and Time" type="TS" min-occurrence="0" max-occurence="1">
             <component name="specReceivedTime" identifier="SPM-18.1" long-label="Specimen Received Time" type="DTM"/>
             <component name="specReceivedDegreeOfPrecision" identifier="SPM-18.2" long-label="Specimen Received Degree of Precision" type="DTM"/>
         </field>
-        <field name="specimenExpirationDateTime" identifer="SPM-19" long-label="Specimen Expiration Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenAvailability" identifer="SPM-20" long-label="Specimen Availability" type="ID" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenRejectReason" identifer="SPM-21" long-label="Specimen Reject Reason" type="CWE" min-occurrence="0" max-occurence="2">
+        <field name="specimenExpirationDateTime" identifier="SPM-19" long-label="Specimen Expiration Date and Time" type="TS" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenAvailability" identifier="SPM-20" long-label="Specimen Availability" type="ID" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenRejectReason" identifier="SPM-21" long-label="Specimen Reject Reason" type="CWE" min-occurrence="0" max-occurence="2">
             <component name="specRejectId" identifier="SPM-21.1" long-label="Specimen Reject Reason ID" type="ST"/>
             <component name="specRejectText" identifier="SPM-21.2" long-label="Specimen Reject Reason Text" type="ST"/>
             <component name="specRejectSystemName" identifier="SPM-21.3" long-label="Specimen Reject Reason Coding System Name" type="ID"/>
@@ -962,14 +962,14 @@
             <component name="specRejectAltSystemVersionId" identifier="SPM-21.8" long-label="Specimen Reject Reason Alternate Coding System Version ID" type="ST"/>
             <component name="specRejectOriginalText" identifier="SPM-21.9" long-label="Specimen Reject Reason Original Text" type="ST"/>
         </field>
-        <field name="specimenQuality" identifer="SPM-22" long-label="Specimen Quality" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenAppropriateness" identifer="SPM-23" long-label="Specimen Appropriateness" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenCondition" identifer="SPM-24" long-label="Specimen Condition" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenCurrentQuantity" identifer="SPM-25" long-label="Specimen Current Quantity" type="CQ" min-occurrence="0" max-occurence="0"/>
-        <field name="numberOfSpecimenContainers" identifer="SPM-26" long-label="Number of Specimen Containers" type="NM" min-occurrence="0" max-occurence="1"/>
-        <field name="containerType" identifer="SPM-27" long-label="Container Type" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="containerCondition" identifer="SPM-28" long-label="Container Condition" type="CWE" min-occurrence="0" max-occurence="0"/>
-        <field name="specimenChildRole" identifer="SPM-29" long-label="Specimen Child Role" type="CWE" min-occurrence="0" max-occurence="1">
+        <field name="specimenQuality" identifier="SPM-22" long-label="Specimen Quality" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenAppropriateness" identifier="SPM-23" long-label="Specimen Appropriateness" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenCondition" identifier="SPM-24" long-label="Specimen Condition" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenCurrentQuantity" identifier="SPM-25" long-label="Specimen Current Quantity" type="CQ" min-occurrence="0" max-occurence="0"/>
+        <field name="numberOfSpecimenContainers" identifier="SPM-26" long-label="Number of Specimen Containers" type="NM" min-occurrence="0" max-occurence="1"/>
+        <field name="containerType" identifier="SPM-27" long-label="Container Type" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="containerCondition" identifier="SPM-28" long-label="Container Condition" type="CWE" min-occurrence="0" max-occurence="0"/>
+        <field name="specimenChildRole" identifier="SPM-29" long-label="Specimen Child Role" type="CWE" min-occurrence="0" max-occurence="1">
             <component name="specChildId" identifier="SPM-29.1" long-label="Specimen Child Identifier" type="ST"/>
             <component name="specChildText" identifier="SPM-29.2" long-label="Specimen Child Text" type="ST"/>
             <component name="specChildSystemName" identifier="SPM-29.3" long-label="Specimen Child Coding System Name" type="ID"/>
@@ -980,7 +980,7 @@
             <component name="specChildAltSystemVersionId" identifier="SPM-29.8" long-label="Specimen Child Alternate Coding System Version ID" type="ST"/>
             <component name="specChildOriginalText" identifier="SPM-29.9" long-label="Specimen Child Original Text" type="ST"/>
         </field>
-        <field name="accessionId" identifer="SPM-30" long-label="Accession ID" type="CX" min-occurrence="0" max-occurence="25">
+        <field name="accessionId" identifier="SPM-30" long-label="Accession ID" type="CX" min-occurrence="0" max-occurence="25">
             <component name="accessionIdNumber" identifier="SPM-30.1" long-label="Accession ID Number" type="ST"/>
             <component name="accessionCheckDigit" identifier="SPM-30.2" long-label="Accession Check Digit" type="ST"/>
             <component name="accessionCodeCheckDigit" identifier="SPM-30.3" long-label="Accession Code Identifying Check Digit" type="ID"/>
@@ -996,7 +996,7 @@
                 <subcomponent name="accessionFacUniversalIdType" identifier="SPM-30.6.3" long-label="Accession Assigning Facility Universal ID Type" type="ID"/>
             </component>
         </field>
-        <field name="otherSpecimenId" identifer="SPM-31" long-label="Other Specimen ID" type="CX" min-occurrence="0" max-occurence="300">
+        <field name="otherSpecimenId" identifier="SPM-31" long-label="Other Specimen ID" type="CX" min-occurrence="0" max-occurence="300">
             <component name="otherSpecIdNumber" identifier="SPM-31.1" long-label="Specimen Child ID" type="ST"/>
             <component name="otherSpecCheckDigit" identifier="SPM-31.2" long-label="Specimen Child Text" type="ST"/>
             <component name="otherSpecCodeCheckDigit" identifier="SPM-31.3" long-label="Specimen Child Coding System Name" type="ID"/>

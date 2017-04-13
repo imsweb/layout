@@ -9,11 +9,11 @@ public class NaaccrHl7Field extends Field {
 
     private String _identifier;
 
+    private String _type;
+
     private Integer _minOccurrence;
 
     private Integer _maxOccurrence;
-
-    private String _type;
 
     public NaaccrHl7Field() {
         _minOccurrence = 0;
@@ -26,6 +26,14 @@ public class NaaccrHl7Field extends Field {
 
     public void setIdentifier(String identifier) {
         _identifier = identifier;
+    }
+
+    public String getType() {
+        return _type;
+    }
+
+    public void setType(String type) {
+        _type = type;
     }
 
     public Integer getMinOccurrence() {
@@ -42,14 +50,6 @@ public class NaaccrHl7Field extends Field {
 
     public void setMaxOccurrence(Integer maxOccurrence) {
         _maxOccurrence = maxOccurrence;
-    }
-
-    public String getType() {
-        return _type;
-    }
-
-    public void setType(String type) {
-        _type = type;
     }
 
     @Override

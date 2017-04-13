@@ -29,7 +29,7 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
  * <br/><br/>
  * There are two ways to register a layout:
  * <ol>
- * <li>Build it programmatically (either a <code>FixedColumnsLayout</code> or a <code>CommaSeparatedLayout</code> instance) and call the
+ * <li>Build it programmatically (eith er a <code>FixedColumnsLayout</code> or a <code>CommaSeparatedLayout</code> instance) and call the
  * <b>registerLayout()</b> method from this class, passing the built layout as an argument.</li>
  * <li>Build it from an XML file using one of the <code>LayoutUtils</code> utility methods, then create the layout instance by
  * providing the XML object to its constructor; and finally call the <b>registerLayout()</b> method from this class, passing the built layout as an argument.</li>
@@ -41,6 +41,7 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 public final class LayoutFactory {
 
     // constants for the internal layout IDs
+    public static final String LAYOUT_ID_NAACCR_HL7 = "naaccr-hl7";
     public static final String LAYOUT_ID_NAACCR_16 = "naaccr-16"; // kept for backward compatibility, actually means abstract...
     public static final String LAYOUT_ID_NAACCR_16_ABSTRACT = "naaccr-16-abstract";
     public static final String LAYOUT_ID_NAACCR_16_MODIFIED = "naaccr-16-modified";
@@ -84,6 +85,7 @@ public final class LayoutFactory {
 
     // make sure to add the most recent layouts first, they will be "tried" in that order (important for discovery mechanism)
     static {
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_HL7, "NAACCR HL7");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_16, "NAACCR 16 Abstract"); // kept for backward compatibility...
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_16_ABSTRACT, "NAACCR 16 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_16_MODIFIED, "NAACCR 16 Modified");
@@ -125,7 +127,9 @@ public final class LayoutFactory {
         Layout layout = null;
 
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
-        if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
+        if (LAYOUT_ID_NAACCR_HL7.equals(layoutId))
+            layout = null;
+        else if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
             layout = new NaaccrLayout("160", "A", 22824, LAYOUT_ID_NAACCR_16_ABSTRACT, loadFields);
         else if (LAYOUT_ID_NAACCR_16_MODIFIED.equals(layoutId))
             layout = new NaaccrLayout("160", "M", 22824, LAYOUT_ID_NAACCR_16_MODIFIED, loadFields);
