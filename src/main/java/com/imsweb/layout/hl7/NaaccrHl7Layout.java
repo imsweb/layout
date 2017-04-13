@@ -13,12 +13,10 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 import com.imsweb.layout.Field;
 import com.imsweb.layout.Layout;
@@ -72,17 +70,17 @@ public class NaaccrHl7Layout implements Layout {
 
     @Override
     public String getFieldDocByName(String name) {
-        return null; // TODO
+        return null;
     }
 
     @Override
     public String getFieldDocByNaaccrItemNumber(Integer num) {
-        return null; // TODO
+        return null;
     }
 
     @Override
     public String getFieldDocDefaultCssStyle() {
-        return null; // TODO
+        return null;
     }
 
     @Override
@@ -90,24 +88,19 @@ public class NaaccrHl7Layout implements Layout {
         return null; // TODO
     }
 
-    public NaaccrHl7Layout(File hl7LayoutFile) throws IOException {
-        if (hl7LayoutFile == null)
-            throw new NullPointerException("Unable to create an hl7-layout, the URL cannot be null");
-        if (!hl7LayoutFile.exists())
-            throw new IOException("Unable to read from " + hl7LayoutFile.getPath());
+    public NaaccrHl7Layout(URL hl7LayoutUrl) throws IOException {
+        if (hl7LayoutUrl == null)
+            throw new NullPointerException("Unable to create HL7-layout from null URL");
 
-        try (InputStream is = new FileInputStream(hl7LayoutFile)) {
-            // create xstream for hl7-layout
-            XStream xStream = new XStream(new StaxDriver());
-            xStream.autodetectAnnotations(true);
-            xStream.alias("hl7-layout", Hl7LayoutDefinitionXmlDto.class);
-            Hl7LayoutDefinitionXmlDto dto = (Hl7LayoutDefinitionXmlDto)xStream.fromXML(is);
+        try (InputStream is = hl7LayoutUrl.openStream()) {
+            init(Hl7Utils.readFixedColumnsLayout(is));
+        }
+    }
 
-            // extract components from dto
-            if (dto.getHl7Segments() != null) {
-                for (Hl7SegmentDefinitionXmlDto segmentXmlDto : dto.getHl7Segments()) {
+    private void init(Hl7LayoutDefinitionXmlDto layoutXmlDto) throws IOException {
+        if (layoutXmlDto.getHl7Segments() != null) {
+            for (Hl7SegmentDefinitionXmlDto segmentXmlDto : layoutXmlDto.getHl7Segments()) {
 
-                }
             }
         }
     }

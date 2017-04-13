@@ -69,4 +69,8 @@ public class Hl7LayoutDefinitionXmlDto {
             _hl7Segments = new ArrayList<>();
         return _hl7Segments;
     }
+
+    public void setHl7Segments(List<Hl7SegmentDefinitionXmlDto> hl7Segments) {
+        _hl7Segments = hl7Segments;
+    }
 }

@@ -3,6 +3,14 @@
  */
 package com.imsweb.layout.hl7;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Collections;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,21 +20,38 @@ import com.imsweb.layout.hl7.entity.Hl7Message;
 import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
+import com.imsweb.layout.hl7.xml.Hl7LayoutDefinitionXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SegmentDefinitionXmlDto;
 
 public class Hl7UtilsTest {
 
     private static final String _LINE_SEPARATOR = System.getProperty("line.separator");
 
     @Test
-    public void testReadFixedColumnsLayout() {
-        // TODO - make sure this test uses only fake XML resources
-        Assert.assertTrue(true);
-    }
+    public void testReadWriteFixedColumnsLayout() throws IOException {
 
-    @Test
-    public void testWriteFixedColumnsLayout() {
-        // TODO - make sure this test uses the build folder to write the testing files
-        Assert.assertTrue(true);
+        Hl7LayoutDefinitionXmlDto layout = new Hl7LayoutDefinitionXmlDto();
+        layout.setId("test-hl7");
+        layout.setName("Test HL7-Layout");
+        layout.setDescription("Description");
+        layout.setVersion("1.0");
+        Hl7SegmentDefinitionXmlDto segment = new Hl7SegmentDefinitionXmlDto();
+        segment.setIdentifier("MSH-1");
+        layout.setHl7Segments(Collections.singletonList(segment));
+
+        File file = new File(System.getProperty("user.dir") + "/build/hl7-layout-test.xml");
+        try (OutputStream fos = new FileOutputStream(file)) {
+            Hl7Utils.writeFixedColumnsLayout(fos, layout);
+        }
+
+        try (InputStream fis = new FileInputStream(file)) {
+            Hl7LayoutDefinitionXmlDto layout2 = Hl7Utils.readFixedColumnsLayout(fis);
+            Assert.assertEquals(layout.getId(), layout2.getId());
+            Assert.assertEquals(layout.getName(), layout2.getName());
+            Assert.assertEquals(layout.getDescription(), layout2.getDescription());
+            Assert.assertEquals(layout.getVersion(), layout2.getVersion());
+            System.out.println(layout.getHl7Segments());
+        }
     }
 
     @Test

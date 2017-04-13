@@ -8,12 +8,9 @@ import java.util.List;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamConverter;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
-import com.thoughtworks.xstream.converters.extended.ToAttributedValueConverter;
 
 @XStreamAlias("component")
-@XStreamConverter(value = ToAttributedValueConverter.class, strings = {"_value"})
 public class Hl7ComponentDefinitionXmlDto {
 
     @XStreamAlias("name")
