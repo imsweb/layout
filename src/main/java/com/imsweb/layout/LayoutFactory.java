@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.imsweb.layout.hl7.NaaccrHl7Layout;
 import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
@@ -128,7 +129,7 @@ public final class LayoutFactory {
 
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
         if (LAYOUT_ID_NAACCR_HL7.equals(layoutId))
-            layout = null;
+            layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7, "2.5.1", loadFields);
         else if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
             layout = new NaaccrLayout("160", "A", 22824, LAYOUT_ID_NAACCR_16_ABSTRACT, loadFields);
         else if (LAYOUT_ID_NAACCR_16_MODIFIED.equals(layoutId))

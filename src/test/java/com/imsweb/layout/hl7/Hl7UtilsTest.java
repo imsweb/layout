@@ -14,6 +14,7 @@ import java.util.Collections;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
@@ -64,12 +65,12 @@ public class Hl7UtilsTest {
 
         File file = new File(System.getProperty("user.dir") + "/build/hl7-layout-test.xml");
         try (OutputStream fos = new FileOutputStream(file)) {
-            Hl7Utils.writeHl7Layout(fos, layout);
+            LayoutUtils.writeHl7Layout(fos, layout);
         }
 
         try (InputStream fis = new FileInputStream(file)) {
             // layout
-            Hl7LayoutDefinitionXmlDto layout2 = Hl7Utils.readHl7Layout(fis);
+            Hl7LayoutDefinitionXmlDto layout2 = LayoutUtils.readHl7Layout(fis);
             Assert.assertEquals(layout.getId(), layout2.getId());
             Assert.assertEquals(layout.getName(), layout2.getName());
             Assert.assertEquals(layout.getDescription(), layout2.getDescription());

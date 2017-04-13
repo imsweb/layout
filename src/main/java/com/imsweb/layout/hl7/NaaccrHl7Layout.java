@@ -23,6 +23,7 @@ import java.util.Map;
 
 import com.imsweb.layout.Field;
 import com.imsweb.layout.Layout;
+import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
@@ -118,6 +119,34 @@ public class NaaccrHl7Layout implements Layout {
         LayoutInfo result = null;
 
         return result;
+    }
+
+    /**
+     * Main constructor.
+     * @param layoutId layout ID, cannot be null
+     * @param layoutVersion layout version, cannot be null
+     * @param loadFields if true, then load the fields
+     */
+    public NaaccrHl7Layout(String layoutId, String layoutVersion, boolean loadFields) {
+        try {
+            Hl7LayoutDefinitionXmlDto xmlLayout = new Hl7LayoutDefinitionXmlDto();
+            xmlLayout.setId(layoutId);
+            xmlLayout.setName(LayoutFactory.getAvailableInternalLayouts().get(layoutId));
+            xmlLayout.setVersion(layoutVersion);
+            xmlLayout.setDescription("Latest version of HL7 " + layoutVersion);
+
+            if (loadFields) {
+                String xmlFilename = layoutId + "-" + layoutVersion + "-layout.xml";
+                Hl7LayoutDefinitionXmlDto tmpXmlLayout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/" + xmlFilename));
+
+                xmlLayout.setHl7Segments(tmpXmlLayout.getHl7Segments());
+            }
+
+            init(xmlLayout);
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Unable to instantiate NAACCR layout", e);
+        }
     }
 
     /**
