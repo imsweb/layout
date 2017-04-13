@@ -187,7 +187,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
             init(xmlLayout);
         }
         catch (IOException e) {
-            throw new RuntimeException("Unable to instanciate NAACCR layout", e);
+            throw new RuntimeException("Unable to instantiate NAACCR layout", e);
         }
     }
 

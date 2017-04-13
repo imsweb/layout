@@ -65,7 +65,7 @@ public interface Layout {
     Field getFieldByName(String name);
 
     /**
-     * Returns thefield associated with the NAACCR Item Number, null if none is found.
+     * Returns the field associated with the NAACCR Item Number, null if none is found.
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param num NAACCR Item Number
@@ -74,10 +74,10 @@ public interface Layout {
     Field getFieldByNaaccrItemNumber(Integer num);
 
     /**
-     * Returns all the fields in this layout, orderd by start column.
+     * Returns all the fields in this layout, ordered by start column.
      * <p/>
-     * If a field is a group (for example the morpholgy field containing the histology and behavior fields), ONLY THE PARENT FIELD WILL BE RETURNED.<br>
-     * It is the caller's responsability to iterate through the sub-fields for any parent fields that has some.
+     * If a field is a group (for example the morphology field containing the histology and behavior fields), ONLY THE PARENT FIELD WILL BE RETURNED.<br>
+     * It is the caller's responsibility to iterate through the sub-fields for any parent fields that has some.
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @return List of all the <code>Field</code> objects
