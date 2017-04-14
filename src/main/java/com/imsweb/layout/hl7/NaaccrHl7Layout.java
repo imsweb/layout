@@ -116,9 +116,7 @@ public class NaaccrHl7Layout implements Layout {
 
     @Override
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
-        LayoutInfo result = null;
-
-        return result;
+        return null;
     }
 
     /**
@@ -145,7 +143,7 @@ public class NaaccrHl7Layout implements Layout {
             init(xmlLayout);
         }
         catch (IOException e) {
-            throw new RuntimeException("Unable to instantiate NAACCR layout", e);
+            throw new RuntimeException("Unable to instantiate NAACCR HL7-layout", e);
         }
     }
 
