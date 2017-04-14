@@ -5,16 +5,58 @@ package com.imsweb.layout.hl7;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutUtils;
 
 public class NaaccrHl7LayoutTest {
 
     @Test
-    public void testLayout() throws Exception {
+    @SuppressWarnings("unchecked")
+    public void testNaaccrHl7Layout() throws Exception {
+        // test naaccr-hl7-2.5.1-layout.xml
+        NaaccrHl7Layout layout = new NaaccrHl7Layout(LayoutFactory.LAYOUT_ID_NAACCR_HL7, "2.5.1", true);
+        List<NaaccrHl7Field> fields = (List<NaaccrHl7Field>)layout.getAllFields();
+
+        // make sure the first field belongs to MSH segment
+        Assert.assertEquals("MSH-1", fields.get(0).getIdentifier());
+
+        // check identifiers
+        Set<String> identifiers = new HashSet<>();
+        int fieldIndex = 1;
+        for (NaaccrHl7Field field : fields) {
+            // for segment identifier assertion
+            identifiers.add(field.getIdentifier().substring(0, 3));
+
+            // check incrementation for field index in identifier
+            fieldIndex = Integer.parseInt(field.getIdentifier().substring(4)) == fieldIndex ? fieldIndex : 1;
+            Assert.assertEquals(fieldIndex, Integer.parseInt(field.getIdentifier().substring(4)));
+
+            // test non-null field parameters
+            Assert.assertFalse(field.getName().isEmpty());
+            Assert.assertFalse(field.getIdentifier().isEmpty());
+            Assert.assertFalse(field.getLongLabel().isEmpty());
+            Assert.assertFalse(field.getType().isEmpty()); // UNK exists in the XML file (OBX-5, OBX-20, OBX-21, OBX-22)
+            Assert.assertNotNull(field.getMinOccurrence());
+            Assert.assertNotNull(field.getMaxOccurrence());
+
+            // test field min and max occurrences
+            Assert.assertTrue(field.getMinOccurrence() <= field.getMaxOccurrence());
+
+            fieldIndex++;
+        }
+        Assert.assertEquals(10, identifiers.size());
+        Assert.assertTrue(identifiers.containsAll(Hl7Utils._SUPPORTED_IDENTIFIERS));
+    }
+
+    @Test
+    public void testFakeLayout() throws Exception {
 
         // test loading the layout from a URL
         NaaccrHl7Layout layout = new NaaccrHl7Layout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-hl7.xml"));

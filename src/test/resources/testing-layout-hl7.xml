@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <hl7-layout id="test" name="Test" version="1.0" description="Just for testing...">
     <segment identifier="MSH">
-        <field name="field1" identifier="MSH-1" long-label="Field 1" type="F1" min-occurence="1" max-occurence="1"/>
-        <field name="field2" identifier="MSH-2" long-label="Field 2" type="F2" min-occurence="1" max-occurence="2"/>
-        <field name="field3" identifier="MSH-3" long-label="Field 3" type="F3" min-occurence="1" max-occurence="1">
+        <field name="field1" identifier="MSH-1" long-label="Field 1" type="F1" min-occurrence="1" max-occurrence="1"/>
+        <field name="field2" identifier="MSH-2" long-label="Field 2" type="F2" min-occurrence="1" max-occurrence="2"/>
+        <field name="field3" identifier="MSH-3" long-label="Field 3" type="F3" min-occurrence="1" max-occurrence="1">
             <component name="component1" identifier="MSH-3.1" long-label="Component 1" type="C1"/>
             <component name="component2" identifier="MSH-3.2" long-label="Component 2" type="C2">
                 <subcomponent name="subcomponent1" identifier="MSH-3.2.1" long-label="Subcomponent 1" type="S1"/>
             </component>
         </field>
-        <field name="field4" identifier="MSH-4" long-label="Field 4" type="ST" min-occurence="1" max-occurence="1"/>
+        <field name="field4" identifier="MSH-4" long-label="Field 4" type="ST" min-occurrence="1" max-occurrence="1"/>
     </segment>
 </hl7-layout>
