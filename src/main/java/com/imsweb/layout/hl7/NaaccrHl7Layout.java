@@ -137,7 +137,7 @@ public class NaaccrHl7Layout implements Layout {
 
             if (loadFields) {
                 String xmlFilename = layoutId + "-" + layoutVersion + "-layout.xml";
-                Hl7LayoutDefinitionXmlDto tmpXmlLayout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/" + xmlFilename));
+                Hl7LayoutDefinitionXmlDto tmpXmlLayout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/hl7/naaccr/" + xmlFilename));
 
                 xmlLayout.setHl7Segments(tmpXmlLayout.getHl7Segments());
             }
@@ -214,6 +214,8 @@ public class NaaccrHl7Layout implements Layout {
         field.setType(hl7FieldXmlDto.getType());
         field.setMinOccurrence(hl7FieldXmlDto.getMinOccurrence());
         field.setMaxOccurrence(hl7FieldXmlDto.getMaxOccurrence());
+        if (hl7FieldXmlDto.getMinOccurrence() > hl7FieldXmlDto.getMaxOccurrence())
+            throw new IOException("Field " + field.getName() + " defines a minimum occurrence that is greater than the maximum occurrence");
 
         return field;
     }

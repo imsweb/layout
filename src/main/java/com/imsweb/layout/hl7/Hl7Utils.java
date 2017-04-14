@@ -4,6 +4,7 @@
 package com.imsweb.layout.hl7;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -17,6 +18,11 @@ import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
 public final class Hl7Utils {
+
+    /**
+     * Supported segment identifiers for HL7-layout version 2.5.1 (must be in order)
+     */
+    public static final List<String> _SUPPORTED_IDENTIFIERS = Arrays.asList("MSH", "SFT", "PID", "NK1", "PV1", "ORC", "OBR", "OBX", "NTE", "SPM");
 
     private Hl7Utils() {
     }
