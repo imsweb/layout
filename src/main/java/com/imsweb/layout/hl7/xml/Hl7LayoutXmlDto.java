@@ -11,7 +11,7 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 @XStreamAlias("hl7-layout")
-public class Hl7LayoutDefinitionXmlDto {
+public class Hl7LayoutXmlDto {
 
     @XStreamAlias("id")
     @XStreamAsAttribute
@@ -30,7 +30,7 @@ public class Hl7LayoutDefinitionXmlDto {
     private String _description;
 
     @XStreamImplicit
-    private List<Hl7SegmentDefinitionXmlDto> _hl7Segments;
+    private List<Hl7SegmentXmlDto> _hl7Segments;
 
     public String getId() {
         return _id;
@@ -64,13 +64,13 @@ public class Hl7LayoutDefinitionXmlDto {
         _description = description;
     }
 
-    public List<Hl7SegmentDefinitionXmlDto> getHl7Segments() {
+    public List<Hl7SegmentXmlDto> getHl7Segments() {
         if (_hl7Segments == null)
             _hl7Segments = new ArrayList<>();
         return _hl7Segments;
     }
 
-    public void setHl7Segments(List<Hl7SegmentDefinitionXmlDto> hl7Segments) {
+    public void setHl7Segments(List<Hl7SegmentXmlDto> hl7Segments) {
         _hl7Segments = hl7Segments;
     }
 }

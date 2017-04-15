@@ -27,7 +27,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
-import com.imsweb.layout.hl7.xml.Hl7LayoutDefinitionXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
@@ -47,7 +47,11 @@ public final class LayoutUtils {
     private LayoutUtils() {
     }
 
-    private static XStream createFixedColumnsXStream() {
+    /**
+     * Creates and returns an XStream object to deal with XML for fixed column layouts.
+     * @return created XStream instance
+     */
+    public static XStream createFixedColumnsXStream() {
         XStream xstream = new XStream(new StaxDriver() {
             @Override
             public HierarchicalStreamWriter createWriter(Writer out) {
@@ -67,7 +71,7 @@ public final class LayoutUtils {
      * Created on Dec 21, 2010 by depryf
      * @param stream <code>InputStream</code> to the data file, cannot be null
      * @return a <code>FixedColumnLayoutXmlDto</code>, never null
-     * @throws IOException
+     * @throws IOException if the layout can't be read from the input stream
      */
     public static FixedColumnLayoutXmlDto readFixedColumnsLayout(InputStream stream) throws IOException {
         if (stream == null)
@@ -87,7 +91,7 @@ public final class LayoutUtils {
      * Created on Dec 21, 2010 by depryf
      * @param stream <code>OutputStream</code> to the data file, cannot be null
      * @param layout the <code>FixedColumnLayoutXmlDto</code> to write, cannot be null
-     * @throws IOException
+     * @throws IOException if the layout can't be written from the input stream
      */
     public static void writeFixedColumnsLayout(OutputStream stream, FixedColumnLayoutXmlDto layout) throws IOException {
         if (layout == null)
@@ -105,7 +109,11 @@ public final class LayoutUtils {
         }
     }
 
-    private static XStream createCommaSeparatedXStream() {
+    /**
+     * Creates and returns an XStream object to deal with XML for comma separated layouts.
+     * @return created XStream instance
+     */
+    public static XStream createCommaSeparatedXStream() {
         XStream xstream = new XStream(new StaxDriver() {
             @Override
             public HierarchicalStreamWriter createWriter(Writer out) {
@@ -125,7 +133,7 @@ public final class LayoutUtils {
      * Created on Dec 21, 2010 by depryf
      * @param stream <code>InputStream</code> to the data file, cannot be null
      * @return a <code>CommaSeparatedLayoutXmlDto</code>, never null
-     * @throws IOException
+     * @throws IOException if the layout can't be read from the input stream
      */
     public static CommaSeparatedLayoutXmlDto readCommaSeparatedLayout(InputStream stream) throws IOException {
         if (stream == null)
@@ -144,7 +152,7 @@ public final class LayoutUtils {
      * Created on Dec 21, 2010 by depryf
      * @param stream <code>OutputStream</code> to the data file, cannot be null
      * @param layout the <code>CommaSeparatedLayoutXmlDto</code> to write, cannot be null
-     * @throws IOException
+     * @throws IOException if the layout can't be written from the input stream
      */
     public static void writeCommaSeparatedLayout(OutputStream stream, CommaSeparatedLayoutXmlDto layout) throws IOException {
         if (layout == null)
@@ -162,7 +170,11 @@ public final class LayoutUtils {
         }
     }
 
-    private static XStream createNaaccrHl7XStream() {
+    /**
+     * Creates and returns an XStream object to deal with HL7 layouts.
+     * @return created XStream instance
+     */
+    public static XStream createHl7XStream() {
         XStream xstream = new XStream(new StaxDriver() {
             @Override
             public HierarchicalStreamWriter createWriter(Writer out) {
@@ -170,7 +182,7 @@ public final class LayoutUtils {
             }
         });
         xstream.autodetectAnnotations(true);
-        xstream.alias("hl7-layout", Hl7LayoutDefinitionXmlDto.class);
+        xstream.alias("hl7-layout", Hl7LayoutXmlDto.class);
         return xstream;
     }
 
@@ -181,15 +193,15 @@ public final class LayoutUtils {
      * <p/>
      * Created on Mar 20, 2017 by depryf
      * @param stream <code>InputStream</code> to the data file, cannot be null
-     * @return a <code>Hl7LayoutDefinitionXmlDto</code>, never null
-     * @throws IOException
+     * @return a <code>Hl7LayoutXmlDto</code>, never null
+     * @throws IOException if the layout can't be read from the input stream
      */
-    public static Hl7LayoutDefinitionXmlDto readHl7Layout(InputStream stream) throws IOException {
+    public static Hl7LayoutXmlDto readHl7Layout(InputStream stream) throws IOException {
         if (stream == null)
             throw new IOException("Unable to read layout, target input stream is null");
 
         try (InputStream is = stream) {
-            return (Hl7LayoutDefinitionXmlDto)createNaaccrHl7XStream().fromXML(is);
+            return (Hl7LayoutXmlDto)createHl7XStream().fromXML(is);
         }
         catch (RuntimeException e) {
             throw new IOException("Unable to read XML layout: " + e.getMessage(), e);
@@ -201,10 +213,10 @@ public final class LayoutUtils {
      * <p/>
      * Created on Mar 20, 2017 by depryf
      * @param stream <code>OutputStream</code> to the data file, cannot be null
-     * @param layout the <code>Hl7LayoutDefinitionXmlDto</code> to write, cannot be null
-     * @throws IOException
+     * @param layout the <code>Hl7LayoutXmlDto</code> to write, cannot be null
+     * @throws IOException if the layout can't be written from the input stream
      */
-    public static void writeHl7Layout(OutputStream stream, Hl7LayoutDefinitionXmlDto layout) throws IOException {
+    public static void writeHl7Layout(OutputStream stream, Hl7LayoutXmlDto layout) throws IOException {
         if (layout == null)
             throw new IOException("Unable to write NULL layout");
         if (stream == null)
@@ -213,7 +225,7 @@ public final class LayoutUtils {
         try (Writer writer = new OutputStreamWriter(stream, StandardCharsets.UTF_8)) {
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             writer.write(System.lineSeparator());
-            createNaaccrHl7XStream().toXML(layout, writer);
+            createHl7XStream().toXML(layout, writer);
         }
         catch (RuntimeException e) {
             throw new IOException("Unable to write XML layout: " + e.getMessage(), e);
@@ -231,7 +243,7 @@ public final class LayoutUtils {
      * Created on Sep 19, 2011 by depryf
      * @param file <code>File</code>, cannot be null (an exception will be thrown if it does not exist)
      * @return an <code>InputStream</code>, never null
-     * @throws IOException
+     * @throws IOException if the input stream can't be created
      */
     public static InputStream createInputStream(File file) throws IOException {
         return createInputStream(file, null);
@@ -256,7 +268,7 @@ public final class LayoutUtils {
      * @param file <code>File</code>, cannot be null (an exception will be thrown if it does not exist)
      * @param zipEntryToUse if the zip file contains more than one entry
      * @return an <code>InputStream</code>, never null
-     * @throws IOException
+     * @throws IOException if the input stream can't be created
      */
     @SuppressWarnings("resource")
     public static InputStream createInputStream(File file, String zipEntryToUse) throws IOException {
@@ -313,7 +325,7 @@ public final class LayoutUtils {
      * Created on Sep 19, 2011 by depryf
      * @param file <code>File</code>, cannot be null (an exception will be thrown if it does not exist)
      * @return an <code>OutputStream</code>, never null
-     * @throws IOException
+     * @throws IOException if the output stream can't be created
      */
     public static OutputStream createOutputStream(File file) throws IOException {
         OutputStream os;

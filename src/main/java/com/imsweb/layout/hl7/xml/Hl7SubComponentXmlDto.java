@@ -7,7 +7,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 @XStreamAlias("subcomponent")
-public class Hl7SubComponentDefinitionXmlDto {
+public class Hl7SubComponentXmlDto {
 
     @XStreamAlias("name")
     @XStreamAsAttribute

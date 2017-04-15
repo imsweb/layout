@@ -11,7 +11,7 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 @XStreamAlias("field")
-public class Hl7FieldDefinitionXmlDto {
+public class Hl7FieldXmlDto {
 
     @XStreamAlias("name")
     @XStreamAsAttribute
@@ -38,7 +38,7 @@ public class Hl7FieldDefinitionXmlDto {
     private Integer _maxOccurrence;
 
     @XStreamImplicit
-    private List<Hl7ComponentDefinitionXmlDto> _hl7Components;
+    private List<Hl7ComponentXmlDto> _hl7Components;
 
     public String getName() {
         return _name;
@@ -88,13 +88,13 @@ public class Hl7FieldDefinitionXmlDto {
         _maxOccurrence = maxOccurrence;
     }
 
-    public List<Hl7ComponentDefinitionXmlDto> getHl7Components() {
+    public List<Hl7ComponentXmlDto> getHl7Components() {
         if (_hl7Components == null)
             _hl7Components = new ArrayList<>();
         return _hl7Components;
     }
 
-    public void setHl7Components(List<Hl7ComponentDefinitionXmlDto> hl7Components) {
+    public void setHl7Components(List<Hl7ComponentXmlDto> hl7Components) {
         _hl7Components = hl7Components;
     }
 }

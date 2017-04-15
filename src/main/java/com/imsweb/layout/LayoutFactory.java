@@ -42,7 +42,6 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 public final class LayoutFactory {
 
     // constants for the internal layout IDs
-    public static final String LAYOUT_ID_NAACCR_HL7 = "naaccr-hl7";
     public static final String LAYOUT_ID_NAACCR_16 = "naaccr-16"; // kept for backward compatibility, actually means abstract...
     public static final String LAYOUT_ID_NAACCR_16_ABSTRACT = "naaccr-16-abstract";
     public static final String LAYOUT_ID_NAACCR_16_MODIFIED = "naaccr-16-modified";
@@ -68,6 +67,7 @@ public final class LayoutFactory {
     public static final String LAYOUT_ID_NAACCR_12_MODIFIED = "naaccr-12-modified";
     public static final String LAYOUT_ID_NAACCR_12_CONFIDENTIAL = "naaccr-12-confidential";
     public static final String LAYOUT_ID_NAACCR_12_INCIDENCE = "naaccr-12-incidence";
+    public static final String LAYOUT_ID_NAACCR_HL7_2_5_1 = "naaccr-hl7-2.5.1";
 
     // internal alias IDs resolution, any of the keys will be translated into its value...
     private static final Map<String, String> _INTERNAL_LAYOUT_ID_ALIASES = new HashMap<>();
@@ -86,7 +86,7 @@ public final class LayoutFactory {
 
     // make sure to add the most recent layouts first, they will be "tried" in that order (important for discovery mechanism)
     static {
-        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_HL7, "NAACCR HL7");
+        // NAACCR FIXED_COLUMNS
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_16, "NAACCR 16 Abstract"); // kept for backward compatibility...
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_16_ABSTRACT, "NAACCR 16 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_16_MODIFIED, "NAACCR 16 Modified");
@@ -112,6 +112,8 @@ public final class LayoutFactory {
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_12_MODIFIED, "NAACCR 12 Modified");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_12_CONFIDENTIAL, "NAACCR 12 Confidential");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_12_INCIDENCE, "NAACCR 12 Incidence");
+        // NAACCR HL7
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_HL7_2_5_1, "NAACCR HL7 2.5.1");
     }
 
     // registered layouts (internal and external)
@@ -128,9 +130,7 @@ public final class LayoutFactory {
         Layout layout = null;
 
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
-        if (LAYOUT_ID_NAACCR_HL7.equals(layoutId))
-            layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7, "2.5.1", loadFields);
-        else if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
+        if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
             layout = new NaaccrLayout("160", "A", 22824, LAYOUT_ID_NAACCR_16_ABSTRACT, loadFields);
         else if (LAYOUT_ID_NAACCR_16_MODIFIED.equals(layoutId))
             layout = new NaaccrLayout("160", "M", 22824, LAYOUT_ID_NAACCR_16_MODIFIED, loadFields);
@@ -170,6 +170,8 @@ public final class LayoutFactory {
             layout = new NaaccrLayout("122", "C", 5564, LAYOUT_ID_NAACCR_12_CONFIDENTIAL, loadFields);
         else if (LAYOUT_ID_NAACCR_12_INCIDENCE.equals(layoutId))
             layout = new NaaccrLayout("122", "I", 3339, LAYOUT_ID_NAACCR_12_INCIDENCE, loadFields);
+        else if (LAYOUT_ID_NAACCR_HL7_2_5_1.equals(layoutId))
+            layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7_2_5_1, "2.5.1", loadFields);
 
         if (layout == null)
             throw new RuntimeException("Unknown internal layout: " + layoutId);

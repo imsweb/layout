@@ -11,14 +11,14 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 @XStreamAlias("segment")
-public class Hl7SegmentDefinitionXmlDto {
+public class Hl7SegmentXmlDto {
 
     @XStreamAlias("identifier")
     @XStreamAsAttribute
     private String _identifier;
 
     @XStreamImplicit
-    private List<Hl7FieldDefinitionXmlDto> _hl7Fields;
+    private List<Hl7FieldXmlDto> _hl7Fields;
 
     public String getIdentifier() {
         return _identifier;
@@ -28,13 +28,13 @@ public class Hl7SegmentDefinitionXmlDto {
         _identifier = identifier;
     }
 
-    public List<Hl7FieldDefinitionXmlDto> getHl7Fields() {
+    public List<Hl7FieldXmlDto> getHl7Fields() {
         if (_hl7Fields == null)
             _hl7Fields = new ArrayList<>();
         return _hl7Fields;
     }
 
-    public void setHl7Fields(List<Hl7FieldDefinitionXmlDto> hl7Fields) {
+    public void setHl7Fields(List<Hl7FieldXmlDto> hl7Fields) {
         _hl7Fields = hl7Fields;
     }
 }

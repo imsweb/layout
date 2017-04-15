@@ -28,9 +28,11 @@ import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.hl7.entity.Hl7Message;
-import com.imsweb.layout.hl7.xml.Hl7FieldDefinitionXmlDto;
-import com.imsweb.layout.hl7.xml.Hl7LayoutDefinitionXmlDto;
-import com.imsweb.layout.hl7.xml.Hl7SegmentDefinitionXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7ComponentXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
 
 public class NaaccrHl7Layout implements Layout {
 
@@ -63,6 +65,144 @@ public class NaaccrHl7Layout implements Layout {
      * Cached fields by name
      */
     protected Map<String, NaaccrHl7Field> _cachedByName = new HashMap<>();
+
+    /**
+     * Constructor.
+     * @param layoutId layout ID, cannot be null
+     * @param layoutVersion layout version, cannot be null
+     * @param loadFields if true, then load the fields
+     */
+    public NaaccrHl7Layout(String layoutId, String layoutVersion, boolean loadFields) {
+
+        // optimization - if we don't need to load the fields, then don't load the XML at all!
+        Hl7LayoutXmlDto layoutXmlDto = new Hl7LayoutXmlDto();
+        layoutXmlDto.setId(layoutId);
+        layoutXmlDto.setName(LayoutFactory.getAvailableInternalLayouts().get(layoutId));
+        layoutXmlDto.setVersion(layoutVersion);
+        layoutXmlDto.setDescription("NAACCR HL7 version " + layoutVersion);
+
+        try {
+            if (loadFields) {
+                String xmlFilename = layoutId + "-" + layoutVersion + "-layout.xml";
+                Hl7LayoutXmlDto tmpXmlLayout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/hl7/naaccr/" + xmlFilename));
+                layoutXmlDto.setHl7Segments(tmpXmlLayout.getHl7Segments());
+            }
+
+            init(layoutXmlDto);
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Unable to instantiate NAACCR HL7 layout", e);
+        }
+    }
+
+    /**
+     * Constructor.
+     * @param layoutUrl URL to the XML definition, cannot be null
+     * @throws IOException if the XML definition is not valid
+     */
+    public NaaccrHl7Layout(URL layoutUrl) throws IOException {
+        if (layoutUrl == null)
+            throw new NullPointerException("Unable to create HL7 layout from null URL");
+
+        try (InputStream is = layoutUrl.openStream()) {
+            init(LayoutUtils.readHl7Layout(is));
+        }
+    }
+
+    /**
+     * Constructor.
+     * @param layoutFile XML definition, cannot be null, must exist
+     * @throws IOException if the XML definition is not valid
+     */
+    public NaaccrHl7Layout(File layoutFile) throws IOException {
+        if (layoutFile == null)
+            throw new NullPointerException("Unable to create HL7-layout from null file");
+        if (!layoutFile.exists())
+            throw new IOException("Unable to read from " + layoutFile.getPath());
+
+        try (InputStream is = new FileInputStream(layoutFile)) {
+            init(LayoutUtils.readHl7Layout(is));
+        }
+    }
+
+    /**
+     * Constructor.
+     * @param layoutXmlDto java representation of the XML definition, cannot be null
+     * @throws IOException if the XML definition is not valid
+     */
+    public NaaccrHl7Layout(Hl7LayoutXmlDto layoutXmlDto) throws IOException {
+        if (layoutXmlDto == null)
+            throw new NullPointerException("Unable to create HL7-layout from null XML object");
+
+        init(layoutXmlDto);
+    }
+
+    // helper
+    protected void init(Hl7LayoutXmlDto layoutXmlDto) throws IOException {
+
+        _layoutId = layoutXmlDto.getId();
+        _layoutName = layoutXmlDto.getName();
+        _layoutVersion = layoutXmlDto.getVersion();
+        _layoutDesc = layoutXmlDto.getDescription();
+
+        _fields.clear();
+        for (Hl7SegmentXmlDto segmentXmlDto : layoutXmlDto.getHl7Segments()) {
+            for (Hl7FieldXmlDto fieldXmlDto : segmentXmlDto.getHl7Fields()) {
+                // TODO FD this isn't right, the fields needs contain the components...
+                addField(createFieldFromXmlField(fieldXmlDto));
+                for (Hl7ComponentXmlDto componentXmlDto : fieldXmlDto.getHl7Components()) {
+                    addField(createFieldFromXmlComponent(componentXmlDto));
+                    for (Hl7SubComponentXmlDto subComponentXmlDto : componentXmlDto.getHl7SubComponents())
+                        addField(createFieldFromXmlSubComponent(subComponentXmlDto));
+                }
+            }
+        }
+    }
+
+    protected NaaccrHl7Field createFieldFromXmlField(Hl7FieldXmlDto hl7FieldXmlDto) throws IOException {
+        NaaccrHl7Field field = new NaaccrHl7Field();
+
+        field.setName(hl7FieldXmlDto.getName());
+        field.setIdentifier(hl7FieldXmlDto.getIdentifier());
+        field.setLongLabel(hl7FieldXmlDto.getLongLabel());
+        field.setType(hl7FieldXmlDto.getType());
+        field.setMinOccurrence(hl7FieldXmlDto.getMinOccurrence());
+        field.setMaxOccurrence(hl7FieldXmlDto.getMaxOccurrence());
+        if (hl7FieldXmlDto.getMinOccurrence() > hl7FieldXmlDto.getMaxOccurrence())
+            throw new IOException("Field " + field.getName() + " defines a minimum occurrence that is greater than the maximum occurrence");
+
+        return field;
+    }
+
+    protected NaaccrHl7Field createFieldFromXmlComponent(Hl7ComponentXmlDto hl7CompoentdXmlDto) throws IOException {
+        NaaccrHl7Field field = new NaaccrHl7Field();
+
+        field.setName(hl7CompoentdXmlDto.getName());
+        field.setIdentifier(hl7CompoentdXmlDto.getIdentifier());
+        field.setLongLabel(hl7CompoentdXmlDto.getLongLabel());
+        field.setType(hl7CompoentdXmlDto.getType());
+
+        return field;
+    }
+
+    protected NaaccrHl7Field createFieldFromXmlSubComponent(Hl7SubComponentXmlDto hl7FSubComponentXmlDto) throws IOException {
+        NaaccrHl7Field field = new NaaccrHl7Field();
+
+        field.setName(hl7FSubComponentXmlDto.getName());
+        field.setIdentifier(hl7FSubComponentXmlDto.getIdentifier());
+        field.setLongLabel(hl7FSubComponentXmlDto.getLongLabel());
+        field.setType(hl7FSubComponentXmlDto.getType());
+
+        return field;
+    }
+
+    private void addField(NaaccrHl7Field field) {
+        // update collection of fields
+        _fields.add(field);
+
+        // update name cache
+        _cachedByName.put(field.getName(), field);
+    }
 
     @Override
     public String getLayoutId() {
@@ -117,113 +257,6 @@ public class NaaccrHl7Layout implements Layout {
     @Override
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
         return null;
-    }
-
-    /**
-     * Main constructor.
-     * @param layoutId layout ID, cannot be null
-     * @param layoutVersion layout version, cannot be null
-     * @param loadFields if true, then load the fields
-     */
-    public NaaccrHl7Layout(String layoutId, String layoutVersion, boolean loadFields) {
-        try {
-            Hl7LayoutDefinitionXmlDto xmlLayout = new Hl7LayoutDefinitionXmlDto();
-            xmlLayout.setId(layoutId);
-            xmlLayout.setName(LayoutFactory.getAvailableInternalLayouts().get(layoutId));
-            xmlLayout.setVersion(layoutVersion);
-            xmlLayout.setDescription("Latest version of HL7 " + layoutVersion);
-
-            if (loadFields) {
-                String xmlFilename = layoutId + "-" + layoutVersion + "-layout.xml";
-                Hl7LayoutDefinitionXmlDto tmpXmlLayout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/hl7/naaccr/" + xmlFilename));
-
-                xmlLayout.setHl7Segments(tmpXmlLayout.getHl7Segments());
-            }
-
-            init(xmlLayout);
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Unable to instantiate NAACCR HL7-layout", e);
-        }
-    }
-
-    /**
-     * Constructor.
-     * @param layoutUrl URL to the XML definition, cannot be null
-     * @throws IOException if the XML definition is not valid
-     */
-    public NaaccrHl7Layout(URL layoutUrl) throws IOException {
-        if (layoutUrl == null)
-            throw new NullPointerException("Unable to create HL7-layout from null URL");
-
-        try (InputStream is = layoutUrl.openStream()) {
-            init(LayoutUtils.readHl7Layout(is));
-        }
-    }
-
-    /**
-     * Constructor.
-     * @param layoutFile XML definition, cannot be null, must exist
-     * @throws IOException if the XML definition is not valid
-     */
-    public NaaccrHl7Layout(File layoutFile) throws IOException {
-        if (layoutFile == null)
-            throw new NullPointerException("Unable to create HL7-layout from null file");
-        if (!layoutFile.exists())
-            throw new IOException("Unable to read from " + layoutFile.getPath());
-
-        try (InputStream is = new FileInputStream(layoutFile)) {
-            init(LayoutUtils.readHl7Layout(is));
-        }
-    }
-
-    /**
-     * Constructor.
-     * @param layoutXmlDto java representation of the XML definition, cannot be null
-     * @throws IOException if the XML definition is not valid
-     */
-    public NaaccrHl7Layout(Hl7LayoutDefinitionXmlDto layoutXmlDto) throws IOException {
-        if (layoutXmlDto == null)
-            throw new NullPointerException("Unable to create HL7-layout from null XML object");
-
-        init(layoutXmlDto);
-    }
-
-    protected void init(Hl7LayoutDefinitionXmlDto layoutXmlDto) throws IOException {
-
-        _layoutId = layoutXmlDto.getId();
-        _layoutName = layoutXmlDto.getName();
-        _layoutVersion = layoutXmlDto.getVersion();
-        _layoutDesc = layoutXmlDto.getDescription();
-
-        _fields.clear();
-        if (layoutXmlDto.getHl7Segments() != null)
-            for (Hl7SegmentDefinitionXmlDto segmentXmlDto : layoutXmlDto.getHl7Segments())
-                for (Hl7FieldDefinitionXmlDto fieldXmlDto : segmentXmlDto.getHl7Fields())
-                    addField(createFieldFromXmlField(fieldXmlDto));
-    }
-
-    protected NaaccrHl7Field createFieldFromXmlField(Hl7FieldDefinitionXmlDto hl7FieldXmlDto) throws IOException {
-        NaaccrHl7Field field = new NaaccrHl7Field();
-
-        field.setName(hl7FieldXmlDto.getName());
-        field.setIdentifier(hl7FieldXmlDto.getIdentifier());
-        field.setLongLabel(hl7FieldXmlDto.getLongLabel());
-        field.setType(hl7FieldXmlDto.getType());
-        field.setMinOccurrence(hl7FieldXmlDto.getMinOccurrence());
-        field.setMaxOccurrence(hl7FieldXmlDto.getMaxOccurrence());
-        if (hl7FieldXmlDto.getMinOccurrence() > hl7FieldXmlDto.getMaxOccurrence())
-            throw new IOException("Field " + field.getName() + " defines a minimum occurrence that is greater than the maximum occurrence");
-
-        return field;
-    }
-
-    private void addField(NaaccrHl7Field field) {
-        // update collection of fields
-        _fields.add(field);
-
-        // update name cache
-        _cachedByName.put(field.getName(), field);
     }
 
     public Hl7Message readNextMessage(LineNumberReader reader) throws IOException {

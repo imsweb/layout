@@ -28,10 +28,6 @@ public class LayoutFactoryTest {
     public void testInternalLayouts() {
         Assert.assertFalse(LayoutFactory.getAvailableInternalLayouts().isEmpty());
 
-        // test NAACCR HL7
-        Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_HL7));
-        Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_HL7));
-
         // test NAACCR 16
         Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT));
         Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT));
@@ -51,6 +47,10 @@ public class LayoutFactoryTest {
         // test NAACCR 12
         Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_12_ABSTRACT));
         Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_12_ABSTRACT));
+
+        // test NAACCR HL7 2.5.1
+        Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1));
+        Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1));
 
         // but "alias" layouts shouldn't be returned (because they are deprecated)
         Assert.assertFalse(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_14));

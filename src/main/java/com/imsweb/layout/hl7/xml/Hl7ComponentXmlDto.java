@@ -11,7 +11,7 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 @XStreamAlias("component")
-public class Hl7ComponentDefinitionXmlDto {
+public class Hl7ComponentXmlDto {
 
     @XStreamAlias("name")
     @XStreamAsAttribute
@@ -30,7 +30,7 @@ public class Hl7ComponentDefinitionXmlDto {
     private String _type;
 
     @XStreamImplicit
-    private List<Hl7SubComponentDefinitionXmlDto> _hl7SubComponents;
+    private List<Hl7SubComponentXmlDto> _hl7SubComponents;
 
     public String getName() {
         return _name;
@@ -64,13 +64,13 @@ public class Hl7ComponentDefinitionXmlDto {
         _type = type;
     }
 
-    public List<Hl7SubComponentDefinitionXmlDto> getHl7SubComponents() {
+    public List<Hl7SubComponentXmlDto> getHl7SubComponents() {
         if (_hl7SubComponents == null)
             _hl7SubComponents = new ArrayList<>();
         return _hl7SubComponents;
     }
 
-    public void setHl7SubComponents(List<Hl7SubComponentDefinitionXmlDto> hl7SubComponents) {
+    public void setHl7SubComponents(List<Hl7SubComponentXmlDto> hl7SubComponents) {
         _hl7SubComponents = hl7SubComponents;
     }
 }

@@ -31,12 +31,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
 import com.imsweb.layout.hl7.entity.Hl7RepeatedField;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
+import com.imsweb.layout.hl7.xml.Hl7ComponentXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
 
 // TODO use the layout to provide a label to the field/components and subcomponents
 // Allow every node to be expanded/collapsed, and apply to its children
@@ -54,31 +60,17 @@ public class Hl7Viewer extends JFrame {
         this.getContentPane().add(centerPnl, BorderLayout.CENTER);
 
         Map<String, String> entityNames = new HashMap<>();
-        // TODO I can't read the current layout, hopefully that will be fixed soon...
-        //        Hl7LayoutDefinitionXmlDto layout = Hl7Utils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/hl7/naaccr/naaccr-hl7-2.5.1-layout.xml"));
-        //        for (Hl7SegmentDefinitionXmlDto segment : layout.getHl7Segments()) {
-        //            for (Hl7FieldDefinitionXmlDto field : segment.getHl7Fields()) {
-        //                entityNames.put(field.getIdentifier(), field.getLongLabel());
-        //                for (Hl7ComponentDefinitionXmlDto component : field.getHl7Components()) {
-        //                    entityNames.put(component.getIdentifier(), component.getLongLabel());
-        //                    for (Hl7SubComponentDefinitionXmlDto subcomponent : component.getHl7SubComponents())
-        //                        entityNames.put(subcomponent.getIdentifier(), subcomponent.getLongLabel());
-        //                }
-        //            }
-        //        }
-        entityNames.put("PID-3", "Patient Identifier List");
-        entityNames.put("PID-3.1", "Patient Identifier List Number");
-        entityNames.put("PID-3.2", "Patient Identifier List Check Digit");
-        entityNames.put("PID-3.3", "Patient Identifier List Check Digit Scheme");
-        entityNames.put("PID-3.4", "Patient Identifier List Assigning Authority");
-        entityNames.put("PID-3.4.1", "Patient Identifier List Assigning Authority Namespace ID");
-        entityNames.put("PID-3.4.2", "Patient Identifier List Assigning Authority Universal ID");
-        entityNames.put("PID-3.4.3", "Patient Identifier List Assigning Authority Universal ID Type");
-        entityNames.put("PID-3.5", "Patient Identifier List Identifier Type Code");
-        entityNames.put("PID-3.6", "Patient Identifier List Assigning Facility");
-        entityNames.put("PID-3.6.1", "Patient Identifier List Assigning Facility Namespace ID");
-        entityNames.put("PID-3.6.2", "Patient Identifier List Assigning Facility Universal ID");
-        entityNames.put("PID-3.6.3", "Patient Identifier List Assigning Facility Universal ID Type");
+        Hl7LayoutXmlDto layout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/hl7/naaccr/naaccr-hl7-2.5.1-layout.xml"));
+        for (Hl7SegmentXmlDto segment : layout.getHl7Segments()) {
+            for (Hl7FieldXmlDto field : segment.getHl7Fields()) {
+                entityNames.put(field.getIdentifier(), field.getLongLabel());
+                for (Hl7ComponentXmlDto component : field.getHl7Components()) {
+                    entityNames.put(component.getIdentifier(), component.getLongLabel());
+                    for (Hl7SubComponentXmlDto subcomponent : component.getHl7SubComponents())
+                        entityNames.put(subcomponent.getIdentifier(), subcomponent.getLongLabel());
+                }
+            }
+        }
 
         List<Hl7Message> messages = new ArrayList<>();
         messages.add(Hl7MessageBuilder.createMessage()
@@ -275,7 +267,7 @@ public class Hl7Viewer extends JFrame {
             Hl7Segment segment = field.getSegment();
             String id = segment.getId() + "-" + field.getIndex();
             if (entityNames.containsKey(id))
-                return id + " - " + entityNames.get(id);
+                return id + " [" + entityNames.get(id) + "]";
             else
                 return id;
         }
@@ -290,7 +282,7 @@ public class Hl7Viewer extends JFrame {
             Hl7Segment segment = field.getSegment();
             String id = segment.getId() + "-" + field.getIndex() + "." + component.getIndex();
             if (entityNames.containsKey(id))
-                return id + " - " + entityNames.get(id);
+                return id + " [" + entityNames.get(id) + "]";
             else
                 return id;
         }
@@ -301,7 +293,7 @@ public class Hl7Viewer extends JFrame {
             Hl7Segment segment = field.getSegment();
             String id = segment.getId() + "-" + field.getIndex() + "." + component.getIndex() + "." + subComponent.getIndex();
             if (entityNames.containsKey(id))
-                return id + " - " + entityNames.get(id);
+                return id + " [" + entityNames.get(id) + "]";
             else
                 return id;
         }
