@@ -3,6 +3,8 @@
  */
 package com.imsweb.layout.hl7;
 
+import java.util.List;
+
 import com.imsweb.layout.Field;
 
 public class NaaccrHl7Field extends Field {
@@ -14,6 +16,8 @@ public class NaaccrHl7Field extends Field {
     private Integer _minOccurrence;
 
     private Integer _maxOccurrence;
+
+    private List<NaaccrHl7Field> subFields;
 
     public NaaccrHl7Field() {
         _minOccurrence = 0;
@@ -52,9 +56,17 @@ public class NaaccrHl7Field extends Field {
         _maxOccurrence = maxOccurrence;
     }
 
+    public List<NaaccrHl7Field> getSubFields() {
+        return subFields;
+    }
+
+    public void setSubFields(List<NaaccrHl7Field> subFields) {
+        this.subFields = subFields;
+    }
+
     @Override
     public String toString() {
-        return "Field [name=" + _name + "]";
+        return _identifier;
     }
 
     @Override

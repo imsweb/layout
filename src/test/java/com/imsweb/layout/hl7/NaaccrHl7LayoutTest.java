@@ -62,9 +62,8 @@ public class NaaccrHl7LayoutTest {
         Assert.assertTrue(identifiers.containsAll(Arrays.asList("MSH", "SFT", "PID", "NK1", "PV1", "ORC", "OBR", "OBX", "NTE", "SPM")));
 
         // test the validity of the XML
-        // test naaccr-hl7-2.5.1-layout.xml
         Hl7LayoutXmlDto layoutXmlDto;
-        try (InputStream fis = new FileInputStream(Paths.get("/src/main/resources/layout/hl7/naaccr/naaccr-hl7-2.5.1-layout.xml").toFile())) {
+        try (InputStream fis = new FileInputStream(Paths.get("src/main/resources/layout/hl7/naaccr/naaccr-hl7-2.5.1-layout.xml").toFile())) {
             layoutXmlDto = LayoutUtils.readHl7Layout(fis);
         }
         Assert.assertNotNull(layoutXmlDto);

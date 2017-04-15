@@ -83,7 +83,7 @@ public class NaaccrHl7Layout implements Layout {
 
         try {
             if (loadFields) {
-                String xmlFilename = layoutId + "-" + layoutVersion + "-layout.xml";
+                String xmlFilename = layoutId + "-layout.xml";
                 Hl7LayoutXmlDto tmpXmlLayout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/hl7/naaccr/" + xmlFilename));
                 layoutXmlDto.setHl7Segments(tmpXmlLayout.getHl7Segments());
             }
@@ -148,13 +148,20 @@ public class NaaccrHl7Layout implements Layout {
         _fields.clear();
         for (Hl7SegmentXmlDto segmentXmlDto : layoutXmlDto.getHl7Segments()) {
             for (Hl7FieldXmlDto fieldXmlDto : segmentXmlDto.getHl7Fields()) {
-                // TODO FD this isn't right, the fields needs contain the components...
-                addField(createFieldFromXmlField(fieldXmlDto));
+                NaaccrHl7Field field = createFieldFromXmlField(fieldXmlDto);
+                List<NaaccrHl7Field> subFields = new ArrayList<>();
                 for (Hl7ComponentXmlDto componentXmlDto : fieldXmlDto.getHl7Components()) {
-                    addField(createFieldFromXmlComponent(componentXmlDto));
+                    NaaccrHl7Field subField = createFieldFromXmlComponent(componentXmlDto);
+                    List<NaaccrHl7Field> subSubFields = new ArrayList<>();
                     for (Hl7SubComponentXmlDto subComponentXmlDto : componentXmlDto.getHl7SubComponents())
-                        addField(createFieldFromXmlSubComponent(subComponentXmlDto));
+                        subSubFields.add(createFieldFromXmlSubComponent(subComponentXmlDto));
+                    if (!subSubFields.isEmpty())
+                        subField.setSubFields(subSubFields);
                 }
+                if (!subFields.isEmpty())
+                    field.setSubFields(subFields);
+                _fields.add(field);
+                _cachedByName.put(field.getName(), field);
             }
         }
     }
@@ -194,14 +201,6 @@ public class NaaccrHl7Layout implements Layout {
         field.setType(hl7FSubComponentXmlDto.getType());
 
         return field;
-    }
-
-    private void addField(NaaccrHl7Field field) {
-        // update collection of fields
-        _fields.add(field);
-
-        // update name cache
-        _cachedByName.put(field.getName(), field);
     }
 
     @Override

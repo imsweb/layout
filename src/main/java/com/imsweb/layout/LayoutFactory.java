@@ -113,7 +113,7 @@ public final class LayoutFactory {
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_12_CONFIDENTIAL, "NAACCR 12 Confidential");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_12_INCIDENCE, "NAACCR 12 Incidence");
         // NAACCR HL7
-        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_HL7_2_5_1, "NAACCR HL7 2.5.1");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_HL7_2_5_1, "NAACCR HL7");
     }
 
     // registered layouts (internal and external)
