@@ -10,10 +10,17 @@ import com.imsweb.layout.hl7.Hl7Utils;
 
 public class Hl7RepeatedField {
 
+    // the parent field
     private Hl7Field _field;
 
+    // the components has they appear in the repeated field
     private Map<Integer, Hl7Component> _components;
 
+    /**
+     * Constructor.
+     * @param field parent field (can be null)
+     * @param values optional values to set on the repeated field
+     */
     public Hl7RepeatedField(Hl7Field field, String... values) {
         _field = field;
         _components = new HashMap<>();
@@ -44,9 +51,8 @@ public class Hl7RepeatedField {
         _components = components == null ? new HashMap<>() : components;
     }
 
-    public Hl7Component addComponent(Hl7Component component) {
+    public void addComponent(Hl7Component component) {
         _components.put(component.getIndex(), component);
-        return component;
     }
 
     public Hl7Component getComponent(int componentIdx) {
@@ -57,5 +63,13 @@ public class Hl7RepeatedField {
     public String getValue() {
         String value = Hl7Utils.repeatedFieldToString(this);
         return value.isEmpty() ? null : value;
+    }
+
+    public String getValue(int componentIdx) {
+        return getComponent(componentIdx).getValue();
+    }
+
+    public String getValue(int componentIdx, int subComponentIdx) {
+        return getComponent(componentIdx).getSubComponent(subComponentIdx).getValue();
     }
 }

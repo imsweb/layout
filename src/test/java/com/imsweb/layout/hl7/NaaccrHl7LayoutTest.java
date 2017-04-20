@@ -5,9 +5,11 @@ package com.imsweb.layout.hl7;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +18,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.hl7.entity.Hl7Message;
 import com.imsweb.layout.hl7.xml.Hl7ComponentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
@@ -26,9 +30,46 @@ import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
 public class NaaccrHl7LayoutTest {
 
     @Test
-    @SuppressWarnings("unchecked")
-    public void testNaaccrHl7Layout() throws Exception {
+    public void testNaaccrHl7Layout_2_5_1() throws Exception {
         NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+        assertInternalLayoutValidity(layout);
+
+        Hl7Message msg = Hl7MessageBuilder.createMessage()
+                .withSegment("MSH")
+                .withSegment("PID")
+                .withField(3)
+                .withRepeatedField()
+                .withComponent(1, "010203040")
+                .withComponent(5, "MR")
+                .withComponent(6, "STJ", "03D1234567", "AHA")
+                .withRepeatedField()
+                .withComponent(1, "111223333")
+                .withComponent(5, "SS")
+                .withRepeatedField()
+                .withComponent(1, "97 810430")
+                .withComponent(5, "PI")
+                .withComponent(6, "HITECK PATH LAB-ATL", "3D932840", "CLIA")
+                .withField(5)
+                .withComponent(1, "DEPRY")
+                .withComponent(2, "FABIAN")
+                .withComponent(3, "P")
+                .build();
+
+        File file = Paths.get("build/test-2.5.1.hl7").toFile();
+
+        layout.writeMessages(file, Collections.singletonList(msg));
+        Assert.assertTrue(file.exists());
+
+        LayoutInfo info = layout.buildFileInfo(file, null, null);
+        Assert.assertNotNull(info);
+        Assert.assertEquals(layout.getLayoutId(), info.getLayoutId());
+
+        Hl7Message msg2 = layout.readAllMessages(file).get(0);
+        Assert.assertEquals("010203040", msg2.getSegment("PID").getValue(3, 1, 1, 1));
+    }
+
+    @SuppressWarnings("unchecked")
+    private void assertInternalLayoutValidity(NaaccrHl7Layout layout) throws IOException {
 
         // make sure the first field belongs to MSH segment
         List<NaaccrHl7Field> fields = (List<NaaccrHl7Field>)layout.getAllFields();
@@ -63,7 +104,7 @@ public class NaaccrHl7LayoutTest {
 
         // test the validity of the XML
         Hl7LayoutXmlDto layoutXmlDto;
-        try (InputStream fis = new FileInputStream(Paths.get("src/main/resources/layout/hl7/naaccr/naaccr-hl7-2.5.1-layout.xml").toFile())) {
+        try (InputStream fis = new FileInputStream(Paths.get("src/main/resources/layout/hl7/naaccr/naaccr-hl7-" + layout.getLayoutVersion() + "-layout.xml").toFile())) {
             layoutXmlDto = LayoutUtils.readHl7Layout(fis);
         }
         Assert.assertNotNull(layoutXmlDto);

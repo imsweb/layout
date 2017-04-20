@@ -10,12 +10,21 @@ import com.imsweb.layout.hl7.Hl7Utils;
 
 public class Hl7Field {
 
+    // the parent segment
     private Hl7Segment _segment;
 
+    // the field index
     private Integer _index;
 
+    // the repeated fields in the order they appear in this field
     private List<Hl7RepeatedField> _repeatedFields;
 
+    /**
+     * Constructor
+     * @param segment parent segment (can be null)
+     * @param index field index (cannot be null)
+     * @param values optional values to set on the field
+     */
     public Hl7Field(Hl7Segment segment, Integer index, String... values) {
         if (index == null)
             throw new RuntimeException("Index is required");
@@ -65,9 +74,8 @@ public class Hl7Field {
         _repeatedFields = repeatedFields == null ? new ArrayList<>() : repeatedFields;
     }
 
-    public Hl7RepeatedField addRepeatedField(Hl7RepeatedField repeatedField) {
+    public void addRepeatedField(Hl7RepeatedField repeatedField) {
         _repeatedFields.add(repeatedField);
-        return repeatedField;
     }
 
     public Hl7RepeatedField getRepeatedField(int repeatedFieldIdx) {
@@ -89,26 +97,11 @@ public class Hl7Field {
         return value.isEmpty() ? null : value;
     }
 
-    //    public List<Hl7Component> getComponents() {
-    //        if (_repeatedFields.isEmpty())
-    //            return Collections.emptyList();
-    //        return _repeatedFields.get(0).getComponents();
-    //    }
-    //
-    //    public Hl7Component getComponent(Integer index) {
-    //        List<Hl7Component> components = getComponents();
-    //        if (index == null || index < 0 || index >= components.size())
-    //            return null;
-    //        return components.get(index);
-    //    }
+    public String getValue(int repeatedFieldIdx) {
+        return getRepeatedField(repeatedFieldIdx).getValue();
+    }
 
-    //    public String getValue(Integer repeatedFieldIdx) {
-    //        if (_repeatedFields.isEmpty() || repeatedFieldIdx == null || repeatedFieldIdx < 0 || repeatedFieldIdx >= _repeatedFields.size())
-    //            return null;
-    //        return _repeatedFields.get(repeatedFieldIdx).getValue();
-    //    }
-    //
-    //    public String getValue() {
-    //        return getValue(0);
-    //    }
+    public String getValue(int repeatedFieldIdx, int componentIdx, int subComponentIdx) {
+        return getRepeatedField(repeatedFieldIdx).getComponent(componentIdx).getSubComponent(subComponentIdx).getValue();
+    }
 }

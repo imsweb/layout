@@ -32,7 +32,7 @@ public class Hl7Tester {
         // @formatter:on 
 
         // TODO add methods to retrieve the data more gracefully...
-        System.out.println(msg.getField("PID-5").getComponent(1).getValue());
+        //System.out.println(msg.getField("PID-5").getComponent(1).getValue());
 //        //System.out.println(msg.getComponent("PID-5.1").getValue()); // TODO not sure I like this one, it's weird to call getComponent from a message!
 //
 //        File file = new File("C:\\dev\\projects\\seerdms\\app\\src\\test\\resources\\importer\\hl7_naaccr_good1.txt");

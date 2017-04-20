@@ -5,11 +5,19 @@ package com.imsweb.layout.hl7.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Hl7Message {
 
+    // the line number of the first segment of this message (the MSH one), if applicable
+    private Integer _lineNumber;
+
+    // the list of segment, in the order they appear in the message
     private List<Hl7Segment> _segments;
 
+    /**
+     * Constructor
+     */
     public Hl7Message() {
         _segments = new ArrayList<>();
     }
@@ -22,9 +30,16 @@ public class Hl7Message {
         _segments = segments;
     }
 
-    public Hl7Segment addSegment(Hl7Segment segment) {
+    public void addSegment(Hl7Segment segment) {
         _segments.add(segment);
-        return segment;
+    }
+
+    public Integer getLineNumber() {
+        return _lineNumber;
+    }
+
+    public void setLineNumber(Integer lineNumber) {
+        _lineNumber = lineNumber;
     }
 
     public String getFieldSeparator() {
@@ -72,20 +87,11 @@ public class Hl7Message {
     }
 
     public Hl7Segment getSegment(String id) {
-        for (Hl7Segment segment : _segments)
-            if (id.equals(segment.getId()))
-                return segment;
-        return null;
+        return getSegment(id, 0);
     }
 
-    public Hl7Field getField(String id) {
-        String[] parts = id.split("-");
-        String segmentId = parts[0];
-        Integer fieldIdx = Integer.valueOf(parts[1]);
-        Hl7Segment segment = getSegment(segmentId);
-        if (segment != null)
-            return segment.getField(fieldIdx);
-        return null;
-        //return new Hl7Field(segment, 1);
+    public Hl7Segment getSegment(String id, int idx) {
+        List<Hl7Segment> filteredSegments = _segments.stream().filter(s -> s.getId().equals(id)).collect(Collectors.toList());
+        return idx >= filteredSegments.size() ? null : filteredSegments.get(idx);
     }
 }

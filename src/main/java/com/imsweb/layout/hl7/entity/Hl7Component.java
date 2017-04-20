@@ -10,12 +10,21 @@ import com.imsweb.layout.hl7.Hl7Utils;
 
 public class Hl7Component {
 
+    // the parent repeated field
     private Hl7RepeatedField _repeatedField;
 
+    // the component index
     private Integer _index;
 
+    // the list of sub-components in the order they appear in this component
     private Map<Integer, Hl7SubComponent> _subComponents;
 
+    /**
+     * Constructor.
+     * @param repeatedField parent repeated field (can be null)
+     * @param index component index (cannot be null)
+     * @param values optional values to set on this component
+     */
     public Hl7Component(Hl7RepeatedField repeatedField, Integer index, String... values) {
         if (index == null)
             throw new RuntimeException("Index is required");
@@ -63,9 +72,8 @@ public class Hl7Component {
         _subComponents = subComponents == null ? new HashMap<>() : subComponents;
     }
 
-    public Hl7SubComponent addSubComponent(Hl7SubComponent subComponent) {
+    public void addSubComponent(Hl7SubComponent subComponent) {
         _subComponents.put(subComponent.getIndex(), subComponent);
-        return subComponent;
     }
 
     public Hl7SubComponent getSubComponent(int subComponentIdx) {
@@ -76,5 +84,9 @@ public class Hl7Component {
     public String getValue() {
         String value = Hl7Utils.componentToString(this);
         return value.isEmpty() ? null : value;
+    }
+
+    public String getValue(int subComponentIdx) {
+        return getSubComponent(subComponentIdx).getValue();
     }
 }

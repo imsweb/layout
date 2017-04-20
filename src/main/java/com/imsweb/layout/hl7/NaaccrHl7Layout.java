@@ -255,7 +255,24 @@ public class NaaccrHl7Layout implements Layout {
 
     @Override
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
-        return null;
+        LayoutInfo result = null;
+
+        try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), StandardCharsets.UTF_8))) {
+            String line = reader.readLine();
+            while (line != null && reader.getLineNumber() < 10 && result == null) {
+                if (line.startsWith("MSH") && _layoutVersion.equals(Hl7Utils.segmentFromString(new Hl7Message(), line).getField(12).getComponent(1).getValue())) {
+                    result = new LayoutInfo();
+                    result.setLayoutId(getLayoutId());
+                    result.setLayoutName(getLayoutName());
+                }
+                line = reader.readLine();
+            }
+        }
+        catch (IOException e) {
+            // ignored, result will be null
+        }
+
+        return result;
     }
 
     public Hl7Message readNextMessage(LineNumberReader reader) throws IOException {
@@ -305,7 +322,8 @@ public class NaaccrHl7Layout implements Layout {
 
         // if we found the header, create the message
         if (line != null) {
-            msg = new Hl7Message(); // TODO reader.getLineNumber()
+            msg = new Hl7Message();
+            msg.setLineNumber(reader.getLineNumber());
 
             // then read the block of text
             while (line != null && !line.trim().isEmpty()) {

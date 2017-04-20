@@ -5,12 +5,21 @@ package com.imsweb.layout.hl7.entity;
 
 public class Hl7SubComponent {
 
+    // the parent component
     private Hl7Component _component;
 
+    // the sub-component index
     private Integer _index;
 
+    // the sub-component value
     private String _value;
 
+    /**
+     * Constructor.
+     * @param component parent component (can be null)
+     * @param index the sub-component index (cannot be null)
+     * @param value the sub-component value (can be null)
+     */
     public Hl7SubComponent(Hl7Component component, Integer index, String value) {
         if (index == null)
             throw new RuntimeException("Index is required");
