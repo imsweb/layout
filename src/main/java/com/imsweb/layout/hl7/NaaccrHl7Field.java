@@ -4,6 +4,7 @@
 package com.imsweb.layout.hl7;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.imsweb.layout.Field;
 
@@ -17,7 +18,7 @@ public class NaaccrHl7Field extends Field {
 
     private Integer _maxOccurrence;
 
-    private List<NaaccrHl7Field> subFields;
+    private List<NaaccrHl7Field> _subFields;
 
     public NaaccrHl7Field() {
         _minOccurrence = 0;
@@ -57,11 +58,11 @@ public class NaaccrHl7Field extends Field {
     }
 
     public List<NaaccrHl7Field> getSubFields() {
-        return subFields;
+        return _subFields;
     }
 
     public void setSubFields(List<NaaccrHl7Field> subFields) {
-        this.subFields = subFields;
+        _subFields = subFields;
     }
 
     @Override
@@ -70,28 +71,16 @@ public class NaaccrHl7Field extends Field {
     }
 
     @Override
-    public int hashCode() {
-        int prime = 31;
-        int result = 1;
-        result = prime * result + ((_name == null) ? 0 : _name.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof NaaccrHl7Field)) return false;
+        if (!super.equals(o)) return false;
+        NaaccrHl7Field that = (NaaccrHl7Field)o;
+        return Objects.equals(_identifier, that._identifier);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Field other = (Field)obj;
-        if (_name == null) {
-            if (other.getName() != null)
-                return false;
-        }
-        else if (!_name.equals(other.getName()))
-            return false;
-        return true;
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), _identifier);
     }
 }
