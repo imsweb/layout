@@ -3,32 +3,30 @@
  */
 package com.imsweb.layout.hl7;
 
-import com.imsweb.layout.hl7.entity.Hl7Message;
-
 public class Hl7Tester {
 
     public static void main(String[] args) throws Exception {
 
         // @formatter:off
-        Hl7Message msg = Hl7MessageBuilder.createMessage()
-            .withSegment("PID")
-                .withField(3)
-                    .withRepeatedField()
-                        .withComponent(1, "010203040")
-                        .withComponent(5, "MR")
-                        .withComponent(6, "STJ", "03D1234567", "AHA")
-                    .withRepeatedField()
-                        .withComponent(1, "111223333")
-                        .withComponent(5, "SS")
-                    .withRepeatedField()
-                        .withComponent(1, "97 810430")
-                        .withComponent(5, "PI")
-                        .withComponent(6, "HITECK PATH LAB-ATL", "3D932840", "CLIA")
-                .withField(5)
-                    .withComponent(1, "DEPRY")
-                    .withComponent(2, "FABIAN")
-                    .withComponent(3, "P")
-            .build();
+//        Hl7Message msg = Hl7MessageBuilder.createMessage()
+//            .withSegment("PID")
+//                .withField(3)
+//                    .withRepeatedField()
+//                        .withComponent(1, "010203040")
+//                        .withComponent(5, "MR")
+//                        .withComponent(6, "STJ", "03D1234567", "AHA")
+//                    .withRepeatedField()
+//                        .withComponent(1, "111223333")
+//                        .withComponent(5, "SS")
+//                    .withRepeatedField()
+//                        .withComponent(1, "97 810430")
+//                        .withComponent(5, "PI")
+//                        .withComponent(6, "HITECK PATH LAB-ATL", "3D932840", "CLIA")
+//                .withField(5)
+//                    .withComponent(1, "DEPRY")
+//                    .withComponent(2, "FABIAN")
+//                    .withComponent(3, "P")
+//            .build();
         // @formatter:on 
 
         // TODO add methods to retrieve the data more gracefully...

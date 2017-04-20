@@ -30,7 +30,7 @@ import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
 public class NaaccrHl7LayoutTest {
 
     @Test
-    public void testNaaccrHl7Layout_2_5_1() throws Exception {
+    public void testNaaccrHl7Layout251() throws Exception {
         NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
         assertInternalLayoutValidity(layout);
 
