@@ -37,6 +37,7 @@ public class NaaccrHl7LayoutTest {
         Hl7Message msg = Hl7MessageBuilder.createMessage()
                 .withSegment("MSH")
                 .withSegment("PID")
+                .withField(2, "WEIRD-ID")
                 .withField(3)
                 .withRepeatedField()
                 .withComponent(1, "010203040")
@@ -65,6 +66,7 @@ public class NaaccrHl7LayoutTest {
         Assert.assertEquals(layout.getLayoutId(), info.getLayoutId());
 
         Hl7Message msg2 = layout.readAllMessages(file).get(0);
+        Assert.assertEquals("WEIRD-ID", msg2.getSegment("PID").getValue(2));
         Assert.assertEquals("010203040", msg2.getSegment("PID").getValue(3, 1, 1, 1));
     }
 

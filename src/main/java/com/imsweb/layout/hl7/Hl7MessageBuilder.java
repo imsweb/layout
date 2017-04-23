@@ -72,7 +72,7 @@ public class Hl7MessageBuilder {
 
     public Hl7MessageBuilder withComponent(Integer index, String... values) {
         if (_currentRepeatedField == null)
-            withRepeatedField(); // TODO need to make sure no more fields are added...
+            withRepeatedField();
         _currentComponent = new Hl7Component(_currentRepeatedField, index, values);
         _currentSubComponent = null;
         return this;

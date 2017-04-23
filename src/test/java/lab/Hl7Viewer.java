@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Information Management Services, Inc.
  */
-package com.imsweb.layout.hl7;
+package lab;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,6 +32,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.hl7.Hl7MessageBuilder;
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
@@ -73,6 +74,8 @@ public class Hl7Viewer extends JFrame {
         }
 
         List<Hl7Message> messages = new ArrayList<>();
+
+        // @formatter:off
         messages.add(Hl7MessageBuilder.createMessage()
                 .withSegment("MSH")
                 .withSegment("PID")
@@ -100,6 +103,7 @@ public class Hl7Viewer extends JFrame {
                 .withField(3, "22633-2", "nature of specimen", "LN")
                 .withField(5, "Bone Marrow")
                 .build());
+        // @formatter:on
 
         //        try {
         //            messages.addAll(new NaaccrHl7Layout().readAllMessages(new File("C:\\dev\\projects\\seerdms\\app\\src\\test\\resources\\importer\\hl7_naaccr_good1.txt")));
