@@ -233,6 +233,15 @@ public final class LayoutUtils {
     }
 
     /**
+     * Returns the name of the internal NAACCR HL7 layout corresponding to the requested version.
+     * @param version layout version
+     * @return name of the layout resource
+     */
+    public static String getInternalNaaccrHl7Resource(String version) {
+        return "layout/hl7/naaccr/naaccr-hl7-" + version + "-layout.xml";
+    }
+
+    /**
      * Creates an <code>InputStream</code> for the provided file based on its extension:
      * <ul>
      * <li>if it ends with '.gz' or '.gzip', it will be considered as a GZipped file</li>

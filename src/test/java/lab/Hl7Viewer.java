@@ -61,7 +61,7 @@ public class Hl7Viewer extends JFrame {
         this.getContentPane().add(centerPnl, BorderLayout.CENTER);
 
         Map<String, String> entityNames = new HashMap<>();
-        Hl7LayoutXmlDto layout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/hl7/naaccr/naaccr-hl7-2.5.1-layout.xml"));
+        Hl7LayoutXmlDto layout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream(LayoutUtils.getInternalNaaccrHl7Resource("2.5.1")));
         for (Hl7SegmentXmlDto segment : layout.getHl7Segments()) {
             for (Hl7FieldXmlDto field : segment.getHl7Fields()) {
                 entityNames.put(field.getIdentifier(), field.getLongLabel());
@@ -76,7 +76,7 @@ public class Hl7Viewer extends JFrame {
         List<Hl7Message> messages = new ArrayList<>();
 
         // @formatter:off
-        messages.add(Hl7MessageBuilder.createMessage()
+        messages.add(Hl7MessageBuilder.createMessage(1)
                 .withSegment("MSH")
                 .withSegment("PID")
                 .withField(3)
@@ -115,9 +115,8 @@ public class Hl7Viewer extends JFrame {
         // TODO FP let user select a file, support starting line for messages
 
         DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Messages");
-        int startLine = 1;
         for (Hl7Message message : messages)
-            rootNode.add(createNodeForMessage(message, new File("sample.hl7"), startLine++, entityNames));
+            rootNode.add(createNodeForMessage(message, new File("sample.hl7"), entityNames));
         JTree tree = new JTree(rootNode);
         tree.setBorder(new EmptyBorder(2, 5, 2, 5));
 
@@ -155,8 +154,8 @@ public class Hl7Viewer extends JFrame {
         }));
     }
 
-    private static DefaultMutableTreeNode createNodeForMessage(Hl7Message message, File file, Integer startLine, Map<String, String> entityNames) {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(message, file, startLine));
+    private static DefaultMutableTreeNode createNodeForMessage(Hl7Message message, File file, Map<String, String> entityNames) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new EntityWrapper(message, file, message.getLineNumber()));
         message.getSegments().forEach(s -> node.add(createNodeForSegment(s, entityNames)));
         return node;
     }
