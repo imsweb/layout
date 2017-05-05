@@ -6,7 +6,6 @@ package com.imsweb.layout.hl7;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -34,6 +33,9 @@ import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
 
+/**
+ * Provides the functionality for reading/writing NAACCR HL7 messages.
+ */
 public class NaaccrHl7Layout implements Layout {
 
     /**
@@ -166,6 +168,7 @@ public class NaaccrHl7Layout implements Layout {
         }
     }
 
+    // helper
     protected NaaccrHl7Field createFieldFromXmlField(Hl7FieldXmlDto hl7FieldXmlDto) throws IOException {
         NaaccrHl7Field field = new NaaccrHl7Field();
 
@@ -181,6 +184,7 @@ public class NaaccrHl7Layout implements Layout {
         return field;
     }
 
+    // helper
     protected NaaccrHl7Field createFieldFromXmlComponent(Hl7ComponentXmlDto hl7CompoentdXmlDto) throws IOException {
         NaaccrHl7Field field = new NaaccrHl7Field();
 
@@ -192,6 +196,7 @@ public class NaaccrHl7Layout implements Layout {
         return field;
     }
 
+    // helper
     protected NaaccrHl7Field createFieldFromXmlSubComponent(Hl7SubComponentXmlDto hl7FSubComponentXmlDto) throws IOException {
         NaaccrHl7Field field = new NaaccrHl7Field();
 
@@ -275,13 +280,19 @@ public class NaaccrHl7Layout implements Layout {
         return result;
     }
 
+    /**
+     * Reads the next message from the given reader; this method won't close the reader.
+     */
     public Hl7Message readNextMessage(LineNumberReader reader) throws IOException {
         return fetchNextMessage(reader);
     }
 
+    /**
+     * Reads all the messages from the given file.
+     */
     public List<Hl7Message> readAllMessages(File file) throws IOException {
         List<Hl7Message> result = new ArrayList<>();
-        try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
+        try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file), StandardCharsets.UTF_8))) {
             Hl7Message message = readNextMessage(reader);
             while (message != null) {
                 result.add(message);
@@ -291,19 +302,26 @@ public class NaaccrHl7Layout implements Layout {
         return result;
     }
 
+    /**
+     * Writes the given message on the given writer; this method won't close the writer.
+     */
     public void writeMessage(Writer writer, Hl7Message message) throws IOException {
         writer.write(Hl7Utils.messageToString(message));
         writer.write(System.getProperty("line.separator"));
     }
 
+    /**
+     * Writes the given messages in the given file.
+     */
     public void writeMessages(File file, List<Hl7Message> messages) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(LayoutUtils.createOutputStream(file), StandardCharsets.UTF_8))) {
             for (Hl7Message message : messages)
                 writeMessage(writer, message);
         }
     }
 
-    private Hl7Message fetchNextMessage(LineNumberReader reader) throws IOException {
+    // helper
+    protected Hl7Message fetchNextMessage(LineNumberReader reader) throws IOException {
         Hl7Message msg = null;
 
         String line = reader.readLine();
@@ -312,13 +330,9 @@ public class NaaccrHl7Layout implements Layout {
         while (line != null && (line.startsWith("FHS") || line.startsWith("BHS")))
             line = reader.readLine();
 
-        // MSH should immediately follow FHS or BHS otherwise it's bad format.
-        // first get to the message header (MSH) and make sure no other data line is found in between
-        while (line != null && !line.startsWith("MSH")) {
-            //if (!line.trim().isEmpty())
-            //    throw new IOException("File is not properly formatted, found data without a proper MSH segment at line " + reader.getLineNumber());
+        // MSH should immediately follow FHS or BHS otherwise it's bad format
+        while (line != null && !line.startsWith("MSH"))
             line = reader.readLine();
-        }
 
         // if we found the header, create the message
         if (line != null) {
@@ -331,7 +345,7 @@ public class NaaccrHl7Layout implements Layout {
                     Hl7Utils.segmentFromString(msg, line);
 
                 // peek for the next three bytes to determine if next line is a message starter
-                reader.mark(8192); // this is the default buffer size for the BufferedReader (#67992)
+                reader.mark(8192); // this is the default buffer size for the BufferedReader
                 char[] peek = new char[3];
                 int n = reader.read(peek);
                 reader.reset();
