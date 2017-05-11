@@ -7,11 +7,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -20,7 +22,9 @@ import org.junit.Test;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
+import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.xml.Hl7ComponentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
@@ -214,6 +218,79 @@ public class NaaccrHl7LayoutTest {
         Assert.assertNull(layout.getFieldByName(null));
         Assert.assertNull(layout.getFieldByName(""));
         Assert.assertNull(layout.getFieldByName("?"));
+    }
+
+    @Test
+    @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
+    public void testHl7Layout() throws Exception {
+        // test read methods
+        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+        URL url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-hl7.txt");
+        List<Hl7Message> messages = layout.readAllMessages(new File(url.getPath()));
+        Assert.assertEquals(2, messages.size());
+
+        int messageIndex = 0;
+        for (Hl7Message message : messages) {
+            // test message
+            Assert.assertNotNull(message);
+            Assert.assertEquals("|", message.getFieldSeparator());
+            Assert.assertEquals("~", message.getRepetitionSeparator());
+            Assert.assertEquals("^", message.getComponentSeparator());
+            Assert.assertEquals("&", message.getSubComponentSeparator());
+
+            int segmentIndex = 0;
+            for (Hl7Segment segment : message.getSegments()) {
+                // test segments
+                Assert.assertNotNull(segment);
+                Assert.assertEquals(3, segment.getId().length());
+                if (segmentIndex == 0)
+                    Assert.assertEquals("MSH", segment.getId());
+                else
+                    Assert.assertTrue(Arrays.asList("PID", "ORC", "OBR", "OBX").contains(segment.getId()));
+
+                // test fields
+                Map<Integer, Hl7Field> fields = segment.getFields();
+                switch (segment.getId()) {
+                    case "MSH":
+                        // test important MSH fields
+                        if (messageIndex == 0)
+                            Assert.assertEquals("INDEPENDENT LAB SERVICES^33D1234567^CLIA", fields.get(3).getValue());
+                        else
+                            Assert.assertEquals("IND LAB SERVICES^33D1234567^CLIA", fields.get(3).getValue());
+                        Assert.assertEquals("2.5.1", fields.get(12).getValue());
+                        break;
+                    case "PID":
+                        // test repeated fields
+                        Assert.assertEquals(2, fields.get(3).getRepeatedFields().size());
+
+                        // test patient first and last name components
+                        Assert.assertEquals("McMuffin", fields.get(5).getComponent(1).getValue());
+                        Assert.assertEquals("Candy", fields.get(5).getComponent(2).getValue());
+                        break;
+                    case "OBR":
+                        // test subcomponents
+                        Assert.assertEquals(6, fields.get(32).getComponent(1).getSubComponents().size());
+                        break;
+                }
+
+                segmentIndex++;
+            }
+
+            messageIndex++;
+        }
+
+        // test write methods
+        File file = new File(System.getProperty("user.dir") + "/build/naaccr16.txt");
+        layout.writeMessages(file, Collections.singletonList(messages.get(1)));
+        Assert.assertTrue(file.exists());
+
+        LayoutInfo info = layout.buildFileInfo(file, null, null);
+        Assert.assertNotNull(info);
+        Assert.assertEquals(layout.getLayoutId(), info.getLayoutId());
+
+        Hl7Message msg2 = layout.readAllMessages(file).get(0);
+        Assert.assertNull(msg2.getSegment("PID").getValue(2));
+        Assert.assertEquals("123456789", msg2.getSegment("PID").getValue(3, 1, 1, 1));
     }
 
     private void assertFieldParameters(NaaccrHl7Layout layout, String name, String longLabel) {
