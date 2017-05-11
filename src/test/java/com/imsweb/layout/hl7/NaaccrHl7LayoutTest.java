@@ -223,7 +223,7 @@ public class NaaccrHl7LayoutTest {
     @Test
     @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
     public void testHl7Layout() throws Exception {
-        // test read methods
+        // test read messages (uses a modified example in PDF)
         NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
         URL url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-hl7.txt");
         List<Hl7Message> messages = layout.readAllMessages(new File(url.getPath()));
@@ -250,27 +250,25 @@ public class NaaccrHl7LayoutTest {
 
                 // test fields
                 Map<Integer, Hl7Field> fields = segment.getFields();
-                switch (segment.getId()) {
-                    case "MSH":
-                        // test important MSH fields
-                        if (messageIndex == 0)
-                            Assert.assertEquals("INDEPENDENT LAB SERVICES^33D1234567^CLIA", fields.get(3).getValue());
-                        else
-                            Assert.assertEquals("IND LAB SERVICES^33D1234567^CLIA", fields.get(3).getValue());
-                        Assert.assertEquals("2.5.1", fields.get(12).getValue());
-                        break;
-                    case "PID":
-                        // test repeated fields
-                        Assert.assertEquals(2, fields.get(3).getRepeatedFields().size());
+                if (segment.getId().equals("MSH")) {
+                    // test important MSH fields
+                    if (messageIndex == 0)
+                        Assert.assertEquals("INDEPENDENT LAB SERVICES^33D1234567^CLIA", fields.get(3).getValue());
+                    else
+                        Assert.assertEquals("IND LAB SERVICES^33D1234567^CLIA", fields.get(3).getValue());
+                    Assert.assertEquals("2.5.1", fields.get(12).getValue());
+                }
+                else if (segment.getId().equals("PID")) {
+                    // test repeated fields
+                    Assert.assertEquals(2, fields.get(3).getRepeatedFields().size());
 
-                        // test patient first and last name components
-                        Assert.assertEquals("McMuffin", fields.get(5).getComponent(1).getValue());
-                        Assert.assertEquals("Candy", fields.get(5).getComponent(2).getValue());
-                        break;
-                    case "OBR":
-                        // test subcomponents
-                        Assert.assertEquals(6, fields.get(32).getComponent(1).getSubComponents().size());
-                        break;
+                    // test patient first and last name components
+                    Assert.assertEquals("McMuffin", fields.get(5).getComponent(1).getValue());
+                    Assert.assertEquals("Candy", fields.get(5).getComponent(2).getValue());
+                }
+                else if (segment.getId().equals("OBR")) {
+                    // test subcomponents
+                    Assert.assertEquals(6, fields.get(32).getComponent(1).getSubComponents().size());
                 }
 
                 segmentIndex++;
@@ -279,15 +277,17 @@ public class NaaccrHl7LayoutTest {
             messageIndex++;
         }
 
-        // test write methods
+        // test write message to file
         File file = new File(System.getProperty("user.dir") + "/build/naaccr16.txt");
         layout.writeMessages(file, Collections.singletonList(messages.get(1)));
         Assert.assertTrue(file.exists());
 
+        // test version
         LayoutInfo info = layout.buildFileInfo(file, null, null);
         Assert.assertNotNull(info);
         Assert.assertEquals(layout.getLayoutId(), info.getLayoutId());
 
+        // test some fields
         Hl7Message msg2 = layout.readAllMessages(file).get(0);
         Assert.assertNull(msg2.getSegment("PID").getValue(2));
         Assert.assertEquals("123456789", msg2.getSegment("PID").getValue(3, 1, 1, 1));
