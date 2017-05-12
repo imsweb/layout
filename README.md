@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/imsweb/layout.svg?branch=master)](https://travis-ci.org/imsweb/layout)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.imsweb/layout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.imsweb/layout)
 
-The layout framework is a java library  that allows file formats to be declared using XML definition files;
+The layout framework is a Java library  that allows file formats to be declared using XML definition files;
 those formats can then be used to read and write corresponding data files.
 
 ## Features
@@ -11,6 +11,7 @@ those formats can then be used to read and write corresponding data files.
 * Supports XML definitions for *fixed-length-columns* and *comma-separated-values* formats.
 * Other types of format can be supported, but those need to be defined programmatically.
 * Recent [NAACCR](http://www.naaccr.org/) formats are included with the library, including all the data items documentation.
+* Supports NAACCR HL7 2.5.1 (no data item documentation is available for that format yet).
 * Provides data file format auto-discovery.
 
 ## Download
@@ -37,6 +38,14 @@ for (<Map<String, String> record : (RecordLayout)layout.readAllRecords(new File(
 ```
 
 For large files, the "readNextRecord" method should be used instead.
+
+The library also supports reading NAACCR HL7 files:
+
+```java
+Layout layout = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+for (Hl7Message message : (NaaccrHl7Layout)layout.readAllMessages(new File("my_file.txt")))
+    processMessage(message);
+```
 
 ### Using format auto-discovery
 

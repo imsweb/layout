@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.5**
+
+ - Added support for reading and writing NAACCR HL7 2.5.1.
+
 **Changes in version 1.4.1**
 
  - Fixed wrong start columns for reserved11 field in NAACCR 16 layout (issue #8)
