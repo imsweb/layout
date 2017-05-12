@@ -54,7 +54,7 @@ public final class Hl7Utils {
             }
             String fieldValue = fieldValues[fieldIdx];
             if (!fieldValue.isEmpty()) {
-                Hl7Field field = new Hl7Field(segment, fieldIdx);
+                Hl7Field field = new Hl7Field(segment, "MSH".equals(segment.getId()) ? (fieldIdx + 1) : fieldIdx);
 
                 String[] repeatedFieldValues = fieldValue.split(Pattern.quote(msg.getRepetitionSeparator()));
                 for (int repeatedFieldIdx = 0; repeatedFieldIdx < repeatedFieldValues.length; repeatedFieldIdx++) {
@@ -125,7 +125,8 @@ public final class Hl7Utils {
 
         // create a list that takes into account the gaps
         List<Hl7Field> list = new ArrayList<>(Collections.nCopies(max, null));
-        segment.getFields().values().stream().filter(f -> !msh || f.getIndex() != 1).forEach(f -> list.set(msh && f.getIndex() == 2 ? 0 : f.getIndex() - 1, f));
+        //segment.getFields().values().stream().filter(f -> !msh || f.getIndex() != 1).forEach(f -> list.set(msh && f.getIndex() == 2 ? 0 : f.getIndex() - 1, f));
+        segment.getFields().values().stream().filter(f -> !msh || f.getIndex() != 1).forEach(f -> list.set(msh ? (f.getIndex() - 2) : f.getIndex() - 1, f));
 
         // write each element with a separator between them
         String separator = segment.getMessage().getFieldSeparator();

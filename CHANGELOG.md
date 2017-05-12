@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.5.1**
+
+ - Fixed a bug in NAACCR HL7 layout where MSH segment was not properly written.
+
 **Changes in version 1.5**
 
  - Added support for reading and writing NAACCR HL7 2.5.1.

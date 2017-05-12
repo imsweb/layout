@@ -15,6 +15,7 @@ import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
 public class Hl7UtilsTest {
 
+    @Test
     public void testSegmentFromString() {
 
         Hl7Segment segment = Hl7Utils.segmentFromString(new Hl7Message(), "TST|VAL");

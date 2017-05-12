@@ -70,6 +70,7 @@ public class NaaccrHl7LayoutTest {
         Assert.assertEquals(layout.getLayoutId(), info.getLayoutId());
 
         Hl7Message msg2 = layout.readAllMessages(file).get(0);
+        Assert.assertEquals("2.5.1", msg2.getSegment("MSH").getField(12).getValue());
         Assert.assertEquals("WEIRD-ID", msg2.getSegment("PID").getValue(2));
         Assert.assertEquals("010203040", msg2.getSegment("PID").getValue(3, 1, 1, 1));
     }
@@ -253,9 +254,9 @@ public class NaaccrHl7LayoutTest {
                 if (segment.getId().equals("MSH")) {
                     // test important MSH fields
                     if (messageIndex == 0)
-                        Assert.assertEquals("INDEPENDENT LAB SERVICES^33D1234567^CLIA", fields.get(3).getValue());
+                        Assert.assertEquals("INDEPENDENT LAB SERVICES^33D1234567^CLIA", fields.get(4).getValue());
                     else
-                        Assert.assertEquals("IND LAB SERVICES^33D1234567^CLIA", fields.get(3).getValue());
+                        Assert.assertEquals("IND LAB SERVICES^33D1234567^CLIA", fields.get(4).getValue());
                     Assert.assertEquals("2.5.1", fields.get(12).getValue());
                 }
                 else if (segment.getId().equals("PID")) {
