@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.imsweb'
-version = file('VERSION').text
+version = file('VERSION').text.trim()
 description = 'Framework that allows defining file formats (layouts) and use them to read and write data files.'
 
 println "Starting build using ${Jvm.current()}"
