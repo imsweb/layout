@@ -40,7 +40,7 @@ jar {
                 'Created-By': System.properties['java.vm.version'] + ' (' + System.properties['java.vm.vendor'] + ')',
                 'Built-By': System.getProperty('user.name'),
                 'Built-Date': new Date(),
-                'Built-JDK': System.getProperty('java.version'),
+                'Built-JDK': System.getProperty('java.version')
         )
     }
 }
