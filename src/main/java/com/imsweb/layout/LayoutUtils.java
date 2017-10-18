@@ -28,7 +28,9 @@ import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
 /**
@@ -45,6 +47,40 @@ public final class LayoutUtils {
      * Created on Aug 16, 2011 by depryf
      */
     private LayoutUtils() {
+    }
+
+    /**
+     * Reads an unspecified layout from the provided stream, expects XML format.
+     * Created on October 16, 2017 by schadega
+     * @param stream <code>InputStream</code> to the data file, cannot be null
+     * @return a Layout that could either be a <code>CommaSeparatedLayout</code> or <code>FixedColumnsLayout</code>, never null
+     * @throws IOException if the layout can't be read from the input stream
+     */
+    public static Layout readLayout(InputStream stream) throws IOException {
+        if (stream == null)
+            throw new IOException("Unable to read layout, target input stream is null");
+        try {
+            XStream xstream = new XStream(new StaxDriver() {
+                @Override
+                public HierarchicalStreamWriter createWriter(Writer out) {
+                    return new PrettyPrintWriter(out, "    ");
+                }
+            });
+            xstream.autodetectAnnotations(true);
+            xstream.alias("comma-separated-layout", CommaSeparatedLayoutXmlDto.class);
+            xstream.alias("fixed-column-layout", FixedColumnLayoutXmlDto.class);
+
+            Object layoutDto = xstream.fromXML(stream);
+            if (layoutDto instanceof FixedColumnLayoutXmlDto)
+                return new FixedColumnsLayout((FixedColumnLayoutXmlDto)layoutDto);
+            else if (layoutDto instanceof CommaSeparatedLayoutXmlDto)
+                return new CommaSeparatedLayout((CommaSeparatedLayoutXmlDto)layoutDto);
+            else
+                throw new IOException("Cannot identify layout type.");
+        }
+        catch (RuntimeException e) {
+            throw new IOException("Unable to read XML layout: " + e.getMessage(), e);
+        }
     }
 
     /**

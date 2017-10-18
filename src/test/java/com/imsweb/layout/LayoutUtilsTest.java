@@ -18,8 +18,10 @@ import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutFieldXmlDto;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
@@ -269,4 +271,92 @@ public class LayoutUtilsTest {
         }
     }
 
+    @Test
+    public void testReadLayout() throws IOException {
+        //Run similar tests as above, reading different layouts using generic method
+
+        //Test with comma separated layout
+        CommaSeparatedLayoutXmlDto commaSeparatedLayout = new CommaSeparatedLayoutXmlDto();
+        commaSeparatedLayout.setId("test-utils-fixed");
+        commaSeparatedLayout.setName("Test Rec Layout");
+        commaSeparatedLayout.setDescription("Description");
+        commaSeparatedLayout.setVersion("1.0");
+        commaSeparatedLayout.setNumFields(1);
+        CommaSeparatedLayoutFieldXmlDto commaSeparatedField = new CommaSeparatedLayoutFieldXmlDto();
+        commaSeparatedField.setName("field1");
+        commaSeparatedField.setIndex(1);
+        commaSeparatedField.setMaxLength(1);
+        commaSeparatedField.setNaaccrItemNum(1);
+        commaSeparatedField.setShortLabel("short");
+        commaSeparatedField.setLongLabel("long");
+        commaSeparatedField.setDefaultValue("default");
+        commaSeparatedLayout.setField(Collections.singletonList(commaSeparatedField));
+
+        File file = new File(System.getProperty("user.dir") + "/build/fixed-layout-test.xml");
+        try (OutputStream fos = new FileOutputStream(file)) {
+            LayoutUtils.writeCommaSeparatedLayout(fos, commaSeparatedLayout);
+        }
+
+        try (InputStream fis = new FileInputStream(file)) {
+            CommaSeparatedLayout layout2 = (CommaSeparatedLayout)LayoutUtils.readLayout(fis);
+            Assert.assertEquals(commaSeparatedLayout.getId(), layout2.getLayoutId());
+            Assert.assertEquals(commaSeparatedLayout.getName(), layout2.getLayoutName());
+            Assert.assertEquals(commaSeparatedLayout.getDescription(), layout2.getLayoutDescription());
+            Assert.assertEquals(commaSeparatedLayout.getVersion(), layout2.getLayoutVersion());
+            Assert.assertEquals(commaSeparatedLayout.getNumFields(), layout2.getLayoutNumberOfFields());
+            Assert.assertEquals(commaSeparatedLayout.getField().size(), layout2.getAllFields().size());
+            Assert.assertEquals(commaSeparatedLayout.getField().get(0).getName(), layout2.getAllFields().get(0).getName());
+            Assert.assertEquals(commaSeparatedLayout.getField().get(0).getIndex(), layout2.getAllFields().get(0).getIndex());
+            Assert.assertEquals(commaSeparatedLayout.getField().get(0).getMaxLength(), layout2.getAllFields().get(0).getMaxLength());
+            Assert.assertEquals(commaSeparatedLayout.getField().get(0).getNaaccrItemNum(), layout2.getAllFields().get(0).getNaaccrItemNum());
+            Assert.assertEquals(commaSeparatedLayout.getField().get(0).getShortLabel(), layout2.getAllFields().get(0).getShortLabel());
+            Assert.assertEquals(commaSeparatedLayout.getField().get(0).getLongLabel(), layout2.getAllFields().get(0).getLongLabel());
+            Assert.assertEquals(commaSeparatedLayout.getField().get(0).getDefaultValue(), layout2.getAllFields().get(0).getDefaultValue());
+        }
+
+        //Test with fixed column layout
+        FixedColumnLayoutXmlDto fixedColumnLayout = new FixedColumnLayoutXmlDto();
+        fixedColumnLayout.setId("test-utils-fixed");
+        fixedColumnLayout.setName("Test Rec Layout");
+        fixedColumnLayout.setDescription("Description");
+        fixedColumnLayout.setVersion("1.0");
+        fixedColumnLayout.setLength(1);
+        FixedColumnLayoutFieldXmlDto fixedColumnField = new FixedColumnLayoutFieldXmlDto();
+        fixedColumnField.setName("field1");
+        fixedColumnField.setStart(1);
+        fixedColumnField.setEnd(1);
+        fixedColumnField.setNaaccrItemNum(1);
+        fixedColumnField.setShortLabel("short");
+        fixedColumnField.setLongLabel("long");
+        fixedColumnField.setAlign("left");
+        fixedColumnField.setDefaultValue("default");
+        fixedColumnField.setPadChar("X");
+        fixedColumnField.setSection("section");
+        fixedColumnLayout.setField(Collections.singletonList(fixedColumnField));
+
+        file = new File(System.getProperty("user.dir") + "/build/fixed-layout-test.xml");
+        try (OutputStream fos = new FileOutputStream(file)) {
+            LayoutUtils.writeFixedColumnsLayout(fos, fixedColumnLayout);
+        }
+
+        try (InputStream fis = new FileInputStream(file)) {
+            FixedColumnsLayout layout2 = (FixedColumnsLayout)LayoutUtils.readLayout(fis);
+            Assert.assertEquals(fixedColumnLayout.getId(), layout2.getLayoutId());
+            Assert.assertEquals(fixedColumnLayout.getName(), layout2.getLayoutName());
+            Assert.assertEquals(fixedColumnLayout.getDescription(), layout2.getLayoutDescription());
+            Assert.assertEquals(fixedColumnLayout.getVersion(), layout2.getLayoutVersion());
+            Assert.assertEquals(fixedColumnLayout.getLength(), layout2.getLayoutLineLength());
+            Assert.assertEquals(fixedColumnLayout.getField().size(), layout2.getAllFields().size());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getName(), layout2.getAllFields().get(0).getName());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getStart(), layout2.getAllFields().get(0).getStart());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getEnd(), layout2.getAllFields().get(0).getEnd());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getNaaccrItemNum(), layout2.getAllFields().get(0).getNaaccrItemNum());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getShortLabel(), layout2.getAllFields().get(0).getShortLabel());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getLongLabel(), layout2.getAllFields().get(0).getLongLabel());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getAlign(), layout2.getAllFields().get(0).getAlign().toString().toLowerCase());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getDefaultValue(), layout2.getAllFields().get(0).getDefaultValue());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getPadChar(), layout2.getAllFields().get(0).getPadChar());
+            Assert.assertEquals(fixedColumnLayout.getField().get(0).getSection(), layout2.getAllFields().get(0).getSection());
+        }
+    }
 }
