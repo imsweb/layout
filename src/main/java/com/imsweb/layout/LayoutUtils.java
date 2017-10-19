@@ -61,13 +61,7 @@ public final class LayoutUtils {
         if (stream == null)
             throw new IOException("Unable to read layout, target input stream is null");
         try {
-            XStream xstream = new XStream(new StaxDriver() {
-                @Override
-                public HierarchicalStreamWriter createWriter(Writer out) {
-                    return new PrettyPrintWriter(out, "    ");
-                }
-            });
-            xstream.autodetectAnnotations(true);
+            XStream xstream = createXStream();
             xstream.alias("comma-separated-layout", CommaSeparatedLayoutXmlDto.class);
             xstream.alias("fixed-column-layout", FixedColumnLayoutXmlDto.class);
             xstream.alias("hl7-layout", Hl7LayoutXmlDto.class);

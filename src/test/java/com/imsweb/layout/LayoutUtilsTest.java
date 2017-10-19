@@ -319,6 +319,8 @@ public class LayoutUtilsTest {
         segment.setIdentifier("MSH");
         Hl7FieldXmlDto field = new Hl7FieldXmlDto();
         field.setName("field1");
+        field.setMinOccurrence(1);
+        field.setMaxOccurrence(1);
         segment.setHl7Fields(Collections.singletonList(field));
         layout.setHl7Segments(Collections.singletonList(segment));
 
@@ -328,9 +330,7 @@ public class LayoutUtilsTest {
         }
 
         try (InputStream fis = new FileInputStream(file)) {
-            // layout
-            Hl7LayoutXmlDto layout2 = LayoutUtils.readHl7Layout(fis);
-            Assert.assertEquals(layout.getId(), layout2.getId());
+            Assert.assertEquals(layout.getId(), LayoutUtils.readLayout(fis).getLayoutId());
         }
     }
 }
