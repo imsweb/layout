@@ -269,4 +269,68 @@ public class LayoutUtilsTest {
         }
     }
 
+    @Test
+    public void testReadLayout() throws IOException {
+        //Run similar tests as above, reading different layouts using generic method
+
+        //Test with comma separated layout
+        CommaSeparatedLayoutXmlDto commaSeparatedLayout = new CommaSeparatedLayoutXmlDto();
+        commaSeparatedLayout.setId("test-utils-fixed");
+        commaSeparatedLayout.setName("Test Rec Layout");
+        commaSeparatedLayout.setNumFields(1);
+        CommaSeparatedLayoutFieldXmlDto commaSeparatedField = new CommaSeparatedLayoutFieldXmlDto();
+        commaSeparatedField.setName("field1");
+        commaSeparatedField.setIndex(1);
+        commaSeparatedLayout.setField(Collections.singletonList(commaSeparatedField));
+
+        File file = new File(System.getProperty("user.dir") + "/build/fixed-layout-test.xml");
+        try (OutputStream fos = new FileOutputStream(file)) {
+            LayoutUtils.writeCommaSeparatedLayout(fos, commaSeparatedLayout);
+        }
+
+        try (InputStream fis = new FileInputStream(file)) {
+            Assert.assertEquals(commaSeparatedLayout.getId(), LayoutUtils.readLayout(fis).getLayoutId());
+        }
+
+        //Test with fixed column layout
+        FixedColumnLayoutXmlDto fixedColumnLayout = new FixedColumnLayoutXmlDto();
+        fixedColumnLayout.setId("test-utils-fixed");
+        fixedColumnLayout.setName("Test Rec Layout");
+        fixedColumnLayout.setLength(1);
+        FixedColumnLayoutFieldXmlDto fixedColumnField = new FixedColumnLayoutFieldXmlDto();
+        fixedColumnField.setName("field1");
+        fixedColumnField.setStart(1);
+        fixedColumnField.setEnd(1);
+        fixedColumnLayout.setField(Collections.singletonList(fixedColumnField));
+
+        file = new File(System.getProperty("user.dir") + "/build/fixed-layout-test.xml");
+        try (OutputStream fos = new FileOutputStream(file)) {
+            LayoutUtils.writeFixedColumnsLayout(fos, fixedColumnLayout);
+        }
+
+        try (InputStream fis = new FileInputStream(file)) {
+            Assert.assertEquals(fixedColumnLayout.getId(), LayoutUtils.readLayout(fis).getLayoutId());
+        }
+
+        //Test with Hl7 layout
+        Hl7LayoutXmlDto layout = new Hl7LayoutXmlDto();
+        layout.setId("test-hl7");
+        Hl7SegmentXmlDto segment = new Hl7SegmentXmlDto();
+        segment.setIdentifier("MSH");
+        Hl7FieldXmlDto field = new Hl7FieldXmlDto();
+        field.setName("field1");
+        field.setMinOccurrence(1);
+        field.setMaxOccurrence(1);
+        segment.setHl7Fields(Collections.singletonList(field));
+        layout.setHl7Segments(Collections.singletonList(segment));
+
+        file = new File(System.getProperty("user.dir") + "/build/hl7-layout-test.xml");
+        try (OutputStream fos = new FileOutputStream(file)) {
+            LayoutUtils.writeHl7Layout(fos, layout);
+        }
+
+        try (InputStream fis = new FileInputStream(file)) {
+            Assert.assertEquals(layout.getId(), LayoutUtils.readLayout(fis).getLayoutId());
+        }
+    }
 }
