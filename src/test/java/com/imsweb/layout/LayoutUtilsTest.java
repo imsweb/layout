@@ -18,10 +18,8 @@ import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutFieldXmlDto;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
