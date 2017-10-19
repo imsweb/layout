@@ -27,6 +27,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
+import com.imsweb.layout.hl7.NaaccrHl7Layout;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
 import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
@@ -69,12 +70,15 @@ public final class LayoutUtils {
             xstream.autodetectAnnotations(true);
             xstream.alias("comma-separated-layout", CommaSeparatedLayoutXmlDto.class);
             xstream.alias("fixed-column-layout", FixedColumnLayoutXmlDto.class);
+            xstream.alias("hl7-layout", Hl7LayoutXmlDto.class);
 
             Object layoutDto = xstream.fromXML(stream);
             if (layoutDto instanceof FixedColumnLayoutXmlDto)
                 return new FixedColumnsLayout((FixedColumnLayoutXmlDto)layoutDto);
             else if (layoutDto instanceof CommaSeparatedLayoutXmlDto)
                 return new CommaSeparatedLayout((CommaSeparatedLayoutXmlDto)layoutDto);
+            else if (layoutDto instanceof Hl7LayoutXmlDto)
+                return new NaaccrHl7Layout((Hl7LayoutXmlDto)layoutDto);
             else
                 throw new IOException("Cannot identify layout type.");
         }
@@ -88,13 +92,7 @@ public final class LayoutUtils {
      * @return created XStream instance
      */
     public static XStream createFixedColumnsXStream() {
-        XStream xstream = new XStream(new StaxDriver() {
-            @Override
-            public HierarchicalStreamWriter createWriter(Writer out) {
-                return new PrettyPrintWriter(out, "    ");
-            }
-        });
-        xstream.autodetectAnnotations(true);
+        XStream xstream = createXStream();
         xstream.alias("fixed-column-layout", FixedColumnLayoutXmlDto.class);
         return xstream;
     }
@@ -150,13 +148,7 @@ public final class LayoutUtils {
      * @return created XStream instance
      */
     public static XStream createCommaSeparatedXStream() {
-        XStream xstream = new XStream(new StaxDriver() {
-            @Override
-            public HierarchicalStreamWriter createWriter(Writer out) {
-                return new PrettyPrintWriter(out, "    ");
-            }
-        });
-        xstream.autodetectAnnotations(true);
+        XStream xstream = createXStream();
         xstream.alias("comma-separated-layout", CommaSeparatedLayoutXmlDto.class);
         return xstream;
     }
@@ -211,13 +203,7 @@ public final class LayoutUtils {
      * @return created XStream instance
      */
     public static XStream createHl7XStream() {
-        XStream xstream = new XStream(new StaxDriver() {
-            @Override
-            public HierarchicalStreamWriter createWriter(Writer out) {
-                return new PrettyPrintWriter(out, "    ");
-            }
-        });
-        xstream.autodetectAnnotations(true);
+        XStream xstream = createXStream();
         xstream.alias("hl7-layout", Hl7LayoutXmlDto.class);
         return xstream;
     }
@@ -266,6 +252,21 @@ public final class LayoutUtils {
         catch (RuntimeException e) {
             throw new IOException("Unable to write XML layout: " + e.getMessage(), e);
         }
+    }
+
+    /**
+     * creates and returns a generic XStream object, to be customized for a particular layout type
+     * @return created XStream instance
+     */
+    public static XStream createXStream() {
+        XStream xstream = new XStream(new StaxDriver() {
+            @Override
+            public HierarchicalStreamWriter createWriter(Writer out) {
+                return new PrettyPrintWriter(out, "    ");
+            }
+        });
+        xstream.autodetectAnnotations(true);
+        return xstream;
     }
 
     /**
