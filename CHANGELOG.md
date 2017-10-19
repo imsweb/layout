@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.6**
+
+ - Added new utility method to load a Layout without making the assumption of which type of layout it is.
+
 **Changes in version 1.5.1**
 
  - Fixed a bug in NAACCR HL7 layout where MSH segment was not properly written.
