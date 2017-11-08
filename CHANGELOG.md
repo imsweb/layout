@@ -3,6 +3,8 @@
 **Changes in version 1.6**
 
  - Added new utility method to load a Layout without making the assumption of which type of layout it is.
+ - Added a proper security environment to XStream by limiting the classes that it can create when loading XML files.
+ - Updated XStreams library from version 1.4.9 to version 1.4.10. 
 
 **Changes in version 1.5.1**
 
