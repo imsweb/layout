@@ -14,6 +14,7 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.imsweb.layout.hl7.NaaccrHl7Layout;
+import com.imsweb.layout.naaccrXml.NaaccrXmlLayout;
 import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
@@ -67,7 +68,10 @@ public final class LayoutFactory {
     public static final String LAYOUT_ID_NAACCR_12_MODIFIED = "naaccr-12-modified";
     public static final String LAYOUT_ID_NAACCR_12_CONFIDENTIAL = "naaccr-12-confidential";
     public static final String LAYOUT_ID_NAACCR_12_INCIDENCE = "naaccr-12-incidence";
+    //Hl7 layouts
     public static final String LAYOUT_ID_NAACCR_HL7_2_5_1 = "naaccr-hl7-2.5.1";
+    //XML Layouts
+    public static final String LAYOUT_ID_NAACCR_XML_160 = "http://naaccr.org/naaccrxml/naaccr-dictionary-160.xml";
 
     // internal alias IDs resolution, any of the keys will be translated into its value...
     private static final Map<String, String> _INTERNAL_LAYOUT_ID_ALIASES = new HashMap<>();
@@ -114,6 +118,8 @@ public final class LayoutFactory {
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_12_INCIDENCE, "NAACCR 12 Incidence");
         // NAACCR HL7
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_HL7_2_5_1, "NAACCR HL7");
+        //NAACCR XML
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_160, "NAACCR XML 160");
     }
 
     // registered layouts (internal and external)
@@ -172,6 +178,8 @@ public final class LayoutFactory {
             layout = new NaaccrLayout("122", "I", 3339, LAYOUT_ID_NAACCR_12_INCIDENCE, loadFields);
         else if (LAYOUT_ID_NAACCR_HL7_2_5_1.equals(layoutId))
             layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7_2_5_1, "2.5.1", loadFields);
+        else if (LAYOUT_ID_NAACCR_XML_160.equals(layoutId))
+            layout = new NaaccrXmlLayout("160", LAYOUT_ID_NAACCR_XML_160);
 
         if (layout == null)
             throw new RuntimeException("Unknown internal layout: " + layoutId);

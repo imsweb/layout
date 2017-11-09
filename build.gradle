@@ -21,6 +21,7 @@ repositories {
 dependencies {
     compile 'au.com.bytecode:opencsv:2.4'
     compile 'com.thoughtworks.xstream:xstream:1.4.9'
+    compile 'com.imsweb:naaccr-xml:4.0'
     testCompile 'junit:junit:4.12'
 }
 
