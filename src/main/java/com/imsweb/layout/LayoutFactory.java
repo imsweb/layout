@@ -143,6 +143,12 @@ public final class LayoutFactory {
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
         if (LAYOUT_ID_NAACCR_18_ABSTRACT.equals(layoutId))
             layout = new NaaccrLayout("180", "A", 24194, LAYOUT_ID_NAACCR_18_ABSTRACT, loadFields);
+        else if (LAYOUT_ID_NAACCR_18_MODIFIED.equals(layoutId))
+            layout = new NaaccrLayout("180", "M", 24194, LAYOUT_ID_NAACCR_18_MODIFIED, loadFields);
+        else if (LAYOUT_ID_NAACCR_18_CONFIDENTIAL.equals(layoutId))
+            layout = new NaaccrLayout("180", "C", 6934, LAYOUT_ID_NAACCR_18_CONFIDENTIAL, loadFields);
+        else if (LAYOUT_ID_NAACCR_18_INCIDENCE.equals(layoutId))
+            layout = new NaaccrLayout("180", "I", 4048, LAYOUT_ID_NAACCR_18_INCIDENCE, loadFields);
         else if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
             layout = new NaaccrLayout("160", "A", 22824, LAYOUT_ID_NAACCR_16_ABSTRACT, loadFields);
         else if (LAYOUT_ID_NAACCR_16_MODIFIED.equals(layoutId))

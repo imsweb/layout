@@ -40,8 +40,8 @@
         <field name="censusBlockGroup2010" start="191" end="191" short-label="Bk Grp 2010" long-label="Census Block Group 2010" naaccr-item-num="363" section="Demographic"/>
     </field>
     <field name="censusCertainty2010" start="192" end="192" short-label="Cens Cert 2010" long-label="Census Tr Certainty 2010" naaccr-item-num="367" section="Demographic"/>
-    <field name="geolocationid2020" start="193" end="204" short-label="" long-label="GeoLocationID - 2020" naaccr-item-num="354" section="Demographic">
-        <field name="stateAtDxGeocode2020" start="193" end="194" short-label="" long-label="State at DX Geocode 2020" naaccr-item-num="84" align="" pad-char="" section="Demographic"/>
+    <field name="geolocationid2020" start="193" end="204" short-label="Geoloc ID 2020" long-label="GeoLocationID - 2020" naaccr-item-num="354" section="Demographic">
+        <field name="stateAtDxGeocode2020" start="193" end="194" short-label="State Dx Geo20" long-label="State at DX Geocode 2020" naaccr-item-num="84" section="Demographic"/>
         <field name="countyDxGeocode2020" start="195" end="197" short-label="Cty DX Geo20" long-label="County at DX Geocode2020" naaccr-item-num="97" section="Demographic"/>
         <field name="censusTract2020" start="198" end="203" short-label="Cens 2020" long-label="Census Tract 2020" naaccr-item-num="125" align="right" pad-char="0" section="Demographic"/>
         <field name="censusBlockGroup2020" start="204" end="204" short-label="Bk Grp 2020" long-label="Census Block Group 2020" naaccr-item-num="361" section="Demographic"/>
@@ -61,7 +61,7 @@
     <field name="sex" start="222" end="222" short-label="Sex" long-label="Sex" naaccr-item-num="220" section="Demographic"/>
     <field name="ageAtDx" start="223" end="225" short-label="Age DX" long-label="Age at Diagnosis" naaccr-item-num="230" align="right" pad-char="0" section="Demographic"/>
     <field name="birthDate" start="226" end="233" short-label="Birth Dt" long-label="Date of Birth" naaccr-item-num="240" section="Demographic"/>
-    <field name="birthDateFlag" start="344" end="235" short-label="Birth Dt Fg" long-label="Date of Birth Flag" naaccr-item-num="241" section="Demographic"/>
+    <field name="birthDateFlag" start="234" end="235" short-label="Birth Dt Fg" long-label="Date of Birth Flag" naaccr-item-num="241" section="Demographic"/>
     <field name="birthPlace" start="236" end="238" short-label="Birth Place" long-label="Birthplace" naaccr-item-num="250" align="right" pad-char="0" section="Demographic"/>
     <field name="occupationCodeCensus" start="239" end="241" short-label="Occupation" long-label="Census Occ Code 1970-2000" naaccr-item-num="270" align="right" pad-char="0" section="Demographic"/>
     <field name="industryCodeCensus" start="242" end="244" short-label="Industry" long-label="Census Ind Code 1970-2000" naaccr-item-num="280" align="right" pad-char="0" section="Demographic"/>
@@ -354,7 +354,7 @@
     <field name="percentNecrosisPostNeoadjuvant" start="1734" end="1738" short-label="Per Nec Post Neo" long-label="Percent Necrosis Post Neoadjuvant" naaccr-item-num="3908" section="Stage/Prognostic Factors"/>
     <field name="brainMolecularMarkers" start="1739" end="1739" short-label="Brain Mol Marks" long-label="Brain Molecular Markers" naaccr-item-num="3816" section="Stage/Prognostic Factors"/>
     <field name="chromosome1pLossOfHeterozygosity" start="1740" end="1740" short-label="Chr 1p LOH" long-label="Chromosome 1p: Loss of Heterozygosity (LOH)" naaccr-item-num="3801" section="Stage/Prognostic Factors"/>
-    <field name="chromosome19qLossOfHeterozygosity" start="1741" end="1741" short-label="Chr 19q LOH" long-label="Chromosome 19q: Loss of Heterozygosity (LOH)" naaccr-item-num="3801" section="Stage/Prognostic Factors"/>
+    <field name="chromosome19qLossOfHeterozygosity" start="1741" end="1741" short-label="Chr 19q LOH" long-label="Chromosome 19q: Loss of Heterozygosity (LOH)" naaccr-item-num="3802" section="Stage/Prognostic Factors"/>
     <field name="methylationOfO6MethylguanineMethyltransferase" start="1742" end="1742" short-label="O6-M-M" long-label="Methylation of O6-Methylguanine-Methyltransferase)" naaccr-item-num="3889" section="Stage/Prognostic Factors"/>
     <field name="estrogenReceptorSummary" start="1743" end="1743" short-label="ER Summ" long-label="Estrogen Receptor Summary" naaccr-item-num="3827" section="Stage/Prognostic Factors"/>
     <field name="her2OverallSummary" start="1744" end="1744" short-label="HER2 Summ" long-label="HER2 Overall Summary" naaccr-item-num="3855" section="Stage/Prognostic Factors"/>
@@ -599,7 +599,7 @@
         <field name="subsqRx4thCourseSurg" start="2509" end="2510" short-label="Subsq RX 4th Course Surg" long-label="Subsq RX 4th Course Surg" naaccr-item-num="1711" align="right" pad-char="0" section="Treatment-Subsequent &amp; Other"/>
         <field name="subsqRx4thScopeLnSu" start="2511" end="2511" short-label="Subsq RX 4th--Scope LN Su" long-label="Subsq RX 4th--Scope LN Su" naaccr-item-num="1717" section="Treatment-Subsequent &amp; Other"/>
         <field name="subsqRx4thSurgOth" start="2512" end="2512" short-label="Subsq RX 4th--Surg Oth" long-label="Subsq RX 4th--Surg Oth" naaccr-item-num="1718" section="Treatment-Subsequent &amp; Other"/>
-        <field name="subsqRx4thRegLnRem" start="2513" end="1514" short-label="Subsq RX 4th--Reg LN Rem" long-label="Subsq RX 4th--Reg LN Rem" naaccr-item-num="1719" align="right" pad-char="0" section="Treatment-Subsequent &amp; Other"/>
+        <field name="subsqRx4thRegLnRem" start="2513" end="2514" short-label="Subsq RX 4th--Reg LN Rem" long-label="Subsq RX 4th--Reg LN Rem" naaccr-item-num="1719" align="right" pad-char="0" section="Treatment-Subsequent &amp; Other"/>
         <field name="subsqRx4thCourseRad" start="2515" end="2515" short-label="Subsq RX 4th Course Rad" long-label="Subsq RX 4th Course Rad" naaccr-item-num="1712" section="Treatment-Subsequent &amp; Other"/>
         <field name="subsqRx4thCourseChemo" start="2516" end="2516" short-label="Subsq RX 4th Course Chemo" long-label="Subsq RX 4th Course Chemo" naaccr-item-num="1713" section="Treatment-Subsequent &amp; Other"/>
         <field name="subsqRx4thCourseHorm" start="2517" end="2517" short-label="Subsq RX 4th Course Horm" long-label="Subsq RX 4th Course Horm" naaccr-item-num="1714" section="Treatment-Subsequent &amp; Other"/>
@@ -640,7 +640,7 @@
         <field name="gradeIcdO1" start="2605" end="2605" short-label="Grade(O1)" long-label="Grade (73-91) ICD-O-1" naaccr-item-num="1973" section="Edit Overrides/Conversion History/System Admin"/>
     </field>
     <field name="icdO2ConversionFlag" start="2606" end="2606" short-label="Conv Rev(02)" long-label="ICD-O-2 Conversion Flag" naaccr-item-num="1980" section="Edit Overrides/Conversion History/System Admin"/>
-    <field name="crcChecksum" start="2607" end="2716" short-label="CRC Checksum" long-label="CRC CHECKSUM" naaccr-item-num="2081" section="Edit Overrides/Conversion History/System Admin"/>
+    <field name="crcChecksum" start="2607" end="2616" short-label="CRC Checksum" long-label="CRC CHECKSUM" naaccr-item-num="2081" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="seerCodingSysCurrent" start="2617" end="2617" short-label="SEER Cod Curr" long-label="SEER Coding Sys--Current" naaccr-item-num="2120" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="seerCodingSysOriginal" start="2618" end="2618" short-label="SEER Cod Orig" long-label="SEER Coding Sys--Original" naaccr-item-num="2130" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="cocCodingSysCurrent" start="2619" end="2620" short-label="COC Cod Curr" long-label="CoC Coding Sys--Current" naaccr-item-num="2140" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
@@ -762,7 +762,7 @@
     <field name="physician3" start="5079" end="5086" short-label="Phys3 ID" long-label="Physician 3" naaccr-item-num="2490" section="Other-Confidential"/>
     <field name="physician4Npi" start="5087" end="5096" short-label="Phys4 NPI" long-label="NPI--Physician 4" naaccr-item-num="2505" section="Other-Confidential"/>
     <field name="physician4" start="5097" end="5104" short-label="Phys4 ID" long-label="Physician 4" naaccr-item-num="2500" section="Other-Confidential"/>
-    <field name="ehrReporting" start="5105" end="5104" short-label="EHR Rep" long-label="EHR Reporting" naaccr-item-num="2508" section="Other-Confidential"/>
+    <field name="ehrReporting" start="5105" end="6104" short-label="EHR Rep" long-label="EHR Reporting" naaccr-item-num="2508" section="Other-Confidential"/>
     <field name="reserved12" start="6105" end="6154" short-label="Res12" long-label="Reserved 12" naaccr-item-num="2510" trim="false" section="Other-Confidential"/>
     <field name="pathReportFacId1" start="6155" end="6179" short-label="Path Rpt Fac ID 1" long-label="Path Reporting Fac ID 1" naaccr-item-num="7010" section="Pathology"/>
     <field name="pathReportNumber1" start="6180" end="6199" short-label="Path Rpt# 1" long-label="Path Report Number 1" naaccr-item-num="7090" section="Pathology"/>
@@ -778,7 +778,7 @@
     <field name="pathOrderPhysLicNo2" start="6347" end="6366" short-label="Order Phys Lic# 2" long-label="Path Order Phys Lic No 2" naaccr-item-num="7101" section="Pathology"/>
     <field name="pathReportFacId3" start="6367" end="6391" short-label="Path Rpt Fac ID 3" long-label="Path Reporting Fac ID 3" naaccr-item-num="7012" section="Pathology"/>
     <field name="pathReportNumber3" start="6392" end="6411" short-label="Path Rpt# 3" long-label="Path Report Number 3" naaccr-item-num="7092" section="Pathology"/>
-    <field name="pathDateSpecCollect3" start="6412" end="6235" short-label="Dt Spec Collected 3" long-label="Path Date Spec Collect 3" naaccr-item-num="7322" section="Pathology"/>
+    <field name="pathDateSpecCollect3" start="6412" end="6425" short-label="Dt Spec Collected 3" long-label="Path Date Spec Collect 3" naaccr-item-num="7322" section="Pathology"/>
     <field name="pathReportType3" start="6426" end="6427" short-label="Path Rpt Type 3" long-label="Path Report Type 3" naaccr-item-num="7482" align="right" pad-char="0" section="Pathology"/>
     <field name="pathOrderingFacNo3" start="6428" end="6452" short-label="Order Fac# 3" long-label="Path Ordering Fac No 3" naaccr-item-num="7192" section="Pathology"/>
     <field name="pathOrderPhysLicNo3" start="6453" end="6472" short-label="Order Phys Lic# 3" long-label="Path Order Phys Lic No 3" naaccr-item-num="7102" section="Pathology"/>
