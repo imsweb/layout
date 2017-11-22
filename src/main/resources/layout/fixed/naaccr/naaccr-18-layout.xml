@@ -231,9 +231,9 @@
     <field name="sentinelLymphNodesPositive" start="1012" end="1013" short-label="SLN Pos" long-label="Sentinel Lymph Nodes Positive" naaccr-item-num="835" section="Stage/Prognostic Factors"/>
     <field name="sentinelLymphNodesExamined" start="1014" end="1015" short-label="SLN Exam" long-label="Sentinel Lymph Nodes Examined" naaccr-item-num="834" section="Stage/Prognostic Factors"/>
     <field name="dateOfSentinelLymphNodeBiopsy" start="1016" end="1023" short-label="SLN Biop Dt" long-label="Date of Sentinel Lymph Node Biopsy" naaccr-item-num="832" section="Stage/Prognostic Factors">
-        <field name="dateOfSentinelLymphNodeBiopsyYear" start="1016" end="1019" short-label="Reg LN Diss Yr" long-label="Date Regional Lymph Node Dissection (Year)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
-        <field name="dateOfSentinelLymphNodeBiopsyMonth" start="1020" end="1021" short-label="Reg LN Diss Mth" long-label="Date Regional Lymph Node Dissection (Month)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
-        <field name="dateOfSentinelLymphNodeBiopsyDay" start="1022" end="1023" short-label="Reg LN Diss Day" long-label="Date Regional Lymph Node Dissection (Day)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
+        <field name="dateOfSentinelLymphNodeBiopsyYear" start="1016" end="1019" short-label="SLN Biop Yr" long-label="Date of Sentinel Lymph Node Biopsy (Year)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
+        <field name="dateOfSentinelLymphNodeBiopsyMonth" start="1020" end="1021" short-label="SLN Biop Mth" long-label="Date of Sentinel Lymph Node Biopsy (Month)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
+        <field name="dateOfSentinelLymphNodeBiopsyDay" start="1022" end="1023" short-label="SLN Biop Day" long-label="Date of Sentinel Lymph Node Biopsy (Day)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     </field>
     <field name="dateSentinelLymphNodeBiopsyFlag" start="1024" end="1025" short-label="SLN Biop Dt Fg" long-label="Date Sentinel Lymph Node Biopsy Flag" naaccr-item-num="833" section="Stage/Prognostic Factors"/>
     <field name="eodOld13Digit" start="1026" end="1038" short-label="EOD13(73-82)" long-label="EOD--Old 13 Digit" naaccr-item-num="840" section="Stage/Prognostic Factors"/>
@@ -789,7 +789,7 @@
     <field name="dateTumorRecordAvailbl" start="2696" end="2703" short-label="Dt Tum Rec Avlbl" long-label="Date Tumor Record Availbl" naaccr-item-num="2113" section="Edit Overrides/Conversion History/System Admin">
         <field name="dateTumorRecordAvailblYear" start="2696" end="2699" short-label="Dt Tum Rec Avlbl Yr" long-label="Date Tumor Record Availbl (Year)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
         <field name="ddateTumorRecordAvailblMonth" start="2700" end="2701" short-label="Dt Tum Rec Avlbl Mth" long-label="Date Tumor Record Availbl (Month)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
-        <field name="dateTumorRecordAvailblDay" start="2701" end="2703" short-label="Dt Tum Rec Avlbl Day" long-label="Date Tumor Record Availbl (Day)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
+        <field name="dateTumorRecordAvailblDay" start="2702" end="2703" short-label="Dt Tum Rec Avlbl Day" long-label="Date Tumor Record Availbl (Day)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
     </field>
     <field name="icdO3ConversionFlag" start="2704" end="2704" short-label="Conv Rev(03)" long-label="ICD-O-3 Conversion Flag" naaccr-item-num="2116" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="overrideCs1" start="2705" end="2705" short-label="Over CS 1" long-label="Over-ride CS 1" naaccr-item-num="3750" section="Edit Overrides/Conversion History/System Admin"/>
