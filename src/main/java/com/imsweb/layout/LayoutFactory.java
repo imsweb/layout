@@ -47,7 +47,7 @@ public final class LayoutFactory {
     public static final String LAYOUT_ID_NAACCR_18_MODIFIED = "naaccr-18-modified";
     public static final String LAYOUT_ID_NAACCR_18_CONFIDENTIAL = "naaccr-18-confidential";
     public static final String LAYOUT_ID_NAACCR_18_INCIDENCE = "naaccr-18-incidence";
-    public static final String LAYOUT_ID_NAACCR_16 = "naaccr-16";
+    public static final String LAYOUT_ID_NAACCR_16 = "naaccr-16"; // kept for backward compatibility, actually means abstract...
     public static final String LAYOUT_ID_NAACCR_16_ABSTRACT = "naaccr-16-abstract";
     public static final String LAYOUT_ID_NAACCR_16_MODIFIED = "naaccr-16-modified";
     public static final String LAYOUT_ID_NAACCR_16_CONFIDENTIAL = "naaccr-16-confidential";
