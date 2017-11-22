@@ -203,9 +203,9 @@
     <field name="derivedSeerCombinedTSrc" start="915" end="915" short-label="Der SEER Cmb T Src" long-label="Derived SEER Cmb T Src" naaccr-item-num="3622" section="Stage/Prognostic Factors"/>
     <field name="derivedSeerCombinedNSrc" start="916" end="916" short-label="Der SEER Cmb N Src" long-label="Derived SEER Cmb N Src" naaccr-item-num="3624" section="Stage/Prognostic Factors"/>
     <field name="derivedSeerCombinedMSrc" start="917" end="917" short-label="Der SEER Cmb M Src" long-label="Derived SEER Cmb M Src" naaccr-item-num="3626" section="Stage/Prognostic Factors"/>
-    <field name="seerPrimaryTumor" start="918" end="920" short-label="EOD Prim Tum" long-label="EOD--Primary Tumor" naaccr-item-num="772" section="Stage/Prognostic Factors"/>
-    <field name="seerRegionalNodes" start="921" end="923" short-label="EOD Reg Nodes" long-label="EOD--Regional Nodes" naaccr-item-num="774" section="Stage/Prognostic Factors"/>
-    <field name="seerMets" start="924" end="925" short-label="EOD Mets" long-label="EOD--Mets" naaccr-item-num="776" section="Stage/Prognostic Factors"/>
+    <field name="eodPrimaryTumor" start="918" end="920" short-label="EOD Prim Tum" long-label="EOD--Primary Tumor" naaccr-item-num="772" section="Stage/Prognostic Factors"/>
+    <field name="eodRegionalNodes" start="921" end="923" short-label="EOD Reg Nodes" long-label="EOD--Regional Nodes" naaccr-item-num="774" section="Stage/Prognostic Factors"/>
+    <field name="eodMets" start="924" end="925" short-label="EOD Mets" long-label="EOD--Mets" naaccr-item-num="776" section="Stage/Prognostic Factors"/>
     <field name="derivedEod2018T" start="926" end="940" short-label="Der EOD 2018 T" long-label="Derived EOD 2018 T" naaccr-item-num="785" section="Stage/Prognostic Factors"/>
     <field name="derivedEod2018N" start="941" end="955" short-label="Der EOD 2018 N" long-label="Derived EOD 2018 N" naaccr-item-num="815" section="Stage/Prognostic Factors"/>
     <field name="derivedEod2018M" start="956" end="970" short-label="Der EOD 2018 M" long-label="Derived EOD 2018 M" naaccr-item-num="795" section="Stage/Prognostic Factors"/>
@@ -238,7 +238,11 @@
     <field name="dateSentinelLymphNodeBiopsyFlag" start="1024" end="1025" short-label="SLN Biop Dt Fg" long-label="Date Sentinel Lymph Node Biopsy Flag" naaccr-item-num="833" section="Stage/Prognostic Factors"/>
     <field name="eodOld13Digit" start="1026" end="1038" short-label="EOD13(73-82)" long-label="EOD--Old 13 Digit" naaccr-item-num="840" section="Stage/Prognostic Factors"/>
     <field name="eodOld2Digit" start="1039" end="1040" short-label="EOD2(73-82)" long-label="EOD--Old 2 Digit" naaccr-item-num="850" section="Stage/Prognostic Factors"/>
-    <field name="eodOld4Digit" start="1041" end="1044" short-label="EOD4(83-87)" long-label="EOD--Old 4 Digit" naaccr-item-num="860" section="Stage/Prognostic Factors"/>
+    <field name="eodOld4Digit" start="1041" end="1044" short-label="EOD4(83-87)" long-label="EOD--Old 4 Digit" naaccr-item-num="860" section="Stage/Prognostic Factors">
+        <field name="eodOld4DigitSize" start="1041" end="1042" short-label="EOD4(83-87) Size" long-label="EOD--Old 4 Digit Size" section="Stage/Prognostic Factors"/>
+        <field name="eodOld4DigitExtent" start="1043" end="1043" short-label="EOD4(83-87) Ext" long-label="EOD--Old 4 Digit Extent" section="Stage/Prognostic Factors"/>
+        <field name="eodOld4DigitNodes" start="1044" end="1044" short-label="EOD4(83-87) Nodes" long-label="EOD--Old 4 Digit Nodes" section="Stage/Prognostic Factors"/>
+    </field>
     <field name="eodCodingSys" start="1045" end="1045" short-label="EOD Cod Sys" long-label="Coding System for EOD" naaccr-item-num="870" section="Stage/Prognostic Factors"/>
     <field name="tnmEditionNumber" start="1046" end="1047" short-label="TNM Edit #" long-label="TNM Edition Number" naaccr-item-num="1060" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     <field name="tnmPathT" start="1048" end="1051" short-label="Path T" long-label="TNM Path T" naaccr-item-num="880" section="Stage/Prognostic Factors"/>
