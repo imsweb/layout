@@ -256,7 +256,7 @@
     <field name="tnmClinStageGroup" start="1077" end="1080" short-label="Clin Stg Group" long-label="TNM Clin Stage Group" naaccr-item-num="970" section="Stage/Prognostic Factors"/>
     <field name="tnmClinDescriptor" start="1081" end="1081" short-label="Clin Desc" long-label="TNM Clin Descriptor" naaccr-item-num="980" section="Stage/Prognostic Factors"/>
     <field name="ajccTnmClinT" start="1082" end="1096" short-label="AJCC Clin T" long-label="AJCC TNM Clin T" naaccr-item-num="1001" section="Stage/Prognostic Factors"/>
-    <field name="ajccTnmClinTSuffix" start="1097" end="1100" short-label="AJCC Clin T Suf" long-label="AJCC TNM Clin T Suffix" naaccr-item-num="1030" section="Stage/Prognostic Factors"/>
+    <field name="ajccTnmClinTSuffix" start="1097" end="1100" short-label="AJCC Clin T Suf" long-label="AJCC TNM Clin T Suffix" naaccr-item-num="1031" section="Stage/Prognostic Factors"/>
     <field name="ajccTnmClinN" start="1101" end="1115" short-label="AJCC Clin N" long-label="AJCC TNM Clin N" naaccr-item-num="1002" section="Stage/Prognostic Factors"/>
     <field name="ajccTnmClinNSuffix" start="1116" end="1119" short-label="AJCC Clin N Suf" long-label="AJCC TNM Clin N Suffix" naaccr-item-num="1034" section="Stage/Prognostic Factors"/>
     <field name="ajccTnmClinM" start="1120" end="1134" short-label="AJCC Clin M" long-label="AJCC TNM Clin M" naaccr-item-num="1003" section="Stage/Prognostic Factors"/>
