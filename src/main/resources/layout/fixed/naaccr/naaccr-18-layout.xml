@@ -2,13 +2,14 @@
 <fixed-column-layout id="naaccr-18" name="NAACCR 18" version="180" description="Latest version of NAACCR 18 (18.0)" length="24194">
     <field name="recordType" start="1" end="1" short-label="Rec Type" long-label="Record Type" naaccr-item-num="10" default-value="A" section="Record ID"/>
     <field name="registryType" start="2" end="2" short-label="Reg Type" long-label="Registry Type" naaccr-item-num="30" section="Record ID"/>
-    <field name="naaccrRecordVersion" start="3" end="5" short-label="NAACCR Rec Ver" long-label="NAACCR Record Version" naaccr-item-num="50" default-value="180" section="Record ID"/>
-    <field name="registryIdNpi" start="6" end="15" short-label="NPI Reg ID" long-label="NPI--Registry ID" naaccr-item-num="45" section="Record ID"/>
-    <field name="registryId" start="16" end="25" short-label="Reg ID" long-label="Registry ID" naaccr-item-num="40" align="right" pad-char="0" section="Record ID"/>
-    <field name="tumorRecordNumber" start="26" end="27" short-label="Tum Rec#" long-label="Tumor Record Number" naaccr-item-num="60" align="right" pad-char="0" section="Record ID"/>
-    <field name="patientIdNumber" start="28" end="35" short-label="Pat ID #" long-label="Patient ID Number" naaccr-item-num="20" align="right" pad-char="0" section="Record ID"/>
-    <field name="patientSysIdHospital" start="36" end="43" short-label="Sys ID Hosp" long-label="Patient System ID-Hosp" naaccr-item-num="21" align="right" pad-char="0" section="Record ID"/>
-    <field name="reserved01" start="44" end="73" short-label="Res01" long-label="Reserved 01" naaccr-item-num="370" trim="false" section="Record ID"/>
+    <field name="reserved00" start="3" end="16" short-label="Res00" long-label="Reserved 00" naaccr-item-num="37" trim="false" section="Record ID"/>
+    <field name="naaccrRecordVersion" start="17" end="19" short-label="NAACCR Rec Ver" long-label="NAACCR Record Version" naaccr-item-num="50" default-value="180" section="Record ID"/>
+    <field name="registryIdNpi" start="20" end="29" short-label="NPI Reg ID" long-label="NPI--Registry ID" naaccr-item-num="45" section="Record ID"/>
+    <field name="registryId" start="30" end="39" short-label="Reg ID" long-label="Registry ID" naaccr-item-num="40" align="right" pad-char="0" section="Record ID"/>
+    <field name="tumorRecordNumber" start="40" end="41" short-label="Tum Rec#" long-label="Tumor Record Number" naaccr-item-num="60" align="right" pad-char="0" section="Record ID"/>
+    <field name="patientIdNumber" start="42" end="49" short-label="Pat ID #" long-label="Patient ID Number" naaccr-item-num="20" align="right" pad-char="0" section="Record ID"/>
+    <field name="patientSysIdHospital" start="50" end="57" short-label="Sys ID Hosp" long-label="Patient System ID-Hosp" naaccr-item-num="21" align="right" pad-char="0" section="Record ID"/>
+    <field name="reserved01" start="58" end="73" short-label="Res01" long-label="Reserved 01" naaccr-item-num="370" trim="false" section="Record ID"/>
     <field name="addressAtDxCity" start="74" end="123" short-label="DX City" long-label="Addr at DX--City" naaccr-item-num="70" align="left" pad-char=" " section="Demographic"/>
     <field name="addressAtDxState" start="124" end="125" short-label="DX State" long-label="Addr at DX--State" naaccr-item-num="80" section="Demographic"/>
     <field name="addressAtDxPostalCode" start="126" end="134" short-label="DX Zip" long-label="Addr at DX--Postal Code" naaccr-item-num="100" align="left" pad-char=" " section="Demographic"/>
