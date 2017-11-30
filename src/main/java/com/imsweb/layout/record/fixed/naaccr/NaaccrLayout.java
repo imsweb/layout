@@ -333,8 +333,10 @@ public class NaaccrLayout extends FixedColumnsLayout {
 
     @Override
     public LayoutInfo buildFileInfo(String firstRecord, LayoutInfoDiscoveryOptions options) {
-        if (firstRecord == null || firstRecord.isEmpty() || options == null)
+        if (firstRecord == null || firstRecord.isEmpty())
             return null;
+        if (options == null)
+            options = new LayoutInfoDiscoveryOptions();
 
         String naaccrVersion = extractNaaccrVersion(firstRecord);
         String recordType = extractRecordType(firstRecord);

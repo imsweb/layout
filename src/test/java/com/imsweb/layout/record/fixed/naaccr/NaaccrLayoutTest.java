@@ -26,10 +26,19 @@ public class NaaccrLayoutTest {
         LayoutInfoDiscoveryOptions options = new LayoutInfoDiscoveryOptions();
         StringBuilder recordString;
 
-        //Null and empty cases return null
-        Assert.assertNull(layout.buildFileInfo(null, options));
-        Assert.assertNull(layout.buildFileInfo("", options));
-        Assert.assertNull(layout.buildFileInfo("ABC", null));
+        //Null and empty record cases return null
+        Assert.assertNull(layout.buildFileInfo(null, null));
+        Assert.assertNull(layout.buildFileInfo("", null));
+
+        //Valid record with null options - uses default options, should return info as normal
+        recordString = new StringBuilder(layout.createLineFromRecord(record));
+        Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT, layout.buildFileInfo(recordString.toString(), null).getLayoutId());
+        recordString.replace(16, 19, "   "); //Blanking out Version
+        recordString.replace(0, 1, " "); //Blanking out record Type
+        Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT, layout.buildFileInfo(recordString.toString(), null).getLayoutId());
+        recordString.replace(16, 19, "160"); //Replace Version
+        recordString.replace(0, 1, "I"); //Replace record Type
+
 
         //Valid version and record
         recordString = new StringBuilder(layout.createLineFromRecord(record));
