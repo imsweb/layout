@@ -221,7 +221,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
             return null;
 
         boolean reservedField = field.getName().startsWith("reserved");
-        
+
         URL docPath;
         if (reservedField)
             docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/reserved.html");
@@ -252,7 +252,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
         catch (IOException e) {
             /* do nothing, result will be null, as per specs */
         }
-        
+
         if (reservedField && result != null)
             result = result.replace("[:ITEM_NUM:]", field.getNaaccrItemNum().toString()).replace("[:COLUMNS:]", field.getStart() + " - " + field.getEnd());
 
@@ -333,7 +333,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
 
     @Override
     public LayoutInfo buildFileInfo(String firstRecord, LayoutInfoDiscoveryOptions options) {
-        if (firstRecord == null || firstRecord.isEmpty())
+        if (firstRecord == null || firstRecord.isEmpty() || options == null)
             return null;
 
         String naaccrVersion = extractNaaccrVersion(firstRecord);
@@ -341,8 +341,8 @@ public class NaaccrLayout extends FixedColumnsLayout {
 
         LayoutInfo result = null;
 
-        if (naaccrVersion.startsWith(getMajorNaaccrVersion()) || (naaccrVersion.isEmpty() && options.isNaaccrAllowBlankRecordType())) {
-            if (getRecordType().equals(recordType) || (recordType.isEmpty() && options.isNaaccrAllowBlankVersion())) {
+        if (naaccrVersion.startsWith(getMajorNaaccrVersion()) || (naaccrVersion.isEmpty() && options.isNaaccrAllowBlankVersion())) {
+            if (getRecordType().equals(recordType) || (recordType.isEmpty() && options.isNaaccrAllowBlankRecordType())) {
                 if (options.isFixedColumnAllowDiscoveryFromLineLength() && firstRecord.length() == getNaaccrLineLength()) {
                     result = new LayoutInfo();
                     result.setLayoutId(getLayoutId());
