@@ -27,6 +27,11 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
 public class NaaccrXmlLayout implements Layout {
 
+    private static String _RECORD_TYPE_ABSTRACT = "A";
+    private static String _RECORD_TYPE_MODIFIED = "M";
+    private static String _RECORD_TYPE_CONFIDENTIAL = "C";
+    private static String _RECORD_TYPE_INCIDENCE = "I";
+
     //the layout ID is the Base Dictionary URI associated with this layout
     private String _layoutId;
 
@@ -36,13 +41,12 @@ public class NaaccrXmlLayout implements Layout {
 
     private String _layoutDesc;
 
-    private List<NaaccrXmlField> _fields;
+    private List<NaaccrXmlField> _allFields;
 
     private Map<String, NaaccrXmlField> _fieldsCachedByName;
     private Map<Integer, NaaccrXmlField> _fieldsCachedByNaaccrNumber;
 
-    //TODO user dictionaries are complicated. You're welcome.
-    //TODO how to handle a layout that utilizes multiple/custom user dictionaries? (This and DataViewer issue
+    //TODO how to handle a layout that utilizes multiple/custom user dictionaries? (This and DataViewer issue)
     //TODO DV is gonna need a dictionaries folder for sure. But we don't want to persist layouts that are based on these - will require Xml Dtos.
     //TODO DV needs to be able to take in a file, read it and say "this uses the 160 base dictionary, but it also uses some other ones that I can't access"
     //TODO then the user gives it access somehow, and then DV creates an internal layout. But needs to persist this info sometimes
@@ -51,33 +55,38 @@ public class NaaccrXmlLayout implements Layout {
     //TODO if a user dictionary is added/this is initialized with multiple user dictionaries, it needs to generate its own name.
     //TODO how to keep track of that though? If a user registers
     //TODO what about - user inputs file, file is detected as Naaccr 160 xml or whatever. Then DV says hey, I also detected these other libraries. Do you want to use these
-    //There can be
 
     private String _baseDefaultDictionaryUri;
     private String _userDefaultDictionaryUri;
-    private List<String> _userDictionaries;
+    private List<String> _userDictionaries; //TODO Does this need to actually hold the user dictionaries? Will it cause problems if those are too big?
+
+    //TODO Runtime vs IOException for errors
+    //TODO 2 string constructors - 1 from Naaccr version and one from base dictionary Uri. Do we need both? Would version be more useful?
+    //TODO for name/Id inputs, if they are blank/null is this an error or should there be a default?
+    //TODO check other layouts - how much of this needs to be logged?
+    //TODO incorporate abstract/incidence/etc. In Name/Id/etc.
 
     //Constructors
     public NaaccrXmlLayout() {
         super();
     }
 
-    public NaaccrXmlLayout(String naaccrVersion, String layoutId) {
-        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(_layoutId);
-        if (dictionary == null) {
-            //TODO - report an error? Also depends on how to handle the ID situation with the user dictionaries.
-        }
-        else if (!dictionary.getNaaccrVersion().equals(naaccrVersion)) {
-            //TODO report an error here.
-        }
-        _baseDefaultDictionaryUri = layoutId;
+    public NaaccrXmlLayout(String naaccrVersion, String recordType) {
+        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion(naaccrVersion);
+        if (dictionary == null)
+            throw new RuntimeException("Could not find base dictionary from version: " + naaccrVersion);
+        _baseDefaultDictionaryUri = dictionary.getDictionaryUri();
+
+        dictionary = NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion);
+        if (dictionary == null)
+            throw new RuntimeException("Could not find default user dictionary from version: " + naaccrVersion);
+        _userDefaultDictionaryUri = dictionary.getDictionaryUri();
         init();
     }
 
     public NaaccrXmlLayout(NaaccrDictionary baseDictionary) {
-        if (NaaccrXmlDictionaryUtils.validateBaseDictionary(baseDictionary) != null) {
-            //TODO - error? Not a base dictionary/
-        }
+        if (NaaccrXmlDictionaryUtils.validateBaseDictionary(baseDictionary) != null)
+            throw new RuntimeException("Base dictionary invalid: " + baseDictionary.getDictionaryUri());
         _baseDefaultDictionaryUri = baseDictionary.getDictionaryUri();
         init();
     }
@@ -85,62 +94,67 @@ public class NaaccrXmlLayout implements Layout {
     public NaaccrXmlLayout(String baseDictionaryUri) {
         NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(baseDictionaryUri);
         if (dictionary == null) {
-            return;
-            //TODO - error? Not a base dictionary/
+            throw new RuntimeException("Dictionary could not be found from URI.");
         }
         _baseDefaultDictionaryUri = dictionary.getDictionaryUri();
         init();
     }
 
-    //TODO should this take strings instead of dictionaries?
-    public NaaccrXmlLayout(List<NaaccrDictionary> dictionaries) {
+    public NaaccrXmlLayout(List<NaaccrDictionary> dictionaries, String layoutId, String layoutName) {
         _userDictionaries = new ArrayList<>();
         for (NaaccrDictionary dictionary : dictionaries) {
             if (NaaccrXmlDictionaryUtils.validateBaseDictionary(dictionary) == null) {
-                if (_baseDefaultDictionaryUri != null) {
-                    //TODO error - there's more than one base dictionary in this list and that don't make no sense.
-                }
+                if (_baseDefaultDictionaryUri != null)
+                    throw new RuntimeException("Layout cannot be created from multiple base dictionaries: " + _baseDefaultDictionaryUri + " " + dictionary.getDictionaryUri());
+
                 //TODO this may need adjustment, depending on how we handle the format id if there are user dictionaries involved.
                 _baseDefaultDictionaryUri = dictionary.getDictionaryUri();
             }
             else {
                 String errorMessage = NaaccrXmlDictionaryUtils.validateUserDictionary(dictionary);
-                if (errorMessage != null) {
-                    //TODO report an error. Log it? Throw an exception?
-                }
+                if (errorMessage != null)
+                    throw new RuntimeException("Invalid user dictionary: " + errorMessage);
+
                 _userDictionaries.add(dictionary.getDictionaryUri());
             }
         }
-        if (_baseDefaultDictionaryUri == null) {
-            //TODO - error, no base dictionary was found.
-        }
+        if (_baseDefaultDictionaryUri == null)
+            throw new RuntimeException("No base dictionary found");
+
+        if (layoutId == null || layoutId.isEmpty())
+            throw new RuntimeException("Layout ID is required");
+        _layoutId = layoutId;
+
+        if (layoutName == null || layoutName.isEmpty())
+            throw new RuntimeException("Layout name is required");
+        _layoutName = layoutName;
 
         init();
     }
 
     private void init() {
-        _fields = new ArrayList<>();
+        _allFields = new ArrayList<>();
         _fieldsCachedByName = new HashMap<>();
         _fieldsCachedByNaaccrNumber = new HashMap<>();
 
         //_baseDefaultDictionaryUri will always have a value at this point. //TODO this may need adjustment depending on if there are non default user dictionaries.
         NaaccrDictionary baseDictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(_baseDefaultDictionaryUri);
         _layoutVersion = baseDictionary.getNaaccrVersion();
-        _layoutId = baseDictionary.getDictionaryUri();
+        _layoutId = _layoutId == null ? baseDictionary.getDictionaryUri() : _layoutId;
         _layoutDesc = baseDictionary.getDescription();
-        _layoutName = "NAACCR XML " + _layoutVersion;
+        _layoutName = _layoutName == null ? "NAACCR XML " + _layoutVersion : _layoutName;
 
         //Loading items from Base dictionary
         for (NaaccrDictionaryItem item : baseDictionary.getItems()) {
             NaaccrXmlField field = new NaaccrXmlField(item);
-            _fields.add(field);
+            _allFields.add(field);
             _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
             _fieldsCachedByName.put(field.getName(), field);
         }
 
         for (NaaccrDictionaryGroupedItem item : baseDictionary.getGroupedItems()) {
-            NaaccrXmlField field = new NaaccrXmlField(item); //It's ok - GroupedItem extends Item - this should clear up after the package is added.
-            _fields.add(field);
+            NaaccrXmlField field = new NaaccrXmlField(item);
+            _allFields.add(field);
             _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
             _fieldsCachedByName.put(field.getName(), field);
         }
@@ -151,22 +165,21 @@ public class NaaccrXmlLayout implements Layout {
             _userDefaultDictionaryUri = userDefaultDictionary.getDictionaryUri();
             for (NaaccrDictionaryItem item : userDefaultDictionary.getItems()) {
                 NaaccrXmlField field = new NaaccrXmlField(item);
-                _fields.add(field);
+                _allFields.add(field);
                 _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
                 _fieldsCachedByName.put(field.getName(), field);
             }
         }
         else {
-            //Change name and ID to reflect format changes.
-            _layoutName += "+" + _userDictionaries.size();
-            _layoutId += "+" + _userDictionaries.size();
+            //Change name and ID to reflect format changes
             for (String uri : _userDictionaries) {
-                for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(uri).getItems()) {
-                    NaaccrXmlField field = new NaaccrXmlField(item);
-                    _fields.add(field);
-                    _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-                    _fieldsCachedByName.put(field.getName(), field);
-                }
+                //TODO will need to pass in user dictionaries at some point - can't get from just URI.
+                //                for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.(uri).getItems()) {
+                //                    NaaccrXmlField field = new NaaccrXmlField(item);
+                //                    _allFields.add(field);
+                //                    _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
+                //                    _fieldsCachedByName.put(field.getName(), field);
+                //                }
             }
         }
     }
@@ -225,22 +238,43 @@ public class NaaccrXmlLayout implements Layout {
         }
     }
 
-    //TODO should this be a list of strings then?
-    public void addUserDictionaries(List<NaaccrDictionary> dictionaries) {
+    public void addUserDictionaries(List<NaaccrDictionary> dictionaries, String layoutName, String layoutId) {
         for (NaaccrDictionary dictionary : dictionaries) {
-            if (dictionary != null && NaaccrXmlDictionaryUtils.validateUserDictionary(dictionary) == null && dictionary.getItems() != null && !dictionary.getItems().isEmpty()) {
-                _userDictionaries.add(dictionary.getDictionaryUri());
-                for (NaaccrDictionaryItem item : dictionary.getItems()) {
-                    NaaccrXmlField field = new NaaccrXmlField(item);
-                    _fields.add(field);
-                    _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-                    _fieldsCachedByName.put(field.getName(), field);
+            if (dictionary != null && dictionary.getItems() != null && !dictionary.getItems().isEmpty()) {
+                String errors = NaaccrXmlDictionaryUtils.validateUserDictionary(dictionary);
+                if (errors == null) {
+                    _userDictionaries.add(dictionary.getDictionaryUri());
+                    for (NaaccrDictionaryItem item : dictionary.getItems()) {
+                        NaaccrXmlField field = new NaaccrXmlField(item);
+                        _allFields.add(field);
+                        _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
+                        _fieldsCachedByName.put(field.getName(), field);
+                    }
+                }
+                else {
+                    throw new RuntimeException("Invalid user dictionary: " + errors);
                 }
             }
-            else {
-                //TODO throw an error - unable to add user Dictionray
-            }
         }
+        if (layoutId == null || layoutId.isEmpty())
+            throw new RuntimeException("Layout ID is required");
+        _layoutId = layoutId;
+        if (layoutName == null || layoutName.isEmpty())
+            throw new RuntimeException("Layout name is required");
+        _layoutName = layoutName;
+    }
+
+    public List<NaaccrXmlField> getFieldsForRecordType(String recordType) {
+        List<NaaccrXmlField> fieldsList = null;
+        if (_RECORD_TYPE_ABSTRACT.equals(recordType) || _RECORD_TYPE_MODIFIED.equals(recordType))
+            fieldsList = _allFields;
+        else if (_RECORD_TYPE_CONFIDENTIAL.equals(recordType) || _RECORD_TYPE_INCIDENCE.equals(recordType)) {
+            fieldsList = new ArrayList<>();
+            for (NaaccrXmlField field : _allFields)
+                if (field.getRecordTypes().contains(recordType))
+                    fieldsList.add(field);
+        }
+        return fieldsList;
     }
 
     @Override
@@ -275,7 +309,7 @@ public class NaaccrXmlLayout implements Layout {
 
     @Override
     public List<? extends Field> getAllFields() {
-        return _fields;
+        return _allFields;
     }
 
     //XML Fields don't have documentation //TODO should these throw errors if they are called?
@@ -296,6 +330,7 @@ public class NaaccrXmlLayout implements Layout {
         return null;
     }
 
+    //Todo should the name
     @Override
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
         LayoutInfo info = new LayoutInfo();
@@ -303,8 +338,9 @@ public class NaaccrXmlLayout implements Layout {
             PatientXmlReader reader = new PatientXmlReader(new FileReader(file));
             NaaccrData data = reader.getRootData();
             //TODO may need to be adjusted depending on how we handle adding user dictionaries
-            info.setLayoutId(data.getBaseDictionaryUri());
-            info.setLayoutName("NAACCR XML " + NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(data.getBaseDictionaryUri()).getNaaccrVersion());
+            String baseUri = data.getBaseDictionaryUri();
+            info.setLayoutId(baseUri);
+            info.setLayoutName("NAACCR XML " + NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(baseUri).getNaaccrVersion() + " " + data.getRecordType());
         }
         catch (FileNotFoundException | NaaccrIOException e) {
             //TODO throw an error
