@@ -26,6 +26,8 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
+import com.thoughtworks.xstream.security.NoTypePermission;
+import com.thoughtworks.xstream.security.WildcardTypePermission;
 
 import com.imsweb.layout.hl7.NaaccrHl7Layout;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
@@ -260,6 +262,11 @@ public final class LayoutUtils {
             }
         });
         xstream.autodetectAnnotations(true);
+
+        // setup proper security by limiting what classes can be loaded by XStream
+        xstream.addPermission(NoTypePermission.NONE);
+        xstream.addPermission(new WildcardTypePermission(new String[] {"com.imsweb.layout.**"}));
+
         return xstream;
     }
 
