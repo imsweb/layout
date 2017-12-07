@@ -87,4 +87,35 @@ public class NaaccrXmlField extends Field {
     public List<String> getContainedItemIds() {
         return _item instanceof NaaccrDictionaryGroupedItem ? ((NaaccrDictionaryGroupedItem)_item).getContainedItemId() : null;
     }
+
+    @Override
+    public String toString() {
+        return "Field [name=" + _name + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        int prime = 31;
+        int result = 1;
+        result = prime * result + ((_name == null) ? 0 : _name.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Field other = (Field)obj;
+        if (_name == null) {
+            if (other.getName() != null)
+                return false;
+        }
+        else if (!_name.equals(other.getName()))
+            return false;
+        return true;
+    }
 }

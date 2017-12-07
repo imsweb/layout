@@ -4,9 +4,9 @@
 package com.imsweb.layout.naaccrXml;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -265,7 +265,7 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     public void writeAllPatients(File file, List<Patient> allPatients, NaaccrData data) throws IOException {
-        try (PatientXmlWriter writer = new PatientXmlWriter(new FileWriter(file), data)) {
+        try (PatientXmlWriter writer = new PatientXmlWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8), data)) {
             for (Patient patient : allPatients)
                 writer.writePatient(patient);
         }
@@ -303,7 +303,7 @@ public class NaaccrXmlLayout implements Layout {
 
     public List<Patient> readAllPatients(File file) throws NaaccrIOException, FileNotFoundException {
         List<Patient> allPatients = new ArrayList<>();
-        try (PatientXmlReader reader = new PatientXmlReader(new FileReader(file))) {
+        try (PatientXmlReader reader = new PatientXmlReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
             Patient patient;
             while ((patient = reader.readPatient()) != null)
                 allPatients.add(patient);
@@ -374,7 +374,7 @@ public class NaaccrXmlLayout implements Layout {
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
         LayoutInfo info = new LayoutInfo();
         NaaccrData data;
-        try (PatientXmlReader reader = new PatientXmlReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName)))) {
+        try (PatientXmlReader reader = new PatientXmlReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), StandardCharsets.UTF_8))) {
             data = reader.getRootData();
         }
         catch (IOException e) {
