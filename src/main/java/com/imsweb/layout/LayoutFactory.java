@@ -43,11 +43,11 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 public final class LayoutFactory {
 
     //XML Layouts - constants for the internal layout IDs
-    public static final String LAYOUT_ID_NAACCR_XML_16 = "naaccr-16-abstract"; // kept for backward compatibility, actually means abstract...
-    public static final String LAYOUT_ID_NAACCR_XML_16_ABSTRACT = "naaccr-16-abstract";
-    public static final String LAYOUT_ID_NAACCR_XML_16_MODIFIED = "naaccr-16-modified";
-    public static final String LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL = "naaccr-16-confidential";
-    public static final String LAYOUT_ID_NAACCR_XML_16_INCIDENCE = "naaccr-16-incidence";
+    public static final String LAYOUT_ID_NAACCR_XML_16 = "naaccr-xml-16"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_XML_16_ABSTRACT = "naaccr-xml-16-abstract";
+    public static final String LAYOUT_ID_NAACCR_XML_16_MODIFIED = "naaccr-xml-16-modified";
+    public static final String LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL = "naaccr-xml-16-confidential";
+    public static final String LAYOUT_ID_NAACCR_XML_16_INCIDENCE = "naaccr-xml-16-incidence";
     //Fixed column layouts
     public static final String LAYOUT_ID_NAACCR_16 = "naaccr-16"; // kept for backward compatibility, actually means abstract...
     public static final String LAYOUT_ID_NAACCR_16_ABSTRACT = "naaccr-16-abstract";

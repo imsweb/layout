@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -166,7 +167,7 @@ public class NaaccrXmlLayout implements Layout {
 
         //Get all item and grouped item definitions and add to layout's field list
         NaaccrDictionary allItemsDictionary = NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()]));
-        List<NaaccrDictionaryItem> allItems = allItemsDictionary.getItems();
+        List<NaaccrDictionaryItem> allItems = new ArrayList<>(allItemsDictionary.getItems());
         allItems.addAll(allItemsDictionary.getGroupedItems());
         for (NaaccrDictionaryItem item : allItems) {
             if (item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
@@ -247,7 +248,7 @@ public class NaaccrXmlLayout implements Layout {
     public void writeAllPatients(OutputStream outputStream, List<Patient> patients, NaaccrData data) throws NaaccrIOException {
         PatientXmlWriter writer = null;
         try {
-            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream), data);
+            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8), data);
             for (Patient patient : patients)
                 writer.writePatient(patient);
         }
@@ -278,7 +279,7 @@ public class NaaccrXmlLayout implements Layout {
         List<Patient> allPatients = new ArrayList<>();
         PatientXmlReader reader = null;
         try {
-            reader = new PatientXmlReader(new InputStreamReader(inputStream));
+            reader = new PatientXmlReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             Patient patient;
             while ((patient = reader.readPatient()) != null)
                 allPatients.add(patient);
