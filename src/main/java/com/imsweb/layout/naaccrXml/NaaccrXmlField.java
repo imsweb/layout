@@ -13,7 +13,8 @@ public class NaaccrXmlField extends Field {
 
     private NaaccrDictionaryItem _item;
 
-    //TODO probably need to store default values somewhere? Probably in layout, not individual field.
+    private boolean _isGroupedItem;
+
     public NaaccrXmlField() {
         super();
     }
@@ -21,12 +22,21 @@ public class NaaccrXmlField extends Field {
     public NaaccrXmlField(NaaccrDictionaryItem item) {
         super();
         _item = item;
-        _naaccrItemNum = item.getNaaccrNum();
         _name = item.getNaaccrId();
+        if (item.getNaaccrName() != null) {
+            _shortLabel = item.getNaaccrName();
+            _longLabel = item.getNaaccrName();
+        }
+        _naaccrItemNum = item.getNaaccrNum();
+        _isGroupedItem = item instanceof NaaccrDictionaryGroupedItem;
     }
 
-    private void validate() {
+    public NaaccrDictionaryItem getItem() {
+        return _item;
+    }
 
+    public boolean getIsGroupedItem() {
+        return _isGroupedItem;
     }
 
     public String getNaaccrId() {
@@ -77,5 +87,4 @@ public class NaaccrXmlField extends Field {
     public List<String> getContainedItemIds() {
         return _item instanceof NaaccrDictionaryGroupedItem ? ((NaaccrDictionaryGroupedItem)_item).getContainedItemId() : null;
     }
-
 }

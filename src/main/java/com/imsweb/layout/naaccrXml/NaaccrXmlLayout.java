@@ -6,15 +6,25 @@ package com.imsweb.layout.naaccrXml;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import com.imsweb.layout.Field;
 import com.imsweb.layout.Layout;
+import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
+import com.imsweb.layout.LayoutUtils;
 import com.imsweb.naaccrxml.NaaccrIOException;
 import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
 import com.imsweb.naaccrxml.PatientXmlReader;
@@ -22,259 +32,282 @@ import com.imsweb.naaccrxml.PatientXmlWriter;
 import com.imsweb.naaccrxml.entity.NaaccrData;
 import com.imsweb.naaccrxml.entity.Patient;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
-import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryGroupedItem;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
 public class NaaccrXmlLayout implements Layout {
 
-    private static String _RECORD_TYPE_ABSTRACT = "A";
-    private static String _RECORD_TYPE_MODIFIED = "M";
-    private static String _RECORD_TYPE_CONFIDENTIAL = "C";
-    private static String _RECORD_TYPE_INCIDENCE = "I";
+    private static final StringBuilder _CSS_STYLE_SUMMARY_TABLE = new StringBuilder();
 
-    //the layout ID is the Base Dictionary URI associated with this layout
+    static {
+        _CSS_STYLE_SUMMARY_TABLE.append(".naaccr-summary-table { width: 100%; }\n");
+        _CSS_STYLE_SUMMARY_TABLE.append(".naaccr-summary-header { text-align: center; padding: 2px; background-color: #E0E0E0; }\n");
+        _CSS_STYLE_SUMMARY_TABLE.append(".naaccr-summary-cell { vertical-align:top; padding: 2px; }\n");
+        _CSS_STYLE_SUMMARY_TABLE.append(".naaccr-summary-centered { text-align: center; }\n");
+        _CSS_STYLE_SUMMARY_TABLE.append(".naaccr-borders { border: 1px solid gray; border-collapse: collapse; }\n");
+        _CSS_STYLE_SUMMARY_TABLE.append(".naaccr-underline { text-decoration:underline; }\n");
+    }
+
+    // following styles are used only in version 14 and later (those come straight from the online NAACCR HTML page)
+    private static final StringBuilder _DEFAULT_CSS_14_AND_LATER = new StringBuilder();
+
+    static {
+        _DEFAULT_CSS_14_AND_LATER.append("#readerWrapper { margin-top: 20px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#pnlSearch { width: 100%;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#lblSearch { margin-right: 20px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".wrapper { margin-bottom: 50px; width: 775px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(
+                ".col { border-bottom: 1px solid black; border-left: 1px solid black; border-top: 1px solid black; float: left; height: 1100px; margin-bottom: 50px; padding: 0 5px; width: 180px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(
+                ".colnoborder { border-bottom: 1px solid black; border-top: 1px solid black; float: left; height: 1100px; margin-bottom: 50px; padding: 0 5px; width: 180px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColHead td:first-child { text-align: left;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColBody { text-align: center; vertical-align: top;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColTitle { background-color: #165185; color: #FABA44;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColDataStripe td:first-child { border-left: 0 none;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColDataStripe table tr td { padding: 0; text-align: center;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColData td:first-child { border-left: 0 none;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColData table tr td { padding: 0; text-align: center;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColData td.HighlightToolTip,\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableColDataStripe td.HighlightToolTip { border-bottom: 1px dashed black; background-color: #a7d9f2;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".tableAppendixBody { border-left: 0 none; display: table-row; padding-bottom: 1px; text-align: left;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".code-nbr { padding-right: 20px; vertical-align: top;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#stateList { padding-bottom: 30px; text-align: center; width: 720px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#chapter { width: 950px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder { display: none; left: 0; position: absolute; top: 0; z-index: 99999;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_top { padding-bottom: 5px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_bottom { padding-top: 5px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_right { padding-left: 5px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_left { padding-right: 5px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tblSearch { margin-top: 20px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".dataDictionaryHeader { padding-right: 10px; text-align: right;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#menuWrapper { height: 200px; margin-top: 20px; width: 950px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".chapterColumn { border-right: 2px solid white; float: left;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("a .chapter { color: #FFFFFF; padding: 0; text-decoration: none;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".chapter:hover { background: none repeat scroll 0 0 #FF9900; color: #FFFFFF; text-decoration: none;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_arrow, #tiptip_arrow_inner { border-color: transparent; border-style: solid; border-width: 6px; height: 0; position: absolute; width: 0;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_top #tiptip_arrow { border-top-color: #FFFFCE;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_bottom #tiptip_arrow { border-bottom-color: #FFFFCE;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_right #tiptip_arrow { border-right-color: #FFFFCE;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_left #tiptip_arrow { border-left-color: #FFFFCE;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_top #tiptip_arrow_inner { border-top-color: #FFFFCE; margin-left: -6px; margin-top: -7px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_bottom #tiptip_arrow_inner { border-bottom-color: #FFFFCE; margin-left: -6px; margin-top: -5px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_right #tiptip_arrow_inner { border-right-color: #FFFFCE; margin-left: -5px; margin-top: -6px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_left #tiptip_arrow_inner { border-left-color: #FFFFCE; margin-left: -7px; margin-top: -6px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".GeoCtrAlpha { float: left; width: 300px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".threeColSubTitle { float: left; font-style: italic; margin-bottom: 12px; width: 300px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".colRight { border-bottom: 1px solid black; border-left: 1px solid black; float: right; height: 1150px; padding-left: 20px; width: 454px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".colLeft { border-bottom: 1px solid black; float: left; height: 1150px; padding-left: 20px; width: 455px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".GeoCtr { float: left; width: 460px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".threeCol { border-bottom: 1px solid black; float: left; height: 1135px; padding-left: 10px; width: 305px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".threeColTitle { float: left; font-weight: bold; width: 300px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".CountryContinentName { float: left; font-weight: bold; margin-bottom: 15px; margin-top: 15px; width: 400px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(
+                ".threeColMid { -moz-border-bottom-colors: none; -moz-border-image: none; -moz-border-left-colors: none; -moz-border-right-colors: none; -moz-border-top-colors: none; border-color: -moz-use-text-color black black; border-style: none solid solid; border-width: medium 1px 1px; float: left; height: 1135px; padding-left: 10px; width: 305px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_content { background-color: #FFFFCE; padding: 4px 8px 5px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_bottom #tiptip_arrow_inner { border-bottom-color: #FFFFCE;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#tiptip_holder.tip_top #tiptip_arrow_inner { border-top-color: rgba(20, 20, 20, 0.92);}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("h1 { margin: 1em 0;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("h2, h3 { margin: 0 0 1.33em 0;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("h4 { margin: 0;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("ul, ol { margin: 0 0 1.33em 35px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("ul li, ol li { margin-bottom: 1.33em;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("table.padded td, table.padded th { padding: 5px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("ul.nobullets { list-style: none;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("ul.notspaced li, ol.notspaced li { margin-bottom: 0;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".c8cell1 { width: 70px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#pnlSearch { width: 100%;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append("#lblSearch { margin-right: 20px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".chap10-head-table { margin-top: 15px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".chap10-para-head { font-weight: bold; padding-top: 10px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".chap10-para { padding-bottom: 10px;}\n");
+        _DEFAULT_CSS_14_AND_LATER.append(".chap10-para ul li { margin-bottom: 0;}\n");
+    }
+
     private String _layoutId;
 
     private String _layoutName;
 
-    private String _layoutVersion;
+    private String _naaccrVersion;
 
     private String _layoutDesc;
+
+    private String _recordType;
 
     private List<NaaccrXmlField> _allFields;
 
     private Map<String, NaaccrXmlField> _fieldsCachedByName;
     private Map<Integer, NaaccrXmlField> _fieldsCachedByNaaccrNumber;
 
-    //TODO how to handle a layout that utilizes multiple/custom user dictionaries? (This and DataViewer issue)
-    //TODO DV is gonna need a dictionaries folder for sure. But we don't want to persist layouts that are based on these - will require Xml Dtos.
-    //TODO DV needs to be able to take in a file, read it and say "this uses the 160 base dictionary, but it also uses some other ones that I can't access"
-    //TODO then the user gives it access somehow, and then DV creates an internal layout. But needs to persist this info sometimes
-    //TODO Creating files - won't be 160 type bc it also uses other dictionaries. so it's 160-2 dictionaries/160-3 dictionaries, etc.
-    //TODO how to indicate that to the user? how to handle that with the layout?
-    //TODO if a user dictionary is added/this is initialized with multiple user dictionaries, it needs to generate its own name.
-    //TODO how to keep track of that though? If a user registers
-    //TODO what about - user inputs file, file is detected as Naaccr 160 xml or whatever. Then DV says hey, I also detected these other libraries. Do you want to use these
-
-    private String _baseDefaultDictionaryUri;
-    private String _userDefaultDictionaryUri;
-    private List<String> _userDictionaries; //TODO Does this need to actually hold the user dictionaries? Will it cause problems if those are too big?
-
-    //TODO Runtime vs IOException for errors
-    //TODO 2 string constructors - 1 from Naaccr version and one from base dictionary Uri. Do we need both? Would version be more useful?
-    //TODO for name/Id inputs, if they are blank/null is this an error or should there be a default?
-    //TODO check other layouts - how much of this needs to be logged?
-    //TODO incorporate abstract/incidence/etc. In Name/Id/etc.
+    private NaaccrDictionary _baseDictionary;
+    private List<NaaccrDictionary> _userDictionaries;
 
     //Constructors
     public NaaccrXmlLayout() {
         super();
     }
 
-    public NaaccrXmlLayout(String naaccrVersion, String recordType) {
-        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion(naaccrVersion);
-        if (dictionary == null)
-            throw new RuntimeException("Could not find base dictionary from version: " + naaccrVersion);
-        _baseDefaultDictionaryUri = dictionary.getDictionaryUri();
-
-        dictionary = NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion);
-        if (dictionary == null)
-            throw new RuntimeException("Could not find default user dictionary from version: " + naaccrVersion);
-        _userDefaultDictionaryUri = dictionary.getDictionaryUri();
-        init();
-    }
-
-    public NaaccrXmlLayout(NaaccrDictionary baseDictionary) {
-        if (NaaccrXmlDictionaryUtils.validateBaseDictionary(baseDictionary) != null)
-            throw new RuntimeException("Base dictionary invalid: " + baseDictionary.getDictionaryUri());
-        _baseDefaultDictionaryUri = baseDictionary.getDictionaryUri();
-        init();
-    }
-
-    public NaaccrXmlLayout(String baseDictionaryUri) {
-        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(baseDictionaryUri);
-        if (dictionary == null) {
-            throw new RuntimeException("Dictionary could not be found from URI.");
-        }
-        _baseDefaultDictionaryUri = dictionary.getDictionaryUri();
-        init();
-    }
-
-    public NaaccrXmlLayout(List<NaaccrDictionary> dictionaries, String layoutId, String layoutName) {
-        _userDictionaries = new ArrayList<>();
-        for (NaaccrDictionary dictionary : dictionaries) {
-            if (NaaccrXmlDictionaryUtils.validateBaseDictionary(dictionary) == null) {
-                if (_baseDefaultDictionaryUri != null)
-                    throw new RuntimeException("Layout cannot be created from multiple base dictionaries: " + _baseDefaultDictionaryUri + " " + dictionary.getDictionaryUri());
-
-                //TODO this may need adjustment, depending on how we handle the format id if there are user dictionaries involved.
-                _baseDefaultDictionaryUri = dictionary.getDictionaryUri();
-            }
-            else {
-                String errorMessage = NaaccrXmlDictionaryUtils.validateUserDictionary(dictionary);
-                if (errorMessage != null)
-                    throw new RuntimeException("Invalid user dictionary: " + errorMessage);
-
-                _userDictionaries.add(dictionary.getDictionaryUri());
-            }
-        }
-        if (_baseDefaultDictionaryUri == null)
-            throw new RuntimeException("No base dictionary found");
-
-        if (layoutId == null || layoutId.isEmpty())
-            throw new RuntimeException("Layout ID is required");
-        _layoutId = layoutId;
-
-        if (layoutName == null || layoutName.isEmpty())
-            throw new RuntimeException("Layout name is required");
+    public NaaccrXmlLayout(String naaccrVersion, String layoutId, String layoutName, String recordType, List<NaaccrDictionary> dictionaries) {
+        _baseDictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion(naaccrVersion);
+        _naaccrVersion = naaccrVersion;
         _layoutName = layoutName;
+        _layoutId = layoutId;
+        _recordType = recordType;
+        _userDictionaries = dictionaries != null ? dictionaries : Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion));
 
-        init();
-    }
+        StringBuilder description = new StringBuilder("This layout uses the base dictionary: " + _baseDictionary.getDescription());
+        description.append(" This layout also uses the user dictionaries: ");
+        for (NaaccrDictionary dictionary : _userDictionaries)
+            description.append(dictionary.getDescription()).append(", ");
+        description.setLength(description.length() - 2);
+        _layoutDesc = description.toString();
 
-    private void init() {
         _allFields = new ArrayList<>();
         _fieldsCachedByName = new HashMap<>();
         _fieldsCachedByNaaccrNumber = new HashMap<>();
 
-        //_baseDefaultDictionaryUri will always have a value at this point. //TODO this may need adjustment depending on if there are non default user dictionaries.
-        NaaccrDictionary baseDictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(_baseDefaultDictionaryUri);
-        _layoutVersion = baseDictionary.getNaaccrVersion();
-        _layoutId = _layoutId == null ? baseDictionary.getDictionaryUri() : _layoutId;
-        _layoutDesc = baseDictionary.getDescription();
-        _layoutName = _layoutName == null ? "NAACCR XML " + _layoutVersion : _layoutName;
-
-        //Loading items from Base dictionary
-        for (NaaccrDictionaryItem item : baseDictionary.getItems()) {
-            NaaccrXmlField field = new NaaccrXmlField(item);
-            _allFields.add(field);
-            _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-            _fieldsCachedByName.put(field.getName(), field);
-        }
-
-        for (NaaccrDictionaryGroupedItem item : baseDictionary.getGroupedItems()) {
-            NaaccrXmlField field = new NaaccrXmlField(item);
-            _allFields.add(field);
-            _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-            _fieldsCachedByName.put(field.getName(), field);
-        }
-
-        //Loading items from User dictionaries (default or custom)
-        if (_userDictionaries == null) {
-            NaaccrDictionary userDefaultDictionary = NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(_layoutVersion);
-            _userDefaultDictionaryUri = userDefaultDictionary.getDictionaryUri();
-            for (NaaccrDictionaryItem item : userDefaultDictionary.getItems()) {
+        //Get all item and grouped item definitions and add to layout's field list
+        NaaccrDictionary allItemsDictionary = NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()]));
+        List<NaaccrDictionaryItem> allItems = allItemsDictionary.getItems();
+        allItems.addAll(allItemsDictionary.getGroupedItems());
+        for (NaaccrDictionaryItem item : allItems) {
+            if (item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
                 NaaccrXmlField field = new NaaccrXmlField(item);
-                _allFields.add(field);
-                _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-                _fieldsCachedByName.put(field.getName(), field);
-            }
-        }
-        else {
-            //Change name and ID to reflect format changes
-            for (String uri : _userDictionaries) {
-                //TODO will need to pass in user dictionaries at some point - can't get from just URI.
-                //                for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.(uri).getItems()) {
-                //                    NaaccrXmlField field = new NaaccrXmlField(item);
-                //                    _allFields.add(field);
-                //                    _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-                //                    _fieldsCachedByName.put(field.getName(), field);
-                //                }
-            }
-        }
-    }
-
-    //Writers and readers.
-    public Patient readNextPatient(PatientXmlReader reader) {
-        Patient patient = null;
-        try {
-            patient = reader.readPatient();
-        }
-        catch (NaaccrIOException e) {
-            //TODO throw an error?
-        }
-
-        if (patient != null && !patient.getAllValidationErrors().isEmpty()) {
-            //TODO throw an error? Report the validation errors?
-        }
-        return patient;
-    }
-
-    public List<Patient> readAllPatients(PatientXmlReader reader) {
-        List<Patient> allPatients = new ArrayList<>();
-        try {
-            Patient patient = reader.readPatient();
-            while (patient != null) {
-                if (!patient.getAllValidationErrors().isEmpty()) {
-                    //TODO throw an error? Log it? Make a list of patients with errors?
+                if (item.getNaaccrName() != null) {
+                    _allFields.add(field);
+                    _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
+                    _fieldsCachedByName.put(field.getNaaccrId(), field);
                 }
-                allPatients.add(patient);
-                patient = reader.readPatient();
             }
         }
-        catch (NaaccrIOException e) {
-            //TODO throw an error? Just log it?
+        verify();
+    }
+
+    public void verify() {
+        // ID is required
+        if (_layoutId == null || _layoutId.isEmpty())
+            throw new RuntimeException("Layout ID is required");
+
+        // name is required
+        if (_layoutName == null || _layoutName.isEmpty())
+            throw new RuntimeException("Layout name is required");
+
+        //Record type is required and must be one of the following: A, M, C, I
+        if (_recordType == null || _recordType.isEmpty())
+            throw new RuntimeException("Record type is required");
+        else if (!_recordType.equals("A") && !_recordType.equals("M") && !_recordType.equals("C") && !_recordType.equals("I")) {
+            throw new RuntimeException("Record type not recognized: " + _recordType);
+        }
+
+        //Base dictionary is required
+        if (_baseDictionary == null)
+            throw new RuntimeException("Base Dictionary is required");
+
+        //Validate the user dictionaries
+        for (NaaccrDictionary userDictionary : _userDictionaries) {
+            String errors = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
+            if (errors != null)
+                throw new RuntimeException("Invalid user dictionary. Errors: " + errors + " found on dictionary at URI: " + userDictionary.getDictionaryUri());
+        }
+
+        //validate the fields
+        if (!_allFields.isEmpty()) {
+            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>(), shortLabels = new HashSet<>(), longLabels = new HashSet<>();
+            for (NaaccrXmlField field : _allFields) {
+                if (field.getName() == null)
+                    throw new RuntimeException("Field name is required");
+                if (names.contains(field.getName()))
+                    throw new RuntimeException("Field name must be unique, found duplicate name for '" + field.getName() + "'");
+                names.add(field.getName());
+                if (field.getItem() == null)
+                    throw new RuntimeException("Field item definition is required, missing for field " + field.getName());
+                if (shortLabels.contains(field.getShortLabel()))
+                    throw new RuntimeException("Field short labels must be unique, found duplicate name for '" + field.getShortLabel() + "'");
+                shortLabels.add(field.getShortLabel());
+                if (longLabels.contains(field.getLongLabel()))
+                    throw new RuntimeException("Field long labels must be unique, found duplicate name for '" + field.getLongLabel() + "'");
+                longLabels.add(field.getLongLabel());
+                if (field.getNaaccrItemNum() != null)
+                    if (naaccrItemNums.contains(field.getNaaccrItemNum().toString()))
+                        throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
+                naaccrItemNums.add(field.getNaaccrItemNum().toString());
+                if (field.getLength() == null)
+                    throw new RuntimeException("Field length is required, missing for field " + field.getName());
+                if (field.getParentXmlElement() == null)
+                    throw new RuntimeException("Field parent XML element is required, missing for field " + field.getName());
+                if (field.getIsGroupedItem() && field.getContains() == null)
+                    throw new RuntimeException("Fields corresponding to grouped item definitions must define contained items, missing definition for" + field.getName());
+            }
+        }
+    }
+
+    //Writers and readers
+    public void writeNextPatient(PatientXmlWriter writer, Patient patient) throws NaaccrIOException {
+        writer.writePatient(patient);
+    }
+
+    public void writeAllPatients(OutputStream outputStream, List<Patient> patients, NaaccrData data) throws NaaccrIOException {
+        PatientXmlWriter writer = null;
+        try {
+            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream), data);
+            for (Patient patient : patients)
+                writer.writePatient(patient);
+        }
+        finally {
+            //Keep parameter stream alive - we don't know what the other side is doing with it.
+            if (writer != null)
+                writer.closeAndKeepAlive();
+        }
+    }
+
+    public void writeAllPatients(PatientXmlWriter writer, List<Patient> patients) throws NaaccrIOException {
+        for (Patient patient : patients)
+            writer.writePatient(patient);
+    }
+
+    public void writeAllPatients(File file, List<Patient> allPatients, NaaccrData data) throws IOException {
+        try (PatientXmlWriter writer = new PatientXmlWriter(new FileWriter(file), data)) {
+            for (Patient patient : allPatients)
+                writer.writePatient(patient);
+        }
+    }
+
+    public Patient readNextPatient(PatientXmlReader reader) throws NaaccrIOException {
+        return reader.readPatient();
+    }
+
+    public List<Patient> readAllPatients(InputStream inputStream) throws NaaccrIOException {
+        List<Patient> allPatients = new ArrayList<>();
+        PatientXmlReader reader = null;
+        try {
+            reader = new PatientXmlReader(new InputStreamReader(inputStream));
+            Patient patient;
+            while ((patient = reader.readPatient()) != null)
+                allPatients.add(patient);
+        }
+        finally {
+            //Keep parameter stream alive - we don't know what the other side is doing with it.
+            if (reader != null)
+                reader.closeAndKeepAlive();
         }
         return allPatients;
     }
 
-    public void writeNextPatient(PatientXmlWriter writer, Patient patient) {
-        try {
-            writer.writePatient(patient);
-        }
-        catch (NaaccrIOException e) {
-            //TODO throw an error
-        }
+    public List<Patient> readAllPatients(PatientXmlReader reader) throws NaaccrIOException {
+        List<Patient> allPatients = new ArrayList<>();
+        Patient patient;
+        while ((patient = reader.readPatient()) != null)
+            allPatients.add(patient);
+
+        return allPatients;
     }
 
-    public void writeAllPatients(PatientXmlWriter writer, List<Patient> allPatients) {
-        for (Patient patient : allPatients) {
-            try {
-                writer.writePatient(patient);
-            }
-            catch (NaaccrIOException e) {
-                //TODO throw an error
-            }
+    public List<Patient> readAllPatients(File file) throws NaaccrIOException, FileNotFoundException {
+        List<Patient> allPatients = new ArrayList<>();
+        try (PatientXmlReader reader = new PatientXmlReader(new FileReader(file))) {
+            Patient patient;
+            while ((patient = reader.readPatient()) != null)
+                allPatients.add(patient);
         }
-    }
-
-    public void addUserDictionaries(List<NaaccrDictionary> dictionaries, String layoutName, String layoutId) {
-        for (NaaccrDictionary dictionary : dictionaries) {
-            if (dictionary != null && dictionary.getItems() != null && !dictionary.getItems().isEmpty()) {
-                String errors = NaaccrXmlDictionaryUtils.validateUserDictionary(dictionary);
-                if (errors == null) {
-                    _userDictionaries.add(dictionary.getDictionaryUri());
-                    for (NaaccrDictionaryItem item : dictionary.getItems()) {
-                        NaaccrXmlField field = new NaaccrXmlField(item);
-                        _allFields.add(field);
-                        _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-                        _fieldsCachedByName.put(field.getName(), field);
-                    }
-                }
-                else {
-                    throw new RuntimeException("Invalid user dictionary: " + errors);
-                }
-            }
-        }
-        if (layoutId == null || layoutId.isEmpty())
-            throw new RuntimeException("Layout ID is required");
-        _layoutId = layoutId;
-        if (layoutName == null || layoutName.isEmpty())
-            throw new RuntimeException("Layout name is required");
-        _layoutName = layoutName;
-    }
-
-    public List<NaaccrXmlField> getFieldsForRecordType(String recordType) {
-        List<NaaccrXmlField> fieldsList = null;
-        if (_RECORD_TYPE_ABSTRACT.equals(recordType) || _RECORD_TYPE_MODIFIED.equals(recordType))
-            fieldsList = _allFields;
-        else if (_RECORD_TYPE_CONFIDENTIAL.equals(recordType) || _RECORD_TYPE_INCIDENCE.equals(recordType)) {
-            fieldsList = new ArrayList<>();
-            for (NaaccrXmlField field : _allFields)
-                if (field.getRecordTypes().contains(recordType))
-                    fieldsList.add(field);
-        }
-        return fieldsList;
+        return allPatients;
     }
 
     @Override
@@ -289,7 +322,7 @@ public class NaaccrXmlLayout implements Layout {
 
     @Override
     public String getLayoutVersion() {
-        return _layoutVersion;
+        return _naaccrVersion;
     }
 
     @Override
@@ -298,53 +331,67 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     @Override
-    public Field getFieldByName(String name) {
+    public NaaccrXmlField getFieldByName(String name) {
         return _fieldsCachedByName.get(name);
     }
 
     @Override
-    public Field getFieldByNaaccrItemNumber(Integer num) {
+    public NaaccrXmlField getFieldByNaaccrItemNumber(Integer num) {
         return _fieldsCachedByNaaccrNumber.get(num);
     }
 
     @Override
-    public List<? extends Field> getAllFields() {
+    public List<NaaccrXmlField> getAllFields() {
         return _allFields;
     }
 
-    //XML Fields don't have documentation //TODO should these throw errors if they are called?
     @Override
     public String getFieldDocByName(String name) {
-        return null;
+        NaaccrXmlField field = getFieldByName(name);
+        if (field == null)
+            return null;
+
+        return getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum());
     }
 
-    //XML Fields don't have documentation
     @Override
     public String getFieldDocByNaaccrItemNumber(Integer num) {
-        return null;
+        //NAACCR XML ID's don't all align with fixed column ID's/field doc names - need to use number to get doc through fixed column layout
+        NaaccrXmlField field = getFieldByNaaccrItemNumber(num);
+        if (field == null)
+            return null;
+
+        return LayoutFactory.getLayout(_layoutId.replace("-xml", "")).getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum());
     }
 
-    //XML Fields don't have documentation
     @Override
     public String getFieldDocDefaultCssStyle() {
-        return null;
+        return _CSS_STYLE_SUMMARY_TABLE.toString() + _DEFAULT_CSS_14_AND_LATER;
     }
 
-    //Todo should the name
     @Override
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
         LayoutInfo info = new LayoutInfo();
-        try {
-            PatientXmlReader reader = new PatientXmlReader(new FileReader(file));
-            NaaccrData data = reader.getRootData();
-            //TODO may need to be adjusted depending on how we handle adding user dictionaries
-            String baseUri = data.getBaseDictionaryUri();
-            info.setLayoutId(baseUri);
-            info.setLayoutName("NAACCR XML " + NaaccrXmlDictionaryUtils.getBaseDictionaryByUri(baseUri).getNaaccrVersion() + " " + data.getRecordType());
+        NaaccrData data;
+        try (PatientXmlReader reader = new PatientXmlReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName)))) {
+            data = reader.getRootData();
         }
-        catch (FileNotFoundException | NaaccrIOException e) {
-            //TODO throw an error
+        catch (IOException e) {
+            return null;
         }
+
+        if (!_baseDictionary.getDictionaryUri().equals(data.getBaseDictionaryUri()))
+            return null;
+
+        // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries
+        List<String> layoutDictionaryUris = new ArrayList<>();
+        for (NaaccrDictionary dictionary : _userDictionaries)
+            layoutDictionaryUris.add(dictionary.getDictionaryUri());
+        if (!layoutDictionaryUris.containsAll(data.getUserDictionaryUri()))
+            return null;
+
+        info.setLayoutId(_layoutId);
+        info.setLayoutName(_layoutName);
         return info;
     }
 }
