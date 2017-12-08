@@ -541,30 +541,30 @@
         <field name="rxDateSurgeryDay" start="2120" end="2121" short-label="Surg Day" long-label="RX Date Surgery (Day)" align="right" pad-char="0" section="Treatment-1st Course"/>
     </field>
     <field name="rxDateSurgeryFlag" start="2122" end="2123" short-label="Surg Dt Fg" long-label="RX Date Surgery Flag" naaccr-item-num="1201" section="Treatment-1st Course"/>
-    <field name="rxDateMostDefinSurg" start="2124" end="2131" short-label="Most Defin Surg Dt" long-label="RX Date Most Defin Surg" naaccr-item-num="3170" section="Treatment-1st Course">
-        <field name="rxDateMostDefinSurgYear" start="2124" end="2127" short-label="Most Defin Surg Yr" long-label="RX Date Most Defin Surg (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
-        <field name="rxDateMostDefinSurgMonth" start="2128" end="2129" short-label="Most Defin Surg Mth" long-label="RX Date Most Defin Surg (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
-        <field name="rxDateMostDefinSurgDay" start="2130" end="2131" short-label="Most Defin Surg Day" long-label="RX Date Most Defin Surg (Day)" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="rxDateMostDefinSurg" start="2124" end="2131" short-label="Most Defin Surg Dt" long-label="RX Date Mst Defn Srg" naaccr-item-num="3170" section="Treatment-1st Course">
+        <field name="rxDateMostDefinSurgYear" start="2124" end="2127" short-label="Most Defin Surg Yr" long-label="RX Date Mst Defn Srg (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
+        <field name="rxDateMostDefinSurgMonth" start="2128" end="2129" short-label="Most Defin Surg Mth" long-label="RX Date Mst Defn Srg (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
+        <field name="rxDateMostDefinSurgDay" start="2130" end="2131" short-label="Most Defin Surg Day" long-label="RX Date Mst Defn Srg (Day)" align="right" pad-char="0" section="Treatment-1st Course"/>
     </field>
-    <field name="rxDateMostDefinSurgFlag" start="2132" end="2133" short-label="Most Defin Surg Dt Fg" long-label="RX Date Most Defin Surg Flag" naaccr-item-num="3171" section="Treatment-1st Course"/>
-    <field name="rxDateSurgicalDisch" start="2134" end="2141" short-label="Surg Disch Dt" long-label="RX Date Surgical Disch" naaccr-item-num="3180" section="Treatment-1st Course">
-        <field name="rxDateSurgicalDischYear" start="2134" end="2137" short-label="Surg Disch Yr" long-label="RX Date Surgical Disch (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
-        <field name="rxDateSurgicalDischMonth" start="2138" end="2139" short-label="Surg Disch Month" long-label="RX Date Surgical Disch (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
-        <field name="rxDateSurgicalDischDay" start="2140" end="2141" short-label="Surg Disch Day" long-label="RX Date Surgical Disch (Day)" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="rxDateMostDefinSurgFlag" start="2132" end="2133" short-label="Most Defin Surg Dt Fg" long-label="RX Date Mst Defn Srg Flag" naaccr-item-num="3171" section="Treatment-1st Course"/>
+    <field name="rxDateSurgicalDisch" start="2134" end="2141" short-label="Surg Disch Dt" long-label="RX Date Surg Disch" naaccr-item-num="3180" section="Treatment-1st Course">
+        <field name="rxDateSurgicalDischYear" start="2134" end="2137" short-label="Surg Disch Yr" long-label="RX Date Surg Disch (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
+        <field name="rxDateSurgicalDischMonth" start="2138" end="2139" short-label="Surg Disch Month" long-label="RX Date Surg Disch (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
+        <field name="rxDateSurgicalDischDay" start="2140" end="2141" short-label="Surg Disch Day" long-label="RX Date Surg Disch (Day)" align="right" pad-char="0" section="Treatment-1st Course"/>
     </field>
-    <field name="rxDateSurgicalDischFlag" start="2142" end="2143" short-label="Surg Disch Dt Fg" long-label="RX Date Surgical Disch Flag" naaccr-item-num="3181" section="Treatment-1st Course"/>
+    <field name="rxDateSurgicalDischFlag" start="2142" end="2143" short-label="Surg Disch Dt Fg" long-label="RX Date Surg Disch Flag" naaccr-item-num="3181" section="Treatment-1st Course"/>
     <field name="rxDateRadiation" start="2144" end="2151" short-label="Rad Dt" long-label="RX Date Radiation" naaccr-item-num="1210" section="Treatment-1st Course">
         <field name="rxDateRadiationYear" start="2144" end="2147" short-label="Rad Yr" long-label="RX Date Radiation (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
         <field name="rxDateRadiationMonth" start="2148" end="2149" short-label="Rad Mth" long-label="RX Date Radiation (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
         <field name="rxDateRadiationDay" start="2150" end="2151" short-label="Rad Day" long-label="RX Date Radiation (Day)" align="right" pad-char="0" section="Treatment-1st Course"/>
     </field>
     <field name="rxDateRadiationFlag" start="2152" end="2153" short-label="Rad Dt Fg" long-label="RX Date Radiation Flag" naaccr-item-num="1211" section="Treatment-1st Course"/>
-    <field name="rxDateRadiationEnded" start="2154" end="2161" short-label="Rad End Dt" long-label="RX Date Radiation Ended" naaccr-item-num="3220" section="Treatment-1st Course">
-        <field name="rxDateRadiationEndedYear" start="2154" end="2157" short-label="Rad End Yr" long-label="RX Date Radiation Ended (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
-        <field name="rxDateRadiationEndedMonth" start="2158" end="2159" short-label="Rad End Mth" long-label="RX Date Radiation Ended (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
-        <field name="rxDateRadiationEndedDay" start="2160" end="2161" short-label="Rad End Day" long-label="RX Date Radiation Ended (Day)" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="rxDateRadiationEnded" start="2154" end="2161" short-label="Rad End Dt" long-label="RX Date Rad Ended" naaccr-item-num="3220" section="Treatment-1st Course">
+        <field name="rxDateRadiationEndedYear" start="2154" end="2157" short-label="Rad End Yr" long-label="RX Date Rad Ended (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
+        <field name="rxDateRadiationEndedMonth" start="2158" end="2159" short-label="Rad End Mth" long-label="RX Date Rad Ended (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
+        <field name="rxDateRadiationEndedDay" start="2160" end="2161" short-label="Rad End Day" long-label="RX Date Rad Ended (Day)" align="right" pad-char="0" section="Treatment-1st Course"/>
     </field>
-    <field name="rxDateRadiationEndedFlag" start="2162" end="2163" short-label="Rad End Dt Fg" long-label="RX Date Radiation Ended Flag" naaccr-item-num="3221" section="Treatment-1st Course"/>
+    <field name="rxDateRadiationEndedFlag" start="2162" end="2163" short-label="Rad End Dt Fg" long-label="RX Date Rad Ended Flag" naaccr-item-num="3221" section="Treatment-1st Course"/>
     <field name="rxDateSystemic" start="2164" end="2171" short-label="Syst Dt" long-label="RX Date Systemic" naaccr-item-num="3230" section="Treatment-1st Course">
         <field name="rxDateSystemicYear" start="2164" end="2167" short-label="Syst Yr" long-label="RX Date Systemic (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
         <field name="rxDateSystemicMonth" start="2168" end="2169" short-label="Syst Month" long-label="RX Date Systemic (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
