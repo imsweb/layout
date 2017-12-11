@@ -4,6 +4,7 @@
 package com.imsweb.layout.naaccrXml;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.imsweb.layout.Field;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryGroupedItem;
@@ -13,6 +14,7 @@ public class NaaccrXmlField extends Field {
 
     private NaaccrDictionaryItem _item;
 
+    // TODO remove everything about "groups"
     private boolean _isGroupedItem;
 
     public NaaccrXmlField() {
@@ -23,6 +25,7 @@ public class NaaccrXmlField extends Field {
         super();
         _item = item;
         _name = item.getNaaccrId();
+        // TODO this is not needed
         if (item.getNaaccrName() != null) {
             _shortLabel = item.getNaaccrName();
             _longLabel = item.getNaaccrName();
@@ -90,32 +93,21 @@ public class NaaccrXmlField extends Field {
 
     @Override
     public String toString() {
-        return "Field [name=" + _name + "]";
+        return _name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        NaaccrXmlField that = (NaaccrXmlField)o;
+        return Objects.equals(_item, that._item);
     }
 
     @Override
     public int hashCode() {
-        int prime = 31;
-        int result = 1;
-        result = prime * result + ((_name == null) ? 0 : _name.hashCode());
-        return result;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Field other = (Field)obj;
-        if (_name == null) {
-            if (other.getName() != null)
-                return false;
-        }
-        else if (!_name.equals(other.getName()))
-            return false;
-        return true;
+        return Objects.hash(super.hashCode(), _item);
     }
 }

@@ -37,6 +37,9 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
 public class NaaccrXmlLayout implements Layout {
 
+    // TODO use a private "NaaccrLayout"
+
+    // TODO remove all CSS stuff
     private static final StringBuilder _CSS_STYLE_SUMMARY_TABLE = new StringBuilder();
 
     static {
@@ -141,10 +144,13 @@ public class NaaccrXmlLayout implements Layout {
     private NaaccrDictionary _baseDictionary;
     private List<NaaccrDictionary> _userDictionaries;
 
+    // TODO remvove this for now
     //Constructors
     public NaaccrXmlLayout() {
         super();
     }
+
+    // TODO support loadFields
 
     public NaaccrXmlLayout(String naaccrVersion, String layoutId, String layoutName, String recordType, List<NaaccrDictionary> dictionaries) {
         _baseDictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion(naaccrVersion);
@@ -164,6 +170,8 @@ public class NaaccrXmlLayout implements Layout {
         _allFields = new ArrayList<>();
         _fieldsCachedByName = new HashMap<>();
         _fieldsCachedByNaaccrNumber = new HashMap<>();
+
+        // TODO FD for now we don't handle "groups" (so subfields); should we?
 
         //Get all item and grouped item definitions and add to layout's field list
         NaaccrDictionary allItemsDictionary = NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()]));
@@ -372,6 +380,9 @@ public class NaaccrXmlLayout implements Layout {
 
     @Override
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
+
+        // TODO use NaaccrXmlUtils.getAttributesFromXmlReader() - use constants for the tags
+
         LayoutInfo info = new LayoutInfo();
         NaaccrData data;
         try (PatientXmlReader reader = new PatientXmlReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), StandardCharsets.UTF_8))) {
