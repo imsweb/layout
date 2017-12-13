@@ -146,13 +146,13 @@ public final class LayoutFactory {
 
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
         if (LAYOUT_ID_NAACCR_XML_16_ABSTRACT.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", LAYOUT_ID_NAACCR_XML_16_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_ABSTRACT), "A", null);
+            layout = new NaaccrXmlLayout("160", "A", LAYOUT_ID_NAACCR_XML_16_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_ABSTRACT), null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_16_MODIFIED.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", LAYOUT_ID_NAACCR_XML_16_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_MODIFIED), "M", null);
+            layout = new NaaccrXmlLayout("160", "M", LAYOUT_ID_NAACCR_XML_16_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_MODIFIED), null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL), "C", null);
+            layout = new NaaccrXmlLayout("160", "C", LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL), null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_16_INCIDENCE.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", LAYOUT_ID_NAACCR_XML_16_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_INCIDENCE), "I", null);
+            layout = new NaaccrXmlLayout("160", "I", LAYOUT_ID_NAACCR_XML_16_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_INCIDENCE), null, loadFields);
         else if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
             layout = new NaaccrLayout("160", "A", 22824, LAYOUT_ID_NAACCR_16_ABSTRACT, loadFields);
         else if (LAYOUT_ID_NAACCR_16_MODIFIED.equals(layoutId))
