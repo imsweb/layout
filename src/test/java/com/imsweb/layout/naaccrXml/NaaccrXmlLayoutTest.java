@@ -36,18 +36,8 @@ public class NaaccrXmlLayoutTest {
     public void testNaaccrXmlLayout() {
         NaaccrXmlLayout layout;
 
-        //Null naaccrVersion
+        //Null NAACCR version
         boolean exceptionCaught = false;
-        try {
-            new NaaccrXmlLayout(null, null, null, null, null, false);
-        }
-        catch (RuntimeException e) {
-            exceptionCaught = true;
-        }
-        Assert.assertTrue(exceptionCaught);
-
-        //Null dictionary version
-        exceptionCaught = false;
         try {
             new NaaccrXmlLayout(null, "A", "test-id", "test-name", null, false);
         }
@@ -89,7 +79,7 @@ public class NaaccrXmlLayoutTest {
         //Bad version number
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("1160", "A", "test-id", null, null, false);
+            new NaaccrXmlLayout("1160", "A", "test-id", "test-name", null, false);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -99,7 +89,7 @@ public class NaaccrXmlLayoutTest {
         //Bad recordType
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "F", "test-id", null, null, false);
+            new NaaccrXmlLayout("160", "Bad", "test-id", "test-name", null, false);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -126,14 +116,16 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals("test-name", layout.getLayoutName());
         Assert.assertEquals("A", layout.getRecordType());
         Assert.assertEquals("160", layout.getBaseDictionary().getNaaccrVersion());
-        Assert.assertNull(layout.getFieldByNaaccrItemNumber(10));
-        Assert.assertNull(layout.getFieldByName("recordType"));
         Assert.assertEquals(1, layout.getUserDictionaries().size());
         Assert.assertEquals("160", layout.getUserDictionaries().get(0).getNaaccrVersion());
+        Assert.assertNull(layout.getFieldByNaaccrItemNumber(10));
+        Assert.assertNull(layout.getFieldByName("recordType"));
         layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, true);
         Assert.assertEquals(587, layout.getAllFields().size());
         Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10));
         Assert.assertNotNull(layout.getFieldByName("recordType"));
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(37));
+        Assert.assertNotNull(layout.getFieldByName("reserved00"));
 
         //User dictionary for testing
         NaaccrDictionary userDictionary = new NaaccrDictionary();
@@ -151,6 +143,7 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals(565, layout.getAllFields().size());
         Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10003));
         Assert.assertNotNull(layout.getFieldByName("itemId"));
+        Assert.assertEquals(1, layout.getUserDictionaries().size());
 
         layout = new NaaccrXmlLayout("160", "M", "test-id", "test-name", null, true);
         Assert.assertEquals("M", layout.getRecordType());
@@ -218,9 +211,27 @@ public class NaaccrXmlLayoutTest {
 
         Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(123456));
         Assert.assertNull(layout.getFieldDocByName("A fake field name"));
+
+        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, true);
+
+        for (NaaccrXmlField field : layout.getAllFields()) {
+            //The v15 dictionary contains "reserved" fields, but the v15 layout does not
+            if (!field.getNaaccrId().startsWith("reserved")) {
+                Assert.assertNotNull(layout.getFieldDocByName(field.getName()));
+                Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+            }
+        }
+
+        layout = new NaaccrXmlLayout("140", "A", "test-id", "test-name", null, true);
+        //The v14 dictionary contains "reserved" fields, but the v14 layout does not
+        for (NaaccrXmlField field : layout.getAllFields()) {
+            if (!field.getNaaccrId().startsWith("reserved")) {
+                Assert.assertNotNull(layout.getFieldDocByName(field.getName()));
+                Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+            }
+        }
     }
 
-    //TODO xstream not initialized - in NaaccrXML class - security needs to be added when initializing the x stream
     @Test
     public void testReadMethods() throws IOException {
         NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);

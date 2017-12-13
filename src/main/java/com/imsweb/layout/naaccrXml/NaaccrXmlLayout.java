@@ -112,8 +112,7 @@ public class NaaccrXmlLayout implements Layout {
                     NaaccrXmlField field = new NaaccrXmlField(item);
                     _allFields.add(field);
                     _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-                    if (item.getNaaccrName() != null)
-                        _fieldsCachedByName.put(field.getNaaccrId(), field);
+                    _fieldsCachedByName.put(field.getNaaccrId(), field);
                 }
             }
         }
@@ -348,7 +347,6 @@ public class NaaccrXmlLayout implements Layout {
 
         info.setLayoutId(_layoutId);
         info.setLayoutName(_layoutName);
-        //TODO do we need the "numFields" here?
         return info;
     }
 }
