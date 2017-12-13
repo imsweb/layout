@@ -96,12 +96,42 @@ public class NaaccrXmlLayoutTest {
         }
         Assert.assertTrue(exceptionCaught);
 
-        //Bad user dictionary
+        //Bad user dictionary - duplicate ID
         NaaccrDictionary badDictionary = new NaaccrDictionary();
         badDictionary.setDictionaryUri("http://mycompany.org/my-very-own-naaccr-dictionary.xml");
+        badDictionary.setSpecificationVersion("1.3");
+        NaaccrDictionaryItem duplicateItem = new NaaccrDictionaryItem();
+        duplicateItem.setNaaccrId("recordType");
+        duplicateItem.setNaaccrName("Record Type");
+        duplicateItem.setNaaccrNum(10);
+        duplicateItem.setLength(1);
+        duplicateItem.setParentXmlElement("Tumor");
+        badDictionary.setItems(Collections.singletonList(duplicateItem));
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "F", "test-id", "test-name", Collections.singletonList(badDictionary), false);
+            new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
+        }
+        catch (RuntimeException e) {
+            exceptionCaught = true;
+        }
+        Assert.assertTrue(exceptionCaught);
+
+        //Bad user dictionary - duplicate Name
+        duplicateItem.setNaaccrId("itemId");
+        exceptionCaught = false;
+        try {
+            new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
+        }
+        catch (RuntimeException e) {
+            exceptionCaught = true;
+        }
+        Assert.assertTrue(exceptionCaught);
+
+        //Bad user dictionary - duplicate NAACCR Number
+        duplicateItem.setNaaccrName("Item name");
+        exceptionCaught = false;
+        try {
+            new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
