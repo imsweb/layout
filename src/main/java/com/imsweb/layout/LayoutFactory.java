@@ -14,7 +14,7 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.imsweb.layout.hl7.NaaccrHl7Layout;
-import com.imsweb.layout.naaccrXml.NaaccrXmlLayout;
+import com.imsweb.layout.naaccrxml.NaaccrXmlLayout;
 import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;

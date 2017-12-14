@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Information Management Services, Inc.
  */
-package com.imsweb.layout.naaccrXml;
+package com.imsweb.layout.naaccrxml;
 
 import java.util.Objects;
 
