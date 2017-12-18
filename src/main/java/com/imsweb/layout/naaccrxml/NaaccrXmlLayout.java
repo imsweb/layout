@@ -328,9 +328,13 @@ public class NaaccrXmlLayout implements Layout {
 
         LayoutInfo info = new LayoutInfo();
         Map<String, String> attributes = NaaccrXmlUtils.getAttributesFromXmlFile(file);
-        String baseVersion = "http://naaccr.org/naaccrxml/naaccr-dictionary-" + _naaccrVersion + ".xml";
 
-        if (!baseVersion.equals(attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_BASE_DICT)))
+        String recordType = attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_REC_TYPE);
+        if (recordType == null || recordType.isEmpty() || !_recordType.equals(recordType))
+            return null;
+
+        String baseUri = "http://naaccr.org/naaccrxml/naaccr-dictionary-" + _naaccrVersion + ".xml";
+        if (!baseUri.equals(attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_BASE_DICT)))
             return null;
 
         // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries

@@ -4,7 +4,6 @@
 package com.imsweb.layout.naaccrxml;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +17,6 @@ import org.junit.Test;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
-import com.imsweb.naaccrxml.NaaccrIOException;
 import com.imsweb.naaccrxml.NaaccrOptions;
 import com.imsweb.naaccrxml.NaaccrXmlUtils;
 import com.imsweb.naaccrxml.PatientXmlReader;
@@ -357,7 +355,7 @@ public class NaaccrXmlLayoutTest {
     }
 
     @Test
-    public void testBuildFileInfo() throws NaaccrIOException, FileNotFoundException {
+    public void testBuildFileInfo() {
         File file = new File(System.getProperty("user.dir") + "/src/test/resources/xml-reader-two-patients.xml");
 
         NaaccrXmlLayout layout = (NaaccrXmlLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT);
@@ -367,6 +365,9 @@ public class NaaccrXmlLayoutTest {
 
         //Bad file path
         Assert.assertNull(layout.buildFileInfo(new File("Bad file path"), null, null));
+
+        //Non-matching layout
+        Assert.assertNull(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_INCIDENCE).buildFileInfo(file, null, new LayoutInfoDiscoveryOptions()));
 
         //Builds file info for an actual file
         LayoutInfo info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
