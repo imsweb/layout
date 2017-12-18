@@ -65,7 +65,7 @@ public class NaaccrXmlLayout implements Layout {
     public NaaccrXmlLayout(String naaccrVersion, String recordType, String layoutId, String layoutName, List<NaaccrDictionary> dictionaries, boolean loadFields) {
         _naaccrVersion = naaccrVersion; // TODO use the library to validate the version and the record type
         _layoutName = layoutName;
-        _layoutId = layoutId; // TODO this seem wrong (and the name as well); if I create a v18 dictionary with a user-one, it shouldn't be recognized as the same as a pure v18...
+        _layoutId = layoutId;
         _recordType = recordType;
         _userDictionaries = dictionaries;
 
