@@ -38,9 +38,10 @@ import com.imsweb.naaccrxml.entity.Patient;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
+// TODO clean up Javadocs
 public class NaaccrXmlLayout implements Layout {
 
-    private NaaccrLayout _baseFlatFile;
+    private NaaccrLayout _baseFlatFile; // TODO I wouldn't call it "FlatFile"; maybe "_flatLayout"?
 
     private String _layoutId;
 
@@ -62,9 +63,9 @@ public class NaaccrXmlLayout implements Layout {
 
     //Constructors
     public NaaccrXmlLayout(String naaccrVersion, String recordType, String layoutId, String layoutName, List<NaaccrDictionary> dictionaries, boolean loadFields) {
-        _naaccrVersion = naaccrVersion;
+        _naaccrVersion = naaccrVersion; // TODO use the library to validate the version and the record type
         _layoutName = layoutName;
-        _layoutId = layoutId;
+        _layoutId = layoutId; // TODO this seem wrong (and the name as well); if I create a v18 dictionary with a user-one, it shouldn't be recognized as the same as a pure v18...
         _recordType = recordType;
         _userDictionaries = dictionaries;
 
@@ -76,6 +77,7 @@ public class NaaccrXmlLayout implements Layout {
             _userDictionaries = Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion));
 
         //add description from base and user dictionaries
+        // TODO this might be too long, need to see how it looks like with 2 user dictionaries for example...
         StringBuilder description = new StringBuilder("This layout uses the base dictionary: " + _baseDictionary.getDescription());
         description.append(" This layout also uses the user dictionaries: ");
         for (NaaccrDictionary dictionary : _userDictionaries)
@@ -101,14 +103,14 @@ public class NaaccrXmlLayout implements Layout {
                     flatFileId.append("abstract");
                     break;
             }
-            _baseFlatFile = (NaaccrLayout)LayoutFactory.getLayout(flatFileId.toString());
+            _baseFlatFile = (NaaccrLayout)LayoutFactory.getLayout(flatFileId.toString()); // TODO make sure NAACCR layout is not null, raise exception otherwise
 
             // TODO FD for now we don't handle "groups" (so subfields); should we?
             //Get all item definitions, create fields and add to layout's field list
             NaaccrDictionary allItemsDictionary = NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()]));
-            List<NaaccrDictionaryItem> allItems = new ArrayList<>(allItemsDictionary.getItems());
+            List<NaaccrDictionaryItem> allItems = new ArrayList<>(allItemsDictionary.getItems()); // TODO there is no reason to create the list variable...
             for (NaaccrDictionaryItem item : allItems) {
-                if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
+                if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) { // TODO are we sure about this logic? Seems suspicious to me
                     NaaccrXmlField field = new NaaccrXmlField(item);
                     _allFields.add(field);
                     _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
@@ -143,7 +145,7 @@ public class NaaccrXmlLayout implements Layout {
         for (NaaccrDictionary userDictionary : _userDictionaries) {
             String errors = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
             if (errors != null)
-                throw new RuntimeException("Invalid user dictionary. Error '" + errors + "' found on dictionary at URI: " + userDictionary.getDictionaryUri());
+                throw new RuntimeException("Invalid user dictionary. Error '" + errors + "' found on dictionary at URI: " + userDictionary.getDictionaryUri()); // TODO this is too verbose; the error might be very long.
         }
 
         //validate the fields
@@ -333,18 +335,19 @@ public class NaaccrXmlLayout implements Layout {
         if (recordType == null || recordType.isEmpty() || !_recordType.equals(recordType))
             return null;
 
-        String baseUri = "http://naaccr.org/naaccrxml/naaccr-dictionary-" + _naaccrVersion + ".xml";
+        String baseUri = "http://naaccr.org/naaccrxml/naaccr-dictionary-" + _naaccrVersion + ".xml"; // TODO we have the base dictionary, we should be able to use its URI and not build it here
         if (!baseUri.equals(attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_BASE_DICT)))
             return null;
 
         // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries
         List<String> layoutDictionaryUris = new ArrayList<>();
-        if (_userDictionaries == null)
+        if (_userDictionaries == null) // TODO this is not possible, it's set in the unique constructor...
             layoutDictionaryUris.add("http://naaccr.org/naaccrxml/user-defined-naaccr-dictionary-" + _naaccrVersion + ".xml");
         else
             for (NaaccrDictionary dictionary : _userDictionaries)
                 layoutDictionaryUris.add(dictionary.getDictionaryUri());
 
+        // TODO use SeerString.split()
         if (attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_USER_DICT) != null &&
                 !layoutDictionaryUris.containsAll(Arrays.asList(attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_USER_DICT).split(" "))))
             return null;
