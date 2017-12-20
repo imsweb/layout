@@ -126,7 +126,7 @@ public class NaaccrXmlLayout implements Layout {
             NaaccrDictionary allItemsDictionary = NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()]));
             _allFields = new ArrayList<>();
             for (NaaccrDictionaryItem item : allItemsDictionary.getItems()) {
-                if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) { // TODO are we sure about this logic? Seems suspicious to me
+                if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
                     NaaccrXmlField field = new NaaccrXmlField(item);
                     _allFields.add(field);
                     _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
@@ -168,15 +168,8 @@ public class NaaccrXmlLayout implements Layout {
             //Validate the user dictionaries
             for (NaaccrDictionary userDictionary : _userDictionaries) {
                 String error = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
-                if (error != null) {
-                    System.out.println("no errors");
-                    StringBuilder errorMessage = new StringBuilder("Error found on user dictionary (URI ending in ");
-                    String uri = userDictionary.getDictionaryUri();
-                    if (uri.length() > 20)
-                        uri = uri.substring(uri.length() - 20);
-                    errorMessage.append(uri).append("): ").append(error);
-                    throw new RuntimeException(errorMessage.toString());
-                }
+                if (error != null)
+                    throw new RuntimeException("Error found on user dictionary - " + error);
             }
 
             //validate the NaaccrXmlFields

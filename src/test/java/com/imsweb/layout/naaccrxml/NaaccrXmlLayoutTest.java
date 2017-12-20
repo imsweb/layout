@@ -94,14 +94,13 @@ public class NaaccrXmlLayoutTest {
         }
         Assert.assertTrue(exceptionCaught);
 
-        //Bad user dictionary - duplicate ID
+        //Bad user dictionary - Missing Specification version
         NaaccrDictionary badDictionary = new NaaccrDictionary();
         badDictionary.setDictionaryUri("http://mycompany.org/my-very-own-naaccr-dictionary.xml");
-        badDictionary.setSpecificationVersion("1.3");
         NaaccrDictionaryItem duplicateItem = new NaaccrDictionaryItem();
-        duplicateItem.setNaaccrId("recordType");
-        duplicateItem.setNaaccrName("Record Type");
-        duplicateItem.setNaaccrNum(10);
+        duplicateItem.setNaaccrId("itemId");
+        duplicateItem.setNaaccrName("Item Name");
+        duplicateItem.setNaaccrNum(10001);
         duplicateItem.setLength(1);
         duplicateItem.setParentXmlElement("Tumor");
         badDictionary.setItems(Collections.singletonList(duplicateItem));
@@ -114,8 +113,21 @@ public class NaaccrXmlLayoutTest {
         }
         Assert.assertTrue(exceptionCaught);
 
+        //Bad user dictionary - duplicate ID
+        badDictionary.setSpecificationVersion("1.3");
+        duplicateItem.setNaaccrId("recordType");
+        exceptionCaught = false;
+        try {
+            new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
+        }
+        catch (RuntimeException e) {
+            exceptionCaught = true;
+        }
+        Assert.assertTrue(exceptionCaught);
+
         //Bad user dictionary - duplicate Name
         duplicateItem.setNaaccrId("itemId");
+        duplicateItem.setNaaccrName("Record Type");
         exceptionCaught = false;
         try {
             new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
@@ -127,6 +139,7 @@ public class NaaccrXmlLayoutTest {
 
         //Bad user dictionary - duplicate NAACCR Number
         duplicateItem.setNaaccrName("Item name");
+        duplicateItem.setNaaccrNum(10);
         exceptionCaught = false;
         try {
             new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
@@ -427,7 +440,7 @@ public class NaaccrXmlLayoutTest {
 
         Assert.assertEquals("test-id", layout.getLayoutId());
         Assert.assertEquals("Test Name", layout.getLayoutName());
-        Assert.assertTrue(layout.getLayoutDescription().startsWith("This layout uses the base dictionary:"));
+        Assert.assertTrue(layout.getLayoutDescription().startsWith("This layout uses the base dictionary version 160."));
         Assert.assertEquals("160", layout.getLayoutVersion());
         Assert.assertEquals(587, layout.getAllFields().size());
         Assert.assertNull(layout.getFieldDocByName("field1"));
