@@ -136,20 +136,22 @@ public class NaaccrXmlLayoutTest {
         }
         Assert.assertTrue(exceptionCaught);
 
-        //Test Version 160
+        //Test Version 160 - don't load fields/dictionaries
         layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
-        Assert.assertEquals(new ArrayList<>(), layout.getAllFields());
+        Assert.assertNull(layout.getAllFields());
         Assert.assertEquals("160", layout.getLayoutVersion());
         Assert.assertEquals("test-id", layout.getLayoutId());
         Assert.assertEquals("test-name", layout.getLayoutName());
         Assert.assertEquals("A", layout.getRecordType());
+        Assert.assertNull(layout.getFieldByNaaccrItemNumber(10));
+        Assert.assertNull(layout.getFieldByName("recordType"));
+
+        //Test version 160 - load fields/dictionaries
+        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, true);
+        Assert.assertEquals(587, layout.getAllFields().size());
         Assert.assertEquals("160", layout.getBaseDictionary().getNaaccrVersion());
         Assert.assertEquals(1, layout.getUserDictionaries().size());
         Assert.assertEquals("160", layout.getUserDictionaries().get(0).getNaaccrVersion());
-        Assert.assertNull(layout.getFieldByNaaccrItemNumber(10));
-        Assert.assertNull(layout.getFieldByName("recordType"));
-        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, true);
-        Assert.assertEquals(587, layout.getAllFields().size());
         Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10));
         Assert.assertNotNull(layout.getFieldByName("recordType"));
         Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(37));
@@ -206,6 +208,7 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals("I", layout.getRecordType());
         Assert.assertEquals(464, layout.getAllFields().size());
 
+        //Test Version 140
         layout = new NaaccrXmlLayout("140", "A", "test-id", "test-name", null, true);
         Assert.assertEquals("140", layout.getLayoutVersion());
         Assert.assertEquals("140", layout.getBaseDictionary().getNaaccrVersion());
@@ -226,6 +229,84 @@ public class NaaccrXmlLayoutTest {
         layout = new NaaccrXmlLayout("140", "I", "test-id", "test-name", null, true);
         Assert.assertEquals("I", layout.getRecordType());
         Assert.assertEquals(457, layout.getAllFields().size());
+    }
+
+    @Test
+    public void testLoadFieldsMechanism() {
+        //There are 478 items in the base dictionary and 18 items in the default user dictionary that apply to the "Incidence" type,
+        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", null, true);
+        Assert.assertEquals(496, layout.getAllFields().size());
+
+        //User dictionary for testing
+        NaaccrDictionary userDictionary = new NaaccrDictionary();
+        userDictionary.setDictionaryUri("http://mycompany.org/my-very-own-naaccr-dictionary.xml");
+        userDictionary.setSpecificationVersion("1.3");
+
+        List<NaaccrDictionaryItem> itemList = new ArrayList<>();
+        // Item with no record type
+        NaaccrDictionaryItem itemNoRecs = new NaaccrDictionaryItem();
+        itemNoRecs.setNaaccrId("itemId1");
+        itemNoRecs.setNaaccrNum(10001);
+        itemNoRecs.setNaaccrName("Item name1");
+        itemNoRecs.setLength(1);
+        itemNoRecs.setParentXmlElement("Patient");
+        itemList.add(itemNoRecs);
+
+        // Item with empty record types
+        NaaccrDictionaryItem itemEmptyRecs = new NaaccrDictionaryItem();
+        itemEmptyRecs.setNaaccrId("itemId2");
+        itemEmptyRecs.setNaaccrNum(10002);
+        itemEmptyRecs.setNaaccrName("Item name2");
+        itemEmptyRecs.setLength(1);
+        itemEmptyRecs.setParentXmlElement("Patient");
+        itemEmptyRecs.setRecordTypes("");
+        itemList.add(itemEmptyRecs);
+
+        //Item with all record types
+        NaaccrDictionaryItem itemAllRecs = new NaaccrDictionaryItem();
+        itemAllRecs.setNaaccrId("itemId3");
+        itemAllRecs.setNaaccrNum(10003);
+        itemAllRecs.setNaaccrName("Item name3");
+        itemAllRecs.setLength(1);
+        itemAllRecs.setParentXmlElement("Patient");
+        itemAllRecs.setRecordTypes("A,M,C,I");
+        itemList.add(itemAllRecs);
+
+        //Item with only the single target record type
+        NaaccrDictionaryItem itemOnlyTargetRec = new NaaccrDictionaryItem();
+        itemOnlyTargetRec.setNaaccrId("itemId4");
+        itemOnlyTargetRec.setNaaccrNum(10004);
+        itemOnlyTargetRec.setNaaccrName("Item name4");
+        itemOnlyTargetRec.setLength(1);
+        itemOnlyTargetRec.setParentXmlElement("Patient");
+        itemOnlyTargetRec.setRecordTypes("I");
+        itemList.add(itemOnlyTargetRec);
+
+        //Item with all record types except for target type
+        NaaccrDictionaryItem itemAllExceptRec = new NaaccrDictionaryItem();
+        itemAllExceptRec.setNaaccrId("itemId5");
+        itemAllExceptRec.setNaaccrNum(10005);
+        itemAllExceptRec.setNaaccrName("Item name5");
+        itemAllExceptRec.setLength(1);
+        itemAllExceptRec.setParentXmlElement("Patient");
+        itemAllExceptRec.setRecordTypes("A,M,C");
+        itemList.add(itemAllExceptRec);
+
+        //Item with all a bad record type
+        NaaccrDictionaryItem itemBadRec = new NaaccrDictionaryItem();
+        itemBadRec.setNaaccrId("itemId6");
+        itemBadRec.setNaaccrNum(10006);
+        itemBadRec.setNaaccrName("Item name6");
+        itemBadRec.setLength(1);
+        itemBadRec.setParentXmlElement("Patient");
+        itemBadRec.setRecordTypes("Q");
+        itemList.add(itemBadRec);
+
+        userDictionary.setItems(itemList);
+
+        //There are 478 fields in the base dictionary and 4 fields in the custom user dictionary that apply to the "Incidence" type.
+        layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", Collections.singletonList(userDictionary), true);
+        Assert.assertEquals(482, layout.getAllFields().size());
     }
 
     @Test
