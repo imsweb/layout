@@ -21,6 +21,7 @@ import com.imsweb.layout.record.csv.CommaSeparatedField;
 import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 
 public class LayoutFactoryTest {
 
@@ -136,6 +137,28 @@ public class LayoutFactoryTest {
         LayoutFactory.registerLayout(createCommaSeparatedTestingLayout());
         Assert.assertTrue(LayoutFactory.getAvailableLayouts().containsKey("test-csv"));
         Assert.assertNotNull(getLayout("test-csv"));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testRegisterLayoutInternalId() throws RuntimeException {
+        // Test register internal layout
+        LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT, false));
+        Assert.assertNotNull(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT));
+        Assert.assertEquals("160", LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT).getLayoutVersion());
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testRegisterLayoutDuplicateId() throws RuntimeException {
+        LayoutFactory.unregisterAllLayouts();
+
+        //Test register duplicate user created layout
+        LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, "test-id", false));
+        Assert.assertNotNull(LayoutFactory.getLayout("test-id"));
+        Assert.assertEquals("140", LayoutFactory.getLayout("test-id").getLayoutVersion());
+
+        LayoutFactory.registerLayout(new NaaccrLayout("130", "A", 1000, "test-id", false));
+        Assert.assertNotNull(LayoutFactory.getLayout("test-id"));
+        Assert.assertEquals("140", LayoutFactory.getLayout("test-id").getLayoutVersion());
     }
 
     @Test(expected = IOException.class)

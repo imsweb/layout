@@ -256,6 +256,9 @@ public final class LayoutFactory {
         // make sure the layout is valid
         if (layout == null)
             throw new RuntimeException("Provided layout instance is null");
+        //Layout ID's must be unique
+        if (_INTERNAL_LAYOUTS.get(layout.getLayoutId()) != null || _LAYOUTS.get(layout.getLayoutId()) != null)
+            throw new RuntimeException("Layout ID must be unique: '" + layout.getLayoutId() + "' has already been used.");
         if (layout instanceof FixedColumnsLayout)
             ((FixedColumnsLayout)layout).verify();
         else if (layout instanceof CommaSeparatedLayout)
