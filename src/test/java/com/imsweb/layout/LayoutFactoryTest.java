@@ -140,7 +140,7 @@ public class LayoutFactoryTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void testRegisterLayoutInternalId() throws RuntimeException {
+    public void testRegisterLayoutInternalId() {
         // Test register internal layout
         LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT, false));
         Assert.assertNotNull(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT));
@@ -148,7 +148,7 @@ public class LayoutFactoryTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void testRegisterLayoutDuplicateId() throws RuntimeException {
+    public void testRegisterLayoutDuplicateId() {
         LayoutFactory.unregisterAllLayouts();
 
         //Test register duplicate user created layout
