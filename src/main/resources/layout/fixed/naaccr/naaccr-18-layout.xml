@@ -486,7 +486,7 @@
     <field name="ldhPretreatmentLevel" start="1916" end="1916" short-label="" long-label="LDH Pretreatment Level" naaccr-item-num="3869" section="Stage/Prognostic Factors"/>
     <field name="serumAlbuminPretreatmentLevel" start="1917" end="1917" short-label="Alb Pre Lvl" long-label="Serum Albumin Pretreatment Level" naaccr-item-num="3930" section="Stage/Prognostic Factors"/>
     <field name="serumBeta2MicroglobulinPretreatmentLevel" start="1918" end="1918" short-label="Beta Pre Lvl" long-label="Serum Beta-2 Microglobulin Pretreatment Level" naaccr-item-num="3931" section="Stage/Prognostic Factors"/>
-    <field name="ca125PretreatmentLabValue" start="1919" end="1919" short-label="CA Pre Lab Val" long-label="CA-125 Pretreatment Lab Value" naaccr-item-num="3818" section="Stage/Prognostic Factors"/>
+    <field name="ca125PretreatmentLabValue" start="1919" end="1919" short-label="CA Pre Inter" long-label="CA-125 Pretreatment Interpretation" naaccr-item-num="3818" section="Stage/Prognostic Factors"/>
     <field name="residualTumorVolumePostCytoreduction" start="1920" end="1921" short-label="Tum Vol Cyto" long-label="Residual Tumor Volume Post Cytoreduction" naaccr-item-num="3921" section="Stage/Prognostic Factors"/>
     <field name="extranodalExtensionClin" start="1922" end="1922" short-label="Enod Ext Clin Non " long-label="Extranodal Extension Clin (non-Head and Neck)" naaccr-item-num="3830" section="Stage/Prognostic Factors"/>
     <field name="extranodalExtensionPath" start="1923" end="1923" short-label="Enod Ext Path Non" long-label="Extranodal Extension Path (non-Head and Neck)" naaccr-item-num="3833" section="Stage/Prognostic Factors"/>
