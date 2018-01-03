@@ -43,6 +43,11 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 public final class LayoutFactory {
 
     //XML Layouts - constants for the internal layout IDs
+    public static final String LAYOUT_ID_NAACCR_XML_18 = "naaccr-xml-18"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_XML_18_ABSTRACT = "naaccr-xml-18-abstract";
+    public static final String LAYOUT_ID_NAACCR_XML_18_MODIFIED = "naaccr-xml-18-modified";
+    public static final String LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL = "naaccr-xml-18-confidential";
+    public static final String LAYOUT_ID_NAACCR_XML_18_INCIDENCE = "naaccr-xml-18-incidence";
     public static final String LAYOUT_ID_NAACCR_XML_16 = "naaccr-xml-16"; // kept for backward compatibility, actually means abstract...
     public static final String LAYOUT_ID_NAACCR_XML_16_ABSTRACT = "naaccr-xml-16-abstract";
     public static final String LAYOUT_ID_NAACCR_XML_16_MODIFIED = "naaccr-xml-16-modified";
@@ -87,6 +92,7 @@ public final class LayoutFactory {
 
     // make sure to put all the "aliases" in this list...
     static {
+        _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_18, LAYOUT_ID_NAACCR_XML_18_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_16, LAYOUT_ID_NAACCR_XML_16_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_18, LAYOUT_ID_NAACCR_18_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_16, LAYOUT_ID_NAACCR_16_ABSTRACT);
@@ -102,6 +108,11 @@ public final class LayoutFactory {
     // make sure to add the most recent layouts first, they will be "tried" in that order (important for discovery mechanism)
     static {
         //NAACCR XML
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_18, "NAACCR XML 18 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_18_ABSTRACT, "NAACCR XML 18 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_18_MODIFIED, "NAACCR XML 18 Modified");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL, "NAACCR XML 18 Confidential");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_18_INCIDENCE, "NAACCR XML 18 Incidence");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_16, "NAACCR XML 16 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_16_ABSTRACT, "NAACCR XML 16 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_16_MODIFIED, "NAACCR XML 16 Modified");
@@ -156,7 +167,15 @@ public final class LayoutFactory {
         Layout layout = null;
 
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
-        if (LAYOUT_ID_NAACCR_XML_16_ABSTRACT.equals(layoutId))
+        if (LAYOUT_ID_NAACCR_XML_18_ABSTRACT.equals(layoutId))
+            layout = new NaaccrXmlLayout("180", "A", LAYOUT_ID_NAACCR_XML_18_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_ABSTRACT), null, loadFields);
+        else if (LAYOUT_ID_NAACCR_XML_18_MODIFIED.equals(layoutId))
+            layout = new NaaccrXmlLayout("180", "M", LAYOUT_ID_NAACCR_XML_18_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_MODIFIED), null, loadFields);
+        else if (LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL.equals(layoutId))
+            layout = new NaaccrXmlLayout("180", "C", LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL), null, loadFields);
+        else if (LAYOUT_ID_NAACCR_XML_18_INCIDENCE.equals(layoutId))
+            layout = new NaaccrXmlLayout("180", "I", LAYOUT_ID_NAACCR_XML_18_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_INCIDENCE), null, loadFields);
+        else if (LAYOUT_ID_NAACCR_XML_16_ABSTRACT.equals(layoutId))
             layout = new NaaccrXmlLayout("160", "A", LAYOUT_ID_NAACCR_XML_16_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_ABSTRACT), null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_16_MODIFIED.equals(layoutId))
             layout = new NaaccrXmlLayout("160", "M", LAYOUT_ID_NAACCR_XML_16_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_MODIFIED), null, loadFields);

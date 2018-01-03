@@ -16,12 +16,15 @@ println "Starting build using ${Jvm.current()}"
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
 }
 
 dependencies {
     compile 'au.com.bytecode:opencsv:2.4'
     compile 'com.thoughtworks.xstream:xstream:1.4.10'
-    compile 'com.imsweb:naaccr-xml:4.4'
+    compile 'com.imsweb:naaccr-xml:4.5b-SNAPSHOT'
     testCompile 'junit:junit:4.12'
 }
 
