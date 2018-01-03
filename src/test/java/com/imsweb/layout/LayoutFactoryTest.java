@@ -230,6 +230,10 @@ public class LayoutFactoryTest {
         LayoutInfoDiscoveryOptions options = new LayoutInfoDiscoveryOptions();
 
         // regular case, well formatted NAACCR lines
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(24194, "A", "180"), options).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(24194, "M", "180"), options).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(6934, "C", "180"), options).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(4048, "I", "180"), options).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(22824, "A", "120"), options).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(22824, "M", "121"), options).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(5564, "C", "122"), options).isEmpty());
@@ -238,6 +242,10 @@ public class LayoutFactoryTest {
         Assert.assertEquals("NAACCR 16 Abstract", info.getLayoutName());
         Assert.assertEquals(22824, info.getLineLength().intValue());
         Assert.assertEquals("NAACCR 16 Abstract [22,824 char]", info.toString());
+        info = LayoutFactory.discoverFormat(createNaaccrLine(24194, null, null), options).get(0);
+        Assert.assertEquals("NAACCR 18 Abstract", info.getLayoutName());
+        Assert.assertEquals(24194, info.getLineLength().intValue());
+        Assert.assertEquals("NAACCR 18 Abstract [24,194 char]", info.toString());
 
         // bad line numbers
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(25, "A", "120")).isEmpty());
@@ -246,27 +254,44 @@ public class LayoutFactoryTest {
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(25, "I", "123")).isEmpty());
 
         // bad record types
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(24194, "?", "180")).isEmpty());
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(6934, "?", "180")).isEmpty());
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(4048, "?", "180")).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(22824, "?", "120")).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(22824, "?", "121")).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(5564, "?", "122")).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(3339, "?", "123")).isEmpty());
 
         // bad NAACCR version
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(24194, "A", "???")).isEmpty());
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(24194, "M", "???")).isEmpty());
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(6934, "C", "???")).isEmpty());
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(4048, "I", "???")).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(22824, "A", "???")).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(22824, "M", "???")).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(5564, "C", "???")).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(3339, "I", "???")).isEmpty());
 
         // no NAACCR version and not record type available, but we don't enforce the strict format, so the line length should be used
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(24194, null, null)).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(6934, null, null)).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(4048, null, null)).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(22824, null, null)).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(5564, null, null)).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(3339, null, null)).isEmpty());
         info = LayoutFactory.discoverFormat(createNaaccrLine(22824, null, null)).get(0); // make sure it defaults to an abstract
         Assert.assertEquals("NAACCR 16 Abstract", info.getLayoutName());
         Assert.assertEquals(22824, info.getLineLength().intValue());
+        info = LayoutFactory.discoverFormat(createNaaccrLine(24194, null, null)).get(0); // make sure it defaults to an abstract
+        Assert.assertEquals("NAACCR 18 Abstract", info.getLayoutName());
+        Assert.assertEquals(24194, info.getLineLength().intValue());
+
 
         // if we enforced the strict format, the line length won't be used anymore
         options.setNaaccrAllowBlankVersion(false);
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(24194, null, null), options).isEmpty());
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(6934, null, null), options).isEmpty());
+        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(4048, null, null), options).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(22824, null, null), options).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(5564, null, null), options).isEmpty());
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(3339, null, null), options).isEmpty());
