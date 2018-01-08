@@ -13,11 +13,8 @@
     <field name="addressAtDxCity" start="74" end="123" short-label="DX City" long-label="Addr at DX--City" naaccr-item-num="70" align="left" pad-char=" " section="Demographic"/>
     <field name="addressAtDxState" start="124" end="125" short-label="DX State" long-label="Addr at DX--State" naaccr-item-num="80" section="Demographic"/>
     <field name="addressAtDxPostalCode" start="126" end="134" short-label="DX Zip" long-label="Addr at DX--Postal Code" naaccr-item-num="100" align="left" pad-char=" " section="Demographic"/>
-    <field name="addressAtDxCounty" start="135" end="137" short-label="DX Cty Code" long-label="County at DX" naaccr-item-num="90" align="right" pad-char="0" section="Demographic"/>
-    <field name="countyAtDx1990" start="138" end="140" short-label="DX Cty 1990" long-label="County at DX 1990" naaccr-item-num="85" section="Demographic"/>
-    <field name="countyAtDx2000" start="141" end="143" short-label="DX Cty 2000" long-label="County at DX 2000" naaccr-item-num="86" section="Demographic"/>
-    <field name="countyAtDx2010" start="144" end="146" short-label="DX Cty 2010" long-label="County at DX 2010" naaccr-item-num="87" section="Demographic"/>
-    <field name="countyAtDx2020" start="147" end="149" short-label="DX Cty 2020" long-label="County at DX 2020" naaccr-item-num="88" section="Demographic"/>
+    <field name="addressAtDxCounty" start="135" end="137" short-label="DX Cty Code" long-label="County at DX Reported" naaccr-item-num="90" align="right" pad-char="0" section="Demographic"/>
+    <field name="reserved16" start="138" end="149" short-label="Res16" long-label="Reserved 16" naaccr-item-num="2450" trim="false" section="Demographic"/>
     <field name="countyAtDxAnalysis" start="150" end="152" short-label="DX Anlys Cty " long-label="County at DX Analysis" naaccr-item-num="89" section="Demographic"/>
     <field name="geolocationid19708090" start="153" end="164" short-label="Geoloc ID 70/80/90" long-label="GeoLocationID - 1970/80/90" naaccr-item-num="351" section="Demographic">
         <field name="stateAtDxGeocode19708090" start="153" end="154" short-label="State DX Geo708090" long-label="State at DX Geocode 1970/80/90" naaccr-item-num="81" section="Demographic"/>
