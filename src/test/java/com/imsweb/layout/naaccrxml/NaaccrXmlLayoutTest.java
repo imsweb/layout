@@ -151,7 +151,7 @@ public class NaaccrXmlLayoutTest {
 
         //Test Version 160 - don't load fields/dictionaries
         layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
-        Assert.assertNull(layout.getAllFields());
+        Assert.assertEquals(new ArrayList<>(), layout.getAllFields());
         Assert.assertEquals("160", layout.getLayoutVersion());
         Assert.assertEquals("test-id", layout.getLayoutId());
         Assert.assertEquals("test-name", layout.getLayoutName());
@@ -372,7 +372,7 @@ public class NaaccrXmlLayoutTest {
         }
 
         //Test read all from file - calls all versions of readAllPatients, so all versions of this method are tested with this test
-        patients = layout.readAllPatients(file, null);
+        patients = layout.readAllPatients(file, null, options);
         Assert.assertEquals("00000001", patients.get(0).getItemValue("patientIdNumber"));
         Assert.assertEquals("00000002", patients.get(1).getItemValue("patientIdNumber"));
     }
@@ -381,6 +381,9 @@ public class NaaccrXmlLayoutTest {
     public void testWriteMethods() throws IOException {
         NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
         File file = new File(System.getProperty("user.dir") + "/build/test-xml-writer.xml");
+
+        NaaccrOptions options = new NaaccrOptions();
+        options.setUseStrictNamespaces(false);
 
         NaaccrData data = new NaaccrData();
         data.setBaseDictionaryUri("http://naaccr.org/naaccrxml/user-defined-naaccr-dictionary-160.xml");
@@ -398,7 +401,7 @@ public class NaaccrXmlLayoutTest {
             layout.writeNextPatient(writer, new Patient());
             layout.writeNextPatient(writer, patient);
         }
-        List<Patient> patients = layout.readAllPatients(file, null);
+        List<Patient> patients = layout.readAllPatients(file, null, options);
         Assert.assertEquals(2, patients.size());
         Assert.assertEquals(0, patients.get(0).getTumors().size());
         Assert.assertEquals(1, patients.get(1).getTumors().size());
@@ -406,26 +409,26 @@ public class NaaccrXmlLayoutTest {
 
         //Write all patients - method using "File" parameter calls all other versions of this method, so all versions are tested with this test
         //Null data - nothing should be written to the file
-        layout.writeAllPatients(file, null, null);
+        layout.writeAllPatients(file, null, null, null);
         Assert.assertTrue(file.exists());
         Assert.assertEquals(0, file.length());
 
         //Null patient list - root data should still be written
-        layout.writeAllPatients(file, null, data);
-        Assert.assertEquals(0, layout.readAllPatients(file, null).size());
+        layout.writeAllPatients(file, null, data, options);
+        Assert.assertEquals(0, layout.readAllPatients(file, null, options).size());
         Assert.assertEquals("A", NaaccrXmlUtils.getAttributesFromXmlFile(file).get("recordType"));
 
         //Empty patient list - root data should still be written
-        layout.writeAllPatients(file, new ArrayList<>(), data);
-        Assert.assertEquals(0, layout.readAllPatients(file, null).size());
+        layout.writeAllPatients(file, new ArrayList<>(), data, options);
+        Assert.assertEquals(0, layout.readAllPatients(file, null, options).size());
         Assert.assertEquals("A", NaaccrXmlUtils.getAttributesFromXmlFile(file).get("recordType"));
 
         //Test empty and valid patients
         List<Patient> allPatients = new ArrayList<>();
         allPatients.add(new Patient());
         allPatients.add(patient);
-        layout.writeAllPatients(file, allPatients, data);
-        patients = layout.readAllPatients(file, null);
+        layout.writeAllPatients(file, allPatients, data, options);
+        patients = layout.readAllPatients(file, null, options);
         Assert.assertEquals(2, patients.size());
         Assert.assertEquals(0, patients.get(0).getTumors().size());
         Assert.assertEquals(1, patients.get(1).getTumors().size());

@@ -56,7 +56,9 @@ public class NaaccrXmlLayout implements Layout {
 
     private String _recordType;
 
-    private List<NaaccrXmlField> _allFields;
+    private boolean _dictionariesLoaded;
+
+    private List<NaaccrXmlField> _allFields = new ArrayList<>();
 
     private Map<String, NaaccrXmlField> _fieldsCachedByName = new HashMap<>();
     private Map<Integer, NaaccrXmlField> _fieldsCachedByNaaccrNumber = new HashMap<>();
@@ -78,6 +80,7 @@ public class NaaccrXmlLayout implements Layout {
         _layoutId = layoutId;
         _recordType = recordType;
         _userDictionaries = dictionaries;
+        _dictionariesLoaded = loadFields;
 
         //Only load dictionaries/fields if specified, otherwise avoid expensive operations
         if (loadFields) {
@@ -119,13 +122,11 @@ public class NaaccrXmlLayout implements Layout {
             }
             _flatLayout = (NaaccrLayout)LayoutFactory.getLayout(flatFileId.toString());
             if (_flatLayout == null)
-                throw new RuntimeException("Could not find corresponding flat layout.");
+                throw new RuntimeException("Could not find corresponding flat layout for ID '" + flatFileId + "'");
 
             // TODO FD for now we don't handle "groups" (so subfields); should we?
             //Get all item definitions, create fields and add to layout's field list
-            NaaccrDictionary allItemsDictionary = NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()]));
-            _allFields = new ArrayList<>();
-            for (NaaccrDictionaryItem item : allItemsDictionary.getItems()) {
+            for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()])).getItems()) {
                 if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
                     NaaccrXmlField field = new NaaccrXmlField(item);
                     _allFields.add(field);
@@ -156,11 +157,12 @@ public class NaaccrXmlLayout implements Layout {
             throw new RuntimeException("Record type not recognized: " + _recordType);
         }
 
+        //NAACCR Version is required and must be a version that is currently supported
         if (_naaccrVersion == null || !NaaccrFormat.isVersionSupported(_naaccrVersion))
             throw new RuntimeException("Unsupported NAACCR version: " + _naaccrVersion);
 
-        //If fields/dictionaries were loaded, _allFields is not null and these should be checked. If they were not loaded, _allFields is null
-        if (_allFields != null) {
+        //If fields/dictionaries were supposed to be loaded, check validity of fields and dictionaries. Otherwise, this is the end of validation.
+        if (_dictionariesLoaded) {
             //Base dictionary is required
             if (_baseDictionary == null)
                 throw new RuntimeException("Base Dictionary is required");
@@ -223,9 +225,9 @@ public class NaaccrXmlLayout implements Layout {
      * @param data The root data, to be written at the top of the file.
      * @throws IOException
      */
-    public void writeAllPatients(File file, List<Patient> allPatients, NaaccrData data) throws IOException {
+    public void writeAllPatients(File file, List<Patient> allPatients, NaaccrData data, NaaccrOptions options) throws IOException {
         try (FileOutputStream os = new FileOutputStream(file)) {
-            writeAllPatients(os, allPatients, data);
+            writeAllPatients(os, allPatients, data, options);
         }
     }
 
@@ -240,13 +242,13 @@ public class NaaccrXmlLayout implements Layout {
      * @param data Root data needed to create a PatientXmlWriter - is written as part of the writer's construction
      * @throws NaaccrIOException
      */
-    public void writeAllPatients(OutputStream outputStream, List<Patient> patients, NaaccrData data) throws NaaccrIOException {
+    public void writeAllPatients(OutputStream outputStream, List<Patient> patients, NaaccrData data, NaaccrOptions options) throws NaaccrIOException {
         if (data == null)
             return;
 
         PatientXmlWriter writer = null;
         try {
-            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8), data);
+            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8), data, options);
             writeAllPatients(writer, patients);
         }
         finally {
@@ -286,11 +288,11 @@ public class NaaccrXmlLayout implements Layout {
      * @return List of all Patients in the file.
      * @throws IOException
      */
-    public List<Patient> readAllPatients(File file, String encoding) throws IOException {
+    public List<Patient> readAllPatients(File file, String encoding, NaaccrOptions options) throws IOException {
         List<Patient> patients;
 
         try (FileInputStream is = new FileInputStream(file)) {
-            patients = readAllPatients(is, encoding);
+            patients = readAllPatients(is, encoding, options);
         }
         return patients;
     }
@@ -302,13 +304,9 @@ public class NaaccrXmlLayout implements Layout {
      * @param inputStream InputStream used to read Patients
      * @param encoding Stream encoding (null means default OS encoding)
      * @return List of all Patients read from the stream.
-     * @throws NaaccrIOException
-     * @throws UnsupportedEncodingException
+     * @throws IOException
      */
-    public List<Patient> readAllPatients(InputStream inputStream, String encoding) throws NaaccrIOException, UnsupportedEncodingException {
-        NaaccrOptions options = new NaaccrOptions();
-        options.setUseStrictNamespaces(false);
-
+    public List<Patient> readAllPatients(InputStream inputStream, String encoding, NaaccrOptions options) throws IOException {
         List<Patient> patients;
         PatientXmlReader reader = null;
         try {
