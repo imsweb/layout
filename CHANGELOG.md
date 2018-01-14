@@ -2,6 +2,7 @@
 
 **Changes in version 1.7**
 
+ - Added support for NAACCR XML layouts.
  - Fixed wrong NAACCR Item Number for item reserved05 in v16 NAACCR layout.
 
 **Changes in version 1.6**
