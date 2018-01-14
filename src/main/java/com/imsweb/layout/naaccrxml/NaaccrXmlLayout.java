@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
@@ -37,6 +39,10 @@ import com.imsweb.naaccrxml.entity.NaaccrData;
 import com.imsweb.naaccrxml.entity.Patient;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
+
+import static com.imsweb.naaccrxml.NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_BASE_DICT;
+import static com.imsweb.naaccrxml.NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_REC_TYPE;
+import static com.imsweb.naaccrxml.NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_USER_DICT;
 
 /**
  * This class contains the logic related to all NAACCR XML layouts
@@ -71,7 +77,7 @@ public class NaaccrXmlLayout implements Layout {
      * @param layoutId String used as layout ID - must be unique from those registered in Layout Factory
      * @param layoutName String used as layout name
      * @param dictionaries List (of type NaaccrDictionary) of custom user dictionaries - used for making custom layouts
-     * @param loadFields determines whether to load all the fields from all dicitonaries into the allFields variable
+     * @param loadFields determines whether to load all the fields from all dictionaries into the allFields variable
      */
     public NaaccrXmlLayout(String naaccrVersion, String recordType, String layoutId, String layoutName, List<NaaccrDictionary> dictionaries, boolean loadFields) {
         _naaccrVersion = naaccrVersion;
@@ -121,9 +127,8 @@ public class NaaccrXmlLayout implements Layout {
             }
             _flatLayout = (NaaccrLayout)LayoutFactory.getLayout(flatFileId.toString());
             if (_flatLayout == null)
-                throw new RuntimeException("Could not find corresponding flat layout for ID '" + flatFileId + "'");
+                throw new RuntimeException("Could not find corresponding flat layout '" + flatFileId + "'");
 
-            // TODO FD for now we don't handle "groups" (so subfields); should we?
             //Get all item definitions, create fields and add to layout's field list
             for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()])).getItems()) {
                 if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
@@ -207,7 +212,7 @@ public class NaaccrXmlLayout implements Layout {
      * Writes a single patient using a provided writer. Does not open or close the writer.
      * @param writer The PatientXmlWriter used to write Patients to an XML file
      * @param patient The patient that is to be written
-     * @throws NaaccrIOException
+     * @throws NaaccrIOException if patients cannot be written
      */
     public void writeNextPatient(PatientXmlWriter writer, Patient patient) throws NaaccrIOException {
         if (patient != null)
@@ -222,11 +227,14 @@ public class NaaccrXmlLayout implements Layout {
      * @param file File that the patients will be written to
      * @param allPatients List of all patients that will be written to the file.
      * @param data The root data, to be written at the top of the file.
-     * @throws IOException
+     * @throws NaaccrIOException if patients cannot be written
      */
-    public void writeAllPatients(File file, List<Patient> allPatients, NaaccrData data, NaaccrOptions options) throws IOException {
+    public void writeAllPatients(File file, List<Patient> allPatients, NaaccrData data, NaaccrOptions options) throws NaaccrIOException {
         try (FileOutputStream os = new FileOutputStream(file)) {
             writeAllPatients(os, allPatients, data, options);
+        }
+        catch (IOException e) {
+            throw new NaaccrIOException(e.getMessage());
         }
     }
 
@@ -239,7 +247,7 @@ public class NaaccrXmlLayout implements Layout {
      * @param outputStream The OutputStream that the writer will write to
      * @param patients List of Patients to be written
      * @param data Root data needed to create a PatientXmlWriter - is written as part of the writer's construction
-     * @throws NaaccrIOException
+     * @throws NaaccrIOException if patients cannot be written
      */
     public void writeAllPatients(OutputStream outputStream, List<Patient> patients, NaaccrData data, NaaccrOptions options) throws NaaccrIOException {
         if (data == null)
@@ -261,7 +269,7 @@ public class NaaccrXmlLayout implements Layout {
      * This method does not open or close the writer.
      * @param writer The PatientXmlWriter used to write Patients to an XML file
      * @param patients List of Patients to be written
-     * @throws NaaccrIOException
+     * @throws NaaccrIOException if patients cannot be written
      */
     public void writeAllPatients(PatientXmlWriter writer, List<Patient> patients) throws NaaccrIOException {
         if (patients != null)
@@ -273,7 +281,7 @@ public class NaaccrXmlLayout implements Layout {
      * Used to read single patients from an XML file using a PatientXmlReader
      * @param reader PatientXmlReader used to read Patients from an XML file.
      * @return returns the next Patient found by the reader
-     * @throws NaaccrIOException
+     * @throws NaaccrIOException if patients cannot be read
      */
     public Patient readNextPatient(PatientXmlReader reader) throws NaaccrIOException {
         return reader.readPatient();
@@ -285,14 +293,18 @@ public class NaaccrXmlLayout implements Layout {
      * @param file XML file that Patients will be read from.
      * @param encoding The encoding of the file (null means default OS encoding)
      * @return List of all Patients in the file.
-     * @throws IOException
+     * @throws NaaccrIOException if patients cannot be read
      */
-    public List<Patient> readAllPatients(File file, String encoding, NaaccrOptions options) throws IOException {
+    public List<Patient> readAllPatients(File file, String encoding, NaaccrOptions options) throws NaaccrIOException {
         List<Patient> patients;
 
         try (FileInputStream is = new FileInputStream(file)) {
             patients = readAllPatients(is, encoding, options);
         }
+        catch (IOException e) {
+            throw new NaaccrIOException(e.getMessage());
+        }
+
         return patients;
     }
 
@@ -300,20 +312,22 @@ public class NaaccrXmlLayout implements Layout {
      * Creates a PatientXmlReader from the InputStream parameter to read all Patients from an XML file. Passes the writer to the method below.
      * This method opens and closes the reader.
      * This method does not open or close the InputStream.
-     * @param inputStream InputStream used to read Patients
-     * @param encoding Stream encoding (null means default OS encoding)
+     * @param inputStream the InputStream used to read the patients (required)
+     * @param encoding Stream encoding (required)
+     * @param options (can be null)
      * @return List of all Patients read from the stream.
-     * @throws IOException
+     * @throws NaaccrIOException if patients cannot be read
      */
-    public List<Patient> readAllPatients(InputStream inputStream, String encoding, NaaccrOptions options) throws IOException {
+    public List<Patient> readAllPatients(InputStream inputStream, String encoding, NaaccrOptions options) throws NaaccrIOException {
         List<Patient> patients;
+
         PatientXmlReader reader = null;
         try {
-            if (encoding == null)
-                reader = new PatientXmlReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8), options);
-            else
-                reader = new PatientXmlReader(new InputStreamReader(inputStream, encoding), options);
+            reader = new PatientXmlReader(new InputStreamReader(inputStream, encoding), options);
             patients = readAllPatients(reader);
+        }
+        catch (IOException e) {
+            throw new NaaccrIOException(e.getMessage());
         }
         finally {
             if (reader != null)
@@ -327,7 +341,7 @@ public class NaaccrXmlLayout implements Layout {
      * This method does not open or close the reader.
      * @param reader PatientXmlReader used to read Patients from an XML file
      * @return List of all the Patients found by the reader.
-     * @throws NaaccrIOException
+     * * @throws NaaccrIOException if patients cannot be read
      */
     public List<Patient> readAllPatients(PatientXmlReader reader) throws NaaccrIOException {
         List<Patient> allPatients = new ArrayList<>();
@@ -437,26 +451,25 @@ public class NaaccrXmlLayout implements Layout {
         if (file == null)
             return null;
 
-        LayoutInfo info = new LayoutInfo();
         Map<String, String> attributes = NaaccrXmlUtils.getAttributesFromXmlFile(file);
 
-        String recordType = attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_REC_TYPE);
+        String recordType = attributes.get(NAACCR_XML_ROOT_ATT_REC_TYPE);
         if (recordType == null || recordType.isEmpty() || !_recordType.equals(recordType))
             return null;
 
         String baseUri = NaaccrXmlDictionaryUtils.createUriFromVersion(_naaccrVersion, true);
-        if (!baseUri.equals(attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_BASE_DICT)))
+        if (!baseUri.equals(attributes.get(NAACCR_XML_ROOT_ATT_BASE_DICT)))
             return null;
 
         // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries
-        List<String> layoutDictionaryUris = new ArrayList<>();
+        List<String> userUris = new ArrayList<>();
         for (NaaccrDictionary dictionary : _userDictionaries)
-            layoutDictionaryUris.add(dictionary.getDictionaryUri());
+            userUris.add(dictionary.getDictionaryUri());
 
-        if (attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_USER_DICT) != null &&
-                !layoutDictionaryUris.containsAll(Arrays.asList(attributes.get(NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_USER_DICT).split(" "))))
+        if (attributes.get(NAACCR_XML_ROOT_ATT_USER_DICT) != null && !userUris.containsAll(Arrays.asList(StringUtils.split(attributes.get(NAACCR_XML_ROOT_ATT_USER_DICT), " "))))
             return null;
 
+        LayoutInfo info = new LayoutInfo();
         info.setLayoutId(_layoutId);
         info.setLayoutName(_layoutName);
         return info;

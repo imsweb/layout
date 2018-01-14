@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -372,7 +373,7 @@ public class NaaccrXmlLayoutTest {
         }
 
         //Test read all from file - calls all versions of readAllPatients, so all versions of this method are tested with this test
-        patients = layout.readAllPatients(file, null, options);
+        patients = layout.readAllPatients(file, StandardCharsets.UTF_8.name(), options);
         Assert.assertEquals("00000001", patients.get(0).getItemValue("patientIdNumber"));
         Assert.assertEquals("00000002", patients.get(1).getItemValue("patientIdNumber"));
     }
@@ -401,7 +402,7 @@ public class NaaccrXmlLayoutTest {
             layout.writeNextPatient(writer, new Patient());
             layout.writeNextPatient(writer, patient);
         }
-        List<Patient> patients = layout.readAllPatients(file, null, options);
+        List<Patient> patients = layout.readAllPatients(file, StandardCharsets.UTF_8.name(), options);
         Assert.assertEquals(2, patients.size());
         Assert.assertEquals(0, patients.get(0).getTumors().size());
         Assert.assertEquals(1, patients.get(1).getTumors().size());
@@ -415,12 +416,12 @@ public class NaaccrXmlLayoutTest {
 
         //Null patient list - root data should still be written
         layout.writeAllPatients(file, null, data, options);
-        Assert.assertEquals(0, layout.readAllPatients(file, null, options).size());
+        Assert.assertEquals(0, layout.readAllPatients(file, StandardCharsets.UTF_8.name(), options).size());
         Assert.assertEquals("A", NaaccrXmlUtils.getAttributesFromXmlFile(file).get("recordType"));
 
         //Empty patient list - root data should still be written
         layout.writeAllPatients(file, new ArrayList<>(), data, options);
-        Assert.assertEquals(0, layout.readAllPatients(file, null, options).size());
+        Assert.assertEquals(0, layout.readAllPatients(file, StandardCharsets.UTF_8.name(), options).size());
         Assert.assertEquals("A", NaaccrXmlUtils.getAttributesFromXmlFile(file).get("recordType"));
 
         //Test empty and valid patients
@@ -428,7 +429,7 @@ public class NaaccrXmlLayoutTest {
         allPatients.add(new Patient());
         allPatients.add(patient);
         layout.writeAllPatients(file, allPatients, data, options);
-        patients = layout.readAllPatients(file, null, options);
+        patients = layout.readAllPatients(file, StandardCharsets.UTF_8.name(), options);
         Assert.assertEquals(2, patients.size());
         Assert.assertEquals(0, patients.get(0).getTumors().size());
         Assert.assertEquals(1, patients.get(1).getTumors().size());

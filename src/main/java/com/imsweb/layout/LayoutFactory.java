@@ -43,43 +43,43 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 public final class LayoutFactory {
 
     //XML Layouts - constants for the internal layout IDs
-    public static final String LAYOUT_ID_NAACCR_XML_18 = "naaccr-xml-18"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_XML_18 = "naaccr-xml-18"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_XML_18_ABSTRACT = "naaccr-xml-18-abstract";
     public static final String LAYOUT_ID_NAACCR_XML_18_MODIFIED = "naaccr-xml-18-modified";
     public static final String LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL = "naaccr-xml-18-confidential";
     public static final String LAYOUT_ID_NAACCR_XML_18_INCIDENCE = "naaccr-xml-18-incidence";
-    public static final String LAYOUT_ID_NAACCR_XML_16 = "naaccr-xml-16"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_XML_16 = "naaccr-xml-16"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_XML_16_ABSTRACT = "naaccr-xml-16-abstract";
     public static final String LAYOUT_ID_NAACCR_XML_16_MODIFIED = "naaccr-xml-16-modified";
     public static final String LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL = "naaccr-xml-16-confidential";
     public static final String LAYOUT_ID_NAACCR_XML_16_INCIDENCE = "naaccr-xml-16-incidence";
     //Fixed column layouts
-    public static final String LAYOUT_ID_NAACCR_18 = "naaccr-18"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_18 = "naaccr-18"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_18_ABSTRACT = "naaccr-18-abstract";
     public static final String LAYOUT_ID_NAACCR_18_MODIFIED = "naaccr-18-modified";
     public static final String LAYOUT_ID_NAACCR_18_CONFIDENTIAL = "naaccr-18-confidential";
     public static final String LAYOUT_ID_NAACCR_18_INCIDENCE = "naaccr-18-incidence";
-    public static final String LAYOUT_ID_NAACCR_16 = "naaccr-16"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_16 = "naaccr-16"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_16_ABSTRACT = "naaccr-16-abstract";
     public static final String LAYOUT_ID_NAACCR_16_MODIFIED = "naaccr-16-modified";
     public static final String LAYOUT_ID_NAACCR_16_CONFIDENTIAL = "naaccr-16-confidential";
     public static final String LAYOUT_ID_NAACCR_16_INCIDENCE = "naaccr-16-incidence";
-    public static final String LAYOUT_ID_NAACCR_15 = "naaccr-15"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_15 = "naaccr-15"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_15_ABSTRACT = "naaccr-15-abstract";
     public static final String LAYOUT_ID_NAACCR_15_MODIFIED = "naaccr-15-modified";
     public static final String LAYOUT_ID_NAACCR_15_CONFIDENTIAL = "naaccr-15-confidential";
     public static final String LAYOUT_ID_NAACCR_15_INCIDENCE = "naaccr-15-incidence";
-    public static final String LAYOUT_ID_NAACCR_14 = "naaccr-14"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_14 = "naaccr-14"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_14_ABSTRACT = "naaccr-14-abstract";
     public static final String LAYOUT_ID_NAACCR_14_MODIFIED = "naaccr-14-modified";
     public static final String LAYOUT_ID_NAACCR_14_CONFIDENTIAL = "naaccr-14-confidential";
     public static final String LAYOUT_ID_NAACCR_14_INCIDENCE = "naaccr-14-incidence";
-    public static final String LAYOUT_ID_NAACCR_13 = "naaccr-13"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_13 = "naaccr-13"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_13_ABSTRACT = "naaccr-13-abstract";
     public static final String LAYOUT_ID_NAACCR_13_MODIFIED = "naaccr-13-modified";
     public static final String LAYOUT_ID_NAACCR_13_CONFIDENTIAL = "naaccr-13-confidential";
     public static final String LAYOUT_ID_NAACCR_13_INCIDENCE = "naaccr-13-incidence";
-    public static final String LAYOUT_ID_NAACCR_12 = "naaccr-12"; // kept for backward compatibility, actually means abstract...
+    public static final String LAYOUT_ID_NAACCR_12 = "naaccr-12"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_12_ABSTRACT = "naaccr-12-abstract";
     public static final String LAYOUT_ID_NAACCR_12_MODIFIED = "naaccr-12-modified";
     public static final String LAYOUT_ID_NAACCR_12_CONFIDENTIAL = "naaccr-12-confidential";
@@ -296,7 +296,7 @@ public final class LayoutFactory {
             throw new RuntimeException("Provided layout instance is null");
         //Layout ID's must be unique
         if (_INTERNAL_LAYOUTS.containsKey(layout.getLayoutId()) || _LAYOUTS.containsKey(layout.getLayoutId()))
-            throw new RuntimeException("Layout ID must be unique: '" + layout.getLayoutId() + "' has already been registered.");
+            throw new RuntimeException("Layout ID must be unique: '" + layout.getLayoutId() + "' has already been registered");
         if (layout instanceof FixedColumnsLayout)
             ((FixedColumnsLayout)layout).verify();
         else if (layout instanceof CommaSeparatedLayout)
