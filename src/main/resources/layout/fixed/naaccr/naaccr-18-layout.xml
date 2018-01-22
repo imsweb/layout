@@ -406,7 +406,7 @@
     <field name="her2IhcSummary" start="1757" end="1757" short-label="IHC Summ" long-label="HER2 IHC Summary" naaccr-item-num="3850" section="Stage/Prognostic Factors"/>
     <field name="her2IshDualProbeCopyNumber" start="1758" end="1761" short-label="Dual Copy Num" long-label="HER2 ISH Dual Probe Copy Number" naaccr-item-num="3851" section="Stage/Prognostic Factors"/>
     <field name="her2IshDualProbeRatio" start="1762" end="1765" short-label="Dual Prob Rat" long-label="HER2 ISH Dual Probe Ratio" naaccr-item-num="3852" section="Stage/Prognostic Factors"/>
-    <field name="her2IshSingleCopyNumber" start="1766" end="1769" short-label="Sing Copy Num" long-label="HER2 ISH Single Probe Copy Number" naaccr-item-num="3853" section="Stage/Prognostic Factors"/>
+    <field name="her2IshSingleProbeCopyNumber" start="1766" end="1769" short-label="Sing Copy Num" long-label="HER2 ISH Single Probe Copy Number" naaccr-item-num="3853" section="Stage/Prognostic Factors"/>
     <field name="her2IshSummary" start="1770" end="1770" short-label="ISH Summ" long-label="HER2 ISH Summary" naaccr-item-num="3854" section="Stage/Prognostic Factors"/>
     <field name="ki67" start="1771" end="1775" short-label="Ki67" long-label="Ki-67" naaccr-item-num="3863" section="Stage/Prognostic Factors"/>
     <field name="oncotypeDxRecurrenceScoreDcis" start="1776" end="1778" short-label="Rec DCIS" long-label="Oncotype Dx Recurrence Score-DCIS" naaccr-item-num="3903" section="Stage/Prognostic Factors"/>
