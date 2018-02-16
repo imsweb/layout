@@ -2,6 +2,7 @@
 
 **Changes in version 1.7**
 
+ - Added support for NAACCR 18; that version is not final yet and it's possible it will change in a future release.
  - Added support for NAACCR XML layouts.
  - Fixed wrong NAACCR Item Number for item reserved05 in v16 NAACCR layout.
 
