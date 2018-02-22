@@ -480,7 +480,7 @@
     <field name="organomegaly" start="1913" end="1913" short-label="Org" long-label="Organomegaly" naaccr-item-num="3907" section="Stage/Prognostic Factors"/>
     <field name="thrombocytopenia" start="1914" end="1914" short-label="Throm" long-label="Thrombocytopenia" naaccr-item-num="3933" section="Stage/Prognostic Factors"/>
     <field name="highRiskCytogenetics" start="1915" end="1915" short-label="High Risk Cyto" long-label="High Risk Cytogenics" naaccr-item-num="3857" section="Stage/Prognostic Factors"/>
-    <field name="ldhPretreatmentLevel" start="1916" end="1916" short-label="" long-label="LDH Pretreatment Level" naaccr-item-num="3869" section="Stage/Prognostic Factors"/>
+    <field name="ldhPretreatmentLevel" start="1916" end="1916" short-label="LDH Pre Lvl" long-label="LDH Pretreatment Level" naaccr-item-num="3869" section="Stage/Prognostic Factors"/>
     <field name="serumAlbuminPretreatmentLevel" start="1917" end="1917" short-label="Alb Pre Lvl" long-label="Serum Albumin Pretreatment Level" naaccr-item-num="3930" section="Stage/Prognostic Factors"/>
     <field name="serumBeta2MicroglobulinPretreatmentLevel" start="1918" end="1918" short-label="Beta Pre Lvl" long-label="Serum Beta-2 Microglobulin Pretreatment Level" naaccr-item-num="3931" section="Stage/Prognostic Factors"/>
     <field name="ca125PretreatmentInterpretation" start="1919" end="1919" short-label="CA Pre Inter" long-label="CA-125 Pretreatment Interpretation" naaccr-item-num="3818" section="Stage/Prognostic Factors"/>
