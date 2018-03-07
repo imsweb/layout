@@ -35,7 +35,7 @@ public class Naaccr18LayoutTest {
         Assert.assertEquals(24194, ((FixedColumnsLayout)layout).getLayoutLineLength().intValue());
 
         // test fields
-        Assert.assertEquals(745, layout.getAllFields().size()); // includes the reserved gaps
+        Assert.assertEquals(746, layout.getAllFields().size()); // includes the reserved gaps
         Assert.assertEquals("recordType", layout.getFieldByName("recordType").getName());
         Assert.assertEquals("Rec Type", layout.getFieldByName("recordType").getShortLabel());
         Assert.assertEquals("Record Type", layout.getFieldByName("recordType").getLongLabel());

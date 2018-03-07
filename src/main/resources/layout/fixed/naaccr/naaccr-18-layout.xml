@@ -20,7 +20,7 @@
         <field name="stateAtDxGeocode19708090" start="153" end="154" short-label="State DX Geo708090" long-label="State at DX Geocode 1970/80/90" naaccr-item-num="81" section="Demographic"/>
         <field name="countyDxGeocode1990" start="155" end="157" short-label="Cty DX Geo708090" long-label="County at DX Geocode 1970/80/90" naaccr-item-num="94" section="Demographic"/>
         <field name="censusTract708090" start="158" end="163" short-label="Cens 70/80/90" long-label="Census Tract 1970/80/90" naaccr-item-num="110" align="right" pad-char="0" section="Demographic"/>
-        <field name="censusBlockGroup708090" start="164" end="164" short-label="Bk Grp 1970-90" long-label="Census Block Grp 1970-90" naaccr-item-num="368" section="Demographic"/>
+        <field name="censusBlockGroup708090" start="164" end="164" short-label="Bk Grp 1970-90" long-label="Census Block Grp 1970/80/90" naaccr-item-num="368" section="Demographic"/>
     </field>
     <field name="censusCodingSys708090" start="165" end="165" short-label="Cens Cod Sys 70/80/90" long-label="Census Cod Sys 1970/80/90" naaccr-item-num="120" section="Demographic"/>
     <field name="censusCertainty708090" start="166" end="166" short-label="Cens Cert 70/80/90" long-label="Census Tr Cert 1970/80/90" naaccr-item-num="364" section="Demographic"/>
@@ -185,7 +185,7 @@
     <field name="tnmClinStagedBy" start="868" end="869" short-label="Clin Stg By" long-label="TNM Clin Staged By" naaccr-item-num="990" section="Stage/Prognostic Factors"/>
     <field name="metsDxBone" start="870" end="870" short-label="Mets DX Bone" long-label="Mets at DX-Bone" naaccr-item-num="1112" section="Stage/Prognostic Factors"/>
     <field name="metsDxBrain" start="871" end="871" short-label="Mets DX Brain" long-label="Mets at DX-Brain" naaccr-item-num="1113" section="Stage/Prognostic Factors"/>
-    <field name="metsDxDistantLn" start="872" end="872" short-label="Mets DX Dist LN" long-label="Mets at Dx-Distant LN" naaccr-item-num="1114" section="Stage/Prognostic Factors"/>
+    <field name="metsDxDistantLn" start="872" end="872" short-label="Mets DX Dist LN" long-label="Mets at DX-Distant LN" naaccr-item-num="1114" section="Stage/Prognostic Factors"/>
     <field name="metsDxLiver" start="873" end="873" short-label="Mets DX Liver" long-label="Mets at DX-Liver" naaccr-item-num="1115" section="Stage/Prognostic Factors"/>
     <field name="metsDxLung" start="874" end="874" short-label="Mets DX Lung" long-label="Mets at DX-Lung" naaccr-item-num="1116" section="Stage/Prognostic Factors"/>
     <field name="metsDxOther" start="875" end="875" short-label="Mets DX Other" long-label="Mets at DX-Other" naaccr-item-num="1117" section="Stage/Prognostic Factors"/>
@@ -201,14 +201,14 @@
     <field name="derivedSeerCombinedTSrc" start="915" end="915" short-label="Der SEER Cmb T Src" long-label="Derived SEER Cmb T Src" naaccr-item-num="3622" section="Stage/Prognostic Factors"/>
     <field name="derivedSeerCombinedNSrc" start="916" end="916" short-label="Der SEER Cmb N Src" long-label="Derived SEER Cmb N Src" naaccr-item-num="3624" section="Stage/Prognostic Factors"/>
     <field name="derivedSeerCombinedMSrc" start="917" end="917" short-label="Der SEER Cmb M Src" long-label="Derived SEER Cmb M Src" naaccr-item-num="3626" section="Stage/Prognostic Factors"/>
-    <field name="eodPrimaryTumor" start="918" end="920" short-label="EOD Prim Tum" long-label="EOD--Primary Tumor" naaccr-item-num="772" section="Stage/Prognostic Factors"/>
-    <field name="eodRegionalNodes" start="921" end="923" short-label="EOD Reg Nodes" long-label="EOD--Regional Nodes" naaccr-item-num="774" section="Stage/Prognostic Factors"/>
-    <field name="eodMets" start="924" end="925" short-label="EOD Mets" long-label="EOD--Mets" naaccr-item-num="776" section="Stage/Prognostic Factors"/>
+    <field name="eodPrimaryTumor" start="918" end="920" short-label="EOD Prim Tum" long-label="EOD Primary Tumor" naaccr-item-num="772" section="Stage/Prognostic Factors"/>
+    <field name="eodRegionalNodes" start="921" end="923" short-label="EOD Reg Nodes" long-label="EOD Regional Nodes" naaccr-item-num="774" section="Stage/Prognostic Factors"/>
+    <field name="eodMets" start="924" end="925" short-label="EOD Mets" long-label="EOD Mets" naaccr-item-num="776" section="Stage/Prognostic Factors"/>
     <field name="derivedEod2018T" start="926" end="940" short-label="Der EOD 2018 T" long-label="Derived EOD 2018 T" naaccr-item-num="785" section="Stage/Prognostic Factors"/>
     <field name="derivedEod2018N" start="941" end="955" short-label="Der EOD 2018 N" long-label="Derived EOD 2018 N" naaccr-item-num="815" section="Stage/Prognostic Factors"/>
     <field name="derivedEod2018M" start="956" end="970" short-label="Der EOD 2018 M" long-label="Derived EOD 2018 M" naaccr-item-num="795" section="Stage/Prognostic Factors"/>
     <field name="derivedEod2018StageGroup" start="971" end="985" short-label="Der EOD 2018 Stg Group" long-label="Derived EOD 2018 Stage Group" naaccr-item-num="818" section="Stage/Prognostic Factors"/>
-    <field name="derivedSumStg2018" start="986" end="986" short-label="Der SS2018" long-label="Derived SS2018" naaccr-item-num="762" section="Stage/Prognostic Factors"/>
+    <field name="derivedSummaryStage2018" start="986" end="986" short-label="Der Sum Stg 2018" long-label="Derived Summary Stage 2018" naaccr-item-num="762" section="Stage/Prognostic Factors"/>
     <field name="directlyAssignedSumStg2018" start="987" end="987" short-label="Dir Ass SS2018" long-label="Directly Assigned SS2018" naaccr-item-num="764" section="Stage/Prognostic Factors"/>
     <field name="seerSummaryStage2000" start="988" end="988" short-label="Sum Stg 2000" long-label="SEER Summary Stage 2000" naaccr-item-num="759" section="Stage/Prognostic Factors"/>
     <field name="seerSummaryStage1977" start="989" end="989" short-label="Sum Stg 1977" long-label="SEER Summary Stage 1977" naaccr-item-num="760" section="Stage/Prognostic Factors"/>
@@ -390,10 +390,10 @@
     <field name="schemaDiscriminator2" start="1732" end="1732" short-label="Schema Dis 2" long-label="Schema Discriminator 2" naaccr-item-num="3927" section="Stage/Prognostic Factors"/>
     <field name="schemaDiscriminator3" start="1733" end="1733" short-label="Schema Dis 3" long-label="Schema Discriminator 3" naaccr-item-num="3928" section="Stage/Prognostic Factors"/>
     <field name="percentNecrosisPostNeoadjuvant" start="1734" end="1738" short-label="Per Nec Post Neo" long-label="Percent Necrosis Post Neoadjuvant" naaccr-item-num="3908" section="Stage/Prognostic Factors"/>
-    <field name="brainMolecularMarkers" start="1739" end="1739" short-label="Brain Mol Marks" long-label="Brain Molecular Markers" naaccr-item-num="3816" section="Stage/Prognostic Factors"/>
+    <field name="reserved15" start="1739" end="1739" short-label="Res15" long-label="Reserved 15" naaccr-item-num="2400" trim="false" section="Stage/Prognostic Factors"/>
     <field name="chromosome1pLossOfHeterozygosity" start="1740" end="1740" short-label="Chr 1p LOH" long-label="Chromosome 1p: Loss of Heterozygosity (LOH)" naaccr-item-num="3801" section="Stage/Prognostic Factors"/>
     <field name="chromosome19qLossOfHeterozygosity" start="1741" end="1741" short-label="Chr 19q LOH" long-label="Chromosome 19q: Loss of Heterozygosity (LOH)" naaccr-item-num="3802" section="Stage/Prognostic Factors"/>
-    <field name="methylationOfO6MethylguanineMethyltransferase" start="1742" end="1742" short-label="O6-M-M" long-label="Methylation of O6-Methylguanine-Methyltransferase)" naaccr-item-num="3889" section="Stage/Prognostic Factors"/>
+    <field name="methylationOfO6MethylguanineMethyltransferase" start="1742" end="1742" short-label="O6-M-M" long-label="Methylation of O6-Methylguanine-Methyltransferase" naaccr-item-num="3889" section="Stage/Prognostic Factors"/>
     <field name="estrogenReceptorSummary" start="1743" end="1743" short-label="ER Summ" long-label="Estrogen Receptor Summary" naaccr-item-num="3827" section="Stage/Prognostic Factors"/>
     <field name="her2OverallSummary" start="1744" end="1744" short-label="HER2 Summ" long-label="HER2 Overall Summary" naaccr-item-num="3855" section="Stage/Prognostic Factors"/>
     <field name="lnPositiveAxillaryLevel1To2" start="1745" end="1746" short-label="LN Pos Ax Lvl 1-2" long-label="LN Positive Axillary Level I-II" naaccr-item-num="3882" section="Stage/Prognostic Factors"/>
@@ -468,7 +468,7 @@
     <field name="mitoticCountUvealMelanoma" start="1887" end="1890" short-label="Mit Cnt UM" long-label="Mitotic Count Uveal Melanoma" naaccr-item-num="3892" section="Stage/Prognostic Factors"/>
     <field name="breslowTumorThickness" start="1891" end="1894" short-label="Breslow" long-label="Breslow Tumor Thickness" naaccr-item-num="3817" section="Stage/Prognostic Factors"/>
     <field name="ldhUpperLimitsOfNormal" start="1895" end="1897" short-label="LDH Up Lim" long-label="LDH Upper Limits of Normal" naaccr-item-num="3870" section="Stage/Prognostic Factors"/>
-    <field name="serumLdhPretreatmentLabValue" start="1898" end="1904" short-label="LDH Pre Lab Val" long-label="LDH Pretreatment Lab Value" naaccr-item-num="3932" section="Stage/Prognostic Factors"/>
+    <field name="ldhPretreatmentLabValue" start="1898" end="1904" short-label="LDH Pre Lab Val" long-label="LDH Pretreatment Lab Value" naaccr-item-num="3932" section="Stage/Prognostic Factors"/>
     <field name="ulceration" start="1905" end="1905" short-label="Ulcer" long-label="Ulceration" naaccr-item-num="3936" section="Stage/Prognostic Factors"/>
     <field name="lnIsolatedTumorCells" start="1906" end="1906" short-label="LN ITC" long-label="LN Isolated Tumor Cells (ITC)" naaccr-item-num="3880" section="Stage/Prognostic Factors"/>
     <field name="profoundImmuneSuppression" start="1907" end="1907" short-label="Pro Imm Sup" long-label="Profound Immune Suppression" naaccr-item-num="3918" section="Stage/Prognostic Factors"/>
@@ -479,7 +479,7 @@
     <field name="lymphocytosis" start="1912" end="1912" short-label="Lymph" long-label="Lymphocytosis" naaccr-item-num="3885" section="Stage/Prognostic Factors"/>
     <field name="organomegaly" start="1913" end="1913" short-label="Org" long-label="Organomegaly" naaccr-item-num="3907" section="Stage/Prognostic Factors"/>
     <field name="thrombocytopenia" start="1914" end="1914" short-label="Throm" long-label="Thrombocytopenia" naaccr-item-num="3933" section="Stage/Prognostic Factors"/>
-    <field name="highRiskCytogenetics" start="1915" end="1915" short-label="High Risk Cyto" long-label="High Risk Cytogenics" naaccr-item-num="3857" section="Stage/Prognostic Factors"/>
+    <field name="highRiskCytogenetics" start="1915" end="1915" short-label="High Risk Cyto" long-label="High Risk Cytogenetics" naaccr-item-num="3857" section="Stage/Prognostic Factors"/>
     <field name="ldhPretreatmentLevel" start="1916" end="1916" short-label="LDH Pre Lvl" long-label="LDH Pretreatment Level" naaccr-item-num="3869" section="Stage/Prognostic Factors"/>
     <field name="serumAlbuminPretreatmentLevel" start="1917" end="1917" short-label="Alb Pre Lvl" long-label="Serum Albumin Pretreatment Level" naaccr-item-num="3930" section="Stage/Prognostic Factors"/>
     <field name="serumBeta2MicroglobulinPretreatmentLevel" start="1918" end="1918" short-label="Beta Pre Lvl" long-label="Serum Beta-2 Microglobulin Pretreatment Level" naaccr-item-num="3931" section="Stage/Prognostic Factors"/>
@@ -511,15 +511,16 @@
     <field name="ldhPreOrchiectomyRange" start="1983" end="1983" short-label="LDH Pre-O Range" long-label="LDH Pre-Orchiectomy Range" naaccr-item-num="3868" section="Stage/Prognostic Factors"/>
     <field name="ldhPostOrchiectomyRange" start="1984" end="1984" short-label="LDH Post-O Range" long-label="LDH Post-Orchiectomy Range" naaccr-item-num="3867" section="Stage/Prognostic Factors"/>
     <field name="sCategoryClinical" start="1985" end="1985" short-label="S Cat Clin" long-label="S Category Clinical" naaccr-item-num="3923" section="Stage/Prognostic Factors"/>
-    <field name="sCategoryPathologic" start="1986" end="1986" short-label="S Cat Path" long-label="S Category Pathological" naaccr-item-num="3924" section="Stage/Prognostic Factors"/>
+    <field name="sCategoryPathological" start="1986" end="1986" short-label="S Cat Path" long-label="S Category Pathological" naaccr-item-num="3924" section="Stage/Prognostic Factors"/>
     <field name="lnAssessmentMethodParaAortic" start="1987" end="1987" short-label="LN Meth PA" long-label="LN Assessment Method Para-aortic" naaccr-item-num="3872" section="Stage/Prognostic Factors"/>
     <field name="lnAssessmentMethodPelvic" start="1988" end="1988" short-label="LN Meth Pel" long-label="LN Assessment Method Pelvic" naaccr-item-num="3873" section="Stage/Prognostic Factors"/>
     <field name="lnDistantAssessmentMethod" start="1989" end="1989" short-label="LN Dis Meth" long-label="LN Distant Assessment Method" naaccr-item-num="3874" section="Stage/Prognostic Factors"/>
     <field name="lnDistantMediastinalScalene" start="1990" end="1990" short-label="LN Dis Med Scal" long-label="LN Distant: Mediastinal, Scalene" naaccr-item-num="3875" section="Stage/Prognostic Factors"/>
-    <field name="lnStatusFemoralInguinalParaAorticAndPelvic" start="1991" end="1991" short-label="FI/PA/Pel LN Status" long-label="LN Status Femoral-Inguinal, Para-aortic, Pelvic" naaccr-item-num="3884" section="Stage/Prognostic Factors"/>
+    <field name="lnStatusFemoralInguinalParaAorticPelvic" start="1991" end="1991" short-label="FI/PA/Pel LN Status" long-label="LN Status Femoral-Inguinal, Para-Aortic, Pelvic" naaccr-item-num="3884" section="Stage/Prognostic Factors"/>
     <field name="lnAssessmentMethodFemoralInguinal" start="1992" end="1992" short-label="LN Meth FI " long-label="LN Assessment Method Femoral-Inguinal" naaccr-item-num="3871" section="Stage/Prognostic Factors"/>
     <field name="lnLaterality" start="1993" end="1993" short-label="LN Lat" long-label="LN Laterality" naaccr-item-num="3881" section="Stage/Prognostic Factors"/>
-    <field name="reserved05" start="1994" end="2093" short-label="Res05" long-label="Reserved 05" naaccr-item-num="1180" trim="false" section="Stage/Prognostic Factors"/>
+    <field name="brainMolecularMarkers" start="1994" end="1995" short-label="Brain Mol Marks" long-label="Brain Molecular Markers" naaccr-item-num="3816" section="Stage/Prognostic Factors"/>
+    <field name="reserved05" start="1996" end="2093" short-label="Res05" long-label="Reserved 05" naaccr-item-num="1180" trim="false" section="Stage/Prognostic Factors"/>
     <field name="dateOfInitialRx" start="2094" end="2101" short-label="Init RX Dt" long-label="Date Initial RX SEER" naaccr-item-num="1260" section="Treatment-1st Course">
         <field name="dateOfInitialRxYear" start="2094" end="2097" short-label="Init RX Yr" long-label="Date Initial RX SEER (Year)" align="right" pad-char="0" section="Treatment-1st Course"/>
         <field name="dateOfInitialRxMonth" start="2098" end="2099" short-label="Init RX Mth" long-label="Date Initial RX SEER (Month)" align="right" pad-char="0" section="Treatment-1st Course"/>
