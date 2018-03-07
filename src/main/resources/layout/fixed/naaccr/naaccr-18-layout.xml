@@ -209,7 +209,7 @@
     <field name="derivedEod2018M" start="956" end="970" short-label="Der EOD 2018 M" long-label="Derived EOD 2018 M" naaccr-item-num="795" section="Stage/Prognostic Factors"/>
     <field name="derivedEod2018StageGroup" start="971" end="985" short-label="Der EOD 2018 Stg Group" long-label="Derived EOD 2018 Stage Group" naaccr-item-num="818" section="Stage/Prognostic Factors"/>
     <field name="derivedSummaryStage2018" start="986" end="986" short-label="Der Sum Stg 2018" long-label="Derived Summary Stage 2018" naaccr-item-num="762" section="Stage/Prognostic Factors"/>
-    <field name="directlyAssignedSumStg2018" start="987" end="987" short-label="Dir Ass SS2018" long-label="Directly Assigned SS2018" naaccr-item-num="764" section="Stage/Prognostic Factors"/>
+    <field name="summaryStage2018" start="987" end="987" short-label="Sum Stg 2018" long-label="Summary Stage 2018" naaccr-item-num="764" section="Stage/Prognostic Factors"/>
     <field name="seerSummaryStage2000" start="988" end="988" short-label="Sum Stg 2000" long-label="SEER Summary Stage 2000" naaccr-item-num="759" section="Stage/Prognostic Factors"/>
     <field name="seerSummaryStage1977" start="989" end="989" short-label="Sum Stg 1977" long-label="SEER Summary Stage 1977" naaccr-item-num="760" section="Stage/Prognostic Factors"/>
     <field name="extentOfDisease10Digit" start="990" end="1001" short-label="EOD10" long-label="Extent of Disease 10-Dig" naaccr-item-num="779" section="Stage/Prognostic Factors">
