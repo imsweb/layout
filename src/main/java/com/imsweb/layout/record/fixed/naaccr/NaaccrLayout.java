@@ -220,7 +220,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
         if (field == null)
             return null;
 
-        boolean reservedField = field.getName().startsWith("reserved");
+        boolean reservedField = field.getName().startsWith("reserved") && Integer.parseInt(_majorNaaccrVersion) < 18; // NAACCR started to provide the documentation for reserved fields in version 18
 
         URL docPath;
         if (reservedField)

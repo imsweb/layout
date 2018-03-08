@@ -823,7 +823,7 @@
     </field>
     <field name="dateOfLastContactFlag" start="2783" end="2784" short-label="DOLC Fg" long-label="Date of Last Contact Flag" naaccr-item-num="1751" section="Follow-up/Recurrence/Death"/>
     <field name="vitalStatus" start="2785" end="2785" short-label="VS" long-label="Vital Status" naaccr-item-num="1760" section="Follow-up/Recurrence/Death"/>
-    <field name="vitalStatusRecode" start="2786" end="2786" short-label="Vit Status" long-label="Vital Status Recode" naaccr-item-num="1762" section="Follow-up/Recurrence/Death"/>
+    <field name="vitalStatusRecode" start="2786" end="2786" short-label="VS Rec" long-label="Vital Status Recode" naaccr-item-num="1762" section="Follow-up/Recurrence/Death"/>
     <field name="cancerStatus" start="2787" end="2787" short-label="Cancer Stat" long-label="Cancer Status" naaccr-item-num="1770" section="Follow-up/Recurrence/Death"/>
     <field name="dateOfLastCancerStatus" start="2788" end="2795" short-label="Last Canc Dt" long-label="Date of Last Cancer (tumor) Status" naaccr-item-num="1772" section="Follow-up/Recurrence/Death">
         <field name="dateOfLastCancerStatustYear" start="2788" end="2791" short-label="Last Canc Yr" long-label="Date of Last Cancer (tumor) Status (Year)" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>

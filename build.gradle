@@ -26,6 +26,7 @@ dependencies {
     compile 'com.thoughtworks.xstream:xstream:1.4.10'
     compile 'com.imsweb:naaccr-xml:4.5'
     testCompile 'junit:junit:4.12'
+    testCompile 'org.codehaus.groovy:groovy-xml:2.4.12'
 }
 
 // enforce UTF-8 for all compilation tasks
