@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.8**
+
+ - Final version of the NAACCR 18 layout.
+
 **Changes in version 1.7**
 
  - Added support for NAACCR 18; that version is not final yet and it's possible it will change in a future release.
