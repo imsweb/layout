@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.imsweb.layout.Field;
@@ -21,6 +22,13 @@ import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 public class Naaccr18LayoutTest {
+
+    @BeforeClass
+    public static void setup() {
+        File buildFolder = new File(System.getProperty("user.dir") + "/build/");
+        if (!buildFolder.exists() && !buildFolder.mkdir())
+            Assert.fail("Can't create build folder");
+    }
 
     @Test
     @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
@@ -48,16 +56,15 @@ public class Naaccr18LayoutTest {
         Assert.assertNull(layout.getFieldByNaaccrItemNumber(null));
         Assert.assertNull(layout.getFieldByNaaccrItemNumber(1));
         Assert.assertNull(layout.getFieldByNaaccrItemNumber(-1));
-        //TODO - don't have field docs yet
-        //        Assert.assertNotNull(layout.getFieldDocByName("recordType"));
-        //        Assert.assertNull(layout.getFieldDocByName(null));
-        //        Assert.assertNull(layout.getFieldDocByName(""));
-        //        Assert.assertNull(layout.getFieldDocByName("?"));
-        //        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(10));
-        //        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(null));
-        //        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(1));
-        //        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(-1));
-        //        Assert.assertNotNull(layout.getFieldDocDefaultCssStyle());
+        Assert.assertNotNull(layout.getFieldDocByName("recordType"));
+        Assert.assertNull(layout.getFieldDocByName(null));
+        Assert.assertNull(layout.getFieldDocByName(""));
+        Assert.assertNull(layout.getFieldDocByName("?"));
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(10));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(null));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(1));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(-1));
+        Assert.assertNotNull(layout.getFieldDocDefaultCssStyle());
 
         // test read methods
         URL url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr18-1-rec.txt");

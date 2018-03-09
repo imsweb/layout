@@ -39,7 +39,6 @@ public class NaaccrLayoutTest {
         recordString.replace(16, 19, "160"); //Replace Version
         recordString.replace(0, 1, "I"); //Replace record Type
 
-
         //Valid version and record
         recordString = new StringBuilder(layout.createLineFromRecord(record));
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT, layout.buildFileInfo(recordString.toString(), options).getLayoutId());
@@ -170,5 +169,13 @@ public class NaaccrLayoutTest {
         Assert.assertNull(layout.buildFileInfo(recordString.toString(), options));
         options.setFixedColumnAllowDiscoveryFromLineLength(true);
         Assert.assertNull(layout.buildFileInfo(recordString.substring(2, 10), options));
+    }
+
+    @Test
+    public void testGetXmlIdFromLayoutName() {
+        Assert.assertEquals("raceNapiia", NaaccrLayout.getXmlIdFromLayoutName("napiia"));
+        Assert.assertEquals("primarySite", NaaccrLayout.getXmlIdFromLayoutName("primarySite"));
+        Assert.assertEquals("?", NaaccrLayout.getXmlIdFromLayoutName("?"));
+        Assert.assertNull(NaaccrLayout.getXmlIdFromLayoutName(null));
     }
 }

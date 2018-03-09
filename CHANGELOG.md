@@ -2,6 +2,7 @@
 
 **Changes in version 1.8**
 
+ - Added new NaaccrLayout.getXmlIdFromLayoutName() utility method to create a cross-over between NAACCR layout and NAACCR XML dictionary.
  - Final version of the NAACCR 18 layout.
 
 **Changes in version 1.7**
