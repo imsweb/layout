@@ -125,7 +125,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
         _DEFAULT_CSS_14_AND_LATER.append(".chap10-para ul li { margin-bottom: 0;}\n");
     }
 
-    // mapping between the NAACCR layout name and the NAACCR XML IDs
+    // mapping between the NAACCR layout name and the NAACCR XML IDs (they have been created based on NAACCR v18).
     private static Map<String, String> _XML_TO_LAYOUT_MAPPING = new HashMap<>();
 
     static {
