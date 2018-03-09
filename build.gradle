@@ -26,7 +26,6 @@ dependencies {
     compile 'com.thoughtworks.xstream:xstream:1.4.10'
     compile 'com.imsweb:naaccr-xml:4.5'
     testCompile 'junit:junit:4.12'
-    testCompile 'org.codehaus.groovy:groovy-xml:2.4.12'
 }
 
 // enforce UTF-8 for all compilation tasks
@@ -50,7 +49,7 @@ jar {
     }
 }
 
-// this sucks, but they made the Javadoc way too stritct in Java 8 and it's not worth my time fixing it!
+// this sucks, but they made the Javadoc way too strict in Java 8 and it's not worth my time fixing it!
 tasks.withType(Javadoc) {
     options.addStringOption('Xdoclint:none', '-quiet')
 }
@@ -106,7 +105,7 @@ if (version.endsWith('-SNAPSHOT'))
 
 // Gradle wrapper, this allows to build the project without having to install Gradle!
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.2'
+    gradleVersion = '4.6'
 }
 
 

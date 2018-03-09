@@ -145,6 +145,8 @@ public class NaaccrDocScraper {
                     case "346":
                         html = html.replace("< 100", "&lt; 100").replace("< 50", "&lt; 50");
                         break;
+                    default:
+                        // ignored, nothing to do
                 }
 
                 // parse out the table
