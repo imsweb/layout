@@ -241,6 +241,9 @@ public class NaaccrDocScraper {
     // let's not even bother with a table for this section!
     private static String cleanupMetaDataTable(String txt) {
 
+        // this would be the pattern to extract the NAACCR ID if needed
+        //Pattern p = Pattern.compile("<td>XML NAACCR ID:</td><td(.*?)>(.*?)</td>",Pattern.MULTILINE | Pattern.DOTALL);
+
         // gather the cells
         List<String> cells = new ArrayList<>();
         Matcher cellMatcher = Pattern.compile("(<td>|<td(.*?)\">)(.*?)</td>", Pattern.MULTILINE | Pattern.DOTALL).matcher(txt);
