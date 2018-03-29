@@ -1,5 +1,8 @@
 ## Layout Framework Version History
 
+**Changes in version 1.9**
+- Fixed typos in ceaPretreatmentInterpretation and dateOfLastCancerStatusYear
+
 **Changes in version 1.8**
 
  - Final version of the NAACCR 18 layout.
