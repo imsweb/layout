@@ -826,7 +826,7 @@
     <field name="vitalStatusRecode" start="2786" end="2786" short-label="VS Rec" long-label="Vital Status Recode" naaccr-item-num="1762" section="Follow-up/Recurrence/Death"/>
     <field name="cancerStatus" start="2787" end="2787" short-label="Cancer Stat" long-label="Cancer Status" naaccr-item-num="1770" section="Follow-up/Recurrence/Death"/>
     <field name="dateOfLastCancerStatus" start="2788" end="2795" short-label="Last Canc Dt" long-label="Date of Last Cancer (tumor) Status" naaccr-item-num="1772" section="Follow-up/Recurrence/Death">
-        <field name="dateOfLastCancerStatustYear" start="2788" end="2791" short-label="Last Canc Yr" long-label="Date of Last Cancer (tumor) Status (Year)" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>
+        <field name="dateOfLastCancerStatusYear" start="2788" end="2791" short-label="Last Canc Yr" long-label="Date of Last Cancer (tumor) Status (Year)" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>
         <field name="dateOfLastCancerStatusMonth" start="2792" end="2793" short-label="Last Canc Mth" long-label="Date of Last Cancer (tumor) Status (Month)" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>
         <field name="dateOfLastCancerStatusDay" start="2794" end="2795" short-label="Last Canc Day" long-label="Date of Last Cancer (tumor) Status (Day)" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>
     </field>
