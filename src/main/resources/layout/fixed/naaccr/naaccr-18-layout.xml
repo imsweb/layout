@@ -415,7 +415,7 @@
     <field name="oncotypeDxRiskLevelInvasive" start="1783" end="1783" short-label="Risk Inv" long-label="Oncotype Dx Risk Level-Invasive" naaccr-item-num="3906" section="Stage/Prognostic Factors"/>
     <field name="progesteroneReceptorPercentPositiveOrRange" start="1784" end="1786" short-label="PR Pos/Range" long-label="Progesterone Receptor Percent Positive or Range" naaccr-item-num="3914" section="Stage/Prognostic Factors"/>
     <field name="progesteroneReceptorTotalAllredScore" start="1787" end="1788" short-label="PR All" long-label="Progesterone Receptor Total Allred Score" naaccr-item-num="3916" section="Stage/Prognostic Factors"/>
-    <field name="ceaPretreatmentIntrepretation" start="1789" end="1789" short-label="CEA Pre Inter" long-label="CEA Pretreatment Interpretation" naaccr-item-num="3819" section="Stage/Prognostic Factors"/>
+    <field name="ceaPretreatmentInterpretation" start="1789" end="1789" short-label="CEA Pre Inter" long-label="CEA Pretreatment Interpretation" naaccr-item-num="3819" section="Stage/Prognostic Factors"/>
     <field name="ceaPretreatmentLabValue" start="1790" end="1795" short-label="CEA Pre Lab Val" long-label="CEA Pretreatment Lab Value" naaccr-item-num="3820" section="Stage/Prognostic Factors"/>
     <field name="circumferentialResectionMargin" start="1796" end="1799" short-label="CRM" long-label="Circumferential Resection Margin (CRM)" naaccr-item-num="3823" section="Stage/Prognostic Factors"/>
     <field name="kras" start="1800" end="1800" short-label="KRAS" long-label="KRAS" naaccr-item-num="3866" section="Stage/Prognostic Factors"/>
