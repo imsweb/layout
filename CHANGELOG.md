@@ -1,7 +1,9 @@
 ## Layout Framework Version History
 
 **Changes in version 1.9**
-- Fixed typos in NAACCR Names for items ceaPretreatmentInterpretation and dateOfLastCancerStatusYear in v18 NAACCR layout.
+
+ - Updated NAACCR XML library to version 4.7.
+ - Fixed typos in field names for items ceaPretreatmentInterpretation and dateOfLastCancerStatusYear in v18 NAACCR layout.
 
 **Changes in version 1.8**
 
