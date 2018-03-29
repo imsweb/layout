@@ -1,7 +1,7 @@
 ## Layout Framework Version History
 
 **Changes in version 1.9**
-- Fixed typos in ceaPretreatmentInterpretation and dateOfLastCancerStatusYear
+- Fixed typos in NAACCR Names for items ceaPretreatmentInterpretation and dateOfLastCancerStatusYear in v18 NAACCR layout.
 
 **Changes in version 1.8**
 
