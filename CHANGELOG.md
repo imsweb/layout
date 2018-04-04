@@ -1,5 +1,8 @@
 ## Layout Framework Version History
 
+**Changes in version 1.10**
+- Fixed gaps between fields in v18 layout.
+
 **Changes in version 1.9**
 
  - Updated NAACCR XML library to version 4.7.
