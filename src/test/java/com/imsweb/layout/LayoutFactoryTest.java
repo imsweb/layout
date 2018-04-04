@@ -29,6 +29,10 @@ public class LayoutFactoryTest {
     public void testInternalLayouts() {
         Assert.assertFalse(LayoutFactory.getAvailableInternalLayouts().isEmpty());
 
+        // test NAACCR 18
+        Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_18_ABSTRACT));
+        Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_18_ABSTRACT));
+
         // test NAACCR 16
         Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT));
         Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT));
@@ -97,6 +101,15 @@ public class LayoutFactoryTest {
         for (Entry<Integer, String> entry : m15.entrySet())
             if (m16.containsKey(entry.getKey()) && !m16.get(entry.getKey()).equals(entry.getValue()))
                 Assert.fail(entry.getKey() + " - " + m15.get(entry.getKey()) + " - " + m16.get(entry.getKey()));
+
+        // make sure the properties defined in 16 kept the same name in 18 - except 5 fields: derivedSumStg2017, directlyAssignedSumStg2017, seerPrimaryTumor, seerRegionalNodes, seerMets 
+        Layout l18 = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_ABSTRACT);
+        Map<Integer, String> m18 = new HashMap<>();
+        for (Field f : l18.getAllFields())
+            m18.put(f.getNaaccrItemNum(), f.getName());
+        for (Entry<Integer, String> entry : m16.entrySet())
+            if (m18.containsKey(entry.getKey()) && !m18.get(entry.getKey()).equals(entry.getValue()) && !m16.get(entry.getKey()).endsWith("2017") && !m16.get(entry.getKey()).startsWith("seer"))
+                Assert.fail(entry.getKey() + " - " + m16.get(entry.getKey()) + " - " + m18.get(entry.getKey()));
     }
 
     @Test
@@ -285,7 +298,6 @@ public class LayoutFactoryTest {
         info = LayoutFactory.discoverFormat(createNaaccrLine(24194, null, null)).get(0); // make sure it defaults to an abstract
         Assert.assertEquals("NAACCR 18 Abstract", info.getLayoutName());
         Assert.assertEquals(24194, info.getLineLength().intValue());
-
 
         // if we enforced the strict format, the line length won't be used anymore
         options.setNaaccrAllowBlankVersion(false);

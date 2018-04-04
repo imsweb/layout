@@ -143,12 +143,7 @@ public class FixedColumnsLayout extends RecordLayout {
                     addField(field);
 
         // sort the fields by start column
-        Collections.sort(_fields, new Comparator<FixedColumnsField>() {
-            @Override
-            public int compare(FixedColumnsField f1, FixedColumnsField f2) {
-                return f1.getStart().compareTo(f2.getStart());
-            }
-        });
+        _fields.sort(Comparator.comparing(FixedColumnsField::getStart));
 
         // final verifications
         try {
@@ -224,12 +219,7 @@ public class FixedColumnsLayout extends RecordLayout {
         _fields.addAll(fields);
 
         // sort the fields by start column
-        Collections.sort(_fields, new Comparator<FixedColumnsField>() {
-            @Override
-            public int compare(FixedColumnsField f1, FixedColumnsField f2) {
-                return f1.getStart().compareTo(f2.getStart());
-            }
-        });
+        _fields.sort(Comparator.comparing(FixedColumnsField::getStart));
 
         // verify they make sense
         verify();
@@ -531,6 +521,10 @@ public class FixedColumnsLayout extends RecordLayout {
                 FixedColumnsField f2 = _fields.get(i + 1);
                 if (f1.getEnd() >= f2.getStart())
                     throw new RuntimeException("Fields " + f1.getName() + " and " + f2.getName() + " are overlapping");
+
+                //verify there are no gaps for v16 or later (gaps were replaced with reserved fields)
+                if (f2.getStart() - f1.getEnd() > 1 && _layoutVersion != null && Integer.parseInt(_layoutVersion) >= 160)
+                    throw new RuntimeException("There is a gap between fields " + f1.getName() + " and " + f2.getName());
 
                 // also verify the subfields, only need to do this on f1
                 if (f1.getSubFields() != null) {
