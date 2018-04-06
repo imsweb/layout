@@ -16,7 +16,6 @@ import org.junit.Test;
 
 import com.imsweb.layout.Field;
 import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.record.RecordLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
@@ -25,14 +24,14 @@ public class Naaccr16LayoutTest {
     @Test
     @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
     public void testNaaccr16() throws IOException {
-        RecordLayout layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16);
+        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16);
 
         // test layout properties
         Assert.assertEquals("naaccr-16-abstract", layout.getLayoutId());
         Assert.assertEquals("NAACCR 16 Abstract", layout.getLayoutName());
         Assert.assertEquals("160", layout.getLayoutVersion());
         Assert.assertNotNull(layout.getLayoutDescription());
-        Assert.assertEquals(22824, ((FixedColumnsLayout)layout).getLayoutLineLength().intValue());
+        Assert.assertEquals(22824, layout.getLayoutLineLength().intValue());
 
         // test fields
         Assert.assertEquals(554, layout.getAllFields().size()); // includes the reserved gaps
@@ -77,7 +76,7 @@ public class Naaccr16LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         rec.put("reserved01", "Some test with spaces at the end   ");
-        layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE);
+        layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE);
         Assert.assertEquals(3339, layout.createLineFromRecord(rec).length());
         layout.writeRecord(file, rec); // write into a file
         rec = layout.readAllRecords(file).get(0);
@@ -91,7 +90,7 @@ public class Naaccr16LayoutTest {
         rec.clear();
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
-        layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_MODIFIED);
+        layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_MODIFIED);
         Assert.assertEquals(22824, layout.createLineFromRecord(rec).length());
         FileWriter writer = new FileWriter(file);
         layout.writeRecord(writer, rec); // write into a writer
@@ -107,7 +106,7 @@ public class Naaccr16LayoutTest {
         rec.put("recordType", "C");
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
-        layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_CONFIDENTIAL);
+        layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_CONFIDENTIAL);
         Assert.assertEquals(5564, layout.createLineFromRecord(rec).length());
         FileOutputStream stream = new FileOutputStream(file);
         layout.writeRecord(stream, rec); // write into an output stream
@@ -120,16 +119,22 @@ public class Naaccr16LayoutTest {
         file.delete();
 
         //Test that all fields have a section value and that subfields have the same section as their parent field
-        List<FixedColumnsField> fields = ((FixedColumnsLayout)layout).getAllFields();
-        for (FixedColumnsField f : fields) {
-            Assert.assertNotNull(f.getSection());
-            List<FixedColumnsField> subFields = f.getSubFields();
-            if (subFields != null) {
+        layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT);
+        FixedColumnsField f2 = null;
+        for (FixedColumnsField f1 : layout.getAllFields()) {
+            Assert.assertNotNull(f1.getSection());
+            List<FixedColumnsField> subFields = f1.getSubFields();
+            if (subFields != null)
                 for (Field sf : subFields) {
                     Assert.assertNotNull(sf.getSection());
-                    Assert.assertEquals(f.getSection(), sf.getSection());
+                    Assert.assertEquals(f1.getSection(), sf.getSection());
                 }
-            }
+
+            //Check for gaps between fields
+            if (f2 != null)
+                Assert.assertTrue("There is a gap between fields " + f2.getName() + " and " + f1.getName(), f1.getStart() - f2.getEnd() == 1);
+            f2 = f1;
+
         }
     }
 

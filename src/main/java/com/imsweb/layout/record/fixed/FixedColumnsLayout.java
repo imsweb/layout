@@ -143,12 +143,7 @@ public class FixedColumnsLayout extends RecordLayout {
                     addField(field);
 
         // sort the fields by start column
-        Collections.sort(_fields, new Comparator<FixedColumnsField>() {
-            @Override
-            public int compare(FixedColumnsField f1, FixedColumnsField f2) {
-                return f1.getStart().compareTo(f2.getStart());
-            }
-        });
+        _fields.sort(Comparator.comparing(FixedColumnsField::getStart));
 
         // final verifications
         try {
@@ -224,12 +219,7 @@ public class FixedColumnsLayout extends RecordLayout {
         _fields.addAll(fields);
 
         // sort the fields by start column
-        Collections.sort(_fields, new Comparator<FixedColumnsField>() {
-            @Override
-            public int compare(FixedColumnsField f1, FixedColumnsField f2) {
-                return f1.getStart().compareTo(f2.getStart());
-            }
-        });
+        _fields.sort(Comparator.comparing(FixedColumnsField::getStart));
 
         // verify they make sense
         verify();

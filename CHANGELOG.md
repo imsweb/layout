@@ -4,6 +4,7 @@
 
 - Updated NAACCR XML library to version 4.8.
 - Fixed padding and alignment rules in NAACCR layouts
+- Fixed wrong lengths in v18 NAACCR layout for the following fields: derivedPreRx7N, afpPretreatmentLabValue, afpPreOrchiectomyLabValue, primarySiteIcdO1, addressCurrentCity, addressCurrentState
 
 **Changes in version 1.9**
 

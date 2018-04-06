@@ -333,7 +333,7 @@
     <field name="derivedAjcc7StageGroup" start="1414" end="1416" short-label="AJCC 7 Stg Grp" long-label="Derived AJCC-7 Stage Grp" align="right" pad-char="0" naaccr-item-num="3430" section="Stage/Prognostic Factors"/>
     <field name="derivedPreRx7T" start="1417" end="1419" short-label="Der PreRX 7 T" long-label="Derived PreRx-7 T" naaccr-item-num="3440" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     <field name="derivedPreRx7TDescriptor" start="1420" end="1420" short-label="Der PreRX 7 T Desc" long-label="Derived PreRx-7 T Descrip" naaccr-item-num="3442" section="Stage/Prognostic Factors"/>
-    <field name="derivedPreRx7N" start="1421" end="1421" short-label="Der PreRX 7 N" long-label="Derived PreRx-7 N" naaccr-item-num="3450" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
+    <field name="derivedPreRx7N" start="1421" end="1423" short-label="Der PreRX 7 N" long-label="Derived PreRx-7 N" naaccr-item-num="3450" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     <field name="derivedPreRx7NDescriptor" start="1424" end="1424" short-label="Der PreRX 7 N Desc" long-label="Derived PreRx-7 N Descrip" naaccr-item-num="3452" section="Stage/Prognostic Factors"/>
     <field name="derivedPreRx7M" start="1425" end="1427" short-label="Der PreRX 7 M" long-label="Derived PreRx-7 M" naaccr-item-num="3460" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     <field name="derivedPreRx7MDescriptor" start="1428" end="1428" short-label="Der PreRX 7 M Desc" long-label="Derived PreRx-7 M Descrip" naaccr-item-num="3462" section="Stage/Prognostic Factors"/>
@@ -446,7 +446,7 @@
     <field name="sarcomatoidFeatures" start="1836" end="1838" short-label="Sarc Feat" long-label="Sarcomatoid Features" naaccr-item-num="3925" section="Stage/Prognostic Factors"/>
     <field name="adenoidCysticBasaloidPattern" start="1839" end="1843" short-label="ACB Pat" long-label="Adenoid Cystic Basaloid Pattern" naaccr-item-num="3803" align="right" section="Stage/Prognostic Factors"/>
     <field name="afpPretreatmentInterpretation" start="1844" end="1844" short-label="AFP Pre Inter" long-label="AFP Pretreatment Interpretation" naaccr-item-num="3809" section="Stage/Prognostic Factors"/>
-    <field name="afpPretreatmentLabValue" start="1845" end="1845" short-label="AFP Pre Lab Val" long-label="AFP Pretreatment Lab Value" naaccr-item-num="3810" align="right" section="Stage/Prognostic Factors"/>
+    <field name="afpPretreatmentLabValue" start="1845" end="1850" short-label="AFP Pre Lab Val" long-label="AFP Pretreatment Lab Value" naaccr-item-num="3810" align="right" section="Stage/Prognostic Factors"/>
     <field name="bilirubinPretreatmentTotalLabValue" start="1851" end="1855" short-label="Bil Pre Tot Lab Val" long-label="Bilirubin Pretreatment Total Lab Value" naaccr-item-num="3813" align="right" section="Stage/Prognostic Factors"/>
     <field name="bilirubinPretreatmentUnitOfMeasure" start="1856" end="1856" short-label="Bil Pre Unit" long-label="Bilirubin Pretreatment Unit of Measure" naaccr-item-num="3814" section="Stage/Prognostic Factors"/>
     <field name="creatininePretreatmentLabValue" start="1857" end="1860" short-label="Cre Pre Lab Val" long-label="Creatinine Pretreatment Lab Value" naaccr-item-num="3824" align="right" section="Stage/Prognostic Factors"/>
@@ -500,7 +500,7 @@
     <field name="psaLabValue" start="1944" end="1948" short-label="PSA Lab Val" long-label="PSA (Prostatic Specific Antigen) Lab Value" naaccr-item-num="3920" align="right" section="Stage/Prognostic Factors"/>
     <field name="highRiskHistologicFeatures" start="1949" end="1949" short-label="High Risk Hist Feat" long-label="High Risk Histologic Features" naaccr-item-num="3858" section="Stage/Prognostic Factors"/>
     <field name="boneInvasion" start="1950" end="1950" short-label="Bone Inv" long-label="Bone Invasion" naaccr-item-num="3815" section="Stage/Prognostic Factors"/>
-    <field name="afpPreOrchiectomyLabValue" start="1951" end="1951" short-label="AFP Pre-O Lab Val" long-label="AFP Pre-Orchiectomy Lab Value" naaccr-item-num="3807" align="right" section="Stage/Prognostic Factors"/>
+    <field name="afpPreOrchiectomyLabValue" start="1951" end="1957" short-label="AFP Pre-O Lab Val" long-label="AFP Pre-Orchiectomy Lab Value" naaccr-item-num="3807" align="right" section="Stage/Prognostic Factors"/>
     <field name="afpPreOrchiectomyRange" start="1958" end="1958" short-label="AFP Pre-O Range" long-label="AFP Pre-Orchiectomy Range" naaccr-item-num="3808" section="Stage/Prognostic Factors"/>
     <field name="afpPostOrchiectomyLabValue" start="1959" end="1965" short-label="AFP Post-O Lab Val" long-label="AFP Post-Orchiectomy Lab Value" naaccr-item-num="3805" align="right" section="Stage/Prognostic Factors"/>
     <field name="afpPostOrchiectomyRange" start="1966" end="1966" short-label="AFP Post-O Range" long-label="AFP Post-Orchiectomy Range" naaccr-item-num="3806" section="Stage/Prognostic Factors"/>
@@ -736,7 +736,7 @@
     <field name="overRideSiteLatEod" start="2593" end="2593" short-label="S/L/E" long-label="Over-ride Site/Lat/EOD" naaccr-item-num="2073" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="overRideSiteLatMorph" start="2594" end="2594" short-label="S/L/M" long-label="Over-ride Site/Lat/Morph" naaccr-item-num="2074" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="overRideNameSex" start="2595" end="2595" short-label="N/S" long-label="Over-ride Name/Sex" naaccr-item-num="2078" section="Edit Overrides/Conversion History/System Admin"/>
-    <field name="primarySiteIcdO1" start="2596" end="2596" short-label="Site(O1)" long-label="Site (73-91) ICD-O-1" naaccr-item-num="1960" section="Edit Overrides/Conversion History/System Admin"/>
+    <field name="primarySiteIcdO1" start="2596" end="2599" short-label="Site(O1)" long-label="Site (73-91) ICD-O-1" naaccr-item-num="1960" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="morphologyIcdO1" start="2600" end="2605" short-label="Morph(O1)" long-label="Morph (73-91) ICD-O-1" naaccr-item-num="1970" section="Edit Overrides/Conversion History/System Admin">
         <field name="histologyIcdO1" start="2600" end="2603" short-label="Hist(O1)" long-label="Histology (73-91) ICD-O-1" naaccr-item-num="1971" section="Edit Overrides/Conversion History/System Admin"/>
         <field name="behaviorIcdO1" start="2604" end="2604" short-label="Behav(O1)" long-label="Behavior (73-91) ICD-O-1" naaccr-item-num="1972" section="Edit Overrides/Conversion History/System Admin"/>
@@ -835,8 +835,8 @@
     <field name="qualityOfSurvival" start="2800" end="2800" short-label="Surv Qual" long-label="Quality of Survival" naaccr-item-num="1780" section="Follow-up/Recurrence/Death"/>
     <field name="followUpSource" start="2801" end="2801" short-label="Fup Src" long-label="Follow-Up Source" naaccr-item-num="1790" section="Follow-up/Recurrence/Death"/>
     <field name="nextFollowUpSource" start="2802" end="2802" short-label="Next Fup Src" long-label="Next Follow-Up Source" naaccr-item-num="1800" section="Follow-up/Recurrence/Death"/>
-    <field name="addressCurrentCity" start="2852" end="2852" short-label="Curr City" long-label="Addr Current--City" naaccr-item-num="1810" section="Follow-up/Recurrence/Death"/>
-    <field name="addressCurrentState" start="2853" end="2853" short-label="Curr State" long-label="Addr Current--State" naaccr-item-num="1820" section="Follow-up/Recurrence/Death"/>
+    <field name="addressCurrentCity" start="2803" end="2852" short-label="Curr City" long-label="Addr Current--City" naaccr-item-num="1810" section="Follow-up/Recurrence/Death"/>
+    <field name="addressCurrentState" start="2853" end="2854" short-label="Curr State" long-label="Addr Current--State" naaccr-item-num="1820" section="Follow-up/Recurrence/Death"/>
     <field name="addressCurrentPostalCode" start="2855" end="2863" short-label="Curr Zip" long-label="Addr Current--Postal Code" naaccr-item-num="1830" section="Follow-up/Recurrence/Death"/>
     <field name="addressCurrentCounty" start="2864" end="2866" short-label="Curr Cty" long-label="County--Current" naaccr-item-num="1840" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>
     <field name="recurrenceDate1st" start="2867" end="2874" short-label="Recur 1st Dt" long-label="Recurrence Date--1st" naaccr-item-num="1860" section="Follow-up/Recurrence/Death">
