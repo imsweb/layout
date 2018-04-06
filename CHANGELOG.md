@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 1.10**
+
+- Updated NAACCR XML library to version 4.8.
+- Fixed padding and alignment rules in NAACCR layouts
+
 **Changes in version 1.9**
 
  - Updated NAACCR XML library to version 4.7.
