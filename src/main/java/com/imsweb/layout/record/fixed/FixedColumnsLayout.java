@@ -522,10 +522,6 @@ public class FixedColumnsLayout extends RecordLayout {
                 if (f1.getEnd() >= f2.getStart())
                     throw new RuntimeException("Fields " + f1.getName() + " and " + f2.getName() + " are overlapping");
 
-                //verify there are no gaps for v16 or later (gaps were replaced with reserved fields)
-                if (f2.getStart() - f1.getEnd() > 1 && _layoutVersion != null && Integer.parseInt(_layoutVersion) >= 160)
-                    throw new RuntimeException("There is a gap between fields " + f1.getName() + " and " + f2.getName());
-
                 // also verify the subfields, only need to do this on f1
                 if (f1.getSubFields() != null) {
                     List<FixedColumnsField> list = f1.getSubFields();

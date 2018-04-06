@@ -1,7 +1,8 @@
 ## Layout Framework Version History
 
 **Changes in version 1.10**
-- Fixed gaps between fields in v18 layout.
+
+- Fixed wrong lengths in v18 NAACCR layout for the following fields: derivedPreRx7N, afpPretreatmentLabValue, afpPreOrchiectomyLabValue, primarySiteIcdO1, addressCurrentCity, addressCurrentState
 
 **Changes in version 1.9**
 
