@@ -4,9 +4,12 @@
 package com.imsweb.layout.record.fixed.naaccr;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -398,8 +401,8 @@ public class NaaccrLayout extends FixedColumnsLayout {
         if (docPath == null)
             return null;
 
-        try (InputStream is = docPath.openStream(); StringWriter writer = new StringWriter()) {
-            IOUtils.copy(is, writer, "UTF-8");
+        try (Reader reader = new InputStreamReader(docPath.openStream(), StandardCharsets.UTF_8); Writer writer = new StringWriter()) {
+            IOUtils.copy(reader, writer);
             result = writer.toString();
         }
         catch (IOException e) {
