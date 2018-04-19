@@ -3,6 +3,7 @@
 **Changes in version 1.11**
 
 - Updated NAACCR 18 field documentation.
+- Set default user dictionary URI in NaaccrXmlLayout.buildFileInfo() 
 
 **Changes in version 1.10**
 

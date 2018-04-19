@@ -463,9 +463,10 @@ public class NaaccrXmlLayout implements Layout {
 
         // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries
         List<String> userUris = new ArrayList<>();
-        if (_userDictionaries != null)
+        if (_userDictionaries != null) {
             for (NaaccrDictionary dictionary : _userDictionaries)
                 userUris.add(dictionary.getDictionaryUri());
+        }
         else
             userUris.add(NaaccrXmlDictionaryUtils.createUriFromVersion(_naaccrVersion, false));
 
