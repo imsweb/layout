@@ -309,7 +309,9 @@ public class LayoutFactoryTest {
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(3339, null, null), options).isEmpty());
 
         // test the other flavors of the method (no need to be exhaustive here since they all end up calling the string one)
-        URL url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-1-rec.txt");
+        URL url = Thread.currentThread().getContextClassLoader().getResource("xml-reader-two-patients.xml");
+        Assert.assertFalse(LayoutFactory.discoverFormat(new File(url.getPath().replace("%20", " "))).isEmpty()); // file
+        url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-1-rec.txt");
         Assert.assertFalse(LayoutFactory.discoverFormat(new File(url.getPath().replace("%20", " "))).isEmpty()); // file
         url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-1-rec.zip");
         Assert.assertFalse(LayoutFactory.discoverFormat(new File(url.getPath().replace("%20", " ")), "fake-naaccr-1-rec").isEmpty()); // file
