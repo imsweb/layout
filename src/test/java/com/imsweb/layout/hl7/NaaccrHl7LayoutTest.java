@@ -274,6 +274,8 @@ public class NaaccrHl7LayoutTest {
                         // test sub-components
                         Assert.assertEquals(6, fields.get(32).getComponent(1).getSubComponents().size());
                         break;
+                    default:
+                        // nothing to do
                 }
 
                 segmentIndex++;
