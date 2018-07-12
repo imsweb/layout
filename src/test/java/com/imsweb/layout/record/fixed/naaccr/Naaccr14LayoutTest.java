@@ -15,6 +15,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.RecordLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
@@ -68,7 +69,7 @@ public class Naaccr14LayoutTest {
         Assert.assertNull(rec.get("nameLast"));
 
         // test write methods        
-        File file = new File(System.getProperty("user.dir") + "/build/naaccr14.txt");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/build/naaccr14.txt");
         rec.clear();
         rec.put("naaccrRecordVersion", "140");
         rec.put("recordType", "I");

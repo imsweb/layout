@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.RecordLayout;
 import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
@@ -41,7 +42,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertEquals(16, layout.getLayoutLineLength().intValue());
 
         // test loading the layout from a file
-        layout = new FixedColumnsLayout(new File(System.getProperty("user.dir") + "/src/test/resources/testing-layout-fixed-columns.xml"));
+        layout = new FixedColumnsLayout(new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/testing-layout-fixed-columns.xml"));
         Assert.assertEquals("test", layout.getLayoutId());
         Assert.assertEquals("Test", layout.getLayoutName());
         Assert.assertEquals("1.0", layout.getLayoutVersion());

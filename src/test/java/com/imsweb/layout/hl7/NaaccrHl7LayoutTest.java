@@ -22,6 +22,7 @@ import org.junit.Test;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
 import com.imsweb.layout.hl7.entity.Hl7Segment;
@@ -111,7 +112,8 @@ public class NaaccrHl7LayoutTest {
 
         // test the validity of the XML
         Hl7LayoutXmlDto layoutXmlDto;
-        try (InputStream fis = new FileInputStream(Paths.get("src/main/resources/layout/hl7/naaccr/naaccr-hl7-" + layout.getLayoutVersion() + "-layout.xml").toFile())) {
+        try (InputStream fis = new FileInputStream(
+                Paths.get(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/hl7/naaccr/naaccr-hl7-" + layout.getLayoutVersion() + "-layout.xml").toFile())) {
             layoutXmlDto = LayoutUtils.readHl7Layout(fis);
         }
         Assert.assertNotNull(layoutXmlDto);
@@ -195,7 +197,7 @@ public class NaaccrHl7LayoutTest {
         Assert.assertEquals("Just for testing...", layout.getLayoutDescription());
 
         // test loading the layout from a file
-        layout = new NaaccrHl7Layout(new File(System.getProperty("user.dir") + "/src/test/resources/testing-layout-hl7.xml"));
+        layout = new NaaccrHl7Layout(new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/testing-layout-hl7.xml"));
         Assert.assertEquals("test", layout.getLayoutId());
         Assert.assertEquals("Test", layout.getLayoutName());
         Assert.assertEquals("1.0", layout.getLayoutVersion());
@@ -251,25 +253,27 @@ public class NaaccrHl7LayoutTest {
 
                 // test fields
                 Map<Integer, Hl7Field> fields = segment.getFields();
-                if (segment.getId().equals("MSH")) {
-                    // test important MSH fields
-                    if (messageIndex == 0)
-                        Assert.assertEquals("INDEPENDENT LAB SERVICES^33D1234567^CLIA", fields.get(4).getValue());
-                    else
-                        Assert.assertEquals("IND LAB SERVICES^33D1234567^CLIA", fields.get(4).getValue());
-                    Assert.assertEquals("2.5.1", fields.get(12).getValue());
-                }
-                else if (segment.getId().equals("PID")) {
-                    // test repeated fields
-                    Assert.assertEquals(2, fields.get(3).getRepeatedFields().size());
+                switch (segment.getId()) {
+                    case "MSH":
+                        // test important MSH fields
+                        if (messageIndex == 0)
+                            Assert.assertEquals("INDEPENDENT LAB SERVICES^33D1234567^CLIA", fields.get(4).getValue());
+                        else
+                            Assert.assertEquals("IND LAB SERVICES^33D1234567^CLIA", fields.get(4).getValue());
+                        Assert.assertEquals("2.5.1", fields.get(12).getValue());
+                        break;
+                    case "PID":
+                        // test repeated fields
+                        Assert.assertEquals(2, fields.get(3).getRepeatedFields().size());
 
-                    // test patient first and last name components
-                    Assert.assertEquals("McMuffin", fields.get(5).getComponent(1).getValue());
-                    Assert.assertEquals("Candy", fields.get(5).getComponent(2).getValue());
-                }
-                else if (segment.getId().equals("OBR")) {
-                    // test subcomponents
-                    Assert.assertEquals(6, fields.get(32).getComponent(1).getSubComponents().size());
+                        // test patient first and last name components
+                        Assert.assertEquals("McMuffin", fields.get(5).getComponent(1).getValue());
+                        Assert.assertEquals("Candy", fields.get(5).getComponent(2).getValue());
+                        break;
+                    case "OBR":
+                        // test sub-components
+                        Assert.assertEquals(6, fields.get(32).getComponent(1).getSubComponents().size());
+                        break;
                 }
 
                 segmentIndex++;
@@ -279,7 +283,7 @@ public class NaaccrHl7LayoutTest {
         }
 
         // test write message to file
-        File file = new File(System.getProperty("user.dir") + "/build/naaccr16.txt");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/build/naaccr16.txt");
         layout.writeMessages(file, Collections.singletonList(messages.get(1)));
         Assert.assertTrue(file.exists());
 

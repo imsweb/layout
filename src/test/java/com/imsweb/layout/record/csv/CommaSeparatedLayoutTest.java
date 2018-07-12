@@ -22,6 +22,7 @@ import com.imsweb.layout.Field.FieldAlignment;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
@@ -50,7 +51,7 @@ public class CommaSeparatedLayoutTest {
         Assert.assertEquals(3, layout.getLayoutNumberOfFields().intValue());
 
         // test loading the layout from a file
-        layout = new CommaSeparatedLayout(new File(System.getProperty("user.dir") + "/src/test/resources/testing-layout-comma-separated.xml"));
+        layout = new CommaSeparatedLayout(new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/testing-layout-comma-separated.xml"));
                 Assert.assertEquals("test-csv", layout.getLayoutId());
         Assert.assertEquals("Test CSV", layout.getLayoutName());
         Assert.assertEquals("1.0", layout.getLayoutVersion());
@@ -203,7 +204,7 @@ public class CommaSeparatedLayoutTest {
     public void testPartialNaaccrLayout() throws Exception {
 
         // this is how the CSV layout will be used in the Data Viewer: creating a fake CSV layout from the NAACCR fields
-        File file = new File(System.getProperty("user.dir") + "/src/test/resources/fake-naaccr-csv.txt");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/fake-naaccr-csv.txt");
 
         // first, let's get the first line
         BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -366,7 +367,7 @@ public class CommaSeparatedLayoutTest {
         Assert.assertFalse(records.get(2).containsKey("birthDate"));
 
         // test reading an empty file
-        file = new File(System.getProperty("user.dir") + "/src/test/resources/fake-naaccr-csv-empty.txt");
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/fake-naaccr-csv-empty.txt");
         records = layout.readAllRecords(file);
         Assert.assertEquals(0, records.size());
 

@@ -348,7 +348,7 @@ public class LayoutFactoryTest {
                 line.setCharAt(18, naaccrVersion.charAt(2));
         }
 
-        File file = new File(System.getProperty("user.dir") + File.pathSeparator + "naaccr-test.xml");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/naaccr-test.xml");
         FileWriter writer = new FileWriter(file);
         writer.write(line.toString());
         writer.close();

@@ -24,6 +24,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.csv.CommaSeparatedField;
 import com.imsweb.layout.record.csv.CommaSeparatedLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
@@ -70,13 +71,13 @@ public class RecordLayoutTest {
         RecordLayout layout = (RecordLayout)LayoutFactory.getLayout(_TEST_LAYOUT_ID);
 
         // create fake data file going with that testing layout
-        File file = new File(System.getProperty("user.dir") + "/build/rec-layout-read-test.txt");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/build/rec-layout-read-test.txt");
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write("A\nB\n".getBytes()); // two data lines
         }
 
         // create fake zipped data file going with that testing layout
-        File zippedFile = new File(System.getProperty("user.dir") + "/build/rec-layout-read-test.zip");
+        File zippedFile = new File(TestingUtils.getWorkingDirectory()+ "/build/rec-layout-read-test.zip");
         try (ZipOutputStream fos = new ZipOutputStream(new FileOutputStream(zippedFile))) {
             fos.putNextEntry(new ZipEntry(file.getName()));
             fos.write("A\nB\n".getBytes()); // two data lines
@@ -117,7 +118,7 @@ public class RecordLayoutTest {
         }
 
         // read all from a CSV file that needs to ignore the first row
-        file = new File(System.getProperty("user.dir") + "/build/rec-layout-read-test.csv");
+        file = new File(TestingUtils.getWorkingDirectory() + "/build/rec-layout-read-test.csv");
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write("HEADER\nA\nB\n".getBytes()); // two data lines with one header
         }
@@ -144,7 +145,7 @@ public class RecordLayoutTest {
         rec1.put("field1", "A");
         rec1.put("otherField", "B"); // should be ignored
 
-        File file = new File(System.getProperty("user.dir") + "/build/rec-layout-write-test.txt");
+        File file = new File(TestingUtils.getWorkingDirectory()+ "/build/rec-layout-write-test.txt");
 
         // write single record to file
         layout.writeRecord(file, rec1);

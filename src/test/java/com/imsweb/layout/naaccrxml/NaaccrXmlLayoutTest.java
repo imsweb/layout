@@ -18,6 +18,7 @@ import org.junit.Test;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
+import com.imsweb.layout.TestingUtils;
 import com.imsweb.naaccrxml.NaaccrOptions;
 import com.imsweb.naaccrxml.NaaccrXmlUtils;
 import com.imsweb.naaccrxml.PatientXmlReader;
@@ -358,7 +359,7 @@ public class NaaccrXmlLayoutTest {
     @Test
     public void testReadMethods() throws IOException {
         NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
-        File file = new File(System.getProperty("user.dir") + "/src/test/resources/xml-reader-two-patients.xml");
+        File file = new File(TestingUtils.getWorkingDirectory()+ "/src/test/resources/xml-reader-two-patients.xml");
         NaaccrOptions options = new NaaccrOptions();
         options.setUseStrictNamespaces(false);
         List<Patient> patients;
@@ -381,7 +382,7 @@ public class NaaccrXmlLayoutTest {
     @Test
     public void testWriteMethods() throws IOException {
         NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
-        File file = new File(System.getProperty("user.dir") + "/build/test-xml-writer.xml");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/build/test-xml-writer.xml");
 
         NaaccrOptions options = new NaaccrOptions();
         options.setUseStrictNamespaces(false);
@@ -454,7 +455,7 @@ public class NaaccrXmlLayoutTest {
 
     @Test
     public void testBuildFileInfo() {
-        File file = new File(System.getProperty("user.dir") + "/src/test/resources/xml-reader-two-patients.xml");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml-reader-two-patients.xml");
 
         NaaccrXmlLayout layout = (NaaccrXmlLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT);
 
@@ -474,7 +475,7 @@ public class NaaccrXmlLayoutTest {
         Assert.assertNull(info.getLineLength());
 
         //Test a zip file
-        file = new File(System.getProperty("user.dir") + "/src/test/resources/xml-reader-two-patients.xml.gz");
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml-reader-two-patients.xml.gz");
         info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
