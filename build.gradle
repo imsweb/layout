@@ -3,7 +3,7 @@ import org.gradle.internal.jvm.Jvm
 plugins {
     id 'java-library'
     id 'checkstyle'
-    id "net.ltgt.errorprone" version "0.0.16"
+    id 'net.ltgt.errorprone-javacplugin' version '0.3'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.8.0'
 }
@@ -31,7 +31,7 @@ dependencies {
 // enforce UTF-8, display the compilation warnings
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation' << '-Werror' << '-Xplugin:ErrorProne'
 }
 
 // the Javadoc was made way too strict in Java 8 and it's not worth the time fixing everything!
