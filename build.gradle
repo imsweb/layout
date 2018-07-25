@@ -3,7 +3,7 @@ import org.gradle.internal.jvm.Jvm
 plugins {
     id 'java-library'
     id 'checkstyle'
-    id 'findbugs'
+    id "net.ltgt.errorprone" version "0.0.16"
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.8.0'
 }
@@ -19,20 +19,25 @@ repositories {
 }
 
 dependencies {
-    //api 'com.imsweb:naaccr-xml:4.10'
-    api 'com.imsweb:naaccr-xml:4.9'
-    implementation 'au.com.bytecode:opencsv:2.4'
-    //implementation 'com.thoughtworks.xstream:xstream:1.4.10'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.9'
+    api 'com.imsweb:naaccr-xml:4.10'
+    api 'au.com.bytecode:opencsv:2.4'
+    api 'com.thoughtworks.xstream:xstream:1.4.10'
+
     testImplementation 'junit:junit:4.12'
+
+    errorprone 'com.google.errorprone:error_prone_core:2.3.1'
 }
 
-// enforce UTF-8 for all compilation tasks
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+// enforce UTF-8, display the compilation warnings
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+}
 
-// display the compilation warnings
-compileJava.options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
-compileTestJava.options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+// the Javadoc was made way too strict in Java 8 and it's not worth the time fixing everything!
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
 
 // customize the manifest
 jar {
@@ -48,22 +53,9 @@ jar {
     }
 }
 
-// this sucks, but they made the Javadoc way too strict in Java 8 and it's not worth my time fixing it!
-tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:none', '-quiet')
-}
-
 // checkstyle plugin settings
 checkstyle {
-    ignoreFailures = true
     configFile = file('config/checkstyle/checkstyle.xml')
-}
-
-// findbugs plugin settings
-findbugs {
-    ignoreFailures = true
-    effort = 'max'
-    excludeFilter = file('config/findbugs/findbugs-exclude.xml')
 }
 
 // needed to deploy to Maven Central

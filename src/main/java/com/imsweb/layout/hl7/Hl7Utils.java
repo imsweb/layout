@@ -6,8 +6,9 @@ package com.imsweb.layout.hl7;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
@@ -40,7 +41,7 @@ public final class Hl7Utils {
             segment.getField(2).getRepeatedField(1).getComponent(1).getSubComponent(1).setValue(fieldSeparator);
         }
 
-        String[] fieldValues = line.split(Pattern.quote(msg.getFieldSeparator()));
+        String[] fieldValues = StringUtils.split(line, msg.getFieldSeparator());
         for (int fieldIdx = 1; fieldIdx < fieldValues.length; fieldIdx++) {
             if ("MSH".equals(segment.getId()) && fieldIdx == 1) {
                 if (fieldValues[1].length() > 3) {
@@ -56,17 +57,18 @@ public final class Hl7Utils {
             if (!fieldValue.isEmpty()) {
                 Hl7Field field = new Hl7Field(segment, "MSH".equals(segment.getId()) ? (fieldIdx + 1) : fieldIdx);
 
-                String[] repeatedFieldValues = fieldValue.split(Pattern.quote(msg.getRepetitionSeparator()));
+                String[] repeatedFieldValues = StringUtils.split(fieldValue, msg.getRepetitionSeparator());
+                //noinspection ForLoopReplaceableByForEach
                 for (int repeatedFieldIdx = 0; repeatedFieldIdx < repeatedFieldValues.length; repeatedFieldIdx++) {
                     String repeatedFieldValue = repeatedFieldValues[repeatedFieldIdx];
                     if (!repeatedFieldValue.isEmpty()) {
                         Hl7RepeatedField repeatedField = new Hl7RepeatedField(field);
-                        String[] compValues = repeatedFieldValue.split(Pattern.quote(msg.getComponentSeparator()));
+                        String[] compValues = StringUtils.split(repeatedFieldValue, msg.getComponentSeparator());
                         for (int compIdx = 0; compIdx < compValues.length; compIdx++) {
                             String compValue = compValues[compIdx];
                             if (!compValue.isEmpty()) {
                                 Hl7Component component = new Hl7Component(repeatedField, compIdx + 1);
-                                String[] subCompValues = compValue.split(Pattern.quote(msg.getSubComponentSeparator()));
+                                String[] subCompValues = StringUtils.split(compValue, msg.getSubComponentSeparator());
                                 for (int subCompIdx = 0; subCompIdx < subCompValues.length; subCompIdx++) {
                                     String subCompValue = subCompValues[subCompIdx];
                                     if (!subCompValue.isEmpty())
