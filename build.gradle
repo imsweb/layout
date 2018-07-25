@@ -1,7 +1,7 @@
 import org.gradle.internal.jvm.Jvm
 
 plugins {
-    id 'java'
+    id 'java-library'
     id 'checkstyle'
     id 'findbugs'
     id 'com.bmuschko.nexus' version '2.3.1'
@@ -16,16 +16,13 @@ println "Starting build using ${Jvm.current()}"
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://oss.sonatype.org/content/repositories/snapshots/'
-    }
 }
 
 dependencies {
-    compile 'au.com.bytecode:opencsv:2.4'
-    compile 'com.thoughtworks.xstream:xstream:1.4.10'
-    compile 'com.imsweb:naaccr-xml:4.10'
-    testCompile 'junit:junit:4.12'
+    api 'com.imsweb:naaccr-xml:4.10'
+    implementation 'au.com.bytecode:opencsv:2.4'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.10'
+    testImplementation 'junit:junit:4.12'
 }
 
 // enforce UTF-8 for all compilation tasks
@@ -104,8 +101,8 @@ if (version.endsWith('-SNAPSHOT'))
     gradle.startParameter.excludedTaskNames += 'closeAndReleaseRepository'
 
 // Gradle wrapper, this allows to build the project without having to install Gradle!
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.6'
+wrapper {
+    gradleVersion = '4.9'
 }
 
 
