@@ -3,7 +3,7 @@ import org.gradle.internal.jvm.Jvm
 plugins {
     id 'java-library'
     id 'checkstyle'
-    id 'net.ltgt.errorprone-javacplugin' version '0.3'
+    id "net.ltgt.errorprone" version "0.0.16"
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.8.0'
 }
@@ -11,6 +11,7 @@ plugins {
 group = 'com.imsweb'
 version = file('VERSION').text.trim()
 description = 'Framework that allows defining file formats (layouts) and use them to read and write data files.'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 println "Starting build using ${Jvm.current()}"
 
@@ -31,7 +32,7 @@ dependencies {
 // enforce UTF-8, display the compilation warnings
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation' << '-Werror' << '-Xplugin:ErrorProne'
+    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
 }
 
 // the Javadoc was made way too strict in Java 8 and it's not worth the time fixing everything!
