@@ -16,7 +16,7 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import au.com.bytecode.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 
 import com.imsweb.layout.Field.FieldAlignment;
 import com.imsweb.layout.LayoutFactory;
@@ -35,7 +35,6 @@ public class CommaSeparatedLayoutTest {
 
     /**
      * Created on Jun 25, 2012 by depryf
-     * @throws Exception
      */
     @Test
     public void testLayout() throws Exception {
@@ -52,7 +51,7 @@ public class CommaSeparatedLayoutTest {
 
         // test loading the layout from a file
         layout = new CommaSeparatedLayout(new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/testing-layout-comma-separated.xml"));
-                Assert.assertEquals("test-csv", layout.getLayoutId());
+        Assert.assertEquals("test-csv", layout.getLayoutId());
         Assert.assertEquals("Test CSV", layout.getLayoutName());
         Assert.assertEquals("1.0", layout.getLayoutVersion());
         Assert.assertEquals("Just for testing...", layout.getLayoutDescription());
@@ -219,7 +218,7 @@ public class CommaSeparatedLayoutTest {
         // regular CSV fields don't have subfields; only fixed-column fields have those, so we have to tweak the design a bit...
         final Map<Integer, List<FixedColumnsField>> subFields = new HashMap<>();
         int idx = 1;
-        for (String header : new CSVParser().parseLine(firstLine)) {
+        for (String header : new CSVParserBuilder().build().parseLine(firstLine)) {
             FixedColumnsField field = null;
             if (header.matches("#\\d+"))
                 field = naaccrLayout.getFieldByNaaccrItemNumber(Integer.valueOf(header.substring(1)));
@@ -398,11 +397,11 @@ public class CommaSeparatedLayoutTest {
         f2.setName("f2");
         f2.setLongLabel("Field 2");
 
-        Assert.assertFalse(f1.equals(f2));
-        Assert.assertFalse(f1.hashCode() == f2.hashCode());
+        Assert.assertNotEquals(f1, f2);
+        Assert.assertNotEquals(f1.hashCode(), f2.hashCode());
 
         f2.setName("f1");
-        Assert.assertTrue(f1.equals(f2));
-        Assert.assertTrue(f1.hashCode() == f2.hashCode());
+        Assert.assertEquals(f1, f2);
+        Assert.assertEquals(f1.hashCode(), f2.hashCode());
     }
 }

@@ -1,7 +1,6 @@
 package com.imsweb.layout;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -380,9 +379,8 @@ public final class LayoutFactory {
      * <p/>
      * @param file file to analyze
      * @return the list of layout info representing the layouts that can handle this data file.
-     * @throws IOException if there is a problem reading the file
      */
-    public static List<LayoutInfo> discoverFormat(File file) throws IOException {
+    public static List<LayoutInfo> discoverFormat(File file) {
         return discoverFormat(file, null, new LayoutInfoDiscoveryOptions());
     }
 
@@ -394,9 +392,8 @@ public final class LayoutFactory {
      * @param file file to analyze
      * @param zipEntryName zip entry to use if the file is a zip file, not used if the file is not a zip file
      * @return the list of layout info representing the layouts that can handle this data file.
-     * @throws IOException if there is a problem reading the file
      */
-    public static List<LayoutInfo> discoverFormat(File file, String zipEntryName) throws IOException {
+    public static List<LayoutInfo> discoverFormat(File file, String zipEntryName) {
         return discoverFormat(file, zipEntryName, null);
     }
 
@@ -408,9 +405,8 @@ public final class LayoutFactory {
      * @param file file to analyze
      * @param options discovery options
      * @return the list of layout info representing the layouts that can handle this data file.
-     * @throws IOException if there is a problem reading the file
      */
-    public static List<LayoutInfo> discoverFormat(File file, LayoutInfoDiscoveryOptions options) throws IOException {
+    public static List<LayoutInfo> discoverFormat(File file, LayoutInfoDiscoveryOptions options) {
         return discoverFormat(file, null, options);
     }
 
@@ -432,9 +428,8 @@ public final class LayoutFactory {
      * @param zipEntryName optional zip entry to use if the file is a zip file, not used if the file is not a zip file
      * @param options discovery options
      * @return the list of layout info representing the layouts that can handle this data file.
-     * @throws IOException if there is a problem reading the file
      */
-    public static List<LayoutInfo> discoverFormat(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) throws IOException {
+    public static List<LayoutInfo> discoverFormat(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
         List<LayoutInfo> result = new ArrayList<>();
 
         if (options == null)

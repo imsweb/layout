@@ -185,19 +185,19 @@ public class NaaccrHl7Layout implements Layout {
     }
 
     // helper
-    protected NaaccrHl7Field createFieldFromXmlComponent(Hl7ComponentXmlDto hl7CompoentdXmlDto) throws IOException {
+    protected NaaccrHl7Field createFieldFromXmlComponent(Hl7ComponentXmlDto hl7ComponentXmlDto) {
         NaaccrHl7Field field = new NaaccrHl7Field();
 
-        field.setName(hl7CompoentdXmlDto.getName());
-        field.setIdentifier(hl7CompoentdXmlDto.getIdentifier());
-        field.setLongLabel(hl7CompoentdXmlDto.getLongLabel());
-        field.setType(hl7CompoentdXmlDto.getType());
+        field.setName(hl7ComponentXmlDto.getName());
+        field.setIdentifier(hl7ComponentXmlDto.getIdentifier());
+        field.setLongLabel(hl7ComponentXmlDto.getLongLabel());
+        field.setType(hl7ComponentXmlDto.getType());
 
         return field;
     }
 
     // helper
-    protected NaaccrHl7Field createFieldFromXmlSubComponent(Hl7SubComponentXmlDto hl7FSubComponentXmlDto) throws IOException {
+    protected NaaccrHl7Field createFieldFromXmlSubComponent(Hl7SubComponentXmlDto hl7FSubComponentXmlDto) {
         NaaccrHl7Field field = new NaaccrHl7Field();
 
         field.setName(hl7FSubComponentXmlDto.getName());

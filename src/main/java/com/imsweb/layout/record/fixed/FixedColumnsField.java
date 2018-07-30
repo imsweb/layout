@@ -95,12 +95,8 @@ public class FixedColumnsField extends Field {
         if (getClass() != obj.getClass())
             return false;
         Field other = (Field)obj;
-        if (_name == null) {
-            if (other.getName() != null)
-                return false;
-        }
-        else if (!_name.equals(other.getName()))
-            return false;
-        return true;
+        if (_name == null)
+            return other.getName() == null;
+        else return _name.equals(other.getName());
     }
 }

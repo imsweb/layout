@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.12**
+
+- Updated CSV library to version 4.2.
+
 **Changes in version 1.11**
 
 - Updated NAACCR XML library to version 4.10.

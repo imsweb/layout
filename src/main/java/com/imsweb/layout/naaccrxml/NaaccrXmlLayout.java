@@ -110,7 +110,7 @@ public class NaaccrXmlLayout implements Layout {
 
             //Load the flat file layout corresponding to the base dictionary and record type for this layout
             StringBuilder flatFileId = new StringBuilder("naaccr-");
-            flatFileId.append(_naaccrVersion.substring(0, 2)).append("-");
+            flatFileId.append(_naaccrVersion, 0, 2).append("-");
             switch (_recordType) {
                 case "M":
                     flatFileId.append("modified");
@@ -130,7 +130,7 @@ public class NaaccrXmlLayout implements Layout {
                 throw new RuntimeException("Could not find corresponding flat layout '" + flatFileId + "'");
 
             //Get all item definitions, create fields and add to layout's field list
-            for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[_userDictionaries.size()])).getItems()) {
+            for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[0])).getItems()) {
                 if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
                     NaaccrXmlField field = new NaaccrXmlField(item);
                     _allFields.add(field);
@@ -194,10 +194,11 @@ public class NaaccrXmlLayout implements Layout {
                 if (longLabels.contains(field.getLongLabel()))
                     throw new RuntimeException("Field long labels must be unique, found duplicate name for '" + field.getLongLabel() + "'");
                 longLabels.add(field.getLongLabel());
-                if (field.getNaaccrItemNum() != null)
+                if (field.getNaaccrItemNum() != null) {
                     if (naaccrItemNums.contains(field.getNaaccrItemNum().toString()))
                         throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
-                naaccrItemNums.add(field.getNaaccrItemNum().toString());
+                    naaccrItemNums.add(field.getNaaccrItemNum().toString());
+                }
                 if (field.getLength() == null)
                     throw new RuntimeException("Field length is required, missing for field " + field.getName());
                 if (field.getParentXmlElement() == null)

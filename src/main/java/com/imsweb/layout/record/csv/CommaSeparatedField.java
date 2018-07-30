@@ -52,7 +52,6 @@ public class CommaSeparatedField extends Field {
         this._maxLength = maxLength;
     }
 
-
     @Override
     public String toString() {
         return "Field [name=" + _name + "]";
@@ -75,12 +74,8 @@ public class CommaSeparatedField extends Field {
         if (getClass() != obj.getClass())
             return false;
         Field other = (Field)obj;
-        if (_name == null) {
-            if (other.getName() != null)
-                return false;
-        }
-        else if (!_name.equals(other.getName()))
-            return false;
-        return true;
+        if (_name == null)
+            return other.getName() == null;
+        return _name.equals(other.getName());
     }
 }

@@ -160,7 +160,6 @@ public class FixedColumnsLayout extends RecordLayout {
      * Created on Aug 16, 2011 by depryf
      * @param dto <code>FixedColumnLayoutFieldXmlDto</code> to translate
      * @return the translated <code>Field</code>
-     * @throws IOException
      */
     protected FixedColumnsField createFieldFromXmlField(FixedColumnLayoutFieldXmlDto dto) throws IOException {
         FixedColumnsField field = new FixedColumnsField();
@@ -266,9 +265,11 @@ public class FixedColumnsLayout extends RecordLayout {
      * Created on Sep 16, 2011 by depryf
      * @param line data line
      * @return the expected line length for the given data line
-     * @throws IOException
+     * @deprecated Use getLayoutLineLength() instead.
      */
-    protected Integer getLengthFromLine(String line) throws IOException {
+    @Deprecated
+    @SuppressWarnings("unused")
+    protected Integer getLengthFromLine(String line) {
         return _layoutLineLength;
     }
 
@@ -278,9 +279,11 @@ public class FixedColumnsLayout extends RecordLayout {
      * Created on Sep 16, 2011 by depryf
      * @param record record
      * @return the expected line length for the given record
-     * @throws IOException
+     * @deprecated Use getLayoutLineLength() instead.
      */
-    protected Integer getLengthFromRecord(Map<String, String> record) throws IOException {
+    @Deprecated
+    @SuppressWarnings("unused")
+    protected Integer getLengthFromRecord(Map<String, String> record) {
         return _layoutLineLength;
     }
 
@@ -307,8 +310,6 @@ public class FixedColumnsLayout extends RecordLayout {
 
         if (record == null)
             record = new HashMap<>();
-
-        Integer formatLength = getLengthFromRecord(record);
 
         int currentIndex = 1;
         for (FixedColumnsField field : _fields) {
@@ -356,7 +357,7 @@ public class FixedColumnsLayout extends RecordLayout {
                         result.append(' ');
                 currentIndex = end + 1;
             }
-            else if (end <= formatLength) { // do not write the current field out if it can potentially go out of the line
+            else if (end <= _layoutLineLength) { // do not write the current field out if it can potentially go out of the line
                 String value = record.get(field.getName());
                 if (value == null)
                     value = field.getDefaultValue() != null ? field.getDefaultValue() : "";
@@ -374,8 +375,8 @@ public class FixedColumnsLayout extends RecordLayout {
         }
 
         // adjust for the "leading" gap
-        if (currentIndex <= formatLength)
-            for (int i = 0; i < formatLength - currentIndex + 1; i++)
+        if (currentIndex <= _layoutLineLength)
+            for (int i = 0; i < _layoutLineLength - currentIndex + 1; i++)
                 result.append(' ');
 
         return result.toString();
@@ -409,22 +410,20 @@ public class FixedColumnsLayout extends RecordLayout {
         }
 
         // if we need to enforce the format, get the expected line length; otherwise read until the EOL
-        int formatLength = line.length();
         if (getOptions().enforceStrictFormat()) {
             String validationMsg = validateLine(line, lineNumberSafe);
             if (validationMsg != null)
                 throw new IOException(validationMsg);
-            formatLength = getLengthFromLine(line);
         }
 
         for (FixedColumnsField field : _fields) {
             int start = field.getStart();
             int end = field.getEnd();
 
-            if (end > formatLength)
+            if (end > line.length())
                 break;
 
-            // why are we instanciating a new String? http://blog.mikemccandless.com/2010/06/beware-stringsubstrings-memory-usage.html
+            // http://blog.mikemccandless.com/2010/06/beware-stringsubstrings-memory-usage.html
             String value = new String(line.substring(start - 1, end));
 
             // can we trim the value?

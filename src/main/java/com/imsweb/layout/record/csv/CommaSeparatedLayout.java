@@ -11,13 +11,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import au.com.bytecode.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
@@ -154,7 +155,7 @@ public class CommaSeparatedLayout extends RecordLayout {
             parentLayout.getAllFields().stream().filter(field -> !_cachedByName.containsKey(field.getName())).forEach(this::addField);
 
         // sort the fields by index
-        Collections.sort(_fields, (f1, f2) -> f1.getIndex().compareTo(f2.getIndex()));
+        _fields.sort(Comparator.comparing(CommaSeparatedField::getIndex));
 
         // final verifications
         try {
@@ -171,9 +172,8 @@ public class CommaSeparatedLayout extends RecordLayout {
      * Created on Aug 16, 2011 by depryf
      * @param dto <code>CommaSeparatedLayoutFieldXmlDto</code> to translate
      * @return the translated <code>Field</code>
-     * @throws IOException
      */
-    protected CommaSeparatedField createFieldFromXmlField(CommaSeparatedLayoutFieldXmlDto dto) throws IOException {
+    protected CommaSeparatedField createFieldFromXmlField(CommaSeparatedLayoutFieldXmlDto dto) {
         CommaSeparatedField field = new CommaSeparatedField();
 
         field.setName(dto.getName());
@@ -203,7 +203,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         fields.forEach(this::addField);
 
         // sort the fields by index
-        Collections.sort(_fields, (f1, f2) -> f1.getIndex().compareTo(f2.getIndex()));
+        _fields.sort(Comparator.comparing(CommaSeparatedField::getIndex));
 
         // verify they make sense
         verify();
@@ -277,7 +277,7 @@ public class CommaSeparatedLayout extends RecordLayout {
             msg.append("line ").append(lineNumber).append(": line is empty");
         else {
             try {
-                int numFields = new CSVParser(_separator).parseLine(line).length;
+                int numFields = new CSVParserBuilder().withSeparator(_separator).build().parseLine(line).length;
                 if (numFields != _numFields)
                     msg.append("line ").append(lineNumber).append(": wrong number of fields, expected ").append(_numFields).append(" but got ").append(numFields);
             }
@@ -346,7 +346,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         }
 
         // parse the line
-        String[] values = new CSVParser(_separator).parseLine(line);
+        String[] values = new CSVParserBuilder().withSeparator(_separator).build().parseLine(line);
 
         for (CommaSeparatedField field : _fields) {
             int index = field.getIndex() - 1;
@@ -373,7 +373,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         // this default implementation is based only on the number of fields, only if we don't enforce the strict format
         if (firstRecord != null && options.isCommaSeparatedAllowDiscoveryFromNumFields()) {
             try {
-                if (new CSVParser(_separator).parseLine(firstRecord).length == _numFields) {
+                if (new CSVParserBuilder().withSeparator(_separator).build().parseLine(firstRecord).length == _numFields) {
                     result = new LayoutInfo();
                     result.setLayoutId(getLayoutId());
                     result.setLayoutName(getLayoutName());

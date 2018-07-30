@@ -161,7 +161,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param outputStream OutputStream to write to
      * @param record Record to be written to the OuputStream
-     * @throws IOException
      */
     public void writeRecord(OutputStream outputStream, Map<String, String> record) throws IOException {
         outputStream.write(createLineFromRecord(record).getBytes("UTF-8"));
@@ -176,7 +175,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param outputStream OutputStream to write to
      * @param records Records to be written to the OuputStream
-     * @throws IOException
      */
     public void writeRecords(OutputStream outputStream, List<Map<String, String>> records) throws IOException {
         for (Map<String, String> record : records) {
@@ -193,7 +191,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param writer Writer to write to
      * @param record Record to be written to the Writer
-     * @throws IOException
      */
     public void writeRecord(Writer writer, Map<String, String> record) throws IOException {
         writer.write(createLineFromRecord(record));
@@ -208,7 +205,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param writer Writer to write to
      * @param records Records to be written to the Writer
-     * @throws IOException
      */
     public void writeRecords(Writer writer, List<Map<String, String>> records) throws IOException {
         for (Map<String, String> record : records) {
@@ -225,7 +221,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param file File to write to
      * @param record Record to be written to the File
-     * @throws IOException
      */
     public void writeRecord(File file, Map<String, String> record) throws IOException {
         writeRecords(file, Collections.singletonList(record));
@@ -239,20 +234,13 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param file File to write to
      * @param records Records to be written to the File
-     * @throws IOException
      */
     public void writeRecords(File file, List<Map<String, String>> records) throws IOException {
-        BufferedOutputStream out = null;
-        try {
-            out = new BufferedOutputStream(new FileOutputStream(file));
+        try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file))) {
             for (Map<String, String> record : records) {
                 out.write(createLineFromRecord(record).getBytes(StandardCharsets.UTF_8));
                 out.write(System.getProperty("line.separator").getBytes(StandardCharsets.UTF_8));
             }
-        }
-        finally {
-            if (out != null)
-                out.close();
         }
     }
 
@@ -262,7 +250,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param lineReader Used to get the next line from a file; Cannot be null
      * @return A map of the data from the line read by the LineNumberReader
-     * @throws IOException
      */
     public Map<String, String> readNextRecord(LineNumberReader lineReader) throws IOException {
         String line = lineReader.readLine();
@@ -278,7 +265,6 @@ public abstract class RecordLayout implements Layout {
      * @param inputStream Stream to the data
      * @param encoding the encoding to use (null means default OS encoding)
      * @return A list of the records created from the data in the InputStream
-     * @throws IOException
      */
     public List<Map<String, String>> readAllRecords(InputStream inputStream, String encoding) throws IOException {
         List<Map<String, String>> result = new ArrayList<>();
@@ -301,7 +287,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param reader Reader containing the data
      * @return A list of the records created from the data read from the Reader
-     * @throws IOException
      */
     public List<Map<String, String>> readAllRecords(Reader reader) throws IOException {
         List<Map<String, String>> result = new ArrayList<>();
@@ -320,7 +305,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param file File containing data
      * @return A list of the records created from the data in the File
-     * @throws IOException
      */
     public List<Map<String, String>> readAllRecords(File file) throws IOException {
         return readAllRecords(file, null);
@@ -333,27 +317,19 @@ public abstract class RecordLayout implements Layout {
      * @param file File containing data
      * @param zipEntry the zip entry to use in the file if it's a zip file (if none are provided and the file contains several entries, an exception will be thrown)
      * @return A list of the records created from the data in the File
-     * @throws IOException
      */
     public List<Map<String, String>> readAllRecords(File file, String zipEntry) throws IOException {
         List<Map<String, String>> result = new ArrayList<>();
 
-        LineNumberReader r = null;
-        try {
-            r = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntry), StandardCharsets.UTF_8));
-
-            String line;
+        try (LineNumberReader r = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntry), StandardCharsets.UTF_8))) {
 
             // some CSV layout need to ignore the first line (see issue #2)
             if (this instanceof CommaSeparatedLayout && ((CommaSeparatedLayout)this).ignoreFirstLine())
                 r.readLine();
 
+            String line;
             while ((line = r.readLine()) != null)
                 result.add(createRecordFromLine(line, r.getLineNumber()));
-        }
-        finally {
-            if (r != null)
-                r.close();
         }
 
         return result;
@@ -378,7 +354,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param line data line
      * @return a map representing a record
-     * @throws IOException
      */
     public Map<String, String> createRecordFromLine(String line) throws IOException {
         return createRecordFromLine(line, null);
@@ -391,7 +366,6 @@ public abstract class RecordLayout implements Layout {
      * @param line data line
      * @param lineNumber line number (use null if no line number available)
      * @return a map representing a record
-     * @throws IOException
      */
     public abstract Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException;
 
@@ -401,7 +375,6 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param record record to convert
      * @return a data line
-     * @throws IOException
      */
     public abstract String createLineFromRecord(Map<String, String> record) throws IOException;
 
