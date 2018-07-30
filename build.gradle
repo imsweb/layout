@@ -21,8 +21,9 @@ repositories {
 
 dependencies {
     api 'com.imsweb:naaccr-xml:4.10'
-    api 'com.opencsv:opencsv:4.2'
-    api 'com.thoughtworks.xstream:xstream:1.4.10'
+
+    implementation 'com.opencsv:opencsv:4.2'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.10'
 
     testImplementation 'junit:junit:4.12'
 
