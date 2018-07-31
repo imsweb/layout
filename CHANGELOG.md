@@ -2,6 +2,7 @@
 
 **Changes in version 1.12**
 
+- Updated NAACCR XML library to version 4.11.
 - Updated CSV library to version 4.2.
 
 **Changes in version 1.11**
