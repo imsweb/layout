@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:4.10'
+    api 'com.imsweb:naaccr-xml:4.11'
 
     implementation 'com.opencsv:opencsv:4.2'
     implementation 'com.thoughtworks.xstream:xstream:1.4.10'
