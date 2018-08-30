@@ -13,7 +13,7 @@ public class NaaccrXmlField extends Field {
 
     private NaaccrDictionaryItem _item;
 
-    protected List<NaaccrXmlField> _subFields;
+    private List<NaaccrXmlField> _subFields;
 
     public NaaccrXmlField() {
         super();

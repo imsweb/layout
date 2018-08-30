@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -184,13 +185,24 @@ public class NaaccrXmlLayoutTest {
         item.setNaaccrName("Item name");
         item.setLength(1);
         item.setParentXmlElement("Patient");
-        userDictionary.setItems(Collections.singletonList(item));
+        NaaccrDictionaryItem dateItem = new NaaccrDictionaryItem();
+        dateItem.setNaaccrId("dateId");
+        dateItem.setNaaccrNum(10004);
+        dateItem.setNaaccrName("Date Name");
+        dateItem.setLength(8);
+        dateItem.setParentXmlElement("Patient");
+        dateItem.setDataType("date");
+        userDictionary.setItems(Arrays.asList(item, dateItem));
 
         layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(userDictionary), true);
-        Assert.assertEquals(565, layout.getAllFields().size());
+        Assert.assertEquals(566, layout.getAllFields().size());
         Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10003));
         Assert.assertNotNull(layout.getFieldByName("itemId"));
         Assert.assertEquals(1, layout.getUserDictionaries().size());
+        Assert.assertEquals(3, layout.getFieldByName("dateId").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("itemId").getSubFields());
+        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
 
         layout = new NaaccrXmlLayout("160", "M", "test-id", "test-name", null, true);
         Assert.assertEquals("M", layout.getRecordType());
