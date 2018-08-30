@@ -171,6 +171,8 @@ public class NaaccrXmlLayoutTest {
         Assert.assertNotNull(layout.getFieldByName("recordType"));
         Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(37));
         Assert.assertNotNull(layout.getFieldByName("reserved00"));
+        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
 
         //User dictionary for testing
         NaaccrDictionary userDictionary = new NaaccrDictionary();
@@ -210,6 +212,8 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals(1, layout.getUserDictionaries().size());
         Assert.assertEquals("150", layout.getUserDictionaries().get(0).getNaaccrVersion());
         Assert.assertEquals(555, layout.getAllFields().size());
+        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
 
         layout = new NaaccrXmlLayout("150", "M", "test-id", "test-name", null, true);
         Assert.assertEquals("M", layout.getRecordType());
@@ -232,6 +236,8 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals("140", layout.getUserDictionaries().get(0).getNaaccrVersion());
         Assert.assertEquals(548, layout.getAllFields().size());
         Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(10));
+        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
 
         layout = new NaaccrXmlLayout("140", "M", "test-id", "test-name", null, true);
         Assert.assertEquals("M", layout.getRecordType());
@@ -359,7 +365,7 @@ public class NaaccrXmlLayoutTest {
     @Test
     public void testReadMethods() throws IOException {
         NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
-        File file = new File(TestingUtils.getWorkingDirectory()+ "/src/test/resources/xml-reader-two-patients.xml");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml-reader-two-patients.xml");
         NaaccrOptions options = new NaaccrOptions();
         options.setUseStrictNamespaces(false);
         List<Patient> patients;

@@ -133,6 +133,27 @@ public class NaaccrXmlLayout implements Layout {
             for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[0])).getItems()) {
                 if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
                     NaaccrXmlField field = new NaaccrXmlField(item);
+
+                    //If the field is a date, add child fields for the year, month and day parts
+                    if ("date".equals(item.getDataType())) {
+                        NaaccrDictionaryItem yearItem = new NaaccrDictionaryItem();
+                        yearItem.setNaaccrId(item.getNaaccrId() + "Year");
+                        yearItem.setNaaccrName(" (Year)");
+                        NaaccrXmlField yearFld = new NaaccrXmlField(yearItem);
+
+                        NaaccrDictionaryItem monthItem = new NaaccrDictionaryItem();
+                        monthItem.setNaaccrId(item.getNaaccrId() + "Month");
+                        monthItem.setNaaccrName(" (Month)");
+                        NaaccrXmlField monthFld = new NaaccrXmlField(monthItem);
+
+                        NaaccrDictionaryItem dayItem = new NaaccrDictionaryItem();
+                        dayItem.setNaaccrId(item.getNaaccrId() + "Day");
+                        dayItem.setNaaccrName(" (Day)");
+                        NaaccrXmlField dayFld = new NaaccrXmlField(dayItem);
+                        
+                        field.setSubFields(Arrays.asList(yearFld, monthFld, dayFld));
+                    }
+
                     _allFields.add(field);
                     _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
                     _fieldsCachedByName.put(field.getNaaccrId(), field);
