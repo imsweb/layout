@@ -3,6 +3,7 @@
 **Changes in version 1.13**
 
 - Updated NAACCR 18 field documentation.
+- Add subfield variable to NaaccrXmlField
 
 **Changes in version 1.12**
 

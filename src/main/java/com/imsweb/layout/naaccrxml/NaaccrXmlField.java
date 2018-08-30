@@ -3,6 +3,7 @@
  */
 package com.imsweb.layout.naaccrxml;
 
+import java.util.List;
 import java.util.Objects;
 
 import com.imsweb.layout.Field;
@@ -11,6 +12,8 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 public class NaaccrXmlField extends Field {
 
     private NaaccrDictionaryItem _item;
+
+    private List<NaaccrXmlField> _subFields;
 
     public NaaccrXmlField() {
         super();
@@ -67,6 +70,14 @@ public class NaaccrXmlField extends Field {
 
     public String getTrimType() {
         return _item.getTrim();
+    }
+
+    public List<NaaccrXmlField> getSubFields() {
+        return _subFields;
+    }
+
+    public void setSubFields(List<NaaccrXmlField> subFields) {
+        _subFields = subFields;
     }
 
     @Override
