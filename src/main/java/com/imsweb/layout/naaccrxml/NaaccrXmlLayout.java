@@ -138,19 +138,22 @@ public class NaaccrXmlLayout implements Layout {
                     if ("date".equals(item.getDataType())) {
                         NaaccrDictionaryItem yearItem = new NaaccrDictionaryItem();
                         yearItem.setNaaccrId(item.getNaaccrId() + "Year");
-                        yearItem.setNaaccrName(" (Year)");
+                        yearItem.setNaaccrName(field.getNaaccrName() + " (Year)");
+                        yearItem.setParentXmlElement(field.getParentXmlElement());
                         NaaccrXmlField yearFld = new NaaccrXmlField(yearItem);
 
                         NaaccrDictionaryItem monthItem = new NaaccrDictionaryItem();
                         monthItem.setNaaccrId(item.getNaaccrId() + "Month");
-                        monthItem.setNaaccrName(" (Month)");
+                        monthItem.setNaaccrName(field.getNaaccrName() + " (Month)");
+                        monthItem.setParentXmlElement(field.getParentXmlElement());
                         NaaccrXmlField monthFld = new NaaccrXmlField(monthItem);
 
                         NaaccrDictionaryItem dayItem = new NaaccrDictionaryItem();
                         dayItem.setNaaccrId(item.getNaaccrId() + "Day");
-                        dayItem.setNaaccrName(" (Day)");
+                        dayItem.setNaaccrName(field.getNaaccrName() + " (Day)");
+                        dayItem.setParentXmlElement(field.getParentXmlElement());
                         NaaccrXmlField dayFld = new NaaccrXmlField(dayItem);
-                        
+
                         field.setSubFields(Arrays.asList(yearFld, monthFld, dayFld));
                     }
 

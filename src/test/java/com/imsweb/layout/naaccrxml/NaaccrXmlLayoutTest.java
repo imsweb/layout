@@ -175,6 +175,12 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
         Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
 
+        //Check subfield values
+        NaaccrXmlField yearFld = layout.getFieldByName("dateOfDiagnosis").getSubFields().get(0);
+        Assert.assertEquals("dateOfDiagnosisYear", yearFld.getNaaccrId());
+        Assert.assertEquals("Date of Diagnosis (Year)", yearFld.getNaaccrName());
+        Assert.assertEquals(NaaccrXmlUtils.NAACCR_XML_TAG_TUMOR, yearFld.getParentXmlElement());
+
         //User dictionary for testing
         NaaccrDictionary userDictionary = new NaaccrDictionary();
         userDictionary.setDictionaryUri("http://mycompany.org/my-very-own-naaccr-dictionary.xml");
