@@ -2,6 +2,7 @@
 
 **Changes in version 1.13**
 
+- Updated NAACCR XML library to version 4.12.
 - Fixed alignment of items #3823 and #3846 in NAACCR 18 layout.
 - Updated NAACCR 18 field documentation.
 - Add subfield variable to NaaccrXmlField
