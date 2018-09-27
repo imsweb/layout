@@ -23,7 +23,6 @@ public class NaaccrXmlField extends Field {
         super();
         _item = item;
         _name = item.getNaaccrId();
-        _shortLabel = item.getNaaccrName();
         _longLabel = item.getNaaccrName();
         _naaccrItemNum = item.getNaaccrNum();
     }

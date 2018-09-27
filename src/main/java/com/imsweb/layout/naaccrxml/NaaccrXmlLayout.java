@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.imsweb.layout.Field;
 import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
@@ -133,6 +134,8 @@ public class NaaccrXmlLayout implements Layout {
             for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[0])).getItems()) {
                 if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
                     NaaccrXmlField field = new NaaccrXmlField(item);
+                    Field flatField = _flatLayout.getFieldByNaaccrItemNumber(item.getNaaccrNum());
+                    field.setShortLabel(flatField == null ? item.getNaaccrName() : flatField.getShortLabel());
 
                     //If the field is a date, add child fields for the year, month and day parts
                     if ("date".equals(item.getDataType())) {
