@@ -138,7 +138,7 @@ public class NaaccrXmlLayout implements Layout {
                     field.setShortLabel(flatField == null ? item.getNaaccrName() : flatField.getShortLabel());
 
                     //If the field is a date, add child fields for the year, month and day parts
-                    if ("date".equals(item.getDataType())) {
+                    if (NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DATE.equals(item.getDataType())) {
                         NaaccrDictionaryItem yearItem = new NaaccrDictionaryItem();
                         yearItem.setNaaccrId(item.getNaaccrId() + "Year");
                         yearItem.setNaaccrName(field.getNaaccrName() + " (Year)");

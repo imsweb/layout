@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.14**
+
+- Added short label to NAACCR XML fields.
+
 **Changes in version 1.13**
 
 - Updated NAACCR XML library to version 4.12.
