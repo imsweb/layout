@@ -3,6 +3,7 @@
 **Changes in version 1.14**
 
 - Added short label to NAACCR XML fields.
+- Updated NAACCR 18 field documentation.
 
 **Changes in version 1.13**
 
