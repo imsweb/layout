@@ -346,6 +346,10 @@ public class NaaccrXmlLayoutTest {
         //There are 478 fields in the base dictionary and 4 fields in the custom user dictionary that apply to the "Incidence" type.
         layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", Collections.singletonList(userDictionary), true);
         Assert.assertEquals(482, layout.getAllFields().size());
+        Assert.assertEquals(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE).getFieldByName("recordType").getShortLabel(), layout.getFieldByName("recordType").getShortLabel());
+        Assert.assertEquals("DX Yr", layout.getFieldByName("dateOfDiagnosis").getSubFields().get(0).getShortLabel());
+        Assert.assertEquals("DX Mth", layout.getFieldByName("dateOfDiagnosis").getSubFields().get(1).getShortLabel());
+        Assert.assertEquals("DX Day", layout.getFieldByName("dateOfDiagnosis").getSubFields().get(2).getShortLabel());
     }
 
     @Test

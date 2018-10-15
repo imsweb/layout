@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.imsweb.layout.Field;
 import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
@@ -133,26 +134,35 @@ public class NaaccrXmlLayout implements Layout {
             for (NaaccrDictionaryItem item : NaaccrXmlDictionaryUtils.mergeDictionaries(_baseDictionary, _userDictionaries.toArray(new NaaccrDictionary[0])).getItems()) {
                 if (item.getRecordTypes() == null || item.getRecordTypes().isEmpty() || item.getRecordTypes().contains(_recordType)) {
                     NaaccrXmlField field = new NaaccrXmlField(item);
+                    Field flatField = _flatLayout.getFieldByNaaccrItemNumber(item.getNaaccrNum());
+                    field.setShortLabel(flatField == null ? item.getNaaccrName() : flatField.getShortLabel());
 
                     //If the field is a date, add child fields for the year, month and day parts
-                    if ("date".equals(item.getDataType())) {
+                    if (NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DATE.equals(item.getDataType())) {
+                        String shortLbl = field.getShortLabel();
+                        if (shortLbl.endsWith(" Dt"))
+                            shortLbl = shortLbl.substring(0, shortLbl.length() - 3);
+
                         NaaccrDictionaryItem yearItem = new NaaccrDictionaryItem();
                         yearItem.setNaaccrId(item.getNaaccrId() + "Year");
                         yearItem.setNaaccrName(field.getNaaccrName() + " (Year)");
                         yearItem.setParentXmlElement(field.getParentXmlElement());
                         NaaccrXmlField yearFld = new NaaccrXmlField(yearItem);
+                        yearFld.setShortLabel(shortLbl + " Yr");
 
                         NaaccrDictionaryItem monthItem = new NaaccrDictionaryItem();
                         monthItem.setNaaccrId(item.getNaaccrId() + "Month");
                         monthItem.setNaaccrName(field.getNaaccrName() + " (Month)");
                         monthItem.setParentXmlElement(field.getParentXmlElement());
                         NaaccrXmlField monthFld = new NaaccrXmlField(monthItem);
+                        monthFld.setShortLabel(shortLbl + " Mth");
 
                         NaaccrDictionaryItem dayItem = new NaaccrDictionaryItem();
                         dayItem.setNaaccrId(item.getNaaccrId() + "Day");
                         dayItem.setNaaccrName(field.getNaaccrName() + " (Day)");
                         dayItem.setParentXmlElement(field.getParentXmlElement());
                         NaaccrXmlField dayFld = new NaaccrXmlField(dayItem);
+                        dayFld.setShortLabel(shortLbl + " Day");
 
                         field.setSubFields(Arrays.asList(yearFld, monthFld, dayFld));
                     }

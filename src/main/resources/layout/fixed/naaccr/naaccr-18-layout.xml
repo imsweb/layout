@@ -417,7 +417,7 @@
     <field name="progesteroneReceptorTotalAllredScore" start="1787" end="1788" short-label="PR All" long-label="Progesterone Receptor Total Allred Score" naaccr-item-num="3916" section="Stage/Prognostic Factors"/>
     <field name="ceaPretreatmentInterpretation" start="1789" end="1789" short-label="CEA Pre Inter" long-label="CEA Pretreatment Interpretation" naaccr-item-num="3819" section="Stage/Prognostic Factors"/>
     <field name="ceaPretreatmentLabValue" start="1790" end="1795" short-label="CEA Pre Lab Val" long-label="CEA Pretreatment Lab Value" naaccr-item-num="3820" align="right" section="Stage/Prognostic Factors"/>
-    <field name="circumferentialResectionMargin" start="1796" end="1799" short-label="CRM" long-label="Circumferential Resection Margin (CRM)" naaccr-item-num="3823" section="Stage/Prognostic Factors"/>
+    <field name="circumferentialResectionMargin" start="1796" end="1799" short-label="CRM" long-label="Circumferential Resection Margin (CRM)" naaccr-item-num="3823" align="right" section="Stage/Prognostic Factors"/>
     <field name="kras" start="1800" end="1800" short-label="KRAS" long-label="KRAS" naaccr-item-num="3866" section="Stage/Prognostic Factors"/>
     <field name="microsatelliteInstability" start="1801" end="1801" short-label="MSI" long-label="Microsatellite Instability (MSI)" naaccr-item-num="3890" section="Stage/Prognostic Factors"/>
     <field name="perineuralInvasion" start="1802" end="1802" short-label="Per Inv" long-label="Perineural Invasion" naaccr-item-num="3909" section="Stage/Prognostic Factors"/>
@@ -506,7 +506,7 @@
     <field name="afpPostOrchiectomyRange" start="1966" end="1966" short-label="AFP Post-O Range" long-label="AFP Post-Orchiectomy Range" naaccr-item-num="3806" section="Stage/Prognostic Factors"/>
     <field name="hcgPreOrchiectomyLabValue" start="1967" end="1973" short-label="hCg Pre-O Lab Val" long-label="hCG Pre-orchiectomy Lab Value" naaccr-item-num="3848" align="right" section="Stage/Prognostic Factors"/>
     <field name="hcgPreOrchiectomyRange" start="1974" end="1974" short-label="hcg Pre-O Range" long-label="hCG Pre-orchiectomy Range" naaccr-item-num="3849" section="Stage/Prognostic Factors"/>
-    <field name="hcgPostOrchiectomyLabValue" start="1975" end="1981" short-label="hcg Post-O Lab Val" long-label="hCG Post-orchiectomy Lab Value" naaccr-item-num="3846" section="Stage/Prognostic Factors"/>
+    <field name="hcgPostOrchiectomyLabValue" start="1975" end="1981" short-label="hcg Post-O Lab Val" long-label="hCG Post-orchiectomy Lab Value" naaccr-item-num="3846" align="right" section="Stage/Prognostic Factors"/>
     <field name="hcgPostOrchiectomyRange" start="1982" end="1982" short-label="hcg Post-O Range" long-label="hCG Post-orchiectomy Range" naaccr-item-num="3847" section="Stage/Prognostic Factors"/>
     <field name="ldhPreOrchiectomyRange" start="1983" end="1983" short-label="LDH Pre-O Range" long-label="LDH Pre-Orchiectomy Range" naaccr-item-num="3868" section="Stage/Prognostic Factors"/>
     <field name="ldhPostOrchiectomyRange" start="1984" end="1984" short-label="LDH Post-O Range" long-label="LDH Post-Orchiectomy Range" naaccr-item-num="3867" section="Stage/Prognostic Factors"/>
