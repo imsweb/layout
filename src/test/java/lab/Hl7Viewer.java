@@ -31,8 +31,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.hl7.Hl7MessageBuilder;
+import com.imsweb.layout.hl7.NaaccrHl7Layout;
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
@@ -105,12 +107,15 @@ public class Hl7Viewer extends JFrame {
                 .build());
         // @formatter:on
 
-        //        try {
-        //            messages.addAll(new NaaccrHl7Layout().readAllMessages(new File("C:\\dev\\projects\\seerdms\\app\\src\\test\\resources\\importer\\hl7_naaccr_good1.txt")));
-        //        }
-        //        catch (IOException e) {
-        //            e.printStackTrace();
-        //        }
+        // to display a file, uncomment the following
+        //                try {
+        //                    messages.clear();
+        //                    File file = new File("PATH_TO_YOUR_FILE");
+        //                    messages.addAll(((NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1)).readAllMessages(file));
+        //                }
+        //                catch (IOException e) {
+        //                    e.printStackTrace();
+        //                }
 
         // TODO FP let user select a file, support starting line for messages
 
