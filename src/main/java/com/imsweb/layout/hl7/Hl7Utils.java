@@ -90,7 +90,7 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String messageToString(Hl7Message message) {
-        return messageToString(message, System.getProperty("line.separator"));
+        return messageToString(message, System.lineSeparator());
     }
 
     /**

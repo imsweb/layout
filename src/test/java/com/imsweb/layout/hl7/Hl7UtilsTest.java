@@ -38,8 +38,6 @@ public class Hl7UtilsTest {
 
     @Test
     public void testMessageToString() {
-        String lineSeparator = System.getProperty("line.separator");
-
         // no component
         Hl7Message message = new Hl7Message();
         Assert.assertEquals("", Hl7Utils.messageToString(message));
@@ -61,7 +59,7 @@ public class Hl7UtilsTest {
         addSegment(message, "VL1", "VAL1");
         addSegment(message, "VL2", "VAL2|VAL3");
         addSegment(message, "VL3", "VAL4|VAL5|VAL6");
-        Assert.assertEquals("VL1|VAL1" + lineSeparator + "VL2|VAL2|VAL3" + lineSeparator + "VL3|VAL4|VAL5|VAL6", Hl7Utils.messageToString(message));
+        Assert.assertEquals("VL1|VAL1" + System.lineSeparator() + "VL2|VAL2|VAL3" + System.lineSeparator() + "VL3|VAL4|VAL5|VAL6", Hl7Utils.messageToString(message));
 
         // four ids with some null values
         message = new Hl7Message();
@@ -69,7 +67,7 @@ public class Hl7UtilsTest {
         addSegment(message, "VL2", " ");
         addSegment(message, "VL3", "VAL1");
         addSegment(message, "VL4", "");
-        Assert.assertEquals("VL1|" + lineSeparator + "VL2| " + lineSeparator + "VL3|VAL1" + lineSeparator + "VL4|", Hl7Utils.messageToString(message));
+        Assert.assertEquals("VL1|" + System.lineSeparator() + "VL2| " + System.lineSeparator() + "VL3|VAL1" + System.lineSeparator() + "VL4|", Hl7Utils.messageToString(message));
     }
 
     @Test

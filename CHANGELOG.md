@@ -2,6 +2,7 @@
 
 **Changes in version 1.14**
 
+- Fixed writeRecords method in RecordLayout so it properly handles writing to a GZip file.
 - Added short label to NAACCR XML fields.
 - Updated NAACCR 18 field documentation.
 - Fixed warnings in the console about unsafe access to private fields.

@@ -159,6 +159,7 @@ public class NaaccrHl7Layout implements Layout {
                         subSubFields.add(createFieldFromXmlSubComponent(subComponentXmlDto));
                     if (!subSubFields.isEmpty())
                         subField.setSubFields(subSubFields);
+                    subFields.add(subField);
                 }
                 if (!subFields.isEmpty())
                     field.setSubFields(subFields);
@@ -307,7 +308,7 @@ public class NaaccrHl7Layout implements Layout {
      */
     public void writeMessage(Writer writer, Hl7Message message) throws IOException {
         writer.write(Hl7Utils.messageToString(message));
-        writer.write(System.getProperty("line.separator"));
+        writer.write(System.lineSeparator());
     }
 
     /**

@@ -6,7 +6,6 @@ package com.imsweb.layout.record;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -163,8 +162,8 @@ public abstract class RecordLayout implements Layout {
      * @param record Record to be written to the OuputStream
      */
     public void writeRecord(OutputStream outputStream, Map<String, String> record) throws IOException {
-        outputStream.write(createLineFromRecord(record).getBytes("UTF-8"));
-        outputStream.write(System.getProperty("line.separator").getBytes("UTF-8"));
+        outputStream.write(createLineFromRecord(record).getBytes(StandardCharsets.UTF_8));
+        outputStream.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
     }
 
     /**
@@ -178,8 +177,8 @@ public abstract class RecordLayout implements Layout {
      */
     public void writeRecords(OutputStream outputStream, List<Map<String, String>> records) throws IOException {
         for (Map<String, String> record : records) {
-            outputStream.write(createLineFromRecord(record).getBytes("UTF-8"));
-            outputStream.write(System.getProperty("line.separator").getBytes("UTF-8"));
+            outputStream.write(createLineFromRecord(record).getBytes(StandardCharsets.UTF_8));
+            outputStream.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
         }
     }
 
@@ -194,7 +193,7 @@ public abstract class RecordLayout implements Layout {
      */
     public void writeRecord(Writer writer, Map<String, String> record) throws IOException {
         writer.write(createLineFromRecord(record));
-        writer.write(System.getProperty("line.separator"));
+        writer.write(System.lineSeparator());
     }
 
     /**
@@ -209,7 +208,7 @@ public abstract class RecordLayout implements Layout {
     public void writeRecords(Writer writer, List<Map<String, String>> records) throws IOException {
         for (Map<String, String> record : records) {
             writer.write(createLineFromRecord(record));
-            writer.write(System.getProperty("line.separator"));
+            writer.write(System.lineSeparator());
         }
     }
 
@@ -236,10 +235,10 @@ public abstract class RecordLayout implements Layout {
      * @param records Records to be written to the File
      */
     public void writeRecords(File file, List<Map<String, String>> records) throws IOException {
-        try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file))) {
+        try (BufferedOutputStream out = new BufferedOutputStream(LayoutUtils.createOutputStream(file))) {
             for (Map<String, String> record : records) {
                 out.write(createLineFromRecord(record).getBytes(StandardCharsets.UTF_8));
-                out.write(System.getProperty("line.separator").getBytes(StandardCharsets.UTF_8));
+                out.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
             }
         }
     }
