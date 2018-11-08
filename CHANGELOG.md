@@ -4,6 +4,7 @@
 
 - Added short label to NAACCR XML fields.
 - Updated NAACCR 18 field documentation.
+- Fixed warnings in the console about unsafe access to private fields.
 
 **Changes in version 1.13**
 
