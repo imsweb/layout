@@ -207,9 +207,9 @@ public class NaaccrXmlLayout implements Layout {
 
             //Validate the user dictionaries
             for (NaaccrDictionary userDictionary : _userDictionaries) {
-                String error = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
-                if (error != null)
-                    throw new RuntimeException("Error found on user dictionary - " + error);
+                List<String> errors = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
+                if (!errors.isEmpty())
+                    throw new RuntimeException("Error found on user dictionary - " + errors.get(0));
             }
 
             //validate the NaaccrXmlFields

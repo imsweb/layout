@@ -3,7 +3,7 @@ import org.gradle.internal.jvm.Jvm
 plugins {
     id 'java-library'
     id 'checkstyle'
-    id 'net.ltgt.errorprone' version '0.0.16'
+    id 'com.github.spotbugs' version '1.6.5'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.8.0'
 }
@@ -17,17 +17,18 @@ println "Starting build using ${Jvm.current()}"
 
 repositories {
     mavenCentral()
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:4.12'
+    api 'com.imsweb:naaccr-xml:4.15-SNAPSHOT'
 
     implementation 'com.opencsv:opencsv:4.2'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.10'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
 
     testImplementation 'junit:junit:4.12'
-
-    errorprone 'com.google.errorprone:error_prone_core:2.3.1'
 }
 
 // enforce UTF-8, display the compilation warnings
@@ -58,8 +59,16 @@ jar {
 
 // checkstyle plugin settings
 checkstyle {
+    ignoreFailures = true
     configFile = file('config/checkstyle/checkstyle.xml')
 }
+
+// spotbugs plugin settings
+spotbugs {
+    ignoreFailures = true
+    excludeFilter = file('config/spotbugs/spotbugs-exclude.xml')
+}
+
 
 // needed to deploy to Maven Central
 modifyPom {

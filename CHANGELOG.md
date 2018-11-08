@@ -5,6 +5,8 @@
 - Fixed writeRecords method in RecordLayout so it properly handles writing to a GZip file.
 - Added short label to NAACCR XML fields.
 - Updated NAACCR 18 field documentation.
+- Updated NAACCR XML library from version 4.12 to version 4.15.
+- Updated XStream dependency from version 1.4.10 to version 1.4.11.1.
 - Fixed warnings in the console about unsafe access to private fields.
 
 **Changes in version 1.13**

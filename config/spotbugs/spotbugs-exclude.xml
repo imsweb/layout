@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+<Match>
+  <Class name="com.imsweb.layout.LayoutUtils"/>
+  <Bug code="OS"/>
+</Match>
+<Match>
+  <Bug code="Dm"/>
+</Match>
+<Match>
+  <Class name="~.*\.*Test"/>
+</Match>
+<Match>
+  <Package name="lab"/>
+</Match>
+</FindBugsFilter>
