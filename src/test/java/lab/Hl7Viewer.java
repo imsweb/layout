@@ -31,10 +31,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.hl7.Hl7MessageBuilder;
-import com.imsweb.layout.hl7.NaaccrHl7Layout;
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
