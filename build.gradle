@@ -12,18 +12,16 @@ group = 'com.imsweb'
 version = file('VERSION').text.trim()
 description = 'Framework that allows defining file formats (layouts) and use them to read and write data files.'
 sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 println "Starting build using ${Jvm.current()}"
 
 repositories {
     mavenCentral()
-    maven {
-        url = 'https://oss.sonatype.org/content/repositories/snapshots/'
-    }
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:4.15-SNAPSHOT'
+    api 'com.imsweb:naaccr-xml:4.15'
 
     implementation 'com.opencsv:opencsv:4.2'
     implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
