@@ -388,7 +388,7 @@ public class NaaccrXmlLayoutTest {
     @Test
     public void testReadMethods() throws IOException {
         NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
-        File file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml-reader-two-patients.xml");
+        File file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-two-patients.xml");
         NaaccrOptions options = new NaaccrOptions();
         options.setUseStrictNamespaces(false);
         List<Patient> patients;
