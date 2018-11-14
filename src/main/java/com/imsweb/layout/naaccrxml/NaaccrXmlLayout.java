@@ -28,6 +28,7 @@ import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
+import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 import com.imsweb.naaccrxml.NaaccrFormat;
 import com.imsweb.naaccrxml.NaaccrIOException;
@@ -486,7 +487,13 @@ public class NaaccrXmlLayout implements Layout {
         if (file == null)
             return null;
 
-        Map<String, String> attributes = NaaccrXmlUtils.getAttributesFromXmlFile(file);
+        Map<String, String> attributes;
+        try (InputStreamReader is = new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), StandardCharsets.UTF_8)) {
+            attributes = NaaccrXmlUtils.getAttributesFromXmlReader(is);
+        }
+        catch (IOException e) {
+            return null;
+        }
 
         String recordType = attributes.get(NAACCR_XML_ROOT_ATT_REC_TYPE);
         if (recordType == null || recordType.isEmpty() || !_recordType.equals(recordType))
