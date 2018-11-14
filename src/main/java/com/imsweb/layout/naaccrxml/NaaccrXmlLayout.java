@@ -510,19 +510,8 @@ public class NaaccrXmlLayout implements Layout {
 
         // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries
         String dataUserDict = attributes.get(NAACCR_XML_ROOT_ATT_USER_DICT);
-        if (StringUtils.isNoneBlank(dataUserDict)) {
-            List<String> availableDict = _userDictionaries == null ? Collections.emptyList() : _userDictionaries.stream().map(NaaccrDictionary::getDictionaryUri).collect(Collectors.toList());
-
-            List<String> requestedAndKnown = new ArrayList<>(), requestedButUnknown = new ArrayList<>();
-            for (String uri : StringUtils.split(dataUserDict, " ")) {
-                if (availableDict.contains(uri))
-                    requestedAndKnown.add(uri);
-                else
-                    requestedButUnknown.add(uri);
-            }
-            info.setKnownNaaccrXmlDictionaries(requestedAndKnown);
-            info.setUnknownNaaccrXmlDictionaries(requestedButUnknown);
-        }
+        info.setAvailableUserDictionaries(_userDictionaries == null ? Collections.emptyList() : _userDictionaries.stream().map(NaaccrDictionary::getDictionaryUri).collect(Collectors.toList()));
+        info.setRequestedUserDictionaries(dataUserDict == null ? Collections.emptyList() : Arrays.asList(StringUtils.split(dataUserDict, " ")));
 
         return info;
     }

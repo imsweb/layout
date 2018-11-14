@@ -27,11 +27,11 @@ public class LayoutInfo {
     // number of fields (not applicable to all layout types)
     private Integer _numFields;
 
-    // known user-defined dictionary URIs (dictionaries appearing in the data file and layout knows about them)
-    private List<String> knownNaaccrXmlDictionaries;
+    // user-defined NAACCR XML dictionaries known to the layout
+    private List<String> _availableUserDictionaries;
 
-    // unknown user-defined dictionary URIs (dictionaries appearing in the data file but layout doesn't know about them)
-    private List<String> unknownNaaccrXmlDictionaries;
+    // requested user-defined NAACCR XML dictionaries (the one appearing in the data file)
+    private List<String> _requestedUserDictionaries;
 
     public String getLayoutId() {
         return _layoutId;
@@ -65,20 +65,20 @@ public class LayoutInfo {
         _numFields = numFields;
     }
 
-    public List<String> getKnownNaaccrXmlDictionaries() {
-        return knownNaaccrXmlDictionaries;
+    public List<String> getAvailableUserDictionaries() {
+        return _availableUserDictionaries;
     }
 
-    public void setKnownNaaccrXmlDictionaries(List<String> knownNaaccrXmlDictionaries) {
-        this.knownNaaccrXmlDictionaries = knownNaaccrXmlDictionaries;
+    public void setAvailableUserDictionaries(List<String> availableUserDictionaries) {
+        _availableUserDictionaries = availableUserDictionaries;
     }
 
-    public List<String> getUnknownNaaccrXmlDictionaries() {
-        return unknownNaaccrXmlDictionaries;
+    public List<String> getRequestedUserDictionaries() {
+        return _requestedUserDictionaries;
     }
 
-    public void setUnknownNaaccrXmlDictionaries(List<String> unknownNaaccrXmlDictionaries) {
-        this.unknownNaaccrXmlDictionaries = unknownNaaccrXmlDictionaries;
+    public void setRequestedUserDictionaries(List<String> requestedUserDictionaries) {
+        _requestedUserDictionaries = requestedUserDictionaries;
     }
 
     @Override
