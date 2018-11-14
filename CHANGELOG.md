@@ -1,5 +1,8 @@
 ## Layout Framework Version History
 
+**Changes in version 1.15**
+- Support reading ZIP files in NaaccrXmlLayout.buildFileInfo()
+
 **Changes in version 1.14**
 
 - Fixed writeRecords method in RecordLayout so it properly handles writing to a GZip file.

@@ -502,9 +502,26 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
         Assert.assertNull(info.getLineLength());
 
-        //Test a zip file
+        //Test a GZ file
         file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml-reader-two-patients.xml.gz");
         info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
+        Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
+        
+        //Test a zip file, one entry. zipEntryName null - layout should still be detected
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml-reader-two-patients.zip");        
+        info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
+        Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
+
+        //Zip file, one entry. zipEntryName provided - layout should be detected
+        info = layout.buildFileInfo(file, "xml-reader-two-patients.xml", new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
+        Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
+
+        //Zip file, two entries
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/multiple-xml-files.zip");
+        info = layout.buildFileInfo(file, "fake-naaccr-16-abstract.xml", new LayoutInfoDiscoveryOptions());
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
     }
