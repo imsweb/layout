@@ -3,6 +3,8 @@
  */
 package com.imsweb.layout;
 
+import java.util.List;
+
 /**
  * This class encapsulates the information about a given layout that should be used to read/write a given file.
  * <p/>
@@ -14,16 +16,22 @@ package com.imsweb.layout;
 public class LayoutInfo {
 
     // layout ID
-    public String _layoutId;
+    private String _layoutId;
 
     // layout name
-    public String _layoutName;
+    private String _layoutName;
 
     // line length (not applicable to all layout types)
-    public Integer _lineLength;
+    private Integer _lineLength;
 
     // number of fields (not applicable to all layout types)
-    public Integer _numFields;
+    private Integer _numFields;
+
+    // known user-defined dictionary URIs (dictionaries appearing in the data file and layout knows about them)
+    private List<String> knownNaaccrXmlDictionaries;
+
+    // unknown user-defined dictionary URIs (dictionaries appearing in the data file but layout doesn't know about them)
+    private List<String> unknownNaaccrXmlDictionaries;
 
     public String getLayoutId() {
         return _layoutId;
@@ -57,6 +65,22 @@ public class LayoutInfo {
         _numFields = numFields;
     }
 
+    public List<String> getKnownNaaccrXmlDictionaries() {
+        return knownNaaccrXmlDictionaries;
+    }
+
+    public void setKnownNaaccrXmlDictionaries(List<String> knownNaaccrXmlDictionaries) {
+        this.knownNaaccrXmlDictionaries = knownNaaccrXmlDictionaries;
+    }
+
+    public List<String> getUnknownNaaccrXmlDictionaries() {
+        return unknownNaaccrXmlDictionaries;
+    }
+
+    public void setUnknownNaaccrXmlDictionaries(List<String> unknownNaaccrXmlDictionaries) {
+        this.unknownNaaccrXmlDictionaries = unknownNaaccrXmlDictionaries;
+    }
+
     @Override
     @SuppressWarnings("RedundantIfStatement")
     public boolean equals(Object o) {
@@ -67,7 +91,7 @@ public class LayoutInfo {
 
         LayoutInfo other = (LayoutInfo)o;
 
-        return _layoutId == null ? other._layoutId == null : _layoutId.equals(other._layoutId); 
+        return _layoutId == null ? other._layoutId == null : _layoutId.equals(other._layoutId);
     }
 
     @Override

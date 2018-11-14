@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -503,21 +504,26 @@ public class NaaccrXmlLayout implements Layout {
         if (!baseUri.equals(attributes.get(NAACCR_XML_ROOT_ATT_BASE_DICT)))
             return null;
 
-        // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries
-        List<String> userUris = new ArrayList<>();
-        if (_userDictionaries != null) {
-            for (NaaccrDictionary dictionary : _userDictionaries)
-                userUris.add(dictionary.getDictionaryUri());
-        }
-        else
-            userUris.add(NaaccrXmlDictionaryUtils.createUriFromVersion(_naaccrVersion, false));
-
-        if (attributes.get(NAACCR_XML_ROOT_ATT_USER_DICT) != null && !userUris.containsAll(Arrays.asList(StringUtils.split(attributes.get(NAACCR_XML_ROOT_ATT_USER_DICT), " "))))
-            return null;
-
         LayoutInfo info = new LayoutInfo();
         info.setLayoutId(_layoutId);
         info.setLayoutName(_layoutName);
+
+        // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries
+        String dataUserDict = attributes.get(NAACCR_XML_ROOT_ATT_USER_DICT);
+        if (StringUtils.isNoneBlank(dataUserDict)) {
+            List<String> availableDict = _userDictionaries == null ? Collections.emptyList() : _userDictionaries.stream().map(NaaccrDictionary::getDictionaryUri).collect(Collectors.toList());
+
+            List<String> requestedAndKnown = new ArrayList<>(), requestedButUnknown = new ArrayList<>();
+            for (String uri : StringUtils.split(dataUserDict, " ")) {
+                if (availableDict.contains(uri))
+                    requestedAndKnown.add(uri);
+                else
+                    requestedButUnknown.add(uri);
+            }
+            info.setKnownNaaccrXmlDictionaries(requestedAndKnown);
+            info.setUnknownNaaccrXmlDictionaries(requestedButUnknown);
+        }
+
         return info;
     }
 }

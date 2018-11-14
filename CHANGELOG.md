@@ -1,7 +1,9 @@
 ## Layout Framework Version History
 
 **Changes in version 1.15**
-- Support reading ZIP files in NaaccrXmlLayout.buildFileInfo()
+
+- Fixed discovery mechanism of NAACCR XML layout.
+- Support reading ZIP files in discovery mechanism of NAACCR XML layout.
 
 **Changes in version 1.14**
 

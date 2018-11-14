@@ -507,9 +507,9 @@ public class NaaccrXmlLayoutTest {
         info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
-        
+
         //Test a zip file, one entry. zipEntryName null - layout should still be detected
-        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml-reader-two-patients.zip");        
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml-reader-two-patients.zip");
         info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
@@ -524,5 +524,7 @@ public class NaaccrXmlLayoutTest {
         info = layout.buildFileInfo(file, "fake-naaccr-16-abstract.xml", new LayoutInfoDiscoveryOptions());
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
+
+        // TODO add exhaustive tests for available vs missing dictionaries
     }
 }
