@@ -484,6 +484,7 @@ public class NaaccrXmlLayoutTest {
 
     @Test
     public void testBuildFileInfo() throws IOException {
+        String defaultUserDictionary = "http://naaccr.org/naaccrxml/user-defined-naaccr-dictionary-160.xml";
 
         //base layout - uses a base dictionary, no user dictionaries
         NaaccrXmlLayout layout = (NaaccrXmlLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT);
@@ -511,13 +512,15 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
         Assert.assertNull(info.getLineLength());
+        Assert.assertEquals(Collections.singletonList(defaultUserDictionary), info.getAvailableUserDictionaries());
+        Assert.assertEquals(new ArrayList<>(), info.getRequestedUserDictionaries());
 
         //layout only uses base dictionary, file uses same base dictionary and a user dictionary 
         file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-1.xml");
         info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
-        //        Assert.assertEquals(new ArrayList<>(), info.getAvailableUserDictionaries()); TODO
+        Assert.assertEquals(Collections.singletonList(defaultUserDictionary), info.getAvailableUserDictionaries());
         Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getRequestedUserDictionaries());
 
         //layout uses one user dictionary, file uses same base dictionary and no user dictionary
@@ -589,11 +592,21 @@ public class NaaccrXmlLayoutTest {
         file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-5.xml");
         Assert.assertNull(userLayoutTwoDictionaries.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions()));
 
-        //Test a GZ file
+        //Test a GZ file - layout uses only base dictionary, file uses only base dictionary
         file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-two-patients.xml.gz");
         info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
+        Assert.assertEquals(Collections.singletonList(defaultUserDictionary), info.getAvailableUserDictionaries());
+        Assert.assertEquals(new ArrayList<>(), info.getRequestedUserDictionaries());
+
+        //Test a GZ file - layout uses only base dictionary, file uses one user dictionary
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-1.xml.gz");
+        info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
+        Assert.assertEquals("NAACCR XML 16 Abstract", info.getLayoutName());
+        Assert.assertEquals(Collections.singletonList(defaultUserDictionary), info.getAvailableUserDictionaries());
+        Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getRequestedUserDictionaries());
 
         //layout uses one user dictionaries, GZ file uses same base dictionary and same user dictionary
         file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-1.xml.gz");
@@ -666,5 +679,70 @@ public class NaaccrXmlLayoutTest {
         file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/multiple-xml-files.zip");
         Assert.assertNull(layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions()));
 
+        //layout only uses base dictionary, zip file uses user user dictionary
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-1.zip");
+        info = layout.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(layout.getLayoutId(), info.getLayoutId());
+        Assert.assertEquals(Collections.singletonList(defaultUserDictionary), info.getAvailableUserDictionaries());
+        Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getRequestedUserDictionaries());
+
+        //layout uses one user dictionary, zip file uses only base dictionary
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-two-patients.zip");
+        info = userLayoutOneDictionary.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(userLayoutOneDictionary.getLayoutId(), info.getLayoutId());
+        Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getAvailableUserDictionaries());
+        Assert.assertEquals(new ArrayList<>(), info.getRequestedUserDictionaries());
+
+        //layout uses one user dictionary, zip file uses same user dictionary
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-1.zip");
+        info = userLayoutOneDictionary.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(userLayoutOneDictionary.getLayoutId(), info.getLayoutId());
+        Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getAvailableUserDictionaries());
+        Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getRequestedUserDictionaries());
+
+        //layout uses one user dictionary, zip file uses different user dictionary
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-3.zip");
+        info = userLayoutOneDictionary.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(userLayoutOneDictionary.getLayoutId(), info.getLayoutId());
+        Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getAvailableUserDictionaries());
+        Assert.assertEquals(Collections.singletonList(userDictionary2.getDictionaryUri()), info.getRequestedUserDictionaries());
+
+        //layout uses one user dictionary, zip file uses same user dictionary and another user dictionary
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-2.zip");
+        info = userLayoutOneDictionary.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(userLayoutOneDictionary.getLayoutId(), info.getLayoutId());
+        Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getAvailableUserDictionaries());
+        Assert.assertTrue(info.getRequestedUserDictionaries().contains(userDictionary1.getDictionaryUri()));
+        Assert.assertTrue(info.getRequestedUserDictionaries().contains(userDictionary2.getDictionaryUri()));
+        Assert.assertEquals(2, info.getRequestedUserDictionaries().size());
+
+        //layout uses two user dictionaries, zip files uses only base dictionary
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-two-patients.zip");
+        info = userLayoutTwoDictionaries.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(userLayoutTwoDictionaries.getLayoutId(), info.getLayoutId());
+        Assert.assertTrue(info.getAvailableUserDictionaries().contains(userDictionary1.getDictionaryUri()));
+        Assert.assertTrue(info.getAvailableUserDictionaries().contains(userDictionary2.getDictionaryUri()));
+        Assert.assertEquals(2, info.getAvailableUserDictionaries().size());
+        Assert.assertEquals(new ArrayList<>(), info.getRequestedUserDictionaries());
+
+        //layout uses two user dictionaries, zip files uses one user dictionary
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-1.zip");
+        info = userLayoutTwoDictionaries.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(userLayoutTwoDictionaries.getLayoutId(), info.getLayoutId());
+        Assert.assertTrue(info.getAvailableUserDictionaries().contains(userDictionary1.getDictionaryUri()));
+        Assert.assertTrue(info.getAvailableUserDictionaries().contains(userDictionary2.getDictionaryUri()));
+        Assert.assertEquals(2, info.getAvailableUserDictionaries().size());
+        Assert.assertEquals(Collections.singletonList(userDictionary1.getDictionaryUri()), info.getRequestedUserDictionaries());
+
+        //layout uses two user dictionaries, zip files uses both user dictionaries
+        file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-2.zip");
+        info = userLayoutTwoDictionaries.buildFileInfo(file, null, new LayoutInfoDiscoveryOptions());
+        Assert.assertEquals(userLayoutTwoDictionaries.getLayoutId(), info.getLayoutId());
+        Assert.assertTrue(info.getAvailableUserDictionaries().contains(userDictionary1.getDictionaryUri()));
+        Assert.assertTrue(info.getAvailableUserDictionaries().contains(userDictionary2.getDictionaryUri()));
+        Assert.assertEquals(2, info.getAvailableUserDictionaries().size());
+        Assert.assertTrue(info.getRequestedUserDictionaries().contains(userDictionary1.getDictionaryUri()));
+        Assert.assertTrue(info.getRequestedUserDictionaries().contains(userDictionary2.getDictionaryUri()));
+        Assert.assertEquals(2, info.getRequestedUserDictionaries().size());
     }
 }
