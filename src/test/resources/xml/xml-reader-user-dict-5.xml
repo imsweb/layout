@@ -1,0 +1,14 @@
+<NaaccrData
+        baseDictionaryUri="http://naaccr.org/naaccrxml/naaccr-dictionary-180.xml"
+        userDictionaryUri="http://test.org/naaccrxml/test1.xml http://test.org/naaccrxml/test1.xml"
+        recordType="A"
+        specificationVersion="1.2"
+        xmlns="http://naaccr.org/naaccrxml">
+    <Patient>
+        <Item naaccrId="patientIdNumber">00000001</Item>
+        <Tumor>
+            <Item naaccrId="myVariable">01</Item>
+            <Item naaccrId="myVariable5">01</Item>
+        </Tumor>
+    </Patient>
+</NaaccrData>
