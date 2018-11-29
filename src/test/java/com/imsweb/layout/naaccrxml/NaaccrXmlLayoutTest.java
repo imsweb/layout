@@ -41,7 +41,7 @@ public class NaaccrXmlLayoutTest {
         //Null NAACCR version
         boolean exceptionCaught = false;
         try {
-            new NaaccrXmlLayout(null, "A", "test-id", "test-name", null, false);
+            new NaaccrXmlLayout(null, "A", "test-id", "test-name", null, null, false);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -51,7 +51,7 @@ public class NaaccrXmlLayoutTest {
         //Null recordType
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", null, "test-id", "test-name", null, false);
+            new NaaccrXmlLayout("160", null, "test-id", "test-name", null, null, false);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -61,7 +61,7 @@ public class NaaccrXmlLayoutTest {
         //Null ID
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "A", null, "test-name", null, false);
+            new NaaccrXmlLayout("160", "A", null, "test-name", null, null, false);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -71,7 +71,7 @@ public class NaaccrXmlLayoutTest {
         //Null name
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "A", "test-id", null, null, false);
+            new NaaccrXmlLayout("160", "A", "test-id", null, null, null, false);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -81,7 +81,7 @@ public class NaaccrXmlLayoutTest {
         //Bad version number
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("1160", "A", "test-id", "test-name", null, false);
+            new NaaccrXmlLayout("1160", "A", "test-id", "test-name", null, null, false);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -91,7 +91,7 @@ public class NaaccrXmlLayoutTest {
         //Bad recordType
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "Bad", "test-id", "test-name", null, false);
+            new NaaccrXmlLayout("160", "Bad", "test-id", "test-name", null, null, false);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -110,7 +110,7 @@ public class NaaccrXmlLayoutTest {
         badDictionary.setItems(Collections.singletonList(duplicateItem));
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
+            new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, Collections.singletonList(badDictionary), true);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -122,7 +122,7 @@ public class NaaccrXmlLayoutTest {
         duplicateItem.setNaaccrId("recordType");
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
+            new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, Collections.singletonList(badDictionary), true);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -134,7 +134,7 @@ public class NaaccrXmlLayoutTest {
         duplicateItem.setNaaccrName("Record Type");
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
+            new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, Collections.singletonList(badDictionary), true);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -146,7 +146,7 @@ public class NaaccrXmlLayoutTest {
         duplicateItem.setNaaccrNum(10);
         exceptionCaught = false;
         try {
-            new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(badDictionary), true);
+            new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, Collections.singletonList(badDictionary), true);
         }
         catch (RuntimeException e) {
             exceptionCaught = true;
@@ -154,7 +154,7 @@ public class NaaccrXmlLayoutTest {
         Assert.assertTrue(exceptionCaught);
 
         //Test Version 160 - don't load fields/dictionaries
-        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
+        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, false);
         Assert.assertEquals(new ArrayList<>(), layout.getAllFields());
         Assert.assertEquals("160", layout.getLayoutVersion());
         Assert.assertEquals("test-id", layout.getLayoutId());
@@ -164,7 +164,7 @@ public class NaaccrXmlLayoutTest {
         Assert.assertNull(layout.getFieldByName("recordType"));
 
         //Test version 160 - load fields/dictionaries
-        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, true);
         Assert.assertEquals(587, layout.getAllFields().size());
         Assert.assertEquals("160", layout.getBaseDictionary().getNaaccrVersion());
         Assert.assertEquals(1, layout.getUserDictionaries().size());
@@ -201,7 +201,7 @@ public class NaaccrXmlLayoutTest {
         dateItem.setDataType("date");
         userDictionary.setItems(Arrays.asList(item, dateItem));
 
-        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", Collections.singletonList(userDictionary), true);
+        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, Collections.singletonList(userDictionary), true);
         Assert.assertEquals(566, layout.getAllFields().size());
         Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10003));
         Assert.assertNotNull(layout.getFieldByName("itemId"));
@@ -211,20 +211,20 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
         Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
 
-        layout = new NaaccrXmlLayout("160", "M", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("160", "M", "test-id", "test-name", null, null, true);
         Assert.assertEquals("M", layout.getRecordType());
         Assert.assertEquals(587, layout.getAllFields().size());
 
-        layout = new NaaccrXmlLayout("160", "C", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("160", "C", "test-id", "test-name", null, null, true);
         Assert.assertEquals("C", layout.getRecordType());
         Assert.assertEquals(568, layout.getAllFields().size());
 
-        layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", null, null, true);
         Assert.assertEquals("I", layout.getRecordType());
         Assert.assertEquals(496, layout.getAllFields().size());
 
         //Test version 150
-        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, null, true);
         Assert.assertEquals("150", layout.getLayoutVersion());
         Assert.assertEquals("150", layout.getBaseDictionary().getNaaccrVersion());
         Assert.assertEquals("A", layout.getRecordType());
@@ -234,20 +234,20 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
         Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
 
-        layout = new NaaccrXmlLayout("150", "M", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("150", "M", "test-id", "test-name", null, null, true);
         Assert.assertEquals("M", layout.getRecordType());
         Assert.assertEquals(555, layout.getAllFields().size());
 
-        layout = new NaaccrXmlLayout("150", "C", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("150", "C", "test-id", "test-name", null, null, true);
         Assert.assertEquals("C", layout.getRecordType());
         Assert.assertEquals(536, layout.getAllFields().size());
 
-        layout = new NaaccrXmlLayout("150", "I", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("150", "I", "test-id", "test-name", null, null, true);
         Assert.assertEquals("I", layout.getRecordType());
         Assert.assertEquals(464, layout.getAllFields().size());
 
         //Test Version 140
-        layout = new NaaccrXmlLayout("140", "A", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("140", "A", "test-id", "test-name", null, null, true);
         Assert.assertEquals("140", layout.getLayoutVersion());
         Assert.assertEquals("140", layout.getBaseDictionary().getNaaccrVersion());
         Assert.assertEquals("A", layout.getRecordType());
@@ -258,15 +258,15 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
         Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
 
-        layout = new NaaccrXmlLayout("140", "M", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("140", "M", "test-id", "test-name", null, null, true);
         Assert.assertEquals("M", layout.getRecordType());
         Assert.assertEquals(548, layout.getAllFields().size());
 
-        layout = new NaaccrXmlLayout("140", "C", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("140", "C", "test-id", "test-name", null, null, true);
         Assert.assertEquals("C", layout.getRecordType());
         Assert.assertEquals(529, layout.getAllFields().size());
 
-        layout = new NaaccrXmlLayout("140", "I", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("140", "I", "test-id", "test-name", null, null, true);
         Assert.assertEquals("I", layout.getRecordType());
         Assert.assertEquals(457, layout.getAllFields().size());
     }
@@ -274,7 +274,7 @@ public class NaaccrXmlLayoutTest {
     @Test
     public void testLoadFieldsMechanism() {
         //There are 478 items in the base dictionary and 18 items in the default user dictionary that apply to the "Incidence" type,
-        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", null, true);
+        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", null, null, true);
         Assert.assertEquals(496, layout.getAllFields().size());
 
         //User dictionary for testing
@@ -345,7 +345,7 @@ public class NaaccrXmlLayoutTest {
         userDictionary.setItems(itemList);
 
         //There are 478 fields in the base dictionary and 4 fields in the custom user dictionary that apply to the "Incidence" type.
-        layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", Collections.singletonList(userDictionary), true);
+        layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", null, Collections.singletonList(userDictionary), true);
         Assert.assertEquals(482, layout.getAllFields().size());
         Assert.assertEquals(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE).getFieldByName("recordType").getShortLabel(), layout.getFieldByName("recordType").getShortLabel());
         Assert.assertEquals("DX Yr", layout.getFieldByName("dateOfDiagnosis").getSubFields().get(0).getShortLabel());
@@ -355,7 +355,7 @@ public class NaaccrXmlLayoutTest {
 
     @Test
     public void testLayoutDocumentation() {
-        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, true);
+        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, true);
 
         for (NaaccrXmlField field : layout.getAllFields()) {
             Assert.assertNotNull(layout.getFieldDocByName(field.getName()));
@@ -365,7 +365,7 @@ public class NaaccrXmlLayoutTest {
         Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(123456));
         Assert.assertNull(layout.getFieldDocByName("A fake field name"));
 
-        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, null, true);
 
         for (NaaccrXmlField field : layout.getAllFields()) {
             //The v15 dictionary contains "reserved" fields, but the v15 layout does not
@@ -375,7 +375,7 @@ public class NaaccrXmlLayoutTest {
             }
         }
 
-        layout = new NaaccrXmlLayout("140", "A", "test-id", "test-name", null, true);
+        layout = new NaaccrXmlLayout("140", "A", "test-id", "test-name", null, null, true);
         //The v14 dictionary contains "reserved" fields, but the v14 layout does not
         for (NaaccrXmlField field : layout.getAllFields()) {
             if (!field.getNaaccrId().startsWith("reserved")) {
@@ -387,7 +387,7 @@ public class NaaccrXmlLayoutTest {
 
     @Test
     public void testReadMethods() throws IOException {
-        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
+        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, false);
         File file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-two-patients.xml");
         NaaccrOptions options = new NaaccrOptions();
         options.setUseStrictNamespaces(false);
@@ -410,7 +410,7 @@ public class NaaccrXmlLayoutTest {
 
     @Test
     public void testWriteMethods() throws IOException {
-        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, false);
+        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, false);
         File file = new File(TestingUtils.getWorkingDirectory() + "/build/test-xml-writer.xml");
 
         NaaccrOptions options = new NaaccrOptions();
@@ -468,13 +468,13 @@ public class NaaccrXmlLayoutTest {
 
     @Test
     public void testLayoutRegistering() {
-        LayoutFactory.registerLayout(new NaaccrXmlLayout("160", "A", "test-id", "Test Name", null, true));
+        LayoutFactory.registerLayout(new NaaccrXmlLayout("160", "A", "test-id", "Test Name", null, null, true));
 
         NaaccrXmlLayout layout = (NaaccrXmlLayout)LayoutFactory.getLayout("test-id");
 
         Assert.assertEquals("test-id", layout.getLayoutId());
         Assert.assertEquals("Test Name", layout.getLayoutName());
-        Assert.assertTrue(layout.getLayoutDescription().startsWith("This layout uses the base dictionary version 160."));
+        Assert.assertEquals("No description available", layout.getLayoutDescription());
         Assert.assertEquals("160", layout.getLayoutVersion());
         Assert.assertEquals(587, layout.getAllFields().size());
         Assert.assertNull(layout.getFieldDocByName("field1"));
@@ -492,9 +492,9 @@ public class NaaccrXmlLayoutTest {
         //create user dictionaries and layouts with 1 or 2 user dictionaries
         NaaccrDictionary userDictionary1 = NaaccrXmlDictionaryUtils.readDictionary(new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/user-dictionary-1.xml"));
         NaaccrDictionary userDictionary2 = NaaccrXmlDictionaryUtils.readDictionary(new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/user-dictionary-2.xml"));
-        NaaccrXmlLayout userLayoutOneDictionary = new NaaccrXmlLayout("160", "A", "testLayoutId", "testLayoutName", Collections.singletonList(userDictionary1), true);
+        NaaccrXmlLayout userLayoutOneDictionary = new NaaccrXmlLayout("160", "A", "testLayoutId", "testLayoutName", null, Collections.singletonList(userDictionary1), true);
         LayoutFactory.registerLayout(userLayoutOneDictionary);
-        NaaccrXmlLayout userLayoutTwoDictionaries = new NaaccrXmlLayout("160", "A", "testLayoutId2", "testLayoutName2", Arrays.asList(userDictionary1, userDictionary2), true);
+        NaaccrXmlLayout userLayoutTwoDictionaries = new NaaccrXmlLayout("160", "A", "testLayoutId2", "testLayoutName2", null, Arrays.asList(userDictionary1, userDictionary2), true);
         LayoutFactory.registerLayout(userLayoutTwoDictionaries);
 
         //Null file returns null
