@@ -4,6 +4,7 @@
 
 - Fixed discovery mechanism of NAACCR XML layout.
 - Support reading ZIP files in discovery mechanism of NAACCR XML layout.
+- Allow custom descriptions for NAACCR XML layout
 
 **Changes in version 1.14**
 

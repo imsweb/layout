@@ -82,13 +82,14 @@ public class NaaccrXmlLayout implements Layout {
      * @param dictionaries List (of type NaaccrDictionary) of custom user dictionaries - used for making custom layouts
      * @param loadFields determines whether to load all the fields from all dictionaries into the allFields variable
      */
-    public NaaccrXmlLayout(String naaccrVersion, String recordType, String layoutId, String layoutName, List<NaaccrDictionary> dictionaries, boolean loadFields) {
+    public NaaccrXmlLayout(String naaccrVersion, String recordType, String layoutId, String layoutName, String description, List<NaaccrDictionary> dictionaries, boolean loadFields) {
         _naaccrVersion = naaccrVersion;
         _layoutName = layoutName;
         _layoutId = layoutId;
         _recordType = recordType;
         _userDictionaries = dictionaries;
         _dictionariesLoaded = loadFields;
+        _layoutDesc = StringUtils.isBlank(description) ? "No description available" : description;
 
         //Only load dictionaries/fields if specified, otherwise avoid expensive operations
         if (loadFields) {
@@ -98,18 +99,6 @@ public class NaaccrXmlLayout implements Layout {
             //If user dictionaries weren't provided, use default user dictionary
             if (_userDictionaries == null || _userDictionaries.isEmpty())
                 _userDictionaries = Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion));
-
-            //add description from base and user dictionaries
-            StringBuilder description = new StringBuilder("This layout uses the base dictionary version " + _naaccrVersion);
-            description.append(". This layout also uses ").append(_userDictionaries.size()).append(" user dictionaries with URI's ending in: ");
-            for (NaaccrDictionary dictionary : _userDictionaries) {
-                String uri = dictionary.getDictionaryUri();
-                if (uri.length() > 20)
-                    uri = uri.substring(uri.length() - 20);
-                description.append(uri).append(", ");
-            }
-            description.setLength(description.length() - 2);
-            _layoutDesc = description.toString();
 
             //Load the flat file layout corresponding to the base dictionary and record type for this layout
             StringBuilder flatFileId = new StringBuilder("naaccr-");

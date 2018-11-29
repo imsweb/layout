@@ -166,22 +166,23 @@ public final class LayoutFactory {
         Layout layout = null;
 
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
+        String xmlDesc = "Standard NAACCR XML ";
         if (LAYOUT_ID_NAACCR_XML_18_ABSTRACT.equals(layoutId))
-            layout = new NaaccrXmlLayout("180", "A", LAYOUT_ID_NAACCR_XML_18_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_ABSTRACT), null, loadFields);
+            layout = new NaaccrXmlLayout("180", "A", LAYOUT_ID_NAACCR_XML_18_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_ABSTRACT), xmlDesc + "180 Abstract", null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_18_MODIFIED.equals(layoutId))
-            layout = new NaaccrXmlLayout("180", "M", LAYOUT_ID_NAACCR_XML_18_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_MODIFIED), null, loadFields);
+            layout = new NaaccrXmlLayout("180", "M", LAYOUT_ID_NAACCR_XML_18_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_MODIFIED), xmlDesc + "180 Modified", null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrXmlLayout("180", "C", LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL), null, loadFields);
+            layout = new NaaccrXmlLayout("180", "C", LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL), xmlDesc + "180 Confidential", null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_18_INCIDENCE.equals(layoutId))
-            layout = new NaaccrXmlLayout("180", "I", LAYOUT_ID_NAACCR_XML_18_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_INCIDENCE), null, loadFields);
+            layout = new NaaccrXmlLayout("180", "I", LAYOUT_ID_NAACCR_XML_18_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_INCIDENCE), xmlDesc + "180 Incidence", null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_16_ABSTRACT.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", "A", LAYOUT_ID_NAACCR_XML_16_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_ABSTRACT), null, loadFields);
+            layout = new NaaccrXmlLayout("160", "A", LAYOUT_ID_NAACCR_XML_16_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_ABSTRACT), xmlDesc + "160 Abstract", null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_16_MODIFIED.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", "M", LAYOUT_ID_NAACCR_XML_16_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_MODIFIED), null, loadFields);
+            layout = new NaaccrXmlLayout("160", "M", LAYOUT_ID_NAACCR_XML_16_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_MODIFIED), xmlDesc + "160 Modified", null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", "C", LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL), null, loadFields);
+            layout = new NaaccrXmlLayout("160", "C", LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL), xmlDesc + "160 Confidential", null, loadFields);
         else if (LAYOUT_ID_NAACCR_XML_16_INCIDENCE.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", "I", LAYOUT_ID_NAACCR_XML_16_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_INCIDENCE), null, loadFields);
+            layout = new NaaccrXmlLayout("160", "I", LAYOUT_ID_NAACCR_XML_16_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_INCIDENCE), xmlDesc + "160 Incidence", null, loadFields);
         else if (LAYOUT_ID_NAACCR_18_ABSTRACT.equals(layoutId))
             layout = new NaaccrLayout("180", "A", 24194, LAYOUT_ID_NAACCR_18_ABSTRACT, loadFields);
         else if (LAYOUT_ID_NAACCR_18_MODIFIED.equals(layoutId))
