@@ -2,7 +2,7 @@
 <FindBugsFilter>
 <Match>
   <Class name="com.imsweb.layout.LayoutUtils"/>
-  <Bug code="OS"/>
+  <Bug code="OS,RCN"/>
 </Match>
 <Match>
   <Bug code="Dm"/>
