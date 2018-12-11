@@ -21,8 +21,9 @@ repositories {
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:4.15'
+    api 'com.imsweb:naaccr-xml:5.0'
 
+    implementation 'commons-io:commons-io:2.6'
     implementation 'com.opencsv:opencsv:4.2'
     implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
 
@@ -32,7 +33,7 @@ dependencies {
 // enforce UTF-8, display the compilation warnings
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation' << '-Xlint:rawtypes' << '-Werror'
 }
 
 // the Javadoc was made way too strict in Java 8 and it's not worth the time fixing everything!
@@ -57,14 +58,17 @@ jar {
 
 // checkstyle plugin settings
 checkstyle {
+    toolVersion = '8.14'
     ignoreFailures = true
-    configFile = file('config/checkstyle/checkstyle.xml')
+    configFile = project(':').file('config/checkstyle/checkstyle.xml')
+    configProperties = ['suppressionFile' : project(':').file('config/checkstyle/suppressions.xml')]
 }
 
 // spotbugs plugin settings
 spotbugs {
+    toolVersion = '3.1.9'
     ignoreFailures = true
-    excludeFilter = file('config/spotbugs/spotbugs-exclude.xml')
+    excludeFilter =  project(':').file("config/spotbugs/spotbugs-exclude.xml")
 }
 
 
@@ -102,11 +106,12 @@ modifyPom {
 
 // don't try to release a snapshot to a non-snapshot repository, that won't work anyway
 if (version.endsWith('-SNAPSHOT'))
-    gradle.startParameter.excludedTaskNames += 'closeAndReleaseRepository'
+    gradle.startParameter.excludedTaskNames.add('closeAndReleaseRepository')
 
 // Gradle wrapper, this allows to build the project without having to install Gradle!
 wrapper {
-    gradleVersion = '4.10.2'
+    gradleVersion = '5.0'
+    distributionType = Wrapper.DistributionType.ALL
 }
 
 
