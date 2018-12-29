@@ -25,6 +25,7 @@ import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
@@ -305,7 +306,7 @@ public class FixedColumnsLayout extends RecordLayout {
     }
 
     @Override
-    public String createLineFromRecord(Map<String, String> record) throws IOException {
+    public String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException {
         StringBuilder result = new StringBuilder();
 
         if (record == null)
@@ -341,8 +342,8 @@ public class FixedColumnsLayout extends RecordLayout {
                         int length = subEnd - subStart + 1;
                         if (value.length() > length)
                             throw new IOException("value too long for field '" + child.getName() + "'");
-                        String paddingChar = !value.isEmpty() && getOptions().applyPadding() ? child.getPadChar() : " ";
-                        if (getOptions().applyAlignment() && child.getAlign() == FieldAlignment.RIGHT)
+                        String paddingChar = !value.isEmpty() && applyPadding(options) ? child.getPadChar() : " ";
+                        if (applyAlignment(options) && child.getAlign() == FieldAlignment.RIGHT)
                             value = LayoutUtils.pad(value, length, paddingChar, true);
                         else
                             value = LayoutUtils.pad(value, length, paddingChar, false);
@@ -364,8 +365,8 @@ public class FixedColumnsLayout extends RecordLayout {
                 int length = end - start + 1;
                 if (value.length() > length)
                     throw new IOException("value too long for field '" + field.getName() + "'");
-                String paddingChar = !value.isEmpty() && getOptions().applyPadding() ? field.getPadChar() : " ";
-                if (getOptions().applyAlignment() && field.getAlign() == FieldAlignment.RIGHT)
+                String paddingChar = !value.isEmpty() && applyPadding(options) ? field.getPadChar() : " ";
+                if (applyAlignment(options) && field.getAlign() == FieldAlignment.RIGHT)
                     value = LayoutUtils.pad(value, length, paddingChar, true);
                 else
                     value = LayoutUtils.pad(value, length, paddingChar, false);
@@ -396,21 +397,21 @@ public class FixedColumnsLayout extends RecordLayout {
 
     @Override
     @SuppressWarnings("RedundantStringConstructorCall")
-    public Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException {
+    public Map<String, String> createRecordFromLine(String line, Integer lineNumber, RecordLayoutOptions options) throws IOException {
         Map<String, String> result = new HashMap<>();
 
         Integer lineNumberSafe = lineNumber == null ? Integer.valueOf(1) : lineNumber;
 
         // handle special case
         if (line == null || line.isEmpty()) {
-            if (getOptions().enforceStrictFormat())
+            if (enforceStrictFormat(options))
                 throw new IOException("line " + lineNumberSafe + ": got en empty line");
             else
                 return result;
         }
 
         // if we need to enforce the format, get the expected line length; otherwise read until the EOL
-        if (getOptions().enforceStrictFormat()) {
+        if (enforceStrictFormat(options)) {
             String validationMsg = validateLine(line, lineNumberSafe);
             if (validationMsg != null)
                 throw new IOException(validationMsg);
@@ -431,7 +432,7 @@ public class FixedColumnsLayout extends RecordLayout {
             if (field.getSubFields() != null)
                 childPreventsTrimming = field.getSubFields().stream().anyMatch(subField -> !subField.getTrim());
             String trimmedValue = value.trim();
-            if (getOptions().trimValues() && (field.getTrim() || (trimmedValue.isEmpty() && !childPreventsTrimming))) {
+            if (trimValues(options) && (field.getTrim() || (trimmedValue.isEmpty() && !childPreventsTrimming))) {
                 // never trim a group field unless it's completely empty (or we would lose the info of which child value is which)
                 if (field.getSubFields() == null || trimmedValue.isEmpty())
                     value = trimmedValue;
@@ -447,7 +448,7 @@ public class FixedColumnsLayout extends RecordLayout {
                         end = ((FixedColumnsField)child).getEnd();
 
                         value = new String(line.substring(start - 1, end));
-                        if (getOptions().trimValues() && child.getTrim())
+                        if (trimValues(options) && child.getTrim())
                             value = value.trim();
 
                         if (!value.isEmpty()) {

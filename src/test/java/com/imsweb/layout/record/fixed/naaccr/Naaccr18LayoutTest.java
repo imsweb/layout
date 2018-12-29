@@ -86,7 +86,7 @@ public class Naaccr18LayoutTest {
         rec.put("nameLast", "depry");
         rec.put("reserved04", "This is a test with a few spaces at the end   ");
         layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_INCIDENCE);
-        Assert.assertEquals(4048, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(4048, layout.createLineFromRecord(rec, null).length());
         layout.writeRecord(file, rec); // write into a file
         rec = layout.readAllRecords(file).get(0);
         Assert.assertEquals("180", rec.get("naaccrRecordVersion"));
@@ -100,7 +100,7 @@ public class Naaccr18LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_MODIFIED);
-        Assert.assertEquals(24194, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(24194, layout.createLineFromRecord(rec, null).length());
         FileWriter writer = new FileWriter(file);
         layout.writeRecord(writer, rec); // write into a writer
         writer.close();
@@ -116,7 +116,7 @@ public class Naaccr18LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_CONFIDENTIAL);
-        Assert.assertEquals(6934, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(6934, layout.createLineFromRecord(rec, null).length());
         FileOutputStream stream = new FileOutputStream(file);
         layout.writeRecord(stream, rec); // write into an output stream
         stream.close();
@@ -141,25 +141,24 @@ public class Naaccr18LayoutTest {
 
             //Check for gaps between fields
             if (f2 != null)
-                Assert.assertTrue("There is a gap between fields " + f2.getName() + " and " + f1.getName(), f1.getStart() - f2.getEnd() == 1);
+                Assert.assertEquals("There is a gap between fields " + f2.getName() + " and " + f1.getName(), 1, f1.getStart() - f2.getEnd());
             f2 = f1;
         }
     }
 
-    //TODO - don't have field docs yet
-    //    @Test
-    //    public void testNaaccr18Documentation() {
-    //        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
-    //
-    //        for (FixedColumnsField field : layout.getAllFields()) {
-    //            if (field.getNaaccrItemNum() != null)
-    //                Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
-    //            if (field.getSubFields() != null) {
-    //                for (FixedColumnsField f : field.getSubFields()) {
-    //                    if (f.getNaaccrItemNum() != null)
-    //                        Assert.assertNotNull(f.getName(), layout.getFieldDocByNaaccrItemNumber(f.getNaaccrItemNum()));
-    //                }
-    //            }
-    //        }
-    //    }
+    @Test
+    public void testNaaccr18Documentation() {
+        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
+
+        for (FixedColumnsField field : layout.getAllFields()) {
+            if (field.getNaaccrItemNum() != null)
+                Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+            if (field.getSubFields() != null) {
+                for (FixedColumnsField f : field.getSubFields()) {
+                    if (f.getNaaccrItemNum() != null)
+                        Assert.assertNotNull(f.getName(), layout.getFieldDocByNaaccrItemNumber(f.getNaaccrItemNum()));
+                }
+            }
+        }
+    }
 }

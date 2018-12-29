@@ -78,7 +78,7 @@ public class Naaccr16LayoutTest {
         rec.put("nameLast", "depry");
         rec.put("reserved01", "Some test with spaces at the end   ");
         layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE);
-        Assert.assertEquals(3339, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(3339, layout.createLineFromRecord(rec, null).length());
         layout.writeRecord(file, rec); // write into a file
         rec = layout.readAllRecords(file).get(0);
         Assert.assertEquals("160", rec.get("naaccrRecordVersion"));
@@ -92,7 +92,7 @@ public class Naaccr16LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_MODIFIED);
-        Assert.assertEquals(22824, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(22824, layout.createLineFromRecord(rec, null).length());
         FileWriter writer = new FileWriter(file);
         layout.writeRecord(writer, rec); // write into a writer
         writer.close();
@@ -108,7 +108,7 @@ public class Naaccr16LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_CONFIDENTIAL);
-        Assert.assertEquals(5564, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(5564, layout.createLineFromRecord(rec, null).length());
         FileOutputStream stream = new FileOutputStream(file);
         layout.writeRecord(stream, rec); // write into an output stream
         stream.close();
@@ -133,7 +133,7 @@ public class Naaccr16LayoutTest {
 
             //Check for gaps between fields
             if (f2 != null)
-                Assert.assertTrue("There is a gap between fields " + f2.getName() + " and " + f1.getName(), f1.getStart() - f2.getEnd() == 1);
+                Assert.assertEquals("There is a gap between fields " + f2.getName() + " and " + f1.getName(), 1, f1.getStart() - f2.getEnd());
             f2 = f1;
 
         }

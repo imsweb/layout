@@ -77,7 +77,7 @@ public class Naaccr15LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_15_INCIDENCE);
-        Assert.assertEquals(3339, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(3339, layout.createLineFromRecord(rec, null).length());
         layout.writeRecord(file, rec); // write into a file
         rec = layout.readAllRecords(file).get(0);
         Assert.assertEquals("150", rec.get("naaccrRecordVersion"));
@@ -90,7 +90,7 @@ public class Naaccr15LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_15_MODIFIED);
-        Assert.assertEquals(22824, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(22824, layout.createLineFromRecord(rec, null).length());
         FileWriter writer = new FileWriter(file);
         layout.writeRecord(writer, rec); // write into a writer
         writer.close();
@@ -106,7 +106,7 @@ public class Naaccr15LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_15_CONFIDENTIAL);
-        Assert.assertEquals(5564, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(5564, layout.createLineFromRecord(rec, null).length());
         FileOutputStream stream = new FileOutputStream(file);
         layout.writeRecord(stream, rec); // write into an output stream
         stream.close();
@@ -195,11 +195,11 @@ public class Naaccr15LayoutTest {
 
         // modify one of subfields, and write the record
         rec.put("registryField2", "X");
-        String line = naaccrAbstractExtendedLayout.createLineFromRecord(rec);
+        String line = naaccrAbstractExtendedLayout.createLineFromRecord(rec, null);
         Assert.assertEquals(22824, line.length()); // line length for a Abstract
 
         // re-parse the created line into a record and check the requestor item again
-        rec = naaccrAbstractExtendedLayout.createRecordFromLine(line);
+        rec = naaccrAbstractExtendedLayout.createRecordFromLine(line, null, null);
         Assert.assertNotNull(rec.get("stateRequestorItems"));
         Assert.assertTrue(rec.get("stateRequestorItems").startsWith("1X34"));
         Assert.assertFalse(rec.get("stateRequestorItems").startsWith("1X3456")); // this makes sense because 56 was in a gap before writing the file, so now it's gone...

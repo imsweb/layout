@@ -1,11 +1,15 @@
 ## Layout Framework Version History
 
+**Changes in version 1.16 (not released yet)**
+
+- Cleaned up options in record-based layouts.
+
 **Changes in version 1.15**
 
 - Updated NAACCR XML library from version 4.15 to version 5.0.
 - Fixed discovery mechanism of NAACCR XML layout.
-- Support reading ZIP files in discovery mechanism of NAACCR XML layout.
-- Allow custom descriptions for NAACCR XML layout
+- Supported reading Zip files in discovery mechanism of NAACCR XML layout.
+- Allowed custom descriptions for NAACCR XML layout.
 
 **Changes in version 1.14**
 

@@ -35,7 +35,7 @@ public class RecordLayoutTest {
     private static String _TEST_LAYOUT_ID = "test-rec-layout";
 
     @BeforeClass
-    public static void setup() throws IOException {
+    public static void setup() {
         // register testing layout
         FixedColumnsLayout layout = new FixedColumnsLayout();
         layout.setLayoutId(_TEST_LAYOUT_ID);
@@ -102,7 +102,7 @@ public class RecordLayoutTest {
         Assert.assertEquals("B", recs.get(1).get("field1"));
 
         // read all from zipped file
-        List<Map<String, String>> recs2 = layout.readAllRecords(zippedFile, file.getName());
+        List<Map<String, String>> recs2 = layout.readAllRecords(zippedFile, file.getName(), null);
         Assert.assertEquals(recs, recs2);
 
         // read all from reader
@@ -112,8 +112,10 @@ public class RecordLayoutTest {
         }
 
         // read all from input stream
+        RecordLayoutOptions options = new RecordLayoutOptions();
+        options.setEncoding(StandardCharsets.US_ASCII);
         try (FileInputStream fis = new FileInputStream(file)) {
-            List<Map<String, String>> recs3 = layout.readAllRecords(fis, StandardCharsets.US_ASCII.name());
+            List<Map<String, String>> recs3 = layout.readAllRecords(fis, options);
             Assert.assertEquals(recs, recs3);
         }
 
@@ -141,6 +143,10 @@ public class RecordLayoutTest {
     public void testWriteMethods() throws IOException {
         RecordLayout layout = (RecordLayout)LayoutFactory.getLayout(_TEST_LAYOUT_ID);
 
+        RecordLayoutOptions options = new RecordLayoutOptions();
+        options.setLineSeparator(RecordLayoutOptions.NEW_LINE_LF);
+        options.setTrimValues(false);
+
         Map<String, String> rec1 = new HashMap<>();
         rec1.put("field1", "A");
         rec1.put("otherField", "B"); // should be ignored
@@ -150,6 +156,11 @@ public class RecordLayoutTest {
         // write single record to file
         layout.writeRecord(file, rec1);
         List<Map<String, String>> recs = layout.readAllRecords(file);
+        Assert.assertEquals(1, recs.size());
+        Assert.assertEquals("A", recs.get(0).get("field1"));
+
+        layout.writeRecord(file, rec1, options);
+        recs = layout.readAllRecords(file, options);
         Assert.assertEquals(1, recs.size());
         Assert.assertEquals("A", recs.get(0).get("field1"));
 

@@ -76,7 +76,7 @@ public class Naaccr14LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_INCIDENCE);
-        Assert.assertEquals(3339, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(3339, layout.createLineFromRecord(rec, null).length());
         layout.writeRecord(file, rec); // write into a file
         rec = layout.readAllRecords(file).get(0);
         Assert.assertEquals("140", rec.get("naaccrRecordVersion"));
@@ -89,7 +89,7 @@ public class Naaccr14LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_MODIFIED);
-        Assert.assertEquals(22824, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(22824, layout.createLineFromRecord(rec, null).length());
         FileWriter writer = new FileWriter(file);
         layout.writeRecord(writer, rec); // write into a writer
         writer.close();
@@ -105,7 +105,7 @@ public class Naaccr14LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_CONFIDENTIAL);
-        Assert.assertEquals(5564, layout.createLineFromRecord(rec).length());
+        Assert.assertEquals(5564, layout.createLineFromRecord(rec, null).length());
         FileOutputStream stream = new FileOutputStream(file);
         layout.writeRecord(stream, rec); // write into an output stream
         stream.close();

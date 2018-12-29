@@ -13,6 +13,7 @@ import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,49 +35,25 @@ import com.imsweb.layout.record.csv.CommaSeparatedLayout;
  */
 public abstract class RecordLayout implements Layout {
 
-    /**
-     * Layout ID
-     */
+    // layout ID
     protected String _layoutId;
 
-    /**
-     * Layout Name
-     */
+    // layout Name
     protected String _layoutName;
 
-    /**
-     * Layout version
-     */
+    // layout version
     protected String _layoutVersion;
 
-    /**
-     * Layout Description
-     */
+    // layout Description
     protected String _layoutDesc;
 
-    /**
-     * Parent layout ID
-     */
+    // parent layout ID
     protected String _parentLayoutId;
 
     /**
-     * Options used for all read/write operations
-     */
-    protected RecordLayoutOptions _options;
-
-    /**
-     * Default Constructor.
+     * Constructor.
      */
     public RecordLayout() {
-        this(null);
-    }
-
-    /**
-     * Constructor.
-     * @param options read/write options
-     */
-    public RecordLayout(RecordLayoutOptions options) {
-        _options = options == null ? new RecordLayoutOptions() : new RecordLayoutOptions(options);
     }
 
     @Override
@@ -123,14 +100,6 @@ public abstract class RecordLayout implements Layout {
         return _parentLayoutId;
     }
 
-    public RecordLayoutOptions getOptions() {
-        return _options == null ? new RecordLayoutOptions() : _options;
-    }
-
-    public void setOptions(RecordLayoutOptions options) {
-        _options = new RecordLayoutOptions(options);
-    }
-
     @Override
     public String getFieldDocByName(String name) {
         if (_parentLayoutId != null)
@@ -152,63 +121,127 @@ public abstract class RecordLayout implements Layout {
         return "";
     }
 
-    /**
-     * Writes the record to the outputstream, followed be a line separator. Does not close or open outputstream.
-     * <p/>
-     * The line separator will be the default one for the current system.
-     * <p/>
-     * Created on Jul 14, 2011 by murphyr
-     * @param outputStream OutputStream to write to
-     * @param record Record to be written to the OuputStream
-     */
-    public void writeRecord(OutputStream outputStream, Map<String, String> record) throws IOException {
-        outputStream.write(createLineFromRecord(record).getBytes(StandardCharsets.UTF_8));
-        outputStream.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
+    protected boolean trimValues(RecordLayoutOptions options) {
+        return options == null || options.trimValues();
+    }
+
+    protected boolean enforceStrictFormat(RecordLayoutOptions options) {
+        return options != null && options.enforceStrictFormat();
+    }
+
+    protected boolean applyAlignment(RecordLayoutOptions options) {
+        return options == null || options.applyAlignment();
+    }
+
+    protected boolean applyPadding(RecordLayoutOptions options) {
+        return options == null || options.applyPadding();
+    }
+
+    protected String getLineSeparator(RecordLayoutOptions options) {
+        return options == null ? System.lineSeparator() : options.getLineSeparator();
+    }
+
+    protected Charset getEncoding(RecordLayoutOptions options) {
+        return options == null ? StandardCharsets.UTF_8 : options.getEncoding();
     }
 
     /**
-     * Writes the records to the outputstream, each followed be a line separator. Does not close or open outputstream.
+     * Writes the record to the output stream, followed be a line separator. Does not close or open output stream.
      * <p/>
-     * The line separator will be the default one for the current system.
+     * Created on Jul 14, 2011 by murphyr
+     * @param outputStream outputStream to write to
+     * @param record record to be written
+     */
+    public void writeRecord(OutputStream outputStream, Map<String, String> record) throws IOException {
+        writeRecord(outputStream, record, null);
+    }
+
+    /**
+     * Writes the record to the output stream, followed be a line separator. Does not close or open output stream.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param outputStream outputStream to write to
+     * @param record record to be written
+     * @param options options to use (null means default option values will be used)
+     */
+    public void writeRecord(OutputStream outputStream, Map<String, String> record, RecordLayoutOptions options) throws IOException {
+        outputStream.write(createLineFromRecord(record, options).getBytes(getEncoding(options)));
+        outputStream.write(getLineSeparator(options).getBytes(getEncoding(options)));
+    }
+
+    /**
+     * Writes the records to the outputstream, each followed be a line separator. Does not close or open output stream.
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param outputStream OutputStream to write to
      * @param records Records to be written to the OuputStream
      */
     public void writeRecords(OutputStream outputStream, List<Map<String, String>> records) throws IOException {
+        writeRecords(outputStream, records, null);
+    }
+
+    /**
+     * Writes the records to the outputstream, each followed be a line separator. Does not close or open output stream.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param outputStream OutputStream to write to
+     * @param records Records to be written to the OuputStream
+     * @param options options to use (null means default option values will be used)
+     */
+    public void writeRecords(OutputStream outputStream, List<Map<String, String>> records, RecordLayoutOptions options) throws IOException {
         for (Map<String, String> record : records) {
-            outputStream.write(createLineFromRecord(record).getBytes(StandardCharsets.UTF_8));
-            outputStream.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
+            outputStream.write(createLineFromRecord(record, options).getBytes(getEncoding(options)));
+            outputStream.write(getLineSeparator(options).getBytes(getEncoding(options)));
         }
     }
 
     /**
      * Writes the record to the writer, followed be a line separator. Does not close or open writer.
      * <p/>
-     * The line separator will be the default one for the current system.
-     * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param writer Writer to write to
      * @param record Record to be written to the Writer
      */
     public void writeRecord(Writer writer, Map<String, String> record) throws IOException {
-        writer.write(createLineFromRecord(record));
-        writer.write(System.lineSeparator());
+        writeRecord(writer, record, null);
+    }
+
+    /**
+     * Writes the record to the writer, followed be a line separator. Does not close or open writer.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param writer Writer to write to
+     * @param record Record to be written to the Writer
+     * @param options options to use (null means default option values will be used)
+     */
+    public void writeRecord(Writer writer, Map<String, String> record, RecordLayoutOptions options) throws IOException {
+        writer.write(createLineFromRecord(record, options));
+        writer.write(getLineSeparator(options));
     }
 
     /**
      * Writes the records to the writer, each followed be a line separator. Does not close or open writer.
-     * <p/>
-     * The line separator will be the default one for the current system.
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param writer Writer to write to
      * @param records Records to be written to the Writer
      */
     public void writeRecords(Writer writer, List<Map<String, String>> records) throws IOException {
+        writeRecords(writer, records, null);
+    }
+
+    /**
+     * Writes the records to the writer, each followed be a line separator. Does not close or open writer.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param writer Writer to write to
+     * @param records Records to be written to the Writer
+     * @param options options to use (null means default option values will be used)
+     */
+    public void writeRecords(Writer writer, List<Map<String, String>> records, RecordLayoutOptions options) throws IOException {
         for (Map<String, String> record : records) {
-            writer.write(createLineFromRecord(record));
-            writer.write(System.lineSeparator());
+            writer.write(createLineFromRecord(record, options));
+            writer.write(getLineSeparator(options));
         }
     }
 
@@ -226,19 +259,43 @@ public abstract class RecordLayout implements Layout {
     }
 
     /**
-     * Writes the records to the file, each followed be a line separator.
+     * Writes the record to the file, followed be a line separator.
      * <p/>
      * The line separator will be the default one for the current system.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param file File to write to
+     * @param record Record to be written to the File
+     * @param options options to use (null means default option values will be used)
+     */
+    public void writeRecord(File file, Map<String, String> record, RecordLayoutOptions options) throws IOException {
+        writeRecords(file, Collections.singletonList(record), options);
+    }
+
+    /**
+     * Writes the records to the file, each followed be a line separator.
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param file File to write to
      * @param records Records to be written to the File
      */
     public void writeRecords(File file, List<Map<String, String>> records) throws IOException {
+        writeRecords(file, records, null);
+    }
+
+    /**
+     * Writes the records to the file, each followed be a line separator.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param file File to write to
+     * @param records Records to be written to the File
+     * @param options options to use (null means default option values will be used)
+     */
+    public void writeRecords(File file, List<Map<String, String>> records, RecordLayoutOptions options) throws IOException {
         try (BufferedOutputStream out = new BufferedOutputStream(LayoutUtils.createOutputStream(file))) {
             for (Map<String, String> record : records) {
-                out.write(createLineFromRecord(record).getBytes(StandardCharsets.UTF_8));
-                out.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
+                out.write(createLineFromRecord(record, options).getBytes(getEncoding(options)));
+                out.write(getLineSeparator(options).getBytes(getEncoding(options)));
             }
         }
     }
@@ -251,10 +308,22 @@ public abstract class RecordLayout implements Layout {
      * @return A map of the data from the line read by the LineNumberReader
      */
     public Map<String, String> readNextRecord(LineNumberReader lineReader) throws IOException {
+        return readNextRecord(lineReader, null);
+    }
+
+    /**
+     * Returns a record that is created from the String returned when readLine() is called on the LineReader passed in.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param lineReader Used to get the next line from a file; Cannot be null
+     * @param options options to use (null means default option values will be used)
+     * @return A map of the data from the line read by the LineNumberReader
+     */
+    public Map<String, String> readNextRecord(LineNumberReader lineReader, RecordLayoutOptions options) throws IOException {
         String line = lineReader.readLine();
         if (line == null)
             return null;
-        return createRecordFromLine(line, lineReader.getLineNumber());
+        return createRecordFromLine(line, lineReader.getLineNumber(), options);
     }
 
     /**
@@ -262,20 +331,16 @@ public abstract class RecordLayout implements Layout {
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param inputStream Stream to the data
-     * @param encoding the encoding to use (null means default OS encoding)
+     * @param options options to use (null means default option values will be used)
      * @return A list of the records created from the data in the InputStream
      */
-    public List<Map<String, String>> readAllRecords(InputStream inputStream, String encoding) throws IOException {
+    public List<Map<String, String>> readAllRecords(InputStream inputStream, RecordLayoutOptions options) throws IOException {
         List<Map<String, String>> result = new ArrayList<>();
 
-        LineNumberReader r;
-        if (encoding != null)
-            r = new LineNumberReader(new InputStreamReader(inputStream, encoding));
-        else
-            r = new LineNumberReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        LineNumberReader r = new LineNumberReader(new InputStreamReader(inputStream, getEncoding(options)));
         String line;
         while ((line = r.readLine()) != null)
-            result.add(createRecordFromLine(line, r.getLineNumber()));
+            result.add(createRecordFromLine(line, r.getLineNumber(), options));
 
         return result;
     }
@@ -288,12 +353,24 @@ public abstract class RecordLayout implements Layout {
      * @return A list of the records created from the data read from the Reader
      */
     public List<Map<String, String>> readAllRecords(Reader reader) throws IOException {
+        return readAllRecords(reader, null);
+    }
+
+    /**
+     * Returns records that are created from the data given from the reader passed in.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param reader Reader containing the data
+     * @param options options to use (null means default option values will be used)
+     * @return A list of the records created from the data read from the Reader
+     */
+    public List<Map<String, String>> readAllRecords(Reader reader, RecordLayoutOptions options) throws IOException {
         List<Map<String, String>> result = new ArrayList<>();
 
         LineNumberReader r = new LineNumberReader(reader);
         String line;
         while ((line = r.readLine()) != null)
-            result.add(createRecordFromLine(line, r.getLineNumber()));
+            result.add(createRecordFromLine(line, r.getLineNumber(), options));
 
         return result;
     }
@@ -306,7 +383,19 @@ public abstract class RecordLayout implements Layout {
      * @return A list of the records created from the data in the File
      */
     public List<Map<String, String>> readAllRecords(File file) throws IOException {
-        return readAllRecords(file, null);
+        return readAllRecords(file, null, null);
+    }
+
+    /**
+     * Returns records that are created from the data in the file passed in.
+     * <p/>
+     * Created on Jul 14, 2011 by murphyr
+     * @param file File containing data
+     * @param options options to use (null means default option values will be used)
+     * @return A list of the records created from the data in the File
+     */
+    public List<Map<String, String>> readAllRecords(File file, RecordLayoutOptions options) throws IOException {
+        return readAllRecords(file, null, options);
     }
 
     /**
@@ -315,12 +404,13 @@ public abstract class RecordLayout implements Layout {
      * Created on Jul 14, 2011 by murphyr
      * @param file File containing data
      * @param zipEntry the zip entry to use in the file if it's a zip file (if none are provided and the file contains several entries, an exception will be thrown)
+     * @param options options to use (null means default option values will be used)
      * @return A list of the records created from the data in the File
      */
-    public List<Map<String, String>> readAllRecords(File file, String zipEntry) throws IOException {
+    public List<Map<String, String>> readAllRecords(File file, String zipEntry, RecordLayoutOptions options) throws IOException {
         List<Map<String, String>> result = new ArrayList<>();
 
-        try (LineNumberReader r = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntry), StandardCharsets.UTF_8))) {
+        try (LineNumberReader r = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntry), getEncoding(options)))) {
 
             // some CSV layout need to ignore the first line (see issue #2)
             if (this instanceof CommaSeparatedLayout && ((CommaSeparatedLayout)this).ignoreFirstLine())
@@ -328,7 +418,7 @@ public abstract class RecordLayout implements Layout {
 
             String line;
             while ((line = r.readLine()) != null)
-                result.add(createRecordFromLine(line, r.getLineNumber()));
+                result.add(createRecordFromLine(line, r.getLineNumber(), options));
         }
 
         return result;
@@ -352,30 +442,21 @@ public abstract class RecordLayout implements Layout {
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param line data line
-     * @return a map representing a record
-     */
-    public Map<String, String> createRecordFromLine(String line) throws IOException {
-        return createRecordFromLine(line, null);
-    }
-
-    /**
-     * Converts the given data line into a map representing a record.
-     * <p/>
-     * Created on Jul 14, 2011 by murphyr
-     * @param line data line
      * @param lineNumber line number (use null if no line number available)
+     * @param options the options to use to create the line (pass null to use all default options)
      * @return a map representing a record
      */
-    public abstract Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException;
+    public abstract Map<String, String> createRecordFromLine(String line, Integer lineNumber, RecordLayoutOptions options) throws IOException;
 
     /**
      * Converts the provided record into a data line.
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param record record to convert
+     * @param options the options to use to create the line (pass null to use all default options)
      * @return a data line
      */
-    public abstract String createLineFromRecord(Map<String, String> record) throws IOException;
+    public abstract String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException;
 
     /**
      * Returns a layout info object if this instance of a layout can handle the provided data line, returns null otherwise.
@@ -387,7 +468,7 @@ public abstract class RecordLayout implements Layout {
 
     @Override
     public LayoutInfo buildFileInfo(File file, String zipEntryName, LayoutInfoDiscoveryOptions options) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), getEncoding(null)))) {
             String firstLine = reader.readLine();
             if (firstLine == null)
                 return null;

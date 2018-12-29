@@ -75,7 +75,6 @@ public class CommaSeparatedLayoutTest {
         RecordLayoutOptions options = new RecordLayoutOptions();
         options.setTrimValues(true);
         options.setEnforceStrictFormat(true);
-        layout.setOptions(options);
 
         // test layout info
         Assert.assertEquals("test-csv", layout.getLayoutId());
@@ -104,16 +103,16 @@ public class CommaSeparatedLayoutTest {
         Assert.assertNotNull(layout.validateLine("1,2,3,4,5,6", 1));
 
         // test main reading method
-        Map<String, String> rec = layout.createRecordFromLine("0,123,456");
+        Map<String, String> rec = layout.createRecordFromLine("0,123,456", null, options);
         Assert.assertEquals("0", rec.get("recordType"));
         Assert.assertEquals("123", rec.get("field1"));
         Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine(",,");
+        rec = layout.createRecordFromLine(",,", null, options);
         Assert.assertTrue(rec.isEmpty());
 
         boolean exception = false;
         try {
-            layout.createRecordFromLine("x"); // we are using strict validation, so a bad line should generate an exception
+            layout.createRecordFromLine("x", null, options); // we are using strict validation, so a bad line should generate an exception
         }
         catch (IOException e) {
             exception = true;
@@ -121,7 +120,7 @@ public class CommaSeparatedLayoutTest {
         Assert.assertTrue(exception);
         exception = false;
         try {
-            layout.createRecordFromLine(null);
+            layout.createRecordFromLine(null, null, options);
         }
         catch (IOException e) {
             exception = true;
@@ -129,7 +128,7 @@ public class CommaSeparatedLayoutTest {
         Assert.assertTrue(exception);
         exception = false;
         try {
-            layout.createRecordFromLine("");
+            layout.createRecordFromLine("", null, options);
         }
         catch (IOException e) {
             exception = true;
@@ -141,14 +140,13 @@ public class CommaSeparatedLayoutTest {
         rec.put("recordType", "0");
         rec.put("field1", "123");
         rec.put("field2", "456");
-        Assert.assertEquals("0,123,456", layout.createLineFromRecord(rec));
+        Assert.assertEquals("0,123,456", layout.createLineFromRecord(rec, options));
         rec.clear();
-        Assert.assertEquals("X,,", layout.createLineFromRecord(rec)); // first field has a default value
+        Assert.assertEquals("X,,", layout.createLineFromRecord(rec, options)); // first field has a default value
 
         // **** re-do some of the read/write test with a layout that doesn't trim and doesn't enforce the format
         options.setTrimValues(false);
         options.setEnforceStrictFormat(false);
-        layout.setOptions(options);
 
         // test validate line
         Assert.assertNull(layout.validateLine("1,2,3", 1));
@@ -158,30 +156,30 @@ public class CommaSeparatedLayoutTest {
         Assert.assertNotNull(layout.validateLine("1,2,3,4,5,6", 1));
 
         // test main reading method
-        rec = layout.createRecordFromLine("0,123"); // only 2 fields instead of 3 but we are not enforcing the format
+        rec = layout.createRecordFromLine("0,123", null, options); // only 2 fields instead of 3 but we are not enforcing the format
         Assert.assertEquals("0", rec.get("recordType"));
         Assert.assertEquals("123", rec.get("field1"));
         Assert.assertNull(rec.get("field2"));
-        rec = layout.createRecordFromLine(",,");
+        rec = layout.createRecordFromLine(",,", null, options);
         Assert.assertTrue(rec.isEmpty());
 
         exception = false;
         try {
-            layout.createRecordFromLine("x"); // we are not using strict validation, so a bad line should not generate an exception
+            layout.createRecordFromLine("x", null, options); // we are not using strict validation, so a bad line should not generate an exception
         }
         catch (IOException e) {
             exception = true;
         }
         Assert.assertFalse(exception);
         try {
-            layout.createRecordFromLine(null);
+            layout.createRecordFromLine(null, null, options);
         }
         catch (IOException e) {
             exception = true;
         }
         Assert.assertFalse(exception);
         try {
-            layout.createRecordFromLine("");
+            layout.createRecordFromLine("", null, options);
         }
         catch (IOException e) {
             exception = true;
@@ -193,9 +191,9 @@ public class CommaSeparatedLayoutTest {
         rec.put("recordType", "0");
         rec.put("field1", "123");
         rec.put("field2", "456");
-        Assert.assertEquals("0,123,456", layout.createLineFromRecord(rec));
+        Assert.assertEquals("0,123,456", layout.createLineFromRecord(rec, options));
         rec.clear();
-        Assert.assertEquals("X,,", layout.createLineFromRecord(rec)); // first field has a default value
+        Assert.assertEquals("X,,", layout.createLineFromRecord(rec, options)); // first field has a default value
     }
 
     @Test
@@ -259,8 +257,8 @@ public class CommaSeparatedLayoutTest {
         // create the fake layout
         CommaSeparatedLayout layout = new CommaSeparatedLayout() {
             @Override
-            public Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException {
-                Map<String, String> result = super.createRecordFromLine(line, lineNumber);
+            public Map<String, String> createRecordFromLine(String line, Integer lineNumber, RecordLayoutOptions options) throws IOException {
+                Map<String, String> result = super.createRecordFromLine(line, lineNumber, options);
 
                 // handle subfields
                 for (CommaSeparatedField field : _fields) {
@@ -270,7 +268,7 @@ public class CommaSeparatedLayoutTest {
                         if (originalValue != null && originalValue.length() >= fields.get(fields.size() - 1).getEnd()) {
                             for (FixedColumnsField child : fields) {
                                 String value = new String(originalValue.substring(child.getStart() - 1, child.getEnd()));
-                                if (getOptions().trimValues())
+                                if (trimValues(options))
                                     value = value.trim();
                                 if (!value.isEmpty())
                                     result.put(child.getName(), value);
@@ -283,7 +281,7 @@ public class CommaSeparatedLayoutTest {
             }
 
             @Override
-            public String createLineFromRecord(Map<String, String> record) throws IOException {
+            public String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException {
 
                 // handle subfields
                 for (CommaSeparatedField field : _fields) {
@@ -317,7 +315,7 @@ public class CommaSeparatedLayoutTest {
                     }
                 }
 
-                return super.createLineFromRecord(record);
+                return super.createLineFromRecord(record, options);
             }
         };
         layout.setLayoutId("naaccr-partial-csv");
@@ -353,7 +351,6 @@ public class CommaSeparatedLayoutTest {
         // same test, but this time the values aren't trimmed...
         RecordLayoutOptions options = new RecordLayoutOptions();
         options.setTrimValues(false);
-        layout.setOptions(options);
         records = layout.readAllRecords(file);
         Assert.assertEquals("20100615", records.get(0).get("birthDate"));
         Assert.assertEquals("2010", records.get(0).get("birthDateYear"));
@@ -378,13 +375,13 @@ public class CommaSeparatedLayoutTest {
         toWrite.put("birthDateYear", "2010");
         toWrite.put("birthDateMonth", "6");
         toWrite.put("birthDateDay", "15");
-        Assert.assertEquals("1,2,3,20100615", layout.createLineFromRecord(toWrite));
+        Assert.assertEquals("1,2,3,20100615", layout.createLineFromRecord(toWrite, options));
 
         toWrite.put("birthDate", "xxxxxxxx");
-        Assert.assertEquals("1,2,3,20100615", layout.createLineFromRecord(toWrite));
+        Assert.assertEquals("1,2,3,20100615", layout.createLineFromRecord(toWrite, options));
 
         toWrite.clear();
-        Assert.assertEquals("A,,,", layout.createLineFromRecord(toWrite)); // weird, but the record type has a default value of 'A' in the NAACCR layout...
+        Assert.assertEquals("A,,,", layout.createLineFromRecord(toWrite, options)); // weird, but the record type has a default value of 'A' in the NAACCR layout...
     }
 
     @Test

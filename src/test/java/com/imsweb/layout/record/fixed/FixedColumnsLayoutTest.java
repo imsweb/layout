@@ -20,16 +20,8 @@ import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
-/**
- * Created on Jun 25, 2012 by depryf
- * @author depryf
- */
 public class FixedColumnsLayoutTest {
 
-    /**
-     * Created on Jun 25, 2012 by depryf
-     * @throws Exception
-     */
     @Test
     public void testLayout() throws Exception {
 
@@ -63,7 +55,6 @@ public class FixedColumnsLayoutTest {
         RecordLayoutOptions options = new RecordLayoutOptions();
         options.setTrimValues(true);
         options.setEnforceStrictFormat(true);
-        layout.setOptions(options);
 
         // test field getters
         Assert.assertEquals(6, layout.getAllFields().size());
@@ -85,7 +76,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertNotNull(layout.validateLine("xxxxxxxxxxxxxxxxxxxxxxxx", 1));
 
         // test main reading method
-        Map<String, String> rec = layout.createRecordFromLine("0123456789019999");
+        Map<String, String> rec = layout.createRecordFromLine("0123456789019999", null, options);
         Assert.assertEquals("0", rec.get("recordType"));
         Assert.assertEquals("123", rec.get("field1"));
         Assert.assertEquals("456", rec.get("field2"));
@@ -96,7 +87,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertEquals("9999", rec.get("field5"));
         Assert.assertEquals("99", rec.get("field5a"));
         Assert.assertEquals("99", rec.get("field5b"));
-        rec = layout.createRecordFromLine("0  12   3       ");
+        rec = layout.createRecordFromLine("0  12   3       ", null, options);
         Assert.assertEquals("0", rec.get("recordType"));
         Assert.assertEquals("1", rec.get("field1"));
         Assert.assertEquals("2", rec.get("field2"));
@@ -104,13 +95,13 @@ public class FixedColumnsLayoutTest {
         Assert.assertEquals("    ", rec.get("field5"));
         Assert.assertNull(rec.get("field5a")); // this field is trimmed, so it shouldn't be in the result
         Assert.assertEquals("  ", rec.get("field5b"));
-        rec = layout.createRecordFromLine("                ");
+        rec = layout.createRecordFromLine("                ", null, options);
         Assert.assertEquals(2, rec.size());  // the record should still contain the fields that aren't trimmed
         Assert.assertTrue(rec.containsKey("field5"));
         Assert.assertTrue(rec.containsKey("field5b"));
         boolean exception = false;
         try {
-            layout.createRecordFromLine("x"); // we are using strict validation, so a line too short should generate an exception
+            layout.createRecordFromLine("x", null, options); // we are using strict validation, so a line too short should generate an exception
         }
         catch (IOException e) {
             exception = true;
@@ -118,7 +109,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertTrue(exception);
         exception = false;
         try {
-            layout.createRecordFromLine("xxxxxxxxxxxxxxxxx"); // we are using strict validation, so a line too long should generate an exception
+            layout.createRecordFromLine("xxxxxxxxxxxxxxxxx", null, options); // we are using strict validation, so a line too long should generate an exception
         }
         catch (IOException e) {
             exception = true;
@@ -126,7 +117,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertTrue(exception);
         exception = false;
         try {
-            layout.createRecordFromLine(null);
+            layout.createRecordFromLine(null, null, options);
         }
         catch (IOException e) {
             exception = true;
@@ -134,7 +125,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertTrue(exception);
         exception = false;
         try {
-            layout.createRecordFromLine("");
+            layout.createRecordFromLine("", null, options);
         }
         catch (IOException e) {
             exception = true;
@@ -148,37 +139,34 @@ public class FixedColumnsLayoutTest {
         rec.put("field2", "456");
         rec.put("field3", "789");
         rec.put("field4", "01"); // doesn't matter becuase the children are used...
-        Assert.assertEquals("0123456789      ", layout.createLineFromRecord(rec));
+        Assert.assertEquals("0123456789      ", layout.createLineFromRecord(rec,  options));
         rec.clear();
-        Assert.assertEquals("X               ", layout.createLineFromRecord(rec)); // first field has a default value
+        Assert.assertEquals("X               ", layout.createLineFromRecord(rec,  options)); // first field has a default value
         rec.put("field1", "a"); // should be left-align with spaces (default)
         rec.put("field2", "b"); // should be left-align with X-char
         rec.put("field3", "c"); // should be right-align with 0-char
         rec.put("field4a", "Y");
         rec.put("field4b", "Z");
-        Assert.assertEquals("Xa  bXX00cYZ    ", layout.createLineFromRecord(rec));
+        Assert.assertEquals("Xa  bXX00cYZ    ", layout.createLineFromRecord(rec,  options));
         // same test but disable the padding
         options.setApplyPadding(false);
-        layout.setOptions(options);
-        Assert.assertEquals("Xa  b    cYZ    ", layout.createLineFromRecord(rec));
+        Assert.assertEquals("Xa  b    cYZ    ", layout.createLineFromRecord(rec,  options));
         // same test but disable alignment
         options.setApplyAlignment(false);
-        layout.setOptions(options);
-        Assert.assertEquals("Xa  b  c  YZ    ", layout.createLineFromRecord(rec));
+        Assert.assertEquals("Xa  b  c  YZ    ", layout.createLineFromRecord(rec,  options));
         options.setApplyPadding(true);
         options.setApplyAlignment(true);
-        layout.setOptions(options);
 
         // now parent and children don't agree -> no exception, use the children
         rec.put("field4", "01");
-        layout.createLineFromRecord(rec);
-        Assert.assertEquals("Xa  bXX00cYZ    ", layout.createLineFromRecord(rec));
+        layout.createLineFromRecord(rec,  options);
+        Assert.assertEquals("Xa  bXX00cYZ    ", layout.createLineFromRecord(rec,  options));
         rec.put("field4", null);
 
         exception = false;
         try {
             rec.put("field1", "xxxx"); // field too long
-            layout.createLineFromRecord(rec);
+            layout.createLineFromRecord(rec,  options);
             rec.put("field1", null);
         }
         catch (IOException e) {
@@ -188,7 +176,7 @@ public class FixedColumnsLayoutTest {
         exception = false;
         try {
             rec.put("field4a", "XX"); // child field too long
-            layout.createLineFromRecord(rec);
+            layout.createLineFromRecord(rec,  options);
             rec.put("field4a", null);
         }
         catch (IOException e) {
@@ -199,7 +187,6 @@ public class FixedColumnsLayoutTest {
         // **** re-do some of the read/write test with a layout that doesn't trim and doesn't enforce the format
         options.setTrimValues(false);
         options.setEnforceStrictFormat(false);
-        layout.setOptions(options);
 
         // test validate line
         Assert.assertNull(layout.validateLine("012345678901    ", 1));
@@ -209,7 +196,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertNotNull(layout.validateLine("xxxxxxxxxxxxxxxxxxxxxxxx", 1));
 
         // test main reading method
-        rec = layout.createRecordFromLine("012345678901    ");
+        rec = layout.createRecordFromLine("012345678901    ", null,  options);
         Assert.assertEquals("0", rec.get("recordType"));
         Assert.assertEquals("123", rec.get("field1"));
         Assert.assertEquals("456", rec.get("field2"));
@@ -217,16 +204,16 @@ public class FixedColumnsLayoutTest {
         Assert.assertEquals("01", rec.get("field4"));
         Assert.assertEquals("0", rec.get("field4a"));
         Assert.assertEquals("1", rec.get("field4b"));
-        rec = layout.createRecordFromLine("0  12   3       ");
+        rec = layout.createRecordFromLine("0  12   3       ", null,  options);
         Assert.assertEquals("0", rec.get("recordType"));
         Assert.assertEquals("  1", rec.get("field1"));
         Assert.assertEquals("2  ", rec.get("field2"));
         Assert.assertEquals(" 3 ", rec.get("field3"));
-        rec = layout.createRecordFromLine("                ");
+        rec = layout.createRecordFromLine("                ", null,  options);
         Assert.assertFalse(rec.isEmpty()); // we are not trimming, so the fields should not be ignored...
         exception = false;
         try {
-            layout.createRecordFromLine("x"); // we are NOT using strict validation, so a line too short should NOT generate an exception
+            layout.createRecordFromLine("x", null,  options); // we are NOT using strict validation, so a line too short should NOT generate an exception
         }
         catch (IOException e) {
             exception = true;
@@ -234,7 +221,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertFalse(exception);
         exception = false;
         try {
-            layout.createRecordFromLine("xxxxxxxxxxxxxxxxxxxxx"); // we are NOT using strict validation, so a line too long should NOT generate an exception
+            layout.createRecordFromLine("xxxxxxxxxxxxxxxxxxxxx", null,  options); // we are NOT using strict validation, so a line too long should NOT generate an exception
         }
         catch (IOException e) {
             exception = true;
@@ -242,7 +229,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertFalse(exception);
         exception = false;
         try {
-            layout.createRecordFromLine(null);
+            layout.createRecordFromLine(null, null,  options);
         }
         catch (IOException e) {
             exception = true;
@@ -250,7 +237,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertFalse(exception);
         exception = false;
         try {
-            layout.createRecordFromLine("");
+            layout.createRecordFromLine("", null,  options);
         }
         catch (IOException e) {
             exception = true;
@@ -260,9 +247,8 @@ public class FixedColumnsLayoutTest {
         // test main writing method
         options.setTrimValues(true);
         options.setEnforceStrictFormat(false);
-        layout.setOptions(options);
-        rec = layout.createRecordFromLine("01234567890199  ");
-        Assert.assertEquals("01234567890199  ", layout.createLineFromRecord(rec));
+        rec = layout.createRecordFromLine("01234567890199  ", null,  options);
+        Assert.assertEquals("01234567890199  ", layout.createLineFromRecord(rec, options));
         rec.clear();
         rec.put("recordType", "0");
         rec.put("field1", "123");
@@ -270,9 +256,9 @@ public class FixedColumnsLayoutTest {
         rec.put("field3", "789");
         rec.put("field4", "01"); // doesn't matter, we only use the children
         rec.put("field5", "9999"); // doesn't matter, we only use the children
-        Assert.assertEquals("0123456789      ", layout.createLineFromRecord(rec));
+        Assert.assertEquals("0123456789      ", layout.createLineFromRecord(rec, options));
         rec.clear();
-        Assert.assertEquals("X               ", layout.createLineFromRecord(rec)); // first field has a default value
+        Assert.assertEquals("X               ", layout.createLineFromRecord(rec, options)); // first field has a default value
         rec.put("field1", "a"); // should be left-align with spaces (default)
         rec.put("field2", "b"); // should be left-align with X-char
         rec.put("field3", "c"); // should be right-align with 0-char
@@ -280,11 +266,11 @@ public class FixedColumnsLayoutTest {
         rec.put("field4b", "Z");
         rec.put("field5a", "dd");
         rec.put("field5b", "dd");
-        Assert.assertEquals("Xa  bXX00cYZdddd", layout.createLineFromRecord(rec));
+        Assert.assertEquals("Xa  bXX00cYZdddd", layout.createLineFromRecord(rec, options));
         exception = false;
         try {
             rec.put("field4", "01"); // now parent and children don't agree -> no exception (children should be used)
-            layout.createLineFromRecord(rec);
+            layout.createLineFromRecord(rec, options);
             rec.put("field4", null);
         }
         catch (IOException e) {
@@ -294,7 +280,7 @@ public class FixedColumnsLayoutTest {
         exception = false;
         try {
             rec.put("field1", "xxxx"); // field too long
-            layout.createLineFromRecord(rec);
+            layout.createLineFromRecord(rec, options);
             rec.put("field1", null);
         }
         catch (IOException e) {
@@ -304,7 +290,7 @@ public class FixedColumnsLayoutTest {
         exception = false;
         try {
             rec.put("field4a", "XX"); // child field too long
-            layout.createLineFromRecord(rec);
+            layout.createLineFromRecord(rec, options);
             rec.put("field4a", null);
         }
         catch (IOException e) {
@@ -313,11 +299,7 @@ public class FixedColumnsLayoutTest {
         Assert.assertTrue(exception);
     }
 
-    /**
-     * Created on Jul 21, 2012 by Fabian
-     */
     @Test
-    @SuppressWarnings("ConstantConditions")
     public void testLayoutExtension() throws Exception {
         if (!LayoutFactory.isLayoutRegister("test"))
             LayoutFactory.registerLayout(new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-fixed-columns.xml")));
@@ -353,23 +335,23 @@ public class FixedColumnsLayoutTest {
 
         // this layout defines a 1-char field at the beginning of the state requestor items
         RecordLayout layout = new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-state-requestor-items-1.xml"));
-        String line = layout.createLineFromRecord(record);
+        String line = layout.createLineFromRecord(record, null);
         Assert.assertEquals(3339, line.length());
-        record = layout.createRecordFromLine(line);
+        record = layout.createRecordFromLine(line, null, null);
         Assert.assertEquals("X", record.get("registryField1"));
 
         // this layout defines a 1-char field in the middle of the state requestor items
         layout = new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-state-requestor-items-2.xml"));
-        line = layout.createLineFromRecord(record);
+        line = layout.createLineFromRecord(record, null);
         Assert.assertEquals(3339, line.length());
-        record = layout.createRecordFromLine(line);
+        record = layout.createRecordFromLine(line, null, null);
         Assert.assertEquals("X", record.get("registryField1"));
 
         // this layout defines a 1-char field at the end of the state requestor items
         layout = new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-state-requestor-items-3.xml"));
-        line = layout.createLineFromRecord(record);
+        line = layout.createLineFromRecord(record, null);
         Assert.assertEquals(3339, line.length());
-        record = layout.createRecordFromLine(line);
+        record = layout.createRecordFromLine(line, null, null);
         Assert.assertEquals("X", record.get("registryField1"));
     }
 
@@ -383,11 +365,11 @@ public class FixedColumnsLayoutTest {
         f2.setName("f2");
         f2.setLongLabel("Field 2");
 
-        Assert.assertFalse(f1.equals(f2));
-        Assert.assertFalse(f1.hashCode() == f2.hashCode());
+        Assert.assertNotEquals(f1, f2);
+        Assert.assertNotEquals(f1.hashCode(), f2.hashCode());
 
         f2.setName("f1");
-        Assert.assertTrue(f1.equals(f2));
-        Assert.assertTrue(f1.hashCode() == f2.hashCode());
+        Assert.assertEquals(f1, f2);
+        Assert.assertEquals(f1.hashCode(), f2.hashCode());
     }
 }

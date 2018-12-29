@@ -25,6 +25,7 @@ import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutFieldXmlDto;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
 
@@ -290,7 +291,7 @@ public class CommaSeparatedLayout extends RecordLayout {
     }
 
     @Override
-    public String createLineFromRecord(Map<String, String> record) throws IOException {
+    public String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException {
         StringBuilder result = new StringBuilder();
 
         if (record == null)
@@ -325,21 +326,21 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     @Override
     @SuppressWarnings("RedundantStringConstructorCall")
-    public Map<String, String> createRecordFromLine(String line, Integer lineNumber) throws IOException {
+    public Map<String, String> createRecordFromLine(String line, Integer lineNumber, RecordLayoutOptions options) throws IOException {
         Map<String, String> result = new HashMap<>();
 
         Integer lineNumberSafe = lineNumber == null ? Integer.valueOf(1) : lineNumber;
 
         // handle special case
         if (line == null || line.isEmpty()) {
-            if (getOptions().enforceStrictFormat())
+            if (enforceStrictFormat(options))
                 throw new IOException("line " + lineNumberSafe + ": got en empty line");
             else
                 return result;
         }
 
         // if we need to enforce the format, validate the line
-        if (getOptions().enforceStrictFormat()) {
+        if (enforceStrictFormat(options)) {
             String validationMsg = validateLine(line, lineNumberSafe);
             if (validationMsg != null)
                 throw new IOException(validationMsg);
@@ -356,7 +357,7 @@ public class CommaSeparatedLayout extends RecordLayout {
 
             String value = values[index];
             String trimmedValue = value.trim();
-            if (getOptions().trimValues() && field.getTrim())
+            if (trimValues(options) && field.getTrim())
                 value = trimmedValue;
 
             if (!value.isEmpty())

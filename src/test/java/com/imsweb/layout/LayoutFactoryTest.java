@@ -6,6 +6,7 @@ package com.imsweb.layout;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
@@ -389,9 +390,9 @@ public class LayoutFactoryTest {
         result = LayoutFactory.discoverFormat(createFileFromTestingResource("fake-naaccr15-1-rec-no-version.txt"), options);
         Assert.assertEquals(5, result.size());
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE, result.get(0).getLayoutId());
-        Assert.assertEquals("C400", ((RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE)).readAllRecords(
-                Thread.currentThread().getContextClassLoader().getResourceAsStream(
-                        "fake-naaccr15-1-rec-no-version.txt"), "UTF-8").get(0).get("primarySite"));
+        try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("fake-naaccr15-1-rec-no-version.txt")) {
+            Assert.assertEquals("C400", ((RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE)).readAllRecords(is, null).get(0).get("primarySite"));
+        }
 
         // turning blank record type off...
         options.setNaaccrAllowBlankVersion(false);
@@ -415,6 +416,7 @@ public class LayoutFactoryTest {
         Assert.assertTrue(result.isEmpty());
     }
 
+    @SuppressWarnings("ConstantConditions")
     private File createFileFromTestingResource(String path) {
         return new File(Thread.currentThread().getContextClassLoader().getResource(path).getPath());
 

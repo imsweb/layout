@@ -3,27 +3,33 @@
  */
 package com.imsweb.layout.record;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 public class RecordLayoutOptions {
 
-    /**
-     * When reading values, do we need to trim them (defaults to true).
-     */
+    // the different options for new lines
+    public static final String NEW_LINE_OS = System.lineSeparator();
+    public static final String NEW_LINE_LF = "\n";
+    public static final String NEW_LINE_CRLF = "\r\n";
+
+    // when reading values, do we need to trim them (defaults to true)
     protected boolean _trimValues;
 
-    /**
-     * When reading lines, do we need to check the correct number of fields are available or just use what we have (defaults to false).
-     */
+    // when reading records, do we need to check that the correct number of fields are available or just use what we have (defaults to false)
     protected boolean _enforceStrictFormat;
 
-    /**
-     * When writing values, do we need to apply the alignment field rules, or left-align all the time (defaults to true).
-     */
+    // when writing records, do we need to apply the alignment field rules, or left-align all the time (defaults to true)
     protected boolean _applyAlignment;
 
-    /**
-     * When writing values, do we need to apply the padding field rules, or use spaces all the time (defaults to true).
-     */
+    // when writing records, do we need to apply the padding field rules, or use spaces all the time (defaults to true)
     protected boolean _applyPadding;
+
+    // when writing records, the flavor of new lines to use (defaults to the OS one)
+    protected String _lineSeparator;
+
+    // when reading and writing records, the encoding to use (defaults to UTF-8)
+    protected Charset _encoding;
 
     /**
      * Default Constructor.
@@ -33,17 +39,8 @@ public class RecordLayoutOptions {
         _enforceStrictFormat = false;
         _applyAlignment = true;
         _applyPadding = true;
-    }
-
-    /**
-     * Copy Constructor.
-     * @param options other options
-     */
-    public RecordLayoutOptions(RecordLayoutOptions options) {
-        _trimValues = options.trimValues();
-        _enforceStrictFormat = options.enforceStrictFormat();
-        _applyAlignment = options.applyAlignment();
-        _applyPadding = options.applyPadding();
+        _lineSeparator = NEW_LINE_OS;
+        _encoding = StandardCharsets.UTF_8;
     }
 
     public boolean trimValues() {
@@ -76,5 +73,23 @@ public class RecordLayoutOptions {
 
     public void setApplyPadding(boolean applyPadding) {
         _applyPadding = applyPadding;
+    }
+
+    public String getLineSeparator() {
+        return _lineSeparator;
+    }
+
+    public void setLineSeparator(String lineSeparator) {
+        if (!NEW_LINE_OS.equals(lineSeparator) && !NEW_LINE_LF.equals(lineSeparator) && !NEW_LINE_CRLF.equals(lineSeparator))
+            throw new RuntimeException("Invalid new line separator option: " + lineSeparator);
+        _lineSeparator = lineSeparator;
+    }
+
+    public Charset getEncoding() {
+        return _encoding;
+    }
+
+    public void setEncoding(Charset encoding) {
+        _encoding = encoding;
     }
 }
