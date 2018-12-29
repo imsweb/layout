@@ -351,7 +351,7 @@ public class CommaSeparatedLayoutTest {
         // same test, but this time the values aren't trimmed...
         RecordLayoutOptions options = new RecordLayoutOptions();
         options.setTrimValues(false);
-        records = layout.readAllRecords(file);
+        records = layout.readAllRecords(file, options);
         Assert.assertEquals("20100615", records.get(0).get("birthDate"));
         Assert.assertEquals("2010", records.get(0).get("birthDateYear"));
         Assert.assertEquals("06", records.get(0).get("birthDateMonth"));
