@@ -2,6 +2,7 @@
 
 **Changes in version 1.16**
 
+- Updated NAACCR XML library from version 5.0 to version 5.1.
 - Cleaned up options in record-based layouts.
 
 **Changes in version 1.15**

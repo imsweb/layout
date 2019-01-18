@@ -290,6 +290,7 @@ public class NaaccrXmlLayoutTest {
         itemNoRecs.setNaaccrName("Item name1");
         itemNoRecs.setLength(1);
         itemNoRecs.setParentXmlElement("Patient");
+        itemNoRecs.setRecordTypes("A,M,C,I");
         itemList.add(itemNoRecs);
 
         // Item with empty record types
@@ -299,7 +300,7 @@ public class NaaccrXmlLayoutTest {
         itemEmptyRecs.setNaaccrName("Item name2");
         itemEmptyRecs.setLength(1);
         itemEmptyRecs.setParentXmlElement("Patient");
-        itemEmptyRecs.setRecordTypes("");
+        itemNoRecs.setRecordTypes("A,M,C,I");
         itemList.add(itemEmptyRecs);
 
         //Item with all record types
@@ -331,16 +332,6 @@ public class NaaccrXmlLayoutTest {
         itemAllExceptRec.setParentXmlElement("Patient");
         itemAllExceptRec.setRecordTypes("A,M,C");
         itemList.add(itemAllExceptRec);
-
-        //Item with all a bad record type
-        NaaccrDictionaryItem itemBadRec = new NaaccrDictionaryItem();
-        itemBadRec.setNaaccrId("itemId6");
-        itemBadRec.setNaaccrNum(10006);
-        itemBadRec.setNaaccrName("Item name6");
-        itemBadRec.setLength(1);
-        itemBadRec.setParentXmlElement("Patient");
-        itemBadRec.setRecordTypes("Q");
-        itemList.add(itemBadRec);
 
         userDictionary.setItems(itemList);
 
