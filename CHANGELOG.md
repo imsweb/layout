@@ -1,5 +1,7 @@
 ## Layout Framework Version History
 
+**Changes in version 1.17 (not released yet)**
+
 **Changes in version 1.16**
 
 - Updated NAACCR XML library from version 5.0 to version 5.1.
