@@ -1,6 +1,6 @@
 ## Layout Framework Version History
 
-**Changes in version 1.16 (not released yet)**
+**Changes in version 1.16**
 
 - Cleaned up options in record-based layouts.
 

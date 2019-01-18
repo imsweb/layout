@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:5.0'
+    api 'com.imsweb:naaccr-xml:5.1'
 
     implementation 'commons-io:commons-io:2.6'
     implementation 'com.opencsv:opencsv:4.2'
@@ -108,7 +108,7 @@ if (version.endsWith('-SNAPSHOT'))
 
 // Gradle wrapper, this allows to build the project without having to install Gradle!
 wrapper {
-    gradleVersion = '5.0'
+    gradleVersion = '5.1'
     distributionType = Wrapper.DistributionType.ALL
 }
 
