@@ -3,17 +3,6 @@
  */
 package com.imsweb.layout.record.csv;
 
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.LayoutInfo;
-import com.imsweb.layout.LayoutInfoDiscoveryOptions;
-import com.imsweb.layout.LayoutUtils;
-import com.imsweb.layout.record.RecordLayout;
-import com.imsweb.layout.record.RecordLayoutOptions;
-import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutFieldXmlDto;
-import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
-import com.opencsv.CSVParserBuilder;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,11 +18,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.opencsv.CSVParserBuilder;
+
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfo;
+import com.imsweb.layout.LayoutInfoDiscoveryOptions;
+import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.RecordLayoutOptions;
+import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutFieldXmlDto;
+import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
+
 /**
  * This class contains the logic related to a comma-separated-value layout (CSV).
  * <p/>
  * Created on Jul 28, 2011 by depryf
- *
  * @author depryf
  */
 public class CommaSeparatedLayout extends RecordLayout {
@@ -79,7 +80,6 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     /**
      * Constructor.
-     *
      * @param layoutUrl URL to the XML definition, cannot be null
      * @throws IOException if the XML definition is not valid
      */
@@ -96,7 +96,6 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     /**
      * Constructor.
-     *
      * @param layoutFile XML definition, cannot be null, must exists
      * @throws IOException if the XML definition is not valid
      */
@@ -115,7 +114,6 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     /**
      * Constructor.
-     *
      * @param layoutXmlDto java representation of the XML definition, cannot be null
      * @throws IOException if the XML definition is not valid
      */
@@ -144,8 +142,9 @@ public class CommaSeparatedLayout extends RecordLayout {
             if (!LayoutFactory.getAvailableLayouts().containsKey(layoutXmlDto.getExtendLayout()))
                 throw new IOException("Unable to find referenced layout ID '" + layoutXmlDto.getExtendLayout() + "'");
             try {
-                parentLayout = (CommaSeparatedLayout) LayoutFactory.getLayout(layoutXmlDto.getExtendLayout());
-            } catch (ClassCastException e) {
+                parentLayout = (CommaSeparatedLayout)LayoutFactory.getLayout(layoutXmlDto.getExtendLayout());
+            }
+            catch (ClassCastException e) {
                 throw new IOException("A CSV layout must extend another CSV layout");
             }
             _parentLayoutId = parentLayout.getLayoutId();
@@ -164,7 +163,8 @@ public class CommaSeparatedLayout extends RecordLayout {
         // final verifications
         try {
             verify();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new IOException(e.getMessage());
         }
     }
@@ -173,7 +173,6 @@ public class CommaSeparatedLayout extends RecordLayout {
      * Helper that translates an XML field into an exposed DTO field.
      * <p/>
      * Created on Aug 16, 2011 by depryf
-     *
      * @param dto <code>CommaSeparatedLayoutFieldXmlDto</code> to translate
      * @return the translated <code>Field</code>
      */
@@ -215,7 +214,6 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     /**
      * Getter for the number of fieldsr.
-     *
      * @return the number of fields
      */
     public Integer getLayoutNumberOfFields() {
@@ -229,7 +227,6 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     /**
      * Getter for the fields separator.
-     *
      * @return the fields separator
      */
     public char getSeparator() {
@@ -238,7 +235,6 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     /**
      * Setter for the fields separator.
-     *
      * @param separator fields separator
      */
     public void setSeparator(char separator) {
@@ -247,7 +243,6 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     /**
      * Getter for the ignore-first-line param.
-     *
      * @return the ignore-first-line param
      */
     public boolean ignoreFirstLine() {
@@ -256,7 +251,6 @@ public class CommaSeparatedLayout extends RecordLayout {
 
     /**
      * Setter for the ignore-first-line param.
-     *
      * @param ignoreFirstLine ignore-first-line param
      */
     public void setIgnoreFirstLine(boolean ignoreFirstLine) {
@@ -289,7 +283,8 @@ public class CommaSeparatedLayout extends RecordLayout {
                 int numFields = new CSVParserBuilder().withSeparator(_separator).build().parseLine(line).length;
                 if (numFields != _numFields)
                     msg.append("line ").append(lineNumber).append(": wrong number of fields, expected ").append(_numFields).append(" but got ").append(numFields);
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 msg.append("line ").append(lineNumber).append(": unable to parse line");
             }
         }
@@ -385,7 +380,8 @@ public class CommaSeparatedLayout extends RecordLayout {
                     result.setLayoutName(getLayoutName());
                     result.setNumFields(getLayoutNumberOfFields());
                 }
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 // ignored
             }
         }

@@ -3,18 +3,6 @@
  */
 package com.imsweb.layout.record.csv;
 
-import com.imsweb.layout.Field.FieldAlignment;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.LayoutInfo;
-import com.imsweb.layout.LayoutUtils;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.RecordLayoutOptions;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.opencsv.CSVParserBuilder;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -24,6 +12,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.opencsv.CSVParserBuilder;
+
+import com.imsweb.layout.Field.FieldAlignment;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfo;
+import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.RecordLayoutOptions;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 /**
  * Created on Jun 25, 2012 by depryf
