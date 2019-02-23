@@ -3,6 +3,14 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
+import com.imsweb.layout.Field;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -10,15 +18,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.imsweb.layout.Field;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 public class Naaccr16LayoutTest {
 
@@ -70,7 +69,7 @@ public class Naaccr16LayoutTest {
         Assert.assertNull(rec.get("reserved01"));
 
         // test write methods        
-        File file = new File(TestingUtils.getWorkingDirectory()+ "/build/naaccr16.txt");
+        File file = new File(TestingUtils.getBuildDirectory(), "naaccr16.txt");
         rec.clear();
         rec.put("naaccrRecordVersion", "160");
         rec.put("recordType", "I");

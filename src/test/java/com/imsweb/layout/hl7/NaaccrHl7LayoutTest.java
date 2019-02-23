@@ -3,22 +3,6 @@
  */
 package com.imsweb.layout.hl7;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutUtils;
@@ -31,6 +15,21 @@ import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class NaaccrHl7LayoutTest {
 
@@ -61,7 +60,7 @@ public class NaaccrHl7LayoutTest {
                 .withComponent(3, "P")
                 .build();
 
-        File file = Paths.get("build/test-2.5.1.hl7").toFile();
+        File file = new File(TestingUtils.getBuildDirectory(), "test-2.5.1.hl7");
 
         layout.writeMessages(file, Collections.singletonList(msg));
         Assert.assertTrue(file.exists());
@@ -285,7 +284,7 @@ public class NaaccrHl7LayoutTest {
         }
 
         // test write message to file
-        File file = new File(TestingUtils.getWorkingDirectory() + "/build/naaccr16.txt");
+        File file = new File(TestingUtils.getBuildDirectory(), "naaccr16.txt");
         layout.writeMessages(file, Collections.singletonList(messages.get(1)));
         Assert.assertTrue(file.exists());
 

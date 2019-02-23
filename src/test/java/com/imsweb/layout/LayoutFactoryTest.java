@@ -3,6 +3,15 @@
  */
 package com.imsweb.layout;
 
+import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.csv.CommaSeparatedField;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,16 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.imsweb.layout.record.RecordLayout;
-import com.imsweb.layout.record.csv.CommaSeparatedField;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 
 public class LayoutFactoryTest {
 
@@ -349,7 +348,7 @@ public class LayoutFactoryTest {
                 line.setCharAt(18, naaccrVersion.charAt(2));
         }
 
-        File file = new File(TestingUtils.getWorkingDirectory() + "/build/naaccr-test.xml");
+        File file = new File(TestingUtils.getBuildDirectory(), "/naaccr-test.xml");
         FileWriter writer = new FileWriter(file);
         writer.write(line.toString());
         writer.close();

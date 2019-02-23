@@ -3,6 +3,14 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
+import com.imsweb.layout.Field;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -11,24 +19,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import com.imsweb.layout.Field;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-
 public class Naaccr18LayoutTest {
-
-    @BeforeClass
-    public static void setup() {
-        File buildFolder = new File(TestingUtils.getWorkingDirectory() + "/build/");
-        if (!buildFolder.exists() && !buildFolder.mkdir())
-            Assert.fail("Can't create build folder");
-    }
 
     @Test
     @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
@@ -78,7 +69,7 @@ public class Naaccr18LayoutTest {
         Assert.assertNull(rec.get("reserved04"));
 
         // test write methods
-        File file = new File(TestingUtils.getWorkingDirectory() + "/build/naaccr18.txt");
+        File file = new File(TestingUtils.getBuildDirectory(), "naaccr18.txt");
         rec.clear();
         rec.put("naaccrRecordVersion", "180");
         rec.put("recordType", "I");

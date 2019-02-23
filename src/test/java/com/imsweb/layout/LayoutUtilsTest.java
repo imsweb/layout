@@ -1,18 +1,5 @@
 package com.imsweb.layout;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Collections;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.imsweb.layout.hl7.xml.Hl7ComponentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
@@ -22,6 +9,18 @@ import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutFieldXmlDto;
 import com.imsweb.layout.record.csv.xml.CommaSeparatedLayoutXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Collections;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class LayoutUtilsTest {
 
@@ -53,7 +52,7 @@ public class LayoutUtilsTest {
     public void testInputOutputStreamCreation() throws IOException {
 
         // write to file
-        File file = new File(TestingUtils.getWorkingDirectory()+ "/build/create-input-stream-test.txt");
+        File file = new File(TestingUtils.getBuildDirectory(), "create-input-stream-test.txt");
         try (OutputStream os = LayoutUtils.createOutputStream(file)) {
             Assert.assertNotNull(os);
             os.write("A".getBytes());
@@ -67,7 +66,7 @@ public class LayoutUtilsTest {
         }
 
         // write to gzipped file
-        File gzippedFile = new File(TestingUtils.getWorkingDirectory() + "/build/create-input-stream-test.txt.gz");
+        File gzippedFile = new File(TestingUtils.getBuildDirectory(), "create-input-stream-test.txt.gz");
         try (OutputStream os = LayoutUtils.createOutputStream(gzippedFile)) {
             Assert.assertNotNull(os);
             os.write("A".getBytes());
@@ -81,7 +80,7 @@ public class LayoutUtilsTest {
         }
 
         // write to zipped file
-        File zippedFile = new File(TestingUtils.getWorkingDirectory() + "/build/create-input-stream-test.zip");
+        File zippedFile = new File(TestingUtils.getBuildDirectory(), "create-input-stream-test.zip");
         try (OutputStream os = LayoutUtils.createOutputStream(zippedFile)) {
             Assert.assertNotNull(os);
             ((ZipOutputStream)os).putNextEntry(new ZipEntry("create-input-stream-test"));
@@ -118,7 +117,7 @@ public class LayoutUtilsTest {
         field.setSection("section");
         layout.setField(Collections.singletonList(field));
 
-        File file = new File(TestingUtils.getWorkingDirectory() + "/build/fixed-layout-test.xml");
+        File file = new File(TestingUtils.getBuildDirectory(), "fixed-layout-test.xml");
         try (OutputStream fos = new FileOutputStream(file)) {
             LayoutUtils.writeFixedColumnsLayout(fos, layout);
         }
@@ -164,7 +163,7 @@ public class LayoutUtilsTest {
         field.setDefaultValue("default");
         layout.setField(Collections.singletonList(field));
 
-        File file = new File(TestingUtils.getWorkingDirectory()+ "/build/fixed-layout-test.xml");
+        File file = new File(TestingUtils.getBuildDirectory(), "fixed-layout-test.xml");
         try (OutputStream fos = new FileOutputStream(file)) {
             LayoutUtils.writeCommaSeparatedLayout(fos, layout);
         }
@@ -219,7 +218,7 @@ public class LayoutUtilsTest {
         segment.setHl7Fields(Collections.singletonList(field));
         layout.setHl7Segments(Collections.singletonList(segment));
 
-        File file = new File(TestingUtils.getWorkingDirectory() + "/build/hl7-layout-test.xml");
+        File file = new File(TestingUtils.getBuildDirectory(), "hl7-layout-test.xml");
         try (OutputStream fos = new FileOutputStream(file)) {
             LayoutUtils.writeHl7Layout(fos, layout);
         }
@@ -283,7 +282,7 @@ public class LayoutUtilsTest {
         commaSeparatedField.setIndex(1);
         commaSeparatedLayout.setField(Collections.singletonList(commaSeparatedField));
 
-        File file = new File(TestingUtils.getWorkingDirectory() + "/build/fixed-layout-test.xml");
+        File file = new File(TestingUtils.getBuildDirectory(), "fixed-layout-test.xml");
         try (OutputStream fos = new FileOutputStream(file)) {
             LayoutUtils.writeCommaSeparatedLayout(fos, commaSeparatedLayout);
         }
@@ -303,7 +302,7 @@ public class LayoutUtilsTest {
         fixedColumnField.setEnd(1);
         fixedColumnLayout.setField(Collections.singletonList(fixedColumnField));
 
-        file = new File(TestingUtils.getWorkingDirectory() + "/build/fixed-layout-test.xml");
+        file = new File(TestingUtils.getBuildDirectory(), "fixed-layout-test.xml");
         try (OutputStream fos = new FileOutputStream(file)) {
             LayoutUtils.writeFixedColumnsLayout(fos, fixedColumnLayout);
         }
@@ -324,7 +323,7 @@ public class LayoutUtilsTest {
         segment.setHl7Fields(Collections.singletonList(field));
         layout.setHl7Segments(Collections.singletonList(segment));
 
-        file = new File(TestingUtils.getWorkingDirectory() + "/build/hl7-layout-test.xml");
+        file = new File(TestingUtils.getBuildDirectory(), "hl7-layout-test.xml");
         try (OutputStream fos = new FileOutputStream(file)) {
             LayoutUtils.writeHl7Layout(fos, layout);
         }

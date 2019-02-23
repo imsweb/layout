@@ -3,19 +3,6 @@
  */
 package com.imsweb.layout.naaccrxml;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
@@ -31,6 +18,18 @@ import com.imsweb.naaccrxml.entity.Patient;
 import com.imsweb.naaccrxml.entity.Tumor;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class NaaccrXmlLayoutTest {
 
@@ -402,7 +401,7 @@ public class NaaccrXmlLayoutTest {
     @Test
     public void testWriteMethods() throws IOException {
         NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, false);
-        File file = new File(TestingUtils.getWorkingDirectory() + "/build/test-xml-writer.xml");
+        File file = new File(TestingUtils.getBuildDirectory(), "test-xml-writer.xml");
 
         NaaccrOptions options = new NaaccrOptions();
         options.setUseStrictNamespaces(false);

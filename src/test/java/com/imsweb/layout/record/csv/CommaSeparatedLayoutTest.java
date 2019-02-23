@@ -3,6 +3,18 @@
  */
 package com.imsweb.layout.record.csv;
 
+import com.imsweb.layout.Field.FieldAlignment;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfo;
+import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.RecordLayoutOptions;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.opencsv.CSVParserBuilder;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -12,20 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.opencsv.CSVParserBuilder;
-
-import com.imsweb.layout.Field.FieldAlignment;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.LayoutInfo;
-import com.imsweb.layout.LayoutUtils;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.RecordLayoutOptions;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 /**
  * Created on Jun 25, 2012 by depryf
@@ -400,5 +398,112 @@ public class CommaSeparatedLayoutTest {
         f2.setName("f1");
         Assert.assertEquals(f1, f2);
         Assert.assertEquals(f1.hashCode(), f2.hashCode());
+    }
+
+    @Test
+    public void testReadingSpecialCases() throws IOException {
+        CommaSeparatedLayout layout = new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml"));
+        Assert.assertEquals(',', layout.getSeparator());
+
+        Map<String, String> rec = layout.createRecordFromLine("0,123,456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("123", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0,\"12,3\",456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("12,3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0,\"123\",456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("123", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0,1\"2\"3,456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("1\"2\"3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0,\"1\"\"2\"\",3\",456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("1\"2\",3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+
+        layout.setSeparator('|');
+        rec = layout.createRecordFromLine("0|123|456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("123", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0|\"12|3\"|456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("12|3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0|12,3|456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("12,3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0|\"123\"|456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("123", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0|1\"2\"3|456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("1\"2\"3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0|\"1\"\"2\"\"|3\"|456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("1\"2\"|3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+
+        // the tricky part with new lines is actually reading all the lines together for a given value; but
+        // in this test, we provide the line, and so it doesn't matter if it starts with quotes or not...
+        layout.setSeparator(',');
+        rec = layout.createRecordFromLine("0,\"1\r\n2\r\n3\",456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("1\r\n2\r\n3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+        rec = layout.createRecordFromLine("0,1\r\n2\r\n3,456", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("1\r\n2\r\n3", rec.get("field1"));
+        Assert.assertEquals("456", rec.get("field2"));
+    }
+
+    @Test
+    public void testWritingSpecialCases() throws IOException {
+        CommaSeparatedLayout layout = new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml"));
+        Assert.assertEquals(',', layout.getSeparator());
+
+        Map<String, String> rec = new HashMap<>();
+        rec.put("recordType", "0");
+        rec.put("field1", "123");
+        rec.put("field2", "456");
+        Assert.assertEquals("0,123,456", layout.createLineFromRecord(rec, null));
+        rec.put("field1", "12,3");
+        Assert.assertEquals("0,\"12,3\",456", layout.createLineFromRecord(rec, null));
+        rec.put("field1", "1\"2\"3");
+        Assert.assertEquals("0,1\"2\"3,456", layout.createLineFromRecord(rec, null));
+        rec.put("field1", "1\"2\",3");
+        Assert.assertEquals("0,\"1\"\"2\"\",3\",456", layout.createLineFromRecord(rec, null));
+
+        layout.setSeparator('|');
+        rec = new HashMap<>();
+        rec.put("recordType", "0");
+        rec.put("field1", "123");
+        rec.put("field2", "456");
+        Assert.assertEquals("0|123|456", layout.createLineFromRecord(rec, null));
+        rec.put("field1", "12,3");
+        Assert.assertEquals("0|12,3|456", layout.createLineFromRecord(rec, null));
+        rec.put("field1", "12|3");
+        Assert.assertEquals("0|\"12|3\"|456", layout.createLineFromRecord(rec, null));
+        rec.put("field1", "1\"2\"3");
+        Assert.assertEquals("0|1\"2\"3|456", layout.createLineFromRecord(rec, null));
+        rec.put("field1", "1\"2\"|3");
+        Assert.assertEquals("0|\"1\"\"2\"\"|3\"|456", layout.createLineFromRecord(rec, null));
+
+        layout.setSeparator(',');
+        rec = new HashMap<>();
+        rec.put("recordType", "0");
+        rec.put("field1", "1\r\n2\r\n3");
+        rec.put("field2", "456");
+        Assert.assertEquals("0,\"1\r\n2\r\n3\",456", layout.createLineFromRecord(rec, null));
+        rec.put("field1", "\n123\n");
+        Assert.assertEquals("0,\"\n123\n\",456", layout.createLineFromRecord(rec, null));
     }
 }

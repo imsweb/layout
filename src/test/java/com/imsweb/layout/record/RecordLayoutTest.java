@@ -3,6 +3,16 @@
  */
 package com.imsweb.layout.record;
 
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.csv.CommaSeparatedField;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,17 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.csv.CommaSeparatedField;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 public class RecordLayoutTest {
 
@@ -71,13 +70,13 @@ public class RecordLayoutTest {
         RecordLayout layout = (RecordLayout)LayoutFactory.getLayout(_TEST_LAYOUT_ID);
 
         // create fake data file going with that testing layout
-        File file = new File(TestingUtils.getWorkingDirectory() + "/build/rec-layout-read-test.txt");
+        File file = new File(TestingUtils.getBuildDirectory(), "rec-layout-read-test.txt");
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write("A\nB\n".getBytes()); // two data lines
         }
 
         // create fake zipped data file going with that testing layout
-        File zippedFile = new File(TestingUtils.getWorkingDirectory()+ "/build/rec-layout-read-test.zip");
+        File zippedFile = new File(TestingUtils.getBuildDirectory(), "rec-layout-read-test.zip");
         try (ZipOutputStream fos = new ZipOutputStream(new FileOutputStream(zippedFile))) {
             fos.putNextEntry(new ZipEntry(file.getName()));
             fos.write("A\nB\n".getBytes()); // two data lines
@@ -120,7 +119,7 @@ public class RecordLayoutTest {
         }
 
         // read all from a CSV file that needs to ignore the first row
-        file = new File(TestingUtils.getWorkingDirectory() + "/build/rec-layout-read-test.csv");
+        file = new File(TestingUtils.getBuildDirectory(), "rec-layout-read-test.csv");
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write("HEADER\nA\nB\n".getBytes()); // two data lines with one header
         }
