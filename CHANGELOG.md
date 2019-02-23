@@ -1,6 +1,8 @@
 ## Layout Framework Version History
 
-**Changes in version 1.17 (not released yet)**
+**Changes in version 1.17**
+
+- Fixed bug in CSV writing method not using the proper separator.
 
 **Changes in version 1.16**
 
