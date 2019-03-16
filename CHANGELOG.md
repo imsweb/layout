@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.18**
+
+- Added missing setter for parent layout ID in RecordLayout.
+
 **Changes in version 1.17**
 
 - Fixed bug in CSV writing method not using the proper separator.

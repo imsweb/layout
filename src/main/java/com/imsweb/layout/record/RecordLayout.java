@@ -100,6 +100,10 @@ public abstract class RecordLayout implements Layout {
         return _parentLayoutId;
     }
 
+    public void setParentLayoutId(String parentLayoutId) {
+        _parentLayoutId = parentLayoutId;
+    }
+
     @Override
     public String getFieldDocByName(String name) {
         if (_parentLayoutId != null)
