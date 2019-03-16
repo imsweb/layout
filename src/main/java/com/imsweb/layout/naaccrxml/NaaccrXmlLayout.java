@@ -275,7 +275,11 @@ public class NaaccrXmlLayout implements Layout {
 
     @Override
     public String getLayoutVersion() {
-        return getNaaccrVersion();
+        return _naaccrVersion;
+    }
+
+    public void setLayoutVersion(String version) {
+        _naaccrVersion = version;
     }
 
     @Override
