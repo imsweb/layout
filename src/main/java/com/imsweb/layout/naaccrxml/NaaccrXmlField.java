@@ -48,7 +48,7 @@ public class NaaccrXmlField extends Field {
     }
 
     public boolean isAllowUnlimitedText() {
-        return _item.getAllowUnlimitedText();
+        return _item.getAllowUnlimitedText() == null ? false : _item.getAllowUnlimitedText();
     }
 
     public String getRecordTypes() {
