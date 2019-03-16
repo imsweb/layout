@@ -3,6 +3,7 @@
 **Changes in version 1.18**
 
 - Added missing setter for parent layout ID in RecordLayout.
+- Fixed missing length of added date fields in NAACCR XML Layout.
 - Added missing getters/setters from NAACCR XML layout.
 
 **Changes in version 1.17**
