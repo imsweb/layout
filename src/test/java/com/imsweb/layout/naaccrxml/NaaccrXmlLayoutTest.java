@@ -3,6 +3,19 @@
  */
 package com.imsweb.layout.naaccrxml;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
@@ -18,18 +31,6 @@ import com.imsweb.naaccrxml.entity.Patient;
 import com.imsweb.naaccrxml.entity.Tumor;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class NaaccrXmlLayoutTest {
 
@@ -268,6 +269,20 @@ public class NaaccrXmlLayoutTest {
         layout = new NaaccrXmlLayout("140", "I", "test-id", "test-name", null, null, true);
         Assert.assertEquals("I", layout.getRecordType());
         Assert.assertEquals(457, layout.getAllFields().size());
+    }
+
+    @Test
+    public void testDefaultConstructor() {
+        NaaccrXmlLayout layout = new NaaccrXmlLayout();
+        layout.setLayoutId("test");
+        layout.setLayoutName("Test");
+        layout.setLayoutDescription("For testing...");
+        layout.setNaaccrVersion("180");
+        layout.setRecordType("I");
+        layout.setBaseDictionary(NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion("180"));
+        layout.setUserDictionaries(Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion("180")));
+        layout.setFields(Collections.singleton(new NaaccrXmlField(NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion("180").getItemByNaaccrId("primarySite"))));
+        layout.verify();
     }
 
     @Test

@@ -15,10 +15,6 @@ public class NaaccrXmlField extends Field {
 
     private List<NaaccrXmlField> _subFields;
 
-    public NaaccrXmlField() {
-        super();
-    }
-
     public NaaccrXmlField(NaaccrDictionaryItem item) {
         super();
         _item = item;

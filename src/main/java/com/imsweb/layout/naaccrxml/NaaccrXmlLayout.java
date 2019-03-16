@@ -14,6 +14,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,27 +55,44 @@ public class NaaccrXmlLayout implements Layout {
 
     private NaaccrLayout _flatLayout;
 
-    private String _layoutId;
+    // layout ID
+    protected String _layoutId;
 
-    private String _layoutName;
+    // layout Name
+    protected String _layoutName;
 
-    private String _naaccrVersion;
+    // layout Description
+    protected String _layoutDesc;
 
-    private String _layoutDesc;
+    // layout version (for this layout type, it's the NAACCR version)
+    protected String _naaccrVersion;
 
+    // record type supported by this layout (A, M, C or I)
     private String _recordType;
 
-    private boolean _dictionariesLoaded;
-
-    private List<NaaccrXmlField> _allFields = new ArrayList<>();
-
-    private Map<String, NaaccrXmlField> _fieldsCachedByName = new HashMap<>();
-    private Map<Integer, NaaccrXmlField> _fieldsCachedByNaaccrNumber = new HashMap<>();
-
+    // the base dictionary for this layout
     private NaaccrDictionary _baseDictionary;
+
+    // the user-defined dictionaries for this layout
     private List<NaaccrDictionary> _userDictionaries;
 
+    // the fields for this layout
+    private List<NaaccrXmlField> _allFields = new ArrayList<>();
+
+    // fields cache for quick access by name (which is NAACCR ID for this layout)
+    private Map<String, NaaccrXmlField> _fieldsCachedByName = new HashMap<>();
+
+    // fields cache for quick access by NAACCR number
+    private Map<Integer, NaaccrXmlField> _fieldsCachedByNaaccrNumber = new HashMap<>();
+
     /**
+     * Default constructor.
+     */
+    public NaaccrXmlLayout() {
+    }
+
+    /**
+     * Constructor.
      * @param naaccrVersion String of three digit NAACCR version
      * @param recordType String - allowed values are "A", "M", "C", and "I"
      * @param layoutId String used as layout ID - must be unique from those registered in Layout Factory
@@ -87,18 +105,14 @@ public class NaaccrXmlLayout implements Layout {
         _layoutName = layoutName;
         _layoutId = layoutId;
         _recordType = recordType;
+        _baseDictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion(naaccrVersion);
         _userDictionaries = dictionaries;
-        _dictionariesLoaded = loadFields;
+        if (_userDictionaries == null || _userDictionaries.isEmpty())
+            _userDictionaries = Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion));
         _layoutDesc = StringUtils.isBlank(description) ? "No description available" : description;
 
         //Only load dictionaries/fields if specified, otherwise avoid expensive operations
         if (loadFields) {
-            //Load base dictionary from version
-            _baseDictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion(naaccrVersion);
-
-            //If user dictionaries weren't provided, use default user dictionary
-            if (_userDictionaries == null || _userDictionaries.isEmpty())
-                _userDictionaries = Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion));
 
             //Load the flat file layout corresponding to the base dictionary and record type for this layout
             StringBuilder flatFileId = new StringBuilder("naaccr-");
@@ -138,6 +152,8 @@ public class NaaccrXmlLayout implements Layout {
                         yearItem.setNaaccrId(item.getNaaccrId() + "Year");
                         yearItem.setNaaccrName(field.getNaaccrName() + " (Year)");
                         yearItem.setParentXmlElement(field.getParentXmlElement());
+                        yearItem.setLength(4);
+                        yearItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField yearFld = new NaaccrXmlField(yearItem);
                         yearFld.setShortLabel(shortLbl + " Yr");
 
@@ -145,6 +161,8 @@ public class NaaccrXmlLayout implements Layout {
                         monthItem.setNaaccrId(item.getNaaccrId() + "Month");
                         monthItem.setNaaccrName(field.getNaaccrName() + " (Month)");
                         monthItem.setParentXmlElement(field.getParentXmlElement());
+                        yearItem.setLength(2);
+                        yearItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField monthFld = new NaaccrXmlField(monthItem);
                         monthFld.setShortLabel(shortLbl + " Mth");
 
@@ -152,6 +170,8 @@ public class NaaccrXmlLayout implements Layout {
                         dayItem.setNaaccrId(item.getNaaccrId() + "Day");
                         dayItem.setNaaccrName(field.getNaaccrName() + " (Day)");
                         dayItem.setParentXmlElement(field.getParentXmlElement());
+                        yearItem.setLength(2);
+                        yearItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField dayFld = new NaaccrXmlField(dayItem);
                         dayFld.setShortLabel(shortLbl + " Day");
 
@@ -190,18 +210,19 @@ public class NaaccrXmlLayout implements Layout {
         if (_naaccrVersion == null || !NaaccrFormat.isVersionSupported(_naaccrVersion))
             throw new RuntimeException("Unsupported NAACCR version: " + _naaccrVersion);
 
-        //If fields/dictionaries were supposed to be loaded, check validity of fields and dictionaries. Otherwise, this is the end of validation.
-        if (_dictionariesLoaded) {
-            //Base dictionary is required
-            if (_baseDictionary == null)
-                throw new RuntimeException("Base Dictionary is required");
+        //Base dictionary is required
+        if (_baseDictionary == null)
+            throw new RuntimeException("Base Dictionary is required");
 
-            //Validate the user dictionaries
-            for (NaaccrDictionary userDictionary : _userDictionaries) {
-                List<String> errors = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
-                if (!errors.isEmpty())
-                    throw new RuntimeException("Error found on user dictionary - " + errors.get(0));
-            }
+        //Validate the user dictionaries
+        for (NaaccrDictionary userDictionary : _userDictionaries) {
+            List<String> errors = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
+            if (!errors.isEmpty())
+                throw new RuntimeException("Error found on user dictionary - " + errors.get(0));
+        }
+
+        //If fields/dictionaries were supposed to be loaded, check validity of fields and dictionaries. Otherwise, this is the end of validation.
+        if (!_allFields.isEmpty()) {
 
             //validate the NaaccrXmlFields
             Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>(), shortLabels = new HashSet<>(), longLabels = new HashSet<>();
@@ -230,6 +251,112 @@ public class NaaccrXmlLayout implements Layout {
                     throw new RuntimeException("Field parent XML element is required, missing for field " + field.getName());
             }
         }
+    }
+
+    //Getters/Setters
+
+    @Override
+    public String getLayoutId() {
+        return _layoutId;
+    }
+
+    public void setLayoutId(String layoutId) {
+        _layoutId = layoutId;
+    }
+
+    @Override
+    public String getLayoutName() {
+        return _layoutName;
+    }
+
+    public void setLayoutName(String layoutName) {
+        _layoutName = layoutName;
+    }
+
+    @Override
+    public String getLayoutVersion() {
+        return getNaaccrVersion();
+    }
+
+    @Override
+    public String getLayoutDescription() {
+        return _layoutDesc;
+    }
+
+    public void setLayoutDescription(String description) {
+        _layoutDesc = description;
+    }
+
+    public String getNaaccrVersion() {
+        return _naaccrVersion;
+    }
+
+    public void setNaaccrVersion(String naaccrVersion) {
+        _naaccrVersion = naaccrVersion;
+    }
+
+    public String getRecordType() {
+        return _recordType;
+    }
+
+    public void setRecordType(String recordType) {
+        _recordType = recordType;
+    }
+
+    @Override
+    public List<NaaccrXmlField> getAllFields() {
+        return _allFields;
+    }
+
+    @Override
+    public NaaccrXmlField getFieldByName(String name) {
+        return _fieldsCachedByName.get(name);
+    }
+
+    @Override
+    public NaaccrXmlField getFieldByNaaccrItemNumber(Integer num) {
+        return _fieldsCachedByNaaccrNumber.get(num);
+    }
+
+    @Override
+    public String getFieldDocByName(String name) {
+        NaaccrXmlField field = getFieldByName(name);
+        if (field == null)
+            return null;
+
+        return getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum());
+    }
+
+    @Override
+    public String getFieldDocByNaaccrItemNumber(Integer num) {
+        return _flatLayout.getFieldDocByNaaccrItemNumber(num);
+    }
+
+    @Override
+    public String getFieldDocDefaultCssStyle() {
+        return _flatLayout.getFieldDocDefaultCssStyle();
+    }
+
+    public void setFields(Collection<NaaccrXmlField> fields) {
+        _allFields.clear();
+        _allFields.addAll(fields);
+        verify();
+    }
+
+    public NaaccrDictionary getBaseDictionary() {
+        return _baseDictionary;
+    }
+
+    public void setBaseDictionary(NaaccrDictionary dictionary) {
+        _baseDictionary = dictionary;
+    }
+
+    public List<NaaccrDictionary> getUserDictionaries() {
+        return _userDictionaries;
+    }
+
+    public void setUserDictionaries(List<NaaccrDictionary> dictionaries) {
+        _userDictionaries = dictionaries;
     }
 
     //Writers and readers
@@ -376,93 +503,6 @@ public class NaaccrXmlLayout implements Layout {
             allPatients.add(patient);
 
         return allPatients;
-    }
-
-    //Getters
-    public NaaccrDictionary getBaseDictionary() {
-        return _baseDictionary;
-    }
-
-    public List<NaaccrDictionary> getUserDictionaries() {
-        return _userDictionaries;
-    }
-
-    public String getRecordType() {
-        return _recordType;
-    }
-
-    @Override
-    public String getLayoutId() {
-        return _layoutId;
-    }
-
-    @Override
-    public String getLayoutName() {
-        return _layoutName;
-    }
-
-    @Override
-    public String getLayoutVersion() {
-        return _naaccrVersion;
-    }
-
-    @Override
-    public String getLayoutDescription() {
-        return _layoutDesc;
-    }
-
-    @Override
-    public NaaccrXmlField getFieldByName(String name) {
-        return _fieldsCachedByName.get(name);
-    }
-
-    @Override
-    public NaaccrXmlField getFieldByNaaccrItemNumber(Integer num) {
-        return _fieldsCachedByNaaccrNumber.get(num);
-    }
-
-    @Override
-    public List<NaaccrXmlField> getAllFields() {
-        return _allFields;
-    }
-
-    /**
-     * Gets the field corresponding to the parameter and uses the NAACCR Item Number to call the method below
-     * @param name Field name
-     * @return Field doc for provided field. Null if field is not found.
-     */
-    @Override
-    public String getFieldDocByName(String name) {
-        NaaccrXmlField field = getFieldByName(name);
-        if (field == null)
-            return null;
-
-        return getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum());
-    }
-
-    /**
-     * Calls the same method in the corresponding flat layout
-     * NAACCR XML IDs don't align with field doc names, so field docs must be obtained using the Item Numbers and the flat layout.
-     * @param num NAACCR item number
-     * @return Field Documentation for field corresponding to the given number. Null if field is not found.
-     */
-    @Override
-    public String getFieldDocByNaaccrItemNumber(Integer num) {
-        //NAACCR XML ID's don't all align with fixed column ID's/field doc names - need to use number to get doc through fixed column layout
-        NaaccrXmlField field = getFieldByNaaccrItemNumber(num);
-        if (field == null)
-            return null;
-
-        return _flatLayout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum());
-    }
-
-    /**
-     * Uses corresponding flat layout to call the same method
-     * @return String of CSS Style for field docs
-     */
-    @Override
-    public String getFieldDocDefaultCssStyle() {
-        return _flatLayout.getFieldDocDefaultCssStyle();
     }
 
     /**
