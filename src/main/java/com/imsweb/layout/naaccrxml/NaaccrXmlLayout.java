@@ -161,8 +161,8 @@ public class NaaccrXmlLayout implements Layout {
                         monthItem.setNaaccrId(item.getNaaccrId() + "Month");
                         monthItem.setNaaccrName(field.getNaaccrName() + " (Month)");
                         monthItem.setParentXmlElement(field.getParentXmlElement());
-                        yearItem.setLength(2);
-                        yearItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
+                        monthItem.setLength(2);
+                        monthItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField monthFld = new NaaccrXmlField(monthItem);
                         monthFld.setShortLabel(shortLbl + " Mth");
 
@@ -170,8 +170,8 @@ public class NaaccrXmlLayout implements Layout {
                         dayItem.setNaaccrId(item.getNaaccrId() + "Day");
                         dayItem.setNaaccrName(field.getNaaccrName() + " (Day)");
                         dayItem.setParentXmlElement(field.getParentXmlElement());
-                        yearItem.setLength(2);
-                        yearItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
+                        dayItem.setLength(2);
+                        dayItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField dayFld = new NaaccrXmlField(dayItem);
                         dayFld.setShortLabel(shortLbl + " Day");
 
