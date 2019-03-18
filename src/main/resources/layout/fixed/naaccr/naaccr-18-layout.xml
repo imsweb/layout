@@ -633,30 +633,30 @@
     <field name="rxSummSurgSite9802" start="2277" end="2278" short-label="Summ Surg(98-02)" long-label="RX Summ--Surg Site 98-02" naaccr-item-num="1646" align="right" pad-char="0" section="Treatment-1st Course"/>
     <field name="rxSummScopeReg9802" start="2279" end="2279" short-label="Summ Scope(98-02)" long-label="RX Summ--Scope Reg 98-02" naaccr-item-num="1647" section="Treatment-1st Course"/>
     <field name="rxSummSurgOth9802" start="2280" end="2280" short-label="Summ Oth(98-02)" long-label="RX Summ--Surg Oth 98-02" naaccr-item-num="1648" section="Treatment-1st Course"/>
-    <field name="phase1RadiationPrimaryTreatmentVolume" start="2281" end="2282" short-label="P1 Rad Vol" long-label="Phase I Radiation Primary Treatment Volume" naaccr-item-num="1504" section="Stage/Prognostic Factors"/>
-    <field name="phase1RadiationToDrainingLymphNodes" start="2283" end="2284" short-label="P1 Rad LN" long-label="Phase I Radiation to Draining Lymph Nodes" naaccr-item-num="1505" section="Stage/Prognostic Factors"/>
-    <field name="phase1RadiationTreatmentModality" start="2285" end="2286" short-label="P1 Rad Mod" long-label="Phase I Radiation Treatment Modality" naaccr-item-num="1506" section="Stage/Prognostic Factors"/>
-    <field name="phase1RadiationExternalBeamPlanningTech" start="2287" end="2288" short-label="P1 Rad Tech" long-label="Phase I Radiation External Beam Planning Tech" naaccr-item-num="1502" section="Stage/Prognostic Factors"/>
-    <field name="phase1DosePerFraction" start="2289" end="2293" short-label="P1 Dose/Frac" long-label="Phase I Dose per Fraction" naaccr-item-num="1501" section="Stage/Prognostic Factors"/>
-    <field name="phase1NumberOfFractions" start="2294" end="2296" short-label="P1 Num Frac" long-label="Phase I Number of Fractions" naaccr-item-num="1503" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
-    <field name="phase1TotalDose" start="2297" end="2302" short-label="P1 Tot Dose" long-label="Phase I Total Dose" naaccr-item-num="1507" section="Stage/Prognostic Factors"/>
-    <field name="phase2RadiationPrimaryTreatmentVolume" start="2303" end="2304" short-label="P2 Rad Vol" long-label="Phase II Radiation Primary Treatment Volume" naaccr-item-num="1514" section="Stage/Prognostic Factors"/>
-    <field name="phase2RadiationToDrainingLymphNodes" start="2305" end="2306" short-label="P2 Rad LN" long-label="Phase II Radiation to Draining Lymph Nodes" naaccr-item-num="1515" section="Stage/Prognostic Factors"/>
-    <field name="phase2RadiationTreatmentModality" start="2307" end="2308" short-label="P2 Rad Mod" long-label="Phase II Radiation Treatment Modality" naaccr-item-num="1516" section="Stage/Prognostic Factors"/>
-    <field name="phase2RadiationExternalBeamPlanningTech" start="2309" end="2310" short-label="P2 Rad Tech" long-label="Phase II Radiation External Beam Planning Tech" naaccr-item-num="1512" section="Stage/Prognostic Factors"/>
-    <field name="phase2DosePerFraction" start="2311" end="2315" short-label="P2 Dose/Frac" long-label="Phase II Dose per Fraction" naaccr-item-num="1511" section="Stage/Prognostic Factors"/>
-    <field name="phase2NumberOfFractions" start="2316" end="2318" short-label="P2 Num Frac" long-label="Phase II Number of Fractions" naaccr-item-num="1513" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
-    <field name="phase2TotalDose" start="2319" end="2324" short-label="P2 Tot Dose" long-label="Phase II Total Dose" naaccr-item-num="1517" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
-    <field name="phase3RadiationPrimaryTreatmentVolume" start="2325" end="2326" short-label="P3 Rad Vol" long-label="Phase III Radiation Primary Treatment Volume" naaccr-item-num="1524" section="Stage/Prognostic Factors"/>
-    <field name="phase3RadiationToDrainingLymphNodes" start="2327" end="2328" short-label="P3 Rad LN" long-label="Phase III Radiation to Draining Lymph Nodes" naaccr-item-num="1525" section="Stage/Prognostic Factors"/>
-    <field name="phase3RadiationTreatmentModality" start="2329" end="2330" short-label="P3 Rad Mod" long-label="Phase III Radiation Treatment Modality" naaccr-item-num="1526" section="Stage/Prognostic Factors"/>
-    <field name="phase3RadiationExternalBeamPlanningTech" start="2331" end="2332" short-label="P3 Rad Tech" long-label="Phase III Radiation External Beam Planning Tech" naaccr-item-num="1522" section="Stage/Prognostic Factors"/>
-    <field name="phase3DosePerFraction" start="2333" end="2337" short-label="P3 Dose/Frac" long-label="Phase III Dose per Fraction" naaccr-item-num="1521" section="Stage/Prognostic Factors"/>
-    <field name="phase3NumberOfFractions" start="2338" end="2340" short-label="P3 Num Frac" long-label="Phase III Number of Fractions" naaccr-item-num="1523" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
-    <field name="phase3TotalDose" start="2341" end="2346" short-label="P3 Tot Dose" long-label="Phase III Total Dose" naaccr-item-num="1527" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
-    <field name="numberOfPhasesOfRadTreatmentToThisVolume" start="2347" end="2348" short-label="Num Rad Phs" long-label="Number of Phases of Rad Treatment to this Volume" naaccr-item-num="1532" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
-    <field name="radiationTreatmentDiscontinuedEarly" start="2349" end="2350" short-label="Rad Disc" long-label="Radiation Treatment Discontinued Early" naaccr-item-num="1531" section="Stage/Prognostic Factors"/>
-    <field name="totalDose" start="2351" end="2356" short-label="Tot Dose" long-label="Total Dose" naaccr-item-num="1533" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
+    <field name="phase1RadiationPrimaryTreatmentVolume" start="2281" end="2282" short-label="P1 Rad Vol" long-label="Phase I Radiation Primary Treatment Volume" naaccr-item-num="1504" section="Treatment-1st Course"/>
+    <field name="phase1RadiationToDrainingLymphNodes" start="2283" end="2284" short-label="P1 Rad LN" long-label="Phase I Radiation to Draining Lymph Nodes" naaccr-item-num="1505" section="Treatment-1st Course"/>
+    <field name="phase1RadiationTreatmentModality" start="2285" end="2286" short-label="P1 Rad Mod" long-label="Phase I Radiation Treatment Modality" naaccr-item-num="1506" section="Treatment-1st Course"/>
+    <field name="phase1RadiationExternalBeamPlanningTech" start="2287" end="2288" short-label="P1 Rad Tech" long-label="Phase I Radiation External Beam Planning Tech" naaccr-item-num="1502" section="Treatment-1st Course"/>
+    <field name="phase1DosePerFraction" start="2289" end="2293" short-label="P1 Dose/Frac" long-label="Phase I Dose per Fraction" naaccr-item-num="1501" section="Treatment-1st Course"/>
+    <field name="phase1NumberOfFractions" start="2294" end="2296" short-label="P1 Num Frac" long-label="Phase I Number of Fractions" naaccr-item-num="1503" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="phase1TotalDose" start="2297" end="2302" short-label="P1 Tot Dose" long-label="Phase I Total Dose" naaccr-item-num="1507" section="Treatment-1st Course"/>
+    <field name="phase2RadiationPrimaryTreatmentVolume" start="2303" end="2304" short-label="P2 Rad Vol" long-label="Phase II Radiation Primary Treatment Volume" naaccr-item-num="1514" section="Treatment-1st Course"/>
+    <field name="phase2RadiationToDrainingLymphNodes" start="2305" end="2306" short-label="P2 Rad LN" long-label="Phase II Radiation to Draining Lymph Nodes" naaccr-item-num="1515" section="Treatment-1st Course"/>
+    <field name="phase2RadiationTreatmentModality" start="2307" end="2308" short-label="P2 Rad Mod" long-label="Phase II Radiation Treatment Modality" naaccr-item-num="1516" section="Treatment-1st Course"/>
+    <field name="phase2RadiationExternalBeamPlanningTech" start="2309" end="2310" short-label="P2 Rad Tech" long-label="Phase II Radiation External Beam Planning Tech" naaccr-item-num="1512" section="Treatment-1st Course"/>
+    <field name="phase2DosePerFraction" start="2311" end="2315" short-label="P2 Dose/Frac" long-label="Phase II Dose per Fraction" naaccr-item-num="1511" section="Treatment-1st Course"/>
+    <field name="phase2NumberOfFractions" start="2316" end="2318" short-label="P2 Num Frac" long-label="Phase II Number of Fractions" naaccr-item-num="1513" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="phase2TotalDose" start="2319" end="2324" short-label="P2 Tot Dose" long-label="Phase II Total Dose" naaccr-item-num="1517" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="phase3RadiationPrimaryTreatmentVolume" start="2325" end="2326" short-label="P3 Rad Vol" long-label="Phase III Radiation Primary Treatment Volume" naaccr-item-num="1524" section="Treatment-1st Course"/>
+    <field name="phase3RadiationToDrainingLymphNodes" start="2327" end="2328" short-label="P3 Rad LN" long-label="Phase III Radiation to Draining Lymph Nodes" naaccr-item-num="1525" section="Treatment-1st Course"/>
+    <field name="phase3RadiationTreatmentModality" start="2329" end="2330" short-label="P3 Rad Mod" long-label="Phase III Radiation Treatment Modality" naaccr-item-num="1526" section="Treatment-1st Course"/>
+    <field name="phase3RadiationExternalBeamPlanningTech" start="2331" end="2332" short-label="P3 Rad Tech" long-label="Phase III Radiation External Beam Planning Tech" naaccr-item-num="1522" section="Treatment-1st Course"/>
+    <field name="phase3DosePerFraction" start="2333" end="2337" short-label="P3 Dose/Frac" long-label="Phase III Dose per Fraction" naaccr-item-num="1521" section="Treatment-1st Course"/>
+    <field name="phase3NumberOfFractions" start="2338" end="2340" short-label="P3 Num Frac" long-label="Phase III Number of Fractions" naaccr-item-num="1523" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="phase3TotalDose" start="2341" end="2346" short-label="P3 Tot Dose" long-label="Phase III Total Dose" naaccr-item-num="1527" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="numberOfPhasesOfRadTreatmentToThisVolume" start="2347" end="2348" short-label="Num Rad Phs" long-label="Number of Phases of Rad Treatment to this Volume" naaccr-item-num="1532" align="right" pad-char="0" section="Treatment-1st Course"/>
+    <field name="radiationTreatmentDiscontinuedEarly" start="2349" end="2350" short-label="Rad Disc" long-label="Radiation Treatment Discontinued Early" naaccr-item-num="1531" section="Treatment-1st Course"/>
+    <field name="totalDose" start="2351" end="2356" short-label="Tot Dose" long-label="Total Dose" naaccr-item-num="1533" align="right" pad-char="0" section="Treatment-1st Course"/>
     <field name="reserved06" start="2357" end="2456" short-label="Res06" long-label="Reserved 06" naaccr-item-num="1190" trim="false" section="Treatment-1st Course"/>
     <field name="subsqRx2ndCourseDate" start="2457" end="2464" short-label="Subsq RX 2nd Course Dt" long-label="Subsq RX 2nd Course Date" naaccr-item-num="1660" section="Treatment-Subsequent &amp; Other">
         <field name="subsqRx2ndCourseDateYear" start="2457" end="2460" short-label="Subsq RX 2nd Course Yr" long-label="Subsq RX 2nd Course Date (Year)" section="Treatment-Subsequent &amp; Other"/>
@@ -711,7 +711,7 @@
      </field>
     <field name="subsqRxReconstructDel" start="2520" end="2520" short-label="Subsq Recon Del" long-label="Subsq RX--Reconstruct Del" naaccr-item-num="1741" section="Treatment-Subsequent &amp; Other"/>
     <field name="reserved07" start="2521" end="2570" short-label="Res07" long-label="Reserved 07" naaccr-item-num="1300" trim="false" section="Treatment-Subsequent &amp; Other"/>
-     <field name="overRideSsNodesPos" start="2571" end="2571" short-label="SS/NP" long-label="Over-ride SS/NodesPos" naaccr-item-num="1981" section="Edit Overrides/Conversion History/System Admin"/>
+    <field name="overRideSsNodesPos" start="2571" end="2571" short-label="SS/NP" long-label="Over-ride SS/NodesPos" naaccr-item-num="1981" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="overRideSsTnmN" start="2572" end="2572" short-label="SS/TN" long-label="Over-ride SS/TNM-N" naaccr-item-num="1982" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="overRideSsTnmM" start="2573" end="2573" short-label="SS/TM" long-label="Over-ride SS/TNM-M" naaccr-item-num="1983" section="Edit Overrides/Conversion History/System Admin"/>
     <field name="overRideAcsnClassSeq" start="2574" end="2574" short-label="A#/Cl/S#" long-label="Over-ride Acsn/Class/Seq" naaccr-item-num="1985" section="Edit Overrides/Conversion History/System Admin"/>
