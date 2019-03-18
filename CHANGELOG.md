@@ -2,6 +2,7 @@
 
 **Changes in version 1.18**
 
+- Fixed some bad values for section attribute in NAACCR 18 layout.
 - Added missing setter for parent layout ID in RecordLayout.
 - Fixed missing length of added date fields in NAACCR XML Layout.
 - Added missing getters/setters from NAACCR XML layout.
