@@ -3,15 +3,6 @@
  */
 package com.imsweb.layout;
 
-import com.imsweb.layout.record.RecordLayout;
-import com.imsweb.layout.record.csv.CommaSeparatedField;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,6 +13,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.csv.CommaSeparatedField;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
+import com.imsweb.naaccrxml.NaaccrFormat;
 
 public class LayoutFactoryTest {
 
@@ -61,6 +63,15 @@ public class LayoutFactoryTest {
         Assert.assertFalse(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_14));
         Assert.assertFalse(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_13));
         Assert.assertFalse(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_12));
+
+        // make sure line length is the same as defined in NAACCR XML library
+        for (String layoutId : LayoutFactory.getAvailableInternalLayouts().keySet()) {
+            Layout layout = LayoutFactory.getLayout(layoutId);
+            if (layout instanceof NaaccrLayout && !layoutId.contains("-12") && !layoutId.contains("-13")) {
+                NaaccrLayout nLayout = (NaaccrLayout)layout;
+                Assert.assertEquals(NaaccrFormat.getInstance(nLayout.getNaaccrVersion(), nLayout.getRecordType()).getLineLength(), nLayout.getLayoutLineLength().intValue());
+            }
+        }
 
         // make sure the properties defined in 12 kept the same name in 13
         Layout l12 = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_12_ABSTRACT);

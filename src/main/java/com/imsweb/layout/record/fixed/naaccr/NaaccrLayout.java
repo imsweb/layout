@@ -362,11 +362,15 @@ public class NaaccrLayout extends FixedColumnsLayout {
         }
     }
 
+    public String getNaaccrVersion() {
+        return _naaccrVersion;
+    }
+
     protected String getMajorNaaccrVersion() {
         return _majorNaaccrVersion;
     }
 
-    protected String getRecordType() {
+    public String getRecordType() {
         return _recordType;
     }
 

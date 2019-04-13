@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 1.19**
+
+- Fixed incorrect line length for NAACCR 18 Confidential layout.
+- Updated NAACCR XML library from version 5.1 to version 5.2.
+
 **Changes in version 1.18**
 
 - Fixed some bad values for section attribute in NAACCR 18 layout.

@@ -188,7 +188,7 @@ public final class LayoutFactory {
         else if (LAYOUT_ID_NAACCR_18_MODIFIED.equals(layoutId))
             layout = new NaaccrLayout("180", "M", 24194, LAYOUT_ID_NAACCR_18_MODIFIED, loadFields);
         else if (LAYOUT_ID_NAACCR_18_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("180", "C", 6934, LAYOUT_ID_NAACCR_18_CONFIDENTIAL, loadFields);
+            layout = new NaaccrLayout("180", "C", 6154, LAYOUT_ID_NAACCR_18_CONFIDENTIAL, loadFields);
         else if (LAYOUT_ID_NAACCR_18_INCIDENCE.equals(layoutId))
             layout = new NaaccrLayout("180", "I", 4048, LAYOUT_ID_NAACCR_18_INCIDENCE, loadFields);
         else if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
