@@ -3,14 +3,6 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
-import com.imsweb.layout.Field;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -18,6 +10,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.imsweb.layout.Field;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 public class Naaccr18LayoutTest {
 
@@ -107,7 +108,7 @@ public class Naaccr18LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_CONFIDENTIAL);
-        Assert.assertEquals(6934, layout.createLineFromRecord(rec, null).length());
+        Assert.assertEquals(6154, layout.createLineFromRecord(rec, null).length());
         FileOutputStream stream = new FileOutputStream(file);
         layout.writeRecord(stream, rec); // write into an output stream
         stream.close();

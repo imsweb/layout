@@ -256,7 +256,7 @@ public class LayoutFactoryTest {
         // regular case, well formatted NAACCR lines
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(24194, "A", "180"), options).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(24194, "M", "180"), options).isEmpty());
-        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(6934, "C", "180"), options).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(6154, "C", "180"), options).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(4048, "I", "180"), options).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(22824, "A", "120"), options).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(22824, "M", "121"), options).isEmpty());
