@@ -298,7 +298,7 @@ public class LayoutFactoryTest {
 
         // no NAACCR version and not record type available, but we don't enforce the strict format, so the line length should be used
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(24194, null, null)).isEmpty());
-        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(6934, null, null)).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(6154, null, null)).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(4048, null, null)).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(22824, null, null)).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(5564, null, null)).isEmpty());
