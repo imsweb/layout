@@ -312,12 +312,14 @@ public class NaaccrHl7Layout implements Layout {
     }
 
     /**
-     * Writes the given messages in the given file.
+     * Writes the given messages in the given file, they will be separated by a blank line.
      */
     public void writeMessages(File file, List<Hl7Message> messages) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(LayoutUtils.createOutputStream(file), StandardCharsets.UTF_8))) {
-            for (Hl7Message message : messages)
+            for (Hl7Message message : messages) {
                 writeMessage(writer, message);
+                writer.write(System.lineSeparator());
+            }
         }
     }
 

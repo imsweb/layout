@@ -6,6 +6,7 @@ package com.imsweb.layout.hl7;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +19,8 @@ import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
 public final class Hl7Utils {
+
+    private static final Pattern _NEW_LINE_PATTERN = Pattern.compile("\r?\n");
 
     /**
      * Private constructor, no instanciation!
@@ -194,6 +197,6 @@ public final class Hl7Utils {
 
         // write each element with a separator between them
         String separator = component.getRepeatedField().getField().getSegment().getMessage().getSubComponentSeparator();
-        return list.stream().map(c -> c == null || c.getValue() == null ? "" : c.getValue()).collect(Collectors.joining(separator));
+        return list.stream().map(c -> c == null || c.getValue() == null ? "" : _NEW_LINE_PATTERN.matcher(c.getValue()).replaceAll("~")).collect(Collectors.joining(separator));
     }
 }

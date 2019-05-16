@@ -3,21 +3,6 @@
  */
 package com.imsweb.layout.hl7;
 
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.LayoutInfo;
-import com.imsweb.layout.LayoutUtils;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.hl7.entity.Hl7Field;
-import com.imsweb.layout.hl7.entity.Hl7Message;
-import com.imsweb.layout.hl7.entity.Hl7Segment;
-import com.imsweb.layout.hl7.xml.Hl7ComponentXmlDto;
-import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
-import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
-import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
-import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,6 +15,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfo;
+import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.hl7.entity.Hl7Field;
+import com.imsweb.layout.hl7.entity.Hl7Message;
+import com.imsweb.layout.hl7.entity.Hl7Segment;
+import com.imsweb.layout.hl7.xml.Hl7ComponentXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
+import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
 
 public class NaaccrHl7LayoutTest {
 
@@ -223,7 +224,7 @@ public class NaaccrHl7LayoutTest {
     }
 
     @Test
-    @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
+    @SuppressWarnings("ConstantConditions")
     public void testHl7Layout() throws Exception {
         // test read messages (uses a modified example in PDF)
         NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
@@ -284,8 +285,8 @@ public class NaaccrHl7LayoutTest {
         }
 
         // test write message to file
-        File file = new File(TestingUtils.getBuildDirectory(), "naaccr16.txt");
-        layout.writeMessages(file, Collections.singletonList(messages.get(1)));
+        File file = new File(TestingUtils.getBuildDirectory(), "test.hl7");
+        layout.writeMessages(file, messages);
         Assert.assertTrue(file.exists());
 
         // test version

@@ -3,6 +3,7 @@
 **Changes in version 1.20 (not released yet)**
 
 - Fixed behavior of getting sub-fields for NAACCR XML layout so it aligns with the behavior of flat layouts.
+- Made minor improvements to the HL7 layout writing methods.
 
 **Changes in version 1.19**
 

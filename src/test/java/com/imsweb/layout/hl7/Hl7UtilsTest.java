@@ -397,6 +397,19 @@ public class Hl7UtilsTest {
         addSubComponent(comp, 4, "VAL2");
         addSubComponent(comp, 7, "VAL3");
         Assert.assertEquals("&VAL1&&VAL2&&&VAL3", Hl7Utils.componentToString(comp));
+
+        // new line
+        comp = new Hl7Component(repField, 1);
+        addSubComponent(comp, 1, "VAL1\nVAL2");
+        Assert.assertEquals("VAL1~VAL2", Hl7Utils.componentToString(comp));
+
+        comp = new Hl7Component(repField, 1);
+        addSubComponent(comp, 1, "VAL1\r\nVAL2");
+        Assert.assertEquals("VAL1~VAL2", Hl7Utils.componentToString(comp));
+
+        comp = new Hl7Component(repField, 1);
+        addSubComponent(comp, 1, "VAL1\n\nVAL2");
+        Assert.assertEquals("VAL1~~VAL2", Hl7Utils.componentToString(comp));
     }
 
     // helper
