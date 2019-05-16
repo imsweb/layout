@@ -142,6 +142,10 @@ public class NaaccrXmlLayout implements Layout {
                     Field flatField = _flatLayout.getFieldByNaaccrItemNumber(item.getNaaccrNum());
                     field.setShortLabel(flatField == null ? item.getNaaccrName() : flatField.getShortLabel());
 
+                    _allFields.add(field);
+                    _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
+                    _fieldsCachedByName.put(field.getNaaccrId(), field);
+
                     //If the field is a date, add child fields for the year, month and day parts
                     if (NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DATE.equals(item.getDataType())) {
                         String shortLbl = field.getShortLabel();
@@ -156,6 +160,8 @@ public class NaaccrXmlLayout implements Layout {
                         yearItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField yearFld = new NaaccrXmlField(yearItem);
                         yearFld.setShortLabel(shortLbl + " Yr");
+                        _fieldsCachedByNaaccrNumber.put(yearFld.getNaaccrItemNum(), yearFld);
+                        _fieldsCachedByName.put(yearFld.getNaaccrId(), yearFld);
 
                         NaaccrDictionaryItem monthItem = new NaaccrDictionaryItem();
                         monthItem.setNaaccrId(item.getNaaccrId() + "Month");
@@ -165,6 +171,8 @@ public class NaaccrXmlLayout implements Layout {
                         monthItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField monthFld = new NaaccrXmlField(monthItem);
                         monthFld.setShortLabel(shortLbl + " Mth");
+                        _fieldsCachedByNaaccrNumber.put(monthFld.getNaaccrItemNum(), monthFld);
+                        _fieldsCachedByName.put(monthFld.getNaaccrId(), monthFld);
 
                         NaaccrDictionaryItem dayItem = new NaaccrDictionaryItem();
                         dayItem.setNaaccrId(item.getNaaccrId() + "Day");
@@ -174,13 +182,11 @@ public class NaaccrXmlLayout implements Layout {
                         dayItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField dayFld = new NaaccrXmlField(dayItem);
                         dayFld.setShortLabel(shortLbl + " Day");
+                        _fieldsCachedByNaaccrNumber.put(dayFld.getNaaccrItemNum(), dayFld);
+                        _fieldsCachedByName.put(dayFld.getNaaccrId(), dayFld);
 
                         field.setSubFields(Arrays.asList(yearFld, monthFld, dayFld));
                     }
-
-                    _allFields.add(field);
-                    _fieldsCachedByNaaccrNumber.put(field.getNaaccrItemNum(), field);
-                    _fieldsCachedByName.put(field.getNaaccrId(), field);
                 }
             }
         }

@@ -16,6 +16,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
@@ -35,8 +36,158 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 public class NaaccrXmlLayoutTest {
 
     @Test
+    public void testStandardNaaccrXmlLayout() {
+
+        // NAACCR 18
+        Layout layout = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_18_INCIDENCE);
+        // only root level fields are available via the "getAllFields" method
+        Assert.assertFalse(layout.getAllFields().isEmpty());
+        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "primarySite".equals(f.getName())));
+        Assert.assertFalse(layout.getAllFields().stream().anyMatch(f -> "nameLast".equals(f.getName())));
+        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosis".equals(f.getName())));
+        Assert.assertFalse(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosisYear".equals(f.getName())));
+        // regular tumor field
+        Assert.assertNotNull(layout.getFieldByName("primarySite"));
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(400));
+        Assert.assertNotNull(layout.getFieldDocByName("primarySite"));
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(400));
+        // incidence format should not contain last name
+        Assert.assertNull(layout.getFieldByName("nameLast"));
+        Assert.assertNull(layout.getFieldByNaaccrItemNumber(2230));
+        Assert.assertNull(layout.getFieldDocByName("nameLast"));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(2230));
+        // sub-fields should be returned, but don't have their own documentation
+        Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosis"));
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(390));
+        Assert.assertNotNull(layout.getFieldDocByName("dateOfDiagnosis"));
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(390));
+        Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosisYear"));
+        Assert.assertNull(layout.getFieldDocByName("dateOfDiagnosisYear"));
+    }
+
+    @Test
     public void testNaaccrXmlLayout() {
-        NaaccrXmlLayout layout;
+
+        //Test Version 160 - don't load fields/dictionaries
+        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, false);
+        Assert.assertEquals(Collections.emptyList(), layout.getAllFields());
+        Assert.assertEquals("160", layout.getLayoutVersion());
+        Assert.assertEquals("test-id", layout.getLayoutId());
+        Assert.assertEquals("test-name", layout.getLayoutName());
+        Assert.assertEquals("A", layout.getRecordType());
+        Assert.assertNull(layout.getFieldByNaaccrItemNumber(10));
+        Assert.assertNull(layout.getFieldByName("recordType"));
+
+        //Test version 160 - load fields/dictionaries
+        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, true);
+        Assert.assertEquals(587, layout.getAllFields().size());
+        Assert.assertEquals("160", layout.getBaseDictionary().getNaaccrVersion());
+        Assert.assertEquals(1, layout.getUserDictionaries().size());
+        Assert.assertEquals("160", layout.getUserDictionaries().get(0).getNaaccrVersion());
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10));
+        Assert.assertNotNull(layout.getFieldByName("recordType"));
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(37));
+        Assert.assertNotNull(layout.getFieldByName("reserved00"));
+        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
+
+        //Check subfield values
+        NaaccrXmlField yearFld = layout.getFieldByName("dateOfDiagnosis").getSubFields().get(0);
+        Assert.assertEquals("dateOfDiagnosisYear", yearFld.getNaaccrId());
+        Assert.assertEquals("Date of Diagnosis (Year)", yearFld.getNaaccrName());
+        Assert.assertEquals(NaaccrXmlUtils.NAACCR_XML_TAG_TUMOR, yearFld.getParentXmlElement());
+
+        //User dictionary for testing
+        NaaccrDictionary userDictionary = new NaaccrDictionary();
+        userDictionary.setDictionaryUri("http://mycompany.org/my-very-own-naaccr-dictionary.xml");
+        userDictionary.setSpecificationVersion("1.3");
+        NaaccrDictionaryItem item = new NaaccrDictionaryItem();
+        item.setNaaccrId("itemId");
+        item.setNaaccrNum(10003);
+        item.setNaaccrName("Item name");
+        item.setLength(1);
+        item.setParentXmlElement("Patient");
+        NaaccrDictionaryItem dateItem = new NaaccrDictionaryItem();
+        dateItem.setNaaccrId("dateId");
+        dateItem.setNaaccrNum(10004);
+        dateItem.setNaaccrName("Date Name");
+        dateItem.setLength(8);
+        dateItem.setParentXmlElement("Patient");
+        dateItem.setDataType("date");
+        userDictionary.setItems(Arrays.asList(item, dateItem));
+
+        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, Collections.singletonList(userDictionary), true);
+        Assert.assertEquals(566, layout.getAllFields().size());
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10003));
+        Assert.assertNotNull(layout.getFieldByName("itemId"));
+        Assert.assertEquals(1, layout.getUserDictionaries().size());
+        Assert.assertEquals(3, layout.getFieldByName("dateId").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("itemId").getSubFields());
+        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
+
+        layout = new NaaccrXmlLayout("160", "M", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("M", layout.getRecordType());
+        Assert.assertEquals(587, layout.getAllFields().size());
+
+        layout = new NaaccrXmlLayout("160", "C", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("C", layout.getRecordType());
+        Assert.assertEquals(568, layout.getAllFields().size());
+
+        layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("I", layout.getRecordType());
+        Assert.assertEquals(496, layout.getAllFields().size());
+
+        //Test version 150
+        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("150", layout.getLayoutVersion());
+        Assert.assertEquals("150", layout.getBaseDictionary().getNaaccrVersion());
+        Assert.assertEquals("A", layout.getRecordType());
+        Assert.assertEquals(1, layout.getUserDictionaries().size());
+        Assert.assertEquals("150", layout.getUserDictionaries().get(0).getNaaccrVersion());
+        Assert.assertEquals(555, layout.getAllFields().size());
+        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
+
+        layout = new NaaccrXmlLayout("150", "M", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("M", layout.getRecordType());
+        Assert.assertEquals(555, layout.getAllFields().size());
+
+        layout = new NaaccrXmlLayout("150", "C", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("C", layout.getRecordType());
+        Assert.assertEquals(536, layout.getAllFields().size());
+
+        layout = new NaaccrXmlLayout("150", "I", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("I", layout.getRecordType());
+        Assert.assertEquals(464, layout.getAllFields().size());
+
+        //Test Version 140
+        layout = new NaaccrXmlLayout("140", "A", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("140", layout.getLayoutVersion());
+        Assert.assertEquals("140", layout.getBaseDictionary().getNaaccrVersion());
+        Assert.assertEquals("A", layout.getRecordType());
+        Assert.assertEquals(1, layout.getUserDictionaries().size());
+        Assert.assertEquals("140", layout.getUserDictionaries().get(0).getNaaccrVersion());
+        Assert.assertEquals(548, layout.getAllFields().size());
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(10));
+        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
+        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
+
+        layout = new NaaccrXmlLayout("140", "M", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("M", layout.getRecordType());
+        Assert.assertEquals(548, layout.getAllFields().size());
+
+        layout = new NaaccrXmlLayout("140", "C", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("C", layout.getRecordType());
+        Assert.assertEquals(529, layout.getAllFields().size());
+
+        layout = new NaaccrXmlLayout("140", "I", "test-id", "test-name", null, null, true);
+        Assert.assertEquals("I", layout.getRecordType());
+        Assert.assertEquals(457, layout.getAllFields().size());
+    }
+
+    @Test
+    public void testNaaccrXmlLayoutBad() {
 
         //Null NAACCR version
         boolean exceptionCaught = false;
@@ -152,123 +303,6 @@ public class NaaccrXmlLayoutTest {
             exceptionCaught = true;
         }
         Assert.assertTrue(exceptionCaught);
-
-        //Test Version 160 - don't load fields/dictionaries
-        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, false);
-        Assert.assertEquals(new ArrayList<>(), layout.getAllFields());
-        Assert.assertEquals("160", layout.getLayoutVersion());
-        Assert.assertEquals("test-id", layout.getLayoutId());
-        Assert.assertEquals("test-name", layout.getLayoutName());
-        Assert.assertEquals("A", layout.getRecordType());
-        Assert.assertNull(layout.getFieldByNaaccrItemNumber(10));
-        Assert.assertNull(layout.getFieldByName("recordType"));
-
-        //Test version 160 - load fields/dictionaries
-        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, true);
-        Assert.assertEquals(587, layout.getAllFields().size());
-        Assert.assertEquals("160", layout.getBaseDictionary().getNaaccrVersion());
-        Assert.assertEquals(1, layout.getUserDictionaries().size());
-        Assert.assertEquals("160", layout.getUserDictionaries().get(0).getNaaccrVersion());
-        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10));
-        Assert.assertNotNull(layout.getFieldByName("recordType"));
-        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(37));
-        Assert.assertNotNull(layout.getFieldByName("reserved00"));
-        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
-        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
-
-        //Check subfield values
-        NaaccrXmlField yearFld = layout.getFieldByName("dateOfDiagnosis").getSubFields().get(0);
-        Assert.assertEquals("dateOfDiagnosisYear", yearFld.getNaaccrId());
-        Assert.assertEquals("Date of Diagnosis (Year)", yearFld.getNaaccrName());
-        Assert.assertEquals(NaaccrXmlUtils.NAACCR_XML_TAG_TUMOR, yearFld.getParentXmlElement());
-
-        //User dictionary for testing
-        NaaccrDictionary userDictionary = new NaaccrDictionary();
-        userDictionary.setDictionaryUri("http://mycompany.org/my-very-own-naaccr-dictionary.xml");
-        userDictionary.setSpecificationVersion("1.3");
-        NaaccrDictionaryItem item = new NaaccrDictionaryItem();
-        item.setNaaccrId("itemId");
-        item.setNaaccrNum(10003);
-        item.setNaaccrName("Item name");
-        item.setLength(1);
-        item.setParentXmlElement("Patient");
-        NaaccrDictionaryItem dateItem = new NaaccrDictionaryItem();
-        dateItem.setNaaccrId("dateId");
-        dateItem.setNaaccrNum(10004);
-        dateItem.setNaaccrName("Date Name");
-        dateItem.setLength(8);
-        dateItem.setParentXmlElement("Patient");
-        dateItem.setDataType("date");
-        userDictionary.setItems(Arrays.asList(item, dateItem));
-
-        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, Collections.singletonList(userDictionary), true);
-        Assert.assertEquals(566, layout.getAllFields().size());
-        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(10003));
-        Assert.assertNotNull(layout.getFieldByName("itemId"));
-        Assert.assertEquals(1, layout.getUserDictionaries().size());
-        Assert.assertEquals(3, layout.getFieldByName("dateId").getSubFields().size());
-        Assert.assertNull(layout.getFieldByName("itemId").getSubFields());
-        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
-        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
-
-        layout = new NaaccrXmlLayout("160", "M", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("M", layout.getRecordType());
-        Assert.assertEquals(587, layout.getAllFields().size());
-
-        layout = new NaaccrXmlLayout("160", "C", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("C", layout.getRecordType());
-        Assert.assertEquals(568, layout.getAllFields().size());
-
-        layout = new NaaccrXmlLayout("160", "I", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("I", layout.getRecordType());
-        Assert.assertEquals(496, layout.getAllFields().size());
-
-        //Test version 150
-        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("150", layout.getLayoutVersion());
-        Assert.assertEquals("150", layout.getBaseDictionary().getNaaccrVersion());
-        Assert.assertEquals("A", layout.getRecordType());
-        Assert.assertEquals(1, layout.getUserDictionaries().size());
-        Assert.assertEquals("150", layout.getUserDictionaries().get(0).getNaaccrVersion());
-        Assert.assertEquals(555, layout.getAllFields().size());
-        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
-        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
-
-        layout = new NaaccrXmlLayout("150", "M", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("M", layout.getRecordType());
-        Assert.assertEquals(555, layout.getAllFields().size());
-
-        layout = new NaaccrXmlLayout("150", "C", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("C", layout.getRecordType());
-        Assert.assertEquals(536, layout.getAllFields().size());
-
-        layout = new NaaccrXmlLayout("150", "I", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("I", layout.getRecordType());
-        Assert.assertEquals(464, layout.getAllFields().size());
-
-        //Test Version 140
-        layout = new NaaccrXmlLayout("140", "A", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("140", layout.getLayoutVersion());
-        Assert.assertEquals("140", layout.getBaseDictionary().getNaaccrVersion());
-        Assert.assertEquals("A", layout.getRecordType());
-        Assert.assertEquals(1, layout.getUserDictionaries().size());
-        Assert.assertEquals("140", layout.getUserDictionaries().get(0).getNaaccrVersion());
-        Assert.assertEquals(548, layout.getAllFields().size());
-        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(10));
-        Assert.assertEquals(3, layout.getFieldByName("dateOfDiagnosis").getSubFields().size());
-        Assert.assertNull(layout.getFieldByName("recordType").getSubFields());
-
-        layout = new NaaccrXmlLayout("140", "M", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("M", layout.getRecordType());
-        Assert.assertEquals(548, layout.getAllFields().size());
-
-        layout = new NaaccrXmlLayout("140", "C", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("C", layout.getRecordType());
-        Assert.assertEquals(529, layout.getAllFields().size());
-
-        layout = new NaaccrXmlLayout("140", "I", "test-id", "test-name", null, null, true);
-        Assert.assertEquals("I", layout.getRecordType());
-        Assert.assertEquals(457, layout.getAllFields().size());
     }
 
     @Test

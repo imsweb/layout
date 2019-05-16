@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.20 (not released yet)**
+
+- Fixed behavior of getting sub-fields for NAACCR XML layout so it aligns with the behavior of flat layouts.
+
 **Changes in version 1.19**
 
 - Fixed incorrect line length for NAACCR 18 Confidential layout.

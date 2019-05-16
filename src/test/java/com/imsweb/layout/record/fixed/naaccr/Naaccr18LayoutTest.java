@@ -15,12 +15,69 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.imsweb.layout.Field;
+import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 public class Naaccr18LayoutTest {
+
+    @Test
+    public void testStandardNaaccrLayout() {
+
+        // NAACCR 18
+        Layout layout = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_INCIDENCE);
+        // only root level fields are available via the "getAllFields" method
+        Assert.assertFalse(layout.getAllFields().isEmpty());
+        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "primarySite".equals(f.getName())));
+        Assert.assertFalse(layout.getAllFields().stream().anyMatch(f -> "nameLast".equals(f.getName())));
+        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosis".equals(f.getName())));
+        Assert.assertFalse(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosisYear".equals(f.getName())));
+        // regular tumor field
+        Assert.assertNotNull(layout.getFieldByName("primarySite"));
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(400));
+        Assert.assertNotNull(layout.getFieldDocByName("primarySite"));
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(400));
+        // incidence format should not contain last name
+        Assert.assertNull(layout.getFieldByName("nameLast"));
+        Assert.assertNull(layout.getFieldByNaaccrItemNumber(2230));
+        Assert.assertNull(layout.getFieldDocByName("nameLast"));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(2230));
+        // sub-fields should be returned, but don't have their own documentation
+        Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosis"));
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(390));
+        Assert.assertNotNull(layout.getFieldDocByName("dateOfDiagnosis"));
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(390));
+        Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosisYear"));
+        Assert.assertNull(layout.getFieldDocByName("dateOfDiagnosisYear"));
+
+        // NAACCR 16
+        layout = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE);
+        // only root level fields are available via the "getAllFields" method
+        Assert.assertFalse(layout.getAllFields().isEmpty());
+        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "primarySite".equals(f.getName())));
+        Assert.assertFalse(layout.getAllFields().stream().anyMatch(f -> "nameLast".equals(f.getName())));
+        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosis".equals(f.getName())));
+        Assert.assertFalse(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosisYear".equals(f.getName())));
+        // regular tumor field
+        Assert.assertNotNull(layout.getFieldByName("primarySite"));
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(400));
+        Assert.assertNotNull(layout.getFieldDocByName("primarySite"));
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(400));
+        // incidence format should not contain last name
+        Assert.assertNull(layout.getFieldByName("nameLast"));
+        Assert.assertNull(layout.getFieldByNaaccrItemNumber(2230));
+        Assert.assertNull(layout.getFieldDocByName("nameLast"));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(2230));
+        // sub-fields should be returned, but don't have their own documentation
+        Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosis"));
+        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(390));
+        Assert.assertNotNull(layout.getFieldDocByName("dateOfDiagnosis"));
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(390));
+        Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosisYear"));
+        Assert.assertNull(layout.getFieldDocByName("dateOfDiagnosisYear"));
+    }
 
     @Test
     @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
