@@ -3,6 +3,7 @@
 **Changes in version 1.21**
 
 - Updated NAACCR XML library from version 5.3 to version 6.1.
+- Shorten short label for "behavior" in all NAACCR layout.
 
 **Changes in version 1.20**
 
