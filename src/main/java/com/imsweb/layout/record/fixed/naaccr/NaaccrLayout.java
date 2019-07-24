@@ -11,6 +11,7 @@ import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,9 @@ import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
  * This class contains the logic related to all NAACCR layouts.
  */
 public class NaaccrLayout extends FixedColumnsLayout {
+
+    // TODO FD add unit test to make sure this list contains all versions
+    public static final List<String> SUPPORTED_VERSIONS = Arrays.asList("180", "160", "150", "140", "130", "120");
 
     //  following styles are used in all the NAACCR versions
     private static final StringBuilder _CSS_STYLE_SUMMARY_TABLE = new StringBuilder();
@@ -292,6 +296,14 @@ public class NaaccrLayout extends FixedColumnsLayout {
      */
     public static String getXmlIdFromLayoutName(String name) {
         return _XML_TO_LAYOUT_MAPPING.getOrDefault(name, name);
+    }
+
+    public static String getLatestFieldDocByNaaccrItemNumber(Integer number) {
+        return null; // TODO FD use SUPPORTED_VERSIONS
+    }
+
+    public static String getLatestFieldDocByName(String name) {
+        return null; // TODO FD
     }
 
     protected String _naaccrVersion;
