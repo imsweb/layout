@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.21**
+
+- Updated NAACCR XML library from version 5.3 to version 6.1.
+
 **Changes in version 1.20**
 
 - Fixed behavior of getting sub-fields for NAACCR XML layout so it aligns with the behavior of flat layouts.
