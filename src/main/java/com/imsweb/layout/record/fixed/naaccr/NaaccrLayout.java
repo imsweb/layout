@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -337,12 +338,33 @@ public class NaaccrLayout extends FixedColumnsLayout {
         return _LAYOUT_TO_XML_MAPPING.getOrDefault(name, name);
     }
 
-    public static String getLatestFieldDocByNaaccrItemNumber(Integer number) {
-        return null; // TODO FD use SUPPORTED_VERSIONS
-    }
-
+    /**
+     * Returns
+     * @param name
+     * @return
+     */
     public static String getLatestFieldDocByName(String name) {
-        return null; // TODO FD
+
+        // TODO DMS is going to need by number!
+
+        // TODO get first version that has a description; if that version is not the most up-to-date, then add deprecation with previous version.
+
+        Map<String, String> availableContent = new LinkedHashMap<>();
+        for (String version : SUPPORTED_VERSIONS) {
+            URL docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/naaccr" + version.substring(0, 2) + "/" + name + ".html");
+            if (docPath != null) {
+                try (Reader reader = new InputStreamReader(docPath.openStream(), StandardCharsets.UTF_8); Writer writer = new StringWriter()) {
+                    IOUtils.copy(reader, writer);
+                    availableContent.put(version, writer.toString());
+                    System.out.println("\n\n**** " + version + "\n" + writer.toString());
+                }
+                catch (IOException e) {
+                    /* do nothing, result will be null, as per specs */
+                }
+            }
+        }
+
+        return null;
     }
 
     protected String _naaccrVersion;

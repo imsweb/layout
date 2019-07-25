@@ -179,4 +179,10 @@ public class NaaccrLayoutTest {
         Assert.assertEquals("?", NaaccrLayout.getXmlIdFromLayoutName("?"));
         Assert.assertNull(NaaccrLayout.getXmlIdFromLayoutName(null));
     }
+
+    @Test
+    public void testGetLatestFieldDocByName() {
+        //System.out.println(NaaccrLayout.getLatestFieldDocByName("firstCourseCalcMethod"));
+        Assert.fail("implement me");
+    }
 }
