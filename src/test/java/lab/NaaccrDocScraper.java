@@ -6,6 +6,7 @@ package lab;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
  *     2014/10/25 FPD - didn't need to redo the styles for NAACCR 15/16/18, they were the same as NAACCR 14...
  *
  *********************************************************************************************************/
+@SuppressWarnings({"MismatchedQueryAndUpdateOfStringBuilder", "ConstantConditions"})
 public class NaaccrDocScraper {
 
     // TODO FPD move the NaaccrDocViewer and NaaccrDocChecker to this project!
@@ -49,25 +51,27 @@ public class NaaccrDocScraper {
         NaaccrLayout layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
 
         // this is the URL to read the full HTML page from
-        String url = "http://datadictionary.naaccr.org/?c=10";
+        //URL url = new URL("http://datadictionary.naaccr.org/?c=10");
+        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-18.html");
 
         // this is the URL to read the style sheet from
-        String styleSheetUrl = "http://datadictionary.naaccr.org/Styles/ContentReader.css";
+        //URL styleSheetUrl = new URL("http://datadictionary.naaccr.org/Styles/ContentReader.css");
+        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-18-style.html");
 
         // create the stylesheet
         StringBuilder styleBuf = new StringBuilder();
-        String styleSheet = new Scanner(new URL(styleSheetUrl).openStream(), "UTF-8").useDelimiter("\\A").next();
+        String styleSheet = new Scanner(styleSheetUrl.openStream(), StandardCharsets.UTF_8.name()).useDelimiter("\\A").next();
         for (String line : styleSheet.replace("{\r\n", "{").replace(";\r\n", ";").replace("\r\n\r\n", "\r\n").replace("    ", " ").split("\\r?\\n")) {
             line = line.trim();
             if (!line.isEmpty() && !line.contains("body") && !line.contains("/*") && !line.contains("*/") && !line.startsWith(".mark-changed") && !line.contains("Times New Roman") && !line.contains(
                     "font-size"))
-                styleBuf.append("        _DEFAULT_CSS_14_AND_LATER.append(\"").append(line).append("\\n\");\n");
+                styleBuf.append("        _DEFAULT_CSS_14_AND_LATER.append(\"").append(line).append("\\r\n\");\r\n");
         }
         // the printed style should be copied into the NaaccrLayout class...
         //System.out.println(styleBuf);
 
         // read the page
-        String fullContent = new Scanner(new URL(url).openStream(), "UTF-8").useDelimiter("\\A").next();
+        String fullContent = new Scanner(url.openStream(), StandardCharsets.UTF_8.name()).useDelimiter("\\A").next();
 
         // split by anchors (every item section starts with an anchor with its NAACCR number)
         Map<String, String> items = new HashMap<>();
@@ -166,7 +170,7 @@ public class NaaccrDocScraper {
 
                 // write the resulting file
                 try {
-                    FileUtils.writeStringToFile(new File(outputDir, prop + ".html"), summary + "\n\n" + metaData + "\n\n" + content, "UTF-8");
+                    FileUtils.writeStringToFile(new File(outputDir, prop + ".html"), summary + "\r\n\r\n" + metaData + "\r\n\r\n" + content, "UTF-8");
                 }
                 catch (IOException e) {
                     e.printStackTrace();
@@ -216,24 +220,24 @@ public class NaaccrDocScraper {
                 String row = rowMatcher.group(2);
                 rowIdx++;
 
-                buf.append("\n  <tr>");
+                buf.append("\r\n  <tr>");
                 Matcher cellMatcher = Pattern.compile("<td(.*?)>(.*?)</td>", Pattern.MULTILINE | Pattern.DOTALL).matcher(row);
                 int cellStart = 0;
                 while (cellMatcher.find(cellStart)) {
                     String cell = cellMatcher.group(2).replace("<a href='#sources'>", "").replace("</a>", "");
 
                     if (rowIdx == 1)
-                        buf.append("\n    <th class=\"naaccr-summary-header naaccr-borders\">").append(cell).append("</th>");
+                        buf.append("\r\n    <th class=\"naaccr-summary-header naaccr-borders\">").append(cell).append("</th>");
                     else
-                        buf.append("\n    <td class=\"naaccr-summary-cell naaccr-borders naaccr-summary-centered\">").append(cell).append("</td>");
+                        buf.append("\r\n    <td class=\"naaccr-summary-cell naaccr-borders naaccr-summary-centered\">").append(cell).append("</td>");
                     cellStart = cellMatcher.end();
                 }
-                buf.append("\n  </tr>");
+                buf.append("\r\n  </tr>");
             }
             rowStart = rowMatcher.end();
         }
 
-        buf.append("\n</table>");
+        buf.append("\r\n</table>");
 
         return cleanupHtml(buf.toString());
     }
@@ -256,11 +260,11 @@ public class NaaccrDocScraper {
         List<String> altNames = Arrays.stream(cells.get(1).split("<br\\s?/>")).filter(s -> !StringUtils.isBlank(s)).collect(Collectors.toList());
 
         StringBuilder buf = new StringBuilder("<br/>");
-        buf.append("<strong>NAACCR XML</strong>: ").append(cells.get(5)).append(".").append(cells.get(3)).append("<br/><br/>\n");
+        buf.append("<strong>NAACCR XML</strong>: ").append(cells.get(5)).append(".").append(cells.get(3)).append("<br/><br/>\r\n");
         if (!altNames.isEmpty()) {
-            buf.append("<strong>Alternate Names</strong>\n");
+            buf.append("<strong>Alternate Names</strong>\r\n");
             for (String altName : altNames)
-                buf.append("<br/>&nbsp;&nbsp;&nbsp;").append(altName).append("\n");
+                buf.append("<br/>&nbsp;&nbsp;&nbsp;").append(altName).append("\r\n");
 
         }
 
