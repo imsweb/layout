@@ -22,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 
@@ -45,7 +46,7 @@ public class NaaccrDocScraper {
     // TODO FPD this code doesn't handle Windows characters! See history of "recordType.html", or "tumorRecordNumber.html" for bad files...
     public static void main(String[] args) throws Exception {
         // output directory
-        File outputDir = new File("C:\\dev\\projects\\layout\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr18");
+        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr18");
 
         // the layout to use to gather the fields
         NaaccrLayout layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
