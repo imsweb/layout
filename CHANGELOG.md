@@ -2,8 +2,9 @@
 
 **Changes in version 1.21**
 
-- Updated NAACCR XML library from version 5.3 to version 6.1.
+- Now returning documentation for retired data items in NAACCR 18 layout.
 - Shorten short label for "behavior" in all NAACCR layout.
+- Updated NAACCR XML library from version 5.3 to version 6.1.
 
 **Changes in version 1.20**
 
