@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,8 +43,8 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 @SuppressWarnings({"MismatchedQueryAndUpdateOfStringBuilder", "ConstantConditions"})
 public class NaaccrDocScraper {
 
-    // TODO FPD move the NaaccrDocViewer and NaaccrDocChecker to this project!
-    // TODO FPD this code doesn't handle Windows characters! See history of "recordType.html", or "tumorRecordNumber.html" for bad files...
+    // TODO FD I think the doc checker should be a unit test...
+    // TODO FD this code doesn't handle Windows characters! See history of "recordType.html", or "tumorRecordNumber.html" for bad files...
     public static void main(String[] args) throws Exception {
         // output directory
         File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr18");
@@ -57,7 +58,7 @@ public class NaaccrDocScraper {
 
         // this is the URL to read the style sheet from
         //URL styleSheetUrl = new URL("http://datadictionary.naaccr.org/Styles/ContentReader.css");
-        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-18-style.html");
+        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-18-style.css");
 
         // create the stylesheet
         StringBuilder styleBuf = new StringBuilder();
@@ -104,8 +105,10 @@ public class NaaccrDocScraper {
         // go through each field and create the corresponding file
         if (!outputDir.exists() && !outputDir.mkdirs())
             throw new RuntimeException("Unable to create target folder!");
-        fields.forEach((itemNum, prop) -> {
-            String html = items.get(itemNum);
+        for (Entry<String, String> entry : items.entrySet()) {
+            String itemNum = entry.getKey();
+            String html = entry.getValue();
+            String fieldName = fields.getOrDefault(itemNum, itemNum);
             if (html != null) {
 
                 // bad & characters
@@ -136,11 +139,6 @@ public class NaaccrDocScraper {
                     case "3933":
                         html = html.replace("< 100", "&lt; 100");
                         break;
-                    case "752":
-                    case "754":
-                    case "756":
-                        html = html.replace("<br>", "<br/>");
-                        break;
                     case "2040":
                         html = html.replace(
                                 "<leave blank=\"\" and=\"\" correct=\"\" any=\"\" errors=\"\" for=\"\" the=\"\" case=\"\" if=\"\" an=\"\" item=\"\" is=\"\" discovered=\"\" to=\"\" be=\"\"  incorrect.<=\"\" tab=\"\"><tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><tab>Code 1, 2, or 3 as indicated if review of all items in the error or warning message confirms that all are correct.</tab></tab></tab></tab></tab></tab></tab></tab></tab></tab></tab></leave>",
@@ -153,6 +151,8 @@ public class NaaccrDocScraper {
                     default:
                         // ignored, nothing to do
                 }
+
+                html = html.replace("<br>", "<br/>");
 
                 // parse out the table
                 int idx = html.indexOf("</table>");
@@ -171,7 +171,7 @@ public class NaaccrDocScraper {
 
                 // write the resulting file
                 try {
-                    FileUtils.writeStringToFile(new File(outputDir, prop + ".html"), summary + "\r\n\r\n" + metaData + "\r\n\r\n" + content, "UTF-8");
+                    FileUtils.writeStringToFile(new File(outputDir, fieldName + ".html"), summary + "\r\n\r\n" + metaData + "\r\n\r\n" + content, "UTF-8");
                 }
                 catch (IOException e) {
                     e.printStackTrace();
@@ -179,7 +179,7 @@ public class NaaccrDocScraper {
             }
             else
                 System.out.println("Can't find content for item number " + itemNum);
-        });
+        }
     }
 
     private static String cleanupHtml(String html) {

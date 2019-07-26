@@ -80,7 +80,7 @@ public class NaaccrDocViewer extends JFrame {
      */
     public NaaccrDocViewer() {
         this.setTitle("NAACCR Documentation Viewer");
-        this.setPreferredSize(new Dimension(1200, 988));
+        this.setPreferredSize(new Dimension(1200, 800));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         final Map<String, String> labelMappings = new HashMap<>();

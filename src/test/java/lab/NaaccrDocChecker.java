@@ -26,13 +26,10 @@ public class NaaccrDocChecker extends JFrame {
 
     private static Layout _LAYOUT = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         for (File f : _DIR.listFiles()) {
             if (f.getName().endsWith(".html")) {
-                if (!SeerUtils.isPureAscii(SeerUtils.readFile(f)))
-                    System.err.println("!!! NON-ASCII CHARACTERS: " + f.getName());
-
                 Field field = _LAYOUT.getFieldByName(f.getName().replace(".html", ""));
                 if (field != null)
                     displayDoc(field);
