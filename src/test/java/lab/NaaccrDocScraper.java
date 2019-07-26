@@ -31,20 +31,23 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
  *     Use this class to generate the NAACCR documentation from the NAACCR website.
  *
  *     !!!!    MAKE SURE TO AUTO-FORMAT THE ENTIRE FOLDER AFTER CREATING THE FILES    !!!!
+ *     !!!!    ALSO MAKE SURE YOU RUN THE VIEWER AND CHECKER AFTER AN UPDATE          !!!!
  *
  *     This class also creates the styles that need to be copied into the NaaccrLayout class.
  *
  *     After creating the files with this class, use the "NaaccrDocViewer" and review every created file;
  *     that utility class is in the SEER*Utils GUI project (test/naaccr)
  *
- *     2014/10/25 FPD - didn't need to redo the styles for NAACCR 15/16/18, they were the same as NAACCR 14...
+ *     2014/10/25 FD - didn't need to redo the styles for NAACCR 15/16/18, they were the same as NAACCR 14...
+ *
+ *     2019/07/26 FD - I added support for "retired fields"; those will use their NAACCR number in the HTML
+ *                     filename since there is no legit field name for them.  They can only be returned by
+ *                     the "getFieldDocByNaaccrItemNumber" method.
  *
  *********************************************************************************************************/
 @SuppressWarnings({"MismatchedQueryAndUpdateOfStringBuilder", "ConstantConditions"})
 public class NaaccrDocScraper {
 
-    // TODO FD I think the doc checker should be a unit test...
-    // TODO FD this code doesn't handle Windows characters! See history of "recordType.html", or "tumorRecordNumber.html" for bad files...
     public static void main(String[] args) throws Exception {
         // output directory
         File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr18");
@@ -261,12 +264,13 @@ public class NaaccrDocScraper {
         List<String> altNames = Arrays.stream(cells.get(1).split("<br\\s?/>")).filter(s -> !StringUtils.isBlank(s)).collect(Collectors.toList());
 
         StringBuilder buf = new StringBuilder("<br/>");
-        buf.append("<strong>NAACCR XML</strong>: ").append(cells.get(5)).append(".").append(cells.get(3)).append("<br/><br/>\r\n");
+        if (!StringUtils.isBlank(cells.get(5)) && !StringUtils.isBlank(cells.get(3)))
+            buf.append("<strong>NAACCR XML</strong>: ").append(cells.get(5)).append(".").append(cells.get(3)).append("<br/>");
+        buf.append("<br/>\r\n");
         if (!altNames.isEmpty()) {
             buf.append("<strong>Alternate Names</strong>\r\n");
             for (String altName : altNames)
                 buf.append("<br/>&nbsp;&nbsp;&nbsp;").append(altName).append("\r\n");
-
         }
 
         return cleanupHtml(buf.toString());

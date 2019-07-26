@@ -13,9 +13,9 @@ import java.util.List;
  * <br/><br/>
  * This interface provides three types of methods:
  * <ul>
- *     <li>Getters for the basic layout information (ID, name, description, etc...)</li>
- *     <li>Fields-related methods</li>
- *     <li>The method used by the factory to evaluate if the layout can be used to handle a given data file (format discovery)</li>
+ * <li>Getters for the basic layout information (ID, name, description, etc...)</li>
+ * <li>Fields-related methods</li>
+ * <li>The method used by the factory to evaluate if the layout can be used to handle a given data file (format discovery)</li>
  * </ul>
  * <p/>
  * Created on Jul 14, 2011 by depryf
@@ -85,7 +85,7 @@ public interface Layout {
     List<? extends Field> getAllFields();
 
     /**
-     * Gives the documentation in HTML format for the field that corresponds to the field name passed in.
+     * Gives the documentation in HTML format for the field that corresponds to the field name passed in. The field must exists in the layout.
      * <p/>
      * Returns null if the documentation is not found.
      * <p/>
@@ -96,7 +96,7 @@ public interface Layout {
     String getFieldDocByName(String name);
 
     /**
-     * Gives the documentation in HTML format for the field that corresponds to the Naaccr Item Number passed in.
+     * Gives the documentation in HTML format for the field that corresponds to the NAACCR Item Number passed in. The field might be retired and not exists in the current layout anymore.
      * <p/>
      * Returns null if the documentation is not found.
      * <p/>

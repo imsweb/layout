@@ -41,6 +41,7 @@ import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.xhtmlrenderer.simple.FSScrollPane;
 import org.xhtmlrenderer.swing.ScalableXHTMLPanel;
 
@@ -55,25 +56,50 @@ import com.imsweb.seerutilsgui.SeerGuiUtils;
 import com.imsweb.seerutilsgui.SeerList;
 import com.imsweb.seerutilsgui.editor.SyntaxKit;
 
-@SuppressWarnings({"ConstantConditions", "FieldCanBeLocal"})
+@SuppressWarnings({"ConstantConditions", "FieldCanBeLocal", "SameParameterValue"})
 public class NaaccrDocViewer extends JFrame {
 
     private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr18");
 
+    private static List<Layout> _LAYOUTS = new ArrayList<>();
+
+    static {
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_15));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_13));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_12));
+    }
+
+    private static final Boolean _SORT_BY_ITEM_NUMBER = false;
 
     private JPanel _leftPnl, _rightPnl;
     private JSplitPane _splitPane;
     private SeerBoldTitlesTabbedPane _pane;
-
-    private static Layout _LAYOUT = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
-
-    private static final Boolean _SORT_BY_ITEM_NUMBER = false;
 
     /**
      * Special borders
      */
     private static final Border _BORDER_FIELD_OUT = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY), BorderFactory.createEmptyBorder(2, 2, 2, 1));
     private static final Border _BORDER_FIELD_IN = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createEmptyBorder(2, 2, 2, 1));
+
+    public static Field getFieldFromLayout(String name) {
+        for (Layout layout : _LAYOUTS) {
+            Field field;
+            if (NumberUtils.isDigits(name))
+                field = layout.getFieldByNaaccrItemNumber(Integer.valueOf(name));
+            else
+                field = layout.getFieldByName(name);
+            if (field != null)
+                return field;
+        }
+        return null;
+    }
+
+    public static String getFieldDocDefaultCssStyle() {
+        return _LAYOUTS.get(0).getFieldDocDefaultCssStyle();
+    }
 
     /**
      * Created on Oct 26, 2011 by depryf
@@ -85,17 +111,25 @@ public class NaaccrDocViewer extends JFrame {
 
         final Map<String, String> labelMappings = new HashMap<>();
         List<String> names = new ArrayList<>();
-        for (File f : _DIR.listFiles()) {
-            if (f.getName().endsWith(".html")) {
-                Field field = _LAYOUT.getFieldByName(f.getName().replace(".html", ""));
+        for (File file : _DIR.listFiles()) {
+            if (file.getName().endsWith(".html")) {
+                String filenameNotExtension = file.getName().replace(".html", "");
+                boolean retired = NumberUtils.isDigits(filenameNotExtension);
+
+                Field field = getFieldFromLayout(filenameNotExtension);
                 if (field != null) {
-                    String label = field.getLongLabel() + " (#" + field.getNaaccrItemNum() + ")";
-                    labelMappings.put(label, f.getName().replace(".html", ""));
+                    String label = (retired ? "[RETIRED] " : "") + field.getLongLabel() + " (#" + field.getNaaccrItemNum() + ")";
+                    labelMappings.put(label, filenameNotExtension);
+                    names.add(label);
+                }
+                else if (retired) {
+                    String label = "[RETIRED] No Name Available (#" + filenameNotExtension + ")";
+                    labelMappings.put(label, filenameNotExtension);
                     names.add(label);
                 }
                 else {
-                    String label = "< unknown > (" + f.getName() + " )";
-                    labelMappings.put(label, f.getName().replace(".html", ""));
+                    String label = "[UNKNOWN] (" + file.getName() + " )";
+                    labelMappings.put(label, filenameNotExtension);
                     names.add(label);
                 }
             }
@@ -134,7 +168,7 @@ public class NaaccrDocViewer extends JFrame {
                 return;
             String name = (String)list.getSelectedValue();
             if (name != null)
-                displayDoc(_LAYOUT.getFieldByName(labelMappings.get(name)));
+                displayDoc(labelMappings.get(name));
         });
         _leftPnl.add(new JScrollPane(list), BorderLayout.CENTER);
 
@@ -187,9 +221,7 @@ public class NaaccrDocViewer extends JFrame {
     }
 
     @SuppressWarnings("StringBufferReplaceableByString")
-    public static String addStyleAndBody(Field field, String content) {
-
-        String longName = field.getLongLabel();
+    public static String addStyleAndBody(String title, String content) {
 
         StringBuilder buf = new StringBuilder();
         buf.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n");
@@ -198,17 +230,17 @@ public class NaaccrDocViewer extends JFrame {
         buf.append("\n");
         buf.append("<head>\n");
         buf.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n");
-        buf.append("<title>").append(longName.replace("&", "&amp;")).append("</title>\n");
+        buf.append("<title>").append(title.replace("&", "&amp;")).append("</title>\n");
         buf.append("<style>\n");
         buf.append("body { padding:5px; font-family:Tahoma; font-size: 14px; }\n");
         buf.append("h1 { font-size:14px; margin-top:0px; }\n");
-        buf.append(_LAYOUT.getFieldDocDefaultCssStyle());
+        buf.append(getFieldDocDefaultCssStyle());
         buf.append("</style>\n");
         buf.append("</head>\n");
         buf.append("\n");
         buf.append("<body>\n");
         buf.append("\n");
-        buf.append("<h1>").append(longName.toUpperCase().replace("&", "&amp;")).append("</h1>\n");
+        buf.append("<h1>").append(title.toUpperCase().replace("&", "&amp;")).append("</h1>\n");
         buf.append("\n");
         buf.append(content);
         buf.append("</body>\n");
@@ -217,17 +249,20 @@ public class NaaccrDocViewer extends JFrame {
         return buf.toString();
     }
 
-    private void displayDoc(Field field) {
+    private void displayDoc(String name) {
         _rightPnl.removeAll();
+
+        Field field = getFieldFromLayout(name);
+        String fileTitle = field == null ? "Retired Field - No Name Available (pre NAACCR 12 layout)" : field.getLongLabel();
 
         String fileContent;
         try {
-            fileContent = SeerUtils.readFile(new File(_DIR, field.getName() + ".html"), "UTF-8");
+            fileContent = SeerUtils.readFile(new File(_DIR, name + ".html"), "UTF-8");
         }
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String content = addStyleAndBody(field, fileContent);
+        String content = addStyleAndBody(fileTitle, fileContent);
 
         String title = _pane == null ? null : _pane.getCurrentPageTitle();
         _pane = new SeerBoldTitlesTabbedPane();
@@ -318,7 +353,6 @@ public class NaaccrDocViewer extends JFrame {
 
     /**
      * Created on Oct 26, 2011 by depryf
-     *
      * @param args arguments
      */
     public static void main(String[] args) throws Exception {

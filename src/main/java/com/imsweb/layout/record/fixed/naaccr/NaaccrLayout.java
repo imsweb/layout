@@ -11,9 +11,7 @@ import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,9 +31,6 @@ import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
  * This class contains the logic related to all NAACCR layouts.
  */
 public class NaaccrLayout extends FixedColumnsLayout {
-
-    // TODO FD add unit test to make sure this list contains all versions
-    public static final List<String> SUPPORTED_VERSIONS = Arrays.asList("180", "160", "150", "140", "130", "120");
 
     //  following styles are used in all the NAACCR versions
     private static final StringBuilder _CSS_STYLE_SUMMARY_TABLE = new StringBuilder();
@@ -338,35 +333,6 @@ public class NaaccrLayout extends FixedColumnsLayout {
         return _LAYOUT_TO_XML_MAPPING.getOrDefault(name, name);
     }
 
-    /**
-     * Returns
-     * @param name
-     * @return
-     */
-    public static String getLatestFieldDocByName(String name) {
-
-        // TODO DMS is going to need by number!
-
-        // TODO get first version that has a description; if that version is not the most up-to-date, then add deprecation with previous version.
-
-        Map<String, String> availableContent = new LinkedHashMap<>();
-        for (String version : SUPPORTED_VERSIONS) {
-            URL docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/naaccr" + version.substring(0, 2) + "/" + name + ".html");
-            if (docPath != null) {
-                try (Reader reader = new InputStreamReader(docPath.openStream(), StandardCharsets.UTF_8); Writer writer = new StringWriter()) {
-                    IOUtils.copy(reader, writer);
-                    availableContent.put(version, writer.toString());
-                    System.out.println("\n\n**** " + version + "\n" + writer.toString());
-                }
-                catch (IOException e) {
-                    /* do nothing, result will be null, as per specs */
-                }
-            }
-        }
-
-        return null;
-    }
-
     protected String _naaccrVersion;
 
     protected String _majorNaaccrVersion;
@@ -451,33 +417,35 @@ public class NaaccrLayout extends FixedColumnsLayout {
         return _naaccrLineLength;
     }
 
-    @Override
     public String getFieldDocByNaaccrItemNumber(Integer num) {
-        Field field = getFieldByNaaccrItemNumber(num);
-        if (field == null)
-            return null;
-
-        return getFieldDocByName(field.getName());
+        Field field = getFieldByNaaccrItemNumber(num); // getting the field will ensure that we try to use the name for a legit (non-retired) field first
+        return getFieldDocByNameOrNumber(field != null ? field.getName() : null, num);
     }
 
     @Override
     public String getFieldDocByName(String name) {
-        String result = null;
+        return getFieldDocByNameOrNumber(name, null);
+    }
 
+    protected String getFieldDocByNameOrNumber(String name, Integer number) {
         FixedColumnsField field = getFieldByName(name);
-        if (field == null)
+
+        String filename = field != null ? field.getName() : number != null ? number.toString() : null;
+        if (filename == null)
             return null;
 
-        boolean reservedField = field.getName().startsWith("reserved") && Integer.parseInt(_majorNaaccrVersion) < 18; // NAACCR started to provide the documentation for reserved fields in version 18
+        // NAACCR started to provide the documentation for reserved fields in version 18...
+        boolean reservedField = field != null && field.getName().startsWith("reserved") && Integer.parseInt(_majorNaaccrVersion) < 18;
 
         URL docPath;
         if (reservedField)
             docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/reserved.html");
         else
-            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + name + ".html");
+            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + filename + ".html");
         if (docPath == null)
             return null;
 
+        String result = null;
         try (Reader reader = new InputStreamReader(docPath.openStream(), StandardCharsets.UTF_8); Writer writer = new StringWriter()) {
             IOUtils.copy(reader, writer);
             result = writer.toString();
