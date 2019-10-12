@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -47,6 +46,7 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 import static com.imsweb.naaccrxml.NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_BASE_DICT;
 import static com.imsweb.naaccrxml.NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_REC_TYPE;
 import static com.imsweb.naaccrxml.NaaccrXmlUtils.NAACCR_XML_ROOT_ATT_USER_DICT;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * This class contains the logic related to all NAACCR XML layouts
@@ -418,7 +418,7 @@ public class NaaccrXmlLayout implements Layout {
 
         PatientXmlWriter writer = null;
         try {
-            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8), data, options);
+            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, UTF_8), data, options);
             writeAllPatients(writer, patients);
         }
         finally {
@@ -527,30 +527,39 @@ public class NaaccrXmlLayout implements Layout {
         if (file == null)
             return null;
 
-        Map<String, String> attributes;
-        try (InputStreamReader is = new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), StandardCharsets.UTF_8)) {
-            attributes = NaaccrXmlUtils.getAttributesFromXmlReader(is);
+        Map<String, String> attr;
+        try (InputStreamReader is = new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), UTF_8)) {
+            attr = NaaccrXmlUtils.getAttributesFromXmlReader(is);
         }
         catch (IOException e) {
             return null;
         }
 
-        String recordType = attributes.get(NAACCR_XML_ROOT_ATT_REC_TYPE);
+        String recordType = attr.get(NAACCR_XML_ROOT_ATT_REC_TYPE);
         if (recordType == null || recordType.isEmpty() || !_recordType.equals(recordType))
             return null;
 
         String baseUri = NaaccrXmlDictionaryUtils.createUriFromVersion(_naaccrVersion, true);
-        if (!baseUri.equals(attributes.get(NAACCR_XML_ROOT_ATT_BASE_DICT)))
+        if (!baseUri.equals(attr.get(NAACCR_XML_ROOT_ATT_BASE_DICT)))
             return null;
 
         LayoutInfo info = new LayoutInfo();
         info.setLayoutId(_layoutId);
         info.setLayoutName(_layoutName);
-
-        // Checking to see if the file uses custom dictionaries, and if this layout can access those dictionaries
-        String dataUserDict = attributes.get(NAACCR_XML_ROOT_ATT_USER_DICT);
         info.setAvailableUserDictionaries(_userDictionaries == null ? Collections.emptyList() : _userDictionaries.stream().map(NaaccrDictionary::getDictionaryUri).collect(Collectors.toList()));
-        info.setRequestedUserDictionaries(dataUserDict == null ? Collections.emptyList() : Arrays.asList(StringUtils.split(dataUserDict, " ")));
+        info.setRequestedUserDictionaries(attr.get(NAACCR_XML_ROOT_ATT_USER_DICT) == null ? Collections.emptyList() : Arrays.asList(StringUtils.split(attr.get(NAACCR_XML_ROOT_ATT_USER_DICT), " ")));
+
+        // at this point we know that this layout can be used to read the data file; let's try to get the root data and if anything goes wrong,
+        // let's return the info object, without the root data and with the error
+        NaaccrOptions xmlOptions = NaaccrOptions.getDefault();
+        xmlOptions.setUseStrictNamespaces(options == null || options.isNaaccrXmlUseStrictNamespaces());
+        xmlOptions.setIgnoreExtensions(true);
+        try (InputStreamReader is = new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), UTF_8); PatientXmlReader reader = new PatientXmlReader(is, xmlOptions)) {
+            info.setRootNaaccrXmlData(reader.getRootData());
+        }
+        catch (IOException e) {
+            info.setMissingRootNaaccrXmlDataReason(e.getMessage());
+        }
 
         return info;
     }

@@ -4,6 +4,9 @@
 package com.imsweb.layout;
 
 import java.util.List;
+import java.util.Objects;
+
+import com.imsweb.naaccrxml.entity.NaaccrData;
 
 /**
  * This class encapsulates the information about a given layout that should be used to read/write a given file.
@@ -32,6 +35,12 @@ public class LayoutInfo {
 
     // requested user-defined NAACCR XML dictionaries (the one appearing in the data file)
     private List<String> _requestedUserDictionaries;
+
+    // root data from the NAACCR XML data file
+    private NaaccrData _rootNaaccrXmlData;
+
+    // the reason for not having a proper root data for NAACCR XML data file
+    private String _missingRootNaaccrXmlDataReason;
 
     public String getLayoutId() {
         return _layoutId;
@@ -81,8 +90,23 @@ public class LayoutInfo {
         _requestedUserDictionaries = requestedUserDictionaries;
     }
 
+    public NaaccrData getRootNaaccrXmlData() {
+        return _rootNaaccrXmlData;
+    }
+
+    public void setRootNaaccrXmlData(NaaccrData rootNaaccrXmlData) {
+        _rootNaaccrXmlData = rootNaaccrXmlData;
+    }
+
+    public String getMissingRootNaaccrXmlDataReason() {
+        return _missingRootNaaccrXmlDataReason;
+    }
+
+    public void setMissingRootNaaccrXmlDataReason(String missingRootNaaccrXmlDataReason) {
+        _missingRootNaaccrXmlDataReason = missingRootNaaccrXmlDataReason;
+    }
+
     @Override
-    @SuppressWarnings("RedundantIfStatement")
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -90,8 +114,7 @@ public class LayoutInfo {
             return false;
 
         LayoutInfo other = (LayoutInfo)o;
-
-        return _layoutId == null ? other._layoutId == null : _layoutId.equals(other._layoutId);
+        return Objects.equals(_layoutId, other._layoutId);
     }
 
     @Override

@@ -14,6 +14,9 @@ public class LayoutInfoDiscoveryOptions {
     // if true, a blank record type will be accepted; the line length will be used to determine it (defaults to false)
     private boolean _naaccrAllowBlankRecordType;
 
+    // if true, a data file that doesn't properly use the XML namespaces won't be recognized as valid (defaults to true)
+    private boolean _naaccrXmlUseStrictNamespaces;
+
     /**
      * Consturctor
      */
@@ -21,9 +24,11 @@ public class LayoutInfoDiscoveryOptions {
         _fixedColumnAllowDiscoveryFromLineLength = true;
         _commaSeparatedAllowDiscoveryFromNumFields = true;
 
-        // I would love to set those two default to false, but the reality is that many software produce records without this besic information available!
+        // I would love to set those two default to false, but the reality is that many software produce records without this basic information available!
         _naaccrAllowBlankVersion = true;
         _naaccrAllowBlankRecordType = true;
+
+        _naaccrXmlUseStrictNamespaces = true;
     }
 
     public boolean isFixedColumnAllowDiscoveryFromLineLength() {
@@ -56,5 +61,13 @@ public class LayoutInfoDiscoveryOptions {
 
     public void setNaaccrAllowBlankRecordType(boolean naaccrAllowBlankRecordType) {
         _naaccrAllowBlankRecordType = naaccrAllowBlankRecordType;
+    }
+
+    public boolean isNaaccrXmlUseStrictNamespaces() {
+        return _naaccrXmlUseStrictNamespaces;
+    }
+
+    public void setNaaccrXmlUseStrictNamespaces(boolean naaccrXmlUseStrictNamespaces) {
+        _naaccrXmlUseStrictNamespaces = naaccrXmlUseStrictNamespaces;
     }
 }
