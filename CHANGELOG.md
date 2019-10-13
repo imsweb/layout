@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.22**
+
+- Now returning more information when in format discovery for NAACCR XML data files.
+
 **Changes in version 1.21**
 
 - Now returning documentation for retired data items in NAACCR 18 layout.

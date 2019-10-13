@@ -561,7 +561,13 @@ public class NaaccrXmlLayoutTest {
         Assert.assertNotNull(info.getRootNaaccrXmlData());
         Assert.assertNull(info.getMissingRootNaaccrXmlDataReason());
 
-        // TODO FD add a case with an error (for example missing strict namespace)
+        // namespace is missing
+        options.setNaaccrXmlUseStrictNamespaces(true);
+        info = layout.buildFileInfo(file, null, options);
+        Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
+        Assert.assertNull(info.getRootNaaccrXmlData());
+        Assert.assertTrue(info.getMissingRootNaaccrXmlDataReason().contains("namespace"));
+        options.setNaaccrXmlUseStrictNamespaces(false);
 
         //layout only uses base dictionary, file uses same base dictionary and a user dictionary 
         file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/xml/xml-reader-user-dict-1.xml");
