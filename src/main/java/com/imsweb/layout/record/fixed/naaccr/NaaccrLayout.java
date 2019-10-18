@@ -542,19 +542,28 @@ public class NaaccrLayout extends FixedColumnsLayout {
         String naaccrVersion = extractNaaccrVersion(firstRecord);
         String recordType = extractRecordType(firstRecord);
 
-        LayoutInfo result = null;
+        boolean sameNaaccrVersion = naaccrVersion.startsWith(getMajorNaaccrVersion()); // the library never supported to the "minor" versions of the layouts
+        boolean sameRecordType = getRecordType().equals(recordType);
+        boolean sameLineLength = firstRecord.length() == getNaaccrLineLength();
 
-        if (naaccrVersion.startsWith(getMajorNaaccrVersion()) || (naaccrVersion.isEmpty() && options.isNaaccrAllowBlankVersion())) {
-            if (getRecordType().equals(recordType) || (recordType.isEmpty() && options.isNaaccrAllowBlankRecordType())) {
-                if (options.isFixedColumnAllowDiscoveryFromLineLength() && firstRecord.length() == getNaaccrLineLength()) {
-                    result = new LayoutInfo();
-                    result.setLayoutId(getLayoutId());
-                    result.setLayoutName(getLayoutName());
-                    result.setLineLength(getLayoutLineLength());
-                }
-            }
+        LayoutInfo result = new LayoutInfo();
+        result.setLayoutId(getLayoutId());
+        result.setLayoutName(getLayoutName());
+        result.setLineLength(getLayoutLineLength());
+
+        if (sameNaaccrVersion && sameRecordType) {
+            if (!sameLineLength)
+                result.setErrorMessage("was expecting line length of " + getLayoutLineLength() + " but first line is " + firstRecord.length());
+            return result;
         }
 
-        return result;
+        if (sameLineLength && options.isFixedColumnAllowDiscoveryFromLineLength()) {
+            boolean naaccrVersionOk = sameNaaccrVersion || (naaccrVersion.isEmpty() && options.isNaaccrAllowBlankVersion());
+            boolean recordTypeOk = sameRecordType || (recordType.isEmpty() && options.isNaaccrAllowBlankRecordType());
+            if (naaccrVersionOk && recordTypeOk)
+                return result;
+        }
+
+        return null;
     }
 }

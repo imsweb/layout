@@ -12,13 +12,16 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.RecordLayout;
 import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
+import com.imsweb.seerutils.SeerUtils;
 
 public class FixedColumnsLayoutTest {
 
@@ -371,5 +374,23 @@ public class FixedColumnsLayoutTest {
         f2.setName("f1");
         Assert.assertEquals(f1, f2);
         Assert.assertEquals(f1.hashCode(), f2.hashCode());
+    }
+
+    @Test
+    public void testBuildFileInfo() throws IOException {
+        if (!LayoutFactory.isLayoutRegister("test"))
+            LayoutFactory.registerLayout(new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-fixed-columns.xml")));
+
+        Layout layout = LayoutFactory.getLayout("test");
+
+        LayoutInfoDiscoveryOptions options = new LayoutInfoDiscoveryOptions();
+        options.setFixedColumnAllowDiscoveryFromLineLength(true);
+
+        File file = new File(TestingUtils.getBuildDirectory(), "fixed-column-data.txt");
+        SeerUtils.writeFile("1234567890123456", file);
+        Assert.assertNotNull(layout.buildFileInfo(file, null, options));
+
+        options.setFixedColumnAllowDiscoveryFromLineLength(false);
+        Assert.assertNull(layout.buildFileInfo(file, null, options));
     }
 }

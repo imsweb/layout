@@ -19,13 +19,16 @@ import org.junit.Test;
 import com.opencsv.CSVParserBuilder;
 
 import com.imsweb.layout.Field.FieldAlignment;
+import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
+import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.RecordLayoutOptions;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.seerutils.SeerUtils;
 
 /**
  * Created on Jun 25, 2012 by depryf
@@ -507,5 +510,23 @@ public class CommaSeparatedLayoutTest {
         Assert.assertEquals("0,\"1\r\n2\r\n3\",456", layout.createLineFromRecord(rec, null));
         rec.put("field1", "\n123\n");
         Assert.assertEquals("0,\"\n123\n\",456", layout.createLineFromRecord(rec, null));
+    }
+
+    @Test
+    public void testBuildFileInfo() throws IOException {
+        if (!LayoutFactory.isLayoutRegister("test-csv"))
+            LayoutFactory.registerLayout(new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml")));
+
+        Layout layout = LayoutFactory.getLayout("test-csv");
+
+        LayoutInfoDiscoveryOptions options = new LayoutInfoDiscoveryOptions();
+        options.setCommaSeparatedAllowDiscoveryFromNumFields(true);
+
+        File file = new File(TestingUtils.getBuildDirectory(), "csv-data-test.txt");
+        SeerUtils.writeFile("A,B,C", file);
+        Assert.assertNotNull(layout.buildFileInfo(file, null, options));
+
+        options.setCommaSeparatedAllowDiscoveryFromNumFields(false);
+        Assert.assertNull(layout.buildFileInfo(file, null, options));
     }
 }

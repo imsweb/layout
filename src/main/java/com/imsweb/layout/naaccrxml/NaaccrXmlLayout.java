@@ -558,7 +558,7 @@ public class NaaccrXmlLayout implements Layout {
             info.setRootNaaccrXmlData(reader.getRootData());
         }
         catch (IOException e) {
-            info.setMissingRootNaaccrXmlDataReason(e.getMessage());
+            info.setErrorMessage(e.getMessage());
         }
 
         return info;

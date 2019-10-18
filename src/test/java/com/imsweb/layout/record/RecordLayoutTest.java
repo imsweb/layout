@@ -3,16 +3,6 @@
  */
 package com.imsweb.layout.record;
 
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.csv.CommaSeparatedField;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,6 +18,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.csv.CommaSeparatedField;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 public class RecordLayoutTest {
 
@@ -150,7 +151,7 @@ public class RecordLayoutTest {
         rec1.put("field1", "A");
         rec1.put("otherField", "B"); // should be ignored
 
-        File file = new File(TestingUtils.getWorkingDirectory()+ "/build/rec-layout-write-test.txt");
+        File file = new File(TestingUtils.getBuildDirectory(), "rec-layout-write-test.txt");
 
         // write single record to file
         layout.writeRecord(file, rec1);

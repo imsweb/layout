@@ -559,14 +559,14 @@ public class NaaccrXmlLayoutTest {
         Assert.assertEquals(Collections.singletonList(defaultUserDictionary), info.getAvailableUserDictionaries());
         Assert.assertEquals(new ArrayList<>(), info.getRequestedUserDictionaries());
         Assert.assertNotNull(info.getRootNaaccrXmlData());
-        Assert.assertNull(info.getMissingRootNaaccrXmlDataReason());
+        Assert.assertNull(info.getErrorMessage());
 
         // namespace is missing
         options.setNaaccrXmlUseStrictNamespaces(true);
         info = layout.buildFileInfo(file, null, options);
         Assert.assertEquals(LayoutFactory.LAYOUT_ID_NAACCR_XML_16_ABSTRACT, info.getLayoutId());
         Assert.assertNull(info.getRootNaaccrXmlData());
-        Assert.assertTrue(info.getMissingRootNaaccrXmlDataReason().contains("namespace"));
+        Assert.assertTrue(info.getErrorMessage().contains("namespace"));
         options.setNaaccrXmlUseStrictNamespaces(false);
 
         //layout only uses base dictionary, file uses same base dictionary and a user dictionary 

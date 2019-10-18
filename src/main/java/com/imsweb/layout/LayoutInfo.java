@@ -39,8 +39,8 @@ public class LayoutInfo {
     // root data from the NAACCR XML data file
     private NaaccrData _rootNaaccrXmlData;
 
-    // the reason for not having a proper root data for NAACCR XML data file
-    private String _missingRootNaaccrXmlDataReason;
+    // the reason for this layout info not being usable (but the format is still recognized)
+    private String _errorMessage;
 
     public String getLayoutId() {
         return _layoutId;
@@ -98,12 +98,12 @@ public class LayoutInfo {
         _rootNaaccrXmlData = rootNaaccrXmlData;
     }
 
-    public String getMissingRootNaaccrXmlDataReason() {
-        return _missingRootNaaccrXmlDataReason;
+    public String getErrorMessage() {
+        return _errorMessage;
     }
 
-    public void setMissingRootNaaccrXmlDataReason(String missingRootNaaccrXmlDataReason) {
-        _missingRootNaaccrXmlDataReason = missingRootNaaccrXmlDataReason;
+    public void setErrorMessage(String errorMessage) {
+        _errorMessage = errorMessage;
     }
 
     @Override
