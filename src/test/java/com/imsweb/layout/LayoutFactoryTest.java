@@ -271,11 +271,11 @@ public class LayoutFactoryTest {
         Assert.assertEquals(24194, info.getLineLength().intValue());
         Assert.assertEquals("NAACCR 18 Abstract [24,194 char]", info.toString());
 
-        // bad line numbers
-        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(25, "A", "120")).isEmpty());
-        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(25, "M", "121")).isEmpty());
-        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(25, "C", "122")).isEmpty());
-        Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(25, "I", "123")).isEmpty());
+        // bad line numbers (info is still returned but it will contain an error)
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(25, "A", "120")).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(25, "M", "121")).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(25, "C", "122")).isEmpty());
+        Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(25, "I", "123")).isEmpty());
 
         // bad record types
         Assert.assertTrue(LayoutFactory.discoverFormat(createNaaccrLine(24194, "?", "180")).isEmpty());
