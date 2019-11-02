@@ -216,7 +216,7 @@ public class FixedColumnsLayout extends RecordLayout {
 
     public void setFields(Collection<FixedColumnsField> fields) {
         _fields.clear();
-        _fields.addAll(fields);
+        fields.forEach(this::addField);
 
         // sort the fields by start column
         _fields.sort(Comparator.comparing(FixedColumnsField::getStart));
