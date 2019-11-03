@@ -3,15 +3,6 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
-import com.imsweb.layout.Field;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.RecordLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -19,6 +10,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.imsweb.layout.Field;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 public class Naaccr15LayoutTest {
 
@@ -216,5 +217,23 @@ public class Naaccr15LayoutTest {
             exception = true;
         }
         Assert.assertTrue(exception);
+    }
+
+    @Test
+    public void testNaaccr15Dates() {
+        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_15);
+
+        for (FixedColumnsField field : layout.getAllFields()) {
+            if (field.getEnd() - field.getStart() + 1 == 8 && field.getName().toLowerCase().contains("date")) {
+                Assert.assertEquals(3, field.getSubFields().size());
+                Assert.assertEquals(field.getName() + "Year", field.getSubFields().get(0).getName());
+                Assert.assertEquals(field.getName() + "Month", field.getSubFields().get(1).getName());
+                Assert.assertEquals(field.getName() + "Day", field.getSubFields().get(2).getName());
+
+                Assert.assertEquals(4, field.getSubFields().get(0).getEnd() - field.getSubFields().get(0).getStart() + 1);
+                Assert.assertEquals(2, field.getSubFields().get(1).getEnd() - field.getSubFields().get(1).getStart() + 1);
+                Assert.assertEquals(2, field.getSubFields().get(2).getEnd() - field.getSubFields().get(2).getStart() + 1);
+            }
+        }
     }
 }

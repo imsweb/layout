@@ -786,12 +786,12 @@
     </field>
     <field name="dateCaseReportLoaded" start="2688" end="2695" short-label="Loaded Dt" long-label="Date Case Report Loaded" naaccr-item-num="2112" section="Edit Overrides/Conversion History/System Admin">
         <field name="dateCaseReportLoadedYear" start="2688" end="2691" short-label="Loaded Yr" long-label="Date Case Report Loaded (Year)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
-        <field name="ddateCaseReportLoadedMonth" start="2692" end="2693" short-label="Loaded Mth" long-label="Date Case Report Loaded (Month)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
+        <field name="dateCaseReportLoadedMonth" start="2692" end="2693" short-label="Loaded Mth" long-label="Date Case Report Loaded (Month)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
         <field name="dateCaseReportLoadedDay" start="2694" end="2695" short-label="Loaded Day" long-label="Date Case Report Loaded (Day)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
     </field>
     <field name="dateTumorRecordAvailbl" start="2696" end="2703" short-label="Dt Tum Rec Avlbl" long-label="Date Tumor Record Availbl" naaccr-item-num="2113" section="Edit Overrides/Conversion History/System Admin">
         <field name="dateTumorRecordAvailblYear" start="2696" end="2699" short-label="Dt Tum Rec Avlbl Yr" long-label="Date Tumor Record Availbl (Year)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
-        <field name="ddateTumorRecordAvailblMonth" start="2700" end="2701" short-label="Dt Tum Rec Avlbl Mth" long-label="Date Tumor Record Availbl (Month)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
+        <field name="dateTumorRecordAvailblMonth" start="2700" end="2701" short-label="Dt Tum Rec Avlbl Mth" long-label="Date Tumor Record Availbl (Month)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
         <field name="dateTumorRecordAvailblDay" start="2702" end="2703" short-label="Dt Tum Rec Avlbl Day" long-label="Date Tumor Record Availbl (Day)" align="right" pad-char="0" section="Edit Overrides/Conversion History/System Admin"/>
     </field>
     <field name="icdO3ConversionFlag" start="2704" end="2704" short-label="Conv Rev(03)" long-label="ICD-O-3 Conversion Flag" naaccr-item-num="2116" section="Edit Overrides/Conversion History/System Admin"/>

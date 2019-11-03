@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.23**
+
+- Fixed two mistakes in sub-fields for two date fields in standard NAACCR 14 to 18 layouts.  
+
 **Changes in version 1.22**
 
 - Now returning more information in format discovery for NAACCR XML data files.

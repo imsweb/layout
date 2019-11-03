@@ -210,4 +210,22 @@ public class Naaccr18LayoutTest {
             }
         }
     }
+
+    @Test
+    public void testNaaccr18Dates() {
+        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
+
+        for (FixedColumnsField field : layout.getAllFields()) {
+            if (field.getEnd() - field.getStart() + 1 == 8 && field.getName().toLowerCase().contains("date")) {
+                Assert.assertEquals(3, field.getSubFields().size());
+                Assert.assertEquals(field.getName() + "Year", field.getSubFields().get(0).getName());
+                Assert.assertEquals(field.getName() + "Month", field.getSubFields().get(1).getName());
+                Assert.assertEquals(field.getName() + "Day", field.getSubFields().get(2).getName());
+
+                Assert.assertEquals(4, field.getSubFields().get(0).getEnd() - field.getSubFields().get(0).getStart() + 1);
+                Assert.assertEquals(2, field.getSubFields().get(1).getEnd() - field.getSubFields().get(1).getStart() + 1);
+                Assert.assertEquals(2, field.getSubFields().get(2).getEnd() - field.getSubFields().get(2).getStart() + 1);
+            }
+        }
+    }
 }
