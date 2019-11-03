@@ -2,7 +2,9 @@
 
 **Changes in version 1.22**
 
-- Now returning more information when in format discovery for NAACCR XML data files.
+- Now returning more information in format discovery for NAACCR XML data files.
+- Improved format discovery mechanism for NAACCR flat files.
+- Fixed fields not properly cached when programmatically creating a fixed-columns layout.
 
 **Changes in version 1.21**
 
