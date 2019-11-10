@@ -291,13 +291,8 @@ public class Naaccr18LayoutTest {
         FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18, false);
 
         for (FixedColumnsField field : layout.getAllFields()) {
-            if (field.getNaaccrItemNum() != null) {
-                if (layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()) == null) {
-                    Field f = layout.getFieldByNaaccrItemNumber(field.getNaaccrItemNum()); // getting the field will ensure that we try to use the name for a legit (non-retired) field first
-                    ((NaaccrLayout)layout).getFieldDocByNameOrNumber2(f.getName(), f.getNaaccrItemNum());
-                }
+            if (field.getNaaccrItemNum() != null)
                 Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
-            }
             if (field.getSubFields() != null) {
                 for (FixedColumnsField f : field.getSubFields()) {
                     if (f.getNaaccrItemNum() != null)

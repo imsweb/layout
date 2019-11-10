@@ -477,7 +477,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
             }
         }
         else
-             filename = number != null ? number.toString() : null;
+            filename = number != null ? number.toString() : null;
         if (filename == null)
             return null;
 
@@ -499,59 +499,6 @@ public class NaaccrLayout extends FixedColumnsLayout {
         }
         catch (IOException e) {
             /* do nothing, result will be null, as per specs */
-        }
-
-        if (reservedField && result != null)
-            result = result.replace("[:ITEM_NUM:]", field.getNaaccrItemNum().toString()).replace("[:COLUMNS:]", field.getStart() + " - " + field.getEnd());
-
-        return result;
-    }
-
-    public String getFieldDocByNameOrNumber2(String name, Integer number) {
-        FixedColumnsField field = getFieldByName(name);
-
-        System.out.println("Field: " + field);
-
-        // documentation was added for retired fields starting with NAACCR 18; I used the NAACCR number for those since they isn't a corresponding field
-        //String filename = field != null ? field.getName() : number != null ? number.toString() : null;
-        String filename;
-        if (field != null) {
-            filename = field.getName();
-            // I could make this lookup faster by persisting the invert map, but I am not sure it's really necessary...
-            for (Entry<String, String> entry : _XML_TO_LAYOUT_MAPPING.entrySet()) {
-                if (filename.equals(entry.getValue())) {
-                    filename = entry.getKey();
-                    System.out.println("Changed filename to " + entry.getKey());
-                    break;
-                }
-            }
-        }
-        else
-            filename = number != null ? number.toString() : null;
-        System.out.println("filename: " + filename);
-        if (filename == null)
-            return null;
-
-        // NAACCR started to provide the documentation for reserved fields in version 18...
-        boolean reservedField = field != null && field.getName().startsWith("reserved") && Integer.parseInt(_majorNaaccrVersion) < 18;
-
-        URL docPath;
-        if (reservedField)
-            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/reserved.html");
-        else
-            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + filename + ".html");
-        System.out.println("path: " + "layout/fixed/naaccr/doc/" + getDocFolder() + "/" + filename + ".html");
-        System.out.println("docpath: " + docPath);
-        if (docPath == null)
-            return null;
-
-        String result = null;
-        try (Reader reader = new InputStreamReader(docPath.openStream(), StandardCharsets.UTF_8); Writer writer = new StringWriter()) {
-            IOUtils.copy(reader, writer);
-            result = writer.toString();
-        }
-        catch (IOException e) {
-            System.out.println("Exception: " + e.getMessage());
         }
 
         if (reservedField && result != null)
