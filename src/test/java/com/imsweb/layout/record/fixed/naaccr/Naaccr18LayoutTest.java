@@ -43,9 +43,9 @@ public class Naaccr18LayoutTest {
 
         for (String version : Arrays.asList("12", "13", "14", "15", "16", "18")) {
             for (String name : _LIST) {
-                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html");
+                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "_2.html");
                 if (file.exists())
-                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "_2.html")))
+                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html")))
                         System.out.println("!!!  " + name);
             }
         }
