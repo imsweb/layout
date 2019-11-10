@@ -8,8 +8,13 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,87 +25,151 @@ import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryGroupedItem;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
 public class Naaccr18LayoutTest {
 
-    //        //@Test
-    //        public void testDummy() throws Exception {
-    //
-    //            SortedMap<String, String> map = new TreeMap<>();
-    //            for (String version : Arrays.asList("180")) {
-    //                NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(version);
-    //
-    //                Map<Integer, String> startToName = new HashMap<>();
-    //                for (NaaccrDictionaryItem item : dictionary.getItems())
-    //                    startToName.put(item.getStartColumn(), item.getNaaccrId());
-    //                Map<Integer, String> startToNameGroup = new HashMap<>();
-    //                for (NaaccrDictionaryGroupedItem item : dictionary.getGroupedItems())
-    //                    startToNameGroup.put(item.getStartColumn(), item.getNaaccrId());
-    //
-    //                NaaccrLayout layout = (NaaccrLayout)LayoutFactory.getLayout("naaccr-" + version.substring(0, 2) + "-abstract", true);
-    //                for (FixedColumnsField field : layout.getAllFields()) {
-    //                    String xmlName = startToNameGroup.getOrDefault(field.getStart(), startToName.get(field.getStart()));
-    //                    if (xmlName == null)
-    //                        System.out.println("!!! " + field.getName());
-    //                    else if (!xmlName.equals(field.getName()))
-    //                        map.put(xmlName, field.getName());
-    //
-    //                    if (field.getSubFields() != null && !"eodOld4Digit".equals(field.getName())) {
-    //                        for (FixedColumnsField sField : field.getSubFields()) {
-    //                            if (sField.getName().endsWith("Year")) {
-    //                                if (xmlName != null && !xmlName.equals(field.getName()))
-    //                                    map.put(xmlName + "Year", field.getName() + "Year");
-    //                            }
-    //                            else if (sField.getName().endsWith("Month")) {
-    //                                if (xmlName != null && !xmlName.equals(field.getName()))
-    //                                    map.put(xmlName + "Month", field.getName() + "Month");
-    //                            }
-    //                            else if (sField.getName().endsWith("Day")) {
-    //                                if (xmlName != null && !xmlName.equals(field.getName()))
-    //                                    map.put(xmlName + "Day", field.getName() + "Day");
-    //                            }
-    //                            else {
-    //                                String sXmlName = startToName.get(sField.getStart());
-    //                                if (sXmlName == null)
-    //                                    System.out.println("!!! " + sField.getName());
-    //                                else if (!sXmlName.equals(sField.getName()))
-    //                                    map.put(sXmlName, sField.getName());
-    //                            }
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //
-    //            // TODO FD use the map to rewrite the actual XML definition files (one version at a time)
-    //
-    //            // map is new XML prop -> old (deprecated) layout name
-    //            //for (Map.Entry<String, String> entry : map.entrySet())
-    //            //  System.out.println("        _XML_TO_LAYOUT_MAPPING.put(\"" + entry.getKey() + "\", \"" + entry.getValue() + "\");");
-    //
-    //            SortedMap<String, String> oldToNew = new TreeMap<>();
-    //            map.forEach((k, v) -> oldToNew.put(v, k));
-    //    //        for (Map.Entry<String, String> entry : oldToNew.entrySet())
-    //    //            System.out.println(entry.getKey() + "," + entry.getValue());
-    //
-    ////                    Pattern p = Pattern.compile("(.+field name=\")(.+?)(\".+)");
-    ////
-    ////                    File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/naaccr-18-layout.xml");
-    ////                    for (String line : SeerUtils.readFile(file).split("\r\n")) {
-    ////                        Matcher m = p.matcher(line);
-    ////                        if (m.matches()) {
-    ////                            System.out.println(m.group(1) + oldToNew.getOrDefault(m.group(2), m.group(2)) + m.group(3));
-    ////                        }
-    ////                        else
-    ////                            System.out.println(line);
-    ////                    }
-    //
-    ////            for (Map.Entry<String, String> entry : oldToNew.entrySet()) {
-    ////                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr18/" + entry.getKey() + ".html");
-    ////                if (file.exists())
-    ////                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr18/" + entry.getValue() + ".html")))
-    ////                        throw new RuntimeException(entry.getKey());
-    ////            }
-    //        }
+    private static List<String> _LIST = new ArrayList<>();
+
+    static {
+        _LIST.add("derivedNeoadjuvRxFlag");
+        _LIST.add("derivedPostrx7M");
+        _LIST.add("derivedPostrx7N");
+        _LIST.add("derivedPostrx7T");
+        _LIST.add("derivedPrerx7M");
+        _LIST.add("derivedPrerx7N");
+        _LIST.add("derivedPrerx7T");
+        _LIST.add("overRideHospseqDxconf");
+        _LIST.add("overRideHospseqSite");
+        _LIST.add("overRideSeqnoDxconf");
+        _LIST.add("overRideSiteLatSeqno");
+        _LIST.add("overRideSiteTnmStggrp");
+        _LIST.add("overRideSsNodespos");
+        _LIST.add("overRideSurgDxconf");
+        _LIST.add("overRideCs1");
+        _LIST.add("overRideCs10");
+        _LIST.add("overRideCs11");
+        _LIST.add("overRideCs12");
+        _LIST.add("overRideCs13");
+        _LIST.add("overRideCs14");
+        _LIST.add("overRideCs15");
+        _LIST.add("overRideCs16");
+        _LIST.add("overRideCs17");
+        _LIST.add("overRideCs18");
+        _LIST.add("overRideCs19");
+        _LIST.add("overRideCs2");
+        _LIST.add("overRideCs20");
+        _LIST.add("overRideCs3");
+        _LIST.add("overRideCs4");
+        _LIST.add("overRideCs5");
+        _LIST.add("overRideCs6");
+        _LIST.add("overRideCs7");
+        _LIST.add("overRideCs8");
+        _LIST.add("overRideCs9");
+        _LIST.add("survDateActiveFollowup");
+        _LIST.add("survDateActiveFollowupDay");
+        _LIST.add("survDateActiveFollowupMonth");
+        _LIST.add("survDateActiveFollowupYear");
+        _LIST.add("survFlagActiveFollowup");
+    }
+
+    @Test
+    public void testDummy2() throws Exception {
+
+        for (String version : Arrays.asList("12", "13", "14", "15", "16", "18")) {
+            for (String name : _LIST) {
+                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html");
+                if (file.exists())
+                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "2.html")))
+                        System.out.println("!!!  " + name);
+            }
+        }
+
+    }
+
+    //@Test
+    public void testDummy() throws Exception {
+
+        SortedMap<String, String> map = new TreeMap<>();
+        for (String version : Arrays.asList("180")) {
+            NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(version);
+
+            Map<Integer, String> startToName = new HashMap<>();
+            for (NaaccrDictionaryItem item : dictionary.getItems())
+                startToName.put(item.getStartColumn(), item.getNaaccrId());
+            Map<Integer, String> startToNameGroup = new HashMap<>();
+            for (NaaccrDictionaryGroupedItem item : dictionary.getGroupedItems())
+                startToNameGroup.put(item.getStartColumn(), item.getNaaccrId());
+
+            NaaccrLayout layout = (NaaccrLayout)LayoutFactory.getLayout("naaccr-" + version.substring(0, 2) + "-abstract", true);
+            for (FixedColumnsField field : layout.getAllFields()) {
+                String xmlName = startToNameGroup.getOrDefault(field.getStart(), startToName.get(field.getStart()));
+                if (xmlName == null)
+                    System.out.println("!!! " + field.getName());
+                else if (!xmlName.equals(field.getName()))
+                    map.put(xmlName, field.getName());
+
+                if (field.getSubFields() != null && !"eodOld4Digit".equals(field.getName())) {
+                    for (FixedColumnsField sField : field.getSubFields()) {
+                        if (sField.getName().endsWith("Year")) {
+                            if (xmlName != null && !xmlName.equals(field.getName()))
+                                map.put(xmlName + "Year", field.getName() + "Year");
+                        }
+                        else if (sField.getName().endsWith("Month")) {
+                            if (xmlName != null && !xmlName.equals(field.getName()))
+                                map.put(xmlName + "Month", field.getName() + "Month");
+                        }
+                        else if (sField.getName().endsWith("Day")) {
+                            if (xmlName != null && !xmlName.equals(field.getName()))
+                                map.put(xmlName + "Day", field.getName() + "Day");
+                        }
+                        else {
+                            String sXmlName = startToName.get(sField.getStart());
+                            if (sXmlName == null)
+                                System.out.println("!!! " + sField.getName());
+                            else if (!sXmlName.equals(sField.getName()))
+                                map.put(sXmlName, sField.getName());
+                        }
+                    }
+                }
+            }
+        }
+
+        // TODO FD use the map to rewrite the actual XML definition files (one version at a time)
+
+        // map is new XML prop -> old (deprecated) layout name
+        //for (Map.Entry<String, String> entry : map.entrySet())
+        //  System.out.println("        _XML_TO_LAYOUT_MAPPING.put(\"" + entry.getKey() + "\", \"" + entry.getValue() + "\");");
+
+        SortedMap<String, String> oldToNew = new TreeMap<>();
+        map.forEach((k, v) -> oldToNew.put(v, k));
+
+        for (Map.Entry<String, String> entry : oldToNew.entrySet())
+            if (entry.getKey().equalsIgnoreCase(entry.getValue()))
+                System.out.println("_LIST.add(\"" + entry.getValue() + "\");");
+
+        //                    Pattern p = Pattern.compile("(.+field name=\")(.+?)(\".+)");
+        //
+        //                    File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/naaccr-18-layout.xml");
+        //                    for (String line : SeerUtils.readFile(file).split("\r\n")) {
+        //                        Matcher m = p.matcher(line);
+        //                        if (m.matches()) {
+        //                            System.out.println(m.group(1) + oldToNew.getOrDefault(m.group(2), m.group(2)) + m.group(3));
+        //                        }
+        //                        else
+        //                            System.out.println(line);
+        //                    }
+
+        //            for (Map.Entry<String, String> entry : oldToNew.entrySet()) {
+        //                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr18/" + entry.getKey() + ".html");
+        //                if (file.exists())
+        //                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr18/" + entry.getValue() + ".html")))
+        //                        throw new RuntimeException(entry.getKey());
+        //            }
+    }
 
     @Test
     public void testStandardNaaccrLayout() {
