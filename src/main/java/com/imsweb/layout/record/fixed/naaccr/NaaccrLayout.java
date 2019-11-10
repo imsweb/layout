@@ -540,6 +540,8 @@ public class NaaccrLayout extends FixedColumnsLayout {
             docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/reserved.html");
         else
             docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + filename + ".html");
+        System.out.println("path: " + "layout/fixed/naaccr/doc/" + getDocFolder() + "/" + filename + ".html");
+        System.out.println("docpath: " + docPath);
         if (docPath == null)
             return null;
 
@@ -549,7 +551,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
             result = writer.toString();
         }
         catch (IOException e) {
-            /* do nothing, result will be null, as per specs */
+            System.out.println("Exception: " + e.getMessage());
         }
 
         if (reservedField && result != null)
