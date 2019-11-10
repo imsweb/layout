@@ -341,29 +341,29 @@ public class CommaSeparatedLayoutTest {
             Assert.assertNotNull(record.get("patientIdNumber"));
             Assert.assertNotNull(record.get("race1"));
         }
-        Assert.assertEquals("20100615", records.get(0).get("birthDate"));
-        Assert.assertEquals("2010", records.get(0).get("birthDateYear"));
-        Assert.assertEquals("06", records.get(0).get("birthDateMonth"));
-        Assert.assertEquals("15", records.get(0).get("birthDateDay"));
-        Assert.assertEquals("2010", records.get(1).get("birthDate"));
-        Assert.assertFalse(records.get(1).containsKey("birthDateYear"));
-        Assert.assertFalse(records.get(1).containsKey("birthDateMonth"));
-        Assert.assertFalse(records.get(1).containsKey("birthDateDay"));
-        Assert.assertFalse(records.get(2).containsKey("birthDate"));
+        Assert.assertEquals("20100615", records.get(0).get("dateOfBirth"));
+        Assert.assertEquals("2010", records.get(0).get("dateOfBirthYear"));
+        Assert.assertEquals("06", records.get(0).get("dateOfBirthMonth"));
+        Assert.assertEquals("15", records.get(0).get("dateOfBirthDay"));
+        Assert.assertEquals("2010", records.get(1).get("dateOfBirth"));
+        Assert.assertFalse(records.get(1).containsKey("dateOfBirthYear"));
+        Assert.assertFalse(records.get(1).containsKey("dateOfBirthMonth"));
+        Assert.assertFalse(records.get(1).containsKey("dateOfBirthDay"));
+        Assert.assertFalse(records.get(2).containsKey("dateOfBirth"));
 
         // same test, but this time the values aren't trimmed...
         RecordLayoutOptions options = new RecordLayoutOptions();
         options.setTrimValues(false);
         records = layout.readAllRecords(file, options);
-        Assert.assertEquals("20100615", records.get(0).get("birthDate"));
-        Assert.assertEquals("2010", records.get(0).get("birthDateYear"));
-        Assert.assertEquals("06", records.get(0).get("birthDateMonth"));
-        Assert.assertEquals("15", records.get(0).get("birthDateDay"));
-        Assert.assertEquals("2010    ", records.get(1).get("birthDate"));
-        Assert.assertEquals("2010", records.get(1).get("birthDateYear"));
-        Assert.assertEquals("  ", records.get(1).get("birthDateMonth"));
-        Assert.assertEquals("  ", records.get(1).get("birthDateDay"));
-        Assert.assertFalse(records.get(2).containsKey("birthDate"));
+        Assert.assertEquals("20100615", records.get(0).get("dateOfBirth"));
+        Assert.assertEquals("2010", records.get(0).get("dateOfBirthYear"));
+        Assert.assertEquals("06", records.get(0).get("dateOfBirthMonth"));
+        Assert.assertEquals("15", records.get(0).get("dateOfBirthDay"));
+        Assert.assertEquals("2010    ", records.get(1).get("dateOfBirth"));
+        Assert.assertEquals("2010", records.get(1).get("dateOfBirthYear"));
+        Assert.assertEquals("  ", records.get(1).get("dateOfBirthMonth"));
+        Assert.assertEquals("  ", records.get(1).get("dateOfBirthDay"));
+        Assert.assertFalse(records.get(2).containsKey("dateOfBirth"));
 
         // test reading an empty file
         file = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/fake-naaccr-csv-empty.txt");
@@ -375,12 +375,12 @@ public class CommaSeparatedLayoutTest {
         toWrite.put("recordType", "1");
         toWrite.put("patientIdNumber", "2");
         toWrite.put("race1", "3");
-        toWrite.put("birthDateYear", "2010");
-        toWrite.put("birthDateMonth", "6");
-        toWrite.put("birthDateDay", "15");
+        toWrite.put("dateOfBirthYear", "2010");
+        toWrite.put("dateOfBirthMonth", "6");
+        toWrite.put("dateOfBirthDay", "15");
         Assert.assertEquals("1,2,3,20100615", layout.createLineFromRecord(toWrite, options));
 
-        toWrite.put("birthDate", "xxxxxxxx");
+        toWrite.put("dateOfBirth", "xxxxxxxx");
         Assert.assertEquals("1,2,3,20100615", layout.createLineFromRecord(toWrite, options));
 
         toWrite.clear();

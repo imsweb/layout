@@ -394,8 +394,19 @@ public class NaaccrXmlLayoutTest {
 
     @Test
     public void testLayoutDocumentation() {
-        NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, true);
+        LayoutFactory.unregisterAllLayouts();
+        LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_ABSTRACT, false);
 
+        NaaccrXmlLayout layout = new NaaccrXmlLayout("180", "A", "test-id", "test-name", null, null, true);
+        for (NaaccrXmlField field : layout.getAllFields()) {
+            Assert.assertNotNull(field.getName(), layout.getFieldDocByName(field.getName()));
+            Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+        }
+
+        LayoutFactory.unregisterAllLayouts();
+        LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_ABSTRACT, true);
+
+        layout = new NaaccrXmlLayout("180", "A", "test-id", "test-name", null, null, true);
         for (NaaccrXmlField field : layout.getAllFields()) {
             Assert.assertNotNull(field.getName(), layout.getFieldDocByName(field.getName()));
             Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
@@ -404,8 +415,13 @@ public class NaaccrXmlLayoutTest {
         Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(123456));
         Assert.assertNull(layout.getFieldDocByName("A fake field name"));
 
-        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, null, true);
+        layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, true);
+        for (NaaccrXmlField field : layout.getAllFields()) {
+            Assert.assertNotNull(field.getName(), layout.getFieldDocByName(field.getName()));
+            Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+        }
 
+        layout = new NaaccrXmlLayout("150", "A", "test-id", "test-name", null, null, true);
         for (NaaccrXmlField field : layout.getAllFields()) {
             //The v15 dictionary contains "reserved" fields, but the v15 layout does not
             if (!field.getNaaccrId().startsWith("reserved")) {
@@ -422,6 +438,8 @@ public class NaaccrXmlLayoutTest {
                 Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
             }
         }
+
+        LayoutFactory.unregisterAllLayouts();
     }
 
     @Test
