@@ -397,8 +397,8 @@ public class NaaccrXmlLayoutTest {
         NaaccrXmlLayout layout = new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, null, true);
 
         for (NaaccrXmlField field : layout.getAllFields()) {
-            Assert.assertNotNull(layout.getFieldDocByName(field.getName()));
-            Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+            Assert.assertNotNull(field.getName(), layout.getFieldDocByName(field.getName()));
+            Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
         }
 
         Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(123456));
@@ -409,8 +409,8 @@ public class NaaccrXmlLayoutTest {
         for (NaaccrXmlField field : layout.getAllFields()) {
             //The v15 dictionary contains "reserved" fields, but the v15 layout does not
             if (!field.getNaaccrId().startsWith("reserved")) {
-                Assert.assertNotNull(layout.getFieldDocByName(field.getName()));
-                Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+                Assert.assertNotNull(field.getName(), layout.getFieldDocByName(field.getName()));
+                Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
             }
         }
 
@@ -418,8 +418,8 @@ public class NaaccrXmlLayoutTest {
         //The v14 dictionary contains "reserved" fields, but the v14 layout does not
         for (NaaccrXmlField field : layout.getAllFields()) {
             if (!field.getNaaccrId().startsWith("reserved")) {
-                Assert.assertNotNull(layout.getFieldDocByName(field.getName()));
-                Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+                Assert.assertNotNull(field.getName(), layout.getFieldDocByName(field.getName()));
+                Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
             }
         }
     }

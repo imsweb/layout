@@ -3,17 +3,6 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
-import com.imsweb.layout.Field;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.LayoutInfo;
-import com.imsweb.layout.LayoutInfoDiscoveryOptions;
-import com.imsweb.layout.LayoutUtils;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
-import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
-import org.apache.commons.io.IOUtils;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -25,6 +14,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.io.IOUtils;
+
+import com.imsweb.layout.Field;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfo;
+import com.imsweb.layout.LayoutInfoDiscoveryOptions;
+import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
+import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
 /**
  * This class contains the logic related to all NAACCR layouts.
@@ -461,7 +463,21 @@ public class NaaccrLayout extends FixedColumnsLayout {
     protected String getFieldDocByNameOrNumber(String name, Integer number) {
         FixedColumnsField field = getFieldByName(name);
 
-        String filename = field != null ? field.getName() : number != null ? number.toString() : null;
+        // documentation was added for retired fields starting with NAACCR 18; I used the NAACCR number for those since they isn't a corresponding field
+        //String filename = field != null ? field.getName() : number != null ? number.toString() : null;
+        String filename;
+        if (field != null) {
+            filename = field.getName();
+            // I could make this lookup faster by persisting the invert map, but I am not sure it's really necessary...
+            for (Entry<String, String> entry : _XML_TO_LAYOUT_MAPPING.entrySet()) {
+                if (filename.equals(entry.getValue())) {
+                    filename = entry.getKey();
+                    break;
+                }
+            }
+        }
+        else
+             filename = number != null ? number.toString() : null;
         if (filename == null)
             return null;
 
