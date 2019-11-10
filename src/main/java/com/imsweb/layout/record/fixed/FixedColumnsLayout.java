@@ -3,6 +3,17 @@
  */
 package com.imsweb.layout.record.fixed;
 
+import com.imsweb.layout.Field;
+import com.imsweb.layout.Field.FieldAlignment;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfo;
+import com.imsweb.layout.LayoutInfoDiscoveryOptions;
+import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.RecordLayoutOptions;
+import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
+import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,17 +28,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import com.imsweb.layout.Field;
-import com.imsweb.layout.Field.FieldAlignment;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.LayoutInfo;
-import com.imsweb.layout.LayoutInfoDiscoveryOptions;
-import com.imsweb.layout.LayoutUtils;
-import com.imsweb.layout.record.RecordLayout;
-import com.imsweb.layout.record.RecordLayoutOptions;
-import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
-import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
 /**
  * This class contains the logic related to fixed-columns layouts.
@@ -76,7 +76,7 @@ public class FixedColumnsLayout extends RecordLayout {
             throw new NullPointerException("Unable to create layout from null URL");
 
         try (InputStream is = layoutUrl.openStream()) {
-            init(LayoutUtils.readFixedColumnsLayout(is));
+            init(LayoutUtils.readFixedColumnsLayout(is), false);
         }
     }
 
@@ -94,7 +94,7 @@ public class FixedColumnsLayout extends RecordLayout {
             throw new IOException("Unable to read from " + layoutFile.getPath());
 
         try (InputStream is = new FileInputStream(layoutFile)) {
-            init(LayoutUtils.readFixedColumnsLayout(is));
+            init(LayoutUtils.readFixedColumnsLayout(is), false);
         }
     }
 
@@ -109,10 +109,10 @@ public class FixedColumnsLayout extends RecordLayout {
         if (layoutXmlDto == null)
             throw new NullPointerException("Unable to create layout from null XML object");
 
-        init(layoutXmlDto);
+        init(layoutXmlDto, false);
     }
 
-    protected void init(FixedColumnLayoutXmlDto layoutXmlDto) throws IOException {
+    protected void init(FixedColumnLayoutXmlDto layoutXmlDto, boolean useDeprecatedFieldNames) throws IOException {
 
         _layoutId = layoutXmlDto.getId();
         _layoutName = layoutXmlDto.getName();
@@ -137,7 +137,7 @@ public class FixedColumnsLayout extends RecordLayout {
         _fields.clear();
         if (layoutXmlDto.getField() != null)
             for (FixedColumnLayoutFieldXmlDto fieldXmlDto : layoutXmlDto.getField())
-                addField(createFieldFromXmlField(fieldXmlDto));
+                addField(createFieldFromXmlField(fieldXmlDto, useDeprecatedFieldNames));
         if (parentLayout != null)
             for (FixedColumnsField field : parentLayout.getAllFields())
                 if (!_cachedByName.containsKey(field.getName()))
@@ -155,17 +155,22 @@ public class FixedColumnsLayout extends RecordLayout {
         }
     }
 
+    protected String getDeprecatedFieldName(String name) {
+        return name;
+    }
+
     /**
      * Helper that translates an XML field into an exposed DTO field.
      * <p/>
      * Created on Aug 16, 2011 by depryf
      * @param dto <code>FixedColumnLayoutFieldXmlDto</code> to translate
+     * @param useDeprecatedFieldNames if true, the XML field name will be translated to use an old version of the name (only applicable to NAACCR layouts)
      * @return the translated <code>Field</code>
      */
-    protected FixedColumnsField createFieldFromXmlField(FixedColumnLayoutFieldXmlDto dto) throws IOException {
+    protected FixedColumnsField createFieldFromXmlField(FixedColumnLayoutFieldXmlDto dto, boolean useDeprecatedFieldNames) throws IOException {
         FixedColumnsField field = new FixedColumnsField();
 
-        field.setName(dto.getName());
+        field.setName(useDeprecatedFieldNames ? getDeprecatedFieldName(dto.getName()) : dto.getName());
         field.setLongLabel(dto.getLongLabel());
         field.setShortLabel(dto.getShortLabel() != null ? dto.getShortLabel() : dto.getLongLabel());
         field.setNaaccrItemNum(dto.getNaaccrItemNum());
@@ -189,7 +194,7 @@ public class FixedColumnsLayout extends RecordLayout {
         if (dto.getField() != null && !dto.getField().isEmpty()) {
             List<FixedColumnsField> subFields = new ArrayList<>();
             for (FixedColumnLayoutFieldXmlDto childDto : dto.getField())
-                subFields.add(createFieldFromXmlField(childDto));
+                subFields.add(createFieldFromXmlField(childDto, useDeprecatedFieldNames));
             field.setSubFields(subFields);
         }
         field.setSection(dto.getSection());

@@ -3,18 +3,17 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.RecordLayout;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
 
 import static com.imsweb.layout.LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE;
 
@@ -140,13 +139,5 @@ public class NaaccrLayoutTest {
         buf.replace(16, 19, "150");
         Assert.assertNull(layout.buildFileInfo(buf.toString(), options));
         Assert.assertNull(layout.buildFileInfo(buf.toString().substring(0, 25), options));
-    }
-
-    @Test
-    public void testGetXmlIdFromLayoutName() {
-        Assert.assertEquals("raceNapiia", NaaccrLayout.getXmlIdFromLayoutName("napiia"));
-        Assert.assertEquals("primarySite", NaaccrLayout.getXmlIdFromLayoutName("primarySite"));
-        Assert.assertEquals("?", NaaccrLayout.getXmlIdFromLayoutName("?"));
-        Assert.assertNull(NaaccrLayout.getXmlIdFromLayoutName(null));
     }
 }

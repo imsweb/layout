@@ -1,5 +1,11 @@
 package com.imsweb.layout;
 
+import com.imsweb.layout.hl7.NaaccrHl7Layout;
+import com.imsweb.layout.naaccrxml.NaaccrXmlLayout;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,12 +17,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
-
-import com.imsweb.layout.hl7.NaaccrHl7Layout;
-import com.imsweb.layout.naaccrxml.NaaccrXmlLayout;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 
 /**
  * This class is responsible for caching layouts and instanciating the internal ones. It also provides a file format discovery mechanism.
@@ -162,7 +162,7 @@ public final class LayoutFactory {
      * @param loadFields if false, the fields won't be loaded
      * @return the loaded layout
      */
-    private static Layout loadInternalLayout(String layoutId, boolean loadFields) {
+    private static Layout loadInternalLayout(String layoutId, boolean loadFields, boolean useDeprecatedFieldNames) {
         Layout layout = null;
 
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
@@ -184,53 +184,53 @@ public final class LayoutFactory {
         else if (LAYOUT_ID_NAACCR_XML_16_INCIDENCE.equals(layoutId))
             layout = new NaaccrXmlLayout("160", "I", LAYOUT_ID_NAACCR_XML_16_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_INCIDENCE), xmlDesc + "160 Incidence", null, loadFields);
         else if (LAYOUT_ID_NAACCR_18_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("180", "A", 24194, LAYOUT_ID_NAACCR_18_ABSTRACT, loadFields);
+            layout = new NaaccrLayout("180", "A", 24194, LAYOUT_ID_NAACCR_18_ABSTRACT, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_18_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("180", "M", 24194, LAYOUT_ID_NAACCR_18_MODIFIED, loadFields);
+            layout = new NaaccrLayout("180", "M", 24194, LAYOUT_ID_NAACCR_18_MODIFIED, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_18_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("180", "C", 6154, LAYOUT_ID_NAACCR_18_CONFIDENTIAL, loadFields);
+            layout = new NaaccrLayout("180", "C", 6154, LAYOUT_ID_NAACCR_18_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_18_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("180", "I", 4048, LAYOUT_ID_NAACCR_18_INCIDENCE, loadFields);
+            layout = new NaaccrLayout("180", "I", 4048, LAYOUT_ID_NAACCR_18_INCIDENCE, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("160", "A", 22824, LAYOUT_ID_NAACCR_16_ABSTRACT, loadFields);
+            layout = new NaaccrLayout("160", "A", 22824, LAYOUT_ID_NAACCR_16_ABSTRACT, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_16_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("160", "M", 22824, LAYOUT_ID_NAACCR_16_MODIFIED, loadFields);
+            layout = new NaaccrLayout("160", "M", 22824, LAYOUT_ID_NAACCR_16_MODIFIED, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_16_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("160", "C", 5564, LAYOUT_ID_NAACCR_16_CONFIDENTIAL, loadFields);
+            layout = new NaaccrLayout("160", "C", 5564, LAYOUT_ID_NAACCR_16_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_16_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("160", "I", 3339, LAYOUT_ID_NAACCR_16_INCIDENCE, loadFields);
+            layout = new NaaccrLayout("160", "I", 3339, LAYOUT_ID_NAACCR_16_INCIDENCE, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_15_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("150", "A", 22824, LAYOUT_ID_NAACCR_15_ABSTRACT, loadFields);
+            layout = new NaaccrLayout("150", "A", 22824, LAYOUT_ID_NAACCR_15_ABSTRACT, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_15_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("150", "M", 22824, LAYOUT_ID_NAACCR_15_MODIFIED, loadFields);
+            layout = new NaaccrLayout("150", "M", 22824, LAYOUT_ID_NAACCR_15_MODIFIED, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_15_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("150", "C", 5564, LAYOUT_ID_NAACCR_15_CONFIDENTIAL, loadFields);
+            layout = new NaaccrLayout("150", "C", 5564, LAYOUT_ID_NAACCR_15_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_15_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("150", "I", 3339, LAYOUT_ID_NAACCR_15_INCIDENCE, loadFields);
+            layout = new NaaccrLayout("150", "I", 3339, LAYOUT_ID_NAACCR_15_INCIDENCE, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_14_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("140", "A", 22824, LAYOUT_ID_NAACCR_14_ABSTRACT, loadFields);
+            layout = new NaaccrLayout("140", "A", 22824, LAYOUT_ID_NAACCR_14_ABSTRACT, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_14_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("140", "M", 22824, LAYOUT_ID_NAACCR_14_MODIFIED, loadFields);
+            layout = new NaaccrLayout("140", "M", 22824, LAYOUT_ID_NAACCR_14_MODIFIED, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_14_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("140", "C", 5564, LAYOUT_ID_NAACCR_14_CONFIDENTIAL, loadFields);
+            layout = new NaaccrLayout("140", "C", 5564, LAYOUT_ID_NAACCR_14_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_14_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("140", "I", 3339, LAYOUT_ID_NAACCR_14_INCIDENCE, loadFields);
+            layout = new NaaccrLayout("140", "I", 3339, LAYOUT_ID_NAACCR_14_INCIDENCE, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_13_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("130", "A", 22824, LAYOUT_ID_NAACCR_13_ABSTRACT, loadFields);
+            layout = new NaaccrLayout("130", "A", 22824, LAYOUT_ID_NAACCR_13_ABSTRACT, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_13_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("130", "M", 22824, LAYOUT_ID_NAACCR_13_MODIFIED, loadFields);
+            layout = new NaaccrLayout("130", "M", 22824, LAYOUT_ID_NAACCR_13_MODIFIED, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_13_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("130", "C", 5564, LAYOUT_ID_NAACCR_13_CONFIDENTIAL, loadFields);
+            layout = new NaaccrLayout("130", "C", 5564, LAYOUT_ID_NAACCR_13_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_13_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("130", "I", 3339, LAYOUT_ID_NAACCR_13_INCIDENCE, loadFields);
+            layout = new NaaccrLayout("130", "I", 3339, LAYOUT_ID_NAACCR_13_INCIDENCE, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_12_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("122", "A", 22824, LAYOUT_ID_NAACCR_12_ABSTRACT, loadFields);
+            layout = new NaaccrLayout("122", "A", 22824, LAYOUT_ID_NAACCR_12_ABSTRACT, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_12_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("122", "M", 22824, LAYOUT_ID_NAACCR_12_MODIFIED, loadFields);
+            layout = new NaaccrLayout("122", "M", 22824, LAYOUT_ID_NAACCR_12_MODIFIED, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_12_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("122", "C", 5564, LAYOUT_ID_NAACCR_12_CONFIDENTIAL, loadFields);
+            layout = new NaaccrLayout("122", "C", 5564, LAYOUT_ID_NAACCR_12_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_12_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("122", "I", 3339, LAYOUT_ID_NAACCR_12_INCIDENCE, loadFields);
+            layout = new NaaccrLayout("122", "I", 3339, LAYOUT_ID_NAACCR_12_INCIDENCE, loadFields, useDeprecatedFieldNames);
         else if (LAYOUT_ID_NAACCR_HL7_2_5_1.equals(layoutId))
             layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7_2_5_1, "2.5.1", loadFields);
 
@@ -262,6 +262,24 @@ public final class LayoutFactory {
      * @return requested layout, never null
      */
     public static synchronized Layout getLayout(String layoutId) {
+        return getLayout(layoutId, true);
+    }
+
+    /**
+     * Returns the requested layout.
+     * <br/><br/>
+     * Throws a <b>RuntimeException</b> if the layout ID doesn't exist; you should check whether the layout exists before calling this method by either
+     * <ul>
+     * <li>using the <b>getAvailableLayouts()</b> method</li>
+     * <li>using one of the <b>discoverFormat()</b> methods</li>
+     * </ul>
+     * This method will never throw an exception when using one of the layout IDs defined as constants in this class.
+     * <p/>
+     * @param layoutId requested layout ID, cannot be null
+     * @param useDeprecatedFieldNames if set to true, the old layout names will be used, otherwise the new XML-aligned ones will be used (only applicable to internal NAACCR layouts).
+     * @return requested layout, never null
+     */
+    public static synchronized Layout getLayout(String layoutId, boolean useDeprecatedFieldNames) {
 
         // check if an alias ID was requested (used for backward compatibility)
         if (_INTERNAL_LAYOUT_ID_ALIASES.containsKey(layoutId))
@@ -273,7 +291,7 @@ public final class LayoutFactory {
 
         // if no registered layout is found, let's check the internal ones
         if (_INTERNAL_LAYOUTS.containsKey(layoutId)) {
-            Layout layout = loadInternalLayout(layoutId, true);
+            Layout layout = loadInternalLayout(layoutId, true, useDeprecatedFieldNames);
             _LAYOUTS.put(layout.getLayoutId(), layout);
             return layout;
         }
@@ -457,7 +475,7 @@ public final class LayoutFactory {
         // try the internal layout that have not been registered yet
         for (String layoutId : _INTERNAL_LAYOUTS.keySet()) {
             if (!_LAYOUTS.containsKey(layoutId) && !_INTERNAL_LAYOUT_ID_ALIASES.containsKey(layoutId)) {
-                Layout layout = loadInternalLayout(layoutId, false);
+                Layout layout = loadInternalLayout(layoutId, false, false);
                 LayoutInfo info = layout.buildFileInfo(file, zipEntryName, options);
                 if (info != null)
                     result.add(info);

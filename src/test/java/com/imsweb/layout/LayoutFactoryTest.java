@@ -3,6 +3,16 @@
  */
 package com.imsweb.layout;
 
+import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.csv.CommaSeparatedField;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
+import com.imsweb.naaccrxml.NaaccrFormat;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,17 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.imsweb.layout.record.RecordLayout;
-import com.imsweb.layout.record.csv.CommaSeparatedField;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
-import com.imsweb.naaccrxml.NaaccrFormat;
 
 public class LayoutFactoryTest {
 
@@ -166,7 +165,7 @@ public class LayoutFactoryTest {
     @Test(expected = RuntimeException.class)
     public void testRegisterLayoutInternalId() {
         // Test register internal layout
-        LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT, false));
+        LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT, false, false));
         Assert.assertNotNull(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT));
         Assert.assertEquals("160", LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT).getLayoutVersion());
     }
@@ -176,11 +175,11 @@ public class LayoutFactoryTest {
         LayoutFactory.unregisterAllLayouts();
 
         //Test register duplicate user created layout
-        LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, "test-id", false));
+        LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, "test-id", false, false));
         Assert.assertNotNull(LayoutFactory.getLayout("test-id"));
         Assert.assertEquals("140", LayoutFactory.getLayout("test-id").getLayoutVersion());
 
-        LayoutFactory.registerLayout(new NaaccrLayout("130", "A", 1000, "test-id", false));
+        LayoutFactory.registerLayout(new NaaccrLayout("130", "A", 1000, "test-id", false, false));
         Assert.assertNotNull(LayoutFactory.getLayout("test-id"));
         Assert.assertEquals("140", LayoutFactory.getLayout("test-id").getLayoutVersion());
     }

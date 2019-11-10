@@ -3,25 +3,84 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.imsweb.layout.Field;
 import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
 import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryGroupedItem;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class Naaccr18LayoutTest {
+
+    @Test
+    public void testDummy() {
+
+        SortedMap<String, String> map = new TreeMap<>();
+        for (String version : Arrays.asList("140")) {
+            NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(version);
+
+            Map<Integer, String> startToName = new HashMap<>();
+            for (NaaccrDictionaryItem item : dictionary.getItems())
+                startToName.put(item.getStartColumn(), item.getNaaccrId());
+            Map<Integer, String> startToNameGroup = new HashMap<>();
+            for (NaaccrDictionaryGroupedItem item : dictionary.getGroupedItems())
+                startToNameGroup.put(item.getStartColumn(), item.getNaaccrId());
+
+            NaaccrLayout layout = (NaaccrLayout) LayoutFactory.getLayout("naaccr-" + version.substring(0, 2) + "-abstract", true);
+            for (FixedColumnsField field : layout.getAllFields()) {
+                String xmlName = startToNameGroup.getOrDefault(field.getStart(), startToName.get(field.getStart()));
+                if (xmlName == null)
+                    System.out.println("!!! " + field.getName());
+                else if (!xmlName.equals(field.getName()))
+                    map.put(xmlName, field.getName());
+
+                if (field.getSubFields() != null && !"eodOld4Digit".equals(field.getName())) {
+                    for (FixedColumnsField sField : field.getSubFields()) {
+                        if (sField.getName().endsWith("Year")) {
+                            if (xmlName != null && !xmlName.equals(field.getName()))
+                                map.put(xmlName + "Year", field.getName() + "Year");
+                        } else if (sField.getName().endsWith("Month")) {
+                            if (xmlName != null && !xmlName.equals(field.getName()))
+                                map.put(xmlName + "Month", field.getName() + "Month");
+                        } else if (sField.getName().endsWith("Day")) {
+                            if (xmlName != null && !xmlName.equals(field.getName()))
+                                map.put(xmlName + "Day", field.getName() + "Day");
+                        } else {
+                            String sXmlName = startToName.get(sField.getStart());
+                            if (sXmlName == null)
+                                System.out.println("!!! " + sField.getName());
+                            else if (!sXmlName.equals(sField.getName()))
+                                map.put(sXmlName, sField.getName());
+                        }
+                    }
+                }
+            }
+        }
+
+        // TODO FD use the map to rewrite the actual XML definition files (one version at a time)
+
+        // map is new XML prop -> old (deprecated) layout name
+        //for (Map.Entry<String, String> entry : map.entrySet())
+        //  System.out.println("        _XML_TO_LAYOUT_MAPPING.put(\"" + entry.getKey() + "\", \"" + entry.getValue() + "\");");
+    }
 
     @Test
     public void testStandardNaaccrLayout() {
@@ -51,6 +110,14 @@ public class Naaccr18LayoutTest {
         Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(390));
         Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosisYear"));
         Assert.assertNull(layout.getFieldDocByName("dateOfDiagnosisYear"));
+        Assert.assertNotNull(layout.getFieldByName("addrAtDxCity")); // new name based on XML ID
+        Assert.assertNull(layout.getFieldByName("addressAtDxCity")); // old (deprecated) name
+
+        LayoutFactory.unregisterAllLayouts();
+        layout = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_INCIDENCE, true);
+        Assert.assertNull(layout.getFieldByName("addrAtDxCity")); // new name based on XML ID
+        Assert.assertNotNull(layout.getFieldByName("addressAtDxCity")); // old (deprecated) name
+
 
         // NAACCR 16
         layout = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE);
@@ -82,7 +149,7 @@ public class Naaccr18LayoutTest {
     @Test
     @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
     public void testNaaccr18() throws IOException {
-        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
+        FixedColumnsLayout layout = (FixedColumnsLayout) LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
 
         // test layout properties
         Assert.assertEquals("naaccr-18-abstract", layout.getLayoutId());
@@ -134,7 +201,7 @@ public class Naaccr18LayoutTest {
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
         rec.put("reserved04", "This is a test with a few spaces at the end   ");
-        layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_INCIDENCE);
+        layout = (FixedColumnsLayout) LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_INCIDENCE);
         Assert.assertEquals(4048, layout.createLineFromRecord(rec, null).length());
         layout.writeRecord(file, rec); // write into a file
         rec = layout.readAllRecords(file).get(0);
@@ -148,7 +215,7 @@ public class Naaccr18LayoutTest {
         rec.clear();
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
-        layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_MODIFIED);
+        layout = (FixedColumnsLayout) LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_MODIFIED);
         Assert.assertEquals(24194, layout.createLineFromRecord(rec, null).length());
         FileWriter writer = new FileWriter(file);
         layout.writeRecord(writer, rec); // write into a writer
@@ -164,7 +231,7 @@ public class Naaccr18LayoutTest {
         rec.put("recordType", "C");
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
-        layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_CONFIDENTIAL);
+        layout = (FixedColumnsLayout) LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18_CONFIDENTIAL);
         Assert.assertEquals(6154, layout.createLineFromRecord(rec, null).length());
         FileOutputStream stream = new FileOutputStream(file);
         layout.writeRecord(stream, rec); // write into an output stream
@@ -177,7 +244,7 @@ public class Naaccr18LayoutTest {
         file.delete();
 
         //Test that all fields have a section value and that subfields have the same section as their parent field
-        layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT);
+        layout = (FixedColumnsLayout) LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT);
         FixedColumnsField f2 = null;
         for (FixedColumnsField f1 : layout.getAllFields()) {
             Assert.assertNotNull(f1.getSection());
@@ -197,7 +264,7 @@ public class Naaccr18LayoutTest {
 
     @Test
     public void testNaaccr18Documentation() {
-        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
+        FixedColumnsLayout layout = (FixedColumnsLayout) LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
 
         for (FixedColumnsField field : layout.getAllFields()) {
             if (field.getNaaccrItemNum() != null)
@@ -213,7 +280,7 @@ public class Naaccr18LayoutTest {
 
     @Test
     public void testNaaccr18Dates() {
-        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
+        FixedColumnsLayout layout = (FixedColumnsLayout) LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
 
         for (FixedColumnsField field : layout.getAllFields()) {
             if (field.getEnd() - field.getStart() + 1 == 8 && field.getName().toLowerCase().contains("date")) {
