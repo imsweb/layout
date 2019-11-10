@@ -45,14 +45,14 @@ public class Naaccr18LayoutTest {
         _LIST.add("csPrerxTumorSize");;
     }
 
-    @Test
+    //@Test
     public void testDummy2() throws Exception {
 
         for (String version : Arrays.asList("12", "13", "14", "15", "16")) {
             for (String name : _LIST) {
-                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html");
+                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "_2.html");
                 if (file.exists())
-                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "_2.html")))
+                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html")))
                         System.out.println("!!!  " + name);
             }
         }
