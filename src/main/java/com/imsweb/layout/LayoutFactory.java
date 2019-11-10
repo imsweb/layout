@@ -1,11 +1,5 @@
 package com.imsweb.layout;
 
-import com.imsweb.layout.hl7.NaaccrHl7Layout;
-import com.imsweb.layout.naaccrxml.NaaccrXmlLayout;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +11,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.imsweb.layout.hl7.NaaccrHl7Layout;
+import com.imsweb.layout.naaccrxml.NaaccrXmlLayout;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 
 /**
  * This class is responsible for caching layouts and instanciating the internal ones. It also provides a file format discovery mechanism.
@@ -261,8 +261,8 @@ public final class LayoutFactory {
      * @param layoutId requested layout ID, cannot be null
      * @return requested layout, never null
      */
-    public static synchronized Layout getLayout(String layoutId) {
-        return getLayout(layoutId, true);
+    public static Layout getLayout(String layoutId) {
+        return getLayout(layoutId, false);
     }
 
     /**

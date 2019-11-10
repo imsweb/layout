@@ -3,19 +3,6 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
-import com.imsweb.layout.Field;
-import com.imsweb.layout.Layout;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
-import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
-import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryGroupedItem;
-import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -27,14 +14,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.imsweb.layout.Field;
+import com.imsweb.layout.Layout;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryGroupedItem;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
+import com.imsweb.seerutils.SeerUtils;
 
 public class Naaccr18LayoutTest {
 
     @Test
-    public void testDummy() {
+    public void testDummy() throws Exception {
 
         SortedMap<String, String> map = new TreeMap<>();
-        for (String version : Arrays.asList("140")) {
+        for (String version : Arrays.asList("180")) {
             NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(version);
 
             Map<Integer, String> startToName = new HashMap<>();
@@ -80,6 +84,21 @@ public class Naaccr18LayoutTest {
         // map is new XML prop -> old (deprecated) layout name
         //for (Map.Entry<String, String> entry : map.entrySet())
         //  System.out.println("        _XML_TO_LAYOUT_MAPPING.put(\"" + entry.getKey() + "\", \"" + entry.getValue() + "\");");
+
+        Map<String, String> oldToNew = new HashMap<>();
+        map.forEach((k, v) -> oldToNew.put(v, k));
+
+        Pattern p = Pattern.compile("(.+field name=\")(.+?)(\".+)");
+
+        File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/naaccr-18-layout.xml");
+        for (String line : SeerUtils.readFile(file).split("\r\n")) {
+            Matcher m = p.matcher(line);
+            if (m.matches()) {
+                System.out.println(m.group(1) + oldToNew.getOrDefault(m.group(2), m.group(2)) + m.group(3));
+            }
+            else
+                System.out.println(line);
+        }
     }
 
     @Test
