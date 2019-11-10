@@ -35,28 +35,35 @@ public class Naaccr18LayoutTest {
     private static List<String> _LIST = new ArrayList<>();
 
     static {
-        _LIST.add("overRideCs1");
+        _LIST.add("csPostrxLymphNodes");
+        _LIST.add("csPostrxMetsAtDx");
+        _LIST.add("csPostrxTumorSize");
+        _LIST.add("csPrerxLymphNodes");
+        _LIST.add("csPrerxMetsAtDx");
+        _LIST.add("csPrerxMetsEval");
+        _LIST.add("csPrerxRegNodesEval");
+        _LIST.add("csPrerxTumorSize");;
     }
 
-//    @Test
-//    public void testDummy2() throws Exception {
-//
-//        for (String version : Arrays.asList("12", "13", "14", "15", "16", "18")) {
-//            for (String name : _LIST) {
-//                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "_2.html");
-//                if (file.exists())
-//                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html")))
-//                        System.out.println("!!!  " + name);
-//            }
-//        }
-//
-//    }
+    @Test
+    public void testDummy2() throws Exception {
 
-    //@Test
+        for (String version : Arrays.asList("12", "13", "14", "15", "16")) {
+            for (String name : _LIST) {
+                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html");
+                if (file.exists())
+                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "_2.html")))
+                        System.out.println("!!!  " + name);
+            }
+        }
+
+    }
+
+    @Test
     public void testDummy() throws Exception {
 
         SortedMap<String, String> map = new TreeMap<>();
-        for (String version : Arrays.asList("180")) {
+        for (String version : Arrays.asList("160", "150", "140")) {
             NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(version);
 
             Map<Integer, String> startToName = new HashMap<>();
