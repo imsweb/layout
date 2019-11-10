@@ -35,45 +35,7 @@ public class Naaccr18LayoutTest {
     private static List<String> _LIST = new ArrayList<>();
 
     static {
-        _LIST.add("derivedNeoadjuvRxFlag");
-        _LIST.add("derivedPostrx7M");
-        _LIST.add("derivedPostrx7N");
-        _LIST.add("derivedPostrx7T");
-        _LIST.add("derivedPrerx7M");
-        _LIST.add("derivedPrerx7N");
-        _LIST.add("derivedPrerx7T");
-        _LIST.add("overRideHospseqDxconf");
-        _LIST.add("overRideHospseqSite");
-        _LIST.add("overRideSeqnoDxconf");
-        _LIST.add("overRideSiteLatSeqno");
-        _LIST.add("overRideSiteTnmStggrp");
-        _LIST.add("overRideSsNodespos");
-        _LIST.add("overRideSurgDxconf");
         _LIST.add("overRideCs1");
-        _LIST.add("overRideCs10");
-        _LIST.add("overRideCs11");
-        _LIST.add("overRideCs12");
-        _LIST.add("overRideCs13");
-        _LIST.add("overRideCs14");
-        _LIST.add("overRideCs15");
-        _LIST.add("overRideCs16");
-        _LIST.add("overRideCs17");
-        _LIST.add("overRideCs18");
-        _LIST.add("overRideCs19");
-        _LIST.add("overRideCs2");
-        _LIST.add("overRideCs20");
-        _LIST.add("overRideCs3");
-        _LIST.add("overRideCs4");
-        _LIST.add("overRideCs5");
-        _LIST.add("overRideCs6");
-        _LIST.add("overRideCs7");
-        _LIST.add("overRideCs8");
-        _LIST.add("overRideCs9");
-        _LIST.add("survDateActiveFollowup");
-        _LIST.add("survDateActiveFollowupDay");
-        _LIST.add("survDateActiveFollowupMonth");
-        _LIST.add("survDateActiveFollowupYear");
-        _LIST.add("survFlagActiveFollowup");
     }
 
     @Test
@@ -81,9 +43,9 @@ public class Naaccr18LayoutTest {
 
         for (String version : Arrays.asList("12", "13", "14", "15", "16", "18")) {
             for (String name : _LIST) {
-                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "2.html");
+                File file = new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html");
                 if (file.exists())
-                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + ".html")))
+                    if (!file.renameTo(new File(TestingUtils.getWorkingDirectory() + "/src/main/resources/layout/fixed/naaccr/doc/naaccr" + version + "/" + name + "_2.html")))
                         System.out.println("!!!  " + name);
             }
         }
