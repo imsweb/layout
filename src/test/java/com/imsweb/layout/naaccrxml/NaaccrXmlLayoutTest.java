@@ -48,6 +48,7 @@ public class NaaccrXmlLayoutTest {
         Assert.assertFalse(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosisYear".equals(f.getName())));
         // regular tumor field
         Assert.assertNotNull(layout.getFieldByName("primarySite"));
+        Assert.assertEquals(4, layout.getFieldByName("primarySite").getLength().intValue());
         Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(400));
         Assert.assertNotNull(layout.getFieldDocByName("primarySite"));
         Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(400));

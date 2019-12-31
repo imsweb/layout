@@ -230,6 +230,7 @@ public class CommaSeparatedLayoutTest {
                 newField.setNaaccrItemNum(field.getNaaccrItemNum());
                 newField.setShortLabel(field.getShortLabel());
                 newField.setLongLabel(field.getLongLabel());
+                newField.setLength(field.getEnd() - field.getStart() + 1);
                 newField.setTrim(field.getTrim());
                 newField.setDefaultValue(field.getDefaultValue());
                 newField.setPadChar(field.getPadChar());

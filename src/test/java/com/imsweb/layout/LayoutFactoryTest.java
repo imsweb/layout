@@ -241,7 +241,7 @@ public class LayoutFactoryTest {
         CommaSeparatedField f1 = new CommaSeparatedField();
         f1.setName("f1");
         f1.setIndex(1);
-        f1.setMaxLength(10);
+        f1.setLength(10);
         layout.setFields(Collections.singleton(f1));
         return layout;
     }

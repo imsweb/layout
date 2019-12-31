@@ -64,11 +64,13 @@ public class FixedColumnsLayoutTest {
         Assert.assertEquals("recordType", layout.getFieldByName("recordType").getName());
         Assert.assertEquals("Rec Type", layout.getFieldByName("recordType").getShortLabel());
         Assert.assertEquals("Record Type", layout.getFieldByName("recordType").getLongLabel());
+        Assert.assertEquals(1, layout.getFieldByName("recordType").getLength().intValue());
         Assert.assertNull(layout.getFieldByName(null));
         Assert.assertNull(layout.getFieldByName(""));
         Assert.assertNull(layout.getFieldByName("?"));
         Assert.assertEquals("recordType", layout.getFieldByNaaccrItemNumber(10).getName());
         Assert.assertEquals("Section 1", layout.getFieldByName("field1").getSection());
+        Assert.assertEquals(3, layout.getFieldByName("field1").getLength().intValue());
         Assert.assertNull(layout.getFieldByName("field2").getSection());
 
         // test validate line

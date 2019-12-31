@@ -21,6 +21,7 @@ public class NaaccrXmlField extends Field {
         _name = item.getNaaccrId();
         _longLabel = item.getNaaccrName();
         _naaccrItemNum = item.getNaaccrNum();
+        _length = item.getLength();
     }
 
     public NaaccrDictionaryItem getItem() {

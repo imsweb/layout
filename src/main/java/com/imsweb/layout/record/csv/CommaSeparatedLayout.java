@@ -184,7 +184,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         field.setShortLabel(dto.getShortLabel() != null ? dto.getShortLabel() : dto.getLongLabel());
         field.setNaaccrItemNum(dto.getNaaccrItemNum());
         field.setIndex(dto.getIndex());
-        field.setMaxLength(dto.getMaxLength());
+        field.setLength(dto.getMaxLength());
         field.setDefaultValue(dto.getDefaultValue());
         field.setTrim(dto.getTrim() == null ? Boolean.TRUE : dto.getTrim());
 

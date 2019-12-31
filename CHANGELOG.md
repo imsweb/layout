@@ -2,6 +2,7 @@
 
 **Changes in version 1.24**
 
+- Moved length as an attribute of all fields instead of just CSV fields.
 - Now properly escaping values containing quotes when writing CSV data.
 
 **Changes in version 1.23**
