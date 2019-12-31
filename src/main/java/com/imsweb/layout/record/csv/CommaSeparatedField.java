@@ -3,6 +3,8 @@
  */
 package com.imsweb.layout.record.csv;
 
+import java.util.Objects;
+
 import com.imsweb.layout.Field;
 
 public class CommaSeparatedField extends Field {
@@ -31,12 +33,15 @@ public class CommaSeparatedField extends Field {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CommaSeparatedField that = (CommaSeparatedField)o;
+        return Objects.equals(_name, that._name);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash( _name);
     }
 }

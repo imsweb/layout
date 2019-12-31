@@ -74,13 +74,12 @@ public class NaaccrHl7Field extends Field {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof NaaccrHl7Field)) return false;
-        if (!super.equals(o)) return false;
         NaaccrHl7Field that = (NaaccrHl7Field)o;
         return Objects.equals(_identifier, that._identifier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), _identifier);
+        return Objects.hash(_identifier);
     }
 }

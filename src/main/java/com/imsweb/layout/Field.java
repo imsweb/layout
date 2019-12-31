@@ -186,13 +186,12 @@ public class Field {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         Field that = (Field)o;
         return Objects.equals(_name, that._name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), _name);
+        return Objects.hash(_name);
     }
 }

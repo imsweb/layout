@@ -4,6 +4,7 @@
 package com.imsweb.layout.record.fixed;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.imsweb.layout.Field;
 
@@ -55,12 +56,15 @@ public class FixedColumnsField extends Field {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FixedColumnsField that = (FixedColumnsField)o;
+        return Objects.equals(_name, that._name);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(_name);
     }
 }
