@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 1.24**
+
+- Now properly escaping values containing quotes when writing CSV data.
+
 **Changes in version 1.23**
 
 - Fixed two mistakes in sub-fields for two date fields in standard NAACCR 14 to 18 layouts.  
