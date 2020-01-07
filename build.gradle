@@ -25,10 +25,10 @@ dependencies {
     implementation 'com.opencsv:opencsv:4.2'
     implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'com.imsweb:seerutils-gui:1.14'
-    testImplementation 'com.imsweb:seerutils:5.5'
-    testImplementation 'org.xhtmlrenderer:flying-saucer-core:9.1.16'
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'com.imsweb:seerutils-gui:1.15'
+    testImplementation 'com.imsweb:seerutils:5.6'
+    testImplementation 'org.xhtmlrenderer:flying-saucer-core:9.1.19'
 }
 
 // enforce UTF-8, display the compilation warnings
