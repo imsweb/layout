@@ -174,8 +174,13 @@ public class FixedColumnsLayout extends RecordLayout {
         field.setLongLabel(dto.getLongLabel());
         field.setShortLabel(dto.getShortLabel() != null ? dto.getShortLabel() : dto.getLongLabel());
         field.setNaaccrItemNum(dto.getNaaccrItemNum());
+        if (dto.getStart() == null)
+            throw new IOException("Start column is required");
         field.setStart(dto.getStart());
+        if (dto.getEnd() == null)
+            throw new IOException("End column is required");
         field.setEnd(dto.getEnd());
+        field.setLength(dto.getEnd() - dto.getStart() + 1);
         if (dto.getStart() > dto.getEnd())
             throw new IOException("Field " + field.getName() + " defines a end column that is greater than its start column");
         if (dto.getAlign() != null) {

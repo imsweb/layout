@@ -184,7 +184,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         field.setShortLabel(dto.getShortLabel() != null ? dto.getShortLabel() : dto.getLongLabel());
         field.setNaaccrItemNum(dto.getNaaccrItemNum());
         field.setIndex(dto.getIndex());
-        field.setMaxLength(dto.getMaxLength());
+        field.setLength(dto.getMaxLength());
         field.setDefaultValue(dto.getDefaultValue());
         field.setTrim(dto.getTrim() == null ? Boolean.TRUE : dto.getTrim());
 
@@ -309,7 +309,8 @@ public class CommaSeparatedLayout extends RecordLayout {
 
         for (String val : values) {
             if (val != null) {
-                if (val.indexOf(_separator) > -1 || val.indexOf('\n') > -1)
+                // this is following the specs from RFC4180 (https://tools.ietf.org/html/rfc4180)
+                if (val.indexOf(_separator) > -1 || val.indexOf('\n') > -1 || val.indexOf('"') > -1)
                     result.append("\"").append(StringUtils.replace(val, "\"", "\"\"")).append("\"");
                 else
                     result.append(val);
@@ -325,7 +326,6 @@ public class CommaSeparatedLayout extends RecordLayout {
     }
 
     @Override
-    @SuppressWarnings("RedundantStringConstructorCall")
     public Map<String, String> createRecordFromLine(String line, Integer lineNumber, RecordLayoutOptions options) throws IOException {
         Map<String, String> result = new HashMap<>();
 

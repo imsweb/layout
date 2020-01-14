@@ -6,6 +6,7 @@ package com.imsweb.layout.hl7;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 
 public final class Hl7Utils {
 
-    private static final Pattern _NEW_LINE_PATTERN = Pattern.compile("\r?\n");
+    private static final Pattern _ESCAPED_SEQUENCES = Pattern.compile("\\\\([A-Z])([^\\\\]*)\\\\");
 
     /**
      * Private constructor, no instanciation!
@@ -73,7 +74,12 @@ public final class Hl7Utils {
                                 Hl7Component component = new Hl7Component(repeatedField, compIdx + 1);
                                 String[] subCompValues = StringUtils.splitPreserveAllTokens(compValue, msg.getSubComponentSeparator());
                                 for (int subCompIdx = 0; subCompIdx < subCompValues.length; subCompIdx++) {
-                                    String subCompValue = subCompValues[subCompIdx];
+                                    String escapeChar = msg.getEscapeCharacter();
+                                    String fieldChar = msg.getFieldSeparator();
+                                    String repeatingChar = msg.getRepetitionSeparator();
+                                    String compChar = msg.getComponentSeparator();
+                                    String subCompChar = msg.getSubComponentSeparator();
+                                    String subCompValue = decodeEscapedSequences(subCompValues[subCompIdx], escapeChar, fieldChar, repeatingChar, compChar, subCompChar);
                                     if (!subCompValue.isEmpty())
                                         new Hl7SubComponent(component, subCompIdx + 1, subCompValue);
                                 }
@@ -117,6 +123,16 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String segmentToString(Hl7Segment segment) {
+        return segmentToString(segment, true);
+    }
+
+    /**
+     * Writes the given segment as a string.
+     * @param segment segment to write, required
+     * @param encode if true, the values will be properly encoded
+     * @return the created string
+     */
+    public static String segmentToString(Hl7Segment segment, boolean encode) {
 
         // make sure input is not null/empty
         if (segment == null || segment.getFields().isEmpty())
@@ -130,12 +146,11 @@ public final class Hl7Utils {
 
         // create a list that takes into account the gaps
         List<Hl7Field> list = new ArrayList<>(Collections.nCopies(max, null));
-        //segment.getFields().values().stream().filter(f -> !msh || f.getIndex() != 1).forEach(f -> list.set(msh && f.getIndex() == 2 ? 0 : f.getIndex() - 1, f));
         segment.getFields().values().stream().filter(f -> !msh || f.getIndex() != 1).forEach(f -> list.set(msh ? (f.getIndex() - 2) : f.getIndex() - 1, f));
 
         // write each element with a separator between them
         String separator = segment.getMessage().getFieldSeparator();
-        return segment.getId() + separator + list.stream().map(Hl7Utils::fieldToString).collect(Collectors.joining(separator));
+        return segment.getId() + separator + list.stream().map(f -> fieldToString(f, encode)).collect(Collectors.joining(separator));
     }
 
     /**
@@ -144,6 +159,16 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String fieldToString(Hl7Field field) {
+        return fieldToString(field, true);
+    }
+
+    /**
+     * Writes the given field as a string. Will use the field separator defined in the parent message of the field.
+     * @param field field to write, required
+     * @param encode if true, the values will be properly escaped
+     * @return the created string
+     */
+    public static String fieldToString(Hl7Field field, boolean encode) {
 
         // make sure input is not null/empty
         if (field == null || field.getRepeatedFields().isEmpty())
@@ -151,7 +176,7 @@ public final class Hl7Utils {
 
         // write each element with a separator between them
         String separator = field.getSegment().getMessage().getRepetitionSeparator();
-        return field.getRepeatedFields().stream().map(Hl7Utils::repeatedFieldToString).collect(Collectors.joining(separator));
+        return field.getRepeatedFields().stream().map(r -> repeatedFieldToString(r, encode)).collect(Collectors.joining(separator));
     }
 
     /**
@@ -160,6 +185,16 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String repeatedFieldToString(Hl7RepeatedField repeatedField) {
+        return repeatedFieldToString(repeatedField, true);
+    }
+
+    /**
+     * Writes the given repeated field as a string. Will use the repetition separator defined in the parent message of the repeating field.
+     * @param repeatedField repeating field to write, required
+     * @param encode if true, the values will be properly encoded
+     * @return the created string
+     */
+    public static String repeatedFieldToString(Hl7RepeatedField repeatedField, boolean encode) {
 
         // make sure input is not null/empty
         if (repeatedField == null || repeatedField.getComponents().isEmpty())
@@ -174,7 +209,7 @@ public final class Hl7Utils {
 
         // write each element with a separator between them
         String separator = repeatedField.getField().getSegment().getMessage().getComponentSeparator();
-        return list.stream().map(Hl7Utils::componentToString).collect(Collectors.joining(separator));
+        return list.stream().map(c -> componentToString(c, encode)).collect(Collectors.joining(separator));
     }
 
     /**
@@ -183,6 +218,16 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String componentToString(Hl7Component component) {
+        return componentToString(component, true);
+    }
+
+    /**
+     * Writes the given component as a string. Will use the component separator defined in the parent message of the component.
+     * @param component component to write, required
+     * @param encode if true, the values will be properly escaped
+     * @return the created string
+     */
+    public static String componentToString(Hl7Component component, boolean encode) {
 
         // make sure input is not null/empty
         if (component == null || component.getSubComponents().isEmpty())
@@ -196,7 +241,134 @@ public final class Hl7Utils {
         component.getSubComponents().values().forEach(c -> list.set(c.getIndex() - 1, c));
 
         // write each element with a separator between them
-        String separator = component.getRepeatedField().getField().getSegment().getMessage().getSubComponentSeparator();
-        return list.stream().map(c -> c == null || c.getValue() == null ? "" : _NEW_LINE_PATTERN.matcher(c.getValue()).replaceAll("~")).collect(Collectors.joining(separator));
+        Hl7Message msg = component.getRepeatedField().getField().getSegment().getMessage();
+        String escapeChar = msg.getEscapeCharacter();
+        String fieldChar = msg.getFieldSeparator();
+        String repeatingChar = msg.getRepetitionSeparator();
+        String compChar = msg.getComponentSeparator();
+        String subCompChar = msg.getSubComponentSeparator();
+        return list.stream()
+                .map(c -> c == null ? "" : encode ? encodeEscapedSequences(c.getValue(), escapeChar, fieldChar, repeatingChar, compChar, subCompChar) : c.getValue())
+                .collect(Collectors.joining(subCompChar));
+    }
+
+    /**
+     * Replaces escaped sequences by their value, using standard separators.
+     * @param value value in which the sequences need to be replaced
+     * @return the same value, with the escaped sequences replaced
+     */
+    public static String decodeEscapedSequences(String value) {
+        return decodeEscapedSequences(value, "\\", "|", "~", "$", "&");
+    }
+
+    /**
+     * Replaces escaped sequences by their value.
+     * @param value value in which the sequences need to be replaced
+     * @return the same value, with the escaped sequences replaced
+     */
+    public static String decodeEscapedSequences(String value, String escapeChar, String fieldChar, String repeatChar, String compChar, String subComChar) {
+        if (value == null)
+            return null;
+
+        // optimization - since the escape character is probably the backslash, let's try to use a pre-compiled pattern if we can...s
+        Matcher matcher = ("\\".equals(escapeChar) ? _ESCAPED_SEQUENCES : Pattern.compile(Pattern.quote(escapeChar) + "([A-Z])([^" + escapeChar + "]*)" + Pattern.quote(escapeChar))).matcher(value);
+
+        // ugh - the replaceAll method on the matcher does all this, but it's a Java 9 feature and this project is still on Java 8 :-(
+        int currentIdx = 0;
+        StringBuilder buf = new StringBuilder();
+        while (matcher.find()) {
+
+            // add the part of the original string that wasn't process yet
+            buf.append(value, currentIdx, matcher.start());
+
+            // we are going to use this as a default value in several of the cases
+            String fullOriginalGroup = escapeChar + matcher.group(1) + matcher.group(2) + escapeChar;
+
+            switch (matcher.group(1)) {
+                case "F":
+                    buf.append(fieldChar);
+                    break;
+                case "R":
+                    buf.append(repeatChar);
+                    break;
+                case "S":
+                    buf.append(compChar);
+                    break;
+                case "T":
+                    buf.append(subComChar);
+                    break;
+                case "E":
+                    buf.append(escapeChar);
+                    break;
+                case "X":
+                    String codeValue = matcher.group(2);
+
+                    // that would be weird, but if there is an X without any hex value, don't report an error, don't copy the escaped X
+                    if (codeValue.isEmpty())
+                        break;
+
+                    // the codes are supposed to be pairs of hex values, if that's not the case, copy back original value
+                    if (codeValue.length() % 2 != 0) {
+                        buf.append(fullOriginalGroup);
+                        break;
+                    }
+
+                    // if anything goes wrong, copy back the original value (so this is an all or nothing operation)
+                    try {
+                        StringBuilder tmpBuf = new StringBuilder();
+                        for (int i = 0; i < matcher.group(2).length(); i += 2)
+                            tmpBuf.append((char)(Integer.parseInt(matcher.group(2).substring(i, i + 2), 16)));
+                        buf.append(tmpBuf);
+                    }
+                    catch (NumberFormatException e) {
+                        buf.append(fullOriginalGroup);
+                    }
+                    break;
+                case "C":
+                case "H":
+                case "M":
+                case "N":
+                case "Z":
+                    // these are legit HL7 escaped sequence but they are not supported, so don't replace them
+                    break;
+                default:
+                    // anything else is invalid, replace it as-is so the caller can see what the original value was
+                    buf.append(fullOriginalGroup);
+            }
+            currentIdx = matcher.end();
+        }
+        buf.append(value.substring(currentIdx));
+
+        return buf.toString();
+    }
+
+    /**
+     * Replaces special characters by their escaped sequences, using standard separators.
+     * @param value value in which the sequences need to be set
+     * @return the same value, with the escaped sequences set
+     */
+    public static String encodeEscapedSequences(String value) {
+        return encodeEscapedSequences(value, "\\", "|", "~", "$", "&");
+    }
+
+
+    /**
+     * Replaces special characters by their escaped sequences.
+     * @param value value in which the sequences need to be set
+     * @return the same value, with the escaped sequences set
+     */
+    public static String encodeEscapedSequences(String value, String escapeChar, String fieldChar, String repeatChar, String compChar, String subComChar) {
+        if (value == null)
+            return "";
+
+        value = value.replace(escapeChar, escapeChar + "E" + escapeChar);
+        value = value.replace(fieldChar, escapeChar + "F" + escapeChar);
+        value = value.replace(repeatChar, escapeChar + "R" + escapeChar);
+        value = value.replace(compChar, escapeChar + "S" + escapeChar);
+        value = value.replace(subComChar, escapeChar + "T" + escapeChar);
+        value = value.replace("\r", escapeChar + "X0D" + escapeChar);
+        value = value.replace("\n", escapeChar + "X0A" + escapeChar);
+
+        return value;
     }
 }

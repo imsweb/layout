@@ -1,5 +1,16 @@
 ## Layout Framework Version History
 
+**Changes in version 1.25**
+
+- Added proper support for reading and writing escaped sequences in HL7 layout.
+- Updated NAACCR XML library from version 6.1 to version 6.5.
+- Updated CSV library from version 4.2 to version 5.0.
+
+**Changes in version 1.24**
+
+- Moved length as an attribute of all fields instead of just CSV fields.
+- Now properly escaping values containing quotes when writing CSV data.
+
 **Changes in version 1.23**
 
 - Fixed two mistakes in sub-fields for two date fields in standard NAACCR 14 to 18 layouts.  

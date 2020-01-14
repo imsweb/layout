@@ -4,24 +4,19 @@
 package com.imsweb.layout.record.fixed;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.imsweb.layout.Field;
 
 public class FixedColumnsField extends Field {
 
-    /**
-     * Start column (required for fixed length layouts)
-     */
+    // start column (required)
     protected Integer _start;
 
-    /**
-     * End column (required for fixed length layout)
-     */
+    // end column (required)
     protected Integer _end;
 
-    /**
-     * Sub-group fields (will be null if this field is not a group; comma separated cannot have groups)
-     */
+    // sub-group fields (will be null if this field is not a group)
     protected List<FixedColumnsField> _subFields;
 
     /**
@@ -31,44 +26,26 @@ public class FixedColumnsField extends Field {
         super();
     }
 
-    /**
-     * @return Returns the start.
-     */
     public Integer getStart() {
         return _start;
     }
 
-    /**
-     * @param start The start to set.
-     */
     public void setStart(Integer start) {
         this._start = start;
     }
 
-    /**
-     * @return Returns the end.
-     */
     public Integer getEnd() {
         return _end;
     }
 
-    /**
-     * @param end The end to set.
-     */
     public void setEnd(Integer end) {
         this._end = end;
     }
 
-    /**
-     * @return Returns the subFields.
-     */
     public List<FixedColumnsField> getSubFields() {
         return _subFields;
     }
 
-    /**
-     * @param subFields The subFields to set.
-     */
     public void setSubFields(List<FixedColumnsField> subFields) {
         this._subFields = subFields;
     }
@@ -79,24 +56,15 @@ public class FixedColumnsField extends Field {
     }
 
     @Override
-    public int hashCode() {
-        int prime = 31;
-        int result = 1;
-        result = prime * result + ((_name == null) ? 0 : _name.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FixedColumnsField that = (FixedColumnsField)o;
+        return Objects.equals(_name, that._name);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Field other = (Field)obj;
-        if (_name == null)
-            return other.getName() == null;
-        else return _name.equals(other.getName());
+    public int hashCode() {
+        return Objects.hash(_name);
     }
 }

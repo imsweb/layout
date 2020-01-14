@@ -21,6 +21,7 @@ public class NaaccrXmlField extends Field {
         _name = item.getNaaccrId();
         _longLabel = item.getNaaccrName();
         _naaccrItemNum = item.getNaaccrNum();
+        _length = item.getLength();
     }
 
     public NaaccrDictionaryItem getItem() {
@@ -84,13 +85,12 @@ public class NaaccrXmlField extends Field {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         NaaccrXmlField that = (NaaccrXmlField)o;
         return Objects.equals(_item, that._item);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), _item);
+        return Objects.hash(_item);
     }
 }

@@ -200,7 +200,6 @@ public class CommaSeparatedLayoutTest {
     }
 
     @Test
-    @SuppressWarnings("RedundantStringConstructorCall")
     public void testPartialNaaccrLayout() throws Exception {
 
         // this is how the CSV layout will be used in the Data Viewer: creating a fake CSV layout from the NAACCR fields
@@ -231,6 +230,7 @@ public class CommaSeparatedLayoutTest {
                 newField.setNaaccrItemNum(field.getNaaccrItemNum());
                 newField.setShortLabel(field.getShortLabel());
                 newField.setLongLabel(field.getLongLabel());
+                newField.setLength(field.getEnd() - field.getStart() + 1);
                 newField.setTrim(field.getTrim());
                 newField.setDefaultValue(field.getDefaultValue());
                 newField.setPadChar(field.getPadChar());
@@ -270,7 +270,7 @@ public class CommaSeparatedLayoutTest {
                         String originalValue = result.get(field.getName());
                         if (originalValue != null && originalValue.length() >= fields.get(fields.size() - 1).getEnd()) {
                             for (FixedColumnsField child : fields) {
-                                String value = new String(originalValue.substring(child.getStart() - 1, child.getEnd()));
+                                String value = originalValue.substring(child.getStart() - 1, child.getEnd());
                                 if (trimValues(options))
                                     value = value.trim();
                                 if (!value.isEmpty())
@@ -483,7 +483,7 @@ public class CommaSeparatedLayoutTest {
         rec.put("field1", "12,3");
         Assert.assertEquals("0,\"12,3\",456", layout.createLineFromRecord(rec, null));
         rec.put("field1", "1\"2\"3");
-        Assert.assertEquals("0,1\"2\"3,456", layout.createLineFromRecord(rec, null));
+        Assert.assertEquals("0,\"1\"\"2\"\"3\",456", layout.createLineFromRecord(rec, null));
         rec.put("field1", "1\"2\",3");
         Assert.assertEquals("0,\"1\"\"2\"\",3\",456", layout.createLineFromRecord(rec, null));
 
@@ -498,7 +498,7 @@ public class CommaSeparatedLayoutTest {
         rec.put("field1", "12|3");
         Assert.assertEquals("0|\"12|3\"|456", layout.createLineFromRecord(rec, null));
         rec.put("field1", "1\"2\"3");
-        Assert.assertEquals("0|1\"2\"3|456", layout.createLineFromRecord(rec, null));
+        Assert.assertEquals("0|\"1\"\"2\"\"3\"|456", layout.createLineFromRecord(rec, null));
         rec.put("field1", "1\"2\"|3");
         Assert.assertEquals("0|\"1\"\"2\"\"|3\"|456", layout.createLineFromRecord(rec, null));
 

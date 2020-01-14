@@ -274,6 +274,12 @@ public class NaaccrHl7LayoutTest {
                         // test sub-components
                         Assert.assertEquals(6, fields.get(32).getComponent(1).getSubComponents().size());
                         break;
+                    case "OBX":
+                        // test escaped sequences
+                        Assert.assertFalse(fields.get(5).getValue().contains("\\"));
+                        if (fields.get(5).getValue().contains("kappa B") && fields.get(5).getValue().contains("cell"))
+                            Assert.assertTrue(fields.get(5).getValue().contains("kappa B^cell"));
+                        break;
                     default:
                         // nothing to do
                 }

@@ -93,7 +93,7 @@ public class Hl7Segment {
     }
 
     public String getValue() {
-        String value = Hl7Utils.segmentToString(this);
+        String value = Hl7Utils.segmentToString(this, false);
         return value.isEmpty() ? null : value;
     }
 
