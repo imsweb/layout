@@ -123,6 +123,16 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String segmentToString(Hl7Segment segment) {
+        return segmentToString(segment, true);
+    }
+
+    /**
+     * Writes the given segment as a string.
+     * @param segment segment to write, required
+     * @param encode if true, the values will be properly encoded
+     * @return the created string
+     */
+    public static String segmentToString(Hl7Segment segment, boolean encode) {
 
         // make sure input is not null/empty
         if (segment == null || segment.getFields().isEmpty())
@@ -140,7 +150,7 @@ public final class Hl7Utils {
 
         // write each element with a separator between them
         String separator = segment.getMessage().getFieldSeparator();
-        return segment.getId() + separator + list.stream().map(Hl7Utils::fieldToString).collect(Collectors.joining(separator));
+        return segment.getId() + separator + list.stream().map(f -> fieldToString(f, encode)).collect(Collectors.joining(separator));
     }
 
     /**
@@ -149,6 +159,16 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String fieldToString(Hl7Field field) {
+        return fieldToString(field, true);
+    }
+
+    /**
+     * Writes the given field as a string. Will use the field separator defined in the parent message of the field.
+     * @param field field to write, required
+     * @param encode if true, the values will be properly escaped
+     * @return the created string
+     */
+    public static String fieldToString(Hl7Field field, boolean encode) {
 
         // make sure input is not null/empty
         if (field == null || field.getRepeatedFields().isEmpty())
@@ -156,7 +176,7 @@ public final class Hl7Utils {
 
         // write each element with a separator between them
         String separator = field.getSegment().getMessage().getRepetitionSeparator();
-        return field.getRepeatedFields().stream().map(Hl7Utils::repeatedFieldToString).collect(Collectors.joining(separator));
+        return field.getRepeatedFields().stream().map(r -> repeatedFieldToString(r, encode)).collect(Collectors.joining(separator));
     }
 
     /**
@@ -165,6 +185,16 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String repeatedFieldToString(Hl7RepeatedField repeatedField) {
+        return repeatedFieldToString(repeatedField, true);
+    }
+
+    /**
+     * Writes the given repeated field as a string. Will use the repetition separator defined in the parent message of the repeating field.
+     * @param repeatedField repeating field to write, required
+     * @param encode if true, the values will be properly encoded
+     * @return the created string
+     */
+    public static String repeatedFieldToString(Hl7RepeatedField repeatedField, boolean encode) {
 
         // make sure input is not null/empty
         if (repeatedField == null || repeatedField.getComponents().isEmpty())
@@ -179,7 +209,7 @@ public final class Hl7Utils {
 
         // write each element with a separator between them
         String separator = repeatedField.getField().getSegment().getMessage().getComponentSeparator();
-        return list.stream().map(Hl7Utils::componentToString).collect(Collectors.joining(separator));
+        return list.stream().map(c -> componentToString(c, encode)).collect(Collectors.joining(separator));
     }
 
     /**
@@ -188,6 +218,16 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String componentToString(Hl7Component component) {
+        return componentToString(component, true);
+    }
+
+    /**
+     * Writes the given component as a string. Will use the component separator defined in the parent message of the component.
+     * @param component component to write, required
+     * @param encode if true, the values will be properly escaped
+     * @return the created string
+     */
+    public static String componentToString(Hl7Component component, boolean encode) {
 
         // make sure input is not null/empty
         if (component == null || component.getSubComponents().isEmpty())
@@ -207,11 +247,13 @@ public final class Hl7Utils {
         String repeatingChar = msg.getRepetitionSeparator();
         String compChar = msg.getComponentSeparator();
         String subCompChar = msg.getSubComponentSeparator();
-        return list.stream().map(c -> c == null ? "" : encodeEscapedSequences(c.getValue(), escapeChar, fieldChar, repeatingChar, compChar, subCompChar)).collect(Collectors.joining(subCompChar));
+        return list.stream()
+                .map(c -> c == null ? "" : encode ? encodeEscapedSequences(c.getValue(), escapeChar, fieldChar, repeatingChar, compChar, subCompChar) : c.getValue())
+                .collect(Collectors.joining(subCompChar));
     }
 
     /**
-     * Replaces escaped sequences by their value, using stanard separators.
+     * Replaces escaped sequences by their value, using standard separators.
      * @param value value in which the sequences need to be replaced
      * @return the same value, with the escaped sequences replaced
      */
@@ -300,10 +342,21 @@ public final class Hl7Utils {
         return buf.toString();
     }
 
+    /**
+     * Replaces special characters by their escaped sequences, using standard separators.
+     * @param value value in which the sequences need to be set
+     * @return the same value, with the escaped sequences set
+     */
     public static String encodeEscapedSequences(String value) {
         return encodeEscapedSequences(value, "\\", "|", "~", "$", "&");
     }
 
+
+    /**
+     * Replaces special characters by their escaped sequences.
+     * @param value value in which the sequences need to be set
+     * @return the same value, with the escaped sequences set
+     */
     public static String encodeEscapedSequences(String value, String escapeChar, String fieldChar, String repeatChar, String compChar, String subComChar) {
         if (value == null)
             return "";

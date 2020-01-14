@@ -61,7 +61,7 @@ public class Hl7RepeatedField {
     }
 
     public String getValue() {
-        String value = Hl7Utils.repeatedFieldToString(this);
+        String value = Hl7Utils.repeatedFieldToString(this, false);
         return value.isEmpty() ? null : value;
     }
 

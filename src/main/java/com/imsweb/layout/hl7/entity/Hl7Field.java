@@ -93,7 +93,7 @@ public class Hl7Field {
     }
 
     public String getValue() {
-        String value = Hl7Utils.fieldToString(this);
+        String value = Hl7Utils.fieldToString(this, false);
         return value.isEmpty() ? null : value;
     }
 

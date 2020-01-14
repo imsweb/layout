@@ -82,7 +82,7 @@ public class Hl7Component {
     }
 
     public String getValue() {
-        String value = Hl7Utils.componentToString(this);
+        String value = Hl7Utils.componentToString(this, false);
         return value.isEmpty() ? null : value;
     }
 

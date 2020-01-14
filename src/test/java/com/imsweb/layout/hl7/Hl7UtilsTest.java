@@ -51,15 +51,15 @@ public class Hl7UtilsTest {
 
         // one id
         message = new Hl7Message();
-        addSegment(message, "VL1", "VAL1|VAL2");
-        Assert.assertEquals("VL1|VAL1|VAL2", Hl7Utils.messageToString(message));
+        addSegment(message, "VL1", "VAL1");
+        Assert.assertEquals("VL1|VAL1", Hl7Utils.messageToString(message));
 
         // three ids
         message = new Hl7Message();
         addSegment(message, "VL1", "VAL1");
-        addSegment(message, "VL2", "VAL2|VAL3");
-        addSegment(message, "VL3", "VAL4|VAL5|VAL6");
-        Assert.assertEquals("VL1|VAL1" + System.lineSeparator() + "VL2|VAL2|VAL3" + System.lineSeparator() + "VL3|VAL4|VAL5|VAL6", Hl7Utils.messageToString(message));
+        addSegment(message, "VL2", "VAL2");
+        addSegment(message, "VL3", "VAL3");
+        Assert.assertEquals("VL1|VAL1" + System.lineSeparator() + "VL2|VAL2" + System.lineSeparator() + "VL3|VAL3", Hl7Utils.messageToString(message));
 
         // four ids with some null values
         message = new Hl7Message();
@@ -401,15 +401,11 @@ public class Hl7UtilsTest {
         // new line
         comp = new Hl7Component(repField, 1);
         addSubComponent(comp, 1, "VAL1\nVAL2");
-        Assert.assertEquals("VAL1~VAL2", Hl7Utils.componentToString(comp));
+        Assert.assertEquals("VAL1\\X0A\\VAL2", Hl7Utils.componentToString(comp));
 
         comp = new Hl7Component(repField, 1);
         addSubComponent(comp, 1, "VAL1\r\nVAL2");
-        Assert.assertEquals("VAL1~VAL2", Hl7Utils.componentToString(comp));
-
-        comp = new Hl7Component(repField, 1);
-        addSubComponent(comp, 1, "VAL1\n\nVAL2");
-        Assert.assertEquals("VAL1~~VAL2", Hl7Utils.componentToString(comp));
+        Assert.assertEquals("VAL1\\X0D\\\\X0A\\VAL2", Hl7Utils.componentToString(comp));
     }
 
     // helper
