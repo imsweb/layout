@@ -2,6 +2,7 @@
 
 **Changes in version 1.25**
 
+- Added proper support for reading and writing escaped sequences in HL7 layout.
 - Updated NAACCR XML library from version 6.1 to version 6.5.
 - Updated CSV library from version 4.2 to version 5.0.
 

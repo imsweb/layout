@@ -448,4 +448,72 @@ public class Hl7UtilsTest {
     private void addSubComponent(Hl7Component component, Integer index, String value) {
         new Hl7SubComponent(component, index, value);
     }
+
+    @Test
+    public void testDecodeEscapedSequences() {
+
+        Assert.assertNull(Hl7Utils.decodeEscapedSequences(null));
+        Assert.assertEquals("", Hl7Utils.decodeEscapedSequences(""));
+        Assert.assertEquals("test", Hl7Utils.decodeEscapedSequences("test"));
+        Assert.assertEquals("another test", Hl7Utils.decodeEscapedSequences("another test"));
+
+        Assert.assertEquals("te|st", Hl7Utils.decodeEscapedSequences("te\\F\\st"));
+        Assert.assertEquals("|test", Hl7Utils.decodeEscapedSequences("\\F\\test"));
+        Assert.assertEquals("test|", Hl7Utils.decodeEscapedSequences("test\\F\\"));
+        Assert.assertEquals("|te|st|", Hl7Utils.decodeEscapedSequences("\\F\\te\\F\\st\\F\\"));
+
+        Assert.assertEquals("+te+st+", Hl7Utils.decodeEscapedSequences("?F?te?F?st?F?", "?", "+", "~", "$", "&"));
+
+        Assert.assertEquals("te\rst", Hl7Utils.decodeEscapedSequences("te\\X0D\\st"));
+        Assert.assertEquals("\rtest", Hl7Utils.decodeEscapedSequences("\\X0D\\test"));
+        Assert.assertEquals("test\r", Hl7Utils.decodeEscapedSequences("test\\X0D\\"));
+        Assert.assertEquals("\rte\rst\r", Hl7Utils.decodeEscapedSequences("\\X0d\\te\\X0D\\st\\X0D\\"));
+
+        Assert.assertEquals("te\r\nst", Hl7Utils.decodeEscapedSequences("te\\X0D\\\\X0A\\st"));
+        Assert.assertEquals("\r\ntest", Hl7Utils.decodeEscapedSequences("\\X0D\\\\X0A\\test"));
+        Assert.assertEquals("test\r\n", Hl7Utils.decodeEscapedSequences("test\\X0D\\\\X0A\\"));
+        Assert.assertEquals("\r\nte\r\nst\r\n", Hl7Utils.decodeEscapedSequences("\\X0D\\\\X0A\\te\\X0D\\\\X0A\\st\\X0D\\\\X0A\\"));
+
+        Assert.assertEquals("te\r\nst", Hl7Utils.decodeEscapedSequences("te\\X0D0A\\st"));
+        Assert.assertEquals("\r\ntest", Hl7Utils.decodeEscapedSequences("\\X0D0A\\test"));
+        Assert.assertEquals("test\r\n", Hl7Utils.decodeEscapedSequences("test\\X0D0A\\"));
+        Assert.assertEquals("\r\nte\r\nst\r\n", Hl7Utils.decodeEscapedSequences("\\X0D0A\\te\\X0D0A\\st\\X0D0A\\"));
+
+        Assert.assertEquals("test", Hl7Utils.decodeEscapedSequences("te\\N\\st"));
+        Assert.assertEquals("test", Hl7Utils.decodeEscapedSequences("te\\N00\\st"));
+        Assert.assertEquals("test", Hl7Utils.decodeEscapedSequences("te\\N123\\st"));
+
+        Assert.assertEquals("te\\Y\\st", Hl7Utils.decodeEscapedSequences("te\\Y\\st"));
+        Assert.assertEquals("te\\Y00\\st", Hl7Utils.decodeEscapedSequences("te\\Y00\\st"));
+        Assert.assertEquals("te\\Y123\\st", Hl7Utils.decodeEscapedSequences("te\\Y123\\st"));
+
+        Assert.assertEquals("te\\^st", Hl7Utils.decodeEscapedSequences("te\\^st"));
+    }
+
+    @Test
+    public void testEncodeEscapedSequences() {
+
+        Assert.assertEquals("", Hl7Utils.encodeEscapedSequences(null));
+        Assert.assertEquals("", Hl7Utils.encodeEscapedSequences(""));
+        Assert.assertEquals("test", Hl7Utils.encodeEscapedSequences("test"));
+        Assert.assertEquals("another test", Hl7Utils.encodeEscapedSequences("another test"));
+
+        Assert.assertEquals("te\\F\\st", Hl7Utils.encodeEscapedSequences("te|st"));
+        Assert.assertEquals("\\F\\test", Hl7Utils.encodeEscapedSequences("|test"));
+        Assert.assertEquals("test\\F\\", Hl7Utils.encodeEscapedSequences("test|"));
+        Assert.assertEquals("\\F\\te\\F\\st\\F\\", Hl7Utils.encodeEscapedSequences("|te|st|"));
+
+        Assert.assertEquals("?F?te?F?st?F?", Hl7Utils.encodeEscapedSequences("+te+st+", "?", "+", "~", "$", "&"));
+
+        Assert.assertEquals("te\\X0D\\st", Hl7Utils.encodeEscapedSequences("te\rst"));
+        Assert.assertEquals("\\X0D\\test", Hl7Utils.encodeEscapedSequences("\rtest"));
+        Assert.assertEquals("test\\X0D\\", Hl7Utils.encodeEscapedSequences("test\r"));
+        Assert.assertEquals("\\X0D\\te\\X0D\\st\\X0D\\", Hl7Utils.encodeEscapedSequences("\rte\rst\r"));
+        Assert.assertEquals("\\X0D\\te\\X0D\\st\\X0D\\", Hl7Utils.encodeEscapedSequences("\rte\rst\r"));
+
+        Assert.assertEquals("te\\X0D\\\\X0A\\st", Hl7Utils.encodeEscapedSequences("te\r\nst"));
+        Assert.assertEquals("\\X0D\\\\X0A\\test", Hl7Utils.encodeEscapedSequences("\r\ntest"));
+        Assert.assertEquals("test\\X0D\\\\X0A\\", Hl7Utils.encodeEscapedSequences("test\r\n"));
+        Assert.assertEquals("\\X0D\\\\X0A\\te\\X0D\\\\X0A\\st\\X0D\\\\X0A\\", Hl7Utils.encodeEscapedSequences("\r\nte\r\nst\r\n"));
+    }
 }
