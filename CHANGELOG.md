@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 1.25**
+
+- Updated NAACCR XML library from version 6.1 to version 6.5.
+- Updated CSV library from version 4.2 to version 5.0.
+
 **Changes in version 1.24**
 
 - Moved length as an attribute of all fields instead of just CSV fields.
