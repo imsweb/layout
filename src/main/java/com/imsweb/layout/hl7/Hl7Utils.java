@@ -258,7 +258,7 @@ public final class Hl7Utils {
      * @return the same value, with the escaped sequences replaced
      */
     public static String decodeEscapedSequences(String value) {
-        return decodeEscapedSequences(value, "\\", "|", "~", "$", "&");
+        return decodeEscapedSequences(value, "\\", "|", "~", "^", "&");
     }
 
     /**
@@ -348,7 +348,7 @@ public final class Hl7Utils {
      * @return the same value, with the escaped sequences set
      */
     public static String encodeEscapedSequences(String value) {
-        return encodeEscapedSequences(value, "\\", "|", "~", "$", "&");
+        return encodeEscapedSequences(value, "\\", "|", "~", "^", "&");
     }
 
 
