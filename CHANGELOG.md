@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 2.0**
+
+- Renamed many field names in standard NAACCR flat layouts to align with the official NAACCR XML IDs.
+
 **Changes in version 1.25**
 
 - Added proper support for reading and writing escaped sequences in HL7 layout.
