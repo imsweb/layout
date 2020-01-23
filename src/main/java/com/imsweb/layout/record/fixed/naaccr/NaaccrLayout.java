@@ -11,6 +11,7 @@ import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -359,6 +360,23 @@ public class NaaccrLayout extends FixedColumnsLayout {
         _XML_TO_LAYOUT_MAPPING.put("survMosPresumedAlive", "survMonthsPresumedAlive");
         _XML_TO_LAYOUT_MAPPING.put("textPlaceOfDiagnosis", "placeOfDiagnosis");
         _XML_TO_LAYOUT_MAPPING.put("visceralParietalPleuralInvasion", "visceralAndParietalPleuralInvasion");
+    }
+
+    /**
+     * Returns all the XML ID to field name mappings.
+     */
+    public static Map<String, String> getXmlIdToFieldNameMappings() {
+        return Collections.unmodifiableMap(_XML_TO_LAYOUT_MAPPING);
+    }
+
+    /**
+     * Returns all the field name to XML ID mappings.
+     */
+    public static Map<String, String> getFieldNameToXmlIdMappings() {
+        Map<String, String> map = new HashMap<>();
+        for (Entry<String, String> entry : _XML_TO_LAYOUT_MAPPING.entrySet())
+            map.put(entry.getValue(), entry.getKey());
+        return Collections.unmodifiableMap(map);
     }
 
     protected String _naaccrVersion;

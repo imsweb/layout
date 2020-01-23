@@ -3,21 +3,32 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.TestingUtils;
 import com.imsweb.layout.record.RecordLayout;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
 
 import static com.imsweb.layout.LayoutFactory.LAYOUT_ID_NAACCR_16_INCIDENCE;
 
 public class NaaccrLayoutTest {
+
+    @Test
+    public void testDeprecationMappings() {
+        Map<String, String> xmlToName = NaaccrLayout.getXmlIdToFieldNameMappings();
+        Map<String, String> nameToXml = NaaccrLayout.getFieldNameToXmlIdMappings();
+
+        Assert.assertFalse(xmlToName.isEmpty());
+        Assert.assertFalse(nameToXml.isEmpty());
+        Assert.assertEquals(xmlToName.size(), nameToXml.size());
+    }
 
     @Test
     public void testBuildFileInfo() throws IOException {
