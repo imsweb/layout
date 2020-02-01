@@ -31,6 +31,7 @@ import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SegmentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
+import com.imsweb.seerutils.SeerUtils;
 
 public class NaaccrHl7LayoutTest {
 
@@ -65,6 +66,7 @@ public class NaaccrHl7LayoutTest {
 
         layout.writeMessages(file, Collections.singletonList(msg));
         Assert.assertTrue(file.exists());
+        Assert.assertTrue(SeerUtils.readFile(file).split("\r?\n")[0].startsWith("MSH|^~\\&|"));
 
         LayoutInfo info = layout.buildFileInfo(file, null, null);
         Assert.assertNotNull(info);

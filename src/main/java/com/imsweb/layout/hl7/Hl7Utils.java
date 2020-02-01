@@ -150,7 +150,7 @@ public final class Hl7Utils {
 
         // write each element with a separator between them
         String separator = segment.getMessage().getFieldSeparator();
-        return segment.getId() + separator + list.stream().map(f -> fieldToString(f, encode)).collect(Collectors.joining(separator));
+        return segment.getId() + separator + list.stream().map(f -> fieldToString(f, encode && !msh)).collect(Collectors.joining(separator));
     }
 
     /**

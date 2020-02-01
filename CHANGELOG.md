@@ -3,6 +3,7 @@
 **Changes in version 2.0**
 
 - Renamed many field names in standard NAACCR flat layouts to align with the official NAACCR XML IDs.
+- Fixed bug in HL7 writer related to encoding.
 
 **Changes in version 1.25**
 
