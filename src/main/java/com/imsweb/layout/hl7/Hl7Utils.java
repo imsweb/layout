@@ -6,6 +6,7 @@ package com.imsweb.layout.hl7;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -23,6 +24,8 @@ public final class Hl7Utils {
 
     private static final Pattern _ESCAPED_SEQUENCES = Pattern.compile("\\\\([A-Z])([^\\\\]*)\\\\");
 
+    private static final Pattern _SEGMENT_ID_PATTERN = Pattern.compile("[A-Z0-9]{3}");
+
     /**
      * Private constructor, no instanciation!
      * <p/>
@@ -32,13 +35,32 @@ public final class Hl7Utils {
     }
 
     /**
-     * Reads a segment for the given line and adds it to the given message.
+     * Reads a segment for the given line and adds it to the given message. Can return null for invalid lines depending on the options.
      * @param msg parent message, required
      * @param line line to parse, required
-     * @return the created segment
+     * @return the created segment, possibly null
      */
     public static Hl7Segment segmentFromString(Hl7Message msg, String line) {
-        Hl7Segment segment = new Hl7Segment(msg, line.substring(0, 3));
+        return segmentFromString(msg, line, new Hl7LayoutOptions());
+    }
+
+    /**
+     * Reads a segment for the given line and adds it to the given message. Can return null for invalid lines depending on the options.
+     * @param msg parent message, required
+     * @param line line to parse, required
+     * @param options options, required
+     * @return the created segment, possibly null
+     */
+    public static Hl7Segment segmentFromString(Hl7Message msg, String line, Hl7LayoutOptions options) {
+
+        String id = line.length() < 3 ? line : line.substring(0, 3);
+        if (!_SEGMENT_ID_PATTERN.matcher(id).matches()) {
+            if (options.skipInvalidSegmentIds())
+                return null;
+            throw new RuntimeException("Index must be a mix of 3 uppercase letters and/or digits");
+        }
+
+        Hl7Segment segment = new Hl7Segment(msg, id);
 
         if ("MSH".equals(segment.getId()) && line.length() > 3) {
             String fieldSeparator = String.valueOf(line.charAt(3));
@@ -99,22 +121,23 @@ public final class Hl7Utils {
      * @return the created string
      */
     public static String messageToString(Hl7Message message) {
-        return messageToString(message, System.lineSeparator());
+        return messageToString(message, new Hl7LayoutOptions());
     }
 
     /**
      * Writes the given message as a string.
      * @param message message to write, required
+     * @param options options, required
      * @return the created string
      */
-    public static String messageToString(Hl7Message message, String lineSeparator) {
+    public static String messageToString(Hl7Message message, Hl7LayoutOptions options) {
 
         // make sure input is not null/empty
         if (message == null || message.getSegments().isEmpty())
             return "";
 
         // write each element with a separator between them
-        return message.getSegments().stream().map(Hl7Utils::segmentToString).collect(Collectors.joining(lineSeparator));
+        return message.getSegments().stream().map(Hl7Utils::segmentToString).filter(Objects::nonNull).collect(Collectors.joining(options.getLineSeparator()));
     }
 
     /**
@@ -127,16 +150,16 @@ public final class Hl7Utils {
     }
 
     /**
-     * Writes the given segment as a string.
+     * Writes the given segment as a string, returns null if the input segment is null or doesn't have any fields.
      * @param segment segment to write, required
      * @param encode if true, the values will be properly encoded
-     * @return the created string
+     * @return the created string, possibly null
      */
     public static String segmentToString(Hl7Segment segment, boolean encode) {
 
         // make sure input is not null/empty
         if (segment == null || segment.getFields().isEmpty())
-            return "";
+            return null;
 
         // get maximum index
         int max = segment.getFields().keySet().stream().max(Integer::compareTo).orElse(0);
@@ -350,7 +373,6 @@ public final class Hl7Utils {
     public static String encodeEscapedSequences(String value) {
         return encodeEscapedSequences(value, "\\", "|", "~", "^", "&");
     }
-
 
     /**
      * Replaces special characters by their escaped sequences.

@@ -308,6 +308,28 @@ public class NaaccrHl7LayoutTest {
         Assert.assertEquals("123456789", msg2.getSegment("PID").getValue(3, 1, 1, 1));
     }
 
+    @Test
+
+    @SuppressWarnings("ConstantConditions")
+    public void testHl7LayoutBad() throws Exception {
+        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+
+        Hl7LayoutOptions options = new Hl7LayoutOptions();
+        options.setSkipInvalidSegmentIds(false);
+
+        URL url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-hl7-bad1.txt");
+        try {
+            layout.readAllMessages(new File(url.getPath()), options);
+            Assert.fail("Was expecting an exception!");
+        }
+        catch (RuntimeException e) {
+            // expected
+        }
+
+        options.setSkipInvalidSegmentIds(true);
+        Assert.assertEquals(1, layout.readAllMessages(new File(url.getPath()), options).size());
+    }
+
     private void assertFieldParameters(NaaccrHl7Layout layout, String name, String longLabel) {
         Assert.assertEquals(name, layout.getFieldByName(name).getName());
         Assert.assertNull(layout.getFieldByName(name).getShortLabel());

@@ -28,8 +28,8 @@ public class Hl7Field {
     public Hl7Field(Hl7Segment segment, Integer index, String... values) {
         if (index == null)
             throw new RuntimeException("Index is required");
-        if (index < 1 || index > 99)
-            throw new RuntimeException("Index must be between 1 and 99");
+        if (index < 1 || index > 999)
+            throw new RuntimeException("Index must be between 1 and 999");
         _segment = segment;
         _index = index;
         _repeatedFields = new ArrayList<>();
@@ -61,8 +61,8 @@ public class Hl7Field {
     public void setIndex(Integer index) {
         if (index == null)
             throw new RuntimeException("Index is required");
-        if (index < 1 || index > 99)
-            throw new RuntimeException("Index must be between 1 and 99");
+        if (index < 1 || index > 999)
+            throw new RuntimeException("Index must be between 1 and 999");
         _index = index;
     }
 

@@ -44,10 +44,14 @@ public class Hl7UtilsTest {
 
         // invalid id
         message = new Hl7Message();
-        assertInvalidSegmentId(message, null);
-        assertInvalidSegmentId(message, "");
-        assertInvalidSegmentId(message, "   ");
-        assertInvalidSegmentId(message, "VAL1");
+        boolean invalidId = false;
+        try {
+            addSegment(message, null, null);
+        }
+        catch (RuntimeException e) {
+            invalidId = true;
+        }
+        Assert.assertTrue(invalidId);
 
         // one id
         message = new Hl7Message();
@@ -76,7 +80,7 @@ public class Hl7UtilsTest {
 
         // no component
         Hl7Segment segment = new Hl7Segment(message, "TST");
-        Assert.assertEquals("", Hl7Utils.segmentToString(segment));
+        Assert.assertNull(Hl7Utils.segmentToString(segment));
 
         // null value (TST|)
         segment = new Hl7Segment(message, "TST");
@@ -406,18 +410,6 @@ public class Hl7UtilsTest {
         comp = new Hl7Component(repField, 1);
         addSubComponent(comp, 1, "VAL1\r\nVAL2");
         Assert.assertEquals("VAL1\\X0D\\\\X0A\\VAL2", Hl7Utils.componentToString(comp));
-    }
-
-    // helper
-    private void assertInvalidSegmentId(Hl7Message message, String id) {
-        boolean invalidId = false;
-        try {
-            addSegment(message, id, null);
-        }
-        catch (RuntimeException e) {
-            invalidId = true;
-        }
-        Assert.assertTrue(invalidId);
     }
 
     // helper

@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 2.1**
+
+- Now ignoring invalid segments when reading NAACCR HL7 messages instead of raising an exception; this is controlled by an option. 
+
 **Changes in version 2.0**
 
 - Renamed many field names in standard NAACCR flat layouts to align with the official NAACCR XML IDs.

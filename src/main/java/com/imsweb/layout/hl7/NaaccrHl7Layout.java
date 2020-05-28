@@ -285,19 +285,33 @@ public class NaaccrHl7Layout implements Layout {
      * Reads the next message from the given reader; this method won't close the reader.
      */
     public Hl7Message readNextMessage(LineNumberReader reader) throws IOException {
-        return fetchNextMessage(reader);
+        return readNextMessage(reader, new Hl7LayoutOptions());
+    }
+
+    /**
+     * Reads the next message from the given reader; this method won't close the reader.
+     */
+    public Hl7Message readNextMessage(LineNumberReader reader, Hl7LayoutOptions options) throws IOException {
+        return fetchNextMessage(reader, options);
     }
 
     /**
      * Reads all the messages from the given file.
      */
     public List<Hl7Message> readAllMessages(File file) throws IOException {
+        return readAllMessages(file, new Hl7LayoutOptions());
+    }
+
+    /**
+     * Reads all the messages from the given file.
+     */
+    public List<Hl7Message> readAllMessages(File file, Hl7LayoutOptions options) throws IOException {
         List<Hl7Message> result = new ArrayList<>();
-        try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file), StandardCharsets.UTF_8))) {
-            Hl7Message message = readNextMessage(reader);
+        try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file), options.getEncoding()))) {
+            Hl7Message message = readNextMessage(reader, options);
             while (message != null) {
                 result.add(message);
-                message = readNextMessage(reader);
+                message = readNextMessage(reader, options);
             }
         }
         return result;
@@ -307,24 +321,38 @@ public class NaaccrHl7Layout implements Layout {
      * Writes the given message on the given writer; this method won't close the writer.
      */
     public void writeMessage(Writer writer, Hl7Message message) throws IOException {
-        writer.write(Hl7Utils.messageToString(message));
-        writer.write(System.lineSeparator());
+        writeMessage(writer, message, new Hl7LayoutOptions());
+    }
+
+    /**
+     * Writes the given message on the given writer; this method won't close the writer.
+     */
+    public void writeMessage(Writer writer, Hl7Message message, Hl7LayoutOptions options) throws IOException {
+        writer.write(Hl7Utils.messageToString(message, options));
+        writer.write(options.getLineSeparator());
     }
 
     /**
      * Writes the given messages in the given file, they will be separated by a blank line.
      */
     public void writeMessages(File file, List<Hl7Message> messages) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(LayoutUtils.createOutputStream(file), StandardCharsets.UTF_8))) {
+        writeMessages(file, messages, new Hl7LayoutOptions());
+    }
+
+    /**
+     * Writes the given messages in the given file, they will be separated by a blank line.
+     */
+    public void writeMessages(File file, List<Hl7Message> messages, Hl7LayoutOptions options) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(LayoutUtils.createOutputStream(file), options.getEncoding()))) {
             for (Hl7Message message : messages) {
                 writeMessage(writer, message);
-                writer.write(System.lineSeparator());
+                writer.write(options.getLineSeparator());
             }
         }
     }
 
     // helper
-    protected Hl7Message fetchNextMessage(LineNumberReader reader) throws IOException {
+    protected Hl7Message fetchNextMessage(LineNumberReader reader, Hl7LayoutOptions options) throws IOException {
         Hl7Message msg = null;
 
         String line = reader.readLine();
@@ -345,7 +373,7 @@ public class NaaccrHl7Layout implements Layout {
             // then read the block of text
             while (line != null && !line.trim().isEmpty()) {
                 if (line.length() > 3)
-                    Hl7Utils.segmentFromString(msg, line);
+                    Hl7Utils.segmentFromString(msg, line, options);
 
                 // peek for the next three bytes to determine if next line is a message starter
                 reader.mark(8192); // this is the default buffer size for the BufferedReader

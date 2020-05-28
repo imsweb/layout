@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import com.imsweb.layout.hl7.Hl7Utils;
 
@@ -22,9 +21,6 @@ public class Hl7Segment {
     // the list of fields, in the order they appear in the segment
     private Map<Integer, Hl7Field> _fields;
 
-    // cached regex
-    private static Pattern _SEGMENT_ID_PATTERN = Pattern.compile("[A-Z0-9]{3}");
-
     /**
      * Constructor.
      * @param message parent message (can be null)
@@ -33,8 +29,7 @@ public class Hl7Segment {
     public Hl7Segment(Hl7Message message, String id) {
         if (id == null)
             throw new RuntimeException("ID is required");
-        if (!_SEGMENT_ID_PATTERN.matcher(id).matches())
-            throw new RuntimeException("Index must be a mix of 3 uppercase letters and/or digits");
+
         _message = message;
         _id = id;
         _fields = new HashMap<>();
@@ -70,8 +65,6 @@ public class Hl7Segment {
     public void setId(String id) {
         if (id == null)
             throw new RuntimeException("ID is required");
-        if (!_SEGMENT_ID_PATTERN.matcher(id).matches())
-            throw new RuntimeException("Index must be 3 uppercase characters");
         _id = id;
     }
 
@@ -93,8 +86,7 @@ public class Hl7Segment {
     }
 
     public String getValue() {
-        String value = Hl7Utils.segmentToString(this, false);
-        return value.isEmpty() ? null : value;
+        return Hl7Utils.segmentToString(this, false);
     }
 
     public String getValue(int fieldIdx) {
