@@ -4,6 +4,7 @@ plugins {
     id 'com.github.spotbugs' version '3.0.0'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.21.2'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
 group = 'com.imsweb'
@@ -52,7 +53,8 @@ jar {
                 'Built-By': System.getProperty('user.name'),
                 'Built-Date': new Date(),
                 'Built-JDK': System.getProperty('java.version'),
-                'Automatic-Module-Name': 'com.imsweb.layout'
+                'Automatic-Module-Name': 'com.imsweb.layout',
+                'Main-Class': 'lab.Hl7Converter'
         )
     }
 }
@@ -118,6 +120,38 @@ if (version.endsWith('-SNAPSHOT'))
 wrapper {
     gradleVersion = '6.0.1'
     distributionType = Wrapper.DistributionType.ALL
+}
+
+// we don't want these files in the "all" jar, it's confusing
+shadowJar {
+    exclude('XMLPULL_1_1_3_1_VERSION')
+    exclude('XPP3_1.1.4c_MIN_VERSION')
+    baseName = 'hl7-converter'
+    classifier = ''
+    archiveVersion = '1.0'
+}
+
+task createStandHl7ConverterJar(type: Jar, dependsOn: testClasses) {
+    archiveFileName = 'hl7-converter-1.0.jar'
+    destinationDirectory = new File(project.buildDir, 'hl7')
+    from sourceSets.main.output
+    from sourceSets.test.output
+    manifest {
+        attributes(
+                'Main-Class': 'lab.Hl7Converter',
+                'Class-Path': sourceSets.main.runtimeClasspath.collect {
+                    String path = 'lib/' + it.name
+                    if (!path.endsWith('/') && !path.endsWith(".jar"))
+                        path = path + '/'
+                    return path
+                }.join(' '))
+    }
+    doLast {
+        copy {
+            from configurations.runtimeClasspath
+            into "${project.buildDir}/hl7/lib"
+        }
+    }
 }
 
 

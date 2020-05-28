@@ -416,9 +416,11 @@ public class NaaccrXmlLayout implements Layout {
         if (data == null)
             return;
 
+        // TODO FD this method (and others) don't take into account the user-defined dictionaries!
+
         PatientXmlWriter writer = null;
         try {
-            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, UTF_8), data, options);
+            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, UTF_8), data, options, _userDictionaries);
             writeAllPatients(writer, patients);
         }
         finally {
