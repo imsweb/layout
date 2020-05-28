@@ -2,7 +2,8 @@
 
 **Changes in version 2.1**
 
-- Now ignoring invalid segments when reading NAACCR HL7 messages instead of raising an exception; this is controlled by an option. 
+- Now ignoring invalid segments when reading NAACCR HL7 messages instead of raising an exception; this is controlled by an option.
+- Fixed NAACCR XML layout not properly taking into account user-defined dictionaries when reading and writing patients. 
 
 **Changes in version 2.0**
 

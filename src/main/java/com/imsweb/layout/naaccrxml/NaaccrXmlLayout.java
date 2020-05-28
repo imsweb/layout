@@ -418,7 +418,7 @@ public class NaaccrXmlLayout implements Layout {
 
         PatientXmlWriter writer = null;
         try {
-            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, UTF_8), data, options);
+            writer = new PatientXmlWriter(new OutputStreamWriter(outputStream, UTF_8), data, options, _userDictionaries);
             writeAllPatients(writer, patients);
         }
         finally {
@@ -486,7 +486,7 @@ public class NaaccrXmlLayout implements Layout {
 
         PatientXmlReader reader = null;
         try {
-            reader = new PatientXmlReader(new InputStreamReader(inputStream, encoding), options);
+            reader = new PatientXmlReader(new InputStreamReader(inputStream, encoding), options, _userDictionaries);
             patients = readAllPatients(reader);
         }
         catch (IOException e) {
@@ -551,10 +551,10 @@ public class NaaccrXmlLayout implements Layout {
 
         // at this point we know that this layout can be used to read the data file; let's try to get the root data and if anything goes wrong,
         // let's return the info object, without the root data and with the error
-        NaaccrOptions xmlOptions = NaaccrOptions.getDefault();
-        xmlOptions.setUseStrictNamespaces(options == null || options.isNaaccrXmlUseStrictNamespaces());
-        xmlOptions.setIgnoreExtensions(true);
-        try (InputStreamReader is = new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), UTF_8); PatientXmlReader reader = new PatientXmlReader(is, xmlOptions)) {
+        NaaccrOptions opts = NaaccrOptions.getDefault();
+        opts.setUseStrictNamespaces(options == null || options.isNaaccrXmlUseStrictNamespaces());
+        opts.setIgnoreExtensions(true);
+        try (InputStreamReader is = new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), UTF_8); PatientXmlReader reader = new PatientXmlReader(is, opts, _userDictionaries)) {
             info.setRootNaaccrXmlData(reader.getRootData());
         }
         catch (IOException e) {
