@@ -281,18 +281,6 @@ public class NaaccrXmlLayoutTest {
         }
         Assert.assertTrue(exceptionCaught);
 
-        //Bad user dictionary - duplicate Name
-        duplicateItem.setNaaccrId("itemId");
-        duplicateItem.setNaaccrName("Record Type");
-        exceptionCaught = false;
-        try {
-            new NaaccrXmlLayout("160", "A", "test-id", "test-name", null, Collections.singletonList(badDictionary), true);
-        }
-        catch (RuntimeException e) {
-            exceptionCaught = true;
-        }
-        Assert.assertTrue(exceptionCaught);
-
         //Bad user dictionary - duplicate NAACCR Number
         duplicateItem.setNaaccrName("Item name");
         duplicateItem.setNaaccrNum(10);

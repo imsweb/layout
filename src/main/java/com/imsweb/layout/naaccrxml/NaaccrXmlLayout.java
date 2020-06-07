@@ -77,13 +77,13 @@ public class NaaccrXmlLayout implements Layout {
     private List<NaaccrDictionary> _userDictionaries;
 
     // the fields for this layout
-    private List<NaaccrXmlField> _allFields = new ArrayList<>();
+    private final List<NaaccrXmlField> _allFields = new ArrayList<>();
 
     // fields cache for quick access by name (which is NAACCR ID for this layout)
-    private Map<String, NaaccrXmlField> _fieldsCachedByName = new HashMap<>();
+    private final Map<String, NaaccrXmlField> _fieldsCachedByName = new HashMap<>();
 
     // fields cache for quick access by NAACCR number
-    private Map<Integer, NaaccrXmlField> _fieldsCachedByNaaccrNumber = new HashMap<>();
+    private final Map<Integer, NaaccrXmlField> _fieldsCachedByNaaccrNumber = new HashMap<>();
 
     /**
      * Default constructor.
@@ -231,24 +231,18 @@ public class NaaccrXmlLayout implements Layout {
         if (!_allFields.isEmpty()) {
 
             //validate the NaaccrXmlFields
-            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>(), shortLabels = new HashSet<>(), longLabels = new HashSet<>();
+            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>();
             for (NaaccrXmlField field : _allFields) {
                 if (field.getName() == null)
-                    throw new RuntimeException("Field name is required");
+                    throw new RuntimeException("Field name (NAACCR XML ID) is required");
                 if (names.contains(field.getName()))
-                    throw new RuntimeException("Field name must be unique, found duplicate name for '" + field.getName() + "'");
+                    throw new RuntimeException("Field name (NAACCR XML ID) must be unique, found duplicate name for '" + field.getName() + "'");
                 names.add(field.getName());
                 if (field.getItem() == null)
                     throw new RuntimeException("Field item definition is required, missing for field " + field.getName());
-                if (shortLabels.contains(field.getShortLabel()))
-                    throw new RuntimeException("Field short labels must be unique, found duplicate name for '" + field.getShortLabel() + "'");
-                shortLabels.add(field.getShortLabel());
-                if (longLabels.contains(field.getLongLabel()))
-                    throw new RuntimeException("Field long labels must be unique, found duplicate name for '" + field.getLongLabel() + "'");
-                longLabels.add(field.getLongLabel());
                 if (field.getNaaccrItemNum() != null) {
                     if (naaccrItemNums.contains(field.getNaaccrItemNum().toString()))
-                        throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
+                        throw new RuntimeException("Field NAACCR number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
                     naaccrItemNums.add(field.getNaaccrItemNum().toString());
                 }
                 if (field.getLength() == null)
