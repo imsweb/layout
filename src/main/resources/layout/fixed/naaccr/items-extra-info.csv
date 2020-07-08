@@ -1,0 +1,811 @@
+abstractedBy,Abstd By,Hospital-Specific
+accessionNumberHosp,Acc# Hosp,Hospital-Specific
+addrAtDxCity,DX City,Demographic
+addrAtDxCountry,DX Country Code,Demographic
+addrAtDxNoStreet,Street DX,Patient-Confidential
+addrAtDxPostalCode,DX Zip,Demographic
+addrAtDxState,DX State,Demographic
+addrAtDxSupplementl,Suppl DX,Patient-Confidential
+addrCurrentCity,Curr City,Follow-up/Recurrence/Death
+addrCurrentCountry,Cur Country Code,Demographic
+addrCurrentNoStreet,Street Curr,Patient-Confidential
+addrCurrentPostalCode,Curr Zip,Follow-up/Recurrence/Death
+addrCurrentState,Curr State,Follow-up/Recurrence/Death
+addrCurrentSupplementl,Suppl Curr,Patient-Confidential
+adenoidCysticBasaloidPattern,ACB Pat,Stage/Prognostic Factors
+adenopathy,Aden,Stage/Prognostic Factors
+afpPostOrchiectomyLabValue,AFP Post-O Lab Val,Stage/Prognostic Factors
+afpPostOrchiectomyRange,AFP Post-O Range,Stage/Prognostic Factors
+afpPreOrchiectomyLabValue,AFP Pre-O Lab Val,Stage/Prognostic Factors
+afpPreOrchiectomyRange,AFP Pre-O Range,Stage/Prognostic Factors
+afpPretreatmentInterpretation,AFP Pre Inter,Stage/Prognostic Factors
+afpPretreatmentLabValue,AFP Pre Lab Val,Stage/Prognostic Factors
+ageAtDiagnosis,Age DX,Demographic
+ajccId,AJCC ID,Stage/Prognostic Factors
+ajccTnmClinM,AJCC Clin M,Stage/Prognostic Factors
+ajccTnmClinN,AJCC Clin N,Stage/Prognostic Factors
+ajccTnmClinNSuffix,AJCC Clin N Suf,Stage/Prognostic Factors
+ajccTnmClinStageGroup,AJCC Clin Stg Group,Stage/Prognostic Factors
+ajccTnmClinT,AJCC Clin T,Stage/Prognostic Factors
+ajccTnmClinTSuffix,AJCC Clin T Suf,Stage/Prognostic Factors
+ajccTnmPathM,AJCC Path M,Stage/Prognostic Factors
+ajccTnmPathN,AJCC Path N,Stage/Prognostic Factors
+ajccTnmPathNSuffix,AJCC Path N Suf,Stage/Prognostic Factors
+ajccTnmPathStageGroup,AJCC Path Stg Group,Stage/Prognostic Factors
+ajccTnmPathT,AJCC Path T,Stage/Prognostic Factors
+ajccTnmPathTSuffix,AJCC Path T Suf,Stage/Prognostic Factors
+ajccTnmPostTherapyM,AJCC Post M,Stage/Prognostic Factors
+ajccTnmPostTherapyN,AJCC Post N,Stage/Prognostic Factors
+ajccTnmPostTherapyNSuffix,Post N Suf,Stage/Prognostic Factors
+ajccTnmPostTherapyStageGroup,AJCC Post Thpy Stg Group,Stage/Prognostic Factors
+ajccTnmPostTherapyT,AJCC Post T,Stage/Prognostic Factors
+ajccTnmPostTherapyTSuffix,AJCC Post T Suf,Stage/Prognostic Factors
+ambiguousTerminologyDx,Ambig DX,Cancer Identification
+anemia,Anemia,Stage/Prognostic Factors
+archiveFin,Arch FIN,Hospital-Specific
+autopsy,Autopsy,Follow-up/Recurrence/Death
+bSymptoms,B Symp,Stage/Prognostic Factors
+behaviorCodeIcdO3,Beh(O3),Cancer Identification
+behaviorIcdO1,Beh(O1),Edit Overrides/Conversion History/System Admin
+behaviorIcdO2,Beh(O2),Cancer Identification
+bilirubinPretxTotalLabValue,Bil Pre Tot Lab Val,Stage/Prognostic Factors
+bilirubinPretxUnitOfMeasure,Bil Pre Unit,Stage/Prognostic Factors
+birthplace,Birth Place,Demographic
+birthplaceCountry,Birth Country,Demographic
+birthplaceState,Birth State,Demographic
+boneInvasion,Bone Inv,Stage/Prognostic Factors
+brainMolecularMarkers,Brain Mol Marks,Stage/Prognostic Factors
+breslowTumorThickness,Breslow,Stage/Prognostic Factors
+ca125PretreatmentInterpretation,CA Pre Inter,Stage/Prognostic Factors
+cancerStatus,Cancer Stat,Follow-up/Recurrence/Death
+casefindingSource,CF Src,Cancer Identification
+causeOfDeath,COD,Follow-up/Recurrence/Death
+ceaPretreatmentInterpretation,CEA Pre Inter,Stage/Prognostic Factors
+ceaPretreatmentLabValue,CEA Pre Lab Val,Stage/Prognostic Factors
+censusBlockGroup2000,Bk Grp 2000,Demographic
+censusBlockGroup2010,Bk Grp 2010,Demographic
+censusBlockGroup2020,Bk Grp 2020,Demographic
+censusBlockGrp197090,Bk Grp 1970-90,Demographic
+censusCodSys19708090,Cens Cod Sys 70/80/90,Demographic
+censusIndCode19702000,Industry,Demographic
+censusIndCode2010,Cens Ind 2010,Demographic
+censusOccCode19702000,Occupation,Demographic
+censusOccCode2010,Cens Occ 2010,Demographic
+censusOccIndSys7000,Coding System,Demographic
+censusTrCert19708090,Cens Cert 70/80/90,Demographic
+censusTrCertainty2000,Cens Cert 2000,Demographic
+censusTrCertainty2010,Cens Cert 2010,Demographic
+censusTrPovertyIndictr,Cens Pov,Demographic
+censusTract19708090,Cens 70/80/90,Demographic
+censusTract2000,Cens 2000,Demographic
+censusTract2010,Cens 2010,Demographic
+censusTract2020,Cens 2020,Demographic
+censusTractCertainty2020,Cens Tr Cert 2020,Demographic
+chromosome19qLossHeterozygosity,Chr 19q LOH,Stage/Prognostic Factors
+chromosome1pLossHeterozygosity,Chr 1p LOH,Stage/Prognostic Factors
+chromosome3Status,Chr 3 Status,Stage/Prognostic Factors
+chromosome8qStatus,Chr 8q Status,Stage/Prognostic Factors
+circumferentialResectionMargin,CRM,Stage/Prognostic Factors
+classOfCase,CoC,Hospital-Specific
+cocAccreditedFlag,COC Acc Fg,Edit Overrides/Conversion History/System Admin
+cocCodingSysCurrent,COC Cod Curr,Edit Overrides/Conversion History/System Admin
+cocCodingSysOriginal,COC Cod Orig,Edit Overrides/Conversion History/System Admin
+codingSystemForEod,EOD Cod Sys,Stage/Prognostic Factors
+comorbidComplication1,Comorb 1,Stage/Prognostic Factors
+comorbidComplication10,Comorb 10,Stage/Prognostic Factors
+comorbidComplication2,Comorb 2,Stage/Prognostic Factors
+comorbidComplication3,Comorb 3,Stage/Prognostic Factors
+comorbidComplication4,Comorb 4,Stage/Prognostic Factors
+comorbidComplication5,Comorb 5,Stage/Prognostic Factors
+comorbidComplication6,Comorb 6,Stage/Prognostic Factors
+comorbidComplication7,Comorb 7,Stage/Prognostic Factors
+comorbidComplication8,Comorb 8,Stage/Prognostic Factors
+comorbidComplication9,Comorb 9,Stage/Prognostic Factors
+computedEthnicity,Cmptd Eth,Demographic
+computedEthnicitySource,Cmptd Eth Src,Demographic
+countyAtDx,DX Cty Code,Demographic
+countyAtDxAnalysis,DX Anlys Cty ,Demographic
+countyAtDxGeocode1990,Cty DX Geo708090,Demographic
+countyAtDxGeocode2000,Cty DX Geo00,Demographic
+countyAtDxGeocode2010,Cty DX Geo10,Demographic
+countyAtDxGeocode2020,Cty DX Geo20,Demographic
+countyCurrent,Curr Cty,Follow-up/Recurrence/Death
+crcChecksum,CRC Checksum,Edit Overrides/Conversion History/System Admin
+creatininePretreatmentLabValue,Cre Pre Lab Val,Stage/Prognostic Factors
+creatininePretxUnitOfMeasure,Cre Pre Unit,Stage/Prognostic Factors
+csExtension,CS Ext,Stage/Prognostic Factors
+csLymphNodes,CS LN,Stage/Prognostic Factors
+csLymphNodesEval,CS LN Eval,Stage/Prognostic Factors
+csMetsAtDx,CS Mets,Stage/Prognostic Factors
+csMetsAtDxBone,Bone,Stage/Prognostic Factors
+csMetsAtDxBrain,Brain,Stage/Prognostic Factors
+csMetsAtDxLiver,Liver,Stage/Prognostic Factors
+csMetsAtDxLung,Lung,Stage/Prognostic Factors
+csMetsEval,CS Mets Eval,Stage/Prognostic Factors
+csSiteSpecificFactor1,SSF 1,Stage/Prognostic Factors
+csSiteSpecificFactor10,SSF 10,Stage/Prognostic Factors
+csSiteSpecificFactor11,SSF 11,Stage/Prognostic Factors
+csSiteSpecificFactor12,SSF 12,Stage/Prognostic Factors
+csSiteSpecificFactor13,SSF 13,Stage/Prognostic Factors
+csSiteSpecificFactor14,SSF 14,Stage/Prognostic Factors
+csSiteSpecificFactor15,SSF 15,Stage/Prognostic Factors
+csSiteSpecificFactor16,SSF 16,Stage/Prognostic Factors
+csSiteSpecificFactor17,SSF 17,Stage/Prognostic Factors
+csSiteSpecificFactor18,SSF 18,Stage/Prognostic Factors
+csSiteSpecificFactor19,SSF 19,Stage/Prognostic Factors
+csSiteSpecificFactor2,SSF 2,Stage/Prognostic Factors
+csSiteSpecificFactor20,SSF 20,Stage/Prognostic Factors
+csSiteSpecificFactor21,SSF 21,Stage/Prognostic Factors
+csSiteSpecificFactor22,SSF 22,Stage/Prognostic Factors
+csSiteSpecificFactor23,SSF 23,Stage/Prognostic Factors
+csSiteSpecificFactor24,SSF 24,Stage/Prognostic Factors
+csSiteSpecificFactor25,SSF 25,Stage/Prognostic Factors
+csSiteSpecificFactor3,SSF 3,Stage/Prognostic Factors
+csSiteSpecificFactor4,SSF 4,Stage/Prognostic Factors
+csSiteSpecificFactor5,SSF 5,Stage/Prognostic Factors
+csSiteSpecificFactor6,SSF 6,Stage/Prognostic Factors
+csSiteSpecificFactor7,SSF 7,Stage/Prognostic Factors
+csSiteSpecificFactor8,SSF 8,Stage/Prognostic Factors
+csSiteSpecificFactor9,SSF 9,Stage/Prognostic Factors
+csTumorSize,CS Size,Stage/Prognostic Factors
+csTumorSizeExtEval,CS Eval,Stage/Prognostic Factors
+csVersionDerived,Ver Last,Stage/Prognostic Factors
+csVersionInputCurrent,Ver Input,Stage/Prognostic Factors
+csVersionInputOriginal,Ver 1st,Stage/Prognostic Factors
+date1stCrsRxCoc,1st CRS COC Dt,Treatment-1st Course
+date1stCrsRxCocFlag,1st CRS COC Dt Fg,Treatment-1st Course
+dateCaseCompleted,Case Cplt Date,Edit Overrides/Conversion History/System Admin
+dateCaseCompletedCoc,COC Dt Comp,Edit Overrides/Conversion History/System Admin
+dateCaseInitiated,Initiated Dt,Edit Overrides/Conversion History/System Admin
+dateCaseLastChanged,Last Changed Dt,Edit Overrides/Conversion History/System Admin
+dateCaseReportExported,Case Expt Dt,Edit Overrides/Conversion History/System Admin
+dateCaseReportLoaded,Loaded Dt,Edit Overrides/Conversion History/System Admin
+dateCaseReportReceived,Received Dt,Edit Overrides/Conversion History/System Admin
+dateConclusiveDx,Conclsv Dt,Cancer Identification
+dateConclusiveDxFlag,Conclsv Dt Fg,Cancer Identification
+dateInitialRxSeer,Init RX Dt,Treatment-1st Course
+dateInitialRxSeerFlag,Init RX Dt Fg,Treatment-1st Course
+dateOf1stContact,1st Cont Dt,Hospital-Specific
+dateOf1stContactFlag,1st Cont Dt Fg,Hospital-Specific
+dateOfBirth,Birth Dt,Demographic
+dateOfBirthFlag,Birth Dt Fg,Demographic
+dateOfDeathCanada,Canada Death Dt,Follow-up/Recurrence/Death
+dateOfDeathCanadaFlag,Canada Death Dt Fg,Follow-up/Recurrence/Death
+dateOfDiagnosis,DX Dt,Cancer Identification
+dateOfDiagnosisFlag,DX Dt Fg,Cancer Identification
+dateOfInptAdm,Admit Dt,Hospital-Specific
+dateOfInptAdmFlag,Admit Dt Fg,Hospital-Specific
+dateOfInptDisch,Dschrg Dt,Hospital-Specific
+dateOfInptDischFlag,Disch Dt Fg,Hospital-Specific
+dateOfLastCancerStatus,Last Canc Dt,Follow-up/Recurrence/Death
+dateOfLastCancerStatusFlag,Last Canc Dt Fg,Follow-up/Recurrence/Death
+dateOfLastContact,DOLC,Follow-up/Recurrence/Death
+dateOfLastContactFlag,DOLC Fg,Follow-up/Recurrence/Death
+dateOfMultTumors,Multi Dt,Cancer Identification
+dateOfMultTumorsFlag,Multi Dt Fg,Cancer Identification
+dateRegionalLNDissection,Reg LN Diss Dt,Stage/Prognostic Factors
+dateRegionalLNDissectionFlag,Reg LN Diss Fg,Stage/Prognostic Factors
+dateSentinelLymphNodeBiopsy,SLN Biop Dt,Stage/Prognostic Factors
+dateSentinelLymphNodeBiopsyFlag,SLN Biop Dt Fg,Stage/Prognostic Factors
+dateTumorRecordAvailbl,Dt Tum Rec Avlbl,Edit Overrides/Conversion History/System Admin
+dcStateFileNumber,DC File#,Patient-Confidential
+derivedAjcc6M,AJCC 6 M,Stage/Prognostic Factors
+derivedAjcc6MDescript,AJCC 6 M Desc,Stage/Prognostic Factors
+derivedAjcc6N,Der N,Stage/Prognostic Factors
+derivedAjcc6NDescript,AJCC 6 N Desc,Stage/Prognostic Factors
+derivedAjcc6StageGrp,AJCC 6 Stg Grp,Stage/Prognostic Factors
+derivedAjcc6T,AJCC 6 T,Stage/Prognostic Factors
+derivedAjcc6TDescript,AJCC 6 T Desc,Stage/Prognostic Factors
+derivedAjcc7M,AJCC 7 M,Stage/Prognostic Factors
+derivedAjcc7MDescript,AJCC 7 M Desc,Stage/Prognostic Factors
+derivedAjcc7N,AJCC 7 N,Stage/Prognostic Factors
+derivedAjcc7NDescript,AJCC 7 N Desc,Stage/Prognostic Factors
+derivedAjcc7StageGrp,AJCC 7 Stg Grp,Stage/Prognostic Factors
+derivedAjcc7T,AJCC 7 T,Stage/Prognostic Factors
+derivedAjcc7TDescript,AJCC 7 T Desc,Stage/Prognostic Factors
+derivedAjccFlag,Der AJCC Fg,Stage/Prognostic Factors
+derivedEod2018M,Der EOD 2018 M,Stage/Prognostic Factors
+derivedEod2018N,Der EOD 2018 N,Stage/Prognostic Factors
+derivedEod2018StageGroup,Der EOD 2018 Stg Group,Stage/Prognostic Factors
+derivedEod2018T,Der EOD 2018 T,Stage/Prognostic Factors
+derivedNeoadjuvRxFlag,Der Neoadjuv Rx Fg,Stage/Prognostic Factors
+derivedPostrx7M,Der PostRX 7 M,Stage/Prognostic Factors
+derivedPostrx7N,Der PostRX 7 N,Stage/Prognostic Factors
+derivedPostrx7StgeGrp,Der PostRX 7 Stg Grp,Stage/Prognostic Factors
+derivedPostrx7T,Der PostRX 7 T,Stage/Prognostic Factors
+derivedPrerx7M,Der PreRX 7 M,Stage/Prognostic Factors
+derivedPrerx7MDescrip,Der PreRX 7 M Desc,Stage/Prognostic Factors
+derivedPrerx7N,Der PreRX 7 N,Stage/Prognostic Factors
+derivedPrerx7NDescrip,Der PreRX 7 N Desc,Stage/Prognostic Factors
+derivedPrerx7StageGrp,Der PreRX 7 Stg Grp,Stage/Prognostic Factors
+derivedPrerx7T,Der PreRX 7 T,Stage/Prognostic Factors
+derivedPrerx7TDescrip,Der PreRX 7 T Desc,Stage/Prognostic Factors
+derivedSeerClinStgGrp,Der SEER Clin Stg Grp,Stage/Prognostic Factors
+derivedSeerCmbMSrc,Der SEER Cmb M Src,Stage/Prognostic Factors
+derivedSeerCmbNSrc,Der SEER Cmb N Src,Stage/Prognostic Factors
+derivedSeerCmbStgGrp,Der SEER Cmb Stg Grp,Stage/Prognostic Factors
+derivedSeerCmbTSrc,Der SEER Cmb T Src,Stage/Prognostic Factors
+derivedSeerCombinedM,Der SEER Cmb M,Stage/Prognostic Factors
+derivedSeerCombinedN,Der SEER Cmb N,Stage/Prognostic Factors
+derivedSeerCombinedT,Der SEER Cmb T,Stage/Prognostic Factors
+derivedSeerPathStgGrp,Der SEER Path Stg Grp,Stage/Prognostic Factors
+derivedSs1977,Der SS1977,Stage/Prognostic Factors
+derivedSs1977Flag,Der SS 1977 Fg,Stage/Prognostic Factors
+derivedSs2000,Der SS2000,Stage/Prognostic Factors
+derivedSs2000Flag,Der Sum Stg 2000 Fg,Stage/Prognostic Factors
+derivedSummaryStage2018,Der Sum Stg 2018,Stage/Prognostic Factors
+diagnosticConfirmation,DX Conf,Cancer Identification
+diagnosticProc7387,DX Proc 73-87,Edit Overrides/Conversion History/System Admin
+ehrReporting,EHR Rep,Other-Confidential
+eodExtension,EOD Ext,Stage/Prognostic Factors
+eodExtensionProstPath,EOD Prost,Stage/Prognostic Factors
+eodLymphNodeInvolv,EOD LN,Stage/Prognostic Factors
+eodMets,EOD Mets,Stage/Prognostic Factors
+eodOld13Digit,EOD13(73-82),Stage/Prognostic Factors
+eodOld2Digit,EOD2(73-82),Stage/Prognostic Factors
+eodOld4Digit,EOD4(83-87),Stage/Prognostic Factors
+eodPrimaryTumor,EOD Prim Tum,Stage/Prognostic Factors
+eodRegionalNodes,EOD Reg Nodes,Stage/Prognostic Factors
+eodTumorSize,EOD Size,Stage/Prognostic Factors
+esophagusAndEgjTumorEpicenter,Eso EGJ Epi,Stage/Prognostic Factors
+estrogenReceptorPercntPosOrRange,ER Pos/Range,Stage/Prognostic Factors
+estrogenReceptorSummary,ER Summ,Stage/Prognostic Factors
+estrogenReceptorTotalAllredScore,ER All,Stage/Prognostic Factors
+extranodalExtensionClin,Enod Ext Clin Non ,Stage/Prognostic Factors
+extranodalExtensionHeadNeckClin,Enod Ext Clin HN,Stage/Prognostic Factors
+extranodalExtensionHeadNeckPath,Enod Ext Path HN,Stage/Prognostic Factors
+extranodalExtensionPath,Enod Ext Path Non,Stage/Prognostic Factors
+extravascularMatrixPatterns,Extra Mat Pat,Stage/Prognostic Factors
+fibrosisScore,Fib Score,Stage/Prognostic Factors
+figoStage,FIGO Stg,Stage/Prognostic Factors
+followUpContactCity,Fup Cont City,Follow-up/Recurrence/Death
+followUpContactName,Fup Contact,Patient-Confidential
+followUpContactNost,Fup Contact Add,Patient-Confidential
+followUpContactPostal,Fup Cont Zip,Follow-up/Recurrence/Death
+followUpContactState,Fup Cont State,Follow-up/Recurrence/Death
+followUpContactSuppl,Fup Contact Suppl,Patient-Confidential
+followUpSource,Fup Src,Follow-up/Recurrence/Death
+followUpSourceCentral,Fup Src Cntl,Follow-up/Recurrence/Death
+followingRegistry,Follow Reg,Hospital-Confidential
+followupContactCountry,FU Contact Country,Demographic
+gestationalTrophoblasticPxIndex,GTP Ind,Stage/Prognostic Factors
+gisCoordinateQuality,GIS Qual,Demographic
+gleasonPatternsClinical,Gleas Pat Clin,Stage/Prognostic Factors
+gleasonPatternsPathological,Gleas Pat Path,Stage/Prognostic Factors
+gleasonScoreClinical,Gleas Score Clin,Stage/Prognostic Factors
+gleasonScorePathological,Gleas Score Path,Stage/Prognostic Factors
+gleasonTertiaryPattern,Gleas Tert Pat,Stage/Prognostic Factors
+grade,Grade,Cancer Identification
+gradeClinical,Grade Clin,Stage/Prognostic Factors
+gradeIcdO1,Grade(O1),Edit Overrides/Conversion History/System Admin
+gradePathSystem,Grade Path Sys,Cancer Identification
+gradePathValue,Grade Path Val,Cancer Identification
+gradePathological,Grade Path,Stage/Prognostic Factors
+gradePostTherapy,Grade Post Thpy,Stage/Prognostic Factors
+hcgPostOrchiectomyLabValue,hcg Post-O Lab Val,Stage/Prognostic Factors
+hcgPostOrchiectomyRange,hcg Post-O Range,Stage/Prognostic Factors
+hcgPreOrchiectomyLabValue,hCg Pre-O Lab Val,Stage/Prognostic Factors
+hcgPreOrchiectomyRange,hcg Pre-O Range,Stage/Prognostic Factors
+her2IhcSummary,IHC Summ,Stage/Prognostic Factors
+her2IshDualProbeCopyNumber,Dual Copy Num,Stage/Prognostic Factors
+her2IshDualProbeRatio,Dual Prob Rat,Stage/Prognostic Factors
+her2IshSingleProbeCopyNumber,Sing Copy Num,Stage/Prognostic Factors
+her2IshSummary,ISH Summ,Stage/Prognostic Factors
+her2OverallSummary,HER2 Summ,Stage/Prognostic Factors
+heritableTrait,Her Trait,Stage/Prognostic Factors
+highRiskCytogenetics,High Risk Cyto,Stage/Prognostic Factors
+highRiskHistologicFeatures,High Risk Hist Feat,Stage/Prognostic Factors
+histologicTypeIcdO3,Hist(O3),Cancer Identification
+histologyIcdO1,Hist(O1),Edit Overrides/Conversion History/System Admin
+histologyIcdO2,Hist(O2),Cancer Identification
+hivStatus,HIV Status,Stage/Prognostic Factors
+iNRProthrombinTime,INR,Stage/Prognostic Factors
+icdO2ConversionFlag,Conv Rev(02),Edit Overrides/Conversion History/System Admin
+icdO3ConversionFlag,Conv Rev(03),Edit Overrides/Conversion History/System Admin
+icdRevisionComorbid,ICD Rev Comorb,Stage/Prognostic Factors
+icdRevisionNumber,COD Rev#,Follow-up/Recurrence/Death
+ihsLink,IHS,Demographic
+industrySource,Src,Demographic
+inpatientStatus,Inpat Stat,Hospital-Specific
+institutionReferredFrom,Inst Ref From,Hospital-Confidential
+institutionReferredTo,Inst Ref To,Hospital-Confidential
+invasionBeyondCapsule,Inv Beyond Cap,Stage/Prognostic Factors
+ipsilateralAdrenalGlandInvolve,Ipsi AG,Stage/Prognostic Factors
+jak2,JAK2,Stage/Prognostic Factors
+ki67,Ki67,Stage/Prognostic Factors
+kitGeneImmunohistochemistry,KIT Immuno,Stage/Prognostic Factors
+kras,KRAS,Stage/Prognostic Factors
+laterality,Lat,Cancer Identification
+latitude,Latitude,Patient-Confidential
+ldhPostOrchiectomyRange,LDH Post-O Range,Stage/Prognostic Factors
+ldhPreOrchiectomyRange,LDH Pre-O Range,Stage/Prognostic Factors
+ldhPretreatmentLabValue,LDH Pre Lab Val,Stage/Prognostic Factors
+ldhPretreatmentLevel,LDH Pre Lvl,Stage/Prognostic Factors
+ldhUpperLimitsOfNormal,LDH Up Lim,Stage/Prognostic Factors
+lnAssessMethodFemoralInguinal,LN Meth FI ,Stage/Prognostic Factors
+lnAssessMethodParaaortic,LN Meth PA,Stage/Prognostic Factors
+lnAssessMethodPelvic,LN Meth Pel,Stage/Prognostic Factors
+lnDistantAssessMethod,LN Dis Meth,Stage/Prognostic Factors
+lnDistantMediastinalScalene,LN Dis Med Scal,Stage/Prognostic Factors
+lnHeadAndNeckLevels1To3,LN Lvls 1-3,Stage/Prognostic Factors
+lnHeadAndNeckLevels4To5,LN Lvls 4-5,Stage/Prognostic Factors
+lnHeadAndNeckLevels6To7,LN Lvls 6-7,Stage/Prognostic Factors
+lnHeadAndNeckOther,LN Other,Stage/Prognostic Factors
+lnIsolatedTumorCells,LN ITC,Stage/Prognostic Factors
+lnLaterality,LN Lat,Stage/Prognostic Factors
+lnPositiveAxillaryLevel1To2,LN Pos Ax Lvl 1-2,Stage/Prognostic Factors
+lnSize,LN Size,Stage/Prognostic Factors
+lnStatusFemorInguinParaaortPelv,FI/PA/Pel LN Status,Stage/Prognostic Factors
+longitude,Longitude,Patient-Confidential
+lymphVascularInvasion,LVI,Stage/Prognostic Factors
+lymphocytosis,Lymph,Stage/Prognostic Factors
+majorVeinInvolvement,Maj Vein,Stage/Prognostic Factors
+maritalStatusAtDx,Marital DX,Demographic
+measuredBasalDiameter,Meas Bas Di,Stage/Prognostic Factors
+measuredThickness,Meas Thick,Stage/Prognostic Factors
+medicalRecordNumber,Med Rec#,Patient-Confidential
+medicareBeneficiaryIdentifier,Med Ben,Patient-Confidential
+methylationOfO6MGMT,O6-M-M,Stage/Prognostic Factors
+metsAtDxBone,Mets DX Bone,Stage/Prognostic Factors
+metsAtDxBrain,Mets DX Brain,Stage/Prognostic Factors
+metsAtDxDistantLn,Mets DX Dist LN,Stage/Prognostic Factors
+metsAtDxLiver,Mets DX Liver,Stage/Prognostic Factors
+metsAtDxLung,Mets DX Lung,Stage/Prognostic Factors
+metsAtDxOther,Mets DX Other,Stage/Prognostic Factors
+microsatelliteInstability,MSI,Stage/Prognostic Factors
+microvascularDensity,Micro Dens,Stage/Prognostic Factors
+militaryRecordNoSuffix,Milit Rec Suffix,Patient-Confidential
+mitoticCountUvealMelanoma,Mit Cnt UM,Stage/Prognostic Factors
+mitoticRateMelanoma,Mit Rate Mel,Stage/Prognostic Factors
+morphCodingSysCurrent,Morph Cod Curr,Cancer Identification
+morphCodingSysOriginl,Morph Cod Orig,Cancer Identification
+multTumRptAsOnePrim,Multi as 1,Cancer Identification
+multigeneSignatureMethod,Mult Sig Meth,Stage/Prognostic Factors
+multigeneSignatureResults,Mult Sig Res,Stage/Prognostic Factors
+multiplicityCounter,Multi Cntr,Cancer Identification
+naaccrRecordVersion,NAACCR Rec Ver,Record ID
+nameAlias,Alias,Patient-Confidential
+nameFirst,First,Patient-Confidential
+nameLast,Last,Patient-Confidential
+nameMaiden,Maiden,Patient-Confidential
+nameMiddle,Mid,Patient-Confidential
+namePrefix,Pre,Patient-Confidential
+nameSpouseParent,Spouse/Prnt,Patient-Confidential
+nameSuffix,Suf,Patient-Confidential
+nccnInternationalPrognosticIndex,NCCN IPI,Stage/Prognostic Factors
+nextFollowUpSource,Next Fup Src,Follow-up/Recurrence/Death
+nhiaDerivedHispOrigin,NHIA,Demographic
+npcrDerivedAjcc8TnmClinStgGrp,Der Clin Stg Grp,Stage/Prognostic Factors
+npcrDerivedAjcc8TnmPathStgGrp,Der Path Stg Grp,Stage/Prognostic Factors
+npcrDerivedAjcc8TnmPostStgGrp,Der Post Stg Grp,Stage/Prognostic Factors
+npcrDerivedClinStgGrp,NPCR Der Clin Stg Grp,Stage/Prognostic Factors
+npcrDerivedPathStgGrp,NPCR Der Path Stg Grp,Stage/Prognostic Factors
+npcrSpecificField,NPCR Spec Fld,Stage/Prognostic Factors
+npiArchiveFin,NPI Arch FIN,Hospital-Specific
+npiFollowingRegistry,NPI Follow Reg,Hospital-Confidential
+npiInstReferredFrom,NPI Inst Ref From,Hospital-Confidential
+npiInstReferredTo,NPI Inst Ref To,Hospital-Confidential
+npiPhysician3,Phys3 NPI,Other-Confidential
+npiPhysician4,Phys4 NPI,Other-Confidential
+npiPhysicianFollowUp,FU Phys NPI,Other-Confidential
+npiPhysicianManaging,Manag Phys NPI,Other-Confidential
+npiPhysicianPrimarySurg,Surgeon NPI,Other-Confidential
+npiRegistryId,NPI Reg ID,Record ID
+npiReportingFacility,Rpt Fac NPI,Hospital-Specific
+numberOfCoresExamined,Num Cores Exam,Stage/Prognostic Factors
+numberOfCoresPositive,Num Cores Pos,Stage/Prognostic Factors
+numberOfExaminedParaAorticNodes,Exam PA Nd,Stage/Prognostic Factors
+numberOfExaminedPelvicNodes,Exam Pel Nd,Stage/Prognostic Factors
+numberOfPositiveParaAorticNodes,Pos PA Nd,Stage/Prognostic Factors
+numberOfPositivePelvicNodes,Pos Pel Nd,Stage/Prognostic Factors
+numberPhasesOfRadTxToVolume,Num Rad Phs,Treatment-1st Course
+occupationSource,Occupation Src,Demographic
+oncotypeDxRecurrenceScoreDcis,Rec DCIS,Stage/Prognostic Factors
+oncotypeDxRecurrenceScoreInvasiv,Rec Inv,Stage/Prognostic Factors
+oncotypeDxRiskLevelDcis,Risk DCIS,Stage/Prognostic Factors
+oncotypeDxRiskLevelInvasive,Risk Inv,Stage/Prognostic Factors
+organomegaly,Org,Stage/Prognostic Factors
+overRideAcsnClassSeq,A#/Cl/S#,Edit Overrides/Conversion History/System Admin
+overRideAgeSiteMorph,A/S/M,Edit Overrides/Conversion History/System Admin
+overRideCocSiteType,CS/Ty,Edit Overrides/Conversion History/System Admin
+overRideCs1,Over CS 1,Edit Overrides/Conversion History/System Admin
+overRideCs10,Over CS 10,Edit Overrides/Conversion History/System Admin
+overRideCs11,Over CS 11,Edit Overrides/Conversion History/System Admin
+overRideCs12,Over CS 12,Edit Overrides/Conversion History/System Admin
+overRideCs13,Over CS 13,Edit Overrides/Conversion History/System Admin
+overRideCs14,Over CS 14,Edit Overrides/Conversion History/System Admin
+overRideCs15,Over CS 15,Edit Overrides/Conversion History/System Admin
+overRideCs16,Over CS 16,Edit Overrides/Conversion History/System Admin
+overRideCs17,Over CS 17,Edit Overrides/Conversion History/System Admin
+overRideCs18,Over CS 18,Edit Overrides/Conversion History/System Admin
+overRideCs19,Over CS 19,Edit Overrides/Conversion History/System Admin
+overRideCs2,Over CS 2,Edit Overrides/Conversion History/System Admin
+overRideCs20,Over CS 20,Edit Overrides/Conversion History/System Admin
+overRideCs3,Over CS 3,Edit Overrides/Conversion History/System Admin
+overRideCs4,Over CS 4,Edit Overrides/Conversion History/System Admin
+overRideCs5,Over CS 5,Edit Overrides/Conversion History/System Admin
+overRideCs6,Over CS 6,Edit Overrides/Conversion History/System Admin
+overRideCs7,Over CS 7,Edit Overrides/Conversion History/System Admin
+overRideCs8,Over CS 8,Edit Overrides/Conversion History/System Admin
+overRideCs9,Over CS 9,Edit Overrides/Conversion History/System Admin
+overRideHistology,H,Edit Overrides/Conversion History/System Admin
+overRideHospseqDxconf,HpS#/DC,Edit Overrides/Conversion History/System Admin
+overRideHospseqSite,HpS#/S,Edit Overrides/Conversion History/System Admin
+overRideIllDefineSite,IS,Edit Overrides/Conversion History/System Admin
+overRideLeukLymphoma,LeLy,Edit Overrides/Conversion History/System Admin
+overRideNameSex,N/S,Edit Overrides/Conversion History/System Admin
+overRideReportSource,RSr,Edit Overrides/Conversion History/System Admin
+overRideSeqnoDxconf,S#/DC,Edit Overrides/Conversion History/System Admin
+overRideSiteBehavior,S/B,Edit Overrides/Conversion History/System Admin
+overRideSiteEodDxDt,S/E/DDt,Edit Overrides/Conversion History/System Admin
+overRideSiteLatEod,S/L/E,Edit Overrides/Conversion History/System Admin
+overRideSiteLatMorph,S/L/M,Edit Overrides/Conversion History/System Admin
+overRideSiteLatSeqno,S/L/S#,Edit Overrides/Conversion History/System Admin
+overRideSiteTnmStggrp,S/TSt,Edit Overrides/Conversion History/System Admin
+overRideSiteType,S/Ty,Edit Overrides/Conversion History/System Admin
+overRideSsNodespos,SS/NP,Edit Overrides/Conversion History/System Admin
+overRideSsTnmM,SS/TM,Edit Overrides/Conversion History/System Admin
+overRideSsTnmN,SS/TN,Edit Overrides/Conversion History/System Admin
+overRideSurgDxconf,Sg/DC,Edit Overrides/Conversion History/System Admin
+overRideTnm3,TNM 3,Edit Overrides/Conversion History/System Admin
+overRideTnmStage,TNM Stg,Edit Overrides/Conversion History/System Admin
+overRideTnmTis,TNM Tis,Edit Overrides/Conversion History/System Admin
+pathDateSpecCollect1,Dt Spec Collected 1,Pathology
+pathDateSpecCollect2,Dt Spec Collected 2,Pathology
+pathDateSpecCollect3,Dt Spec Collected 3,Pathology
+pathDateSpecCollect4,Dt Spec Collected 4,Pathology
+pathDateSpecCollect5,Dt Spec Collected 5,Pathology
+pathOrderPhysLicNo1,Order Phys Lic# 1,Pathology
+pathOrderPhysLicNo2,Order Phys Lic# 2,Pathology
+pathOrderPhysLicNo3,Order Phys Lic# 3,Pathology
+pathOrderPhysLicNo4,Order Phys Lic# 4,Pathology
+pathOrderPhysLicNo5,Order Phys Lic# 5,Pathology
+pathOrderingFacNo1,Order Fac# 1,Pathology
+pathOrderingFacNo2,Order Fac# 2,Pathology
+pathOrderingFacNo3,Order Fac# 3,Pathology
+pathOrderingFacNo4,Order Fac# 4,Pathology
+pathOrderingFacNo5,Order Fac# 5,Pathology
+pathReportNumber1,Path Rpt# 1,Pathology
+pathReportNumber2,Path Rpt# 2,Pathology
+pathReportNumber3,Path Rpt# 3,Pathology
+pathReportNumber4,Path Rpt# 4,Pathology
+pathReportNumber5,Path Rpt# 5,Pathology
+pathReportType1,Path Rpt Type 1,Pathology
+pathReportType2,Path Rpt Type 2,Pathology
+pathReportType3,Path Rpt Type 3,Pathology
+pathReportType4,Path Rpt Type 4,Pathology
+pathReportType5,Path Rpt Type 5,Pathology
+pathReportingFacId1,Path Rpt Fac ID 1,Pathology
+pathReportingFacId2,Path Rpt Fac ID 2,Pathology
+pathReportingFacId3,Path Rpt Fac ID 3,Pathology
+pathReportingFacId4,Path Rpt Fac ID 4,Pathology
+pathReportingFacId5,Path Rpt Fac ID 5,Pathology
+patientIdNumber,Pat ID #,Record ID
+patientSystemIdHosp,Sys ID Hosp,Record ID
+pediatricStage,Pediatric Stg,Stage/Prognostic Factors
+pediatricStagedBy,Pediatric Stg By,Stage/Prognostic Factors
+pediatricStagingSystem,Pediatric Stg Sys,Stage/Prognostic Factors
+percentNecrosisPostNeoadjuvant,Per Nec Post Neo,Stage/Prognostic Factors
+perineuralInvasion,Per Inv,Stage/Prognostic Factors
+peripheralBloodInvolvement,Periph Blood,Stage/Prognostic Factors
+peritonealCytology,Per Cyt,Stage/Prognostic Factors
+phase1DosePerFraction,P1 Dose/Frac,Treatment-1st Course
+phase1NumberOfFractions,P1 Num Frac,Treatment-1st Course
+phase1RadiationExternalBeamTech,P1 Rad Tech,Treatment-1st Course
+phase1RadiationPrimaryTxVolume,P1 Rad Vol,Treatment-1st Course
+phase1RadiationToDrainingLN,P1 Rad LN,Treatment-1st Course
+phase1RadiationTreatmentModality,P1 Rad Mod,Treatment-1st Course
+phase1TotalDose,P1 Tot Dose,Treatment-1st Course
+phase2DosePerFraction,P2 Dose/Frac,Treatment-1st Course
+phase2NumberOfFractions,P2 Num Frac,Treatment-1st Course
+phase2RadiationExternalBeamTech,P2 Rad Tech,Treatment-1st Course
+phase2RadiationPrimaryTxVolume,P2 Rad Vol,Treatment-1st Course
+phase2RadiationToDrainingLN,P2 Rad LN,Treatment-1st Course
+phase2RadiationTreatmentModality,P2 Rad Mod,Treatment-1st Course
+phase2TotalDose,P2 Tot Dose,Treatment-1st Course
+phase3DosePerFraction,P3 Dose/Frac,Treatment-1st Course
+phase3NumberOfFractions,P3 Num Frac,Treatment-1st Course
+phase3RadiationExternalBeamTech,P3 Rad Tech,Treatment-1st Course
+phase3RadiationPrimaryTxVolume,P3 Rad Vol,Treatment-1st Course
+phase3RadiationToDrainingLN,P3 Rad LN,Treatment-1st Course
+phase3RadiationTreatmentModality,P3 Rad Mod,Treatment-1st Course
+phase3TotalDose,P3 Tot Dose,Treatment-1st Course
+physician3,Phys3 ID,Other-Confidential
+physician4,Phys4 ID,Other-Confidential
+physicianFollowUp,FU Phys ID,Other-Confidential
+physicianManaging,Manag Phys ID,Other-Confidential
+physicianPrimarySurg,Surgeon ID,Other-Confidential
+placeOfDeath,Death Place,Follow-up/Recurrence/Death
+placeOfDeathCountry,POD Country,Demographic
+placeOfDeathState,POD State,Demographic
+pleuralEffusion,Pl Eff,Stage/Prognostic Factors
+primaryPayerAtDx,Payer DX,Hospital-Specific
+primarySclerosingCholangitis,Prim Scl Chol,Stage/Prognostic Factors
+primarySite,Site,Cancer Identification
+profoundImmuneSuppression,Pro Imm Sup,Stage/Prognostic Factors
+progesteroneRecepPrcntPosOrRange,PR Pos/Range,Stage/Prognostic Factors
+progesteroneRecepSummary,PR Summ,Stage/Prognostic Factors
+progesteroneRecepTotalAllredScor,PR All,Stage/Prognostic Factors
+prostatePathologicalExtension,Prost Path Ext,Stage/Prognostic Factors
+psaLabValue,PSA Lab Val,Stage/Prognostic Factors
+qualityOfSurvival,Surv Qual,Follow-up/Recurrence/Death
+race1,Race 1,Demographic
+race2,Race 2,Demographic
+race3,Race 3,Demographic
+race4,Race 4,Demographic
+race5,Race 5,Demographic
+raceCodingSysCurrent,Race Cod Curr,Demographic
+raceCodingSysOriginal,Race Cod Orig,Demographic
+raceNapiia,NAPIIA,Demographic
+radBoostDoseCgy,Boost Dose,Treatment-1st Course
+radBoostRxModality,Boost Mod,Treatment-1st Course
+radLocationOfRx,Radtn Loc,Treatment-1st Course
+radNoOfTreatmentVol,Num TX,Treatment-1st Course
+radRegionalDoseCgy,Reg Dose,Treatment-1st Course
+radRegionalRxModality,Reg Mod,Treatment-1st Course
+radTreatmentVolume,TX Vol,Treatment-1st Course
+radiationTxDiscontinuedEarly,Rad Disc,Treatment-1st Course
+readmSameHosp30Days,Readm <30,Treatment-1st Course
+reasonForNoRadiation,Rs No Radtn,Treatment-1st Course
+reasonForNoSurgery,Rs No Surg,Treatment-1st Course
+recordNumberRecode,Rec Num,Follow-up/Recurrence/Death
+recordType,Rec Type,Record ID
+recurrenceDate1st,Recur 1st Dt,Follow-up/Recurrence/Death
+recurrenceDate1stFlag,Recur 1st Dt Fg,Follow-up/Recurrence/Death
+recurrenceType1st,Recur Type 1st,Follow-up/Recurrence/Death
+regionalNodesExamined,Reg Nd Exm,Stage/Prognostic Factors
+regionalNodesPositive,Reg Nd Pos,Stage/Prognostic Factors
+registryId,Reg ID,Record ID
+registryType,Reg Type,Record ID
+reportingFacility,Rpt Fac FIN,Hospital-Specific
+reserved00,Res00,Record ID
+reserved01,Res01,Record ID
+reserved02,Res02,Demographic
+reserved03,Res03,Cancer Identification
+reserved04,Res04,Hospital-Specific
+reserved05,Res05,Stage/Prognostic Factors
+reserved06,Res06,Treatment-1st Course
+reserved07,Res07,Treatment-Subsequent & Other
+reserved08,Res08,Edit Overrides/Conversion History/System Admin
+reserved09,Res09,Follow-up/Recurrence/Death
+reserved10,Res10,Patient-Confidential
+reserved11,Res11,Hospital-Confidential
+reserved12,Res12,Other-Confidential
+reserved13,Res13,Pathology
+reserved14,Res14,Text-Miscellaneous
+reserved15,Res15,Stage/Prognostic Factors
+reserved16,Res16,Demographic
+residualTumVolPostCytoreduction,Tum Vol Cyto,Stage/Prognostic Factors
+responseToNeoadjuvantTherapy,Neo Thpy Resp,Stage/Prognostic Factors
+rqrsNcdbSubmissionFlag,RQRS/NCDB Sub Fg,Edit Overrides/Conversion History/System Admin
+ruca2000,RUCA 2000,Demographic
+ruca2010,RUCA 2010,Demographic
+ruralurbanContinuum1993,Rur Urb Cont 93,Demographic
+ruralurbanContinuum2003,Rur Urb Cont 03,Demographic
+ruralurbanContinuum2013,Rur Urb Cont 13,Demographic
+rxCodingSystemCurrent,RX Cod Curr,Treatment-1st Course
+rxDateBrm,BRM Dt,Treatment-1st Course
+rxDateBrmFlag,BRM Dt Fg,Treatment-1st Course
+rxDateChemo,Chemo Dt,Treatment-1st Course
+rxDateChemoFlag,Chemo Dt Fg,Treatment-1st Course
+rxDateDxStgProc,DX/Stg Dt,Treatment-1st Course
+rxDateDxStgProcFlag,DX/Stg Dt Fg,Treatment-1st Course
+rxDateHormone,Horm Dt,Treatment-1st Course
+rxDateHormoneFlag,Hormone Dt Fg,Treatment-1st Course
+rxDateMostDefinSurg,Most Defin Surg Dt,Treatment-1st Course
+rxDateMostDefinSurgFlag,Most Defin Surg Dt Fg,Treatment-1st Course
+rxDateOther,Other Dt,Treatment-1st Course
+rxDateOtherFlag,Other Dt Fg,Treatment-1st Course
+rxDateRadiation,Rad Dt,Treatment-1st Course
+rxDateRadiationEnded,Rad End Dt,Treatment-1st Course
+rxDateRadiationEndedFlag,Rad End Dt Fg,Treatment-1st Course
+rxDateRadiationFlag,Rad Dt Fg,Treatment-1st Course
+rxDateSurgery,Surg Dt,Treatment-1st Course
+rxDateSurgeryFlag,Surg Dt Fg,Treatment-1st Course
+rxDateSurgicalDisch,Surg Disch Dt,Treatment-1st Course
+rxDateSurgicalDischFlag,Surg Disch Dt Fg,Treatment-1st Course
+rxDateSystemic,Syst Dt,Treatment-1st Course
+rxDateSystemicFlag,Systemic Dt Fg,Treatment-1st Course
+rxHospBrm,BRM,Hospital-Specific
+rxHospChemo,Chemo,Hospital-Specific
+rxHospDxStgProc,DX/Stg (NonCa),Hospital-Specific
+rxHospHormone,Hormone,Hospital-Specific
+rxHospOther,Other,Hospital-Specific
+rxHospPalliativeProc,Pall Proc,Hospital-Specific
+rxHospRadiation,Radtn,Hospital-Specific
+rxHospRegLnRemoved,LN Exm 98-02,Hospital-Specific
+rxHospScopeReg9802,Scope 98-02,Hospital-Specific
+rxHospScopeRegLnSur,Scope 03+,Hospital-Specific
+rxHospSurgApp2010,Surg App 2010,Hospital-Specific
+rxHospSurgOth9802,Oth 98-02,Hospital-Specific
+rxHospSurgOthRegDis,Oth 03+,Hospital-Specific
+rxHospSurgPrimSite,Surg 03+,Hospital-Specific
+rxHospSurgSite9802,Surg 98-02,Hospital-Specific
+rxSummBrm,Summ BRM,Treatment-1st Course
+rxSummChemo,Summ Chemo,Treatment-1st Course
+rxSummDxStgProc,Summ DX/Stg (NonCa),Treatment-1st Course
+rxSummHormone,SummHormone,Treatment-1st Course
+rxSummOther,Summ Other,Treatment-1st Course
+rxSummPalliativeProc,Summ Pall Proc,Treatment-1st Course
+rxSummRadToCns,Summ Radtn CNS,Treatment-1st Course
+rxSummRadiation,Summ Radtn,Treatment-1st Course
+rxSummReconstruct1st,Summ 1st Reconst,Treatment-1st Course
+rxSummRegLnExamined,Summ Reg LN Exam(98-02),Treatment-1st Course
+rxSummScopeReg9802,Summ Scope(98-02),Treatment-1st Course
+rxSummScopeRegLnSur,Summ Scope(03+),Treatment-1st Course
+rxSummSurgOth9802,Summ Oth(98-02),Treatment-1st Course
+rxSummSurgOthRegDis,Summ Oth(03+),Treatment-1st Course
+rxSummSurgPrimSite,Summ Surg(03+),Treatment-1st Course
+rxSummSurgRadSeq,Summ Radtn Seq,Treatment-1st Course
+rxSummSurgSite9802,Summ Surg(98-02),Treatment-1st Course
+rxSummSurgeryType,Summ Surg(73-97),Treatment-1st Course
+rxSummSurgicalApproch,Summ Surg Appr,Treatment-1st Course
+rxSummSurgicalMargins,Summ Surg Marg,Treatment-1st Course
+rxSummSystemicSurSeq,Syst Seq,Treatment-1st Course
+rxSummTransplntEndocr,Summ HemoEndo,Treatment-1st Course
+rxSummTreatmentStatus,Tx Status,Treatment-1st Course
+rxTextBrm,BRM Txt,Text-Treatment
+rxTextChemo,Chemo Txt,Text-Treatment
+rxTextHormone,Horm Txt,Text-Treatment
+rxTextOther,Other Txt,Text-Treatment
+rxTextRadiation,Radtn Beam,Text-Treatment
+rxTextRadiationOther,Radtn Other,Text-Treatment
+rxTextSurgery,Surg Txt,Text-Treatment
+sCategoryClinical,S Cat Clin,Stage/Prognostic Factors
+sCategoryPathological,S Cat Path,Stage/Prognostic Factors
+sarcomatoidFeatures,Sarc Feat,Stage/Prognostic Factors
+schemaDiscriminator1,Schema Dis 1,Stage/Prognostic Factors
+schemaDiscriminator2,Schema Dis 2,Stage/Prognostic Factors
+schemaDiscriminator3,Schema Dis 3,Stage/Prognostic Factors
+schemaId,Schema ID,Stage/Prognostic Factors
+secondaryDiagnosis1,Sec Dx 1,Stage/Prognostic Factors
+secondaryDiagnosis10,Sec Dx 10,Stage/Prognostic Factors
+secondaryDiagnosis2,Sec Dx 2,Stage/Prognostic Factors
+secondaryDiagnosis3,Sec Dx 3,Stage/Prognostic Factors
+secondaryDiagnosis4,Sec Dx 4,Stage/Prognostic Factors
+secondaryDiagnosis5,Sec Dx 5,Stage/Prognostic Factors
+secondaryDiagnosis6,Sec Dx 6,Stage/Prognostic Factors
+secondaryDiagnosis7,Sec Dx 7,Stage/Prognostic Factors
+secondaryDiagnosis8,Sec Dx 8,Stage/Prognostic Factors
+secondaryDiagnosis9,Sec Dx 9,Stage/Prognostic Factors
+seerCauseSpecificCod,COD Spec,Follow-up/Recurrence/Death
+seerCodingSysCurrent,SEER Cod Curr,Edit Overrides/Conversion History/System Admin
+seerCodingSysOriginal,SEER Cod Orig,Edit Overrides/Conversion History/System Admin
+seerOtherCod,COD Other,Follow-up/Recurrence/Death
+seerRecordNumber,SEER Rec #,Edit Overrides/Conversion History/System Admin
+seerSiteSpecificFact1,SEER SSF 1,Stage/Prognostic Factors
+seerSiteSpecificFact2,SEER SSF 2,Stage/Prognostic Factors
+seerSiteSpecificFact3,SEER SSF 3,Stage/Prognostic Factors
+seerSiteSpecificFact4,SEER SSF 4,Stage/Prognostic Factors
+seerSiteSpecificFact5,SEER SSF 5,Stage/Prognostic Factors
+seerSiteSpecificFact6,SEER SSF 6,Stage/Prognostic Factors
+seerSummaryStage1977,Sum Stg 1977,Stage/Prognostic Factors
+seerSummaryStage2000,Sum Stg 2000,Stage/Prognostic Factors
+seerTypeOfFollowUp,SEER Type FU,Edit Overrides/Conversion History/System Admin
+sentinelLymphNodesExamined,SLN Exam,Stage/Prognostic Factors
+sentinelLymphNodesPositive,SLN Pos,Stage/Prognostic Factors
+separateTumorNodules,Sep Tum Nod,Stage/Prognostic Factors
+sequenceNumberCentral,Ctrl Seq#,Cancer Identification
+sequenceNumberHospital,Hosp Seq#,Hospital-Specific
+serumAlbuminPretreatmentLevel,Alb Pre Lvl,Stage/Prognostic Factors
+serumBeta2MicroglobulinPretxLvl,Beta Pre Lvl,Stage/Prognostic Factors
+sex,Sex,Demographic
+siteCodingSysCurrent,Site Cod Curr,Cancer Identification
+siteCodingSysOriginal,Site Cod Orig,Cancer Identification
+siteIcdO1,Site(O1),Edit Overrides/Conversion History/System Admin
+socialSecurityNumber,SSN,Patient-Confidential
+spanishHispanicOrigin,Hisp Orig,Demographic
+stateAtDxGeocode19708090,State DX Geo708090,Demographic
+stateAtDxGeocode2000,State Dx Geo00,Demographic
+stateAtDxGeocode2010,State Dx Geo10,Demographic
+stateAtDxGeocode2020,State Dx Geo20,Demographic
+stateRequestorItems,State Req Item,Special Use
+subsqRx2ndCourseBrm,Subsq RX 2nd Course BRM,Treatment-Subsequent & Other
+subsqRx2ndCourseChemo,Subsq RX 2nd Course Chemo,Treatment-Subsequent & Other
+subsqRx2ndCourseDate,Subsq RX 2nd Course Dt,Treatment-Subsequent & Other
+subsqRx2ndCourseHorm,Subsq RX 2nd Course Horm,Treatment-Subsequent & Other
+subsqRx2ndCourseOth,Subsq RX 2nd Course Oth,Treatment-Subsequent & Other
+subsqRx2ndCourseRad,Subsq RX 2nd Course Rad,Treatment-Subsequent & Other
+subsqRx2ndCourseSurg,Subsq RX 2nd Course Surg,Treatment-Subsequent & Other
+subsqRx2ndRegLnRem,Subsq RX 2nd--Reg LN Rem,Treatment-Subsequent & Other
+subsqRx2ndScopeLnSu,Subsq RX 2nd--Scope LN SU,Treatment-Subsequent & Other
+subsqRx2ndSurgOth,Subsq RX 2nd--Surg Oth,Treatment-Subsequent & Other
+subsqRx2ndcrsDateFlag,Subsq RX 2nd Course Dt Fg,Treatment-Subsequent & Other
+subsqRx3rdCourseBrm,Subsq RX 3rd Course BRM,Treatment-Subsequent & Other
+subsqRx3rdCourseChemo,Subsq RX 3rd Course Chemo,Treatment-Subsequent & Other
+subsqRx3rdCourseDate,Subsq RX 3rd Course Dt,Treatment-Subsequent & Other
+subsqRx3rdCourseHorm,Subsq RX 3rd Course Horm,Treatment-Subsequent & Other
+subsqRx3rdCourseOth,Subsq RX 3rd Course Oth,Treatment-Subsequent & Other
+subsqRx3rdCourseRad,Subsq RX 3rd Course Rad,Treatment-Subsequent & Other
+subsqRx3rdCourseSurg,Subsq RX 3rd Course Surg,Treatment-Subsequent & Other
+subsqRx3rdRegLnRem,Subsq RX 3rd--Reg LN Rem,Treatment-Subsequent & Other
+subsqRx3rdScopeLnSu,Subsq RX 3rd--Scope LN Su,Treatment-Subsequent & Other
+subsqRx3rdSurgOth,Subsq RX 3rd--Surg Oth,Treatment-Subsequent & Other
+subsqRx3rdcrsDateFlag,Subsq RX 3rd Course Dt Fg,Treatment-Subsequent & Other
+subsqRx4thCourseBrm,Subsq RX 4th Course BRM,Treatment-Subsequent & Other
+subsqRx4thCourseChemo,Subsq RX 4th Course Chemo,Treatment-Subsequent & Other
+subsqRx4thCourseDate,Subsq RX 4th Course Dt,Treatment-Subsequent & Other
+subsqRx4thCourseHorm,Subsq RX 4th Course Horm,Treatment-Subsequent & Other
+subsqRx4thCourseOth,Subsq RX 4th Course Oth,Treatment-Subsequent & Other
+subsqRx4thCourseRad,Subsq RX 4th Course Rad,Treatment-Subsequent & Other
+subsqRx4thCourseSurg,Subsq RX 4th Course Surg,Treatment-Subsequent & Other
+subsqRx4thRegLnRem,Subsq RX 4th--Reg LN Rem,Treatment-Subsequent & Other
+subsqRx4thScopeLnSu,Subsq RX 4th--Scope LN Su,Treatment-Subsequent & Other
+subsqRx4thSurgOth,Subsq RX 4th--Surg Oth,Treatment-Subsequent & Other
+subsqRx4thcrsDateFlag,Subsq RX 4th Course Dt Fg,Treatment-Subsequent & Other
+subsqRxReconstructDel,Subsq Recon Del,Treatment-Subsequent & Other
+summaryStage2018,Sum Stg 2018,Stage/Prognostic Factors
+survDateActiveFollowup,Surv Dt,Follow-up/Recurrence/Death
+survDateDxRecode,Surv DX,Follow-up/Recurrence/Death
+survDatePresumedAlive,Surv Dt PA,Follow-up/Recurrence/Death
+survFlagActiveFollowup,Surv Fg,Follow-up/Recurrence/Death
+survFlagPresumedAlive,Surv Fg PA,Follow-up/Recurrence/Death
+survMosActiveFollowup,Surv,Follow-up/Recurrence/Death
+survMosPresumedAlive,Surv PA,Follow-up/Recurrence/Death
+telephone,Phone,Patient-Confidential
+textDxProcLabTests,Proc Lab Test,Text-Diagnosis
+textDxProcOp,DX Proc OP,Text-Diagnosis
+textDxProcPath,DX Proc Path,Text-Diagnosis
+textDxProcPe,DX Proc PE,Text-Diagnosis
+textDxProcScopes,DX Proc Scp,Text-Diagnosis
+textDxProcXRayScan,XRay/Scan,Text-Diagnosis
+textHistologyTitle,Hist Title,Text-Diagnosis
+textPlaceOfDiagnosis,Place Of DX,Text-Miscellaneous
+textPrimarySiteTitle,Site Title,Text-Diagnosis
+textRemarks,Remarks,Text-Miscellaneous
+textStaging,Staging,Text-Diagnosis
+textUsualIndustry,Usual Industry,Demographic
+textUsualOccupation,Usual Occup,Demographic
+thrombocytopenia,Throm,Stage/Prognostic Factors
+tnmClinDescriptor,Clin Desc,Stage/Prognostic Factors
+tnmClinM,Clin M,Stage/Prognostic Factors
+tnmClinN,Clin N,Stage/Prognostic Factors
+tnmClinStageGroup,Clin Stg Group,Stage/Prognostic Factors
+tnmClinStagedBy,Clin Stg By,Stage/Prognostic Factors
+tnmClinT,Clin T,Stage/Prognostic Factors
+tnmEditionNumber,TNM Edit #,Stage/Prognostic Factors
+tnmPathDescriptor,Path Desc,Stage/Prognostic Factors
+tnmPathM,Path M,Stage/Prognostic Factors
+tnmPathN,Path N,Stage/Prognostic Factors
+tnmPathStageGroup,Path Stg Group,Stage/Prognostic Factors
+tnmPathStagedBy,Path Stg By,Stage/Prognostic Factors
+tnmPathT,Path T,Stage/Prognostic Factors
+totalDose,Tot Dose,Treatment-1st Course
+tumorDeposits,Tum Dep,Stage/Prognostic Factors
+tumorGrowthPattern,Tum Grow Pat,Stage/Prognostic Factors
+tumorMarker1,Mark 1,Stage/Prognostic Factors
+tumorMarker2,Mark 2,Stage/Prognostic Factors
+tumorMarker3,Mark 3,Stage/Prognostic Factors
+tumorRecordNumber,Tum Rec#,Record ID
+tumorSizeClinical,Tum Size Clin,Stage/Prognostic Factors
+tumorSizePathologic,Tum Size Path,Stage/Prognostic Factors
+tumorSizeSummary,Tum Size Sum,Stage/Prognostic Factors
+typeOfReportingSource,Rpt Src,Cancer Identification
+ulceration,Ulcer,Stage/Prognostic Factors
+unusualFollowUpMethod,Unusual FU Meth,Follow-up/Recurrence/Death
+uric2000,URIC 2000,Demographic
+uric2010,URIC 2010,Demographic
+vendorName,Vendor,Edit Overrides/Conversion History/System Admin
+visceralParietalPleuralInvasion,Vis Par Pl Inv,Stage/Prognostic Factors
+vitalStatus,VS,Follow-up/Recurrence/Death
+vitalStatusRecode,VS Rec,Follow-up/Recurrence/Death
+csPostrxExtension,CS Post RX Ext,Stage/Prognostic Factors
+csPostrxLymphNodes,CS Post RX LN,Stage/Prognostic Factors
+csPostrxMetsAtDx,CS Post RX Mets,Stage/Prognostic Factors
+csPostrxTumorSize,CS Post RX Size,Stage/Prognostic Factors
+csPrerxExtension,CS Pre RX Ext,Stage/Prognostic Factors
+csPrerxLymphNodes,CS Pre RX LN,Stage/Prognostic Factors
+csPrerxMetsAtDx,CS Pre RX Mets,Stage/Prognostic Factors
+csPrerxMetsEval,CS Pre RX Mets Eval,Stage/Prognostic Factors
+csPrerxRegNodesEval,CS Pre RX LN Eval,Stage/Prognostic Factors
+csPrerxTumSzExtEval,CS Pre RX Eval,Stage/Prognostic Factors
+csPrerxTumorSize,CS Pre RX Size,Stage/Prognostic Factors
+derivedSs2017,Der SS2017,Stage/Prognostic Factors
+directlyAssignedSs2017,Dir Ass SS2017,Stage/Prognostic Factors
+seerMets,SEER Mets,Stage/Prognostic Factors
+seerPrimaryTumor,SEER Prim Tum,Stage/Prognostic Factors
+seerRegionalNodes,SEER Reg Nodes,Stage/Prognostic Factors
+reserved17,Res17,Follow-up/Recurrence/Death
+reserved18,Res18,Treatment-1st Course
+reserved19,Res19,Stage/Prognostic Factors
+reserved20,Res20,Stage/Prognostic Factors

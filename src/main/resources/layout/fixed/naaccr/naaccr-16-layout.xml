@@ -271,8 +271,8 @@
     <field name="csPrerxMetsAtDx" start="1089" end="1090" short-label="CS Pre RX Mets" long-label="CS PreRx Mets at DX" naaccr-item-num="2760" section="Stage/Prognostic Factors"/>
     <field name="csPrerxMetsEval" start="1091" end="1091" short-label="CS Pre RX Mets Eval" long-label="CS PreRx Mets Eval" naaccr-item-num="2765" section="Stage/Prognostic Factors"/>
     <field name="csPostrxTumorSize" start="1092" end="1094" short-label="CS Post RX Size" long-label="CS PostRx Tumor Size" naaccr-item-num="2770" section="Stage/Prognostic Factors"/>
-    <field name="csPostrxExtension" start="1095" end="1097" short-label="CS Post RXExt" long-label="CS PostRx Extension" naaccr-item-num="2775" section="Stage/Prognostic Factors"/>
-    <field name="csPostrxLymphNodes" start="1098" end="1100" short-label="CS Post RXLN" long-label="CS PostRx Lymph Nodes" naaccr-item-num="2780" section="Stage/Prognostic Factors"/>
+    <field name="csPostrxExtension" start="1095" end="1097" short-label="CS Post RX Ext" long-label="CS PostRx Extension" naaccr-item-num="2775" section="Stage/Prognostic Factors"/>
+    <field name="csPostrxLymphNodes" start="1098" end="1100" short-label="CS Post RX LN" long-label="CS PostRx Lymph Nodes" naaccr-item-num="2780" section="Stage/Prognostic Factors"/>
     <field name="csPostrxMetsAtDx" start="1101" end="1102" short-label="CS Post RX Mets" long-label="CS PostRx Mets at DX" naaccr-item-num="2785" section="Stage/Prognostic Factors"/>
     <field name="derivedAjcc6T" start="1103" end="1104" short-label="AJCC 6 T" long-label="Derived AJCC-6 T" naaccr-item-num="2940" section="Stage/Prognostic Factors"/>
     <field name="derivedAjcc6TDescript" start="1105" end="1105" short-label="AJCC 6 T Desc" long-label="Derived AJCC-6 T Descript" naaccr-item-num="2950" section="Stage/Prognostic Factors"/>
