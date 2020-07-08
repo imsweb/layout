@@ -1,5 +1,12 @@
 ## Layout Framework Version History
 
+**Changes in version 2.2**
+
+- Updated NAACCR XML library from version 6.5 to version 7.0.
+- Updated XStream dependency from version 1.4.11.1 to version 1.4.12.
+- Updated CSV library from version 5.0 to version 5.2.
+- Updated commons-io library from version 2.6 to version 2.7.
+
 **Changes in version 2.1**
 
 - Fixed NAACCR XML layout throwing an exception for duplicate item names.

@@ -16,14 +16,18 @@ println "Starting build using JDK ${Runtime.version().feature()}"
 
 repositories {
     mavenCentral()
+
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:6.5'
+    api 'com.imsweb:naaccr-xml:7.0-SNAPSHOT'
 
-    implementation 'commons-io:commons-io:2.6'
-    implementation 'com.opencsv:opencsv:5.0'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
+    implementation 'commons-io:commons-io:2.7'
+    implementation 'com.opencsv:opencsv:5.2'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.12'
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'com.imsweb:seerutils-gui:1.15'
