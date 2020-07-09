@@ -451,6 +451,8 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     protected String getDocFolder() {
+        if ("210".equals(_naaccrVersion))
+            return "naaccr18"; // TODO FD remove this once NAACCR 21 documentation is officially released...
         return "naaccr" + _naaccrVersion.substring(0, 2);
     }
 

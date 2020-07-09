@@ -131,7 +131,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
     }
 
     // mapping between the NAACCR XML IDs and the old (deprecated) layout names
-    private static Map<String, String> _XML_TO_LAYOUT_MAPPING = new HashMap<>();
+    private static final Map<String, String> _XML_TO_LAYOUT_MAPPING = new HashMap<>();
 
     static {
         _XML_TO_LAYOUT_MAPPING.put("addrAtDxCity", "addressAtDxCity");
@@ -418,7 +418,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
             xmlLayout.setId(layoutId);
             xmlLayout.setName(LayoutFactory.getAvailableInternalLayouts().get(layoutId));
             xmlLayout.setVersion(naaccrVersion);
-            xmlLayout.setDescription("Latest version of NAACCR " + _majorNaaccrVersion + " " + fullRecType + " (" + _majorNaaccrVersion + "." + _minorNaaccrVersion + ")");
+            xmlLayout.setDescription("Standard Flat NAACCR " + _majorNaaccrVersion + " " + fullRecType + " layout");
             xmlLayout.setLength(getNaaccrLineLength());
 
             // I needed this optimization because NAACCR layouts have tons of fields, and we can't afford loading them each time we need to identify a file...

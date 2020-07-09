@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<fixed-column-layout id="naaccr-18" name="NAACCR 18" version="180" description="Latest version of NAACCR 18 (18.0)" length="24194">
+<fixed-column-layout id="naaccr-18" name="NAACCR 18" version="180" description="Standard Flat NAACCR 18 layout" length="24194">
     <field name="recordType" start="1" end="1" short-label="Rec Type" long-label="Record Type" naaccr-item-num="10" default-value="A" section="Record ID"/>
     <field name="registryType" start="2" end="2" short-label="Reg Type" long-label="Registry Type" naaccr-item-num="30" section="Record ID"/>
     <field name="reserved00" start="3" end="16" short-label="Res00" long-label="Reserved 00" naaccr-item-num="37" trim="false" section="Record ID"/>

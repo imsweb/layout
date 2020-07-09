@@ -37,53 +37,55 @@ public class NaaccrXmlLayoutTest {
 
     @Test
     public void testStandardNaaccrXmlLayout() {
-        assertStandardNaaccrXmlLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_16);
-        assertStandardNaaccrXmlLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_18);
+        for (String version : NaaccrFormat.getSupportedVersions())
+            assertStandardNaaccrXmlLayout("naaccr-xml-" + version.substring(0, 2));
     }
 
     private void assertStandardNaaccrXmlLayout(String layoutId) {
         NaaccrXmlLayout layout = (NaaccrXmlLayout)LayoutFactory.getLayout(layoutId);
 
-        Assert.assertNotNull(layout.getLayoutId());
-        Assert.assertNotNull(layout.getLayoutName());
-        Assert.assertNotNull(layout.getLayoutVersion());
-        Assert.assertNotNull(layout.getLayoutDescription());
-        Assert.assertNotNull(layout.getNaaccrVersion());
-        Assert.assertNotNull(layout.getRecordType());
+        Assert.assertNotNull(layoutId, layout.getLayoutId());
+        Assert.assertNotNull(layoutId, layout.getLayoutName());
+        Assert.assertNotNull(layoutId, layout.getLayoutVersion());
+        Assert.assertNotNull(layoutId, layout.getLayoutDescription());
+        Assert.assertNotNull(layoutId, layout.getNaaccrVersion());
+        Assert.assertNotNull(layoutId, layout.getRecordType());
 
         // only root level fields are available via the "getAllFields" method
-        Assert.assertFalse(layout.getAllFields().isEmpty());
-        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "primarySite".equals(f.getName())));
-        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "nameLast".equals(f.getName())));
-        Assert.assertTrue(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosis".equals(f.getName())));
-        Assert.assertFalse(layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosisYear".equals(f.getName())));
+        Assert.assertFalse(layoutId, layout.getAllFields().isEmpty());
+        Assert.assertTrue(layoutId, layout.getAllFields().stream().anyMatch(f -> "primarySite".equals(f.getName())));
+        Assert.assertTrue(layoutId, layout.getAllFields().stream().anyMatch(f -> "nameLast".equals(f.getName())));
+        Assert.assertTrue(layoutId, layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosis".equals(f.getName())));
+        Assert.assertFalse(layoutId, layout.getAllFields().stream().anyMatch(f -> "dateOfDiagnosisYear".equals(f.getName())));
 
         // regular tumor field
-        Assert.assertNotNull(layout.getFieldByName("primarySite"));
-        Assert.assertEquals(4, layout.getFieldByName("primarySite").getLength().intValue());
-        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(400));
-        Assert.assertNotNull(layout.getFieldDocByName("primarySite"));
-        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(400));
+        Assert.assertNotNull(layoutId, layout.getFieldByName("primarySite"));
+        Assert.assertEquals(layoutId, 4, layout.getFieldByName("primarySite").getLength().intValue());
+        Assert.assertNotNull(layoutId, layout.getFieldByNaaccrItemNumber(400));
+        Assert.assertNotNull(layoutId, layout.getFieldDocByName("primarySite"));
+        Assert.assertNotNull(layoutId, layout.getFieldDocByNaaccrItemNumber(400));
 
         // sub-fields should be returned, but don't have their own documentation
-        Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosis"));
-        Assert.assertNotNull(layout.getFieldByNaaccrItemNumber(390));
-        Assert.assertNotNull(layout.getFieldDocByName("dateOfDiagnosis"));
-        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(390));
-        Assert.assertNotNull(layout.getFieldByName("dateOfDiagnosisYear"));
-        Assert.assertNull(layout.getFieldDocByName("dateOfDiagnosisYear"));
+        Assert.assertNotNull(layoutId, layout.getFieldByName("dateOfDiagnosis"));
+        Assert.assertNotNull(layoutId, layout.getFieldByNaaccrItemNumber(390));
+        Assert.assertNotNull(layoutId, layout.getFieldDocByName("dateOfDiagnosis"));
+        Assert.assertNotNull(layoutId, layout.getFieldDocByNaaccrItemNumber(390));
+        Assert.assertNotNull(layoutId, layout.getFieldByName("dateOfDiagnosisYear"));
+        Assert.assertNull(layoutId, layout.getFieldDocByName("dateOfDiagnosisYear"));
 
         for (NaaccrXmlField field : layout.getAllFields()) {
-            Assert.assertNotNull(field.getNaaccrId(), field.getItem());
-            Assert.assertNotNull(field.getNaaccrId(), field.getNaaccrId());
-            Assert.assertNotNull(field.getNaaccrId(), field.getNaaccrName());
-            Assert.assertNotNull(field.getNaaccrId(), field.getNaaccrItemNum());
-            Assert.assertNotNull(field.getNaaccrId(), field.getLongLabel());
-            Assert.assertNotEquals(field.getNaaccrId(), "?", field.getShortLabel());
-            Assert.assertNotEquals(field.getNaaccrId(), "?", field.getSection());
+            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), field.getItem());
+            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), field.getNaaccrId());
+            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), field.getNaaccrName());
+            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), field.getNaaccrItemNum());
+            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), field.getLongLabel());
+            Assert.assertNotEquals(layoutId + "/" + field.getNaaccrId(), "?", field.getShortLabel());
+            Assert.assertNotEquals(layoutId + "/" + field.getNaaccrId(), "?", field.getSection());
 
-            Assert.assertNotNull(field.getNaaccrId(), layout.getFieldDocByName(field.getName()));
-            Assert.assertNotNull(field.getNaaccrId(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+            if (!layout.getNaaccrVersion().equals(NaaccrFormat.NAACCR_VERSION_210)) { // TODO FD remove this once we have the official N21 documentation
+                Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByName(field.getName()));
+                Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+            }
 
             if (layout.getNaaccrVersion().equals(NaaccrFormat.NAACCR_VERSION_180))
                 Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(35)); // retired field

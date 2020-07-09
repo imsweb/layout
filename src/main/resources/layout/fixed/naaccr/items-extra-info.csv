@@ -809,3 +809,25 @@ reserved17,Res17,Follow-up/Recurrence/Death
 reserved18,Res18,Treatment-1st Course
 reserved19,Res19,Stage/Prognostic Factors
 reserved20,Res20,Stage/Prognostic Factors
+ajccApiVersionCurrent,AJCC API Ver Cur,Edit Overrides/Conversion History/System Admin
+ajccApiVersionOriginal,AJCC API Ver Orig,Edit Overrides/Conversion History/System Admin
+ajccCancerSurvApiVersionCurrent,AJCC Can Surv API Ver Cur,Edit Overrides/Conversion History/System Admin
+ajccCancerSurvApiVersionOriginal,AJCC Can Surv API Ver Orig,Edit Overrides/Conversion History/System Admin
+ajccTnmPostTherapyClinM,AJCC TNM Post Clin M,Stage/Prognostic Factors
+ajccTnmPostTherapyClinN,AJCC TNM Post Clin N,Stage/Prognostic Factors
+ajccTnmPostTherapyClinNSuffix,AJCC TNM Post Clin N Suf,Stage/Prognostic Factors
+ajccTnmPostTherapyClinStageGrp,AJCC TNM Post Clin Stg Grp,Stage/Prognostic Factors
+ajccTnmPostTherapyClinT,AJCC TNM Post Clin T,Stage/Prognostic Factors
+ajccTnmPostTherapyClinTSuffix,AJCC TNM Post Clin T Suf,Stage/Prognostic Factors
+alkRearrangement,ALK Rear,Stage/Prognostic Factors
+brafMutationalAnalysis,BRAF Mut Anal,Stage/Prognostic Factors
+ca199PretxLabValue,CA 19-9 Val,Stage/Prognostic Factors
+egfrMutationalAnalysis,EGFR Mut Anal,Stage/Prognostic Factors
+gradePostTherapyClin,Grade Post Clin,Stage/Prognostic Factors
+nameBirthSurname,Birth Name,Patient-Confidential
+neoadjuvTherapyClinicalResponse,Noe Clin Resp,Treatment-1st Course
+neoadjuvTherapyTreatmentEffect,Noe TX Eff,Treatment-1st Course
+neoadjuvantTherapy,Noe Therapy,Treatment-1st Course
+nrasMutationalAnalysis,NRAS Mut Anal,Stage/Prognostic Factors
+schemaIdVersionCurrent,Sch ID Ver Cur,Edit Overrides/Conversion History/System Admin
+schemaIdVersionOriginal,Sch ID Ver Orig,Edit Overrides/Conversion History/System Admin

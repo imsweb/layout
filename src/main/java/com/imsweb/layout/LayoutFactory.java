@@ -11,6 +11,10 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.imsweb.layout.hl7.NaaccrHl7Layout;
 import com.imsweb.layout.naaccrxml.NaaccrXmlLayout;
@@ -19,7 +23,7 @@ import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 
 /**
- * This class is responsible for caching layouts and instanciating the internal ones. It also provides a file format discovery mechanism.
+ * This class is responsible for caching layouts and creating the internal ones. It also provides a file format discovery mechanism.
  * <br/><br/>
  * Layouts can be used to read and write formatted files; the NAACCR formats are supported by default (those are the "internal" layouts)
  * but other user-defined layouts can also be registered. Fixed columns and CSV layout types are fully supported.
@@ -30,7 +34,7 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
  * <br/><br/>
  * There are two ways to register a layout:
  * <ol>
- * <li>Build it programmatically (eith er a <code>FixedColumnsLayout</code> or a <code>CommaSeparatedLayout</code> instance) and call the
+ * <li>Build it programmatically (either a <code>FixedColumnsLayout</code> or a <code>CommaSeparatedLayout</code> instance) and call the
  * <b>registerLayout()</b> method from this class, passing the built layout as an argument.</li>
  * <li>Build it from an XML file using one of the <code>LayoutUtils</code> utility methods, then create the layout instance by
  * providing the XML object to its constructor; and finally call the <b>registerLayout()</b> method from this class, passing the built layout as an argument.</li>
@@ -42,6 +46,11 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 public final class LayoutFactory {
 
     //XML Layouts - constants for the internal layout IDs
+    public static final String LAYOUT_ID_NAACCR_XML_21 = "naaccr-xml-21"; // abstract for full abstract
+    public static final String LAYOUT_ID_NAACCR_XML_21_ABSTRACT = "naaccr-xml-21-abstract";
+    public static final String LAYOUT_ID_NAACCR_XML_21_MODIFIED = "naaccr-xml-21-modified";
+    public static final String LAYOUT_ID_NAACCR_XML_21_CONFIDENTIAL = "naaccr-xml-21-confidential";
+    public static final String LAYOUT_ID_NAACCR_XML_21_INCIDENCE = "naaccr-xml-21-incidence";
     public static final String LAYOUT_ID_NAACCR_XML_18 = "naaccr-xml-18"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_XML_18_ABSTRACT = "naaccr-xml-18-abstract";
     public static final String LAYOUT_ID_NAACCR_XML_18_MODIFIED = "naaccr-xml-18-modified";
@@ -52,6 +61,16 @@ public final class LayoutFactory {
     public static final String LAYOUT_ID_NAACCR_XML_16_MODIFIED = "naaccr-xml-16-modified";
     public static final String LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL = "naaccr-xml-16-confidential";
     public static final String LAYOUT_ID_NAACCR_XML_16_INCIDENCE = "naaccr-xml-16-incidence";
+    public static final String LAYOUT_ID_NAACCR_XML_15 = "naaccr-xml-15"; // abstract for full abstract
+    public static final String LAYOUT_ID_NAACCR_XML_15_ABSTRACT = "naaccr-xml-15-abstract";
+    public static final String LAYOUT_ID_NAACCR_XML_15_MODIFIED = "naaccr-xml-15-modified";
+    public static final String LAYOUT_ID_NAACCR_XML_15_CONFIDENTIAL = "naaccr-xml-15-confidential";
+    public static final String LAYOUT_ID_NAACCR_XML_15_INCIDENCE = "naaccr-xml-15-incidence";
+    public static final String LAYOUT_ID_NAACCR_XML_14 = "naaccr-xml-14"; // abstract for full abstract
+    public static final String LAYOUT_ID_NAACCR_XML_14_ABSTRACT = "naaccr-xml-14-abstract";
+    public static final String LAYOUT_ID_NAACCR_XML_14_MODIFIED = "naaccr-xml-14-modified";
+    public static final String LAYOUT_ID_NAACCR_XML_14_CONFIDENTIAL = "naaccr-xml-14-confidential";
+    public static final String LAYOUT_ID_NAACCR_XML_14_INCIDENCE = "naaccr-xml-14-incidence";
     //Fixed column layouts
     public static final String LAYOUT_ID_NAACCR_18 = "naaccr-18"; // abstract for full abstract
     public static final String LAYOUT_ID_NAACCR_18_ABSTRACT = "naaccr-18-abstract";
@@ -86,13 +105,20 @@ public final class LayoutFactory {
     //Hl7 layouts
     public static final String LAYOUT_ID_NAACCR_HL7_2_5_1 = "naaccr-hl7-2.5.1";
 
+    // regular expressions for some of the the internal IDs
+    private static final Pattern _REGEX_NAACCR_XML_IDS = Pattern.compile("naaccr-xml-(\\d\\d)-(abstract|modified|confidential|incidence)");
+    private static final Pattern _REGEX_NAACCR_FIXED_IDS = Pattern.compile("naaccr-(\\d\\d)-(abstract|modified|confidential|incidence)");
+
     // internal alias IDs resolution, any of the keys will be translated into its value...
     private static final Map<String, String> _INTERNAL_LAYOUT_ID_ALIASES = new HashMap<>();
 
     // make sure to put all the "aliases" in this list...
     static {
+        _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_21, LAYOUT_ID_NAACCR_XML_21_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_18, LAYOUT_ID_NAACCR_XML_18_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_16, LAYOUT_ID_NAACCR_XML_16_ABSTRACT);
+        _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_15, LAYOUT_ID_NAACCR_XML_15_ABSTRACT);
+        _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_14, LAYOUT_ID_NAACCR_XML_14_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_18, LAYOUT_ID_NAACCR_18_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_16, LAYOUT_ID_NAACCR_16_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_15, LAYOUT_ID_NAACCR_15_ABSTRACT);
@@ -107,6 +133,11 @@ public final class LayoutFactory {
     // make sure to add the most recent layouts first, they will be "tried" in that order (important for discovery mechanism)
     static {
         //NAACCR XML
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_21, "NAACCR XML 21 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_21_ABSTRACT, "NAACCR XML 21 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_21_MODIFIED, "NAACCR XML 21 Modified");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_21_CONFIDENTIAL, "NAACCR XML 21 Confidential");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_21_INCIDENCE, "NAACCR XML 21 Incidence");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_18, "NAACCR XML 18 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_18_ABSTRACT, "NAACCR XML 18 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_18_MODIFIED, "NAACCR XML 18 Modified");
@@ -117,6 +148,16 @@ public final class LayoutFactory {
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_16_MODIFIED, "NAACCR XML 16 Modified");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL, "NAACCR XML 16 Confidential");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_16_INCIDENCE, "NAACCR XML 16 Incidence");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_15, "NAACCR XML 15 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_15_ABSTRACT, "NAACCR XML 15 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_15_MODIFIED, "NAACCR XML 15 Modified");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_15_CONFIDENTIAL, "NAACCR XML 15 Confidential");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_15_INCIDENCE, "NAACCR XML 15 Incidence");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_14, "NAACCR XML 14 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_14_ABSTRACT, "NAACCR XML 14 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_14_MODIFIED, "NAACCR XML 14 Modified");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_14_CONFIDENTIAL, "NAACCR XML 14 Confidential");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_14_INCIDENCE, "NAACCR XML 14 Incidence");
         // NAACCR FIXED_COLUMNS
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_18, "NAACCR 18 Abstract");// kept for backward compatibility...
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_18_ABSTRACT, "NAACCR 18 Abstract");
@@ -166,73 +207,37 @@ public final class LayoutFactory {
         Layout layout = null;
 
         // note that this method doesn't deal with ID aliases, and it's on purpose, we want to load only the true layouts...
-        String xmlDesc = "Standard NAACCR XML ";
-        if (LAYOUT_ID_NAACCR_XML_18_ABSTRACT.equals(layoutId))
-            layout = new NaaccrXmlLayout("180", "A", LAYOUT_ID_NAACCR_XML_18_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_ABSTRACT), xmlDesc + "180 Abstract", null, loadFields);
-        else if (LAYOUT_ID_NAACCR_XML_18_MODIFIED.equals(layoutId))
-            layout = new NaaccrXmlLayout("180", "M", LAYOUT_ID_NAACCR_XML_18_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_MODIFIED), xmlDesc + "180 Modified", null, loadFields);
-        else if (LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrXmlLayout("180", "C", LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_CONFIDENTIAL), xmlDesc + "180 Confidential", null, loadFields);
-        else if (LAYOUT_ID_NAACCR_XML_18_INCIDENCE.equals(layoutId))
-            layout = new NaaccrXmlLayout("180", "I", LAYOUT_ID_NAACCR_XML_18_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_18_INCIDENCE), xmlDesc + "180 Incidence", null, loadFields);
-        else if (LAYOUT_ID_NAACCR_XML_16_ABSTRACT.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", "A", LAYOUT_ID_NAACCR_XML_16_ABSTRACT, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_ABSTRACT), xmlDesc + "160 Abstract", null, loadFields);
-        else if (LAYOUT_ID_NAACCR_XML_16_MODIFIED.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", "M", LAYOUT_ID_NAACCR_XML_16_MODIFIED, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_MODIFIED), xmlDesc + "160 Modified", null, loadFields);
-        else if (LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", "C", LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_CONFIDENTIAL), xmlDesc + "160 Confidential", null, loadFields);
-        else if (LAYOUT_ID_NAACCR_XML_16_INCIDENCE.equals(layoutId))
-            layout = new NaaccrXmlLayout("160", "I", LAYOUT_ID_NAACCR_XML_16_INCIDENCE, _INTERNAL_LAYOUTS.get(LAYOUT_ID_NAACCR_XML_16_INCIDENCE), xmlDesc + "160 Incidence", null, loadFields);
-        else if (LAYOUT_ID_NAACCR_18_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("180", "A", 24194, LAYOUT_ID_NAACCR_18_ABSTRACT, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_18_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("180", "M", 24194, LAYOUT_ID_NAACCR_18_MODIFIED, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_18_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("180", "C", 6154, LAYOUT_ID_NAACCR_18_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_18_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("180", "I", 4048, LAYOUT_ID_NAACCR_18_INCIDENCE, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_16_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("160", "A", 22824, LAYOUT_ID_NAACCR_16_ABSTRACT, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_16_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("160", "M", 22824, LAYOUT_ID_NAACCR_16_MODIFIED, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_16_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("160", "C", 5564, LAYOUT_ID_NAACCR_16_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_16_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("160", "I", 3339, LAYOUT_ID_NAACCR_16_INCIDENCE, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_15_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("150", "A", 22824, LAYOUT_ID_NAACCR_15_ABSTRACT, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_15_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("150", "M", 22824, LAYOUT_ID_NAACCR_15_MODIFIED, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_15_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("150", "C", 5564, LAYOUT_ID_NAACCR_15_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_15_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("150", "I", 3339, LAYOUT_ID_NAACCR_15_INCIDENCE, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_14_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("140", "A", 22824, LAYOUT_ID_NAACCR_14_ABSTRACT, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_14_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("140", "M", 22824, LAYOUT_ID_NAACCR_14_MODIFIED, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_14_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("140", "C", 5564, LAYOUT_ID_NAACCR_14_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_14_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("140", "I", 3339, LAYOUT_ID_NAACCR_14_INCIDENCE, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_13_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("130", "A", 22824, LAYOUT_ID_NAACCR_13_ABSTRACT, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_13_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("130", "M", 22824, LAYOUT_ID_NAACCR_13_MODIFIED, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_13_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("130", "C", 5564, LAYOUT_ID_NAACCR_13_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_13_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("130", "I", 3339, LAYOUT_ID_NAACCR_13_INCIDENCE, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_12_ABSTRACT.equals(layoutId))
-            layout = new NaaccrLayout("122", "A", 22824, LAYOUT_ID_NAACCR_12_ABSTRACT, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_12_MODIFIED.equals(layoutId))
-            layout = new NaaccrLayout("122", "M", 22824, LAYOUT_ID_NAACCR_12_MODIFIED, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_12_CONFIDENTIAL.equals(layoutId))
-            layout = new NaaccrLayout("122", "C", 5564, LAYOUT_ID_NAACCR_12_CONFIDENTIAL, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_12_INCIDENCE.equals(layoutId))
-            layout = new NaaccrLayout("122", "I", 3339, LAYOUT_ID_NAACCR_12_INCIDENCE, loadFields, useDeprecatedFieldNames);
-        else if (LAYOUT_ID_NAACCR_HL7_2_5_1.equals(layoutId))
-            layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7_2_5_1, "2.5.1", loadFields);
+
+        // try NAACCR XML
+        Matcher matcher = _REGEX_NAACCR_XML_IDS.matcher(layoutId);
+        if (matcher.matches()) {
+            String version = matcher.group(1);
+            String type = StringUtils.capitalize(matcher.group(2));
+            String rType = type.substring(0, 1);
+            layout = new NaaccrXmlLayout(version + "0", rType, layoutId, _INTERNAL_LAYOUTS.get(layoutId), "Standard XML NAACCR " + version + " " + type + " layout", null, loadFields);
+        }
+
+        // try NAACCR flat
+        if (layout == null) {
+            matcher = _REGEX_NAACCR_FIXED_IDS.matcher(layoutId);
+            if (matcher.matches()) {
+                String version = matcher.group(1);
+                String type = StringUtils.capitalize(matcher.group(2));
+                String rType = type.substring(0, 1);
+                int lineLength;
+                if ("18".equals(version))
+                    lineLength = "A".equals(rType) || "M".equals(rType) ? 24194 : "C".equals(rType) ? 6154 : 4048;
+                else
+                    lineLength = "A".equals(rType) || "M".equals(rType) ? 22824 : "C".equals(rType) ? 5564 : 3339;
+                layout = new NaaccrLayout("12".equals(version) ? "122" : (version + "0"), type.substring(0, 1), lineLength, layoutId, loadFields, useDeprecatedFieldNames);
+            }
+        }
+
+        // try NAACCR HL7
+        if (layout == null) {
+            if (LAYOUT_ID_NAACCR_HL7_2_5_1.equals(layoutId))
+                layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7_2_5_1, "2.5.1", loadFields);
+        }
 
         if (layout == null)
             throw new RuntimeException("Unknown internal layout: " + layoutId);
