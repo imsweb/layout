@@ -3,16 +3,6 @@
  */
 package com.imsweb.layout;
 
-import com.imsweb.layout.record.RecordLayout;
-import com.imsweb.layout.record.csv.CommaSeparatedField;
-import com.imsweb.layout.record.csv.CommaSeparatedLayout;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
-import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
-import com.imsweb.naaccrxml.NaaccrFormat;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,6 +13,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.csv.CommaSeparatedField;
+import com.imsweb.layout.record.csv.CommaSeparatedLayout;
+import com.imsweb.layout.record.fixed.FixedColumnsField;
+import com.imsweb.layout.record.fixed.FixedColumnsLayout;
+import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
+import com.imsweb.naaccrxml.NaaccrFormat;
 
 public class LayoutFactoryTest {
 
@@ -120,6 +121,9 @@ public class LayoutFactoryTest {
         for (Entry<Integer, String> entry : m16.entrySet())
             if (m18.containsKey(entry.getKey()) && !m18.get(entry.getKey()).equals(entry.getValue()) && !m16.get(entry.getKey()).endsWith("2017") && !m16.get(entry.getKey()).startsWith("seer"))
                 Assert.fail(entry.getKey() + " - " + m16.get(entry.getKey()) + " - " + m18.get(entry.getKey()));
+
+        Assert.assertNotNull(LayoutFactory.getNaaccrXmlLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_18));
+        Assert.assertNotNull(LayoutFactory.getNaaccrFixedColumnsLayout(LayoutFactory.LAYOUT_ID_NAACCR_18));
     }
 
     @Test
@@ -130,13 +134,13 @@ public class LayoutFactoryTest {
         Assert.assertFalse(LayoutFactory.getAvailableLayouts().containsKey("test"));
         Assert.assertFalse(LayoutFactory.getAvailableLayouts().containsKey("test-csv"));
         Assert.assertNull(getLayout("test"));
-        Assert.assertNull(getLayout("test-csv"));
 
         // register fixed from XML
         LayoutFactory.unregisterAllLayouts();
         LayoutFactory.registerLayout(new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-fixed-columns.xml")));
         Assert.assertTrue(LayoutFactory.getAvailableLayouts().containsKey("test"));
         Assert.assertNotNull(getLayout("test"));
+        Assert.assertNotNull(LayoutFactory.getFixedColumnsLayout("test"));
 
         // unregister that particular layout
         LayoutFactory.unregisterLayout("test");
@@ -154,6 +158,7 @@ public class LayoutFactoryTest {
         LayoutFactory.registerLayout(new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml")));
         Assert.assertTrue(LayoutFactory.getAvailableLayouts().containsKey("test-csv"));
         Assert.assertNotNull(getLayout("test-csv"));
+        Assert.assertNotNull(LayoutFactory.getCommaSeparatedLayout("test-csv"));
 
         // register csv programmatically
         LayoutFactory.unregisterAllLayouts();
@@ -367,14 +372,10 @@ public class LayoutFactoryTest {
     }
 
     private String getTestingString(int length) {
-        return getTestingString(length, null);
-    }
-
-    private String getTestingString(int length, String c) {
         StringBuilder buf = new StringBuilder();
 
         for (int i = 0; i < length; i++)
-            buf.append(c != null ? c : (char)((i % 26) + 65));
+            buf.append((char)((i % 26) + 65));
 
         return buf.toString();
     }

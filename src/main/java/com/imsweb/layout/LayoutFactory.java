@@ -249,6 +249,54 @@ public final class LayoutFactory {
     }
 
     /**
+     * Returns the requested NAACCR XML layout, throws a runtime exception if layout is not found or not a NAACCR XML layout.
+     * @param layoutId requested layout ID, cannot be null
+     * @return requested layout, never null
+     */
+    public static NaaccrXmlLayout getNaaccrXmlLayout(String layoutId) {
+        Layout layout = getLayout(layoutId);
+        if (layout instanceof NaaccrXmlLayout)
+            return (NaaccrXmlLayout)layout;
+        throw new RuntimeException("Requested a NaaccrXmlLayout but it was a " + layout.getClass().getSimpleName());
+    }
+
+    /**
+     * Returns the requested NAACCR fixed-column layout, throws a runtime exception if layout is not found or not a NAACCR fixed-column layout.
+     * @param layoutId requested layout ID, cannot be null
+     * @return requested layout, never null
+     */
+    public static NaaccrLayout getNaaccrFixedColumnsLayout(String layoutId) {
+        Layout layout = getLayout(layoutId);
+        if (layout instanceof NaaccrLayout)
+            return (NaaccrLayout)layout;
+        throw new RuntimeException("Requested a NaaccrLayout but it was a " + layout.getClass().getSimpleName());
+    }
+
+    /**
+     * Returns the requested fixed-columns layout, throws a runtime exception if layout is not found or not a fixed-columns layout.
+     * @param layoutId requested layout ID, cannot be null
+     * @return requested layout, never null
+     */
+    public static FixedColumnsLayout getFixedColumnsLayout(String layoutId) {
+        Layout layout = getLayout(layoutId);
+        if (layout instanceof FixedColumnsLayout)
+            return (FixedColumnsLayout)layout;
+        throw new RuntimeException("Requested a FixedColumnsLayout but it was a " + layout.getClass().getSimpleName());
+    }
+
+    /**
+     * Returns the requested comma-separated layout, throws a runtime exception if layout is not found or not a  comma-separated layout.
+     * @param layoutId requested layout ID, cannot be null
+     * @return requested layout, never null
+     */
+    public static CommaSeparatedLayout getCommaSeparatedLayout(String layoutId) {
+        Layout layout = getLayout(layoutId);
+        if (layout instanceof CommaSeparatedLayout)
+            return (CommaSeparatedLayout)layout;
+        throw new RuntimeException("Requested a CommaSeparatedLayout but it was a " + layout.getClass().getSimpleName());
+    }
+
+    /**
      * Returns the requested layout.
      * <br/><br/>
      * Throws a <b>RuntimeException</b> if the layout ID doesn't exist; you should check whether the layout exists before calling this method by either
