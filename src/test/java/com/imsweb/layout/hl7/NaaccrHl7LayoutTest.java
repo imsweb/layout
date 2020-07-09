@@ -37,7 +37,7 @@ public class NaaccrHl7LayoutTest {
 
     @Test
     public void testNaaccrHl7Layout251() throws Exception {
-        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+        NaaccrHl7Layout layout = LayoutFactory.getNaaccrHl7Layout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
         assertInternalLayoutValidity(layout);
 
         Hl7Message msg = Hl7MessageBuilder.createMessage()

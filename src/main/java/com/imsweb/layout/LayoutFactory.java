@@ -278,6 +278,18 @@ public final class LayoutFactory {
     }
 
     /**
+     * Returns the requested NAACCR fixed-column layout, throws a runtime exception if layout is not found or not a NAACCR fixed-column layout.
+     * @param layoutId requested layout ID, cannot be null
+     * @return requested layout, never null
+     */
+    public static NaaccrHl7Layout getNaaccrHl7Layout(String layoutId) {
+        Layout layout = getLayout(layoutId);
+        if (layout instanceof NaaccrHl7Layout)
+            return (NaaccrHl7Layout)layout;
+        throw new RuntimeException("Requested a NaaccrHl7Layout but it was a " + layout.getClass().getSimpleName());
+    }
+
+    /**
      * Returns the requested fixed-columns layout, throws a runtime exception if layout is not found or not a fixed-columns layout.
      * @param layoutId requested layout ID, cannot be null
      * @return requested layout, never null

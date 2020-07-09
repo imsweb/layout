@@ -7,10 +7,10 @@ those formats can then be used to read and write corresponding data files.
 
 ## Features
 
-* Supports XML definitions for *fixed-length-columns* and *comma-separated-values* formats.
-* Other types of format can be supported, but those need to be defined programmatically.
-* Recent [NAACCR](http://www.naaccr.org/) formats are included with the library, including all the data items documentation.
-* Supports NAACCR HL7 2.5.1 (no data item documentation is available for that format yet).
+* Supports recent [NAACCR](http://www.naaccr.org/) XML formats, including fields documentation.
+* Supports all recent [NAACCR](http://www.naaccr.org/) fixed-columns formats, including fields documentation.
+* Supports [NAACCR](http://www.naaccr.org/) HL7 2.5.1 (no field documentation is available for that format).
+* Allows other *fixed-columns* and *comma-separated-values* formats to be registered via an XML definition file. 
 * Provides data file format auto-discovery.
 
 ## Download
@@ -23,38 +23,57 @@ You can check out the [release page](https://github.com/imsweb/layout/releases) 
 
 ## Usage
 
-### Reading a NAACCR file
+### Reading a NAACCR XML file
+
+The layout returns the Patient objects contained in the file:
+
+```java
+NaaccrXmlLayout layout = LayoutFactory.getNaaccrXmlLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_18);
+for (Patient patient : layout.readAllPatients(inputFile)))
+    processPatient(patient);
+```
+
+For large files, consider creating a reader and using the "readPatientMessage".
+
+### Reading a NAACCR fixed-columns file
 
 Each line is read as a record that is represented as a map using keys defined
 in the [internal XML definition files](https://github.com/imsweb/layout/tree/master/src/main/resources/layout/fixed/naaccr). 
 
 To read all the records of a file:
 
-``` java
-Layout layout = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT);
-for (<Map<String, String> record : (RecordLayout)layout.readAllRecords(new File("my_file.txt")))
+```java
+NaaccrLayout layout = LayoutFactory.getNaaccrFixedColumnsLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
+for (<Map<String, String> record : layout.readAllRecords(inputFile))
     processRecord(record);
 ```
 
-For large files, the "readNextRecord" method should be used instead.
+For large files, consider creating a reader and using the "readNextRecord".
 
-The library also supports reading NAACCR HL7 files:
+### Reading a NAACCR HL7 file
+
+The layout returns the HL7 messages contained in the file:
 
 ```java
-Layout layout = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
-for (Hl7Message message : (NaaccrHl7Layout)layout.readAllMessages(new File("my_file.txt")))
+NaaccrHl7Layout layout = LayoutFactory.getNaaccrHl7Layout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+for (Hl7Message message : layout.readAllMessages(inputFile)))
     processMessage(message);
 ```
+
+For large files, consider creating a reader and using the "readNextMessage".
 
 ### Using format auto-discovery
 
 This feature allows the library to detect which layouts can be used to handle a given file.
 
-For NAACCR files, the NAACCR version and record types are used. For generic fixed-length-columns files,
-the line lengths are used. And for generic comma-separated-values formats, the number of fields is used.
+The library will try to identify one or several layouts that are suitable based on the beginning of the data file:
+ - for NAACCR XML files, the root attributes are used (without reading the entire data file)
+ - for NAACCR fixed-columns files, the NAACCR version and record types from the first line are used
+ - for generic fixed-length-columns files, the line length is used
+ - for generic comma-separated-values formats, the number of fields is used
 
 ``` java
-List<LayoutInfo> possibleFormats = LayoutFactory.discoverFormat(new File("my_file.txt"));
+List<LayoutInfo> possibleFormats = LayoutFactory.discoverFormat(inputFile);
 if (!possibleFormats.isEmpty())
     System.out.println("Best format for this data file is " + possibleFormats.get(0));
 else
@@ -68,20 +87,20 @@ If the default behavior is not good enough, you can extend the generic algorithm
 
 From an XML file:
 
-``` xml
+```xml
 <fixed-column-layout id="my-layout" name="My Layout" length="10">
     <field name="field1" start="1" end="10"/>
 </fixed-column-layout>
 ```
 
-``` java
+```java
 FixedColumnsLayout layout = new FixedColumnsLayout(new File("my_layout.xml"))
 LayoutFactory.registerLayout(layout);
 ```
 
 Programmatically:
 
-``` java
+```java
 FixedColumnsLayout layout = new FixedColumnsLayout();
 layout.setLayoutId("my-layout");
 layout.setLayoutName("My Layout");
