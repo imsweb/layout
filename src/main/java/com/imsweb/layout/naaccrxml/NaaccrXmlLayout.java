@@ -197,20 +197,23 @@ public class NaaccrXmlLayout implements Layout {
             _userDictionaries = Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion));
         _layoutDesc = StringUtils.isBlank(description) ? "No description available" : description;
 
-        // oOnly load dictionaries/fields if specified, otherwise avoid expensive operations
+        // only load dictionaries/fields if specified, otherwise avoid expensive operations
         if (loadFields) {
 
             Map<String, String> shortLabels = new HashMap<>(), sections = new HashMap<>();
-            try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/items-extra-info.csv");
-                 BufferedReader in = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-                in.lines().forEach(line -> {
-                    String[] parts = StringUtils.split(line, ',');
-                    if (parts.length == 3) {
-                        shortLabels.put(parts[0], parts[1]);
-                        sections.put(parts[0], parts[2]);
-                    }
+            try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/items-extra-info.csv")) {
+                if (is == null)
+                    throw new NullPointerException("Unable to find items-extra-info.csv");
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+                    in.lines().forEach(line -> {
+                        String[] parts = StringUtils.split(line, ',');
+                        if (parts.length == 3) {
+                            shortLabels.put(parts[0], parts[1]);
+                            sections.put(parts[0], parts[2]);
+                        }
 
-                });
+                    });
+                }
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
