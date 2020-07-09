@@ -639,7 +639,7 @@
     <field name="phase1RadiationExternalBeamTech" start="2287" end="2288" short-label="P1 Rad Tech" long-label="Phase I Radiation External Beam Planning Tech" naaccr-item-num="1502" section="Treatment-1st Course"/>
     <field name="phase1DosePerFraction" start="2289" end="2293" short-label="P1 Dose/Frac" long-label="Phase I Dose per Fraction" naaccr-item-num="1501" section="Treatment-1st Course"/>
     <field name="phase1NumberOfFractions" start="2294" end="2296" short-label="P1 Num Frac" long-label="Phase I Number of Fractions" naaccr-item-num="1503" align="right" pad-char="0" section="Treatment-1st Course"/>
-    <field name="phase1TotalDose" start="2297" end="2302" short-label="P1 Tot Dose" long-label="Phase I Total Dose" naaccr-item-num="1507" section="Treatment-1st Course"/>
+    <field name="phase1TotalDose" start="2297" end="2302" short-label="P1 Tot Dose" long-label="Phase I Total Dose" naaccr-item-num="1507" align="right" pad-char="0" section="Treatment-1st Course"/>
     <field name="phase2RadiationPrimaryTxVolume" start="2303" end="2304" short-label="P2 Rad Vol" long-label="Phase II Radiation Primary Treatment Volume" naaccr-item-num="1514" section="Treatment-1st Course"/>
     <field name="phase2RadiationToDrainingLN" start="2305" end="2306" short-label="P2 Rad LN" long-label="Phase II Radiation to Draining Lymph Nodes" naaccr-item-num="1515" section="Treatment-1st Course"/>
     <field name="phase2RadiationTreatmentModality" start="2307" end="2308" short-label="P2 Rad Mod" long-label="Phase II Radiation Treatment Modality" naaccr-item-num="1516" section="Treatment-1st Course"/>
