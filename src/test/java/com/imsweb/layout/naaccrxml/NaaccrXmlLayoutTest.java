@@ -323,6 +323,7 @@ public class NaaccrXmlLayoutTest {
         NaaccrXmlLayout layout = new NaaccrXmlLayout();
         layout.setLayoutId("test");
         layout.setLayoutName("Test");
+        layout.setLayoutVersion("180");
         layout.setLayoutDescription("For testing...");
         layout.setNaaccrVersion("180");
         layout.setRecordType("I");

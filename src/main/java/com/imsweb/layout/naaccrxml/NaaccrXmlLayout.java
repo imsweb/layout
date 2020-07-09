@@ -201,19 +201,14 @@ public class NaaccrXmlLayout implements Layout {
         if (loadFields) {
 
             Map<String, String> shortLabels = new HashMap<>(), sections = new HashMap<>();
-            try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/items-extra-info.csv")) {
-                if (is == null)
-                    throw new NullPointerException("Unable to find items-extra-info.csv");
-                try (BufferedReader in = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-                    in.lines().forEach(line -> {
-                        String[] parts = StringUtils.split(line, ',');
-                        if (parts.length == 3) {
-                            shortLabels.put(parts[0], parts[1]);
-                            sections.put(parts[0], parts[2]);
-                        }
-
-                    });
-                }
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/items-extra-info.csv"), UTF_8))) {
+                in.lines().forEach(line -> {
+                    String[] parts = StringUtils.split(line, ',');
+                    if (parts.length == 3) {
+                        shortLabels.put(parts[0], parts[1]);
+                        sections.put(parts[0], parts[2]);
+                    }
+                });
             }
             catch (IOException e) {
                 throw new RuntimeException(e);
