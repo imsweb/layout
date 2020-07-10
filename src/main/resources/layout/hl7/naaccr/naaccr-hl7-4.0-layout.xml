@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hl7-layout id="naaccr-hl7-2.5.1" name="NAACCR HL7 2.5.1" version="2.5.1" description="NAACCR HL7 version 2.5.1">
+<hl7-layout id="naaccr-hl7-4.0" name="NAACCR HL7 v4.0" version="4.0" description="NAACCR HL7 version 4.0">
     <segment identifier="MSH">
         <field name="fieldSeparator" identifier="MSH-1" long-label="Field Separator" type="ST" min-occurrence="1" max-occurrence="1"/>
         <field name="encodingCharacters" identifier="MSH-2" long-label="Encoding Characters" type="ST" min-occurrence="1" max-occurrence="1"/>

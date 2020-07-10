@@ -1,4 +1,4 @@
-MSH|^~\&||INDEPENDENT LAB SERVICES^33D1234567^CLIA|||200506021339||ORU^R01^ORU_R01|2004072813390045|P|2.5.1|||||||||VOL_V_30_ORU_R01^NAACCR_CP^2.16.840.1.113883.9.8^ISO<CR>
+MSH|^~\&||INDEPENDENT LAB SERVICES^33D1234567^CLIA|||200506021339||ORU^R01^ORU_R01|2004072813390045|P|2.5.1|||||||||VOL_V_40_ORU_R01^NAACCR_CP^2.16.840.1.113883.9.8^ISO<CR>
 PID|1||123456789^^^^SS~00466144^^^^MR||McMuffin^Candy||19570706|F||2106-3^White^HL70005|495 East Overshoot Drive^^Delmar^NY^12054^^H|||||M<CR>
 ORC|RE||||||||||||||||||||Albany Medical Center|43 New Scotland Ave.^^Albany^NY^12208||43 New Scotland Ave.^^Albany^NY^12208<CR>
 OBR|1||06-123456-MH|22049-1^Flow Cytometry Analysis^LN|||200505021212|||||||200505311130|^Bone marrow|^B.J.^Healing^^^^M.D.|2033271605|||||200505311332|||F|||||||109772&PATHOLOGIST&QUINCY&&&Dr.&MD&&NPI<CR>
@@ -8,7 +8,7 @@ OBX|3|TX|22638-1^comments^LN||Correlation with a comprehensive bone marrow morph
 OBX|4|TX|22637-3^final diagnosis^LN||A small population of monoclonal B-cells (Kappa) is present in the bone marrow. The antigenic profile is consistent with chronic lymphocytic leukemia/small lymphocytic lymphoma (CLL/SLL).|||N|||F|||200505021212<CR>
 OBX|5|TX|22049-1^phenotype^LN||1. A monoclonal kappa B\S\cell population co-expressing CD5 and CD23 is present. 2. -92% maturing myeloid elements are present.|||N|||F|||200505021212<CR>
 
-MSH|^~\&||IND LAB SERVICES^33D1234567^CLIA|||200506021339||ORU^R01^ORU_R01|2004072813390045|P|2.5.1|||||||||VOL_V_30_ORU_R01^NAACCR_CP^2.16.840.1.113883.9.8^ISO<CR>
+MSH|^~\&||IND LAB SERVICES^33D1234567^CLIA|||200506021339||ORU^R01^ORU_R01|2004072813390045|P|2.5.1|||||||||VOL_V_40_ORU_R01^NAACCR_CP^2.16.840.1.113883.9.8^ISO<CR>
 PID|1||123456789^^^^SS~00466144^^^^MR||McMuffin^Candy||19570706|F||2106-3^White^HL70005|495 East Overshoot Drive^^Delmar^NY^12054^^H|||||M<CR>
 OBR|1||06-123456-MH|22049-1^Flow Cytometry Analysis^LN|||200505021212|||||||200505311130|^Bone marrow|^B.J.^Healing^^^^M.D.|2033271605|||||200505311332|||F|||||||109772&PATHOLOGIST&QUINCY&&&Dr.&MD&&NPI<CR>
 OBX|1|TX|22633-2^nature of specimen^LN||Bone marrow.|||N|||F|||200505021212<CR>

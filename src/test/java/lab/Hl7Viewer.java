@@ -61,7 +61,7 @@ public class Hl7Viewer extends JFrame {
         this.getContentPane().add(centerPnl, BorderLayout.CENTER);
 
         Map<String, String> entityNames = new HashMap<>();
-        Hl7LayoutXmlDto layout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream(LayoutUtils.getInternalNaaccrHl7Resource("2.5.1")));
+        Hl7LayoutXmlDto layout = LayoutUtils.readHl7Layout(Thread.currentThread().getContextClassLoader().getResourceAsStream(LayoutUtils.getInternalNaaccrHl7Resource("4.0")));
         for (Hl7SegmentXmlDto segment : layout.getHl7Segments()) {
             for (Hl7FieldXmlDto field : segment.getHl7Fields()) {
                 entityNames.put(field.getIdentifier(), field.getLongLabel());

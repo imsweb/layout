@@ -37,7 +37,7 @@ public class NaaccrHl7LayoutTest {
 
     @Test
     public void testNaaccrHl7Layout251() throws Exception {
-        NaaccrHl7Layout layout = LayoutFactory.getNaaccrHl7Layout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+        NaaccrHl7Layout layout = LayoutFactory.getNaaccrHl7Layout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4);
         assertInternalLayoutValidity(layout);
 
         Hl7Message msg = Hl7MessageBuilder.createMessage()
@@ -62,7 +62,7 @@ public class NaaccrHl7LayoutTest {
                 .withComponent(3, "P")
                 .build();
 
-        File file = new File(TestingUtils.getBuildDirectory(), "test-2.5.1.hl7");
+        File file = new File(TestingUtils.getBuildDirectory(), "test-4.0.hl7");
 
         layout.writeMessages(file, Collections.singletonList(msg));
         Assert.assertTrue(file.exists());
@@ -80,6 +80,7 @@ public class NaaccrHl7LayoutTest {
 
     @SuppressWarnings("unchecked")
     private void assertInternalLayoutValidity(NaaccrHl7Layout layout) throws IOException {
+        Assert.assertEquals("2.5.1", layout.getHl7Specifications());
 
         // make sure the first field belongs to MSH segment
         List<NaaccrHl7Field> fields = (List<NaaccrHl7Field>)layout.getAllFields();
@@ -229,7 +230,7 @@ public class NaaccrHl7LayoutTest {
     @SuppressWarnings("ConstantConditions")
     public void testHl7Layout() throws Exception {
         // test read messages (uses a modified example in PDF)
-        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4);
         URL url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-hl7.txt");
         List<Hl7Message> messages = layout.readAllMessages(new File(url.getPath()));
         Assert.assertEquals(2, messages.size());
@@ -312,7 +313,7 @@ public class NaaccrHl7LayoutTest {
 
     @SuppressWarnings("ConstantConditions")
     public void testHl7LayoutBad() throws Exception {
-        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4);
 
         Hl7LayoutOptions options = new Hl7LayoutOptions();
         options.setSkipInvalidSegmentIds(false);

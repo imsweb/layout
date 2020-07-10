@@ -27,6 +27,7 @@ import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.hl7.entity.Hl7Message;
+import com.imsweb.layout.hl7.entity.Hl7Segment;
 import com.imsweb.layout.hl7.xml.Hl7ComponentXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7FieldXmlDto;
 import com.imsweb.layout.hl7.xml.Hl7LayoutXmlDto;
@@ -38,34 +39,25 @@ import com.imsweb.layout.hl7.xml.Hl7SubComponentXmlDto;
  */
 public class NaaccrHl7Layout implements Layout {
 
-    /**
-     * Layout ID
-     */
+    // layout ID
     protected String _layoutId;
 
-    /**
-     * Layout name
-     */
+    // layout name
     protected String _layoutName;
 
-    /**
-     * Layout version
-     */
+    // layout version
     protected String _layoutVersion;
 
-    /**
-     * Layout description
-     */
+    // layout description
     protected String _layoutDesc;
 
-    /**
-     * The fields for this layout
-     */
+    // the HL7 specifications version
+    protected String _hl7Specifications;
+
+    // the fields for this layout
     protected List<NaaccrHl7Field> _fields = new ArrayList<>();
 
-    /**
-     * Cached fields by name
-     */
+    // cached fields by name
     protected Map<String, NaaccrHl7Field> _cachedByName = new HashMap<>();
 
     /**
@@ -75,6 +67,9 @@ public class NaaccrHl7Layout implements Layout {
      * @param loadFields if true, then load the fields
      */
     public NaaccrHl7Layout(String layoutId, String layoutVersion, boolean loadFields) {
+
+        // for now only one HL7 version is supported, so I am hard-coding it...
+        _hl7Specifications = "2.5.1";
 
         // optimization - if we don't need to load the fields, then don't load the XML at all!
         Hl7LayoutXmlDto layoutXmlDto = new Hl7LayoutXmlDto();
@@ -229,6 +224,10 @@ public class NaaccrHl7Layout implements Layout {
         return _layoutDesc;
     }
 
+    public String getHl7Specifications() {
+        return _hl7Specifications;
+    }
+
     @Override
     public Field getFieldByName(String name) {
         return _cachedByName.get(name);
@@ -265,12 +264,24 @@ public class NaaccrHl7Layout implements Layout {
 
         try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), StandardCharsets.UTF_8))) {
             String line = reader.readLine();
-            while (line != null && reader.getLineNumber() < 10 && result == null) {
-                if (line.startsWith("MSH") && _layoutVersion.equals(Hl7Utils.segmentFromString(new Hl7Message(), line).getField(12).getComponent(1).getValue())) {
-                    result = new LayoutInfo();
-                    result.setLayoutId(getLayoutId());
-                    result.setLayoutName(getLayoutName());
+            while (line != null && reader.getLineNumber() < 25 && result == null) {
+                if (line.startsWith("MSH")) {
+                    Hl7Segment segment = Hl7Utils.segmentFromString(new Hl7Message(), line);
+
+                    String hl7Version = segment.getField(12).getComponent(1).getValue();
+                    if (_hl7Specifications.equals(hl7Version)) {
+                        String expectedProfileIdentifier = "VOL_V_" + _layoutVersion.replace(".", "") + "_ORU_R01";
+                        String profileIdentifier = segment.getField(21).getComponent(1).getValue();
+                        if (expectedProfileIdentifier.equals(profileIdentifier)) {
+                            result = new LayoutInfo();
+                            result.setLayoutId(getLayoutId());
+                            result.setLayoutName(getLayoutName());
+                        }
+                    }
+                    break;
                 }
+                else if (line.startsWith("PID"))
+                    break;
                 line = reader.readLine();
             }
         }

@@ -16,7 +16,7 @@ import com.imsweb.layout.hl7.entity.Hl7Message;
 public class Hl7FolderEvaluator {
 
     public static void main(String[] args) throws IOException {
-        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1);
+        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4);
         Files.newDirectoryStream(Paths.get("D:\\Users\\depryf\\Desktop\\HL7 data")).forEach(path -> {
             try (LineNumberReader reader = new LineNumberReader(new FileReader(path.toFile()))) {
                 //List<Hl7Message> messages = layout.readAllMessages(path.toFile());
