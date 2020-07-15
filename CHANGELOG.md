@@ -1,6 +1,6 @@
 ## Layout Framework Version History
 
-**Changes in version 2.2**
+**Changes in version 3.0**
 
 - Added support for sections in NAACCR XML layouts.
 - Fixed bad padding for phase1TotalDose in NAACCR 18 fixed-column layout.
