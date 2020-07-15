@@ -4,6 +4,7 @@
 
 - Added support for sections in NAACCR XML layouts.
 - Fixed bad padding for phase1TotalDose in NAACCR 18 fixed-column layout.
+- Fixed a few long labels in NAACCR 18 fixed-column layout to align with official NAACCR names.
 - Added convenience methods to LayoutFactory to return specific layout types to avoid casting.
 - Changed NAACCR HL7 layout version to be 4.0 instead of 2.5.1 which is the HL7 specifications.
 - Updated NAACCR XML library from version 6.5 to version 7.0.

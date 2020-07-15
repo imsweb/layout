@@ -185,7 +185,7 @@
     <field name="tnmClinStagedBy" start="868" end="869" short-label="Clin Stg By" long-label="TNM Clin Staged By" naaccr-item-num="990" section="Stage/Prognostic Factors"/>
     <field name="metsAtDxBone" start="870" end="870" short-label="Mets DX Bone" long-label="Mets at DX-Bone" naaccr-item-num="1112" section="Stage/Prognostic Factors"/>
     <field name="metsAtDxBrain" start="871" end="871" short-label="Mets DX Brain" long-label="Mets at DX-Brain" naaccr-item-num="1113" section="Stage/Prognostic Factors"/>
-    <field name="metsAtDxDistantLn" start="872" end="872" short-label="Mets DX Dist LN" long-label="Mets at DX-Distant LN" naaccr-item-num="1114" section="Stage/Prognostic Factors"/>
+    <field name="metsAtDxDistantLn" start="872" end="872" short-label="Mets DX Dist LN" long-label="Mets at Dx-Distant LN" naaccr-item-num="1114" section="Stage/Prognostic Factors"/>
     <field name="metsAtDxLiver" start="873" end="873" short-label="Mets DX Liver" long-label="Mets at DX-Liver" naaccr-item-num="1115" section="Stage/Prognostic Factors"/>
     <field name="metsAtDxLung" start="874" end="874" short-label="Mets DX Lung" long-label="Mets at DX-Lung" naaccr-item-num="1116" section="Stage/Prognostic Factors"/>
     <field name="metsAtDxOther" start="875" end="875" short-label="Mets DX Other" long-label="Mets at DX-Other" naaccr-item-num="1117" section="Stage/Prognostic Factors"/>
@@ -233,7 +233,7 @@
         <field name="dateSentinelLymphNodeBiopsyMonth" start="1020" end="1021" short-label="SLN Biop Mth" long-label="Date of Sentinel Lymph Node Biopsy (Month)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
         <field name="dateSentinelLymphNodeBiopsyDay" start="1022" end="1023" short-label="SLN Biop Day" long-label="Date of Sentinel Lymph Node Biopsy (Day)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     </field>
-    <field name="dateSentinelLymphNodeBiopsyFlag" start="1024" end="1025" short-label="SLN Biop Dt Fg" long-label="Date Sentinel Lymph Node Biopsy Flag" naaccr-item-num="833" section="Stage/Prognostic Factors"/>
+    <field name="dateSentinelLymphNodeBiopsyFlag" start="1024" end="1025" short-label="SLN Biop Dt Fg" long-label="Date of Sentinel Lymph Node Biopsy Flag" naaccr-item-num="833" section="Stage/Prognostic Factors"/>
     <field name="eodOld13Digit" start="1026" end="1038" short-label="EOD13(73-82)" long-label="EOD--Old 13 Digit" naaccr-item-num="840" section="Stage/Prognostic Factors"/>
     <field name="eodOld2Digit" start="1039" end="1040" short-label="EOD2(73-82)" long-label="EOD--Old 2 Digit" naaccr-item-num="850" section="Stage/Prognostic Factors"/>
     <field name="eodOld4Digit" start="1041" end="1044" short-label="EOD4(83-87)" long-label="EOD--Old 4 Digit" naaccr-item-num="860" section="Stage/Prognostic Factors">
@@ -280,7 +280,7 @@
     <field name="tumorMarker1" start="1294" end="1294" short-label="Mark 1" long-label="Tumor Marker 1" naaccr-item-num="1150" section="Stage/Prognostic Factors"/>
     <field name="tumorMarker2" start="1295" end="1295" short-label="Mark 2" long-label="Tumor Marker 2" naaccr-item-num="1160" section="Stage/Prognostic Factors"/>
     <field name="tumorMarker3" start="1296" end="1296" short-label="Mark 3" long-label="Tumor Marker 3" naaccr-item-num="1170" section="Stage/Prognostic Factors"/>
-    <field name="lymphVascularInvasion" start="1297" end="1297" short-label="LVI" long-label="Lymph-vascular Invasion" naaccr-item-num="1182" section="Stage/Prognostic Factors"/>
+    <field name="lymphVascularInvasion" start="1297" end="1297" short-label="LVI" long-label="Lymphovascular Invasion" naaccr-item-num="1182" section="Stage/Prognostic Factors"/>
     <field name="csTumorSize" start="1298" end="1300" short-label="CS Size" long-label="CS Tumor Size" naaccr-item-num="2800" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     <field name="csExtension" start="1301" end="1303" short-label="CS Ext" long-label="CS Extension" naaccr-item-num="2810" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     <field name="csTumorSizeExtEval" start="1304" end="1304" short-label="CS Eval" long-label="CS Tumor Size/Ext Eval" naaccr-item-num="2820" section="Stage/Prognostic Factors"/>
@@ -861,7 +861,7 @@
         <field name="dateOfDeathCanadaMonth" start="2957" end="2958" short-label="Canada Death Mth" long-label="Date of Death--Canada (Month)" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>
         <field name="dateOfDeathCanadaDay" start="2959" end="2960" short-label="Canada Death Day" long-label="Date of Death--Canada (Day)" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>
     </field>
-    <field name="dateOfDeathCanadaFlag" start="2961" end="2962" short-label="Canada Death Dt Fg" long-label="Date of Death--Canada Flag" naaccr-item-num="1756" section="Follow-up/Recurrence/Death"/>
+    <field name="dateOfDeathCanadaFlag" start="2961" end="2962" short-label="Canada Death Dt Fg" long-label="Date of Death--CanadaFlag" naaccr-item-num="1756" section="Follow-up/Recurrence/Death"/>
     <field name="unusualFollowUpMethod" start="2963" end="2964" short-label="Unusual FU Meth" long-label="Unusual Follow-Up Method" naaccr-item-num="1850" section="Follow-up/Recurrence/Death"/>
     <field name="survDateActiveFollowup" start="2965" end="2972" short-label="Surv Dt" long-label="Surv-Date Active Followup" naaccr-item-num="1782" section="Follow-up/Recurrence/Death">
         <field name="survDateActiveFollowupYear" start="2965" end="2968" short-label="Surv Yr" long-label="Surv-Date Active Followup (Year)" align="right" pad-char="0" section="Follow-up/Recurrence/Death"/>
