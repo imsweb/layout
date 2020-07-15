@@ -2,6 +2,7 @@
 
 **Changes in version 3.0**
 
+- Added NAACCR 21 XML layout (there won't be a NAACCR 18 fixed-column layout); documentation is not available yet for new data items.
 - Added support for sections in NAACCR XML layouts.
 - Fixed bad padding for phase1TotalDose in NAACCR 18 fixed-column layout.
 - Fixed a few long labels in NAACCR 18 fixed-column layout to align with official NAACCR names.
