@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 3.1**
+
+- Added support for new NAACCR HL7 v5 format.
+
 **Changes in version 3.0**
 
 - Added NAACCR 21 XML layout (there won't be a NAACCR 18 fixed-column layout); documentation is not available yet for new data items.
