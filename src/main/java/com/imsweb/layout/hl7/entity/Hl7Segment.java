@@ -41,7 +41,7 @@ public class Hl7Segment {
             new Hl7Field(this, 9, "ORU", "R01", "ORU_R01");
             new Hl7Field(this, 11, "P");
             new Hl7Field(this, 12, "2.5.1");
-            new Hl7Field(this, 21, "VOL_V_40_ORU_R01", "NAACCR_CP");
+            new Hl7Field(this, 21, "VOL_V_50_ORU_R01", "NAACCR_CP");
         }
 
         if (message != null)

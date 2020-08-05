@@ -64,12 +64,11 @@ public class NaaccrHl7Layout implements Layout {
      * Constructor.
      * @param layoutId layout ID, cannot be null
      * @param layoutVersion layout version, cannot be null
+     * @param hl7Specifications the implemented HL7 specifications
      * @param loadFields if true, then load the fields
      */
-    public NaaccrHl7Layout(String layoutId, String layoutVersion, boolean loadFields) {
-
-        // for now only one HL7 version is supported, so I am hard-coding it...
-        _hl7Specifications = "2.5.1";
+    public NaaccrHl7Layout(String layoutId, String layoutVersion, String hl7Specifications, boolean loadFields) {
+        _hl7Specifications = hl7Specifications;
 
         // optimization - if we don't need to load the fields, then don't load the XML at all!
         Hl7LayoutXmlDto layoutXmlDto = new Hl7LayoutXmlDto();

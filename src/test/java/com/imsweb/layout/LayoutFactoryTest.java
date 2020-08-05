@@ -55,6 +55,10 @@ public class LayoutFactoryTest {
         Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_12_ABSTRACT));
         Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_12_ABSTRACT));
 
+        // test NAACCR HL7 5.0
+        Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V5));
+        Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V5));
+
         // test NAACCR HL7 4.0
         Assert.assertTrue(LayoutFactory.getAvailableInternalLayouts().containsKey(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4));
         Assert.assertNotNull(LayoutFactory.getAvailableInternalLayouts().get(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4));

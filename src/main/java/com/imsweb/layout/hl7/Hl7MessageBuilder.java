@@ -34,7 +34,7 @@ public class Hl7MessageBuilder {
     }
 
     // current message
-    private Hl7Message _message;
+    private final Hl7Message _message;
 
     // current segment
     private Hl7Segment _currentSegment;

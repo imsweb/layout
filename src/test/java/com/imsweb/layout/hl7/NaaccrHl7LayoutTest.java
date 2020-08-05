@@ -36,12 +36,56 @@ import com.imsweb.seerutils.SeerUtils;
 public class NaaccrHl7LayoutTest {
 
     @Test
-    public void testNaaccrHl7Layout251() throws Exception {
+    public void testNaaccrHl7LayoutV5() throws Exception {
+        NaaccrHl7Layout layout = LayoutFactory.getNaaccrHl7Layout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V5);
+        assertInternalLayoutValidity(layout);
+
+        Hl7Message msg = Hl7MessageBuilder.createMessage()
+                .withSegment("MSH")
+                .withSegment("PID")
+                .withField(2, "WEIRD-ID")
+                .withField(3)
+                .withRepeatedField()
+                .withComponent(1, "010203040")
+                .withComponent(5, "MR")
+                .withComponent(6, "STJ", "03D1234567", "AHA")
+                .withRepeatedField()
+                .withComponent(1, "111223333")
+                .withComponent(5, "SS")
+                .withRepeatedField()
+                .withComponent(1, "97 810430")
+                .withComponent(5, "PI")
+                .withComponent(6, "HITECK PATH LAB-ATL", "3D932840", "CLIA")
+                .withField(5)
+                .withComponent(1, "DEPRY")
+                .withComponent(2, "FABIAN")
+                .withComponent(3, "P")
+                .build();
+
+        File file = new File(TestingUtils.getBuildDirectory(), "test-5.0.hl7");
+
+        layout.writeMessages(file, Collections.singletonList(msg));
+        Assert.assertTrue(file.exists());
+        Assert.assertTrue(SeerUtils.readFile(file).split("\r?\n")[0].startsWith("MSH|^~\\&|"));
+
+        LayoutInfo info = layout.buildFileInfo(file, null, null);
+        Assert.assertNotNull(info);
+        Assert.assertEquals(layout.getLayoutId(), info.getLayoutId());
+
+        Hl7Message msg2 = layout.readAllMessages(file).get(0);
+        Assert.assertEquals("2.5.1", msg2.getSegment("MSH").getField(12).getValue());
+        Assert.assertEquals("WEIRD-ID", msg2.getSegment("PID").getValue(2));
+        Assert.assertEquals("010203040", msg2.getSegment("PID").getValue(3, 1, 1, 1));
+    }
+
+    @Test
+    public void testNaaccrHl7LayoutV4() throws Exception {
         NaaccrHl7Layout layout = LayoutFactory.getNaaccrHl7Layout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4);
         assertInternalLayoutValidity(layout);
 
         Hl7Message msg = Hl7MessageBuilder.createMessage()
                 .withSegment("MSH")
+                .withField(21, "VOL_V_40_ORU_R01", "NAACCR_CP")
                 .withSegment("PID")
                 .withField(2, "WEIRD-ID")
                 .withField(3)
@@ -134,46 +178,46 @@ public class NaaccrHl7LayoutTest {
             fieldIndex = 1;
             for (Hl7FieldXmlDto field : segment.getHl7Fields()) {
                 // test non-null field parameters
-                Assert.assertFalse(field.getName().isEmpty());
-                Assert.assertFalse(field.getIdentifier().isEmpty());
-                Assert.assertFalse(field.getLongLabel().isEmpty());
-                Assert.assertFalse(field.getType().isEmpty()); // UNK exists in the XML file (OBX-5, OBX-20, OBX-21, OBX-22)
-                Assert.assertNotNull(field.getMinOccurrence());
-                Assert.assertNotNull(field.getMaxOccurrence());
+                Assert.assertFalse(field.getIdentifier(), field.getName().isEmpty());
+                Assert.assertFalse(field.getIdentifier(), field.getIdentifier().isEmpty());
+                Assert.assertFalse(field.getIdentifier(), field.getLongLabel().isEmpty());
+                Assert.assertFalse(field.getIdentifier(), field.getType().isEmpty()); // UNK exists in the XML file (OBX-5, OBX-20, OBX-21, OBX-22)
+                Assert.assertNotNull(field.getIdentifier(), field.getMinOccurrence());
+                Assert.assertNotNull(field.getIdentifier(), field.getMaxOccurrence());
 
                 // test field identifier
-                Assert.assertEquals(segment.getIdentifier(), field.getIdentifier().substring(0, 3));
-                Assert.assertEquals(fieldIndex, Integer.parseInt(parseIdentifier(field.getIdentifier())[0]));
+                Assert.assertEquals(field.getIdentifier(), segment.getIdentifier(), field.getIdentifier().substring(0, 3));
+                Assert.assertEquals(field.getIdentifier(), fieldIndex, Integer.parseInt(parseIdentifier(field.getIdentifier())[0]));
 
                 // test field min and max occurrences
-                Assert.assertTrue(field.getMinOccurrence() <= field.getMaxOccurrence());
+                Assert.assertTrue(field.getIdentifier(), field.getMinOccurrence() <= field.getMaxOccurrence());
 
                 int componentIndex = 1;
                 for (Hl7ComponentXmlDto component : field.getHl7Components()) {
                     // test non-null field parameters
-                    Assert.assertFalse(component.getName().isEmpty());
-                    Assert.assertFalse(component.getIdentifier().isEmpty());
-                    Assert.assertFalse(component.getLongLabel().isEmpty());
-                    Assert.assertFalse(component.getType().isEmpty()); // UNK exists in the XML file (PID-13.1, PID-14.1, NK1-5.1, ORC-23.1, OBR-17.1)
+                    Assert.assertFalse(component.getIdentifier(), component.getName().isEmpty());
+                    Assert.assertFalse(component.getIdentifier(), component.getIdentifier().isEmpty());
+                    Assert.assertFalse(component.getIdentifier(), component.getLongLabel().isEmpty());
+                    Assert.assertFalse(component.getIdentifier(), component.getType().isEmpty()); // UNK exists in the XML file (PID-13.1, PID-14.1, NK1-5.1, ORC-23.1, OBR-17.1)
 
                     // test component identifier
-                    Assert.assertEquals(segment.getIdentifier(), component.getIdentifier().substring(0, 3));
-                    Assert.assertEquals(fieldIndex, Integer.parseInt(parseIdentifier(component.getIdentifier())[0]));
-                    Assert.assertEquals(componentIndex, Integer.parseInt(parseIdentifier(component.getIdentifier())[1]));
+                    Assert.assertEquals(component.getIdentifier(), segment.getIdentifier(), component.getIdentifier().substring(0, 3));
+                    Assert.assertEquals(component.getIdentifier(), fieldIndex, Integer.parseInt(parseIdentifier(component.getIdentifier())[0]));
+                    Assert.assertEquals(component.getIdentifier(), componentIndex, Integer.parseInt(parseIdentifier(component.getIdentifier())[1]));
 
                     int subComponentIndex = 1;
                     for (Hl7SubComponentXmlDto subComponent : component.getHl7SubComponents()) {
                         // test non-null field parameters
-                        Assert.assertFalse(subComponent.getName().isEmpty());
-                        Assert.assertFalse(subComponent.getIdentifier().isEmpty());
-                        Assert.assertFalse(subComponent.getLongLabel().isEmpty());
-                        Assert.assertFalse(subComponent.getType().isEmpty());
+                        Assert.assertFalse(subComponent.getIdentifier(), subComponent.getName().isEmpty());
+                        Assert.assertFalse(subComponent.getIdentifier(), subComponent.getIdentifier().isEmpty());
+                        Assert.assertFalse(subComponent.getIdentifier(), subComponent.getLongLabel().isEmpty());
+                        Assert.assertFalse(subComponent.getIdentifier(), subComponent.getType().isEmpty());
 
                         // test subcomponent identifier
-                        Assert.assertEquals(segment.getIdentifier(), subComponent.getIdentifier().substring(0, 3));
-                        Assert.assertEquals(fieldIndex, Integer.parseInt(parseIdentifier(subComponent.getIdentifier())[0]));
-                        Assert.assertEquals(componentIndex, Integer.parseInt(parseIdentifier(subComponent.getIdentifier())[1]));
-                        Assert.assertEquals(subComponentIndex, Integer.parseInt(parseIdentifier(subComponent.getIdentifier())[2]));
+                        Assert.assertEquals(subComponent.getIdentifier(), segment.getIdentifier(), subComponent.getIdentifier().substring(0, 3));
+                        Assert.assertEquals(subComponent.getIdentifier(), fieldIndex, Integer.parseInt(parseIdentifier(subComponent.getIdentifier())[0]));
+                        Assert.assertEquals(subComponent.getIdentifier(), componentIndex, Integer.parseInt(parseIdentifier(subComponent.getIdentifier())[1]));
+                        Assert.assertEquals(subComponent.getIdentifier(), subComponentIndex, Integer.parseInt(parseIdentifier(subComponent.getIdentifier())[2]));
 
                         subComponentIndex++;
                     }
@@ -230,7 +274,7 @@ public class NaaccrHl7LayoutTest {
     @SuppressWarnings("ConstantConditions")
     public void testHl7Layout() throws Exception {
         // test read messages (uses a modified example in PDF)
-        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4);
+        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V5);
         URL url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-hl7.txt");
         List<Hl7Message> messages = layout.readAllMessages(new File(url.getPath()));
         Assert.assertEquals(2, messages.size());
@@ -313,7 +357,7 @@ public class NaaccrHl7LayoutTest {
 
     @SuppressWarnings("ConstantConditions")
     public void testHl7LayoutBad() throws Exception {
-        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V4);
+        NaaccrHl7Layout layout = (NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V5);
 
         Hl7LayoutOptions options = new Hl7LayoutOptions();
         options.setSkipInvalidSegmentIds(false);

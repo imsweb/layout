@@ -103,6 +103,7 @@ public final class LayoutFactory {
     public static final String LAYOUT_ID_NAACCR_12_CONFIDENTIAL = "naaccr-12-confidential";
     public static final String LAYOUT_ID_NAACCR_12_INCIDENCE = "naaccr-12-incidence";
     //Hl7 layouts
+    public static final String LAYOUT_ID_NAACCR_HL7_V5 = "naaccr-hl7-5.0";
     public static final String LAYOUT_ID_NAACCR_HL7_V4 = "naaccr-hl7-4.0";
 
     // regular expressions for some of the the internal IDs
@@ -191,6 +192,7 @@ public final class LayoutFactory {
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_12_INCIDENCE, "NAACCR 12 Incidence");
         // NAACCR HL7
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_HL7_V4, "NAACCR HL7 v4.0");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_HL7_V5, "NAACCR HL7 v5.0");
     }
 
     // registered layouts (internal and external)
@@ -235,8 +237,10 @@ public final class LayoutFactory {
 
         // try NAACCR HL7
         if (layout == null) {
-            if (LAYOUT_ID_NAACCR_HL7_V4.equals(layoutId))
-                layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7_V4, "4.0", loadFields);
+            if (LAYOUT_ID_NAACCR_HL7_V5.equals(layoutId))
+                layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7_V5, "5.0", "2.5.1", loadFields);
+            else if (LAYOUT_ID_NAACCR_HL7_V4.equals(layoutId))
+                layout = new NaaccrHl7Layout(LAYOUT_ID_NAACCR_HL7_V4, "4.0", "2.5.1", loadFields);
         }
 
         if (layout == null)
