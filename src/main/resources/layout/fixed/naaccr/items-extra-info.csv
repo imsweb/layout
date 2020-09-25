@@ -831,7 +831,7 @@ neoadjuvantTherapy,Noe Therapy,Treatment-1st Course
 nrasMutationalAnalysis,NRAS Mut Anal,Stage/Prognostic Factors
 schemaIdVersionCurrent,Sch ID Ver Cur,Edit Overrides/Conversion History/System Admin
 schemaIdVersionOriginal,Sch ID Ver Orig,Edit Overrides/Conversion History/System Admin
-ncdbSarsCov2Test,COV2 Test,Unknown
-ncdbSarsCov2Pos,COV2 Pos,Unknown
-ncdbSarsCov2PosDate,COV2 Dt,Unknown
-ncdbCovid19TxImpact,COVID Impact,Unknown
+ncdbSarsCov2Test,COV2 Test,Special Use
+ncdbSarsCov2Pos,COV2 Pos,Special Use
+ncdbSarsCov2PosDate,COV2 Dt,Special Use
+ncdbCovid19TxImpact,COVID Impact,Special Use
