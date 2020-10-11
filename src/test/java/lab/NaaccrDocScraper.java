@@ -22,10 +22,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
+import com.imsweb.naaccrxml.NaaccrFormat;
+import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryGroupedItem;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
 /*********************************************************************************************************
  *     Use this class to generate the NAACCR documentation from the NAACCR website.
@@ -33,35 +35,35 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
  *     !!!!    MAKE SURE TO AUTO-FORMAT THE ENTIRE FOLDER AFTER CREATING THE FILES    !!!!
  *     !!!!    ALSO MAKE SURE YOU RUN THE VIEWER AND CHECKER AFTER AN UPDATE          !!!!
  *
- *     This class also creates the styles that need to be copied into the NaaccrLayout class.
- *
- *     After creating the files with this class, use the "NaaccrDocViewer" and review every created file;
- *     that utility class is in the SEER*Utils GUI project (test/naaccr)
+ *     This class also creates the styles that need to be copied into the NaaccrLayout class (they rarely change).
  *
  *     2014/10/25 FD - didn't need to redo the styles for NAACCR 15/16/18, they were the same as NAACCR 14...
  *
  *     2019/07/26 FD - I added support for "retired fields"; those will use their NAACCR number in the HTML
  *                     filename since there is no legit field name for them.  They can only be returned by
  *                     the "getFieldDocByNaaccrItemNumber" method.
- *
+ *     2020/10/11 FD - cleaned by hand ajccApiVersionCurrent and ajccApiVersionOriginal (complete mess);
+ *                     also tweaked seerCodingSysCurrent and seerCodingSysOriginal (bad tag)
+ *                     // TODO review ajccApiVersionCurrent - code section (missing something)
+ *                     // TODO viewer crashed on "ncdb" fields
  *********************************************************************************************************/
 @SuppressWarnings({"MismatchedQueryAndUpdateOfStringBuilder", "ConstantConditions"})
 public class NaaccrDocScraper {
 
     public static void main(String[] args) throws Exception {
         // output directory
-        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr18");
+        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr21");
 
-        // the layout to use to gather the fields
-        NaaccrLayout layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18);
+        // the dictionary to use to gather the fields
+        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(NaaccrFormat.NAACCR_VERSION_210);
 
         // this is the URL to read the full HTML page from
         //URL url = new URL("http://datadictionary.naaccr.org/?c=10");
-        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-18.html");
+        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-21.html");
 
         // this is the URL to read the style sheet from
         //URL styleSheetUrl = new URL("http://datadictionary.naaccr.org/Styles/ContentReader.css");
-        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-18-style.css");
+        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-21-style.css");
 
         // create the stylesheet
         StringBuilder styleBuf = new StringBuilder();
@@ -94,16 +96,10 @@ public class NaaccrDocScraper {
 
         // gather the fields so we can use the property names as file names
         Map<String, String> fields = new HashMap<>();
-        for (FixedColumnsField field : layout.getAllFields()) {
-            if (field.getNaaccrItemNum() != null)
-                fields.put(field.getNaaccrItemNum().toString(), field.getName());
-            if (field.getSubFields() != null) {
-                for (FixedColumnsField subField : field.getSubFields()) {
-                    if (subField.getNaaccrItemNum() != null)
-                        fields.put(subField.getNaaccrItemNum().toString(), subField.getName());
-                }
-            }
-        }
+        for (NaaccrDictionaryItem item : dictionary.getItems())
+            fields.put(item.getNaaccrNum().toString(), item.getNaaccrId());
+        for (NaaccrDictionaryGroupedItem item : dictionary.getGroupedItems())
+            fields.put(item.getNaaccrNum().toString(), item.getNaaccrId());
 
         // go through each field and create the corresponding file
         if (!outputDir.exists() && !outputDir.mkdirs())

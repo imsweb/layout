@@ -59,11 +59,12 @@ import com.imsweb.seerutilsgui.editor.SyntaxKit;
 @SuppressWarnings({"ConstantConditions", "FieldCanBeLocal", "SameParameterValue"})
 public class NaaccrDocViewer extends JFrame {
 
-    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr18");
+    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr21");
 
-    private static List<Layout> _LAYOUTS = new ArrayList<>();
+    private static final List<Layout> _LAYOUTS = new ArrayList<>();
 
     static {
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_21));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_15));
@@ -74,8 +75,8 @@ public class NaaccrDocViewer extends JFrame {
 
     private static final Boolean _SORT_BY_ITEM_NUMBER = false;
 
-    private JPanel _leftPnl, _rightPnl;
-    private JSplitPane _splitPane;
+    private final JPanel _leftPnl, _rightPnl;
+    private final JSplitPane _splitPane;
     private SeerBoldTitlesTabbedPane _pane;
 
     /**
