@@ -2,7 +2,10 @@
 
 **Changes in version 3.1**
 
+- Added NAACCR 21 field documentation.
 - Added support for new NAACCR HL7 v5 format.
+- Updated NAACCR XML library from version 7.0 to version 7.3.
+- Updated XStream dependency from version 1.4.12 to version 1.4.13.
 
 **Changes in version 3.0**
 

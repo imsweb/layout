@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +27,6 @@ import com.imsweb.layout.TestingUtils;
 import com.imsweb.naaccrxml.NaaccrFormat;
 import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
-import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryGroupedItem;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
 /*********************************************************************************************************
@@ -43,9 +43,8 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
  *                     filename since there is no legit field name for them.  They can only be returned by
  *                     the "getFieldDocByNaaccrItemNumber" method.
  *     2020/10/11 FD - cleaned by hand ajccApiVersionCurrent and ajccApiVersionOriginal (complete mess);
- *                     also tweaked seerCodingSysCurrent and seerCodingSysOriginal (bad tag)
- *                     // TODO review ajccApiVersionCurrent - code section (missing something)
- *                     // TODO viewer crashed on "ncdb" fields
+ *                     also cleaned up ncdbSarsCov2Pos (complete mess as well);
+ *                     also tweaked seerCodingSysCurrent and seerCodingSysOriginal (bad "i" tag)
  *********************************************************************************************************/
 @SuppressWarnings({"MismatchedQueryAndUpdateOfStringBuilder", "ConstantConditions"})
 public class NaaccrDocScraper {
@@ -94,20 +93,16 @@ public class NaaccrDocScraper {
         String lastContent = fullContent.substring(start);
         items.put(itemNumber, lastContent.substring(0, lastContent.lastIndexOf("</div>")));
 
-        // gather the fields so we can use the property names as file names
-        Map<String, String> fields = new HashMap<>();
-        for (NaaccrDictionaryItem item : dictionary.getItems())
-            fields.put(item.getNaaccrNum().toString(), item.getNaaccrId());
-        for (NaaccrDictionaryGroupedItem item : dictionary.getGroupedItems())
-            fields.put(item.getNaaccrNum().toString(), item.getNaaccrId());
-
         // go through each field and create the corresponding file
         if (!outputDir.exists() && !outputDir.mkdirs())
             throw new RuntimeException("Unable to create target folder!");
         for (Entry<String, String> entry : items.entrySet()) {
             String itemNum = entry.getKey();
             String html = entry.getValue();
-            String fieldName = fields.getOrDefault(itemNum, itemNum);
+
+            NaaccrDictionaryItem item = getItem(dictionary, itemNum);
+
+            String fieldName = item == null ? itemNum : item.getNaaccrId();
             if (html != null) {
 
                 // bad & characters
@@ -159,7 +154,7 @@ public class NaaccrDocScraper {
 
                 // parse out the extra section with alternate names, NAACCR XML ID and Parent XML Tag
                 int idx2 = html.indexOf("</table>", idx + 8);
-                String metaData = cleanupMetaDataTable(html.substring(idx + 8, idx2 + 8));
+                String metaData = cleanupMetaDataTable(html.substring(idx + 8, idx2 + 8), item);
 
                 // rest is the true content
                 String content = html.substring(idx2 + 8);
@@ -179,6 +174,13 @@ public class NaaccrDocScraper {
             else
                 System.out.println("Can't find content for item number " + itemNum);
         }
+    }
+
+    private static NaaccrDictionaryItem getItem(NaaccrDictionary dictionary, String num) {
+        NaaccrDictionaryItem item = dictionary.getItemByNaaccrNum(Integer.valueOf(num));
+        if (item == null)
+            item = dictionary.getGroupedItemByNaaccrNum(Integer.valueOf(num));
+        return item;
     }
 
     private static String cleanupHtml(String html) {
@@ -243,10 +245,7 @@ public class NaaccrDocScraper {
     }
 
     // let's not even bother with a table for this section!
-    private static String cleanupMetaDataTable(String txt) {
-
-        // this would be the pattern to extract the NAACCR ID if needed
-        //Pattern p = Pattern.compile("<td>XML NAACCR ID:</td><td(.*?)>(.*?)</td>",Pattern.MULTILINE | Pattern.DOTALL);
+    private static String cleanupMetaDataTable(String txt, NaaccrDictionaryItem item) {
 
         // gather the cells
         List<String> cells = new ArrayList<>();
@@ -267,6 +266,13 @@ public class NaaccrDocScraper {
             buf.append("<strong>Alternate Names</strong>\r\n");
             for (String altName : altNames)
                 buf.append("<br/>&nbsp;&nbsp;&nbsp;").append(altName).append("\r\n");
+        }
+
+        if (item != null && !StringUtils.isBlank(cells.get(5)) && !StringUtils.isBlank(cells.get(3))) {
+            String idAndLevelFromWeb = cells.get(5) + "." + cells.get(3);
+            String idAndLevelFromDic = item.getParentXmlElement() + "." + item.getNaaccrId();
+            if (!Objects.equals(idAndLevelFromWeb, idAndLevelFromDic))
+                System.out.println(" !!! detected different id/level: web [" + idAndLevelFromWeb + "] - dictionary [" + idAndLevelFromDic + "]");
         }
 
         return cleanupHtml(buf.toString());
