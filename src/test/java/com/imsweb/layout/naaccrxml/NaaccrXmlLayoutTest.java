@@ -81,13 +81,10 @@ public class NaaccrXmlLayoutTest {
             Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), field.getLongLabel());
             Assert.assertNotEquals(layoutId + "/" + field.getNaaccrId(), "?", field.getShortLabel());
             Assert.assertNotEquals(layoutId + "/" + field.getNaaccrId(), "?", field.getSection());
+            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByName(field.getName()));
+            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
 
-            if (!layout.getNaaccrVersion().equals(NaaccrFormat.NAACCR_VERSION_210)) { // TODO FD remove this once we have the official N21 documentation
-                Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByName(field.getName()));
-                Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
-            }
-
-            if (layout.getNaaccrVersion().equals(NaaccrFormat.NAACCR_VERSION_180))
+            if (layout.getNaaccrVersion().compareTo(NaaccrFormat.NAACCR_VERSION_180) >= 0)
                 Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(35)); // retired field
         }
     }

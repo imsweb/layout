@@ -200,8 +200,6 @@ public class NaaccrXmlLayout implements Layout {
         // only load dictionaries/fields if specified, otherwise avoid expensive operations
         if (loadFields) {
 
-            // TODO FD review COVID data items sections in item-extra-info.csv
-
             Map<String, String> shortLabels = new HashMap<>(), sections = new HashMap<>();
             try (BufferedReader in = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/items-extra-info.csv"), UTF_8))) {
                 in.lines().forEach(line -> {
@@ -453,8 +451,6 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     protected String getDocFolder() {
-        if ("210".equals(_naaccrVersion))
-            return "naaccr18"; // TODO FD remove this once NAACCR 21 documentation is officially released...
         return "naaccr" + _naaccrVersion.substring(0, 2);
     }
 
