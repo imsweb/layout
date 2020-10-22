@@ -494,7 +494,7 @@ public class NaaccrXmlLayoutTest {
 
         Assert.assertEquals("test-id", layout.getLayoutId());
         Assert.assertEquals("Test Name", layout.getLayoutName());
-        Assert.assertEquals("No description available", layout.getLayoutDescription());
+        Assert.assertNull(layout.getLayoutDescription());
         Assert.assertEquals("160", layout.getLayoutVersion());
         Assert.assertEquals(587, layout.getAllFields().size());
         Assert.assertNull(layout.getFieldDocByName("field1"));
