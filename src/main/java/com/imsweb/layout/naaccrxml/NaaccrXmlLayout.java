@@ -195,7 +195,7 @@ public class NaaccrXmlLayout implements Layout {
         _userDictionaries = dictionaries;
         if (_userDictionaries == null || _userDictionaries.isEmpty())
             _userDictionaries = Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion));
-        _layoutDesc = StringUtils.isBlank(description) ? "No description available" : description;
+        _layoutDesc = StringUtils.stripToNull(description);
 
         // only load dictionaries/fields if specified, otherwise avoid expensive operations
         if (loadFields) {
