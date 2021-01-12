@@ -135,6 +135,32 @@ public class NaaccrDocViewer extends JFrame {
                 }
             }
         }
+
+        //        Pattern p = Pattern.compile("[^_]blank", Pattern.CASE_INSENSITIVE);
+        //        System.out.println("NAACCR XML ID,NAACCR Number,NAACCR Name,Description Sample");
+        //        names.stream().forEach(i -> {
+        //            String doc = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_21).getFieldDocByName(labelMappings.get(i));
+        //            if (doc == null)
+        //                return;
+        //
+        //            Field f = LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_21).getFieldByName(labelMappings.get(i));
+        //            if (f == null)
+        //                return;
+        //
+        //            for (String line : doc.split("\r?\n")) {
+        //                line = line.trim();
+        //                Matcher m = p.matcher(line);
+        //                if (m.find()) {
+        //                    String s = line.substring(Math.max(0, m.start() - 50), Math.min(line.length(), m.end() + 50));
+        //                    if (!line.startsWith(s))
+        //                        s = "..." + s;
+        //                    if (!line.endsWith(s))
+        //                        s = s + "...";
+        //                    System.out.println(f.getName() + "," + f.getNaaccrItemNum() + ",\"" + f.getLongLabel() + "\",\"" + s + "\"");
+        //                }
+        //            }
+        //        });
+
         names.sort((o1, o2) -> {
             if (_SORT_BY_ITEM_NUMBER) {
                 if (o1.contains("#") && o2.contains("#") && o1.endsWith(")") && o2.endsWith(")")) {
