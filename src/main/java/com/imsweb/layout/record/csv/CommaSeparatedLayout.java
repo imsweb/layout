@@ -134,7 +134,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         _layoutDesc = layoutXmlDto.getDescription();
         _numFields = layoutXmlDto.getNumFields();
         _separator = layoutXmlDto.getSeparator() == null ? ',' : layoutXmlDto.getSeparator().charAt(0);
-        _ignoreFirstLine = layoutXmlDto.getIgnoreFirstLine() == null ? true : layoutXmlDto.getIgnoreFirstLine();
+        _ignoreFirstLine = layoutXmlDto.getIgnoreFirstLine() == null || layoutXmlDto.getIgnoreFirstLine();
 
         // are we extending another layout?
         CommaSeparatedLayout parentLayout = null;
@@ -414,7 +414,7 @@ public class CommaSeparatedLayout extends RecordLayout {
 
         if (!_fields.isEmpty()) {
 
-            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>(), shortLabels = new HashSet<>(), longLabels = new HashSet<>();
+            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>();
             Set<Integer> indexes = new HashSet<>();
             for (CommaSeparatedField field : _fields) {
                 if (field.getName() == null)
@@ -422,12 +422,6 @@ public class CommaSeparatedLayout extends RecordLayout {
                 if (names.contains(field.getName()))
                     throw new RuntimeException("Field name must be unique, found duplicate name for '" + field.getName() + "'");
                 names.add(field.getName());
-                if (shortLabels.contains(field.getShortLabel()))
-                    throw new RuntimeException("Field short labels must be unique, found duplicate name for '" + field.getShortLabel() + "'");
-                shortLabels.add(field.getShortLabel());
-                if (longLabels.contains(field.getLongLabel()))
-                    throw new RuntimeException("Field long labels must be unique, found duplicate name for '" + field.getLongLabel() + "'");
-                longLabels.add(field.getLongLabel());
                 if (field.getNaaccrItemNum() != null) {
                     if (naaccrItemNums.contains(field.getNaaccrItemNum().toString()))
                         throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");

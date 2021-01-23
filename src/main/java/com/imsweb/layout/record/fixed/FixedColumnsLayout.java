@@ -3,17 +3,6 @@
  */
 package com.imsweb.layout.record.fixed;
 
-import com.imsweb.layout.Field;
-import com.imsweb.layout.Field.FieldAlignment;
-import com.imsweb.layout.LayoutFactory;
-import com.imsweb.layout.LayoutInfo;
-import com.imsweb.layout.LayoutInfoDiscoveryOptions;
-import com.imsweb.layout.LayoutUtils;
-import com.imsweb.layout.record.RecordLayout;
-import com.imsweb.layout.record.RecordLayoutOptions;
-import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
-import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -28,6 +17,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.imsweb.layout.Field;
+import com.imsweb.layout.Field.FieldAlignment;
+import com.imsweb.layout.LayoutFactory;
+import com.imsweb.layout.LayoutInfo;
+import com.imsweb.layout.LayoutInfoDiscoveryOptions;
+import com.imsweb.layout.LayoutUtils;
+import com.imsweb.layout.record.RecordLayout;
+import com.imsweb.layout.record.RecordLayoutOptions;
+import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
+import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 
 /**
  * This class contains the logic related to fixed-columns layouts.
@@ -548,19 +548,13 @@ public class FixedColumnsLayout extends RecordLayout {
                 }
             }
 
-            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>(), shortLabels = new HashSet<>(), longLabels = new HashSet<>();
+            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>();
             for (FixedColumnsField field : _fields) {
                 if (field.getName() == null)
                     throw new RuntimeException("Field name is required");
                 if (names.contains(field.getName()))
                     throw new RuntimeException("Field name must be unique, found duplicate name for '" + field.getName() + "'");
                 names.add(field.getName());
-                if (shortLabels.contains(field.getShortLabel()))
-                    throw new RuntimeException("Field short labels must be unique, found duplicate name for '" + field.getShortLabel() + "'");
-                shortLabels.add(field.getShortLabel());
-                if (longLabels.contains(field.getLongLabel()))
-                    throw new RuntimeException("Field long labels must be unique, found duplicate name for '" + field.getLongLabel() + "'");
-                longLabels.add(field.getLongLabel());
                 if (field.getNaaccrItemNum() != null) {
                     if (naaccrItemNums.contains(field.getNaaccrItemNum().toString()))
                         throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
@@ -574,12 +568,6 @@ public class FixedColumnsLayout extends RecordLayout {
                         if (names.contains(f.getName()))
                             throw new RuntimeException("Field name must be unique, found duplicate name for '" + f.getName() + "'");
                         names.add(f.getName());
-                        if (shortLabels.contains(f.getShortLabel()))
-                            throw new RuntimeException("Field short labels must be unique, found duplicate name for '" + f.getShortLabel() + "'");
-                        shortLabels.add(f.getShortLabel());
-                        if (longLabels.contains(f.getLongLabel()))
-                            throw new RuntimeException("Field long labels must be unique, found duplicate name for '" + f.getLongLabel() + "'");
-                        longLabels.add(f.getLongLabel());
                         if (f.getNaaccrItemNum() != null) {
                             if (naaccrItemNums.contains(f.getNaaccrItemNum().toString()))
                                 throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + f.getNaaccrItemNum() + "'");
