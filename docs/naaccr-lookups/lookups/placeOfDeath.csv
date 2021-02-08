@@ -1,0 +1,257 @@
+000,United States
+001,New England & New Jersey
+002,Maine
+003,New Hampshire
+004,Vermont
+005,Massachusetts
+006,Rhode Island
+007,Connecticut
+008,New Jersey
+010,North Mid-Atlantic States
+011,New York
+014,Pennsylvania
+017,Delaware
+020,South Mid-Atlantic States
+021,Maryland
+022,District of Columbia
+023,Virginia
+024,West Virginia
+025,North Carolina
+026,South Carolina
+030,Southeastern States
+031,Tennessee
+033,Georgia (U.S.)
+035,Florida
+037,Alabama
+039,Mississippi
+040,North Central States
+041,Michigan
+043,Ohio
+045,Indiana
+047,Kentucky
+050,Northern Midwest States
+051,Wisconsin
+052,Minnesota
+053,Iowa
+054,North Dakota
+055,South Dakota
+056,Montana
+060,Central Midwest States
+061,Illinois
+063,Missouri
+065,Kansas
+067,Nebraska
+070,Southern Midwest States
+071,Arkansas
+073,Louisiana
+075,Oklahoma
+077,Texas
+080,Mountain States
+081,Idaho
+082,Wyoming
+083,Colorado
+084,Utah
+085,Nevada
+086,New Mexico
+087,Arizona
+090,Pacific Coast States
+091,Alaska
+093,Washington (state)
+095,Oregon
+097,California
+099,Hawaii
+100,Atlantic/Caribbean Area
+101,Puerto Rico
+102,U.S. Virgin Islands
+109,Other Atlantic/Caribbean Area
+110,Canal Zone
+120,Pacific Area
+121,American Samoa
+122,"Kiribati (Canton, Enderbury, Gilbert, Southern Line, Phoenix Islands)"
+123,Federated States of Micronesia (Caroline Islands)
+124,Cook Islands
+125,Tuvalu (Ellice Islands)
+126,Guam
+127,Johnston Atoll
+129,Northern Mariana Islands
+131,Marshall Islands
+132,Midway Islands/Atoll
+133,Nampo-Shoto/Southern Islands
+134,Ryukyu Islands (Japan)
+135,Swan Islands
+136,Tokelau Islands (New Zealand)
+137,Wake Island
+139,Palau
+141,Other Pacific Area
+210,Greenland
+220,Canada
+221,"Maritime provs, Labrador, NB, NL, NS, PE"
+222,Quebec
+223,Ontario
+224,"Prairie provs, AB, MB, SK"
+225,"Northwest Territory, Yukon Territory"
+226,British Columbia
+227,Nunavut
+230,Mexico
+240,North American Islands (Historic)
+241,Cuba
+242,Haiti
+243,Dominican Republic
+244,Jamaica
+245,Other Caribbean Islands (Historic)
+246,Bermuda
+247,Bahamas
+249,St. Pierre and Miquelon
+250,Central America
+251,Guatamala
+252,Belize
+253,Honduras
+254,El Salvador
+255,Nicaragua
+256,Costa Rica
+257,Panama
+260,"North America, NOS"
+265,"Latin America, NOS"
+300,"South America, NOS"
+311,Colombia
+321,Venezuela
+331,Guyana
+332,Suriname
+333,French Guiana
+341,Brazil
+345,Ecuador & Galapagos Islands
+351,Peru
+355,Bolivia
+361,Chile
+365,Argentina
+371,Paraguay
+375,Uruguay
+380,South American Islands
+381,Falkland Islands
+400,United Kingdom
+401,England (Historic)
+402,Wales
+403,Scotland
+404,Northern Ireland (Ulster)
+410,Republic of Ireland
+420,"Scandinavia, Lapland, NOS (Historic)"
+421,Iceland
+423,"Norway, Svalvard"
+425,"Denmark, Faroe Islands"
+427,Sweden
+429,Finland
+430,Germanic countries (Historic)
+431,Germany
+432,Netherlands
+433,Belgium
+434,Luxembourg
+435,Switzerland
+436,Austria
+437,Liechtenstein
+440,Romance-language countries
+441,"France, Corsica, Monaco"
+443,"Spain, Andorra, Balearic Island, Canary Island"
+445,"Portugal, Azores, Cape Verde, Madeira"
+447,"Italy, San Marino, Sardinia, Sicily, Vatican City"
+449,Romania
+450,Slavic countries (Historic)
+451,Poland
+452,Czechoslovakia (former) (NOS)
+453,Yugoslavia (former) (NOS)
+454,Bulgaria
+455,Russia
+456,Ukraine and Moldova (Historic)
+457,Belarus
+458,Estonia
+459,Latvia
+461,Lithuania
+463,"Baltic Republics, NOS"
+470,Other Mainland Europe
+471,Greece
+475,Hungary
+481,Albania
+485,Gibraltar
+490,"Mediterranean Islands, Other"
+491,Malta
+495,Cyprus
+499,"Europe, NOS"
+500,"Africa, NOS"
+510,"North Africa, NOS (Historic)"
+511,Morocco
+513,Algeria
+515,Tunisia
+517,Libya
+519,Egypt
+520,Sudanese countries (Historic)
+530,"West Africa, NOS (French West Africa, NOS) (Historic)"
+531,Nigeria
+539,Other West African Countries (Historic)
+540,"South Africa, NOS (Historic)"
+541,"Zaire (Congo-Leopoldville, Belgian Congo, Congo Kinshasa)"
+543,"Angola (Sao Tome, Principe, Cabinda)"
+545,Republic of South Africa (Historic)
+547,Zimbabwe
+549,Zambia
+551,Malawi
+553,Mozambique
+555,Madagascar
+570,East Africa (Historic)
+571,"Tanzania (Tanganyika, Tanzanyika, Zanzibar)"
+573,Uganda
+575,Kenya
+577,Rwanda
+579,Burundi
+580,African Coastal Islands (Historic)
+581,Somalia
+583,Djibouti
+585,"Ethiopia (Abyssinia), Eritrea (Historic)"
+600,"Asia, NOS"
+610,"Near East, Mesopotamia, NOS"
+611,"Turkey, Anatolia, Asia Minor"
+620,Asian Arab Countries
+621,Syria
+623,Lebanon
+625,Jordan
+627,Iraq
+629,Arabian Peninsula (Historic)
+631,Israel and former Jewish Palestine (Historic)
+633,Caucasian Republics - former USSR (Historic)
+634,Other Asian Republics - former USSR (Historic)
+637,Iran (Persia)
+638,Afghanistan
+639,Pakistan
+640,"Mid-East Asia, NOS; Maldives"
+641,"India, Andaman Islands"
+643,"Nepal, Bhutan, Sikkim"
+645,Bangladesh
+647,Sri Lanka
+649,Myanmar (Burma)
+650,Southeast Asia (Historic)
+651,Thailand
+660,Indochina (Historic)
+661,Laos
+663,"Cambodia, Kampuchea"
+665,Vietnam
+671,"Malaysia, Singapore, Brunei (Historic)"
+673,Indonesia (Dutch East Indies)
+675,Philippines
+680,East Asia
+681,"China, NOS (Historic)"
+682,People's Republic of China
+683,Hong Kong
+684,"Taiwan (Formosa, Republic of China)"
+685,Tibet
+686,Macao (Macau)
+691,Mongolia
+693,Japan
+695,Korea
+711,Australia and Australian New Guinea
+715,"New Zealand, Niue"
+720,Pacific Islands
+721,Melanesian Islands (Historic)
+723,Micronesian Islands (Historic)
+725,Polynesian Islands (Historic)
+750,Antarctica
+997,"Not applicable, patient alive-Place of Death only"
+998,"Not United States, NOS"
+999,Unknown

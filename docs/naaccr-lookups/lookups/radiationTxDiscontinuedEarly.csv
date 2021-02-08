@@ -1,0 +1,9 @@
+00,No radiation treatment
+01,Radiation treatment completed as prescribed
+02,Radiation treatment discontinued early – toxicity
+03,"Radiation treatment discontinued early - contraindicated due to other patient risk factors (comorbid conditions, advanced age, progression of tumor prior to planned radiation etc.)"
+04,Radiation treatment discontinued early – patient decision
+05,Radiation discontinued early – family decision
+06,Radiation discontinued early – patient expired
+07,Radiation discontinued early – reason not documented
+99,Unknown if radiation treatment discontinued; Unknown whether radiation therapy administered

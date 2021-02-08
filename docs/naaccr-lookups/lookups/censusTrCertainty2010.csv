@@ -1,0 +1,7 @@
+1,Census tract based on complete and valid street address of residence
+2,Census tract based on residence ZIP + 4
+3,Census tract based on residence ZIP + 2
+4,Census tract based on residence ZIP code only
+5,Census tract based on ZIP code of P.O. Box
+6,Census tract/BNA based on residence city (or ZIP) where city (or ZIP) has only one census tract
+9,Unable to assign census tract or block numbering based on available information

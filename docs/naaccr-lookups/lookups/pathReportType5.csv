@@ -1,0 +1,13 @@
+01,Pathology
+02,Cytology
+03,Gyn Cytology
+04,Bone Marrow (biopsy/aspirate)
+05,Autopsy
+06,"Clinical Lab Blood Work, NOS"
+07,Tumor Marker
+08,Cytogenetics
+09,Immunohistochemical Stains
+10,Molecular Studies
+11,"Flow Cytometry, Immunophenotype"
+98,Other
+99,Unknown

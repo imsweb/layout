@@ -1,0 +1,8 @@
+0,No radiation and/or no surgery; unknown if surgery and/or radiation given
+2,PRE-OP (Radiation before Surgery)
+3,POST-OP (Radiation after Surgery)
+4,Both PRE-OP and POST-OP
+5,Intraoperative radiation
+6,Intraoperative radiation with other radiation given before and/or after surgery
+7,Surgery both before and after radiation
+9,"Sequence unknown, but both surgery and radiation were given"

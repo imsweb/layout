@@ -1,0 +1,304 @@
+1400,"Upper lip, NOS"
+1401,"Lower lip, NOS"
+1403,Mucosa of upper lip
+1404,Mucosa of lower lip
+1405,"Mucosa of lip, NOS"
+1406,Commissure of lip
+1408,Overlapping lesion of lip
+1409,"Lip, NOS"
+1410,"Base of tongue, NOS"
+1411,"Dorsal surface of tongue, NOS"
+1412,Border of tongue
+1413,"Ventral surface of tongue, NOS"
+1414,"Anterior 2/3 of tongue, NOS"
+1415,Junctional zone of tongue
+1416,Lingual tonsil
+1418,Overlapping lesion of tongue
+1419,"Tongue, NOS"
+1420,Parotid gland
+1421,Submandibular gland
+1422,Sublingual gland
+1428,Overlapping lesion of major salivary
+1429,"Marjor savlivary gland, NOS"
+1430,Upper gum
+1431,Lower gum
+1438,Overlapping lesion of gum
+1439,"Gum, NOS"
+1440,Anterior floor of mouth
+1441,Lateral floor of mouth
+1448,Overlapping lesion of mouth
+1449,"Floor of mouth, NOS"
+1450,Cheek mucosa
+1451,Vestibule of mouty
+1452,Hard palate
+1453,"Soft palate, NOS"
+1454,Uvula
+1455,"Palate, NOS"
+1456,Retromolar area
+1458,Overlapping lesion of oth/unspec mouth
+1459,Oral cavity
+1460,"Tonsil, NOS"
+1461,Tonsillar fossa
+1462,Tonsillar pillar
+1463,Vallecula epiglottis
+1464,Anterior surface of epiglottis
+1465,Junctional region of oropharynx
+1466,Lateral wall of oropharynx
+1467,Posterior wall of oropharynx
+1468,Other parts of oropharynx
+1469,"Oropharynx, NOS"
+1470,Superior wall of nasopharynx
+1471,Posterior wall of nasopharynx
+1472,Lateral wall of nasopharynx
+1473,Anterior wall of nasopharynx
+1478,Overlapping lesion of nasopharynx
+1479,"Nasopharynx, NOS"
+1480,Postcricoid region
+1481,Pyriform sinus
+1482,"Aryepiglottic fold, NOS"
+1483,Posterior wall of hypopharynx
+1488,Overlapping lesion of hypopharynx
+1489,"Hypopharynx, NOS"
+1490,"Pharynx, NOS"
+1491,"Waldeyer's ring, NOS"
+1498,"Overlapping lesion of lip, oral cavity and pharynx"
+1499,"Ill-defined sites in lip, oral cavity and pharynx"
+1500,Cervical esophagus
+1501,Thoracic esophagus
+1502,Abdominal esophagus
+1503,Upper third of esophagus
+1504,Middle third of esophagus
+1505,Lower third of esophagus
+1508,Overlapping lesion of esophagus
+1509,"Esophagus, NOS"
+1510,"Cardia, NOS"
+1511,Pylorus
+1512,Pyloric antrum
+1513,Fundus of stomach
+1514,Body of stomach
+1515,Lesser curvature of stomach
+1516,"Greater curvature of stomach, NOS"
+1518,Other parts of stomach
+1519,"Stomach, NOS"
+1520,Duodenum
+1521,Jejunum
+1522,Ileum
+1523,Meckel's diverticulum
+1528,Overlapping lesion of small intestine
+1529,Small intestine
+1530,Hepatic flexure of colon
+1531,Transverse colon
+1532,Descending colon
+1533,Sigmoid colon
+1534,Cecum
+1535,Appendix
+1536,Ascending colon
+1537,Splenic flexure of colon
+1538,Overlapping lesion of colon
+1539,"Colon, NOS"
+1540,Rectosigmoid junction
+1541,"Rectum, NOS"
+1542,Anal canal
+1543,"Anus, NOS"
+1548,Other parts of rectum
+1550,Liver
+1551,Intrahepatic bile duct
+1560,Gallbladder
+1561,Extrahepatic bile duct
+1562,Ampulla of Vater
+1568,Overlapping lesion of biliary tract
+1569,"Biliary tract, NOS"
+1570,Head of pancreas
+1571,Body of pancreas
+1572,Tail of pancreas
+1573,Pancreatic duct
+1574,Islets of Langerhans
+1578,Overlapping lesion of Pancreas
+1579,"Pancreas, NOS"
+1580,Retroperitoneum
+1588,Specified parts of peritoneum
+1589,"Peritoneum, NOS"
+1590,"Intestinal tract, NOS"
+1598,Overlapping lesion of gastrointestinal tract
+1599,"Gastrointestinal tract, NOS"
+1600,Nasal cavity
+1601,Middle ear
+1602,Maxillary sinus
+1603,Ethmoid sinus
+1604,Frontal sinus
+1605,Sphenoid sinus
+1608,Overlapping lesion of accessory sinus
+1609,"Accessory sinus, NOS"
+1610,Glottis
+1611,Supraglottis
+1612,Subglottis
+1613,Laryngeal cartilage
+1618,Overlapping lesion of Larynx
+1619,"Larynx, NOS"
+1620,Trachea
+1622,Main bronchus
+1623,"Upper lobe, lung"
+1624,"Middle lobe, lung"
+1625,"Lower lobe, lung"
+1628,Other parts of lung or bronchus
+1629,"Lung, NOS"
+1630,Parietal pleura
+1631,Visceral pleura
+1638,Overlapping lesion of pleura
+1639,"Pleura, NOS"
+1640,Thymus
+1641,Heart
+1642,Anterior mediastinum
+1643,Posterior mediastinum
+1648,Overlapping lesion of mediastinum
+1649,"Mediastinum, NOS"
+1650,Upper respiratory tract
+1658,Overlapping lesion of respiratory system
+1659,Ill-defined sites within respiratory system
+1690,Blood
+1691,Bone marrow
+1692,Spleen
+1693,"Reticuloendothelial system, NOS"
+1699,"Hematopoietic system, NOS"
+1700,"Bones of skull, face and associated joints"
+1701,Mandible
+1702,Vertebral column
+1703,"Rib, Sternum, Clavicle and associated joints"
+1704,"Long bones of upper limb, scapula and associated joints"
+1705,Short bones of upper limb and associated joints
+1706,"Pelvic bones, Sacrum, Coccyx and associated joints"
+1707,Long bones of lower limb and associated joints
+1708,Short bones of lower limb and associated joints
+1709,"Bone, NOS"
+1710,"Connective & Soft tissue of head, face and neck"
+1712,Connective & Soft tissue of upper limb and shoulder
+1713,Connective & Soft tissue of lower limb and hip
+1714,Connective & Soft tissue of thorax
+1715,Connective & Soft tissue of abdomen
+1716,Connective & Soft tissue of pelvis
+1717,Connective & Soft tissue of trunk
+1718,Overlapping lesion of connective & Soft tissue
+1719,"Connective & Soft tissue, NOS"
+1730,"Skin of lip, NOS"
+1731,Eyelid
+1732,External ear
+1733,Skin of other and unspecified parts of face
+1734,Skin of scalp and neck
+1735,Skin of trunk
+1736,Skin of arm and shoulder
+1737,Skin of leg and hip
+1738,Overlapping lesion of skin
+1739,"Skin, NOS"
+1740,Nipple
+1741,Central portion of breast
+1742,Upper-inner quadrant of breast
+1743,Lower-inner quadrant of breast
+1744,Upper-outer quadrant of breast
+1745,Lower-outer quadrant of breast
+1746,Axillary tail of breast
+1748,Inner breast
+1749,"Female breast, NOS"
+1759,"Male breast, NOS"
+1799,"Uterus, NOS"
+1800,Endocervix
+1801,Exocervix
+1808,Other parts of cervix
+1809,Cervix uteri
+1819,Placenta
+1820,Corpus uteri
+1821,Isthmus uteri
+1828,Overlapping lesion of corpus uteri
+1830,Ovary
+1832,Fallopian tube
+1833,Broad ligament
+1834,Parametrium
+1835,Round ligament
+1838,Other parts of uterine adnexa
+1839,Uterine adnexa
+1840,"Vagina, NOS"
+1841,Labium majus
+1842,Labium minus
+1843,Clitoris
+1844,"Vulva, NOS"
+1848,Overlapping lesion of female genital tract
+1849,"Female genital tract, NOS"
+1859,Prostate gland
+1860,Undescended testis
+1869,"Testis, NOS"
+1871,Prepuce
+1872,Glans penis
+1873,Body of penis
+1874,"Penis, NOS"
+1875,Epididymus
+1876,Spermatic cord
+1877,"Scrotum, NOS"
+1878,Other parts of male genital organs
+1879,"Male genital organs, NOS"
+1880,Trigone of urinary bladder
+1881,Dome of urinary bladder
+1882,Lateral wall of urinary bladder
+1883,Anterior wall of urinary bladder
+1884,Posterior wall of urinary bladder
+1885,Bladder neck
+1886,Ureteric orifice
+1887,Urachus
+1888,Overlapping lesion of urinary bladder
+1889,"Urinary bladder, NOS"
+1890,"Kidney, NOS"
+1891,Renal pelvis
+1892,Ureter
+1893,Urethra
+1894,Paraurethal gland
+1898,Overlapping lesion of urinary system
+1899,"Urinary system, NOS"
+1900,Eyeball
+1901,"Orbit, NOS"
+1902,Lacrimal gland
+1903,Conjunctiva
+1904,"Cornea, NOS"
+1905,Retina
+1906,Choroid
+1907,"Lacrimal duct, NOS"
+1908,Overlapping lesion of eye
+1909,"Eye, NOS"
+1910,Cerebrum
+1911,Frontal lobe
+1912,Temporal lobe
+1913,Parietal lobe
+1914,Occipital lobe
+1915,"Ventricle, NOS"
+1916,"Cerebellum, NOS"
+1917,Brain stem
+1918,Other parts of brain
+1919,"Brain, NOS"
+1920,Cranial nerve
+1921,Cerebral meninges
+1922,Spinal cord
+1923,Spinal meninges
+1928,Overlapping lesion of nervous system
+1929,"Nervous system, NOS"
+1939,Thyroid gland
+1940,Suprarenal gland
+1941,Parathyroid gland
+1943,Pituitary gland
+1944,Pineal gland
+1945,Carotid body
+1946,Aortic body and other paraganglia
+1948,Multiple endocrine glands
+1949,"Endocrine gland, NOS"
+1950,"Head, face or neck, NOS"
+1951,"Thorax, NOS"
+1952,"Abdomen, NOS"
+1953,"Pelvis, NOS"
+1954,"Upper limb, NOS"
+1955,"Lower limb, NOS"
+1958,Other ill-defined sites
+1960,"Lymph nodes of head, face and neck"
+1961,Intrathoracic lymph nodes
+1962,Intra-abdominal lymph nodes
+1963,Lymph nodes of axilla or arm
+1965,Lymph nodes of inguinal region of leg
+1966,Pelvic lymph nodes
+1968,Lymph nodes of multiple regions
+1969,"Lymph nodes, NOS"
+1999,Unknown primary site

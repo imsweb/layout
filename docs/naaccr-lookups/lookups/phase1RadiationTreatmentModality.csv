@@ -1,0 +1,18 @@
+00,No radiation treatment
+01,"External beam, NOS"
+02,"External beam, photons"
+03,"External beam, protons"
+04,"External beam, electrons"
+05,"External beam, neutrons"
+06,"External beam, carbon ions"
+07,"Brachytherapy, NOS"
+08,"Brachytherapy, intracavitary, LDR"
+09,"Brachytherapy, intracavitary, HDR"
+10,"Brachytherapy, Interstitial, LDR"
+11,"Brachytherapy, Interstitial, HDR"
+12,"Brachytherapy, electronic"
+13,"Radioisotopes, NOS"
+14,"Radioisotopes, Radium-232"
+15,"Radioisotopes, Strontium-89"
+16,"Radioisotopes, Strontium-90"
+99,Treatment radiation modality unknown; Unknown if radiation treatment administered

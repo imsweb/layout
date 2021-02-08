@@ -1,0 +1,33 @@
+00,No recurrence/in remission
+04,In situ recur of invasive tumor
+06,In situ recur of in situ tumor
+10,"Local recur, insufficient info"
+13,Local recur of invasive tumor
+14,Trocar recur of invasive tumor
+15,Loc & trocar recur of invasive tumor
+16,Loc recur of an in situ tumor
+17,Loc & trocar rec of in situ tumor
+20,"Reg recur, insufficient info"
+21,"Recur of invasive tumor, adj tiss/organs"
+22,"Recur of invasive tumor, reg LN only"
+25,"Recur of invasive tumor, adj tissue/organs and reg LN"
+26,"Reg recur of in situ tumor, NOS"
+27,"Recur of in situ tumor, adj tiss/organ & regional LN"
+30,"Reg recur of inv tumor, adj tiss/organ and/or reg LN"
+36,"Reg recur of in situ tumor, adj tiss/organs and/or reg LN"
+40,"Dist recur, insufficient info to code"
+46,Dist recur of in situ tumor
+51,"Dist recur of inv tumor, peritoneum"
+52,"Dist recur of inv tumor, lung"
+53,"Dist recur of inv tumor, pleura"
+54,"Dist recur of inv tumor, liver"
+55,"Dist recur of inv tumor, bone"
+56,"Dist recur of inv tumor, CNS"
+57,"Dist recur of inv tumor, skin"
+58,"Dist recur of inv tumor, LN"
+59,Dist systemic recur of invasive tumor
+60,"Dist recur of inv tumor: single dist site & loc, troc, reg"
+62,"Dist recur of invasive tumor, mult sites"
+70,Never been disease-free
+88,"Recurred, NOS"
+99,Unknown

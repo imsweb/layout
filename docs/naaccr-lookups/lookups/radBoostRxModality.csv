@@ -1,0 +1,29 @@
+00,No boost treatment
+20,"External beam, NOS"
+21,Orthovoltage
+22,"Cobalt-60, Cesium-137"
+23,Photons (2-5 MV)
+24,Photons (6-10 MV)
+25,Photons (11-19 MV)
+26,Photons (>19 MV)
+27,Photons (mixed energies)
+28,Electrons
+29,Photons and electrons mixed
+30,"Neutrons, with or without photons/electrons"
+31,IMRT
+32,Conformal or 3-D therapy
+40,Protons
+41,"Stereotactic radiosurgery, NOS"
+42,Linac radiosurgery
+43,Gamma Knife
+50,"Brachytherapy, NOS"
+51,"Brachytherapy, Intracavitary, LDR"
+52,"Brachytherapy, Intracavitary, HDR"
+53,"Brachytherapy, Interstitial, LDR"
+54,"Brachytherapy, Interstitial, HDR"
+55,Radium
+60,"Radio-isotopes, NOS"
+61,Strontium - 89
+62,Strontium - 90
+98,"Other, NOS"
+99,Unknown

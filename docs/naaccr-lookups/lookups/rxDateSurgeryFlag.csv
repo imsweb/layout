@@ -1,0 +1,4 @@
+10,"No information whatsoever can be inferred from this exceptional value (e.g., unknown if any surgical procedure site was performed)."
+11,"No proper value is applicable in this context (e.g., no surgical procedure was performed; autopsy only case)."
+12,"A proper value is applicable but not known. This event occurred, but the date is unknown (e.g., surgery was performed but the date is unknown)."
+Blank,"A valid date value is provided in item RX Date Surgery [1200], or the date was not expected to have been transmitted."

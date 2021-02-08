@@ -1,0 +1,14 @@
+00,No radiation treatment
+01,"External beam, NOS"
+02,Low energy x-ray/photon therapy
+03,2-D therapy
+04,Conformal or 3-D conformal therapy
+05,Intensity modulated therapy
+06,"Stereotactic radiotherapy or radiosurgery, NOS"
+07,"Stereotactic radiotherapy or radiosurgery, robotic"
+08,"Stereotactic radiotherapy or radiosurgery, Gamma Knife®"
+09,CT-guided online adaptive therapy
+10,MR-guided online adaptive therapy
+88,Not Applicable
+98,"Other, NOS"
+99,Unknown

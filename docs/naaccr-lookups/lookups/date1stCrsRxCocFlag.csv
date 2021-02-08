@@ -1,0 +1,4 @@
+10,"No information whatsoever can be inferred from this exceptional value (e.g, unknown whether treatment was administered)"
+11,No proper value is applicable in this context (Autopsy only)
+12,"A proper value is applicable but not known (e.g., treatment administered but date is unknown)"
+Blank,"A valid date value is provided in item Date 1st Crs RX CoC [1270], or the date was not expected to have been transmitted"

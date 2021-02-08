@@ -1,0 +1,9 @@
+1,All urban - the percentage of the population in an urban area is 100%
+2,Mostly urban - the percentage of the population in an urban area is between >=50% and <100%
+3,Mostly rural - the percentage of the population in an urban area is between >0% and <50%
+4,All rural - the percentage of the population in an urban area is 0%
+9,The percentage of the population in an urban or rural area is unknown
+A,"State, county, or tract are invalid"
+B,"State and tract are valid, but county was not reported"
+C,State + county + tract combination was not found
+D,"State, county, or tract are blank or unknown"

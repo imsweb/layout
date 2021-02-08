@@ -1,0 +1,17 @@
+01,Not insured
+02,"Not insured, self-pay"
+10,"Insurance, NOS"
+20,"Private Insurance: Managed care, HMO, or PPO"
+21,Private Insurance: Fee-for-Service
+31,Medicaid
+35,Medicaid -Administered through a Managed Care plan
+60,"Medicare/Medicare, NOS"
+61,"Medicare with supplement, NOS"
+62,Medicare -Administered through a Managed Care plan
+63,Medicare with private supplement
+64,Medicare with Medicaid eligibility
+65,TRICARE
+66,Military
+67,Veterans Affairs
+68,Indian/Public Health Service
+99,Insurance status unknown

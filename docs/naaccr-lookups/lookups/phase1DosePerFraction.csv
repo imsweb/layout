@@ -1,0 +1,4 @@
+00000,Radiation therapy was not administered
+00001-99997,Record the actual Phase I dose delivered in cGy
+99998,"Not applicable, brachytherapy or radioisotopes administered to the patient"
+99999,"Regional radiation therapy was administered but dose is unknown, it is unknown whether radiation therapy was administered. Death Certificate only."

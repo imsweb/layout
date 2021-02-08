@@ -1,0 +1,11 @@
+00,No radiation treatment to draining lymph nodes
+01,Neck lymph node regions
+02,Thoracic lymph node regions
+03,Neck and thoracic lymph node regions
+04,Breast/Chest wall lymph node regions
+05,Abdominal lymph nodes
+06,Pelvic lymph nodes
+07,Abdominal and pelvic lymph nodes
+08,"Lymph node region, NOS"
+88,Not Applicable; Phase II Radiation Primary Treatment Volume is lymph nodes
+99,Unknown if any radiation treatment to draining lymph nodes; Unknown if radiation treatment administered

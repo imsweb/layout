@@ -1,0 +1,4 @@
+000000,No therapy administered
+000001-999997,Record the actual total dose delivered in cGy
+999998,"Not applicable, radioisotopes administered to the patient"
+999999,"Radiation therapy was administered, but the dose is unknown; it is unknown whether radiation therapy was administered"

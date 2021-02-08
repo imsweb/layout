@@ -1,0 +1,2793 @@
+8000,0,"Neoplasm, benign",preferred
+8000,0,"Tumor, benign",alternate
+8000,0,"Unclassified tumor, benign",alternate
+8000,1,"Neoplasm, uncertain whether benign or malignant",preferred
+8000,1,"Neoplasm, NOS",alternate
+8000,1,"Tumor, NOS",alternate
+8000,1,"Unclassified tumor, uncertain whether benign or malignant",alternate
+8000,1,"Unclassified tumor, borderline malignancy",alternate
+8000,2,"Neoplasm, in situ",preferred
+8000,3,"Neoplasm, malignant",preferred
+8000,3,"Blastoma, NOS",alternate
+8000,3,"Tumor, malignant, NOS",alternate
+8000,3,Malignancy,alternate
+8000,3,Cancer,alternate
+8000,3,"Unclassified tumor, malignant",alternate
+8000,6,"Neoplasm, metastatic",preferred
+8000,9,"Neoplasm, malignant, uncertain whether primary or metastatic",preferred
+8001,0,"Tumor cells, benign",preferred
+8001,1,"Tumor cells, uncertain whether benign or malignant",preferred
+8001,1,"Tumor cells, NOS",alternate
+8001,3,"Tumor cells, malignant",preferred
+8002,3,"Malignant tumor, small cell type",preferred
+8003,3,"Malignant tumor, giant cell type",preferred
+8004,3,"Malignant tumor, spindle cell type",preferred
+8004,3,"Malignant tumor, fusiform cell type",alternate
+8005,0,"Clear cell tumor, NOS",preferred
+8005,3,"Malignant tumor, clear cell type",preferred
+8010,0,"Epithelial tumor, benign",preferred
+8010,2,"Carcinoma in situ, NOS",preferred
+8010,2,"Intraepithelial carcinoma, NOS",alternate
+8010,3,"Carcinoma, NOS",preferred
+8010,3,"Epithelial tumor, malignant",alternate
+8010,3,"Urachal carcinoma (C65.9, C66.9, C67._, C68._)",alternate
+8010,6,"Carcinoma, NOS",preferred
+8010,9,Carcinomatosis,preferred
+8011,0,"Epithelioma, benign",preferred
+8011,2,"Epithelioma, in situ",preferred
+8011,3,"Epithelioma, malignant",preferred
+8011,3,"Epithelioma, NOS",alternate
+8012,2,"Large cell carcinoma, in situ",preferred
+8012,3,"Large cell carcinoma, NOS",preferred
+8013,3,Large cell neuroendocrine carcinoma,preferred
+8013,3,"Combined large cell neuroendocrine carcinoma (C34._, C37.9)",alternate
+8014,3,Large cell carcinoma with rhabdoid phenotype,preferred
+8015,3,Glassy cell carcinoma,preferred
+8020,3,"Carcinoma, undifferentiated, NOS",preferred
+8021,3,"Carcinoma, anaplastic, NOS",preferred
+8022,2,Pleomorphic carcinoma in situ,preferred
+8022,3,Pleomorphic carcinoma,preferred
+8023,3,"NUT carcinoma (C30.0, C31.9, C34._)",preferred
+8023,3,"Midline carcinoma of children and young adults with NUT rearrangement (C30.0, C31.9, C34._)",alternate
+8023,3,"NUT midline carcinoma (C30.0, C31.9, C34._)",alternate
+8030,2,Giant cell and spindle cell carcinoma in situ,preferred
+8030,3,Giant cell and spindle cell carcinoma,preferred
+8031,2,Giant cell carcinoma in situ,preferred
+8031,3,Giant cell carcinoma,preferred
+8032,2,Spindle cell carcinoma in situ,preferred
+8032,3,"Spindle cell carcinoma, NOS",preferred
+8033,2,"Pseudosarcomatous carcinoma, in situ",preferred
+8033,3,Pseudosarcomatous carcinoma,preferred
+8033,3,Sarcomatoid carcinoma,alternate
+8034,3,Polygonal cell carcinoma,preferred
+8035,3,Carcinoma with osteoclast-like giant cells,preferred
+8040,0,"Tumorlet, benign",preferred
+8040,1,"Tumorlet, NOS",preferred
+8040,3,"Tumorlet, malignant",preferred
+8041,2,"Small cell carcinoma, in situ",preferred
+8041,3,"Small cell carcinoma, NOS",preferred
+8041,3,Small cell carcinoma pulmonary type (C56.9),alternate
+8041,3,Reserve cell carcinoma,alternate
+8041,3,Round cell carcinoma,alternate
+8041,3,Small cell neuroendocrine carcinoma,alternate
+8041,3,"High-grade neuroendocrine carcinoma (C54._, C55.9)",alternate
+8041,3,"Neuroendocrine carcinoma, poorly differentiated (C50._)",alternate
+8042,2,Oat cell carcinoma in situ (C34._),preferred
+8042,3,Oat cell carcinoma (C34._),preferred
+8043,3,"Small cell carcinoma, fusiform cell (C34._)",preferred
+8044,3,"Small cell carcinoma, intermediate cell (C34._)",preferred
+8044,3,"Small cell carcinoma, hypercalcemic type (C56.9)",alternate
+8045,3,Combined small cell carcinoma (C34._),preferred
+8045,3,Mixed small cell carcinoma,alternate
+8045,3,Combined small cell-large cell carcinoma,alternate
+8045,3,Combined small cell-adenocarcinoma,alternate
+8045,3,Combined small cell-squamous cell carcinoma,alternate
+8046,2,Non-small cell carcinoma in situ (C34._),preferred
+8046,3,Non-small cell carcinoma (C34._),preferred
+8050,0,"Papilloma, NOS",preferred
+8050,1,Papilloma of uncertain malignant potential,preferred
+8050,2,Papillary carcinoma in situ,preferred
+8050,3,"Papillary carcinoma, NOS",preferred
+8051,0,Verrucous papilloma,preferred
+8051,2,Verrucous carcinoma in situ,preferred
+8051,3,"Verrucous carcinoma, NOS",preferred
+8051,3,Verrucous epidermoid carcinoma,alternate
+8051,3,Warty carcinoma (pre-2018),alternate
+8051,3,Condylomatous carcinoma (pre-2018),alternate
+8051,3,Verrucous squamous cell carcinoma,alternate
+8052,0,"Squamous cell papilloma, NOS",preferred
+8052,0,Squamous papilloma,alternate
+8052,0,Keratotic papilloma,alternate
+8052,2,"Papillary squamous cell carcinoma, non-invasive",preferred
+8052,2,Papillary squamous cell carcinoma in situ,alternate
+8052,3,Papillary squamous cell carcinoma,preferred
+8052,3,Papillary epidermoid carcinoma,alternate
+8053,0,"Squamous cell papilloma, inverted",preferred
+8053,3,"Squamous cell papilloma, inverted, malignant",preferred
+8054,3,"Warty carcinoma (C60.0-C60.2, C60.9)",preferred
+8054,3,"Condylomatous carcinoma (C60.0-C60.2, C60.9)",alternate
+8060,0,Squamous papillomatosis,preferred
+8060,0,"Papillomatosis, NOS",alternate
+8070,2,"Squamous cell carcinoma in situ, NOS",preferred
+8070,2,"Epidermoid carcinoma in situ, NOS",alternate
+8070,2,"Intraepidermal carcinoma, NOS",alternate
+8070,2,Intraepithelial squamous cell carcinoma,alternate
+8070,3,"Squamous cell carcinoma, NOS",preferred
+8070,3,"Epidermoid carcinoma, NOS",alternate
+8070,3,Squamous carcinoma,alternate
+8070,3,Squamous cell epithelioma,alternate
+8070,6,"Squamous cell carcinoma, metastatic, NOS",preferred
+8071,2,"Squamous cell carcinoma in situ, keratinizing, NOS",preferred
+8071,2,Differentiated penile intraepithelial neoplasia (C60._),alternate
+8071,2,Differentiated-type vulvar intraepithelial neoplasia (C51._),alternate
+8071,3,"Squamous cell carcinoma, keratinizing, NOS",preferred
+8071,3,"Squamous cell carcinoma, large cell, keratinizing",alternate
+8071,3,"Epidermoid carcinoma, keratinizing",alternate
+8072,2,"Squamous cell carcinoma, large cell, nonkeratinizing, in situ",preferred
+8072,3,"Squamous cell carcinoma, large cell, nonkeratinizing, NOS",preferred
+8072,3,"Epidermoid carcinoma, large cell, nonkeratinizing",alternate
+8072,3,"Squamous cell carcinoma, nonkeratinizing, NOS",alternate
+8073,2,"Squamous cell carcinoma, small cell, nonkeratinizing, in situ",preferred
+8073,3,"Squamous cell carcinoma, small cell, nonkeratinizing",preferred
+8073,3,"Epidermoid carcinoma, small cell, nonkeratinizing",alternate
+8074,2,"Squamous cell carcinoma, spindle cell, in situ",preferred
+8074,3,"Squamous cell carcinoma, spindle cell",preferred
+8074,3,"Epidermoid carcinoma, spindle cell",alternate
+8074,3,"Squamous cell carcinoma, sarcomatoid",alternate
+8075,2,"Squamous cell carcinoma, adenoid, in situ",preferred
+8075,3,"Squamous cell carcinoma, adenoid",preferred
+8075,3,"Squamous cell carcinoma, pseudoglandular",alternate
+8075,3,"Squamous cell carcinoma, acantholytic",alternate
+8076,2,Squamous cell CIS with questionable stromal invasion (C53._),preferred
+8076,2,Epidermoid carcinoma in situ with questionable stromal invasion,alternate
+8076,3,"Squamous cell carcinoma, micro-invasive (C53._)",preferred
+8077,2,"Squamous intraepithelial neoplasia, grade III",preferred
+8077,2,Penile intraepithelial neoplasia grade 3,alternate
+8077,2,PeIN III,alternate
+8077,2,Laryngeal intraepithelial neoplasia grade 3,alternate
+8077,2,Conjunctival intraepithelial neoplasia grade 3,alternate
+8077,2,"Cervical intraepithelial neoplasia, grade III",alternate
+8077,2,"CIN III, NOS",alternate
+8077,2,CIN III with severe dysplasia,alternate
+8077,2,"Vaginal intraepithelial neoplasia, grade III",alternate
+8077,2,VAIN III,alternate
+8077,2,"Vulvar intraepithelial neoplasia, grade III",alternate
+8077,2,VIN III,alternate
+8077,2,"Anal intraepithelial neoplasia, grade III",alternate
+8077,2,AIN III,alternate
+8077,3,"Squamous cell carcinoma, grade III (C53._)",preferred
+8078,3,Squamous cell carcinoma with horn formation,preferred
+8080,2,Queyrat erythroplasia (C60._),preferred
+8080,3,"Queyrat erythroplasia, malignant (C60._)",preferred
+8081,2,Bowen disease (C44._),preferred
+8081,2,"Intraepidermal squamous cell carcinoma, Bowen type",alternate
+8081,3,"Bowen's disease, malignant (C44._)",preferred
+8082,2,Lymphoepithelial carcinoma in situ,preferred
+8082,3,Lymphoepithelial carcinoma,preferred
+8082,3,Lymphoepithelioma,alternate
+8082,3,Lymphoepithelioma-like carcinoma,alternate
+8082,3,Schmincke tumor,alternate
+8083,2,Basaloid squamous cell carcinoma in situ,preferred
+8083,3,Basaloid squamous cell carcinoma,preferred
+8084,3,"Squamous cell carcinoma, clear cell type",preferred
+8085,3,"Squamous cell carcinoma, HPV-positive (C01.9, C09.9, C10.2, C10.3, C10.8, C10.9, C31.0-C31.3, C31.9)",preferred
+8086,3,"Squamous cell carcinoma, HPV-negative (C01.9, C09.9, C10.2, C10.3, C10.8, C10.9, C31.0-C31.3, C31.9)",preferred
+8090,1,Basal cell tumor (C44._),preferred
+8090,2,Basal cell carcinoma in situ (C44._),preferred
+8090,3,"Basal cell carcinoma, NOS (C44._)",preferred
+8090,3,Basal cell epithelioma,alternate
+8090,3,Rodent ulcer,alternate
+8090,3,Pigmented basal cell carcinoma,alternate
+8091,2,"Multicentric basal cell carcinoma, in situ (C44._)",preferred
+8091,3,Multifocal superficial basal cell carcinoma (C44._),preferred
+8091,3,Multicentric basal cell carcinoma,alternate
+8092,3,"Infiltrating basal cell carcinoma, NOS (C44._)",preferred
+8092,3,"Infiltrating basal cell carcinoma, non-sclerosing",alternate
+8092,3,"Infiltrating basal cell carcinoma, sclerosing",alternate
+8092,3,"Basal cell carcinoma, morpheic",alternate
+8092,3,"Basal cell carcinoma, desmoplastic type",alternate
+8093,3,"Basal cell carcinoma, fibroepithelial (C44._)",preferred
+8093,3,Fibroepithelioma of Pinkus type,alternate
+8093,3,"Fibroepithelial basal cell carcinoma, Pinkus type",alternate
+8093,3,Pinkus tumor,alternate
+8093,3,"Fibroepithelioma, NOS",alternate
+8094,2,Basosquamous carcinoma in situ (C44._),preferred
+8094,3,Basosquamous carcinoma (C44._),preferred
+8094,3,Mixed basal-squamous cell carcinoma,alternate
+8095,3,Metatypical carcinoma (C44._),preferred
+8096,0,Intraepidermal epithelioma of Jadassohn (C44._),preferred
+8097,3,"Basal cell carcinoma, nodular (C44._)",preferred
+8097,3,"Basal cell carcinoma, micronodular",alternate
+8098,3,Adenoid basal cell carcinoma (C53._),preferred
+8100,0,Trichoepithelioma (C44._),preferred
+8100,0,Brooke tumor,alternate
+8100,0,Epithelioma adenoides cysticum,alternate
+8100,3,"Trichoepithelioma, malignant (C44._)",preferred
+8101,0,Trichofolliculoma (C44._),preferred
+8102,0,Trichilemmoma (C44._),preferred
+8102,3,Trichilemmocarcinoma (C44._),preferred
+8102,3,Trichilemmal carcinoma,alternate
+8103,0,Pilar tumor (C44._),preferred
+8103,0,Proliferating trichilemmal cyst,alternate
+8103,0,Proliferating trichilemmal tumor,alternate
+8103,3,"Pilar tumor, malignant (C44._)",preferred
+8110,0,Pilomatrixoma (C44._),preferred
+8110,0,Calcifying epithelioma of Malherbe,alternate
+8110,0,"Pilomatricoma, NOS",alternate
+8110,3,Pilomatrix carcinoma (C44._),preferred
+8110,3,"Pilomatrixoma, malignant",alternate
+8110,3,"Pilomatricoma, malignant",alternate
+8110,3,Matrical carcinoma,alternate
+8120,0,"Transitional cell papilloma, benign",preferred
+8120,0,Transitional papilloma,alternate
+8120,1,"Urothelial papilloma, NOS (C65.9, C66.9, C67._)",preferred
+8120,1,Papilloma of bladder,alternate
+8120,1,"Transitional cell papilloma, NOS",alternate
+8120,2,"Transitional cell carcinoma in situ (C65.9, C66.9, C67._)",preferred
+8120,2,Urothelial carcinoma in situ,alternate
+8120,3,"Transitional cell carcinoma, NOS (C65.9, C66.9, C67._)",preferred
+8120,3,"Urothelial carcinoma, NOS",alternate
+8120,3,Transitional carcinoma,alternate
+8120,3,"Lipid-rich urothelial carcinoma (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,"Microcystic urothelial carcinoma (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,"Nested urothelial carcinoma (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,Squamotransitional cell carcinoma (C53._),alternate
+8120,3,"Urothelial carcinoma with divergent differentiation (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,"Urothelial carcinoma with squamous differentiation (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,"Urothelial carcinoma with trophoblastic differentiation (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,"Clear cell (glycogen-rich) urothelial carcinoma (C65.9, C66.9, C67._, C68._)",alternate
+8121,0,"Schneiderian papilloma, NOS (C30.0, C31._)",preferred
+8121,0,"Sinonasal papilloma, NOS",alternate
+8121,0,"Sinonasal papilloma, exophytic",alternate
+8121,0,"Sinonasal papilloma, fungiform",alternate
+8121,0,"Transitional cell papilloma, inverted, benign",alternate
+8121,0,"Transitional papilloma, inverted, benign",alternate
+8121,1,"Transitional cell papilloma, inverted, NOS (C30.0, C31._)",preferred
+8121,1,"Transitional papilloma, inverted, NOS",alternate
+8121,1,"Schneiderian papilloma, inverted",alternate
+8121,1,Columnar cell papilloma,alternate
+8121,1,Cylindrical cell papilloma,alternate
+8121,1,Oncocytic Schneiderian papilloma,alternate
+8121,2,"Transitional cell carcinoma in situ, inverted, NOS (C30.0, C31._)",preferred
+8121,3,"Schneiderian carcinoma (C30.0, C31._)",preferred
+8121,3,Cylindrical cell carcinoma,alternate
+8122,3,"Transitional cell carcinoma, spindle cell",preferred
+8122,3,"Transitional cell carcinoma, sarcomatoid",alternate
+8123,2,"Basaloid carcinoma, in situ (C21.1)",preferred
+8123,3,Basaloid carcinoma (C21.1),preferred
+8124,2,Cloacogenic carcinoma in situ (C21.2),preferred
+8124,3,Cloacogenic carcinoma (C21.2),preferred
+8130,1,Papillary transitional cell neoplasm of low malignant potential,preferred
+8130,1,Papillary urothelial neoplasm of low malignant potential,alternate
+8130,2,"Papillary transitional cell carcinoma, non-invasive (C65.9, C66.9, C67._)",preferred
+8130,2,"Papillary urothelial carcinoma, non-invasive",alternate
+8130,3,Papillary transitional cell carcinoma,preferred
+8130,3,Papillary urothelial carcinoma,alternate
+8131,2,"Transitional cell carcinoma in situ, micropapillary",preferred
+8131,3,"Transitional cell carcinoma, micropapillary",preferred
+8140,0,"Adenoma, NOS (C61.9)",preferred
+8140,1,Atypical adenoma (C34._),preferred
+8140,1,"Bronchial adenoma, NOS",alternate
+8140,2,"Adenocarcinoma in situ, NOS",preferred
+8140,3,"Adenocarcinoma, NOS",preferred
+8140,3,"Minimally invasive adenocarcinoma, NOS (C34._)",alternate
+8140,3,Endocervical adenocarcinoma usual type (C53._),alternate
+8140,3,Acinar adenocarcinoma (C61.9 ONLY),alternate
+8140,6,"Adenocarcinoma, metastatic, NOS",preferred
+8141,2,Scirrhous adenocarcinoma in situ,preferred
+8141,3,Scirrhous adenocarcinoma,preferred
+8141,3,Scirrhous carcinoma,alternate
+8141,3,Carcinoma with productive fibrosis,alternate
+8142,3,Linitis plastica (C16._),preferred
+8143,2,Superficial spreading adenocarcinoma in situ,preferred
+8143,3,Superficial spreading adenocarcinoma,preferred
+8144,2,"Adenocarcinoma in situ, intestinal type (C16._)",preferred
+8144,3,"Adenocarcinoma, intestinal type (C16._)",preferred
+8144,3,"Enteric adenocarcinoma (C34. 0, C65.9, C66.9, C67._, C68._)",alternate
+8144,3,"Intestinal-type adenocarcinoma (C30.0, C53._)",alternate
+8144,3,"Mucinous carcinoma, intestinal type (C53._)",alternate
+8144,3,"Carcinoma, intestinal type",alternate
+8145,2,"Carcinoma in situ, diffuse type (C16._)",preferred
+8145,3,"Carcinoma, diffuse type (C16._)",preferred
+8145,3,"Adenocarcinoma, diffuse type",alternate
+8146,0,Monomorphic adenoma,preferred
+8146,2,"Monomorphic adenoma, in situ",preferred
+8146,3,Monomorphic adenocarcinoma,preferred
+8147,0,"Basal cell adenoma (C07._, C08._)",preferred
+8147,3,"Basal cell adenocarcinoma (C07._, C08._)",preferred
+8148,2,"Glandular intraepithelial neoplasia, grade III",preferred
+8148,2,"Prostatic intraepithelial neoplasia, grade III",alternate
+8148,2,PIN III,alternate
+8148,2,High grade biliary intraepithelial neoplasia,alternate
+8148,2,Biliary intraepithelial neoplasia grade 3,alternate
+8148,2,BilIN III,alternate
+8148,2,PanIN III,alternate
+8148,2,Pancreatic intraepithelial neoplasia grade 3,alternate
+8149,0,Canalicular adenoma,preferred
+8150,0,"Pancreatic endocrine tumor, benign (C25._) (ICD-O-3 update)",preferred
+8150,0,Islet cell adenoma (C25._),alternate
+8150,0,Pancreatic microadenoma (C25._),alternate
+8150,0,"Islet cell tumor, benign",alternate
+8150,0,Nesidioblastoma,alternate
+8150,0,Islet cell adenomatosis,alternate
+8150,1,"Pancreatic endocrine tumor, NOS (C25._) (ICD-O-3 update)",preferred
+8150,1,"Islet cell tumor, NOS (C25._)",alternate
+8150,3,"Pancreatic endocrine tumor, malignant (C25._) (ICD-O-3 update)",preferred
+8150,3,Islet cell carcinoma (C25._),alternate
+8150,3,"Pancreatic endocrine tumor, nonfunctioning (C25._)",alternate
+8150,3,Islet cell adenocarcinoma,alternate
+8151,0,"Insulinoma, NOS (C25._)",preferred
+8151,0,Beta cell adenoma,alternate
+8151,3,"Insulinoma, malignant (C25._)",preferred
+8151,3,"Beta cell tumor, malignant",alternate
+8152,1,"Glucagonoma, NOS (C25._)",preferred
+8152,1,L-cell tumor,alternate
+8152,1,Glucagon-like peptide-producing tumor (C25._),alternate
+8152,1,Pancreatic peptide and pancreatic peptide-like peptide within terminal tyrosine amide producing tumor,alternate
+8152,1,"Alpha cell tumor, NOS",alternate
+8152,1,PP/PYY producing tumor,alternate
+8152,3,"Glucagonoma, malignant (C25._)",preferred
+8152,3,"Alpha cell tumor, malignant",alternate
+8153,0,"Gastrinoma, benign (C25._)",preferred
+8153,1,"Gastrinoma, NOS (C25._)",preferred
+8153,1,"G cell tumor, NOS",alternate
+8153,1,Gastrin cell tumor,alternate
+8153,3,"Gastrinoma, malignant (C25._)",preferred
+8153,3,"G cell tumor, malignant",alternate
+8153,3,"Gastrin cell tumor, malignant",alternate
+8154,3,"Mixed pancreatic endocrine and exocrine tumor, malignant (C25._) (ICD-O-3 updated)",preferred
+8154,3,Mixed islet cell and exocrine adenocarcinoma (C25._),alternate
+8154,3,Mixed acinar-endocrine-ductal carcinoma,alternate
+8154,3,Mixed acinar-endocrine carcinoma,alternate
+8154,3,Mixed ductal-endocrine carcinoma,alternate
+8154,3,Mixed endocrine and exocrine adenocarcinoma (C25._),alternate
+8155,1,"Vipoma, NOS",preferred
+8155,3,"Vipoma, malignant",preferred
+8156,1,"Somatostatinoma, NOS (C25._)",preferred
+8156,1,"Somatostatin cell tumor, NOS",alternate
+8156,3,"Somatostatinoma, malignant (C25._)",preferred
+8156,3,"Somatostatin cell tumor, malignant",alternate
+8157,1,"Enteroglucagonoma, NOS (C25._)",preferred
+8157,3,"Enteroglucagonoma, malignant (C25._)",preferred
+8158,1,"Endocrine tumor, functioning, NOS",preferred
+8158,1,ACTH-producing tumor,alternate
+8160,0,"Bile duct adenoma (C22.1, C24.0)",preferred
+8160,0,Cholangioma,alternate
+8160,2,"Bile duct adenocarcinoma in situ (C22.1, C24.0)",preferred
+8160,3,"Cholangiocarcinoma (C22.1, C24.0)",preferred
+8160,3,Bile duct carcinoma,alternate
+8160,3,Bile duct adenocarcinoma,alternate
+8161,0,Bile duct cystadenoma (C22.0),preferred
+8161,3,Bile duct cystadenocarcinoma (C22.1),preferred
+8162,3,Klatskin tumor (C22.1),preferred
+8163,3,Pancreatobiliary-type carcinoma (C24.1),preferred
+8163,3,"Adenocarcinoma, pancreatobiliary-type (C24.1)",alternate
+8170,0,Liver cell adenoma (C22.0),preferred
+8170,0,Hepatocellular adenoma,alternate
+8170,0,"Hepatoma, benign",alternate
+8170,2,Hepatocellular carcinoma in situ (C22.0),preferred
+8170,3,"Hepatocellular carcinoma, NOS (C22.0)",preferred
+8170,3,"Hepatoma, NOS",alternate
+8170,3,Liver cell carcinoma,alternate
+8170,3,Hepatocarcinoma,alternate
+8170,3,"Hepatoma, malignant",alternate
+8171,3,"Hepatocellular carcinoma, fibrolamellar (C22.0)",preferred
+8172,3,"Hepatocellular carcinoma, scirrhous (C22.0)",preferred
+8172,3,Sclerosing hepatic carcinoma,alternate
+8173,3,"Hepatocellular carcinoma, spindle cell variant (C22.0)",preferred
+8173,3,"Hepatocellular carcinoma, sarcomatoid",alternate
+8174,3,"Hepatocellular carcinoma, clear cell type (C22.0)",preferred
+8175,3,"Hepatocellular carcinoma, pleomorphic type (C22.0)",preferred
+8180,3,Combined hepatocellular carcinoma and cholangiocarcinoma (C22.0),preferred
+8180,3,Mixed hepatocellular and bile duct carcinoma,alternate
+8180,3,Hepatocholangiocarcinoma,alternate
+8190,0,Trabecular adenoma,preferred
+8190,3,Trabecular adenocarcinoma,preferred
+8190,3,Trabecular carcinoma,alternate
+8191,0,Embryonal adenoma,preferred
+8200,0,Eccrine dermal cylindroma (C44._),preferred
+8200,0,Turban tumor,alternate
+8200,0,Cylindroma of skin,alternate
+8200,2,Adenoid cystic carcinoma in situ,preferred
+8200,3,Adenoid cystic carcinoma,preferred
+8200,3,Thymic carcinoma with adenoid cystic carcinoma-like features (C37.9),alternate
+8200,3,Adenocystic carcinoma,alternate
+8200,3,"Cylindroma, NOS",alternate
+8200,3,"Adenocarcinoma, cylindroid",alternate
+8200,3,"Bronchial adenoma, cylindroid",alternate
+8201,2,Cribriform carcinoma in situ (C50._),preferred
+8201,2,"Ductal carcinoma in situ, cribriform type",alternate
+8201,3,"Cribriform carcinoma, NOS (C50._)",preferred
+8201,3,"Cribriform comedo-type carcinoma (C18._, C19.9, C20.9)",alternate
+8201,3,"Adenocarcinoma, cribriform comedo-type (C18._, C19.9, C20.9)",alternate
+8201,3,"Ductal carcinoma, cribriform type",alternate
+8202,0,Microcystic adenoma (C25._),preferred
+8204,0,Lactating adenoma (C50._),preferred
+8210,0,"Adenomatous polyp, NOS",preferred
+8210,0,Polypoid adenoma,alternate
+8210,2,Adenocarcinoma in situ in adenomatous polyp,preferred
+8210,2,Carcinoma in situ in adenomatous polyp,alternate
+8210,2,Adenocarcinoma in situ in polypoid adenoma,alternate
+8210,2,"Adenocarcinoma in situ in a polyp, NOS",alternate
+8210,2,"Carcinoma in situ in a polyp, NOS",alternate
+8210,2,Adenocarcinoma in situ in tubular adenoma,alternate
+8210,3,Adenocarcinoma in adenomatous polyp,preferred
+8210,3,Adenocarcinoma in tubular adenoma,alternate
+8210,3,Carcinoma in adenomatous polyp,alternate
+8210,3,Adenocarcinoma in polypoid adenoma,alternate
+8210,3,"Adenocarcinoma in a polyp, NOS",alternate
+8210,3,"Carcinoma in a polyp, NOS",alternate
+8211,0,"Tubular adenoma, NOS",preferred
+8211,2,Tubular adenocarcinoma in situ,preferred
+8211,3,Tubular adenocarcinoma,preferred
+8211,3,Tubular carcinoma,alternate
+8212,0,Flat adenoma,preferred
+8213,0,Serrated adenoma,preferred
+8213,0,Traditional serrated adenoma,alternate
+8213,0,Sessile serrated adenoma,alternate
+8213,0,Sessile serrated polyp,alternate
+8213,0,Traditional sessile serrated adenoma,alternate
+8213,0,Mixed adenomatous and hyperplastic polyp,alternate
+8213,2,"Serrated adenoma, in situ",preferred
+8213,3,"Serrated adenocarcinoma (C18.0, C18.2, C18.9, C19.9, C20.9)",preferred
+8214,3,Parietal cell carcinoma,preferred
+8214,3,Parietal cell adenocarcinoma,alternate
+8215,3,Adenocarcinoma of anal glands (C21.1),preferred
+8215,3,Adenocarcinoma of anal ducts,alternate
+8220,0,Adenomatous polyposis coli (C18._),preferred
+8220,0,Familial polyposis coli,alternate
+8220,0,"Adenomatosis, NOS",alternate
+8220,2,Adenocarcinoma in situ in adenomatous polyposis coli (C18._),preferred
+8220,3,Adenocarcinoma in adenomatous polyposis coli (C18._),preferred
+8221,0,Multiple adenomatous polyps,preferred
+8221,2,Adenocarcinoma in situ in multiple adenomatous polyposis coli,preferred
+8221,3,Adenocarcinoma in multiple adenomatous polyposis coli,preferred
+8230,2,"Ductal carcinoma in situ, solid type",preferred
+8230,2,"Intraductal carcinoma, solid type",alternate
+8230,3,"Solid carcinoma, NOS",preferred
+8230,3,Solid carcinoma with mucin formation,alternate
+8230,3,Solid adenocarcinoma with mucin formation,alternate
+8231,3,Carcinoma simplex,preferred
+8240,0,"Carcinoid tumor, benign",preferred
+8240,1,Carcinoid tumor of uncertain malignant potential (C18.1),preferred
+8240,1,"Carcinoid tumor, NOS, of appendix",alternate
+8240,1,"Carcinoid, NOS, of appendix",alternate
+8240,1,"Carcinoid tumor, argentaffin, NOS",alternate
+8240,1,"Argentaffinoma, NOS",alternate
+8240,2,"Carcinoid tumor, in situ (C18.1)",preferred
+8240,3,"Carcinoid tumor, NOS",preferred
+8240,3,"Carcinoid, NOS",alternate
+8240,3,Typical carcinoid,alternate
+8240,3,"Bronchial adenoma, carcinoid",alternate
+8240,3,"Neuroendocrine tumor, grade 1",alternate
+8240,3,"Neuroendocrine carcinoma, low grade",alternate
+8240,3,"Neuroendocrine carcinoma, well-differentiated",alternate
+8240,6,"Carcinoid tumor, NOS",preferred
+8241,0,"Enterochromaffin cell carcinoid, benign",preferred
+8241,3,Enterochromaffin cell carcinoid,preferred
+8241,3,"Carcinoid tumor, argentaffin, malignant",alternate
+8241,3,"Argentaffinoma, malignant",alternate
+8241,3,EC cell carcinoid,alternate
+8241,3,Serotonin producing carcinoid,alternate
+8241,6,Enterochromaffin cell carcinoid,preferred
+8242,0,"Enterochromaffin-like cell carcinoid, benign",preferred
+8242,1,"Enterochromaffin-like cell carcinoid, NOS",preferred
+8242,1,"ECL cell carcinoid, NOS",alternate
+8242,3,"Enterochromaffin-like cell tumor, malignant",preferred
+8242,3,"ECL cell carcinoid, malignant",alternate
+8242,6,"Enterochromaffin-like cell tumor, malignant",preferred
+8243,3,Goblet cell carcinoid,preferred
+8243,3,Mucinous carcinoid,alternate
+8243,3,Mucocarcinoid tumor,alternate
+8243,6,Goblet cell carcinoid,preferred
+8244,2,"Mixed adenoneuroendocrine carcinoma, in situ (ICD-O-3 update)",preferred
+8244,3,Mixed adenoneuroendocrine carcinoma,preferred
+8244,3,Combined carcinoid and adenocarcinoma,alternate
+8244,3,Mixed carcinoid-adenocarcinoma,alternate
+8244,3,Composite carcinoid,alternate
+8244,3,Combined/mixed carcinoid and adenocarcinoma,alternate
+8244,3,MANEC,alternate
+8245,1,Tubular carcinoid,preferred
+8245,3,Adenocarcinoid tumor,preferred
+8245,6,Adenocarcinoid tumor,preferred
+8246,2,Neuroendocrine carcinoma in situ,preferred
+8246,3,"Neuroendocrine carcinoma, NOS",preferred
+8246,3,"Neuroendocrine tumor, well differentiated (C50._)",alternate
+8246,6,"Neuroendocrine carcinoma, NOS",preferred
+8247,2,"Merkel cell carcinoma, in situ (C44._)",preferred
+8247,3,Merkel cell carcinoma (C44._),preferred
+8247,3,Merkel cell tumor,alternate
+8247,3,Primary cutaneous neuroendocrine carcinoma,alternate
+8247,6,Merkel cell carcinoma (C44._),preferred
+8248,1,Apudoma,preferred
+8248,3,"Apudoma, malignant",preferred
+8249,3,Atypical carcinoid tumor,preferred
+8249,3,"Neuroendocrine tumor, grade 2",alternate
+8249,3,"Neuroendocrine carcinoma, moderately differentiated",alternate
+8249,6,Atypical carcinoid tumor,preferred
+8250,1,Pulmonary adenomatosis (C34._),preferred
+8250,2,"Adenocarcinoma in situ, non-mucinous (C34._)",preferred
+8250,2,Bronchio-alveolar adenocarcinoma in situ (C34._),alternate
+8250,3,Lepidic adenocarcinoma (C34._),preferred
+8250,3,"Bronchiolo-alveolar carcinoma, NOS",alternate
+8250,3,Bronchiolar adenocarcinoma,alternate
+8250,3,Bronchiolar carcinoma,alternate
+8250,3,Lepidic predominant adenocarcinoma (C34._),alternate
+8250,3,Alveolar cell carcinoma,alternate
+8250,3,"Bronchio-alveolar adenocarcinoma, NOS (C34._)",alternate
+8251,0,Alveolar adenoma (C34._),preferred
+8251,3,Alveolar adenocarcinoma (C34._),preferred
+8251,3,Alveolar carcinoma,alternate
+8252,2,"Bronchio-alveolar carcinoma, non-mucinous in situ (C34._)",preferred
+8252,3,"Bronchio-alveolar carcinoma, non-mucinous (C34._)",preferred
+8252,3,"Bronchiolo-alveolar carcinoma, Clara cell",alternate
+8252,3,"Bronchiolo-alveolar carcinoma, type II pneumocyte",alternate
+8253,2,"Bronchio-alveolar carcinoma, mucinous, in situ (C34._)",preferred
+8253,2,"Adenocarcinoma in situ, mucinous (C34._)",alternate
+8253,3,Invasive mucinous adenocarcinoma (C34._),preferred
+8253,3,"Bronchio-alveolar carcinoma, mucinous (C34._)",alternate
+8253,3,"Bronchiolo-alveolar carcinoma, goblet cell type",alternate
+8254,3,Mixed invasive mucinous and non-mucinous adenocarcinoma (C34._),preferred
+8254,3,"Bronchio-alveolar carcinoma, mixed mucinous and non-mucinous (C34._)",alternate
+8254,3,"Bronchiolo-alveolar carcinoma, Clara cell and goblet cell type",alternate
+8254,3,"Bronchiolo-alveolar carcinoma, type II pneumocyte and goblet cell type",alternate
+8254,3,"Bronchiolo-alveolar carcinoma, indeterminate type",alternate
+8255,2,"Adenocarcinoma with mixed subtypes, in situ",preferred
+8255,3,Adenocarcinoma with mixed subtypes,preferred
+8255,3,Adenocarcinoma combined with other types of carcinoma,alternate
+8256,3,"Minimally invasive adenocarcinoma, non-mucinous (C34._)",preferred
+8257,3,"Minimally invasive adenocarcinoma, mucinous (C34._)",preferred
+8260,0,"Papillary adenoma, NOS",preferred
+8260,0,Glandular papilloma,alternate
+8260,2,"Papillary adenocarcinoma in situ, NOS",preferred
+8260,3,"Papillary adenocarcinoma, NOS",preferred
+8260,3,Papillary carcinoma of thyroid,alternate
+8260,3,Papillary renal cell carcinoma,alternate
+8261,0,"Villous adenoma, NOS",preferred
+8261,0,Villous papilloma,alternate
+8261,2,Adenocarcinoma in situ in villous adenoma,preferred
+8261,3,Adenocarcinoma in villous adenoma,preferred
+8262,2,Villous adenocarcinoma in situ,preferred
+8262,3,Villous adenocarcinoma,preferred
+8263,0,"Tubulovillous adenoma, NOS",preferred
+8263,0,Tubulo-papillary adenoma,alternate
+8263,0,Villoglandular adenoma,alternate
+8263,0,Papillotubular adenoma,alternate
+8263,2,Adenocarcinoma in situ in tubulovillous adenoma,preferred
+8263,3,Adenocarcinoma in tubulovillous adenoma,preferred
+8263,3,Papillotubular adenocarcinoma,alternate
+8263,3,Tubulopapillary adenocarcinoma,alternate
+8263,3,"Endometrioid adenocarcinoma, villoglandular (C54._, C55.9)",alternate
+8263,3,Villoglandular carcinoma (C53._),alternate
+8264,0,"Papillomatosis, glandular (C22.1, C24.0)",preferred
+8264,0,Biliary papillomatosis,alternate
+8265,3,"Micropapillary carcinoma, NOS (C18._, C19.9, C20.9, C34._)",preferred
+8265,3,Micropapillary adenocarcinoma (C34._),alternate
+8270,0,Chromophobe adenoma (C75.1),preferred
+8270,1,"Chromophobe adenoma, borderline (C75.1)",preferred
+8270,3,Chromophobe carcinoma (C75.1),preferred
+8270,3,Chromophobe adenocarcinoma,alternate
+8271,0,Prolactinoma (C75.1),preferred
+8271,3,"Prolactinoma, malignant (C75.1)",preferred
+8272,0,"Pituitary adenoma, NOS (C75.1)",preferred
+8272,1,"Pituitary, borderline malignancy (C75.1)",preferred
+8272,3,"Pituitary carcinoma, NOS (C75.1)",preferred
+8280,0,Acidophil adenoma (C75.1),preferred
+8280,0,Eosinophil adenoma,alternate
+8280,3,Acidophil carcinoma (C75.1),preferred
+8280,3,Acidophil adenocarcinoma,alternate
+8280,3,Eosinophil carcinoma,alternate
+8280,3,Eosinophil adenocarcinoma,alternate
+8281,0,Mixed acidophil-basophil adenoma (C75.1),preferred
+8281,3,Mixed acidophil-basophil carcinoma (C75.1),preferred
+8290,0,Oxyphillic adenoma (C73.9),preferred
+8290,0,Oncocytoma,alternate
+8290,0,Hurthle cell adenoma,alternate
+8290,0,Spindle cell oncocytoma (C75.1),alternate
+8290,0,Hurthle cell tumor,alternate
+8290,0,"Follicular adenoma, oxyphilic cell",alternate
+8290,0,Oncocytic adenoma,alternate
+8290,2,Oxyphillic adenocarcinoma in situ (C73.9),preferred
+8290,3,Oxyphillic adenocarcinoma (C73.9),preferred
+8290,3,Oncocytic carcinoma,alternate
+8290,3,Oncocytic adenocarcinoma,alternate
+8290,3,Hurthle cell carcinoma,alternate
+8290,3,Hurthle cell adenocarcinoma,alternate
+8290,3,"Follicular carcinoma, oxyphilic cell",alternate
+8300,0,Basophil adenoma (C75.1),preferred
+8300,0,Mucoid cell adenoma,alternate
+8300,3,Basophil carcinoma (C75.1),preferred
+8300,3,Basophil adenocarcinoma,alternate
+8300,3,Mucoid cell adenocarcinoma,alternate
+8310,0,Clear cell adenoma,preferred
+8310,2,Clear cell adenocarcinoma in situ,preferred
+8310,3,"Clear cell adenocarcinoma, NOS",preferred
+8310,3,Clear cell carcinoma,alternate
+8310,3,"Clear cell adenocarcinoma, mesonephroid",alternate
+8311,1,Hypernephroid tumor [obs],preferred
+8311,3,Hereditary leiomyomatosis & RCC- associated renal cell carcinoma (C64.9),preferred
+8311,3,MiT family translocation renal cell carcinoma (C64.9),alternate
+8312,2,Renal cell carcinoma in situ (C64.9),preferred
+8312,3,Renal cell carcinoma (C64.9),preferred
+8312,3,Hypernephroma,alternate
+8312,3,"Renal cell carcinoma, unclassified (C64.9)",alternate
+8312,3,Renal cell adenocarcinoma,alternate
+8312,3,Grawitz tumor,alternate
+8313,0,Clear cell adenofibroma (C56.9),preferred
+8313,0,Clear cell cystadenofibroma,alternate
+8313,1,Clear cell adenofibroma of borderline malignancy (C56.9),preferred
+8313,1,Clear cell cystadenofibroma of borderline malignancy,alternate
+8313,3,Clear cell adenocarcinofibroma (C56.9),preferred
+8313,3,Clear cell cystadenocarcinofibroma,alternate
+8314,3,Lipid-rich carcinoma (C50._),preferred
+8315,3,Glycogen-rich carcinoma (C50._),preferred
+8316,2,Cyst-associated renal cell carcinoma in situ (C64.9),preferred
+8316,3,Cyst-associated renal cell carcinoma (C64.9),preferred
+8316,3,Acquired cystic disease-associated renal cell carcinoma (RCC) (C64.9),alternate
+8316,3,Tubulocystic renal cell carcinoma (C64.9),alternate
+8317,3,"Renal cell carcinoma, chromophobe type (C64.9)",preferred
+8317,3,Chromophobe cell renal carcinoma,alternate
+8318,3,"Renal cell carcinoma, sarcomatoid (C64.9)",preferred
+8318,3,"Renal cell carcinoma, spindle cell",alternate
+8319,3,Collecting duct carcinoma (C64.9),preferred
+8319,3,Bellini duct carcinoma,alternate
+8319,3,"Renal carcinoma, collecting duct type",alternate
+8320,3,Granular cell carcinoma,preferred
+8320,3,Granular cell adenocarcinoma,alternate
+8321,0,Chief cell adenoma (C75.0),preferred
+8322,0,Water-clear cell adenoma (C75.0),preferred
+8322,3,Water-clear cell adenocarcinoma (C75.0),preferred
+8322,3,Water-clear cell carcinoma,alternate
+8323,0,Mixed cell adenoma,preferred
+8323,2,Mixed cell adenocarcinoma in situ,preferred
+8323,3,Mixed cell adenocarcinoma,preferred
+8324,0,Lipoadenoma,preferred
+8324,0,Adenolipoma,alternate
+8325,0,Metanephric adenoma (C64._),preferred
+8325,3,Metanephric adenocarcinoma (C64._),preferred
+8330,0,Follicular adenoma (C73.9),preferred
+8330,1,Atypical follicular adenoma (C73.9),preferred
+8330,2,Follicular adenocarcinoma in situ (C73.9),preferred
+8330,3,"Follicular adenocarcinoma, NOS (C73.9)",preferred
+8330,3,"Follicular carcinoma, NOS",alternate
+8331,3,Follicular adenocarcinoma well differentiated (C73.9),preferred
+8331,3,"Follicular carcinoma, well differentiated",alternate
+8332,3,Follicular adenocarcinoma trabecular (C73.9),preferred
+8332,3,"Follicular carcinoma, trabecular",alternate
+8332,3,"Follicular adenocarcinoma, moderately differentiated",alternate
+8332,3,"Follicular carcinoma, moderately differentiated",alternate
+8333,0,"Microfollicular adenoma, NOS (C73.9)",preferred
+8333,0,Fetal adenoma,alternate
+8333,3,Fetal adenocarcinoma,preferred
+8334,0,Macrofollicular adenoma (C73.9),preferred
+8334,0,Colloid adenoma,alternate
+8335,2,Macrofollicular carcinoma in situ (C73.9),preferred
+8335,3,"Follicular carcinoma, minimally invasive (C73.9)",preferred
+8335,3,"Follicular carcinoma, encapsulated",alternate
+8336,0,Hyalinizing trabecular adenoma (C73.9),preferred
+8337,3,Insular carcinoma (C73.9),preferred
+8339,3,"Follicular thyroid carcinoma (FTC), encapsulated angoinvasive (C73.9)",preferred
+8340,2,"Papillary carcinoma follicular variant, in situ follicular variant (C73.9)",preferred
+8340,3,"Papillary carcinoma, follicular variant (C73.9)",preferred
+8340,3,"Papillary adenocarcinoma, follicular variant",alternate
+8340,3,Papillary and follicular adenocarcinoma,alternate
+8340,3,Papillary and follicular carcinoma,alternate
+8341,2,Papillary microcarcinoma in situ (C73.9),preferred
+8341,3,Papillary microcarcinoma (C73.9),preferred
+8342,2,"Papillary carcinoma, encapsulated, in situ (C73.9)",preferred
+8342,3,"Papillary carcinoma, oxyphilic cell (C73.9)",preferred
+8343,2,Non-invasive EFVPTC (C73.9),preferred
+8343,2,Non-invasive encapsulated follicular variant of papillary thyroid carcinoma (non-invasive EFVPTC) (C73.9),alternate
+8343,2,Non-invasive follicular thyroid neoplasm with papillary-like nuclear features (NIFTP) (C73.9),alternate
+8343,2,Non-invasive FTP (C73.9),alternate
+8343,3,"Papillary carcinoma, encapsulated (C73.9)",preferred
+8343,3,"Encapsulated follicular variant of papillary thyroid carcinoma, NOS (EFVPTC, NOS) (C73.9)",alternate
+8343,3,Invasive encapsulated follicular variant of papillary thyroid carcinoma (invasive EFVPTC) (C73.9),alternate
+8344,3,"Papillary carcinoma, columnar cell (C73.9)",preferred
+8344,3,"Papillary carcinoma, tall cell",alternate
+8345,3,Medullary carcinoma with amyloid stroma (C73.9),preferred
+8345,3,Parafollicular cell carcinoma,alternate
+8345,3,C cell carcinoma,alternate
+8346,3,Mixed medullary-follicular carcinoma (C73.9),preferred
+8347,3,Mixed medullary-papillary carcinoma (C73.9),preferred
+8350,3,Nonencapsulated sclerosing carcinoma (C73.9),preferred
+8350,3,Nonencapsulated sclerosing adenocarcinoma,alternate
+8350,3,Nonencapsulated sclerosing tumor,alternate
+8350,3,"Papillary carcinoma, diffuse sclerosing",alternate
+8360,1,Multiple endocrine adenomas (C75.8),preferred
+8360,1,Endocrine adenomatosis,alternate
+8361,0,Juxtaglomerular tumor (C64._),preferred
+8361,0,Reninoma,alternate
+8370,0,"Adrenal cortical adenoma, NOS (C74.0)",preferred
+8370,0,"Adrenal cortical tumor, benign",alternate
+8370,0,"Adrenal cortical tumor, NOS",alternate
+8370,2,Adrenal cortical carcinoma in situ (C74.0),preferred
+8370,3,Adrenal cortical carcinoma (C74.0),preferred
+8370,3,Adrenal cortical adenocarcinoma,alternate
+8370,3,"Adrenal cortical tumor, malignant",alternate
+8371,0,"Adrenal cortical adenoma, compact cell (C74.0)",preferred
+8372,0,"Adrenal cortical adenoma, pigmented (C74.0)",preferred
+8372,0,Black adenoma,alternate
+8372,0,Pigmented adenoma,alternate
+8373,0,"Adrenal cortical adenoma, clear cell (C74.0)",preferred
+8374,0,"Adrenal cortical adenoma, glomerulosa cell (C74.0)",preferred
+8375,0,"Adrenal cortical adenoma, mixed cell (C74.0)",preferred
+8380,0,"Endometrioid adenoma, NOS (C56.9 [F], C61.9 [M])",preferred
+8380,0,"Endometrioid cystadenoma, NOS",alternate
+8380,1,"Endometrioid adenoma, borderline malignancy (C56.9 [F], C61.9 [M])",preferred
+8380,1,"Endometrioid cystadenoma, borderline malignancy",alternate
+8380,1,Endometrioid tumor of low malignant potential,alternate
+8380,1,Atypical proliferative endometrioid tumor,alternate
+8380,2,"Endometrioid adenocarcinoma in situ (C56.9 [F], C61.9 [M])",preferred
+8380,2,Atypical hyperplasia/Endometrioid intraepithelial neoplasm (C54._),alternate
+8380,3,Endometrioid carcinoma (C56.9),preferred
+8380,3,"Endometrioid carcinoma, NOS",alternate
+8380,3,Endometrioid cystadenocarcinoma,alternate
+8381,0,"Endometrioid adenofibroma, NOS (C56.9 [F], C61.9 [M])",preferred
+8381,0,"Endometrioid cystadenofibroma, NOS",alternate
+8381,1,"Endometrioid adenofibroma, borderline malignancy (C56.9 [F], C61.9 [M])",preferred
+8381,1,"Endometrioid cystadenofibroma, borderline malignancy",alternate
+8381,2,"Endometrioid adenofibroma in situ (C56.9 [F], C61.9 [M])",preferred
+8381,3,"Endometrioid adenofibroma, malignant (C56.9 [F], C61.9 [M])",preferred
+8381,3,"Endometrioid cystadenofibroma, malignant",alternate
+8382,2,"Endometrioid adenocarcinoma in situ, secretory variant (C56.9 [F], C61.9 [M])",preferred
+8382,3,"Endometrioid adenocarcinoma, secretory variant (C56.9 [F], C61.9 [M])",preferred
+8383,3,"Endometrioid adenocarcinoma, ciliated cell variant (C56.9 [F], C61.9 [M])",preferred
+8384,2,"Adenocarcinoma, endocervical type, in situ (C53._)",preferred
+8384,3,"Adenocarcinoma, endocervical type (C53._)",preferred
+8390,0,Skin appendage adenoma (C44._),preferred
+8390,0,"Skin appendage tumor, benign",alternate
+8390,0,"Adnexal tumor, benign",alternate
+8390,2,Skin appendage carcinoma in situ (C44._),preferred
+8390,3,Skin appendage carcinoma (C44._),preferred
+8390,3,Adnexal carcinoma,alternate
+8391,0,Follicular fibroma (C44._),preferred
+8391,0,Trichodiscoma,alternate
+8391,0,Fibrofolliculoma,alternate
+8391,0,Perifollicular fibroma,alternate
+8392,0,Syringofibroadenoma (C44._),preferred
+8400,0,Sweat gland adenoma (C44._),preferred
+8400,0,"Sweat gland tumor, benign",alternate
+8400,0,"Hidradenoma, NOS",alternate
+8400,0,"Syringadenoma, NOS",alternate
+8400,1,"Sweat gland tumor, NOS (C44._)",preferred
+8400,2,Sweat gland adenocarcinoma in situ (C44._),preferred
+8400,3,Sweat gland adenocarcinoma (C44._),preferred
+8400,3,Sweat gland carcinoma,alternate
+8400,3,"Sweat gland tumor, malignant",alternate
+8401,0,Apocrine adenoma (C44._),preferred
+8401,0,Apocrine cystadenoma,alternate
+8401,2,Apocrine adenocarcinoma in situ (C44._),preferred
+8401,3,Apocrine adenocarcinoma (C44._),preferred
+8402,0,Nodular hidradenoma (C44._),preferred
+8402,0,Eccrine acrospiroma,alternate
+8402,0,Clear cell hidradenoma,alternate
+8402,2,"Nodular hidradenoma, in situ (C44._)",preferred
+8402,3,"Nodular hidradenoma, malignant (C44._)",preferred
+8402,3,Hidradenocarcinoma,alternate
+8403,0,Eccrine spiradenoma (C44._),preferred
+8403,0,"Spiradenoma, NOS",alternate
+8403,3,Malignant eccrine spiradenoma (C44._),preferred
+8404,0,Hidrocystoma (C44._),preferred
+8404,0,Eccrine cystadenoma,alternate
+8405,0,Papillary hidradenoma (C44._),preferred
+8405,0,Hidradenoma papilliferum,alternate
+8406,0,Papillary syringadenoma (C44._),preferred
+8406,0,Syringocystadenoma papilliferum,alternate
+8406,0,Papillary syringocystadenoma,alternate
+8406,3,Papillary syringadenocarcinoma (C44._),preferred
+8407,0,"Syringoma, NOS (C44._)",preferred
+8407,3,Sclerosing sweat duct carcinoma (C44._),preferred
+8407,3,Syringomatous carcinoma,alternate
+8407,3,Microcystic adnexal carcinoma,alternate
+8408,0,Eccrine papillary adenoma (C44._),preferred
+8408,1,Aggressive digital papillary adenoma (C44._),preferred
+8408,3,Eccrine papillary adenocarcinoma (C44._),preferred
+8408,3,Digital papillary adenocarcinoma,alternate
+8409,0,Eccrine poroma (C44._),preferred
+8409,2,"Eccrine poroma, in situ (C44._)",preferred
+8409,3,"Eccrine poroma, malignant (C44._)",preferred
+8409,3,Porocarcinoma,alternate
+8410,0,Sebaceous adenoma (C44._),preferred
+8410,0,Sebaceous epithelioma,alternate
+8410,2,Sebaceous adenocarcinoma in situ (C44._),preferred
+8410,3,Sebaceous adenocarcinoma (C44._),preferred
+8410,3,Sebaceous carcinoma,alternate
+8413,3,Eccrine adenocarcinoma (C44._),preferred
+8420,0,Ceruminous adenoma (C44.2),preferred
+8420,3,Ceruminous adenocarcinoma (C44.2),preferred
+8420,3,Ceruminous carcinoma,alternate
+8430,1,Mucoepidermoid tumor [OBS],preferred
+8430,2,Mucoepidermoid carcinoma in situ,preferred
+8430,3,Mucoepidermoid carcinoma,preferred
+8440,0,"Cystadenoma, NOS",preferred
+8440,0,"Cystoma, NOS",alternate
+8440,2,"Cystadenocarcinoma, in situ",preferred
+8440,3,"Cystadenocarcinoma, NOS",preferred
+8441,0,"Serous cystadenoma, NOS (C56.9)",preferred
+8441,0,Serous cystoma,alternate
+8441,0,Serous microcystic adenoma,alternate
+8441,2,"Serous cystadenoma in situ, NOS (C56.9)",preferred
+8441,2,"Serous endometrial intraepithelial carcinoma (C54._, C55.9)",alternate
+8441,2,Serous tubal intraepithelial carcinoma (C57.0),alternate
+8441,3,"Serous cystadenocarcinoma, NOS (C56.9)",preferred
+8441,3,"Serous adenocarcinoma, NOS",alternate
+8441,3,"Serous carcinoma, NOS",alternate
+8442,1,"Serous cystadenoma, borderline malignancy (C56.9)",preferred
+8442,1,"Serous tumor, NOS, of low malignant potential",alternate
+8442,1,Atypical proliferating serous tumor,alternate
+8442,2,Proliferating serous carcinoma in situ (C56.9),preferred
+8442,3,Proliferating serous carcinoma malignant (C56.9),preferred
+8443,0,Clear cell cystadenoma (C56.9),preferred
+8443,3,Clear cell cystadenocarcinoma (C56.9),preferred
+8444,1,Clear cell cystic tumor of borderline malignancy (C56.9),preferred
+8444,1,Atypical proliferating clear cell tumor,alternate
+8444,3,"Clear cell cystic tumor, malignant (C56.9)",preferred
+8450,0,"Papillary cystadenoma, NOS (C56.9)",preferred
+8450,2,"Papillary cystadenocarcinoma in situ, NOS (C56.9)",preferred
+8450,3,"Papillary cystadenocarcinoma, NOS (C56.9)",preferred
+8450,3,Papillocystic adenocarcinoma,alternate
+8451,1,"Papillary cystadenoma, borderline malignancy (C56.9)",preferred
+8452,1,Solid pseudopapillary tumor (C25._),preferred
+8452,1,Papillary cystic tumor,alternate
+8452,1,Solid and papillary epithelial neoplasm,alternate
+8452,1,Solid and cystic tumor,alternate
+8452,3,Solid pseudopapillary carcinoma (C25._),preferred
+8452,3,Solid pseudopapillary neoplasm of the pancreas (C25._),alternate
+8453,0,Intraductal papillary-mucinous adenoma (C25._),preferred
+8453,1,Intraductal papillary-mucinous tumor with moderate dysplasia (C25._),preferred
+8453,2,"Intraductal papillary-mucinous carcinoma, non-invasive (C25._)",preferred
+8453,2,IPMN with high grade dysplasia,alternate
+8453,2,Intraductal papillary mucinous neoplasm with high-grade dysplasia (C25._),alternate
+8453,3,"Intraductal papillary-mucinous carcinoma, invasive (C25._)",preferred
+8453,3,Intraductal papillary mucinous neoplasm with high grade dysplasia,alternate
+8453,3,Intraductal papillary mucinous neoplasm (IPMN) with an associated invasive  carcinoma (C25._),alternate
+8454,0,Cystic tumor of atrio-ventricular node (C38.0),preferred
+8460,0,"Papillary serous cystadenoma, NOS (C56.9)",preferred
+8460,2,"Papillary serous cystadenocarcinoma in situ, NOS (C56.9)",preferred
+8460,2,Non-invasive low grade serous carcinoma (C56.9),alternate
+8460,2,Serous borderline tumor-micropapillary variant (C56.9),alternate
+8460,3,Papillary serous cystadenocarcinoma (C56.9),preferred
+8460,3,"Low-grade serous carcinoma (C56.9, C48._, C57.0, C57.1–C57.3)",alternate
+8460,3,Papillary serous adenocarcinoma,alternate
+8460,3,Micropapillary serous carcinoma,alternate
+8461,0,Serous surface papilloma (C56.9),preferred
+8461,2,"Serous surface papilloma, in situ (C56.9)",preferred
+8461,3,Serous surface papillary carcinoma (C56.9),preferred
+8461,3,"High-grade serous carcinoma (C48._, C56.9, C57.0, C57.1–C57.3)",alternate
+8461,3,Primary serous papillary carcinoma of peritoneum,alternate
+8462,1,"Serous papillary cystic tumor, borderline malignancy (C56.9)",preferred
+8462,1,"Papillary serous cystadenoma, borderline malignancy",alternate
+8462,1,Papillary serous tumor of low malignant potential,alternate
+8462,1,Atypical proliferative papillary serous tumor,alternate
+8463,1,Serous surface papillary tumor of borderline malignancy (C56.9),preferred
+8463,3,Serous surface papillary carcinoma (C56.9),preferred
+8470,0,Mucinous cystadenoma (C56.9),preferred
+8470,0,Mucinous cystoma,alternate
+8470,0,"Pseudomucinous cystadenoma, NOS",alternate
+8470,1,Mucinous cystic tumor with moderate dysplasia (C25._),preferred
+8470,2,"Mucinous cystadenocarcinoma, non-invasive (C25._)",preferred
+8470,3,"Mucinous cystadenocarcinoma, NOS (C56.9)",preferred
+8470,3,Mucinous cystic tumor with associated invasive carcinoma (C25._),alternate
+8470,3,Pseudomucinous adenocarcinoma,alternate
+8470,3,"Pseudomucinous cystadenocarcinoma, NOS",alternate
+8471,0,"Papillary mucinous cystadenoma, NOS (C56.9)",preferred
+8471,0,"Papillary pseudomucinous cystadenoma, NOS",alternate
+8471,2,"Papillary mucinous cystadenoca situ, NOS (C56.9)",preferred
+8471,3,Papillary mucinous cystadenocarcinoma (C56.9),preferred
+8471,3,Papillary pseudomucinous cystadenocarcinoma,alternate
+8472,1,Mucinous cystic tumor of borderline malignancy (C56.9),preferred
+8472,1,"Mucinous cystadenoma, borderline malignancy",alternate
+8472,1,"Pseudomucinous cystadenoma, borderline malignancy",alternate
+8472,1,"Mucinous tumor, NOS, of low malignant potential",alternate
+8472,1,Atypical proliferative mucinous tumor,alternate
+8472,2,Mucinous cystic adenocarcinoma in situ (C56.9),preferred
+8472,3,Mucinous cystadenocarcinoma (C56.9),preferred
+8473,1,"Papillary mucinous cystadenoma, borderline malignancy (C56.9)",preferred
+8473,1,"Papillary pseudomucinous cystadenoma, borderline malignancy",alternate
+8473,1,Papillary mucinous tumor of low malignant potential,alternate
+8473,2,"Papillary mucinous cystadenoma, in situ (C56.9)",preferred
+8473,3,Papillary pseudomucinous cystadenocarcinoma (C56.9),preferred
+8474,3,Seromucinous carcinoma (C56.9),preferred
+8480,0,Mucinous adenoma,preferred
+8480,1,Low grade appendiceal mucinous neoplasm (C18.1),preferred
+8480,2,Mucinous adenocarcinoma in situ,preferred
+8480,3,Mucinous adenocarcinoma,preferred
+8480,3,Mucinous tubular and spindle cell carcinoma (C64.9),alternate
+8480,3,Mucinous carcinoma,alternate
+8480,3,Colloid adenocarcinoma,alternate
+8480,3,Colloid carcinoma,alternate
+8480,3,Gelatinous adenocarcinoma,alternate
+8480,3,Gelatinous carcinoma,alternate
+8480,3,Mucoid adenocarcinoma,alternate
+8480,3,Mucoid carcinoma,alternate
+8480,3,Mucous adenocarcinoma,alternate
+8480,3,Mucous carcinoma,alternate
+8480,3,Pseudomyxoma peritonei with unknown primary site,alternate
+8480,6,Pseudomyxoma peritonei (C48.2),preferred
+8481,2,Mucin-producing adenocarcinoma in situ,preferred
+8481,3,Mucin-producing adenocarcinoma,preferred
+8481,3,Mucin-producing carcinoma,alternate
+8481,3,Mucin-secreting adenocarcinoma,alternate
+8481,3,Mucin-secreting carcinoma,alternate
+8482,3,"Mucinous adenocarcinoma, endocervical type",preferred
+8482,3,"Mucinous carcinoma, gastric type (C53._)",alternate
+8490,0,"Signet ring cell tumor, benign",preferred
+8490,2,Signet ring cell carcinoma in situ,preferred
+8490,3,Signet ring cell carcinoma,preferred
+8490,3,Poorly cohesive carcinoma,alternate
+8490,3,Signet ring cell adenocarcinoma,alternate
+8490,6,Metastatic signet ring cell carcinoma (C56.9),preferred
+8500,2,"Intraductal carcinoma, noninfiltrating, NOS (C50._)",preferred
+8500,2,"Intraductal adenocarcinoma, noninfiltrating, NOS",alternate
+8500,2,"Intraductal carcinoma, NOS",alternate
+8500,2,"Ductal carcinoma in situ, NOS",alternate
+8500,2,"DCIS, NOS",alternate
+8500,2,Ductal intraepithelial neoplasia 3,alternate
+8500,2,DIN 3,alternate
+8500,2,"Low grade cribriform cystadenocarcinoma (LGCCC) (C06.9, C08.9)",alternate
+8500,2,"Mammary carcinoma, in situ  (C50._)",alternate
+8500,2,Non-invasive mammary carcinoma (C50._),alternate
+8500,3,Invasive carcinoma of no special type (C50._),preferred
+8500,3,"Infiltrating duct carcinoma, NOS (C50._)",alternate
+8500,3,"Salivary duct carcinoma (C06.9, C08.9)",alternate
+8500,3,"Invasive carcinoma, NST (C50._)",alternate
+8500,3,Invasive mammary carcinoma (C50._),alternate
+8500,3,Infiltrating duct adenocarcinoma,alternate
+8500,3,"Duct adenocarcinoma, NOS",alternate
+8500,3,"Duct carcinoma, NOS",alternate
+8500,3,Duct cell carcinoma,alternate
+8500,3,"Ductal carcinoma, NOS",alternate
+8501,2,"Comedocarcinoma, noninfiltrating (C50._)",preferred
+8501,2,"DCIS, comedo type",alternate
+8501,2,"Ductal carcinoma in situ, comedo type",alternate
+8501,3,"Comedocarcinoma, NOS (C50._)",preferred
+8502,2,"Secretory carcinoma of breast, in situ (C50._)",preferred
+8502,3,Secretory carcinoma of breast (C50._),preferred
+8502,3,Juvenile carcinoma of breast,alternate
+8503,0,Intraductal papilloma (C50._),preferred
+8503,0,"Duct adenoma, NOS",alternate
+8503,0,Ductal papilloma,alternate
+8503,2,Noninfiltrating intraductal papillary adenocarcinoma (C50._),preferred
+8503,2,Noninfiltrating intraductal papillary carcinoma,alternate
+8503,2,"Intraductal papillary adenocarcinoma, NOS",alternate
+8503,2,"Intraductal papillary carcinoma, NOS",alternate
+8503,2,"Ductal carcinoma in situ, papillary",alternate
+8503,2,"DCIS, papillary",alternate
+8503,2,Intraductal papilloma with ductal carcinoma in situ (C50._),alternate
+8503,2,Intraductal tubulopapillary neoplasm (C25._),alternate
+8503,3,Intraductal papillary adenocarcinoma with invasion (C50._),preferred
+8503,3,Infiltrating papillary adenocarcinoma,alternate
+8503,3,Infiltrating and papillary adenocarcinoma,alternate
+8503,3,Intracystic papillary neoplasm with associated invasive carcinoma,alternate
+8504,0,Intracystic papillary adenoma,preferred
+8504,0,Intracystic papilloma,alternate
+8504,2,Noninfiltrating intracystic carcinoma,preferred
+8504,2,Encapsulated papillary carcinoma C50._),alternate
+8504,3,"Intracystic carcinoma, NOS",preferred
+8504,3,Encapsulated papillary carcinoma with invasion (C50._),alternate
+8504,3,Intracystic papillary adenocarcinoma,alternate
+8505,0,"Intraductal papillomatosis, NOS",preferred
+8505,0,Diffuse intraductal papillomatosis,alternate
+8506,0,Adenoma of nipple (C50._),preferred
+8506,0,Subareolar duct papillomatosis,alternate
+8507,2,Intraductal micropapillary carcinoma (C50._),preferred
+8507,2,"Intraductal carcinoma, clinging",alternate
+8507,2,"Ductal carcinoma in situ, micropapillary",alternate
+8507,3,Invasive micropapillary carcinoma (C50._),preferred
+8507,3,"Ductal carcinoma, micropapillary (C50._)",alternate
+8508,2,"Cystic hypersecretory carcinoma, in situ (C50._)",preferred
+8508,3,Cystic hypersecretory carcinoma (C50._),preferred
+8509,2,Solid papillary carcinoma in situ (C50._),preferred
+8509,3,Solid papillary carcinoma with invasion (C50._),preferred
+8510,2,"Medullary carcinoma in situ, NOS (C73.9)",preferred
+8510,3,"Medullary carcinoma, NOS (C73.9)",preferred
+8510,3,Medullary adenocarcinoma,alternate
+8510,3,Renal medullary carcinoma (C64.9),alternate
+8512,2,Medullary carcinoma in situ with lymphoid stroma (C50._),preferred
+8512,3,Medullary carcinoma with lymphoid stroma (C50._),preferred
+8513,3,Atypical medullary carcinoma (C50._),preferred
+8514,3,"Duct carcinoma, desmoplastic type (C50._)",preferred
+8519,2,Pleomorphic lobular carcinoma in situ (C50._),preferred
+8520,2,Lobular carcinoma in situ (C50._),preferred
+8520,2,"Lobular carcinoma, noninfiltrating",alternate
+8520,2,"LCIS, NOS",alternate
+8520,2,Intraductal papilloma with lobular carcinoma in situ (C50._),alternate
+8520,2,Lobular intraepithelial neoplasia grade 3,alternate
+8520,3,"Lobular carcinoma, NOS (C50._)",preferred
+8520,3,Lobular adenocarcinoma,alternate
+8520,3,"Invasive lobular carcinoma, alveolar type (C50._)",alternate
+8520,3,"Invasive lobular carcinoma, solid type (C50._)",alternate
+8520,3,"Invasive lobular carcinoma, tubulolobular variant (C50._)",alternate
+8520,3,Pleomorphic lobular carcinoma (C50._),alternate
+8520,3,Invasive lobular carcinoma (C50._),alternate
+8520,3,Tubulolobular carcinoma (C50._),alternate
+8520,3,"Infiltrating lobular carcinoma, NOS",alternate
+8521,2,Ductular carcinoma in situ (C50._),preferred
+8521,3,Infiltrating ductular carcinoma (C50._),preferred
+8522,2,Intraductal and lobular in situ carcinoma (C50._),preferred
+8522,3,Infiltrating duct and lobular carcinoma (C50._),preferred
+8522,3,Intraductal and lobular carcinoma,alternate
+8522,3,Infiltrating lobular carcinoma and ductal carcinoma in situ,alternate
+8522,3,Lobular and ductal carcinoma,alternate
+8522,3,Infiltrating duct and lobular carcinoma in situ,alternate
+8523,2,Intraductal with other types of carcinoma in situ (C50._),preferred
+8523,3,Infiltrating duct mixed with other types of carcinoma (C50._),preferred
+8523,3,Infiltrating duct and cribriform carcinoma,alternate
+8523,3,Infiltrating duct and mucinous carcinoma,alternate
+8523,3,Infiltrating duct and tubular carcinoma,alternate
+8523,3,Infiltrating duct and colloid carcinoma,alternate
+8524,2,"Infiltrating lobular mixed with other types of carcinoma, in situ (C50._)",preferred
+8524,3,Infiltrating lobular mixed with other types of carcinoma (C50._),preferred
+8525,3,Polymorphous low grade adenocarcinoma,preferred
+8525,3,Terminal duct adenocarcinoma,alternate
+8530,3,Inflammatory carcinoma (C50._),preferred
+8530,3,Inflammatory adenocarcinoma,alternate
+8540,2,"Paget disease, mammary in situ (C50._)",preferred
+8540,3,"Paget disease, mammary (C50._)",preferred
+8540,3,Paget disease of breast,alternate
+8541,3,Paget disease and infiltrating ductal carcinoma of breast (C50._),preferred
+8542,2,"Paget disease (in situ), extramammary (except Paget disease of bone) (C50._)",preferred
+8542,3,"Paget disease, extramammary (except Paget disease of bone)",preferred
+8543,2,Paget disease in situ and intraductal carcinoma (C50._),preferred
+8543,3,Paget disease and intraductal carcinoma (C50._),preferred
+8550,0,Acinar cell adenoma,preferred
+8550,0,Acinar adenoma,alternate
+8550,0,Acinic cell adenoma,alternate
+8550,1,Acinar cell tumor [obs],preferred
+8550,1,Acinic cell tumor,alternate
+8550,2,Acinar cell carcinoma in situ,preferred
+8550,3,Acinar cell carcinoma,preferred
+8550,3,Acinar cell carcinoma,alternate
+8550,3,Acinic cell adenocarcinoma,alternate
+8550,3,Acinar adenocarcinoma,alternate
+8550,3,Acinar carcinoma,alternate
+8551,3,Acinar cell cystadenocarcinoma,preferred
+8551,3,Acinar adenocarcinoma (C34._),alternate
+8552,3,Mixed acinar ductal carcinoma,preferred
+8560,0,Mixed squamous cell and glandular papilloma,preferred
+8560,2,Squamous cell carcinoma in situ and glandular papilloma,preferred
+8560,3,Adenosquamous carcinoma,preferred
+8560,3,Mixed adenocarcinoma and epidermoid carcinoma,alternate
+8560,3,Mixed adenocarcinoma and squamous cell carcinoma,alternate
+8561,0,"Adenolymphoma (C07._, C08._)",preferred
+8561,0,Papillary cystadenoma lymphomatosum,alternate
+8561,0,Warthin tumor,alternate
+8561,3,"Warthin tumor, malignant (C07._, C08._)",preferred
+8562,2,Epithelial-myoepithelial carcinoma in situ,preferred
+8562,3,Epithelial-myoepithelial carcinoma,preferred
+8570,2,Adenocarcinoma in situ with squamous metaplasia,preferred
+8570,3,Adenocarcinoma with squamous metaplasia,preferred
+8570,3,Adenoacanthoma,alternate
+8570,3,"Endometrioid carcinoma with squamous differentiation (C54._, C55.9)",alternate
+8570,3,Low grade adenosquamous carcinoma (C50._),alternate
+8571,2,"Adenocarcinoma in situ, cartilaginous and osseous metaplasia",preferred
+8571,3,Adenocarcinoma with cartilaginous and osseous metaplasia,preferred
+8571,3,Metaplastic carcinoma with chondroid differentiation (C50._),alternate
+8571,3,Metaplastic carcinoma with osseous differentiation (C50._),alternate
+8571,3,Adenocarcinoma with cartilaginous metaplasia,alternate
+8571,3,Adenocarcinoma with osseous metaplasia,alternate
+8571,3,Carcinoma with chondroid differentiation (C50._),alternate
+8571,3,Carcinoma with osseous differentiation (C50._),alternate
+8572,0,Adenoma with spindle cell metaplasia,preferred
+8572,3,Adenocarcinoma with spindle cell metaplasia,preferred
+8572,3,"Acinar adenocarcinoma, sarcomatoid (C61.9)",alternate
+8572,3,Fibromatosis-like metaplastic carcinoma (C50._),alternate
+8573,2,Adenocarcinoma in situ with apocrine metaplasia,preferred
+8573,3,Adenocarcinoma with apocrine metaplasia,preferred
+8573,3,Carcinoma with apocrine metaplasia,alternate
+8574,2,Adenocarcinoma in situ with neuroendocrine differentiation,preferred
+8574,3,Adenocarcinoma with neuroendocrine differentiation,preferred
+8574,3,Adenocarcinoma admixed with neuroendocrine carcinoma (C53._),alternate
+8574,3,Carcinoma with neuroendocrine differentiation,alternate
+8575,3,"Metaplastic carcinoma, NOS",preferred
+8575,3,Carcinoma with other types mesenchymal differentiation (C50._),alternate
+8575,3,Metaplastic carcinoma with other types mesenchymal differentiation (C50._),alternate
+8575,3,Metaplastic carcinoma of no special type (C50._),alternate
+8576,3,Hepatoid adenocarcinoma,preferred
+8576,3,Hepatoid carcinoma,alternate
+8580,0,"Thymoma, benign (C37.9)",preferred
+8580,1,"Thymoma, NOS (C37.9)",preferred
+8580,2,"Thymoma, in situ, NOS (C37.9)",preferred
+8580,3,"Thymoma, malignant, NOS (C37.9)",preferred
+8581,1,"Thymoma, type A, NOS (C37.9)",preferred
+8581,1,"Thymoma, spindle cell, NOS",alternate
+8581,1,"Thymoma, medullary, NOS",alternate
+8581,3,"Thymoma, type A, malignant (C37.9)",preferred
+8581,3,"Thymoma, spindle cell, malignant",alternate
+8581,3,"Thymoma, medullary, malignant",alternate
+8582,1,"Thymoma, type AB, NOS (C37.9)",preferred
+8582,1,"Thymoma, mixed type, NOS",alternate
+8582,3,"Thymoma, type AB, malignant (C37.9)",preferred
+8582,3,"Thymoma, mixed type, malignant",alternate
+8583,1,"Thymoma, type B1, NOS (C37.9)",preferred
+8583,1,"Thymoma, lymphocytic, NOS",alternate
+8583,1,"Thymoma, predominantly cortical, NOS",alternate
+8583,1,"Thymoma, organoid, NOS",alternate
+8583,1,"Thymoma, lymphocyte-rich, NOS",alternate
+8583,3,"Thymoma, type B1, malignant (C37.9)",preferred
+8583,3,"Thymoma, lymphocyte-rich, malignant",alternate
+8583,3,"Thymoma, lymphocytic, malignant",alternate
+8583,3,"Thymoma, predominantly cortical, malignant",alternate
+8583,3,"Thymoma, organoid, malignant",alternate
+8584,1,"Thymoma, type B2, NOS (C37.9)",preferred
+8584,1,"Thymoma, cortical, NOS",alternate
+8584,3,"Thymoma, type B2, malignant (C37.9)",preferred
+8584,3,"Thymoma, cortical, malignant",alternate
+8585,1,"Thymoma, type B3, NOS (C37.9)",preferred
+8585,1,"Thymoma, epithelial, NOS",alternate
+8585,1,"Thymoma, atypical, NOS",alternate
+8585,3,"Thymoma, type B3, malignant (C37.9)",preferred
+8585,3,"Thymoma, epithelial, malignant",alternate
+8585,3,"Thymoma, atypical, malignant",alternate
+8585,3,Well differentiated thymic carcinoma,alternate
+8586,3,"Thymic carcinoma, NOS (C37.9)",preferred
+8586,3,"Thymoma, type C",alternate
+8587,0,Ectopic hamartomatous thymoma (C37.9),preferred
+8588,3,Spindle epithelial tumor with thymus-like element (C37.9),preferred
+8588,3,SETTLE,alternate
+8588,3,Spindle epithelial tumor with thymus-like differentiation,alternate
+8589,3,Carcinoma showing thymus-like element (C37.9),preferred
+8589,3,Carcinoma showing thymus-like differentiation,alternate
+8589,3,CASTLE,alternate
+8590,1,"Sex cord-gonadal stromal tumor, NOS (C56.9 [F], C62._[M])",preferred
+8590,1,"Gonadal stromal tumor, NOS",alternate
+8590,1,Testicular stromal tumor,alternate
+8590,1,Ovarian stromal tumor,alternate
+8590,1,"Sex cord tumor, NOS",alternate
+8590,3,"Sex cord-gonadal stromal tumor, malignant, NOS (C56.9 [F], C62._[M])",preferred
+8591,1,"Sex cord-gonadal stromal tumor, incompletely differentiated (C56.9 [F], C62._[M])",preferred
+8592,1,"Sex cord-gonadal stromal tumor, mixed forms (C56.9 [F], C62._[M])",preferred
+8593,1,Stromal tumor with minor sex cord elements (C56.9),preferred
+8593,3,"Malignant stromal tumor, with sex cord elements (C56.9)",preferred
+8594,1,"Mixed germ cell sex cord-stromal tumor, unclassified (C48.2, C56.9, C57.9)",preferred
+8600,0,"Thecoma, NOS (C56.9)",preferred
+8600,0,Theca cell tumor,alternate
+8600,3,"Thecoma, malignant (C56.9)",preferred
+8601,0,"Thecoma, luteinized (C56.9)",preferred
+8602,0,Sclerosing stromal tumor (C56.9),preferred
+8602,3,"Sclerosing stromal tumor, malignant (C56.9)",preferred
+8610,0,"Luteoma, NOS (C56.9)",preferred
+8610,0,Luteinoma,alternate
+8620,1,"Granulosa cell tumor, adult type (C56.9)",preferred
+8620,1,"Granulosa cell tumor, NOS",alternate
+8620,3,"Granulosa cell tumor, malignant (C56.9 )",preferred
+8620,3,Adult granulosa cell tumor (C56.9 ONLY),alternate
+8620,3,Granulosa cell carcinoma,alternate
+8620,3,"Granulosa cell tumor, sarcomatoid",alternate
+8621,1,Granulosa cell-theca cell tumor (C56.9),preferred
+8621,1,Theca cell-granulosa cell tumor,alternate
+8621,3,"Granulosa cell-theca cell tumor, malignant (C56.9)",preferred
+8622,1,"Granulosa cell tumor, juvenile (C56.9)",preferred
+8622,3,"Juvenile granulosa cell tumor, malignant (C56.9)",preferred
+8623,1,Sex cord tumor with annular tubules (C56.9),preferred
+8623,3,"Sex cord tumor with annular tubules, malignant (C56.9)",preferred
+8630,0,"Androblastoma, benign (C56.9 [F], C62._[M])",preferred
+8630,0,"Arrhenoblastoma, benign",alternate
+8630,1,"Androblastoma, NOS (C56.9 [F], C62._[M])",preferred
+8630,1,"Arrhenoblastoma, NOS",alternate
+8630,3,"Androblastoma, malignant (C56.9 [F], C62._[M])",preferred
+8630,3,"Arrhenoblastoma, malignant",alternate
+8631,0,"Sertoli-Leydig cell tumor, well differentiated (C56.9 [F], C62._[M])",preferred
+8631,1,"Sertoli-Leydig cell tumor of intermediate differentiation (C56.9 [F], C62._[M])",preferred
+8631,1,"Sertoli-Leydig cell tumor, NOS",alternate
+8631,3,"Sertoli-Leydig cell tumor, poorly differentiated (C56.9 [F], C62._[M])",preferred
+8631,3,"Sertoli-Leydig cell tumor, sarcomatoid",alternate
+8632,1,"Gynandroblastoma (C56.9 [F], C62._[M])",preferred
+8632,3,"Gynandroblastoma, malignant (C56.9 [F], C62._[M])",preferred
+8633,1,"Sertoli-Leydig cell tumor, retiform (C56.9 [F], C62._[M])",preferred
+8634,1,"Sertoli-Leydig cell tumor, intermediate differentiation, with heterologous elements",preferred
+8634,1,"Sertoli-Leydig cell tumor, retiform, with heterologous elements",alternate
+8634,3,"Sertoli-Leydig cell tumor, poorly differentiated with heterologous elements (C56.9 [F], C62._[M])",preferred
+8640,1,"Sertoli cell tumor, NOS (C56.9 [F], C62._[M])",preferred
+8640,1,Pick tubular adenoma,alternate
+8640,1,Sertoli cell adenoma,alternate
+8640,1,"Tubular androblastoma, NOS",alternate
+8640,1,Testicular adenoma,alternate
+8640,3,"Sertoli cell carcinoma (C56.9 [F], C62._[M])",preferred
+8641,0,"Sertoli cell tumor with lipid storage (C56.9 [F], C62._[M])",preferred
+8641,0,Folliculome lipidique,alternate
+8641,0,Tubular androblastoma with lipid storage,alternate
+8641,0,Lipid-rich Sertoli cell tumor,alternate
+8642,1,"Large cell calcifying Sertoli cell tumor (C56.9 [F], C62._[M])",preferred
+8650,0,"Leydig cell tumor, benign (C56.9 [F], C62._[M])",preferred
+8650,0,"Interstitial cell tumor, benign",alternate
+8650,1,"Leydig cell tumor, NOS (C56.9 [F], C62._[M])",preferred
+8650,1,"Interstitial cell tumor, NOS",alternate
+8650,3,"Leydig cell tumor, malignant (C56.9 [F], C62._[M])",preferred
+8650,3,"Interstitial cell tumor, malignant",alternate
+8660,0,Hilus cell tumor (C56.9),preferred
+8660,0,Hilar cell tumor,alternate
+8670,0,Lipid cell tumor of ovary (C56.9),preferred
+8670,0,Masculinovoblastoma,alternate
+8670,0,Lipoid cell tumor of ovary,alternate
+8670,0,"Steroid cell tumor, NOS",alternate
+8670,3,"Steroid cell tumor, malignant (C56.9)",preferred
+8671,0,Adrenal rest tumor,preferred
+8680,0,"Paraganglioma, benign (C75.5)",preferred
+8680,1,"Paraganglioma, NOS (C75.5)",preferred
+8680,3,"Paraganglioma, malignant (C75.5)",preferred
+8681,1,Sympathetic paraganglioma (C75.5),preferred
+8682,1,Parasympathetic paraganglioma (C75.5),preferred
+8683,0,Gangliocytic paraganglioma (C17.0),preferred
+8683,3,"Gangliocytic paraganglioma, malignant (C17.0)",preferred
+8690,1,"Glomus jugulare tumor, NOS (C75.5)",preferred
+8690,1,Jugular paraganglioma,alternate
+8690,1,Jugulotympanic paraganglioma,alternate
+8690,3,"Glomus jugulare tumor, malignant (C75.5)",preferred
+8691,1,Aortic body tumor (C75.5),preferred
+8691,1,Aortic body paraganglioma,alternate
+8691,1,Aorticopulmonary paraganglioma,alternate
+8691,3,"Aortic body tumor, malignant (C75.5)",preferred
+8692,1,Carotid body tumor (C75.4),preferred
+8692,1,Carotid body paraganglioma,alternate
+8692,3,"Carotid body tumor, malignant (C75.4)",preferred
+8693,1,"Extra-adrenal paraganglioma, NOS (C75.5)",preferred
+8693,1,"Nonchromaffin paraganglioma, NOS",alternate
+8693,1,Chemodectoma,alternate
+8693,3,"Extra-adrenal paraganglioma, malignant (C75.5)",preferred
+8693,3,"Nonchromaffin paraganglioma, malignant",alternate
+8700,0,"Pheochromocytoma, NOS (C74.1)",preferred
+8700,0,Adrenal medullary paraganglioma,alternate
+8700,0,Chromaffin paraganglioma,alternate
+8700,0,Chromaffin tumor,alternate
+8700,0,Chromaffinoma,alternate
+8700,3,"Pheochromocytoma, malignant (C74.1)",preferred
+8700,3,"Adrenal medullary paraganglioma, malignant",alternate
+8700,3,Pheochromoblastoma,alternate
+8710,3,Glomangiosarcoma (C49._),preferred
+8710,3,Glomoid sarcoma,alternate
+8711,0,"Glomus tumor, NOS",preferred
+8711,3,"Glomus tumor, malignant (C49._)",preferred
+8712,0,Glomangioma,preferred
+8712,3,"Glomangioma, malignant (C49._)",preferred
+8713,0,Glomangiomyoma,preferred
+8714,3,"PEComa, malignant",preferred
+8714,3,Malignant perivascular epithelial cell tumor,alternate
+8714,3,"Perivascular epithelioid cell tumor, malignant",alternate
+8720,0,"Pigmented nevus, NOS (C44._)",preferred
+8720,0,"Nevus, NOS",alternate
+8720,0,Melanocytic nevus,alternate
+8720,0,Hairy nevus,alternate
+8720,2,Melanoma in situ (C44._),preferred
+8720,3,"Malignant melanoma, NOS (C44._)",preferred
+8720,3,"Melanoma, NOS",alternate
+8720,3,"Meningeal melanoma (C70._, C71._)",alternate
+8721,2,"Nodular melanoma, in situ (C44._)",preferred
+8721,3,Nodular melanoma (C44._),preferred
+8722,0,Balloon cell nevus (C44._),preferred
+8722,2,"Balloon cell melanoma, in situ (C44._)",preferred
+8722,3,Balloon cell melanoma (C44._),preferred
+8723,0,Halo nevus (C44._),preferred
+8723,0,Regressing nevus,alternate
+8723,2,"Melanoma in situ, regressing (C44._)",preferred
+8723,3,"Malignant melanoma, regressing (C44._)",preferred
+8725,0,Neuronevus (C44._),preferred
+8726,0,Magnocellular nevus (C69.4),preferred
+8726,0,"Melanocytoma, eyeball",alternate
+8726,0,"Melanocytoma, NOS",alternate
+8726,3,Malignant melanoma in magnocellular nevus (C69.4),preferred
+8727,0,Dysplastic nevus ( C44._),preferred
+8727,3,"Dysplastic nevus, malignant (C44._)",preferred
+8728,0,Diffuse melanocytosis (C70.9),preferred
+8728,1,Meningeal melanocytoma (C70.9),preferred
+8728,3,Meningeal melanomastosis (C70.9),preferred
+8730,0,Nonpigmented nevus (C44._),preferred
+8730,0,Achromic nevus,alternate
+8730,2,Amelanotic melanoma,preferred
+8730,3,Amelanotic melanoma (C44._),preferred
+8740,0,"Junctional nevus, NOS (C44._)",preferred
+8740,0,Junction nevus,alternate
+8740,0,Intraepidermal nevus,alternate
+8740,2,Melanoma in situ in junctional nevus (C44._),preferred
+8740,3,Malignant melanoma in junctional nevus (C44._),preferred
+8741,2,"Precancerous melanosis, NOS (C44._)",preferred
+8741,3,Malignant melanoma in precancerous melanosis (C44._),preferred
+8742,2,Lentigo maligna (C44._),preferred
+8742,2,"Hutchinson melanotic freckle, NOS",alternate
+8742,3,Lentigo maligna melanoma (C44._),preferred
+8742,3,Malignant melanoma in Hutchinson melanotic freckle,alternate
+8743,2,Superficial spreading melanoma in situ (C44._),preferred
+8743,3,Superficial spreading melanoma (C44._),preferred
+8744,2,"Acral lentiginous melanoma, in situ (C44._)",preferred
+8744,3,"Acral lentiginous melanoma, in malignant (C44._)",preferred
+8745,2,"Desmoplastic melanoma, in situ (C44._)",preferred
+8745,3,"Desmoplastic melanoma, malignant (C44._)",preferred
+8745,3,"Neurotropic melanoma, malignant",alternate
+8745,3,"Desmoplastic melanoma, amelanotic",alternate
+8746,2,Mucosal lentiginous melanoma in situ (C44._),preferred
+8746,3,Mucosal lentiginous melanoma (C44._),preferred
+8750,0,Intradermal nevus (C44._),preferred
+8750,0,Dermal nevus,alternate
+8760,0,Compound nevus (C44._),preferred
+8760,0,Dermal and epidermal nevus,alternate
+8760,2,Melanoma in situ in compound nevus (C44._),preferred
+8761,0,Small congenital nevus (C44._),preferred
+8761,1,"Giant pigmented nevus, NOS (C44._)",preferred
+8761,1,Intermediate and giant congenital nevus,alternate
+8761,2,Melanoma in situ in giant pigmented nevus (C44._),preferred
+8761,3,Malignant melanoma in giant pigmented nevus (C44._),preferred
+8761,3,Malignant melanoma in congenital melanocytic nevus,alternate
+8762,1,Proliferative dermal lesion in congenital nevus (C44._),preferred
+8770,0,Epithelioid and spindle cell nevus (C44._),preferred
+8770,0,Juvenile nevus,alternate
+8770,0,Juvenile melanoma,alternate
+8770,0,Spitz nevus,alternate
+8770,0,Pigmented spindle cell nevus of Reed,alternate
+8770,2,Epithelioid and spindle cell melanoma in situ (C44._),preferred
+8770,3,Mixed epithelioid and spindle cell melanoma (C44._),preferred
+8771,0,Epithelioid cell nevus (C44._),preferred
+8771,2,Epithelioid cell melanoma in situ (C44._),preferred
+8771,3,Epithelioid cell melanoma (C44._),preferred
+8772,0,"Spindle cell nevus, NOS (C44._)",preferred
+8772,2,"Spindle cell melanoma in situ, NOS (C44._)",preferred
+8772,3,"Spindle cell melanoma, NOS (C44._)",preferred
+8773,3,"Spindle cell melanoma, type A (C69._)",preferred
+8774,3,"Spindle cell melanoma, type B (C69._)",preferred
+8780,0,"Blue nevus, NOS (C44._)",preferred
+8780,0,Jadassohn blue nevus,alternate
+8780,3,"Blue nevus, malignant (C44._)",preferred
+8790,0,Cellular blue nevus (C44._),preferred
+8790,3,"Cellular blue nevus, malignant (C44._)",preferred
+8800,0,"Soft tissue tumor, benign (C49._)",preferred
+8800,3,"Sarcoma, NOS (C49._)",preferred
+8800,3,Soft tissue sarcoma,alternate
+8800,3,"Soft tissue tumor, malignant",alternate
+8800,3,"Mesenchymal tumor, malignant",alternate
+8800,9,"Sarcomatosis, NOS (C47._, C49._)",preferred
+8801,3,Spindle cell sarcoma (C49._),preferred
+8801,3,Undifferentiated spindle cell sarcoma,alternate
+8802,3,Giant cell sarcoma (C49._),preferred
+8802,3,Pleomorphic cell sarcoma,alternate
+8802,3,Undifferentiated pleomorphic sarcoma,alternate
+8803,3,Small cell sarcoma (C49._),preferred
+8803,3,Round cell sarcoma,alternate
+8803,3,Undifferentiated round cell sarcoma,alternate
+8804,3,Epithelioid sarcoma (C49._),preferred
+8804,3,Epithelioid cell sarcoma,alternate
+8804,3,Undifferentiated epithelioid sarcoma,alternate
+8805,3,Undifferentiated sarcoma (C49._),preferred
+8805,3,Undifferentiated uterine sarcoma,alternate
+8806,3,Desmoplastic small round cell tumor (C49._),preferred
+8810,0,"Fibroma, NOS (C49._)",preferred
+8810,1,Cellular fibroma (C56.9),preferred
+8810,3,"Fibrosarcoma, NOS (C49._)",preferred
+8811,0,Fibromyxoma (C49._),preferred
+8811,0,Plexiform fibromyxoma,alternate
+8811,0,Myxoid fibroma,alternate
+8811,0,"Myxofibroma, NOS",alternate
+8811,1,Myxoinflammatory fibroblastic sarcoma (MIFS) (C49._),preferred
+8811,3,Fibromyxosarcoma (C49._),preferred
+8812,0,"Periosteal fibroma (C40._, C41._)",preferred
+8812,3,"Periosteal fibrosarcoma (C40._,C41._)",preferred
+8812,3,"Periosteal sarcoma, NOS",alternate
+8813,0,Fascial fibroma (C49._),preferred
+8813,3,Fascial fibrosarcoma (C49._),preferred
+8814,3,Infantile fibrosarcoma (C49._),preferred
+8814,3,Congenital fibrosarcoma,alternate
+8815,0,Solitary fibrous tumor (C49._),preferred
+8815,0,Localized fibrous tumor,alternate
+8815,0,Solitary fibrous tumor/hemangiopericytoma Grade 1 (CNS) (C71._),alternate
+8815,1,Solitary fibrous tumor/hemangiopericytoma Grade 2 (CNS) (C71._),preferred
+8815,3,"Solitary fibrous tumor, malignant (C49._)",preferred
+8815,3,Solitary fibrous tumor/hemangiopericytoma Grade 3 (CNS) (C71._),alternate
+8820,0,Elastofibroma (C49._),preferred
+8821,1,Aggressive fibromatosis (C49._),preferred
+8821,1,Extra-abdominal desmoid,alternate
+8821,1,"Desmoid, NOS",alternate
+8821,1,Invasive fibroma,alternate
+8821,3,"Aggressive fibromatosis, malignant (C49._)",preferred
+8822,1,Abdominal fibromatosis (C49._),preferred
+8822,1,Abdominal desmoid,alternate
+8822,1,Mesenteric fibromatosis,alternate
+8822,1,Retroperitoneal fibromatosis,alternate
+8822,3,"Abdominal fibrosis, malignant (C49._)",preferred
+8823,0,"Desmoplastic fibroma, benign (C49._)",preferred
+8823,1,Desmoplastic fibroma (C49._),preferred
+8823,3,Desmoplastic fibrosarcoma (C49._),preferred
+8824,0,Myofibroma (C49._),preferred
+8824,1,Myofibromatosis (C49._),preferred
+8824,1,Congenital generalized fibromatosis,alternate
+8824,1,Infantile myofibromatosis,alternate
+8824,3,"Myofibroma, malignant (C49._)",preferred
+8825,0,Myofibroblastoma (C49._),preferred
+8825,1,"Myofibroblastic tumor, NOS (C49._)",preferred
+8825,1,Inflammatory myofibroblastic tumor,alternate
+8825,3,Myofibroblastic sarcoma,preferred
+8825,3,"Low-grade myofibroblastic sarcoma ( C01.9, C02._, C06.9, C49._)",alternate
+8826,0,Angiomyofibroblastoma (C49._),preferred
+8826,3,"Angiomyofibroblastoma, malignant (C49._)",preferred
+8827,1,"Myofibroblastic tumor, peribronchial (C34._)",preferred
+8827,1,Congenital peribronchial myofibroblastic tumor,alternate
+8830,0,Benign fibrous histiocytoma (C49._),preferred
+8830,0,"Fibrous histiocytoma, NOS",alternate
+8830,0,"Fibroxanthoma, NOS",alternate
+8830,0,Xanthofibroma,alternate
+8830,1,Atypical fibrous histiocytoma (C49._),preferred
+8830,1,Atypical fibroxanthoma,alternate
+8830,3,Malignant fibrous histiocytoma (C49._),preferred
+8830,3,"Fibroxanthoma, malignant",alternate
+8830,3,Malignant fibrous histiocytoma (MFH) of bone,alternate
+8830,3,Undifferentiated high-grade pleomorphic sarcoma,alternate
+8831,0,"Histiocytoma, NOS (C49._)",preferred
+8831,0,Deep histiocytoma,alternate
+8831,0,Juvenile histiocytoma,alternate
+8831,0,Reticulohistiocytoma,alternate
+8831,3,"Histiocytoma, NOS, malignant (C49._)",preferred
+8832,0,"Dermatofibroma, NOS (C44._)",preferred
+8832,0,Sclerosing hemangioma,alternate
+8832,0,"Cutaneous histiocytoma, NOS",alternate
+8832,0,Subepidermal nodular fibrosis,alternate
+8832,0,Dermatofibroma lenticulare,alternate
+8832,3,"Dermatofibrosarcoma, NOS (C44._)",preferred
+8832,3,Fibrosarcomatous dermatofibrosarcoma protuberans,alternate
+8832,3,"Dermatofibrosarcoma protuberans, NOS",alternate
+8833,3,Pigmented dermatofibrosarcoma protuberans (C44._),preferred
+8833,3,Bednar tumor,alternate
+8834,1,Giant cell fibroblastoma,preferred
+8835,1,Plexiform fibrohistiocytic tumor,preferred
+8835,3,Malignant plexiform fibrohistiocytic tumor,preferred
+8836,1,Angiomatoid fibrous histiocytoma,preferred
+8836,3,Malignant angiomatoid fibrous histiocytoma,preferred
+8840,0,"Myxoma, NOS (C49._)",preferred
+8840,3,Myxosarcoma (C49._),preferred
+8840,3,Low-grade fibromyxoid sarcoma,alternate
+8840,3,Sclerosing epithelioid fibrosarcoma,alternate
+8841,1,Angiomyxoma (C49._),preferred
+8841,1,Aggressive angiomyxoma,alternate
+8841,3,"Angiomyxoma, malignant (C49._)",preferred
+8842,0,Ossifying fibromyxoid tumor,preferred
+8842,3,"Ossifying fibromyxoid tumor, malignant",preferred
+8842,3,"Ossifying fibromyxoid tumor, malignant (C49._)",alternate
+8842,3,Pulmonary myxoid sarcoma with EWSR1-CREB1 translocation (C34._),alternate
+8850,0,"Lipoma, NOS",preferred
+8850,1,Atypical lipoma,preferred
+8850,1,Superficial well differentated liposarcoma,alternate
+8850,1,Well differentiated liposarcoma of superficial soft tissue,alternate
+8850,3,"Liposarcoma, NOS (C49._)",preferred
+8850,3,Fibroliposarcoma,alternate
+8851,0,Fibrolipoma,preferred
+8851,3,"Liposarcoma, well differentiated (C49._)",preferred
+8851,3,"Liposarcoma, differentiated",alternate
+8851,3,Lipoma-like liposarcoma,alternate
+8851,3,Sclerosing liposarcoma,alternate
+8851,3,Inflammatory liposarcoma,alternate
+8852,0,Fibromyxolipoma,preferred
+8852,0,Myxolipoma,alternate
+8852,3,Myxoid liposarcoma (C49._),preferred
+8852,3,Myxoliposarcoma,alternate
+8853,3,Round cell liposarcoma (C49._),preferred
+8854,0,Pleomorphic lipoma,preferred
+8854,3,Pleomorphic liposarcoma (C49._),preferred
+8855,3,Mixed liposarcoma (C49._),preferred
+8856,0,Intramuscular lipoma,preferred
+8856,0,Infiltrating lipoma,alternate
+8856,0,Infiltrating angiolipoma,alternate
+8857,0,Spindle cell lipoma,preferred
+8857,3,Fibroblastic liposarcoma (C49._),preferred
+8858,3,Dedifferentiated liposarcoma (C49._),preferred
+8860,0,Angiomyolipoma,preferred
+8860,3,Angiomyoliposarcoma (C49._),preferred
+8861,0,"Angiolipoma, NOS",preferred
+8862,0,Chondroid lipoma,preferred
+8870,0,Myelolipoma,preferred
+8880,0,Hibernoma,preferred
+8880,0,Fetal fat cell lipoma,alternate
+8880,0,Brown fat tumor,alternate
+8881,0,Lipoblastomatosis,preferred
+8881,0,Fetal lipomatosis,alternate
+8881,0,Lipoblastoma,alternate
+8881,0,"Fetal lipoma, NOS",alternate
+8890,0,"Leiomyoma, NOS (C54._, C55.9)",preferred
+8890,0,Fibroid uterus,alternate
+8890,0,Fibromyoma,alternate
+8890,0,Leiomyofibroma,alternate
+8890,0,Plexiform leiomyoma,alternate
+8890,0,Lipoleiomyoma,alternate
+8890,1,"Leiomyomastosis, NOS (C54._, C55.9)",preferred
+8890,1,Intravascular leiomyomatosis,alternate
+8890,3,"Leiomyosarcoma, NOS (C54._, C55.9)",preferred
+8891,0,Epithelioid leiomyoma (C49._),preferred
+8891,0,Leiomyoblastoma,alternate
+8891,3,Epithelioid leiomyosarcoma (C49._),preferred
+8892,0,Cellular leiomyoma (C49._),preferred
+8893,0,Bizarre leiomyoma (C49._),preferred
+8893,0,Symplastic leiomyoma,alternate
+8893,0,Atypical leiomyoma,alternate
+8893,0,Pleomorphic leiomyoma,alternate
+8893,3,"Bizarre leiomyoma, malignant (C49._)",preferred
+8894,0,Angiomyoma (C49._),preferred
+8894,0,Vascular leiomyoma,alternate
+8894,0,Angioleiomyoma,alternate
+8894,3,Angiomyosarcoma (C49._),preferred
+8895,0,Myoma (C49._),preferred
+8895,3,Myosarcoma (C49._),preferred
+8896,3,Myxoid leiomyosarcoma (C49._),preferred
+8897,1,Smooth muscle tumor of uncertain malignant potential (C49._),preferred
+8897,1,"Smooth muscle tumor, NOS",alternate
+8897,3,Malignant tumor of smooth muscle (C49._),preferred
+8898,1,Metastasizing leiomyoma (C49._),preferred
+8900,0,"Rhabdomyoma, NOS (C49._)",preferred
+8900,3,"Rhabdomyosarcoma, NOS (C49._)",preferred
+8900,3,Rhabdosarcoma,alternate
+8901,3,"Pleomorphic rhabdomyosarcoma, adult type (C49._)",preferred
+8901,3,"Pleomorphic rhabdomyosarcoma, NOS",alternate
+8902,3,Mixed type rhabdomyosarcoma (C49._),preferred
+8902,3,Mixed embryonal rhabdomyosarcoma and alveolar rhabdomyosarcoma,alternate
+8903,0,Fetal rhabdomyoma (C49._),preferred
+8904,0,Adult rhabdomyoma (C49._),preferred
+8904,0,Glycogenic rhabdomyoma,alternate
+8905,0,"Genital rhabdomyoma (C51._ [F], C62.9 [M])",preferred
+8910,3,"Embryonal rhabdomyosarcoma, NOS (C49._)",preferred
+8910,3,"Embryonal rhabdomyosarcoma, pleomorphic",alternate
+8910,3,Sarcoma botryoides,alternate
+8910,3,Botryoid sarcoma,alternate
+8912,3,Spindle cell rhabdomyosarcoma (C49._),preferred
+8912,3,Sclerosing rhabdomyosarcoma,alternate
+8920,3,Alveolar rhabdomyosarcoma (C49._),preferred
+8921,3,Rhabdomyosarcoma with ganglionic differentiation (C49._),preferred
+8921,3,Ectomesenchymoma,alternate
+8930,0,Endometrial stromal nodule (C54.1),preferred
+8930,3,"Endometrial stromal sarcoma, NOS (C54.1)",preferred
+8930,3,"Endometrial sarcoma, NOS",alternate
+8930,3,"Endometrial stromal sarcoma, high grade",alternate
+8931,3,"Endometrial stroma sarcoma, low grade (C54.1)",preferred
+8931,3,Endolymphatic stromal myosis,alternate
+8931,3,Endometrial stromatosis,alternate
+8931,3,Stromal endometriosis,alternate
+8931,3,"Stromal myosis, NOS",alternate
+8932,0,Adenomyoma,preferred
+8932,0,Atypical polypoid adenomyoma,alternate
+8933,3,Adenosarcoma,preferred
+8933,3,"Mullerian adenosarcoma (C54._, C55.9)",alternate
+8934,3,Carcinofibroma,preferred
+8935,0,"Stromal tumor, benign (C54.1)",preferred
+8935,1,"Stromal tumor, NOS (C54.1)",preferred
+8935,3,"Stromal sarcoma, NOS (C54.1)",preferred
+8936,0,"Gastrointestinal stromal tumor, benign (C26.9)",preferred
+8936,0,"GIST, benign",alternate
+8936,1,"Gastrointestinal stromal tumor, NOS (C26.9)",preferred
+8936,1,"Gastrointestinal stromal tumor, uncertain malignant potential",alternate
+8936,1,Gastrointestinal autonomic nerve tumor,alternate
+8936,1,GANT,alternate
+8936,1,Gastrointestinal pacemaker cell tumor,alternate
+8936,1,"GIST, NOS",alternate
+8936,2,"Gastrointestinal stromal tumor, NOS, in situ (C26.9)",preferred
+8936,3,Gastrointestinal stromal sarcoma (C26.9),preferred
+8936,3,"Gastrointestinal stromal tumor, malignant",alternate
+8936,3,"GIST, malignant",alternate
+8940,0,"Pleomorphic adenoma (C07._, C08._)",preferred
+8940,0,"Mixed tumor, NOS",alternate
+8940,0,"Mixed tumor, salivary gland type, NOS",alternate
+8940,0,Chondroid syringoma,alternate
+8940,3,"Mixed tumor, malignant, NOS (C07._, C08._)",preferred
+8940,3,"Mixed tumor, salivary gland type, malignant",alternate
+8940,3,Malignant chondroid syringoma,alternate
+8941,2,"Carcinoma in situ in pleomorphic adenoma (C07._, C08._)",preferred
+8941,3,"Carcinoma in pleomorphic adenoma (C07._, C08._)",preferred
+8950,3,Mullerian mixed tumor (C54._),preferred
+8951,3,Mesodermal mixed tumor (C22.0),preferred
+8959,0,Benign cystic nephroma (C64._),preferred
+8959,1,Cystic partially differentiated nephroblastoma (C64._),preferred
+8959,3,Malignant cystic nephroma (C64._),preferred
+8959,3,Malignant multilocular cystic nephroma,alternate
+8960,1,Mesoblastic nephroma (C64._),preferred
+8960,3,"Nephroblastoma, NOS (C64._)",preferred
+8960,3,Wilms tumor,alternate
+8960,3,"Nephroma, NOS",alternate
+8963,3,Malignant rhabdoid tumor,preferred
+8963,3,Rhabdoid sarcoma,alternate
+8963,3,"Rhabdoid tumor, NOS",alternate
+8964,3,Clear cell sarcoma of kidney (C64._),preferred
+8965,0,Nephrogenic adenofibroma (C64._),preferred
+8966,0,Renomedullary interstitial cell tumor (C64._),preferred
+8966,0,Renomedullary fibroma,alternate
+8967,0,Ossifying renal tumor (C64._),preferred
+8970,3,Hepatoblastoma (C22.0),preferred
+8970,3,Embryonal hepatoma,alternate
+8970,3,"Hepatoblastoma, epithelioid (C22.0)",alternate
+8970,3,"Hepatoblastoma, mixed epithelial-mesenchymal (C22.0)",alternate
+8971,3,Pancreastoblastoma (C25._),preferred
+8972,3,Pulmonary blastoma (C34._),preferred
+8972,3,Pneumoblastoma,alternate
+8973,3,Pleuropulmonary blastoma (C34._),preferred
+8974,1,Sialoblastoma,preferred
+8975,1,Calcifying nested epithelial stromal tumor (C22.0),preferred
+8980,3,"Carcinosarcoma, NOS",preferred
+8981,3,"Carcinosarcoma, embryonal",preferred
+8982,0,Myoepithelioma,preferred
+8982,0,Myoepithelial tumor,alternate
+8982,0,Myoepithelial adenoma,alternate
+8982,3,Malignant myoepithelioma,preferred
+8982,3,Myoepithelial carcinoma,alternate
+8983,0,Adenomyoepithelioma (C50._),preferred
+8983,3,Adenomyoepithelioma with carcinoma (C50._),preferred
+8990,0,"Mesenchymoma, benign (C49._)",preferred
+8990,1,"Mesenchymoma, NOS (C49._)",preferred
+8990,1,Mixed mesenchymal tumor,alternate
+8990,3,"Mesenchymoma, malignant (C49._)",preferred
+8990,3,Mixed mesenchymal sarcoma,alternate
+8990,3,"Phosphaturic mesenchymal tumor, malignant",alternate
+8991,3,Embryonal sarcoma (C49._),preferred
+9000,0,"Brenner tumor, NOS (C56.9)",preferred
+9000,1,"Brenner tumor, borderline malignancy (C56.9)",preferred
+9000,1,"Brenner tumor, proliferating",alternate
+9000,3,"Brenner tumor, malignant (C56.9)",preferred
+9010,0,"Fibroadenoma, NOS (C50._)",preferred
+9011,0,Intracanalicular fibroadenoma (C50._),preferred
+9012,0,Pericanalicular fibroadenoma (C50._),preferred
+9013,0,"Adenofibroma, NOS (C56.9)",preferred
+9013,0,"Cystadenofibroma, NOS",alternate
+9013,0,Papillary adenofibroma,alternate
+9013,3,"Adenofibroma, malignant (C56.9)",preferred
+9014,0,"Serous adenofibroma, NOS (C56.9)",preferred
+9014,0,"Serous cystadenofibroma, NOS",alternate
+9014,1,Serous adenofibroma of borderline malignancy (C56.9),preferred
+9014,1,Serous cystadenofibroma of borderline malignancy,alternate
+9014,2,"Serous adenocarcinofibroma, in situ (C56.9)",preferred
+9014,3,Serous adenocarcinofibroma (C56.9),preferred
+9014,3,Malignant serous adenofibroma,alternate
+9014,3,Serous cystadenocarcinofibroma,alternate
+9014,3,Malignant serous cystadenofibroma,alternate
+9015,0,"Mucinous adenofibroma, NOS (C56.9)",preferred
+9015,0,"Mucinous cystadenofibroma, NOS",alternate
+9015,1,Mucinous adenofibroma of borderline malignancy (C56.9),preferred
+9015,1,Mucinous cystadenofibroma of borderline malignancy,alternate
+9015,3,Mucinous adenocarcinofibroma (C56.9),preferred
+9015,3,Malignant mucinous adenofibroma,alternate
+9015,3,Mucinous cystadenocarcinofibroma,alternate
+9015,3,Malignant mucinous cystadenofibroma,alternate
+9016,0,Giant fibroadenoma (C50._),preferred
+9020,0,"Phyllodes tumor, benign (C50._)",preferred
+9020,0,"Cystosarcoma phyllodes, benign",alternate
+9020,1,"Phyllodes tumor, borderline (C50._)",preferred
+9020,1,"Cystosarcoma phyllodes, NOS",alternate
+9020,1,"Phyllodes tumor, NOS",alternate
+9020,3,"Phyllodes tumor, malignant (C50._)",preferred
+9020,3,"Cystosarcoma phyllodes, malignant",alternate
+9020,3,"Periductal stromal tumor, low grade (C50._)",alternate
+9030,0,Juvenile fibroadenoma (C50._),preferred
+9040,0,"Synovioma, benign (C49._)",preferred
+9040,3,"Synovial sarcoma, NOS (C49._)",preferred
+9040,3,"Synovioma, NOS",alternate
+9040,3,"Synovioma, malignant",alternate
+9041,3,"Synovial sarcoma, spindle cell (C49._)",preferred
+9041,3,"Synovial sarcoma, monophasic fibrous",alternate
+9042,3,"Synovial sarcoma, epithelioid cell (C49._)",preferred
+9043,3,"Synovial sarcoma, biphasic (C49._)",preferred
+9044,3,"Clear cell sarcoma, NOS (C49._)",preferred
+9044,3,"Clear cell sarcoma, of tendons and aponeuroses",alternate
+9044,3,"Melanoma, malignant, of soft parts",alternate
+9045,3,"Biphenotypic sinonasal sarcoma (C30.0, C31.0-C31.3, C31.8, C31.9)",preferred
+9050,0,"Mesothelioma, benign",preferred
+9050,3,"Mesothelioma, malignant",preferred
+9050,3,"Mesothelioma, NOS",alternate
+9051,0,"Fibrous mesothelioma, benign",preferred
+9051,3,"Fibrous mesothelioma, malignant",preferred
+9051,3,Spindled mesothelioma,alternate
+9051,3,Sarcomatoid mesothelioma,alternate
+9051,3,Desmoplastic mesothelioma,alternate
+9051,3,"Fibrous mesothelioma, NOS",alternate
+9052,0,"Epithelioid mesothelioma, benign",preferred
+9052,0,"Well differentiated papillary mesothelioma, benign",alternate
+9052,0,Mesothelial papilloma,alternate
+9052,3,"Epithelioid mesothelioma, malignant",preferred
+9052,3,"Epithelioid mesothelioma, NOS",alternate
+9053,3,"Mesothelioma, biphasic, malignant",preferred
+9053,3,"Mesothelioma, biphasic, NOS",alternate
+9054,0,"Adenomatoid tumor, NOS",preferred
+9054,3,"Adenomatoid tumor, malignant",preferred
+9055,0,"Multicystic mesothelioma, benign (C48._)",preferred
+9055,0,"Cystic mesothelioma, benign",alternate
+9055,1,"Cystic mesothelioma, NOS (C48._)",preferred
+9055,3,"Multicystic mesothelioma, malignant (C48._)",preferred
+9060,2,"Dysgerminoma, in situ (C56.9 [F], C62._[M])",preferred
+9060,3,"Dysgerminoma (C56.9 [F], C62._[M])",preferred
+9061,2,"Seminoma, in situ (C62._)",preferred
+9061,3,"Seminoma, NOS (C62._)",preferred
+9062,3,"Seminoma, anaplastic (C62._)",preferred
+9062,3,Seminoma with high mitotic index,alternate
+9063,2,"Spermatocytic seminoma, in situ (C62._)",preferred
+9063,3,Spermatocytic seminoma (C62._),preferred
+9063,3,Spermatocytoma,alternate
+9064,2,Intratubular malignant germ cells (C62._),preferred
+9064,2,Intratubular germ cell neoplasia,alternate
+9064,3,Germinoma (C62._),preferred
+9064,3,"Germ cell tumor, NOS",alternate
+9065,3,"Germ cell tumor, nonseminomatous (C62._)",preferred
+9070,2,"Embryonal carcinoma, NOS, in situ",preferred
+9070,3,"Embryonal carcinoma, NOS",preferred
+9070,3,Embryonal adenocarcinoma,alternate
+9071,3,"Yolk sac tumor (C56.9 [F], C62._[M])",preferred
+9071,3,"Embryonal carcinoma, infantile",alternate
+9071,3,Hepatoid yolk sac tumor,alternate
+9071,3,Endodermal sinus tumor,alternate
+9071,3,Polyvesicular vitelline tumor,alternate
+9071,3,Orchioblastoma,alternate
+9072,3,Polyembryoma,preferred
+9072,3,"Embryonal carcinoma, polyembryonal type",alternate
+9073,1,"Gonadoblastoma (C56.9 [F], C62._[M])",preferred
+9073,1,Gonocytoma,alternate
+9073,3,"Gonadoblastoma, malignant (C56.9 [F], C62._[M])",preferred
+9080,0,"Teratoma, benign",preferred
+9080,0,Adult cystic teratoma,alternate
+9080,0,"Adult teratoma, NOS",alternate
+9080,0,"Cystic teratoma, NOS",alternate
+9080,0,"Teratoma, differentiated",alternate
+9080,0,Mature teratoma,alternate
+9080,1,"Teratoma, NOS",preferred
+9080,1,Solid teratoma,alternate
+9080,2,"Teratoma, in situ",preferred
+9080,3,"Teratoma, malignant, NOS",preferred
+9080,3,Embryonal teratoma,alternate
+9080,3,"Teratoblastoma, malignant",alternate
+9080,3,"Immature teratoma, malignant",alternate
+9080,3,"Immature teratoma, NOS",alternate
+9081,2,"Teratocarcinoma, in situ (C22.0)",preferred
+9081,3,Teratocarcinoma (C22.0),preferred
+9081,3,Mixed embryonal carcinoma and teratoma,alternate
+9082,3,"Malignant teratoma, undifferentiated",preferred
+9082,3,"Malignant teratoma, anaplastic",alternate
+9083,3,"Malignant teratoma, intermediate",preferred
+9084,0,"Dermoid cyst, NOS",preferred
+9084,0,"Dermoid, NOS",alternate
+9084,2,"Dermoid cyst, in situ, NOS",preferred
+9084,3,Teratoma with malignant transformation,preferred
+9084,3,Dermoid cyst with malignant transformation,alternate
+9084,3,Dermoid cyst with secondary tumor,alternate
+9085,2,"Mixed germ cell tumor, in situ",preferred
+9085,3,Mixed germ cell tumor,preferred
+9085,3,Mixed teratoma and seminoma,alternate
+9086,3,Germ cell tumors with associated hematological malignancy (C37.9),preferred
+9090,0,"Struma ovarii, NOS (C56.9)",preferred
+9090,3,"Struma ovarii, malignant (C56.9)",preferred
+9091,1,Strumal carcinoid (C56.9),preferred
+9091,1,Struma ovarii and carcinoid,alternate
+9091,3,"Strumal carcinoid, malignant (C56.9)",preferred
+9100,0,"Hydatidiform mole, NOS (C58.9)",preferred
+9100,0,Hydatid mole,alternate
+9100,0,Complete hydatidiform mole,alternate
+9100,1,Invasive hydatidiform mole (C58.9),preferred
+9100,1,Chorioadenoma destruens,alternate
+9100,1,Chorioadenoma,alternate
+9100,1,"Invasive mole, NOS",alternate
+9100,1,Malignant hydatidiform mole,alternate
+9100,2,"Choriocarcinoma in situ, NOS (C58.9)",preferred
+9100,3,"Choriocarcinoma, NOS (C58.9)",preferred
+9100,3,Chorionepithelioma,alternate
+9100,3,Chorioepithelioma,alternate
+9101,2,"Choriocarcinoma combined with other germ cell elements, in situ",preferred
+9101,3,Choriocarcinoma combined with other germ cell elements,preferred
+9101,3,Choriocarcinoma combined with teratoma,alternate
+9101,3,Choriocarcinoma combined with embryonal carcinoma,alternate
+9102,3,"Malignant teratoma, trophoblastic (C62._)",preferred
+9103,0,Partial hydatidiform mole (C58.9),preferred
+9103,3,"Partial hydatidiform mole, malignant (C58.9)",preferred
+9104,1,Placental site trophoblastic tumor (C58.9),preferred
+9104,3,Malignant placental site trophoblastic tumor (C58.9),preferred
+9105,3,"Trophoblastic tumor, epithelioid",preferred
+9110,0,"Mesonephroma, benign",preferred
+9110,0,Wolffian duct adenoma,alternate
+9110,0,Mesonephric adenoma,alternate
+9110,1,"Mesonephric tumor, NOS",preferred
+9110,1,Wolffian duct tumor,alternate
+9110,3,"Mesonephroma, malignant",preferred
+9110,3,Mesonephric adenocarcinoma,alternate
+9110,3,"Mesonephroma, NOS",alternate
+9110,3,Wolffian duct carcinoma,alternate
+9110,3,Adenocarcinoma of rete ovarii (C56.9),alternate
+9120,0,"Hemangioma, NOS",preferred
+9120,0,"Angioma, NOS",alternate
+9120,0,Chorioangioma,alternate
+9120,3,Hemangiosarcoma (C49._),preferred
+9120,3,Angiosarcoma,alternate
+9121,0,Cavernous hemangioma,preferred
+9121,1,"Cavernous hemangioma, borderline",preferred
+9122,0,Venous hemangioma,preferred
+9123,0,Racemose hemangioma,preferred
+9123,0,Arteriovenous hemangioma,alternate
+9124,3,Kupffer cell sarcoma (C22.0),preferred
+9125,0,Epithelioid hemangioma,preferred
+9125,0,Histiocytoid hemangioma,alternate
+9125,3,"Epithelioid hemangioma, malignant (C49._)",preferred
+9130,0,"Hemangioendothelioma, benign",preferred
+9130,1,"Hemangioendothelioma, NOS",preferred
+9130,1,Angioendothelioma,alternate
+9130,1,Kaposiform hemangioendothelioma,alternate
+9130,3,"Hemangioendothelioma, malignant (C49._)",preferred
+9130,3,Hemangioendothelial sarcoma,alternate
+9131,0,Capillary hemangioma,preferred
+9131,0,Juvenile hemangioma,alternate
+9131,0,Hemangioma simplex,alternate
+9131,0,Infantile hemangioma,alternate
+9131,0,Plexiform hemangioma,alternate
+9132,0,Intramuscular hemangioma,preferred
+9133,1,"Epithelioid hemangioendothelioma, NOS",preferred
+9133,3,Epithelioid hemangioendothelioma,preferred
+9133,3,Intravascular bronchial alveolar tumor,alternate
+9135,1,Endovascular papillary angioendothelioma,preferred
+9135,1,Dabska tumor,alternate
+9136,1,Spindle cell hemangioendothelioma,preferred
+9136,1,Spindle cell angioendothelioma,alternate
+9137,3,Intimal sarcoma,preferred
+9137,3,Pulmonary artery intimal sarcoma,alternate
+9140,3,Kaposi Sarcoma,preferred
+9140,3,Multiple hemorrhagic sarcoma,alternate
+9141,0,Angiokeratoma,preferred
+9142,0,Verrucous keratotic hemangioma,preferred
+9150,0,"Hemangiopericytoma, benign",preferred
+9150,1,"Hemangiopericytoma, NOS (C49._)",preferred
+9150,1,Hemangiopericytic meningioma,alternate
+9150,3,"Hemangiopericytoma, malignant (C49._)",preferred
+9160,0,"Angiofibroma, NOS",preferred
+9160,0,Juvenile angiofibroma,alternate
+9160,0,Fibrous papule of nose,alternate
+9160,0,Involuting nevus,alternate
+9160,0,Giant cell angiofibroma,alternate
+9160,0,Cellular angiofibroma,alternate
+9160,3,Angiofibrosarcoma (C49._),preferred
+9161,0,Acquired tufted hemangioma,preferred
+9161,1,Hemangioblastoma (C49._),preferred
+9161,1,Angioblastoma,alternate
+9161,3,"Hemangioblastoma, malignant (C49._)",preferred
+9170,0,"Lymphangioma, NOS",preferred
+9170,0,"Lymphangioendothelioma, NOS",alternate
+9170,3,Lymphangiosarcoma (C49._),preferred
+9170,3,Lymphangioendothelial sarcoma,alternate
+9170,3,"Lymphangioendothelioma, malignant",alternate
+9171,0,Capillary lymphangioma,preferred
+9172,0,Cavernous lymphangioma,preferred
+9173,0,Cystic lymphangioma,preferred
+9173,0,Cystic hygroma,alternate
+9173,0,"Hygroma, NOS",alternate
+9174,0,Lymphangiomyoma,preferred
+9174,1,Lymphangiomyomatosis (C49._),preferred
+9174,1,Lymphangioleiomyomatosis,alternate
+9175,0,Hemolymphangioma,preferred
+9180,0,"Osteoma, NOS (C40._, C41._)",preferred
+9180,3,"Osteosarcoma, NOS (C40._, C41._)",preferred
+9180,3,"Osteogenic sarcoma, NOS",alternate
+9180,3,Osteochondrosarcoma,alternate
+9180,3,Osteoblastic sarcoma,alternate
+9181,3,"Chondroblastic osteosarcoma (C40._, C41._)",preferred
+9182,3,"Fibroblastic osteosarcoma (C40._, C41._)",preferred
+9182,3,Osteofibrosarcoma,alternate
+9183,3,"Telangiectatic osteosarcoma (C40._, C41._)",preferred
+9184,3,"Osteosarcoma in Paget disease of bone (C40._, C41._)",preferred
+9185,3,"Small cell osteosarcoma (C40._, C41._)",preferred
+9185,3,Round cell osteosarcoma,alternate
+9186,3,"Central osteosarcoma (C40._, C41._)",preferred
+9186,3,Conventional central osteosarcoma,alternate
+9186,3,Medullary osteosarcoma,alternate
+9187,3,"Intraosseous well differentiated osteosarcoma (C40._, C41._)",preferred
+9187,3,"Low-grade central osteosarcoma (C40._, C41._)",alternate
+9187,3,"Low-grade intramedullary osteosarcoma (C40._, C41._)",alternate
+9187,3,Intraosseous low grade osteosarcoma,alternate
+9191,0,"Osteoid osteoma (C40._, C41._)",preferred
+9192,3,"Parosteal osteosarcoma (C40._, C41._)",preferred
+9192,3,Juxtacortical osteosarcoma,alternate
+9193,3,"Periosteal osteosarcoma (C40._, C41._)",preferred
+9194,3,"High grade surface osteosarcoma (C40._, C41._)",preferred
+9195,3,"Intracortical osteosarcoma (C40._, C41._)",preferred
+9200,0,"Osteoblastoma, NOS (C40._, C41._)",preferred
+9200,0,Giant osteoid osteoma,alternate
+9200,1,"Aggressive osteoblastoma (C40._, C41._)",preferred
+9200,3,"Osteosarcoma, malignant (C40._, C41._)",preferred
+9210,0,"Osteochondroma (C40._, C41._)",preferred
+9210,0,Cartilaginous exostosis,alternate
+9210,0,Osteocartilaginous exostosis,alternate
+9210,0,Ecchondroma,alternate
+9210,1,"Osteochondromatosis, NOS (C40._, C41._)",preferred
+9210,1,Ecchondrosis,alternate
+9220,0,"Chondroma, NOS (C40._, C41.)",preferred
+9220,0,Enchondroma,alternate
+9220,1,"Chondromatosis, NOS (C40._, C41._)",preferred
+9220,3,"Chondrosarcoma, NOS (C40._, C41._)",preferred
+9220,3,Fibrochondrosarcoma,alternate
+9220,3,Chondrosarcoma grade 2/3,alternate
+9221,0,"Juxtacortical chondroma (C40._, C41._)",preferred
+9221,0,Periosteal chondroma,alternate
+9221,3,"Juxtacortical chondrosarcoma (C40._, C41._)",preferred
+9221,3,Periosteal chondrosarcoma,alternate
+9230,0,"Chondroblastoma, NOS (C40._, C41._)",preferred
+9230,0,Chondromatous giant cell tumor,alternate
+9230,0,Codman tumor,alternate
+9230,3,"Chondroblastoma, malignant (C40._, C41._)",preferred
+9231,3,"Myxoid chondrosarcoma (C40._, C41._)",preferred
+9240,3,Mesenchymal chondrosarcoma (C49._),preferred
+9241,0,"Chondromyxoid fibroma (C40._, C41._)",preferred
+9242,3,"Clear cell chondrosarcoma (C40._, C41._)",preferred
+9243,3,"Dedifferentiated chondrosarcoma (C40._, C41._)",preferred
+9250,1,"Giant cell tumor of bone, NOS (C40._, C41._)",preferred
+9250,1,"Osteoclastoma, NOS",alternate
+9250,3,"Giant cell tumor of bone, malignant (C40._, C41._)",preferred
+9250,3,"Osteoclastoma, malignant",alternate
+9250,3,Giant cell sarcoma of bone,alternate
+9251,1,"Giant cell tumor of soft parts, NOS (C49._)",preferred
+9251,3,Malignant giant cell tumor of soft parts (C49._),preferred
+9252,0,Tenosynovial giant cell tumor (C49._),preferred
+9252,0,Fibrous histiocytoma of tendon sheath,alternate
+9252,0,Giant cell tumor of tendon sheath,alternate
+9252,3,Malignant tenosynovial giant cell tumor (C49._),preferred
+9252,3,"Giant cell tumor of tendon sheath, malignant",alternate
+9260,3,"Ewing sarcoma (C40._, C41._)",preferred
+9260,3,Ewing tumor,alternate
+9261,3,"Adamantinoma of long bones (C40._, C41._)",preferred
+9261,3,Tibial adamantinoma,alternate
+9262,0,"Ossifying fibroma (C40._, C41._)",preferred
+9262,0,Fibro-osteoma,alternate
+9262,0,Osteofibroma,alternate
+9270,0,"Odontogenic tumor, benign (C41._)",preferred
+9270,1,"Odontogenic tumor, NOS (C41._)",preferred
+9270,3,"Odontogenic tumor, malignant (C41._)",preferred
+9270,3,Odontogenic carcinoma,alternate
+9270,3,Odontogenic sarcoma,alternate
+9270,3,Primary intraosseous carcinoma,alternate
+9270,3,Ameloblastic carcinoma,alternate
+9271,0,Ameloblastic fibrodentinoma (C41._),preferred
+9271,0,Dentinoma,alternate
+9272,0,"Cementoma, NOS (C41._)",preferred
+9272,0,Periapical cemental dysplasia,alternate
+9272,0,Periapical cemento-osseous dysplasia,alternate
+9273,0,"Cementoblastoma, benign (C41._)",preferred
+9274,0,Cementifying fibroma (C41._),preferred
+9274,0,Cemento-ossifying fibroma,alternate
+9275,0,Gigantiform cementoma (C41._),preferred
+9275,0,Florid osseous dysplasia,alternate
+9280,0,"Odontoma, NOS (C41._)",preferred
+9281,0,Compound odontoma (C41._),preferred
+9282,0,Complex odontoma (C41._),preferred
+9282,3,"Complex odontoma, malignant (C41._)",preferred
+9290,0,Ameloblastic fibro-odontoma (C41._),preferred
+9290,0,Fibroameloblastic odontoma,alternate
+9290,3,Ameloblastic odontosarcoma (C41._),preferred
+9290,3,Ameloblastic fibrodentinosarcoma,alternate
+9290,3,Ameloblastic fibro-odontosarcoma,alternate
+9300,0,Adenomatoid odontogenic tumor (C41._),preferred
+9300,0,Adenoameloblastoma,alternate
+9301,0,Calcifying odontogenic cyst (C41._),preferred
+9302,0,Odontogenic ghost cell tumor (C41._),preferred
+9302,3,"Ghost cell odontogenic carcinoma (C41.0, C41.1)",preferred
+9310,0,"Ameloblastoma, NOS (C41._)",preferred
+9310,0,"Adamantinoma, NOS",alternate
+9310,3,"Ameloblastoma, malignant (C41._)",preferred
+9310,3,"Adamantinoma, malignant",alternate
+9311,0,Odontoameloblastoma (C41._),preferred
+9312,0,Squamous odontogenic tumor (C41._),preferred
+9312,3,"Squamous odontogenic tumor, malignant (C41._)",preferred
+9320,0,Odontogenic myxoma (C41._),preferred
+9320,0,Odontogenic myxofibroma,alternate
+9321,0,Central odontogenic fibroma (C41._),preferred
+9321,0,"Odontogenic fibroma, NOS",alternate
+9321,3,Central odontogenic fibrosarcoma (C41._),preferred
+9322,0,Peripheral odontogenic fibroma (C41._),preferred
+9330,0,Ameloblastic fibroma (C41._),preferred
+9330,3,Ameloblastic fibrosarcoma (C41._),preferred
+9330,3,Ameloblastic sarcoma,alternate
+9330,3,Odontogenic fibrosarcoma,alternate
+9340,0,Calcifying epithelial odontogenic tumor (C41._),preferred
+9340,0,Pindborg tumor,alternate
+9341,1,Clear cell odontogenic tumor (C41._),preferred
+9341,3,"Clear cell odontogenic carcinoma (C41.0, C41.1)",preferred
+9342,3,Odontogenic carcinosarcoma (C41._),preferred
+9350,0,"Craniopharyngioma, benign (C75.2)",preferred
+9350,1,Craniopharyngioma (C75.2),preferred
+9350,1,Rathke pouch tumor,alternate
+9350,3,"Craniopharyngioma, malignant (C75.2)",preferred
+9351,0,"Craniopharyngioma, adamantinomatous, benign (C75.2)",preferred
+9351,1,Adamantinomatous craniopharyngioma (C75.2),preferred
+9351,3,"Malignant craniopharyngioma, adamantinomatous (C75.2)",preferred
+9352,0,"Papillary craniopharyngioma, benign (C75.2)",preferred
+9352,1,Papillary craniopharyngioma (C75.2),preferred
+9360,0,"Pinealoma, benign (C75.3)",preferred
+9360,1,"Pinealoma, NOS (C75.3)",preferred
+9360,3,"Pinealoma, malignant (C75.3)",preferred
+9361,1,Pineocytoma (C75.3),preferred
+9361,3,"Pineocytoma, malignant (C75.3)",preferred
+9362,3,Pineoblastoma (C75.3),preferred
+9362,3,Mixed pineal tumor,alternate
+9362,3,Mixed pineocytoma-pineoblastoma,alternate
+9362,3,Pineal parenchymal tumor of intermediate differentiation,alternate
+9362,3,Transitional pineal tumor,alternate
+9363,0,"Melanotic neuroectodermal tumor (C40._, C41._)",preferred
+9363,0,Retinal anlage tumor,alternate
+9363,0,Melanoameloblastoma,alternate
+9363,0,Melanotic progonoma,alternate
+9363,3,"Melanotic neuroectodermal tumor, malignant (C40._, C41._)",preferred
+9364,3,Peripheral neuroectodermal tumor,preferred
+9364,3,"Neuroectodermal tumor, NOS",alternate
+9364,3,"Peripheral primitive neuroectodermal tumor, NOS",alternate
+9364,3,PPNET,alternate
+9365,3,Askin tumor,preferred
+9370,3,"Chordoma, NOS",preferred
+9371,3,Chondroid chordoma,preferred
+9372,3,Dedifferentiated chordoma,preferred
+9373,0,Parachordoma,preferred
+9380,0,"Glioma, benign (C71._)",preferred
+9380,1,"Glioma, borderline (C71._)",preferred
+9380,3,"Glioma, malignant (C71._)",preferred
+9380,3,"Glioma, NOS",alternate
+9381,0,"Gliomatosis cerebri, benign (C71._)",preferred
+9381,3,Gliomatosis cerebri (C71._),preferred
+9382,0,"Mixed glioma, benign (C71._)",preferred
+9382,3,Mixed glioma (C71._),preferred
+9382,3,Oligoastrocytoma,alternate
+9382,3,Anaplastic oligoastrocytoma (C71._),alternate
+9382,3,Anaplastic oligoastrocytoma,alternate
+9382,3,"Oligoastrocytoma, NOS (C71._)",alternate
+9383,1,Subependymoma (C71._),preferred
+9383,1,Subependymal glioma,alternate
+9383,1,"Subependymal astrocytoma, NOS",alternate
+9383,1,Mixed subependymoma-ependymoma,alternate
+9383,3,"Subependymoma, malignant (C71._)",preferred
+9384,1,Supependymal giant cell astrocytoma (C71._),preferred
+9384,3,"Supependymal giant cell astrocytoma, malignant (C71._)",preferred
+9385,3,"Diffuse midline glioma, H3 K27M-mutant (C71._)",preferred
+9390,0,"Choroid plexus papilloma, NOS (C71.5)",preferred
+9390,1,Atypical choroid plexus papilloma (C71.5),preferred
+9390,3,"Choroid plexus papilloma, malignant (C71.5)",preferred
+9390,3,"Choroid plexus papilloma, anaplastic",alternate
+9390,3,"Choroid plexus papilloma, malignant",alternate
+9391,3,"Ependymoma, NOS (C71._)",preferred
+9391,3,Clear cell ependymoma,alternate
+9391,3,Epithelial ependymoma,alternate
+9391,3,Tanycytic ependymoma,alternate
+9391,3,Cellular ependymoma,alternate
+9392,3,"Ependymoma, anaplastic (C71._)",preferred
+9392,3,Ependymoblastoma,alternate
+9393,0,"Papillary ependymoma, benign (C71._)",preferred
+9393,3,"Papillary ependymoma, NOS (C71._)",preferred
+9394,1,Myxopapillary ependymoma (C71._),preferred
+9394,3,"Myxopapillary ependymoma, malignant (C71._)",preferred
+9395,3,Papillary tumor of pineal region (C75.3),preferred
+9396,3,"Ependymoma, RELA fusion-positive (C71._)",preferred
+9400,1,"Astrocytoma, borderline malignancy (C71._)",preferred
+9400,3,"Astrocytoma, NOS (C71._)",preferred
+9400,3,"Astrocytoma, low grade",alternate
+9400,3,"Diffuse astrocytoma, low grade",alternate
+9400,3,Cystic astrocytoma,alternate
+9400,3,"Diffuse astrocytoma, IDH-mutant (C71._)",alternate
+9400,3,"Diffuse astrocytoma, IDH-wildtype (C71._)",alternate
+9400,3,Astrocytic glioma,alternate
+9400,3,Astroglioma,alternate
+9400,3,Diffuse astrocytoma,alternate
+9401,0,"Astrocytoma, anaplastic, benign (C71._)",preferred
+9401,3,"Astrocytoma, anaplastic (C71._)",preferred
+9401,3,"Anaplastic astrocytoma, IDH-mutant (C71._)",alternate
+9401,3,"Anaplastic astrocytoma, IDH-wildtype (C71._)",alternate
+9410,3,Protoplasmic astrocytoma (C71._),preferred
+9411,3,Gemistocytic astrocytoma (C71._),preferred
+9411,3,Gemistocytoma,alternate
+9412,1,Desmoplastic infantile astrocytoma (C71._),preferred
+9412,1,Desmoplastic infantile ganglioglioma,alternate
+9413,0,Dysembryoplastic neuroepithelial tumor,preferred
+9413,1,"Dysembryoplastic neuroepithelial tumor, borderline",preferred
+9413,3,"Dysembryoplastic neuroepithelial tumor, malignant",preferred
+9420,3,Fibrillary astrocytoma (C71._),preferred
+9420,3,Fibrous astrocytoma,alternate
+9421,1,"Pilocytic astrocytoma, uncertain (C71._)",preferred
+9421,1,Piloid astrocytoma,alternate
+9421,1,Juvenile astrocytoma,alternate
+9421,1,"Spongioblastoma, NOS",alternate
+9421,3,"Pilocytic astrocytoma, malignant (C71._)",preferred
+9423,3,Polar spongioblastoma (C71._),preferred
+9423,3,Spongioblastoma polare,alternate
+9423,3,Primitive polar spongioblastoma,alternate
+9424,3,Pleomorphic xanthoastrocytoma (C71._),preferred
+9424,3,Anaplastic pleomorphic xanthroastrocytoma (C71._),alternate
+9425,3,Pilomyxoid astrocytoma (C71._),preferred
+9430,3,Astroblastoma (C71._),preferred
+9431,1,Angiocentric glioma (C71._),preferred
+9432,1,Pituicytoma (C75.1),preferred
+9440,0,"Glioblastoma, benign (C71._)",preferred
+9440,1,"Glioblastoma, borderline (C71._)",preferred
+9440,3,"Glioblastoma, NOS (C71._)",preferred
+9440,3,Glioblastoma multiforme,alternate
+9440,3,Epithelioid glioblastoma (C71._),alternate
+9440,3,Spongioblastoma multiforme,alternate
+9440,3,"Glioblastoma, IDH wildtype (C71._)",alternate
+9441,3,Giant cell glioblastoma (C71._),preferred
+9441,3,Monstrocellular sarcoma,alternate
+9442,1,Gliofibroma (C71._),preferred
+9442,3,Gliosarcoma (C71._),preferred
+9442,3,Glioblastoma with sarcomatous component,alternate
+9444,1,Chordoid glioma (C71._),preferred
+9444,1,Chordoid glioma of third ventricle,alternate
+9445,3,"Glioblastoma, IDH-mutant (C71._)",preferred
+9450,0,"Oligodendroglioma, benign (C71._)",preferred
+9450,3,"Oligodendroglioma, NOS (C71._)",preferred
+9450,3,"Oligodendroglioma, IDH-mutant and 1p/19q-codeleted (C71._)",alternate
+9451,3,"Oligodendroglioma, anaplastic (C71._)",preferred
+9451,3,"Anaplastic oligodendroglioma, IDH-mutant and 1p/19q codeleted (C71._)",alternate
+9460,3,Oligodendroblastoma (C71._),preferred
+9470,3,"Medulloblastoma, NOS (C71.6)",preferred
+9470,3,Melanotic medulloblastoma,alternate
+9470,3,"Medulloblastoma, classic (C71._)",alternate
+9471,3,Desmoplastic nodular medulloblastoma (C71.6),preferred
+9471,3,"Medulloblastoma, SHH-activated and TP53-wildtype (C71._)",alternate
+9471,3,Desmoplastic medulloblastoma,alternate
+9471,3,Circumscribed arachnoidal cerebellar sarcoma,alternate
+9471,3,Medulloblastoma with extensive nodularity,alternate
+9472,3,Medullomyoblastoma (C71.6),preferred
+9473,3,Primitive neuroectodermal tumor (C71._),preferred
+9473,3,"PNET, NOS",alternate
+9473,3,"Central primitive neuroectodermal tumor, NOS",alternate
+9473,3,CPNET,alternate
+9473,3,Supratentorial PNET,alternate
+9474,3,Large cell medulloblastoma (C71.6),preferred
+9474,3,Anaplastic medulloblastoma,alternate
+9475,3,"Medulloblastoma, WNT-activated (C71._)",preferred
+9476,3,"Medulloblastoma, SHH-activated and TP53 mutant (C71._)",preferred
+9477,3,"Medulloblastoma, non-WNT/non-SHH (C71._)",preferred
+9477,3,"Medulloblastoma, group 3 (C71._)",alternate
+9477,3,"Medulloblastoma, group 4 (C71._)",alternate
+9478,3,"Embryonal tumor with multilayered rosettes, NOS (C71._)",preferred
+9478,3,Embryonal tumor with multilayered rosettes C19MC-altered (C71._),alternate
+9480,3,"Cerebellar sarcoma, NOS (C71.6)",preferred
+9490,0,Ganglioneuroma,preferred
+9490,3,Ganglioneuroblastoma,preferred
+9491,0,Ganglioneuromatosis,preferred
+9492,0,Gangliocytoma,preferred
+9493,0,Dysplastic gangliocytoma of cerebellum (C71.6),preferred
+9500,0,"Neuroblastoma, benign (C71._)",preferred
+9500,2,"Neuroblastoma, in situ",preferred
+9500,3,"Neuroblastoma, NOS (C71._)",preferred
+9500,3,Sympathicoblastoma,alternate
+9500,3,Central neuroblastoma,alternate
+9501,0,"Medulloepithelioma, benign (C69.4)",preferred
+9501,0,"Diktyoma, benign",alternate
+9501,3,"Medulloepithelioma, NOS (C69.4)",preferred
+9501,3,"Diktyoma, malignant",alternate
+9502,0,"Teratoid medulloepithelioma, benign (C69.4)",preferred
+9502,3,Teratoid medulloepithelioma,preferred
+9503,3,"Neuroepithelioma, NOS",preferred
+9504,3,Spongioneuroblastoma,preferred
+9505,0,"Ganglioglioma, benign",preferred
+9505,1,"Ganglioglioma, NOS",preferred
+9505,1,Glioneuroma,alternate
+9505,1,Neuroastrocytoma,alternate
+9505,3,"Ganglioglioma, anaplastic",preferred
+9506,0,"Central neurocytoma, benign (C71.6)",preferred
+9506,1,Central neurocytoma,preferred
+9506,1,Neurolipocytoma,alternate
+9506,1,Medullocytoma,alternate
+9506,1,Extraventricular neurocytoma,alternate
+9506,1,Neurocytoma,alternate
+9506,1,Cerebellar liponeurocytoma,alternate
+9506,1,Lipomatous medulloblastoma,alternate
+9506,3,"Neurocytoma, malignant",preferred
+9507,0,Pacinian tumor,preferred
+9508,3,Atypical teratoid/rhabdoid tumor (C71._),preferred
+9508,3,CNS Embryonal tumor with rhabdoid features (C71._),alternate
+9508,3,Embryonal tumor with rhabdoid features (C71._),alternate
+9509,1,Papillary glioneuronal tumor (C71._),preferred
+9509,1,Diffuse leptomeningeal glioneuronal tumor (C71._),alternate
+9509,1,Rosette-forming glioneuronal tumor (C71._),alternate
+9510,0,Retinocytoma (C69.2),preferred
+9510,3,"Retinoblastoma, NOS (C69.2)",preferred
+9511,3,"Retinoblastoma, differentiated (C69.2)",preferred
+9512,3,"Retinoblastoma, undifferentiated (C69.2)",preferred
+9513,3,"Retinoblastoma, diffuse (C69.2)",preferred
+9514,1,"Retinoblastoma, spontaneously regressed (C69.2)",preferred
+9520,3,Olfactory neurogenic tumor (C30.0),preferred
+9521,3,Olfactory neurocytoma (C30.0),preferred
+9521,3,Esthesioneurocytoma,alternate
+9522,3,Olfactory neuroblastoma (C30.0),preferred
+9522,3,Esthesioneuroblastoma,alternate
+9523,3,Olfactory neuroepithelioma (C30.0),preferred
+9523,3,Esthesioneuroepithelioma,alternate
+9530,0,"Meningioma, NOS (C70._)",preferred
+9530,0,Microcystic meningioma,alternate
+9530,0,Secretory meningioma,alternate
+9530,0,Lymphoplasmacyte-rich meningioma,alternate
+9530,0,Metaplastic meningioma,alternate
+9530,1,"Meningiomatosis, NOS (C70._)",preferred
+9530,1,Diffuse meningiomatosis,alternate
+9530,1,Multiple meningiomas,alternate
+9530,3,"Meningioma, malignant (C70._)",preferred
+9530,3,"Meningioma, anaplastic",alternate
+9530,3,Leptomeningeal sarcoma,alternate
+9530,3,Meningeal sarcoma,alternate
+9530,3,Meningothelial sarcoma,alternate
+9531,0,Meningiothelial meningioma (C70._),preferred
+9531,0,Syncytial meningioma,alternate
+9531,0,Endotheliomatous meningioma,alternate
+9531,1,"Meningiothelial meningioma, borderline (C70._)",preferred
+9531,3,"Meningiothelial meningioma, malignant (C70._)",preferred
+9532,0,Fibrous meningioma (C70._),preferred
+9532,0,Fibroblastic meningioma,alternate
+9532,3,"Fibrous meningioma, malignant (C70._)",preferred
+9533,0,Psammomatous meningioma (C70._),preferred
+9533,3,"Psammomatous meningioma, malignant (C70._)",preferred
+9534,0,Angiomatous meningioma (C70._),preferred
+9534,3,"Angiomatous meningioma, malignant (C70._)",preferred
+9535,0,Hemangioblastic meningioma [OBS] (C70._),preferred
+9535,0,Angioblastic meningioma,alternate
+9535,3,"Hemangioblastic meningioma, malignant (C70._)",preferred
+9537,0,Transitional meningioma (C70._),preferred
+9537,0,Mixed meningioma,alternate
+9537,3,"Transitional meningioma, malignant (C70._)",preferred
+9538,0,"Clear cell meningioma, benign (C70._)",preferred
+9538,1,Clear cell meningioma (C70._),preferred
+9538,1,Chordoid meningioma,alternate
+9538,3,Papillary meningioma (C70._),preferred
+9538,3,Rhabdoid meningioma,alternate
+9539,0,"Atypical meningioma, benign (C70._)",preferred
+9539,1,"Atypical meningioma, uncertain (C70._)",preferred
+9539,3,Meningeal sarcomatosis (C70._),preferred
+9540,0,"Neurofibroma, NOS",preferred
+9540,1,"Neurofibromatosis, NOS",preferred
+9540,1,Multiple neurofibromatosis,alternate
+9540,1,Von Recklinghausen disease,alternate
+9540,1,Recklinghausen disease,alternate
+9540,3,Malignant peripheral nerve sheath tumor,preferred
+9540,3,Melanotic MPNST,alternate
+9540,3,Melanotic psammomatous MPNST,alternate
+9540,3,"MPNST, NOS",alternate
+9540,3,Neurofibrosarcoma,alternate
+9540,3,Neurogenic sarcoma,alternate
+9540,3,Neurosarcoma,alternate
+9540,3,MPNST with glandular differentiation,alternate
+9540,3,Epithelioid MPNST,alternate
+9540,3,MPNST with mesenchymal differentiation,alternate
+9541,0,Melanotic neurofibroma,preferred
+9542,3,"Epithelioid malignant peripheral nerve sheath tumor  (C47.0-C47.6, C47.8, C47.9)",preferred
+9550,0,"Plexiform neurofibroma, NOS",preferred
+9550,0,Plexiform neuroma,alternate
+9550,1,"Plexiform neurofibroma, borderline malignant",preferred
+9560,0,"Neurilemoma, NOS",preferred
+9560,0,"Schwannoma, NOS",alternate
+9560,0,Neurinoma,alternate
+9560,0,Acoustic neuroma,alternate
+9560,0,Pigmented schwannoma,alternate
+9560,0,Melanotic schwannoma,alternate
+9560,0,Plexiform schwannoma,alternate
+9560,0,Cellular schwannoma,alternate
+9560,0,Degenerated schwannoma,alternate
+9560,0,Ancient schwannoma,alternate
+9560,0,Psammomatous schwannoma,alternate
+9560,1,"Melanotic schwannoma (C72.4, C72.5)",preferred
+9560,1,Neurinomastosis,alternate
+9560,3,"Neurilemoma, malignant [OBS]",preferred
+9560,3,"Malignant schwannoma, NOS",alternate
+9560,3,Neurilemosarcoma,alternate
+9561,3,Malignant peripheral nerve sheath tumor with rhabdomyoblastic differentiation,preferred
+9561,3,"Triton tumor, malignant",alternate
+9561,3,Malignant schwannoma with rhabdomyoblastic differentiation,alternate
+9561,3,MPNST with rhabdomyoblastic differentiation,alternate
+9562,0,Neurothekeoma,preferred
+9562,0,Nerve sheath myxoma,alternate
+9562,3,"Neurothekeoma, malignant",preferred
+9570,0,"Neuroma, NOS",preferred
+9571,0,"Perineurioma, benign, NOS",preferred
+9571,0,Intraneural perineurioma,alternate
+9571,0,Soft tissue perineurioma,alternate
+9571,1,"Perineurioma, borderline malignant",preferred
+9571,3,"Perineurioma, malignant",preferred
+9571,3,Perineural MPNST,alternate
+9580,0,"Granular cell tumor, NOS (C49._)",preferred
+9580,0,"Granular cell myoblastoma, NOS",alternate
+9580,3,"Granular cell tumor, malignant (C49._)",preferred
+9580,3,"Granular cell myoblastoma, malignant",alternate
+9581,3,Alveolar soft part sarcoma (C49._),preferred
+9582,0,Granular cell tumor of the sellar region (C49._),preferred
+9590,3,"Malignant lymphoma, NOS",preferred
+9590,3,"Lymphoma, NOS",alternate
+9590,3,Microglioma,alternate
+9591,3,"Non-Hodgkin lymphoma, NOS",preferred
+9591,3,Hairy cell leukemia variant (HCL-v),alternate
+9591,3,"Non-Hodgkin lymphoma, NOS",alternate
+9591,3,"B cell lymphoma, NOS",alternate
+9591,3,"Malignant lymphoma, non-cleaved cell, NOS",alternate
+9591,3,"Malignant lymphoma, diffuse, NOS",alternate
+9591,3,"Malignant lymphoma, lymphocytic, intermediate differentiation, nodular",alternate
+9591,3,"Malignant lymphoma, small cell, noncleaved, diffuse",alternate
+9591,3,"Malignant lymphoma, undifferentiated cell, non-Burkitt",alternate
+9591,3,"Malignant lymphoma, undifferentiated cell type, NOS",alternate
+9591,3,"Lymphosarcoma, NOS",alternate
+9591,3,"Lymphosarcoma, diffuse",alternate
+9591,3,"Reticulum cell sarcoma, NOS",alternate
+9591,3,"Reticulum cell sarcoma, diffuse",alternate
+9591,3,"Reticulosarcoma, NOS",alternate
+9591,3,"Reticulosarcoma, diffuse",alternate
+9591,3,"Malignant lymphoma, small cleaved cell, diffuse",alternate
+9591,3,"Malignant lymphoma, lymphocytic, poorly differentiated, diffuse",alternate
+9591,3,"Malignant lymphoma, small cleaved cell, NOS",alternate
+9591,3,"Malignant lymphoma, cleaved cell, NOS",alternate
+9596,3,"B-cell lymphoma, between diffuse large B and HL (composite HL and NHL) (C77._)",preferred
+9597,3,Primary cutaneous follicle centre lymphoma (ICD-O-3 update),preferred
+9650,3,Classical Hodgkin lymphoma (ICD-O-3 update) (C77._),preferred
+9650,3,"Hodgkin disease, NOS",alternate
+9650,3,"Malignant lymphoma, Hodgkin",alternate
+9651,3,Lymphocyte-rich classical Hodgkin lymphoma (ICD-O-3 update) (C77._),preferred
+9651,3,"Hodgkin disease, lymphocytic-histiocytic predominance",alternate
+9651,3,"Hodgkin disease, lymphocyte predominance, diffuse",alternate
+9651,3,"Classical Hodgkin lymphoma, lymphocyte- rich",alternate
+9651,3,"Hodgkin disease, lymphocyte predominance, NOS",alternate
+9652,3,Mixed cellularity classical Hodgkin lymphoma (ICD-O-3 update) (C77._),preferred
+9652,3,"Classical Hodgkin lymphoma, mixed cellularity, NOS",alternate
+9653,3,Lymphocyte-depleted classical Hodgkin lymphoma (ICD-O-3 update) (C77._),preferred
+9653,3,"Classical Hodgkin lymphoma, lymphocyte depletion, NOS",alternate
+9654,3,"Hodgkin lymphoma, lymphocytic depletion, diffuse fibrosis [OBS], see 9653/3 (ICD-O-3 update) (C77._)",preferred
+9654,3,"Classical Hodgkin lymphoma, lymphocyte depletion, diffuse fibrosis",alternate
+9655,3,"Hodgkin lymphoma, lymphocyte depletion, reticular (C77._)",preferred
+9655,3,"Classical Hodgkin lymphoma, lymphocyte depletion, reticular",alternate
+9659,3,Nodular lymphocyte predominant Hodgkin lymphoma (ICD-O-3 update) (C77._),preferred
+9659,3,"Hodgkin lymphoma, lymphocyte predominance, nodular",alternate
+9659,3,"Hodgkin paragranuloma, NOS",alternate
+9659,3,"Hodgkin paragranuloma, nodular",alternate
+9661,3,Hodgkin granuloma [OBS] (C77._),preferred
+9662,3,Hodgkin sarcoma [OBS] (C77._),preferred
+9663,3,Nodular sclerosis classical Hodgkin lymphoma (C77._),preferred
+9663,3,"Classical Hodgkin lymphoma, nodular sclerosis, NOS",alternate
+9663,3,"Hodgkin disease, nodular sclerosis, NOS",alternate
+9664,3,"Hodgkin lymphoma, nodular sclerosis, cellular phase [OBS], see 9663/3 (ICD-O-3 update) (C77._)",preferred
+9664,3,"Classical Hodgkin lymphoma, nodular sclerosis, cellular phase",alternate
+9665,3,"Hodgkin lymphoma, nodular sclerosis, grade 1 [OBS], see 9663/3 (ICD-O-3 update) (C77._)",preferred
+9665,3,"Classical Hodgkin lymphoma, nodular sclerosis, grade 1",alternate
+9665,3,"Hodgkin disease, nodular sclerosis, lymphocyte predominance",alternate
+9665,3,"Hodgkin disease, nodular sclerosis, mixed cellularity",alternate
+9667,3,"Hodgkin lymphoma, nodular sclerosis, grade 2 [OBS], see 9663/3 (ICD-O-3 update) (C77._)",preferred
+9667,3,"Hodgkin disease, nodular sclerosis, lymphocyte depletion",alternate
+9667,3,"Hodgkin disease, nodular sclerosis, syncytial variant",alternate
+9667,3,"Classical Hodgkin lymphoma, nodular sclerosis, grade 2",alternate
+9670,3,"Malignant lymphoma, small B lymphocytes, NOS [OBS], see 9823/3 (ICD-O-3 update)",preferred
+9670,3,"Malignant lymphoma, small lymphocytic, NOS",alternate
+9670,3,"Malignant lymphoma, lymphocytic, well differentiated, diffuse",alternate
+9670,3,"Malignant lymphoma, lymphocytic, NOS",alternate
+9670,3,"Malignant lymphoma, lymphocytic, diffuse, NOS",alternate
+9670,3,"Malignant lymphoma, small cell, NOS",alternate
+9670,3,"Malignant lymphoma, small lymphocytic, diffuse",alternate
+9670,3,"Malignant lymphoma, small cell diffuse",alternate
+9671,3,Lymphoplasmacytic lymphoma,preferred
+9671,3,"Malignant lymphoma, lymphoplasmacytoid",alternate
+9671,3,Immunocytoma,alternate
+9671,3,"Malignant lymphoma, plasmacytoid",alternate
+9671,3,Plasmacytic lymphoma,alternate
+9673,3,Mantle cell lymphoma,preferred
+9673,3,Malignant lymphomatous polyposis,alternate
+9673,3,Mantle zone lymphoma,alternate
+9673,3,"Malignant lymphoma, lymphocytic, intermediate differentiation, diffuse",alternate
+9673,3,"Malignant lymphoma, centrocytic",alternate
+9675,3,"Malignant lymphoma, mixed small and large cell, diffuse [OBS], see 9690/3",preferred
+9675,3,"Malignant lymphoma, mixed lymphocytic-histiocytic, diffuse",alternate
+9675,3,"Malignant lymphoma, mixed cell type, diffuse",alternate
+9675,3,"Malignant lymphoma, centroblastic- centrocytic, NOS",alternate
+9675,3,"Malignant lymphoma, centroblastic- centrocytic, diffuse",alternate
+9678,3,Primary effusion lymphoma,preferred
+9679,3,"Primary mediastinal (thymic) large B-cell lymphoma (C37.9, C38.3)",preferred
+9679,3,Thymic large B-cell lymphoma,alternate
+9680,3,Diffuse large B-cell lymphoma (DLBCL),preferred
+9680,3,"Diffuse large B-cell lymphoma, NOS",alternate
+9680,3,"Malignant lymphoma, large cell, NOS",alternate
+9680,3,"Malignant lymphoma, large B-cell, NOS",alternate
+9680,3,"Malignant lymphoma, histiocytic, NOS",alternate
+9680,3,"Malignant lymphoma, histiocytic, diffuse",alternate
+9680,3,"Malignant lymphoma, large cell, cleaved and noncleaved",alternate
+9680,3,"Malignant lymphoma, large cell, diffuse, NOS",alternate
+9680,3,"Malignant lymphoma, large cleaved cell, NOS",alternate
+9680,3,"Malignant lymphoma, large cell, cleaved, diffuse",alternate
+9680,3,"Malignant lymphoma, large cell, cleaved, NOS",alternate
+9680,3,"Malignant lymphoma, large cell, noncleaved, diffuse",alternate
+9680,3,"Malignant lymphoma, large cell, noncleaved, NOS",alternate
+9680,3,"Malignant lymphoma, noncleaved, diffuse, NOS",alternate
+9680,3,"Malignant lymphoma, noncleaved, NOS",alternate
+9680,3,"Malignant lymphoma, large B-cell, diffuse, centroblastic, NOS",alternate
+9680,3,"Malignant lymphoma, centroblastic, NOS",alternate
+9680,3,"Malignant lymphoma, centroblastic, diffuse",alternate
+9680,3,Intravascular large B-cell lymphoma (2001-2009),alternate
+9680,3,Intravascular B-cell lymphoma,alternate
+9680,3,Angioendotheliomatosis (2001-2009),alternate
+9680,3,Angiotropic lymphoma,alternate
+9680,3,T-cell rich large B-cell lymphoma,alternate
+9680,3,Histiocyte-rich large B-cell lymphoma,alternate
+9680,3,T-cell rich/histiocyte-rich large B-cell lymphoma,alternate
+9680,3,Anaplastic large B-cell lymphoma,alternate
+9684,3,"Malignant lymphoma, large B-cell, diffuse, immunoblastic, NOS [OBS], see 9680/3 (ICD-O-3 update)",preferred
+9684,3,Immunoblastic sarcoma,alternate
+9684,3,"Malignant lymphoma, large cell, immunoblastic",alternate
+9684,3,Plasmablastic lymphoma (2001-2009: See 9735),alternate
+9684,3,"Malignant lymphoma, immunoblastic, NOS",alternate
+9687,3,Burkitt lymphoma,preferred
+9687,3,Burkitt tumor,alternate
+9687,3,"Malignant lymphoma, undifferentiated, Burkitt type",alternate
+9687,3,"Malignant lymphoma, small noncleaved, Burkitt type",alternate
+9687,3,Burkitt-like lymphoma,alternate
+9688,3,T-cell histiocyte-rich large B-cell lymphoma (C77._),preferred
+9689,3,Splenic marginal zone lymphoma (C42.2),preferred
+9689,3,"Splenic marginal zone lymphoma, NOS",alternate
+9689,3,Splenic lymphoma with villous lymphocytes,alternate
+9690,3,Follicular lymphoma,preferred
+9690,3,"Malignant lymphoma, follicular, NOS",alternate
+9690,3,"Malignant lymphoma, follicle center, follicular",alternate
+9690,3,"Malignant lymphoma, follicle center, NOS",alternate
+9690,3,"Malignant lymphoma, centroblastic- centrocytic, follicular",alternate
+9690,3,"Malignant lymphoma, nodular, NOS",alternate
+9690,3,"Malignant lymphoma, lymphocytic, nodular, NOS",alternate
+9691,3,"Follicular lymphoma, grade 2",preferred
+9691,3,"Malignant lymphoma, mixed lymphocytic-histiocytic, nodular",alternate
+9691,3,"Malignant lymphoma, mixed cell type, follicular",alternate
+9691,3,"Malignant lymphoma, mixed cell type, nodular",alternate
+9691,3,"Malignant lymphoma, mixed small cleaved and large cell, follicular",alternate
+9695,3,"Follicular lymphoma, grade 1",preferred
+9695,3,"Malignant lymphoma, small cleaved cell, follicular",alternate
+9695,3,"Follicular lymphoma, small cleaved cell",alternate
+9695,3,"Malignant lymphoma, lymphocytic, poorly differentiated, nodular",alternate
+9698,3,"Follicular lymphoma, grade 3",preferred
+9698,3,"Malignant lymphoma, large cell, follicular, NOS",alternate
+9698,3,"Malignant lymphoma, large cell, noncleaved, follicular",alternate
+9698,3,"Malignant lymphoma, histiocytic, nodular",alternate
+9698,3,"Malignant lymphoma, noncleaved cell, follicular, NOS",alternate
+9698,3,"Malignant lymphoma, large cleaved cell, follicular",alternate
+9698,3,"Malignant lymphoma, centroblastic, follicular",alternate
+9698,3,"Malignant lymphoma, lymphocytic, well differentiated, nodular",alternate
+9699,3,Extranodal marginal zone lymphoma of mucosal-associated lymphoid tissue (MALT lymphoma),preferred
+9699,3,Bronchial-associated lymphoid tissue lymphoma,alternate
+9699,3,BALT lymphoma,alternate
+9699,3,Skin-associated lymphoid tissue lymphoma,alternate
+9699,3,SALT lymphoma,alternate
+9699,3,Monocytoid B-cell lymphoma,alternate
+9699,3,Nodal marginal zone lymphoma,alternate
+9699,3,"Marginal zone lymphoma, NOS",alternate
+9699,3,Mucosal-associated lymphoid tissue lymphoma,alternate
+9699,3,MALT lymphoma,alternate
+9700,3,Mycosis fungoides (C44._),preferred
+9700,3,Pagetoid reticulosis,alternate
+9701,3,Sezary syndrome (C44._),preferred
+9701,3,Sezary disease,alternate
+9702,3,"Peripheral T-cell lymphoma, NOS",preferred
+9702,3,"Peripheral T-cell lymphoma, NOS",alternate
+9702,3,"T-cell lymphoma, NOS",alternate
+9702,3,"Peripheral T-cell lymphoma, pleomorphic small cell",alternate
+9702,3,"Peripheral T-cell lymphoma, pleomorphic medium and large cell",alternate
+9702,3,"Peripheral T-cell lymphoma, large cell",alternate
+9702,3,T-zone lymphoma,alternate
+9702,3,Lymphoepithelioid lymphoma,alternate
+9702,3,Lennert lymphoma,alternate
+9705,3,Angioimmunoblastic T-cell lymphoma,preferred
+9705,3,"Peripheral T-cell lymphoma, AILD (Angioimmunoblastic",alternate
+9705,3,Angioimmunoblastic lymphoma,alternate
+9708,3,Subcutaneous panniculitis-like T-cell lymphoma (C49._),preferred
+9709,3,Primary cutaneous T-cell lymphoma (C44._),preferred
+9709,3,"Cutaneous lymphoma, NOS",alternate
+9712,3,Intravascular large B-cell lymphoma (ICD-O-3 update),preferred
+9712,3,Angioendotheliomatosis (2010+),alternate
+9714,3,"Anaplastic large cell lymphoma, ALK-positive",preferred
+9714,3,Large cell (Ki-1+) lymphoma,alternate
+9714,3,"Anaplastic large cell lymphoma, NOS",alternate
+9714,3,"Anaplastic large cell lymphoma, CD30+",alternate
+9716,3,Hepatosplenic T-cell lymphoma (C42.2),preferred
+9717,3,Enteropathy-associated T-cell lymphoma,preferred
+9717,3,Enteropathy type intestinal T-cell lymphoma,alternate
+9717,3,Enteropathy associated T-cell lymphoma,alternate
+9718,1,Lymphomatoid papulosis,preferred
+9718,3,Primary cutaneous CD30-positive T-cell lymphoproliferative disorders (C44._),preferred
+9718,3,Lymphomatoid papulosis,alternate
+9718,3,Primary cutaneous anaplastic large cell lymphoma,alternate
+9718,3,Primary cutaneous CD30+ large T-cell lymphoma,alternate
+9719,3,"Extranodal NK--/T-cell lymphoma, nasal type (ICD-O-3 update)",preferred
+9719,3,T/NK-cell lymphoma,alternate
+9719,3,Angiocentric T-cell lymphoma,alternate
+9719,3,"Malignant reticulosis, NOS",alternate
+9719,3,Malignant midline reticulosis,alternate
+9719,3,Polymorphic reticulosis,alternate
+9724,3,Systemic EBV-positive T-cell lymphoproliferative disease of childhood (ICD-O-3 update),preferred
+9725,3,Hydroa vacciniforme-like lymphoma (ICD-O-3 update) (C44.._),preferred
+9726,3,"Primary cutaneous gamma delta T-cell lymphoma (ICD-O-3 update) (C44._, C49._)",preferred
+9727,3,Blastic plasmacytoid dendritic cell neoplasm,preferred
+9727,3,"Malignant lymphoma, lymphoblastic, NOS",alternate
+9727,3,"Malignant lymphoma, convoluted cell",alternate
+9727,3,Lymphoblastoma,alternate
+9728,3,"Precursor B-lymphoblastic lymphoma [OBS], see 9811/3 (ICD-O-3 update)",preferred
+9729,3,"Precursor T--cell lymphoblastic lymphoma, NOS [OBS], see 9837/3 (ICD-O-3 update)",preferred
+9731,3,"Solitary plasmacytoma of bone (C40._, C41._)",preferred
+9731,3,Plasmacytoma of bone,alternate
+9731,3,Plasma cell tumor,alternate
+9731,3,Solitary myeloma,alternate
+9731,3,Solitary plasmacytoma,alternate
+9732,3,Plasma cell myeloma (C42.1),preferred
+9732,3,"Myeloma, NOS",alternate
+9732,3,Myelomatosis,alternate
+9732,3,Plasma cell myeloma,alternate
+9732,3,Multiple myeloma,alternate
+9733,3,"Plasma cell leukemia [OBS], see 9732/3 (ICD-O-3 update) (C42.1)",preferred
+9733,3,Plasmacytic leukemia,alternate
+9734,3,Extraosseous plasmacytoma,preferred
+9735,3,Plasmablastic lymphoma (ICD-O-3 update),preferred
+9737,3,ALK-positive large B-cell lymphoma,preferred
+9738,3,Large B-cell lymphoma arising in HHV8-associated multicentric Castleman disease (ICD-O-3 update),preferred
+9740,1,Solitary mastocytoma of skin,preferred
+9740,1,"Mast cell tumor, NOS",alternate
+9740,3,Mast cell sarcoma,preferred
+9740,3,Malignant mast cell tumor,alternate
+9740,3,Malignant mastocytoma,alternate
+9741,1,Indolent systemic mastocytosis,preferred
+9741,3,Systemic mastocytosis (C42.1),preferred
+9741,3,Systemic tissue mast cell disease,alternate
+9742,3,Mast cell leukemia (C42.1),preferred
+9750,3,"Malignant histiocytosis [OBS], see code 9751/3 (ICD-O-3 update)",preferred
+9750,3,Histiocytic medullary reticulosis,alternate
+9751,1,"Langerhans cell histiocytosis, NOS",preferred
+9751,1,Langerhans cell granulomatosis,alternate
+9751,1,"Histiocytosis X, NOS",alternate
+9751,3,Langerhans cell histiocytosis (ICD-O-3 update),preferred
+9752,1,"Langerhans cell histiocytosis, unifocal [OBS], see code 9751/3 (ICD-O-3 update)",preferred
+9752,1,"Langerhans cell granulomatosis, unifocal",alternate
+9752,1,"Langerhans cell histiocytosis, mono-ostotic",alternate
+9752,1,Eosinophilic granuloma,alternate
+9753,1,"Langerhans cell histiocytosis, multifocal [OBS], see code 9751/3 (ICD-O-3 update)",preferred
+9753,1,"Langerhans cell histiocytosis, poly-ostotic",alternate
+9753,1,Hand-Schuller-Christian disease,alternate
+9754,3,"Langerhans cell histiocytosis, disseminated [OBS], see code 9751/3 (ICD-O-3 update)",preferred
+9754,3,"Langerhans cell histiocytosis, generalized",alternate
+9754,3,Letterer-Siwe disease,alternate
+9754,3,Acute progressive histiocytosis X,alternate
+9754,3,Nonlipid reticuloendotheliosis,alternate
+9755,3,Histiocytic sarcoma,preferred
+9755,3,True histiocytic lymphoma,alternate
+9756,3,Langerhans cell sarcoma,preferred
+9757,3,Interdigitating dendritic cell sarcoma,preferred
+9757,3,Interdigitating cell sarcoma,alternate
+9757,3,"Dendritic cell sarcoma, NOS",alternate
+9758,3,Follicular dendritic cell sarcoma,preferred
+9758,3,Follicular dendritic cell tumor,alternate
+9759,3,Fibroblastic reticular cell tumor (ICD-O-3 update),preferred
+9760,3,"Immunoproliferative disease, NOS [OBS] (ICD-O-3 update)",preferred
+9761,3,Waldenstrom macroglobulinemia (C42.0),preferred
+9762,3,Heavy chain disease,preferred
+9762,3,Mu heavy chain disease,alternate
+9762,3,Gamma heavy chain disease,alternate
+9762,3,Franklin disease,alternate
+9762,3,Alpha heavy chain disease,alternate
+9764,3,"Immunoproliferative small intestinal disease [OBS], see code 9762/3 (ICD-O-3 update)",preferred
+9764,3,Mediterranean lymphoma,alternate
+9765,1,Monoclonal gammopathy of undetermined significance,preferred
+9765,1,MGUS,alternate
+9765,1,"Monoclonal gammopathy, NOS",alternate
+9766,1,Angiocentric immunoproliferative lesion,preferred
+9766,1,Lymphoid granulomatosis,alternate
+9766,3,"Angiocentric immunoproliferative lesion, malignant",preferred
+9767,1,Angioimmunoblastic lymphadenopathy,preferred
+9767,1,Immunoblastic lymphadenopathy (IBL) [obs],alternate
+9768,1,T gamma-lymphoproliferative disease,preferred
+9769,1,Immunoglobulin deposition disease,preferred
+9769,1,Systemic light chain disease,alternate
+9769,1,Primary amyloidosis,alternate
+9769,3,"Immunoglobulin deposition disease, malignant",preferred
+9800,3,"Leukemia, NOS (C42.1)",preferred
+9800,3,"Subacute leukemia, NOS",alternate
+9800,3,"Chronic leukemia, NOS",alternate
+9800,3,"Aleukemic leukemia, NOS",alternate
+9801,3,Acute undifferentiated leukemia (C42.1),preferred
+9801,3,Blast cell leukemia,alternate
+9801,3,Undifferentiated leukemia,alternate
+9801,3,Stem cell leukemia,alternate
+9805,3,"Acute biphenotypic leukemia [OBS], See codes 9806/3-9809/3 (ICD-O-3 update) (C42.1)",preferred
+9805,3,Acute mixed lineage leukemia,alternate
+9805,3,Acute bilineal leukemia,alternate
+9806,3,Mixed phenotype acute leukemia with t(9;22)(q34;q11.2);BCR-ABL1 (ICD-O-3 update) (C42.1),preferred
+9807,3,Mixed phenotype acute leukemia with t(v;11q23); MLL rearranged (ICD-O-3 update) (C42.1),preferred
+9808,3,"Mixed phenotype acute leukemia, B/myeloid, NOS (ICD-O-3 update) (C42.1)",preferred
+9809,3,"Mixed phenotype acute leukemia, T/myeloid, NOS (ICD-O-3 update) (C42.1)",preferred
+9811,3,"B lymphoblastic leukemia/lymphoma, NOS (ICD-O-3 update)",preferred
+9812,3,B Lymphoblastic leukemia/lymphoma with t(9;22)(q34;q11.2); BCR-ABL1 (ICD-O-3 update),preferred
+9813,3,B Lymphoblastic leukemia/lymphoma with t(v;11q23); MLL rearranged (ICD-O-3 update),preferred
+9814,3,B Lymphoblastic leukemia/lymphoma with t(12;21)(p13;q22); TEL-AML1 (ETV6-RUNX1) (ICD-O-3 update),preferred
+9815,3,B Lymphoblastic leukemia/lymphoma with hyperdiploidy (ICD-O-3 update),preferred
+9816,3,B Lymphoblastic leukemia/lymphoma with hypodiploidy (Hypodiploid ALL) (ICD-O-3 update),preferred
+9817,3,B Lymphoblastic leukemia/lymphoma with t(5;14)(q31;q32); IL3-IGH (ICD-O-3 update),preferred
+9818,3,B Lymphoblastic leukemia/lymphoma with t(1;19)(q23;p13.3);E2A-PBX1 (TCF3-PBX1) (ICD-O-3 update),preferred
+9820,3,"Lymphoid leukemia, NOS (C42.1)",preferred
+9820,3,"Lymphocytic leukemia, NOS",alternate
+9820,3,"Lymphatic leukemia, NOS",alternate
+9820,3,Subacute lymphoid leukemia,alternate
+9820,3,Subacute lymphocytic leukemia,alternate
+9820,3,Subacute lymphatic leukemia,alternate
+9820,3,Aleukemic lymphoid leukemia,alternate
+9820,3,Aleukemic lymphocytic leukemia,alternate
+9820,3,Aleukemic lymphatic leukemia,alternate
+9820,3,Lymphosarcoma cell leukemia,alternate
+9823,3,Chronic lymphocytic leukemia/small lymphocytic lymphoma (ICD-O-3 update),preferred
+9823,3,"Chronic lymphocytic leukemia, B-cell type",alternate
+9823,3,Chronic lymphocytic leukemia,alternate
+9823,3,Chronic lymphoid leukemia,alternate
+9823,3,Chronic lymphatic leukemia,alternate
+9826,3,Burkitt cell leukemia (C42.1),preferred
+9826,3,B-ALL,alternate
+9826,3,FAB L3,alternate
+9826,3,"Acute lymphoblastic leukemia, mature B-cell type",alternate
+9826,3,"Acute leukemia, Burkitt type",alternate
+9827,3,Adult T-cell leukemia/lymphoma (ICD-O-3 update),preferred
+9827,3,Adult T-cell lymphoma/leukemia,alternate
+9827,3,Adult T-cell lymphoma,alternate
+9827,3,Adult T-cell leukemia,alternate
+9831,1,"T-cell large granular lymphocytic leukemia, low malignant potential (C42.1)",preferred
+9831,1,T-cell large granular lymphocytosis,alternate
+9831,1,NK-cell large granular lymphocytic leukemia,alternate
+9831,1,"Large granular lymphocytosis, NOS",alternate
+9831,3,T-cell large granular lymphocytic leukemia,preferred
+9832,3,"Prolymphocytic leukemia, NOS (C42.1)",preferred
+9833,3,B-cell prolymphocytic leukemia (ICD-O-3 update) (C42.1),preferred
+9834,3,T-cell prolymphocytic leukemia (ICD-O-3 update) (C42.1),preferred
+9835,3,"Precursor cell lymphoblastic leukemia, NOS [OBS} see 9811/3 (ICD-O-3 update) (C42.1)",preferred
+9835,3,"Lymphoblastic leukemia, NOS",alternate
+9835,3,FAB L1,alternate
+9835,3,"Acute lymphoblastic leukemia, L2 type, NOS",alternate
+9835,3,FAB L2,alternate
+9835,3,"Precursor cell lymphoblastic leukemia, not phenotyped",alternate
+9835,3,"Acute lymphoblastic leukemia, NOS",alternate
+9835,3,"Acute lymphoblastic leukemia, precursor-cell type",alternate
+9835,3,"Acute lymphoblastic leukemia-lymphoma, NOS",alternate
+9835,3,Acute lymphocytic leukemia,alternate
+9835,3,Acute lymphoid leukemia,alternate
+9835,3,Acute lymphatic leukemia,alternate
+9836,3,Precursor B-cell lymphoblastic leukemia [OBS} see code 9811/3 (ICD-O-3 update) (C42.1),preferred
+9836,3,Pro-B ALL,alternate
+9836,3,Common precursor B ALL,alternate
+9836,3,Pre-B ALL,alternate
+9836,3,Pre-pre-B ALL,alternate
+9836,3,Common ALL,alternate
+9836,3,c-ALL,alternate
+9837,3,T lymphoblastic leukemia/lymphoma (ICD-O-3 update),preferred
+9837,3,Pro-T ALL,alternate
+9837,3,Pre-T ALL,alternate
+9837,3,Cortical T ALL,alternate
+9837,3,Mature T ALL,alternate
+9840,3,Acute erythroid leukemia (C42.1),preferred
+9840,3,M6B,alternate
+9840,3,Erythroleukemia,alternate
+9840,3,FAB M6,alternate
+9840,3,AML M6,alternate
+9840,3,"Erythremic myelosis, NOS",alternate
+9840,3,Acute erythremia,alternate
+9840,3,Di Guglielmo disease,alternate
+9840,3,Acute erythremic myelosis,alternate
+9840,3,Acute erythroid leukemia,alternate
+9840,3,M6A,alternate
+9860,3,"Myeloid leukemia, NOS (C42.1)",preferred
+9860,3,"Non-lymphocytic leukemia, NOS",alternate
+9860,3,"Granulocytic leukemia, NOS",alternate
+9860,3,"Myelogenous leukemia, NOS",alternate
+9860,3,"Myelomonocytic leukemia, NOS",alternate
+9860,3,"Myelocytic leukemia, NOS",alternate
+9860,3,Subacute myeloid leukemia,alternate
+9860,3,Subacute granulocytic leukemia,alternate
+9860,3,Subacute myelogenous leukemia,alternate
+9860,3,Aleukemic myeloid leukemia,alternate
+9860,3,Aleukemic granulocytic leukemia,alternate
+9860,3,Aleukemic myelogenous leukemia,alternate
+9860,3,Eosinophilic leukemia,alternate
+9860,3,"Monocytic leukemia, NOS",alternate
+9860,3,Subacute monocytic leukemia,alternate
+9860,3,Chronic monocytic leukemia,alternate
+9860,3,Aleukemic monocytic leukemia,alternate
+9861,3,"Acute myeloid leukemia, NOS (C42.1)",preferred
+9861,3,Acute non-lymphocytic leukemia,alternate
+9861,3,Acute granulocytic leukemia,alternate
+9861,3,Acute myelogenous leukemia,alternate
+9861,3,Acute myelocytic leukemia,alternate
+9863,3,"Chronic myeloid leukemia, NOS (C42.1)",preferred
+9863,3,"Chronic granulocytic leukemia, NOS",alternate
+9863,3,"Chronic myelogenous leukemia, NOS",alternate
+9863,3,"Chronic myelocytic leukemia, NOS",alternate
+9865,3,Acute myeloid leukemia with t(6;9)(p23;q34);DEK-NUP214 (ICD-O-3 update) (C42.1),preferred
+9866,3,Acute promyelocytic leukemia (AML with t(15;17)(q22;q12)) PML/RARA (C42.1),preferred
+9866,3,"Acute myeloid leukemia, t(15:17)(q22",alternate
+9866,3,"Acute myeloid leukemia, PML/RAR-alpha",alternate
+9866,3,"Acute promyelocytic leukemia, NOS",alternate
+9866,3,FAB M3,alternate
+9866,3,"Acute promyelocytic leukemia, PML/RAR- alpha",alternate
+9867,3,Acute myelomonocytic leukemia (C42.1),preferred
+9867,3,FAB M4,alternate
+9869,3,Acute myeloid leukemia with inv(3)(q21;q26.2) or t(3;3)(q21;q26.2); RPN1-EVI1 (C42.1),preferred
+9870,3,Acute basophilic leukemia (C42.1),preferred
+9871,3,"Acute myeloid leukemia with inv(16)(p13.1q22) or t(16;16)(p13.1;q22), CBFB-MYH11 (C42.1)",preferred
+9871,3,"Acute myeloid leukemia, inv(16)(p13;q22)",alternate
+9871,3,"Acute myeloid leukemia, t(16;16)(p13;q11)",alternate
+9871,3,"Acute myeloid leukemia, CBF-beta/MYH11",alternate
+9871,3,Acute myelomonocytic leukemia with abnormal eosinophils,alternate
+9871,3,FAB M4Eo,alternate
+9872,3,Acute myeloid leukemia with minimal differentiation (C42.1),preferred
+9872,3,Acute myeloblastic leukemia,alternate
+9872,3,FAB M0,alternate
+9873,3,Acute myeloid leukemia without maturation (C42.1),preferred
+9873,3,FAB M1,alternate
+9874,3,Acute myeloblastic leukemia with maturation (C42.1),preferred
+9874,3,"FAB M2, NOS",alternate
+9875,3,"Chronic myelogenous leukemia, BCR/ABL1 positive (C42.1)",preferred
+9875,3,"Chronic granulocytic leukemia, Philadelphia chromosome (Ph1) positive",alternate
+9875,3,"Chronic granulocytic leukemia, t(9",alternate
+9875,3,"Chronic granulocytic leukemia, BCR/ABL",alternate
+9875,3,"Chronic myelogenous leukemia, Philadelphia chromosome (Ph1) positive",alternate
+9875,3,"Chronic myelogenous leukemia, t(9",alternate
+9876,3,"Atypical chronic myeloid leukemia, BCR-ABL1 negative (C42.1)",preferred
+9876,3,"Atypical chronic myeloid leukemia, Philadelphia chromosome (Ph1) negative",alternate
+9891,3,Acute monoblastic and monocytic leukemia,preferred
+9891,3,Acute monoblastic leukemia,alternate
+9891,3,"Monoblastic leukemia, NOS",alternate
+9891,3,FAB M5,alternate
+9895,3,Acute myeloid leukemia with myelodysplasia-related changes (ICD-O-3 update) (C42.1),preferred
+9895,3,Acute myeloid leukemia with prior myelodysplastic syndrome,alternate
+9895,3,Acute myeloid leukemia without prior myelodysplastic syndrome,alternate
+9896,3,"Acute myeloid leukemia, t(8;21)(q22;q22) RUNX1-RUNX1T1 (ICD-O-3 update) (C42.1)",preferred
+9896,3,"Acute myeloid leukemia, AML1(CBF- alpha)/ETO",alternate
+9896,3,"FAB M2, t(8",alternate
+9896,3,"FAB M2, AML1(CBF-alpha)/ETO",alternate
+9897,3,Acute myeloid leukemia with t(9;11)(p22;q23);MLLT3-MLL (ICD-O-3 update) (C42.1),preferred
+9897,3,"Acute myeloid leukemia, MLL",alternate
+9898,1,Transient abnormal myelopoiesis (ICD-O-3 update (C42.1),preferred
+9898,3,Myeloid leukemia with Down Syndrome (ICD-O-3 update) (C42.1),preferred
+9910,3,Acute megakaryoblastic leukemia (C42.1),preferred
+9910,3,Megakaryocytic leukemia,alternate
+9910,3,FAB M7,alternate
+9911,3,Acute myeloid leukemia (megakaryoblastic) with t(1;22)(p13;q13); RBM15-MKL1 (ICD-O-3 update) (C42.1),preferred
+9920,3,Therapy-related myeloid neoplasm (ICD-O-3 update) (C42.1),preferred
+9920,3,"Therapy-related acute myeloid leukemia, epipodophyllotoxin-related",alternate
+9920,3,"Therapy-related acute myeloid leukemia, alkylating agent related",alternate
+9930,3,Myeloid sarcoma,preferred
+9930,3,Granulocytic sarcoma,alternate
+9930,3,Chloroma,alternate
+9931,3,Acute panmyelosis with myelofibrosis (C42.1),preferred
+9931,3,"Acute panmyelosis, NOS",alternate
+9931,3,Acute myelofibrosis,alternate
+9931,3,"Acute myelosclerosis, NOS",alternate
+9931,3,Malignant myelosclerosis,alternate
+9940,3,Hairy cell leukemia (C42.1),preferred
+9940,3,Leukemic reticuloendotheliosis,alternate
+9945,3,Chronic myelomonocytic leukemia (C42.1),preferred
+9945,3,"Chronic myelomonocytic leukemia, Type I",alternate
+9945,3,"Chronic myelomonocytic leukemia, Type II",alternate
+9945,3,Chronic myelomonocytic leukemia in transformation,alternate
+9946,3,Juvenile myelomonocytic leukemia (C42.1),preferred
+9946,3,Juvenile chronic myelomonocytic leukemia,alternate
+9948,3,Aggressive NK-cell leukemia (C42.1),preferred
+9950,3,Polycythemia vera (C42.1),preferred
+9950,3,Polycythemia rubra vera,alternate
+9950,3,Proliferative polycythemia,alternate
+9950,3,Chronic erythremia,alternate
+9960,3,"Chronic myeloproliferative disease, NOS [OBS], see 9975/3 (ICD-O-3 update) (C42.1)",preferred
+9960,3,Chronic myeloproliferative disorder,alternate
+9961,3,Primary myelofibrosis (C42.1),preferred
+9961,3,Myelofibrosis as a result of myeloproliferative disease,alternate
+9961,3,Chronic idiopathic myelofibrosis,alternate
+9961,3,Agnogenic myeloid metaplasia,alternate
+9961,3,Megakaryocytic myelosclerosis,alternate
+9961,3,Myelofibrosis with myeloid metaplasia,alternate
+9962,3,Essential thrombocythemia (C42.1),preferred
+9962,3,Idiopathic thrombocythemia,alternate
+9962,3,Essential hemorrhagic thrombocythemia,alternate
+9962,3,Idiopathic hemorrhagic thrombocythemia,alternate
+9963,3,Chronic neutrophilic leukemia (C42.1),preferred
+9964,3,"Chronic eosinophilic leukemia, NOS (C42.1)",preferred
+9964,3,Chronic eosinophilic leukemia,alternate
+9965,3,Myeloid and lymphoid neoplasms with PDGFRA rearrangement (ICD-O-3 update) (C42.1),preferred
+9966,3,Myeloid neoplasms with PDGFRB rearrangement (ICD-O-3 update) (C42.1),preferred
+9967,3,Myeloid and lymphoid neoplasms with FGFR1 ICD-O-3 update) (C42.1),preferred
+9970,1,"Lymphoproliferative disorder, NOS",preferred
+9970,1,"Lymphoproliferative disease, NOS",alternate
+9970,3,"Lymphoproliferative disease, malignant, NOS",preferred
+9971,1,Plasmacytic hyperplasia (ICD-O-3 update),preferred
+9971,3,Post transplant lymphoproliferative disorder (ICD-O-3 update),preferred
+9975,1,"Myeloproliferative disease, NOS",preferred
+9975,3,Myelodsyplastic/myeloproliferative neoplasm unclassifiable (ICD-O-3 update) (C42.1),preferred
+9980,3,Myelodysplastic syndrome with single lineage dysplasia,preferred
+9980,3,Refractory anemia without sideroblasts,alternate
+9982,3,Myelodysplastic syndrome with ring sideroblasts and single lineage dysplasia,preferred
+9982,3,Refractory anemia with ringed sideroblasts,alternate
+9982,3,RARS,alternate
+9983,3,Refractory anemia with excess blasts (C42.1),preferred
+9983,3,RAEB II,alternate
+9983,3,RAEB,alternate
+9983,3,RAEB I,alternate
+9984,3,"Refractory anemia with excess blasts in transformation [OBS], see 9983/3 (ICD-O-3 update) (C42.1)",preferred
+9984,3,RAEB-T,alternate
+9985,3,Refractory cytopenia with multilineage dysplasia (C42.1),preferred
+9986,3,Myelodysplastic syndrome associated with isolated del(5q) (C42.1),preferred
+9987,3,"Therapy related myelodysplastic syndrome, NOS [OBS], see 9920/3 (ICD-O-3 update)",preferred
+9987,3,"Therapy-related myelodysplastic syndrome, alkylating agent related",alternate
+9987,3,"Therapy-related myelodysplastic syndrome, epipodophyllotoxin-related",alternate
+9989,3,"Myelodysplastic syndrome, unclassifiable (ICD-O-3 update) (C42.1)",preferred
+9989,3,Preleukemia,alternate
+9989,3,Preleukemic syndrome,alternate
+9991,3,Refractory neutropenia (ICD-O-3 update) (C42.1),preferred
+9992,3,Refractory thrombocytopenia (ICD-O-3 Update) (C42.1),preferred

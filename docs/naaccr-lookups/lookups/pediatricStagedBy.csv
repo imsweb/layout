@@ -1,0 +1,10 @@
+0,Not staged
+1,Managing physician
+2,Pathologist
+3,Pathologist and managing physician
+4,"Cancer Committee Chair, cancer liaison physician, or registry physician advisor"
+5,Cancer registrar
+6,Cancer registrar and physician
+7,Staging assigned at another facility
+8,Case is not eligible for staging
+9,"Unknown, not stated in Patient record"

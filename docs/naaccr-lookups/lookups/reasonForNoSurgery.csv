@@ -1,0 +1,8 @@
+0,Surgery of primary site performed
+1,Surgery not part of planned first-course treatment
+2,Surgery contraindicated due to patient risk factors
+5,Patient died prior to planned/recommended surgery
+6,"Surgery was recommended, but was not performed. No reason noted why surgery was not done"
+7,Surgery was recommended but refused
+8,"Surgery recommended, unknown if performed"
+9,Unknown if surgery was recommended or performed

@@ -1,0 +1,13 @@
+00,None
+10,"Bone marrow trnsplt, NOS"
+11,"Bone marrow trnsplt, autologous"
+12,"Bone marrow trnsplt, allogeneic"
+20,Stem cell harvest and infusion
+30,Endo surg and/or rad
+40,Endo surg and/or rad w/ trnsplt
+82,Contraindicated (2003+)
+85,Death prior to therapy (2003+)
+86,"Recommended, not given (2003+)"
+87,Refused
+88,"Recommended, unknown"
+99,Unknown

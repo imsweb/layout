@@ -1,0 +1,38 @@
+00,Follow-up not performed for this patient
+01,Medicare/Medicaid File
+02,"Center for Medicare and Medicaid Services (CMS, formerly HCFA)"
+03,Department of Motor Vehicle Registration
+04,National Death Index (NDI)
+05,State Death Tape/Death Certificate File
+06,County/Municipality Death Tape/ Death Certificate File
+07,Social Security Administration Death Master File
+08,Hospital Discharge Data
+09,Health Maintenance Organization (HMO) file
+10,Social Security Epidemiological Vital Status Data
+11,Voter Registration File
+12,Research/Study Related Linkage
+29,"Linkages, NOS"
+30,Hospital in-patient/outpatient
+31,Casefinding
+32,Hospital cancer registry
+33,Radiation treatment center
+34,Oncology clinic
+35,Ambulatory surgical center
+39,"Clinic/facility, NOS"
+40,Attending physician
+41,Medical oncologist
+42,Radiation oncologist
+43,Surgeon
+48,Other specialist
+49,"Physician, NOS"
+50,Patient contact
+51,Relative contact
+59,"Patient, NOS"
+60,Central or Regional cancer registry
+61,Internet sources
+62,Hospice
+63,Nursing homes
+64,Obituary
+65,Other research/study related sources
+98,"Other, NOS"
+99,Unknown source

@@ -1,0 +1,70 @@
+00,No radiation treatment
+01,Neck lymph node regions
+02,Thoracic lymph node regions
+03,Neck and thoracic lymph node regions
+04,Breast/ Chestwall lymph node regions
+05,Abdominal lymph nodes
+06,Pelvic lymph nodes
+07,Abdominal and pelvic lymph nodes
+09,"Lymph node region, NOS"
+10,Eye/orbit/optic nerve
+11,Pituitary
+12,Brain
+13,Brain (Limited)
+14,Spinal cord
+20,Nasopharynx
+21,Oral Cavity
+22,Oropharynx
+23,Larynx (glottis) or hypopharynx
+24,Sinuses/Nasal tract
+25,Parotid or other salivary glands
+26,Thyroid
+29,Head and neck (NOS)
+30,Lung or bronchus
+31,Mesothelium
+32,Thymus
+39,Chest/lung (NOS)
+40,Breast - whole
+41,Breast - partial
+42,Chest wall
+50,Esophagus
+51,Stomach
+52,Small bowel
+53,Colon
+54,Rectum
+55,Anus
+56,Liver
+57,Biliary tree or gallbladder
+58,Pancreas or hepatopancreatic ampulla
+59,Abdomen (NOS)
+60,Bladder - whole
+61,Bladder - partial
+62,Kidney
+63,Ureter
+64,Prostate - whole
+65,Prostate - partial
+66,Urethra
+67,Penis
+68,Testicle or scrotum
+70,Ovaries or fallopian tubes
+71,Uterus or Cervix
+72,Vagina
+73,Vulva
+80,Skull
+81,Spine/vertebral bodies
+82,Shoulder
+83,Ribs
+84,Hip
+85,Pelvic bones
+86,"Pelvis (NOS, non-visceral)"
+88,"Extremity bone, NOS"
+90,Skin
+91,Soft tissue
+92,Hemibody
+93,Whole body
+94,"Mantle, mini-mantle (obsolete after 2017)"
+95,Lower extended field (obsolete after 2017)
+96,Inverted Y (obsolete after 2017)
+97,Invalid historical FORDS value
+98,Other
+99,Unknown

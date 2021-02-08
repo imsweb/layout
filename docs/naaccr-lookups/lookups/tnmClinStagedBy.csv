@@ -1,0 +1,14 @@
+00,Not Staged
+10,"Physician, NOS, or physician type not specified in codes 11-15"
+11,Surgeon
+12,Radiation Oncologist
+13,Medical Oncologist
+14,Pathologist
+15,"Multiple Physicians; tumor board, etc."
+20,Cancer registrar
+30,Cancer registrar and physician
+40,"Nurse, physician assistant, or other non-physician medical staff"
+50,Staging assigned at another facility
+60,Staging by Central Registry
+88,Case is not eligible for staging
+99,Staged but unknown who assigned stage

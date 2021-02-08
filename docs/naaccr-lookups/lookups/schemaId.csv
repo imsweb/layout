@@ -1,0 +1,118 @@
+00060,Cervical Lymph Nodes and Unknown Primary
+00071,Lip
+00072,Tongue Anterior
+00073,Gum
+00074,Floor of Mouth
+00075,Palate Hard
+00076,Buccal Mucosa
+00077,Mouth Other
+00080,Major Salivary Glands
+00090,Nasopharynx
+00100,Oropharynx HPV-Mediated (p16+)
+00111,Oropharynx (p16-)
+00112,Hypopharynx
+00118,Pharynx Other
+00119,Middle Ear
+00121,Maxillary Sinus
+00122,Nasal Cavity and Ethmoid Sinus
+00128,Sinus Other
+00130,Larynx Other
+00131,Larynx Supraglottic
+00132,Larynx Glottic
+00133,Larynx Subglottic
+00140,Melanoma Head and Neck
+00150,Cutaneous Carcinoma of Head and Neck
+00161,Esophagus (including GE junction) Squamous
+00169,Esophagus (including GE junction) (excluding Squamous)
+00170,Stomach
+00180,Small Intestine
+00190,Appendix
+00200,Colon and Rectum
+00210,Anus
+00220,Liver
+00230,Bile Ducts Intrahepatic
+00241,Gallbladder
+00242,Cystic Duct
+00250,Bile Ducts Perihilar
+00260,Bile Duct Distal
+00270,Ampulla of Vater
+00278,Biliary Other
+00280,Pancreas
+00288,Digestive Other
+00290,NET Stomach
+00301,NET Duodenum
+00302,NET Ampulla of Vater
+00310,NET Jejunum and Ileum
+00320,NET Appendix
+00330,NET Colon and Rectum
+00340,NET Pancreas
+00350,Thymus
+00358,Trachea
+00360,Lung
+00370,Pleural Mesothelioma
+00378,Respiratory Other
+00381,Bone Appendicular Skeleton
+00382,Bone Spine
+00383,Bone Pelvis
+00400,Soft Tissue Head and Neck
+00410,Soft Tissue Trunk and Extremities
+00421,"Soft Tissues Abdomen and Thoracic (excluding Heart, Mediastinum, Pleura)"
+00422,"Heart, Mediastinum and Pleura"
+00430,GIST
+00440,Retroperitoneum
+00450,Soft Tissue Other
+00458,Kaposi Sarcoma
+00460,Merkel Cell Skin
+00470,Melanoma Skin
+00478,Skin Other
+00480,Breast
+00500,Vulva
+00510,Vagina
+00520,Cervix
+00530,Corpus Carcinoma and Carcinosarcoma
+00541,Corpus Sarcoma
+00542,Corpus Adenosarcoma
+00551,Ovary
+00552,Primary Peritoneal Carcinoma
+00553,Fallopian Tube
+00558,Adnexa Uterine Other
+00559,Genital Female Other
+00560,Placenta
+00570,Penis
+00580,Prostate
+00590,Testis
+00598,Genital Male Other
+00600,Kidney Parenchyma
+00610,Kidney Renal Pelvis
+00620,Bladder
+00631,Urethra
+00633,Urethra-Prostatic
+00638,Urinary Other
+00640,Skin Eyelid
+00650,Conjunctiva
+00660,Melanoma Conjunctiva
+00671,Melanoma Iris
+00672,Melanoma Choroid and Ciliary Body
+00680,Retinoblastoma
+00690,Lacrimal Gland
+00698,Lacrimal Sac
+00700,Orbital Sarcoma
+00710,Lymphoma Ocular Adnexa
+00718,Eye Other
+00721,Brain
+00722,CNS Other
+00723,Intracranial Gland
+00730,Thyroid
+00740,Thyroid Medullary
+00750,Parathyroid
+00760,Adrenal Gland
+00770,NET Adrenal Gland
+00778,Endocrine Other
+00790,Lymphoma
+00795,Lymphoma-CLL/SLL
+00811,Mycosis Fungoides
+00812,Primary Cutaneous Lymphoma (excluding MF and SS)
+00821,Plasma Cell Myeloma
+00822,Plasma Cell Disorders
+00830,HemeRetic
+99999,Ill-Defined Other

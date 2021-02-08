@@ -1,0 +1,6 @@
+00,No radiation treatment
+01,1 phase
+02,2 phases
+03,3 phases
+04,4 or more phases
+99,Unknown number of phases; Unknown if radiation therapy administered

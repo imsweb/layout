@@ -1,0 +1,5 @@
+0,No surgical procedure; not readmitted
+1,Surgery performed; readmitted - unplanned
+2,Surgery performed; readmitted - planned
+3,Surgery performed; planned and unplanned readmissions
+9,Unknown; DCO

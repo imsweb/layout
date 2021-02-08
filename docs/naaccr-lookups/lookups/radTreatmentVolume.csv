@@ -1,0 +1,46 @@
+00,"No radiation therapy, not applicable"
+01,Eye/orbit
+02,Pituitary
+03,Brain (NOS)
+04,Brain (limited)
+05,Head and neck (NOS)
+06,Head and neck (limited)
+07,Glottis
+08,Sinuses
+09,Parotid
+10,Chest/lung (NOS)
+11,Lung (limited)
+12,Esophagus
+13,Stomach
+14,Liver
+15,Pancreas
+16,Kidney
+17,Abdomen (NOS)
+18,Breast
+19,Breast/lymph nodes
+20,Chest wall
+21,Chest wall/lymph nodes
+22,"Mantle, mini-mantle"
+23,Lower extended field
+24,Spine
+25,Skull
+26,Rib
+27,Hip
+28,Pelvic bones
+29,Pelvis (NOS)
+30,Skin
+31,Soft tissue
+32,Hemibody
+33,Whole body
+34,Bladder and pelvis
+35,Prostate and pelvis
+36,Uterus and Cervix
+37,Shoulder
+38,"Extremities bone, NOS"
+39,Inverted Y
+40,Spinal cord
+41,Prostate
+50,Thyroid
+60,"Lymph node region, NOS"
+98,Other
+99,Unknown

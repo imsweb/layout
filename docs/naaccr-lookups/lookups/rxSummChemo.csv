@@ -1,0 +1,10 @@
+00,None
+01,Chemo NOS
+02,Chemo Single
+03,Chemo Multiple
+82,Contraindicated (2003+)
+85,Patient Died (2003+)
+86,Not Administered NOS (2003+)
+87,Refused
+88,Planned
+99,Unknown

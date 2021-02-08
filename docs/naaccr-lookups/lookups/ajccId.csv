@@ -1,0 +1,110 @@
+10,HPV-Mediated (p16+) Oropharyngeal Cancer
+11.1,Oropharynx (p16-)
+11.2,Hypopharynx
+12.1,Maxillary Sinus
+12.2,Nasal Cavity and Ethmoid Sinus
+13.0,Larynx: Other
+13.1,Larynx: Supraglottic
+13.2,Larynx: Glottic
+13.3,Larynx: SubGlottic
+14,Mucosal Melanoma of the Head and Neck
+15,Cutaneous Squamous Cell Caricnoma of the Head and Neck
+16.1,Esophagus and Esophagogastric Junction: Squamous Cell Carcinoma
+16.2,Esophagus and Esophagogastric Junction: Adenocarcinoma
+16.3,Esophagus and Esophagogastric Junction: Other Histologies
+17,Stomach
+18.1,Small Intestine: Adenocarcinoma
+18.2,Small Intestine: Other Histologies
+19,Appendix: Carcinoma
+20,Colon and Rectum
+21,Anus
+22,Liver
+23,Intrahepatic Bile Ducts
+24,Gallbladder
+25,Perihilar Bile Ducts
+26,Distal Bile Duct
+27,Ampulla of Vater
+28,Exocrine Pancreas
+29,Neuroendocrine Tumors of the Stomach
+30,Neuroendocrine Tumors of the Duodenum and Ampulla of Vater
+31,Neuroendocrine Tumors of the Jejunum and Ileum
+32,Neuroendocrine Tumors of the Appendix
+33,Neuroendocrine Tumors of the Colon and Rectum
+34,Neuroendocrine Tumors of the Pancreas
+35,Thymus
+36,Lung
+37,Malignant Pleural Mesothelioma
+38.1,"Bone: Appendicular Skeleton, Trunk, Skull and Facial Bones"
+38.2,Bone: Spine
+38.3,Bone: Pelvis
+40,Soft Tissue Sarcoma of the Head and Neck
+41,Soft Tissue Sarcoma of the Trunk and Extremities
+42,Soft Tissue Sarcoma of the Abdomen and Thoracic Visceral Organs
+43.1,Gastrointestinal Stromal Tumor: Gastric and Omental
+43.2,"Gastrointestinal Stromal Tumor: Small Intestinal, Esophageal, Colorectal, Mesenteric, and Peritoneal"
+44,Soft Tissue Sarcoma of the Retroperitoneum
+45,Soft Tissue Sarcoma of Unusual Histologies and Sites
+46,Merkel Cell Carcinoma
+47,Melanoma of the Skin
+48.1,Breast DCIS
+48.2,Breast Invasive
+50,Vulva
+51,Vagina
+52,Cervix Uteri
+53,Corpus Uteri: Carcinoma and Carcinosarcoma
+54.1,Corpus Uteri: Leiomyosarcoma and Endometrial Stromal Sarcoma
+54.2,Corpus Uteri: Adenosarcoma
+55,"Ovary, Fallopian Tube, and Primary Peritoneal Carcinoma"
+56,Gestational Trophoblastic Neoplasms
+57,Penis
+58,Prostate
+59,Testis
+6,Cervical Lymph Nodes and Unknown Primary Tumors of the Head and Neck
+60,Kidney
+61.1,Renal Pelvis and Ureter: Urothelial Carcinomas
+61.2,Renal Pelvis and Ureter: Squamous Cell Carcinoma and Adenocarcinoma
+62.1,Urinary Bladder: Urothelial Carcinomas
+62.2,Urinary Bladder: Squamous Cell Carcinoma and Adenocarcinoma
+63.1,Urethra: Male Penile Urethra and Female Urethra: Urothelial Carcinomas
+63.2,Urethra: Male Penile Urethra and Female Urethra: Squamous Cell Carcinoma and Adenocarcinoma
+63.3,Urethra: Prostatic Urethra: Urothelial Carcinomas
+63.4,Urethra: Prostatic Urethra: Squamous Cell Carcinoma and Adenocarcinoma
+64,Eyelid Carcinoma
+65,Conjunctival Carcinoma
+66,Conjunctival Melanoma
+67.1,Uvea: Iris Melanomas
+67.2,Uvea: Choroidal and Ciliary Body Melanomas
+68,Retinoblastoma
+69,Lacrimal Gland Carcinoma
+7,Oral Cavity
+70,Orbital Sarcoma
+71,Ocular Adnexal Lymphoma
+72,Brain and Spinal Cord
+73.1,Thyroid: Differentiated
+73.2,Thyroid: Anaplastic
+74,Thyroid: Medullary
+75,Parathyroid
+76,Adrenal Cortical Carcinoma
+77,Adrenal Neuroendocrine Tumors
+79.0,Non-Hodgkin Lymphomas: Unspecified or Other Type
+79.1,Non-Hodgkin Lymphomas: Diffuse Large B Cell Lymphoma
+79.2,Non-Hodgkin Lymphomas: Mantle Cell Lymphoma
+79.3,Non-Hodgkin Lymphomas: Follicular Lymphoma
+79.4,Non-Hodgkin Lymphomas: Marginal Zone Lymphoma
+79.5,Non-Hodgkin Lymphomas: Chronic Lymphocytic Leukemia/Small Lymphocytic Lymphoma
+79.6,Non-Hodgkin Lymphomas: Peripheral T-cell Lymphoma
+79.7,Hodgkin Lymphoma
+8,Major Salivary Glands
+80.1,Pediatric Hodgkin Lymphomas
+80.2,Pediatric Non-Hodgkin Lymphomas
+81.1,Primary Cutaneous Lymphoma: Mycosis Fungoides and Sezary Syndrome
+81.2,Primary Cutaneous Lymphoma: B-Cell/T-cell Lymphoma (non-MF/SS) Lymphoma
+82.1,Plasma Cell Myeloma
+82.2,Plasma Cell Disorders
+83.0,Leukemia: Unspecified or Other Type
+83.1,Leukemia: Acute Myeloid Leukemia
+83.2,Leukemia: Acute lymphoblastic leukemia in children
+83.3,Leukemia: Acute Lymphocytic Leukemia in Adults
+83.4,Leukemia: Chronic Myeloid Leukemia
+9,Nasopharynx
+XX,No AJCC Chapter

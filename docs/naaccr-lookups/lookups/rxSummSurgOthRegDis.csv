@@ -1,0 +1,7 @@
+0,None; diagnosed at autopsy
+1,Non-primary surgical procedure performed
+2,Non-primary surgical procedure to other regional sites
+3,Non-primary surgical procedure to distant lymph node(s)
+4,Non-primary surgical procedure to distant site
+5,"Any combination of codes 2, 3, or 4"
+9,Unknown; death certificate only

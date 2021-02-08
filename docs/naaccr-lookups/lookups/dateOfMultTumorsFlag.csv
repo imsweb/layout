@@ -1,0 +1,4 @@
+11,"No proper value is applicable in this context (e.g., information on multiple tumors not collected/not applicable for this site)."
+12,"A proper value is applicable but not known. This event occurred, but the date is unknown (e.g., patient was diagnosed with multiple tumors and the date is unknown)."
+15,"Information is not available at this time, but it is expected that it will be available later (e.g., single tumor)."
+Blank,"A valid date value is provided in item Date of Mult Tumors [445], or the date was not expected to have been transmitted."

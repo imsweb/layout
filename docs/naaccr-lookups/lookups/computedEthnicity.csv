@@ -1,0 +1,9 @@
+0,No match was run (for 1994 and later tumors)
+1,Non-Hispanic last name and non-Hispanic maiden name
+2,"Non-Hispanic last name, did not check maiden name (or male)"
+3,"Non-Hispanic last name, missing maiden name"
+4,"Hispanic last name, non-Hispanic maiden name"
+5,"Hispanic last name, did not check maiden name (or male)"
+6,"Hispanic last name, missing maiden name"
+7,Hispanic maiden name (females only regardless of last name)
+9,Invalid Data

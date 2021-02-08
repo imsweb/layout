@@ -1,0 +1,7 @@
+0,No radiation treatment
+1,All radiation treatment at this facility
+2,"Regional treatment at this facility, boost elsewhere"
+3,"Boost radiation at this facility, regional elsewhere"
+4,All radiation treatment elsewhere
+8,"Other, NOS"
+9,Unknown

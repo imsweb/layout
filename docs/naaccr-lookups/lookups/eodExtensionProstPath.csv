@@ -1,0 +1,29 @@
+00,Insitu
+20,"1 lobe, NOS"
+21,<= 1/2 of 1 lobe involved (95-97)
+22,> 1/2 of 1 lobe involved; not both (95-97)
+23,Multiple lobes
+30,Localized NOS
+31,Into prostatic apex NOS
+32,Invasion into prostatic capsule
+33,Arising into prostatic apex
+34,Extending into prostatic apex
+40,Margins involved
+41,"Periprostatic tissue, extracapsular ext, NOS"
+42,Unilateral extracapsular ext
+43,Bilateral extracapsular ext
+44,Extraprostatic urethra (95-97)
+45,Extension to seminal vesicle
+48,Extracapsular ext & margins
+49,"Periprostatic extension, NOS (95-97)"
+50,Ext to adjacent structures (non seminal)
+51,Extension to bladder neck(95-97)
+52,Extension to rectum; external sphincter (95-97)
+53,Extension to Levator muscles (95-97)
+60,Ext to pelvic wall/bone
+61,Extension to other skeletal muscle (95-97)
+70,Further ext to bone/soft tissue/other
+85,Metastasis
+90,Unknown if ext or meta
+98,"Prostatectomy in 1st course, disease progress"
+99,No prostatectomy in 1st course

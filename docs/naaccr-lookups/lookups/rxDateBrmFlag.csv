@@ -1,0 +1,5 @@
+10,"No information whatsoever can be inferred from this exceptional value (e.g, unknown if immunotherapy administered)."
+11,"No proper value is applicable in this context (e.g., no immunotherapy administered; autopsy only case)."
+12,"A proper value is applicable but not known. This event occurred, but the date is unknown (e.g., immunotherapy administered but date is unknown)."
+15,"Information is not available at this time, but it is expected that it will be available later (e.g., immune therapy is planned as part of the first course of therapy, but had not been started at the time of the most recent follow-up)."
+Blank,"A valid date value is provided in item RX Date BRM [1240], or the date was not expected to have been transmitted."

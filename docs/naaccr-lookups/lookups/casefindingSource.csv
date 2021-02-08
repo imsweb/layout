@@ -1,0 +1,22 @@
+10,"Reporting Hospital, NOS"
+20,"Pathology Department Review (surgical pathology reports, autopsies, or cytology reports)"
+21,Daily Discharge Review 
+22,Disease Index Review 
+23,Radiation Therapy Department/Center
+24,Laboratory Reports (other than code 20)
+25,Outpatient Chemotherapy
+26,Diagnostic Imaging/Radiology (other than code 23; includes nuclear medicine)
+27,Tumor Board
+28,Hospital Rehabilitation Service or Clinic
+29,"Other Hospital Source (including clinic, NOS or outpatient department, NOS)"
+30,Physician-Initiated Case
+40,Consultation-only or Pathology-only Report (not abstracted by reporting hospital)
+50,Independent (non-hospital) Pathology-Laboratory Report
+60,Nursing Home-Initiated Case
+70,Coroner's Office Records Review
+75,Managed Care Organization (MCO) or Insurance Records
+80,Death Certificate (case identified through death clearance)
+85,Out-of-State Case Sharing
+90,Other Non-Reporting Hospital Source
+95,Quality Control Review (case initially identified via QC)
+99,Unknown

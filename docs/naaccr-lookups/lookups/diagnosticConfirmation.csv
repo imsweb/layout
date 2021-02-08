@@ -1,0 +1,9 @@
+1,Positive histology
+2,Positive cytology
+3,Positive histology AND positive immunophenotyping/genetic studies (9590/3-9992/3)
+4,"Positive microscopic confirmation, method not specified"
+5,Positive laboratory test/marker study
+6,Direct visualization without microscopic confirmation
+7,Radiography and other imaging techniques without microscopic confirmation
+8,"Clinical diagnosis only (other than 5, 6, or 7)"
+9,Unknown whether or not microscopically confirmed

@@ -1,0 +1,10 @@
+00,TX not coded/transmitted
+01,TX: 1-digit surgery codes (obsolete)
+02,TX: 1983-1992 SEER manuals and 1983-1995 COC manuals
+03,TX: 1996 ROADS Manual
+04,TX: 1998 ROADS Supplement
+05,TX: 1998 SEER Manual
+06,TX: FORDS Manual
+07,TX: 2010 SEER Manual
+08,TX: STORE Manual and 2018 SEER Coding Manual
+99,"Other coding, including partial or nonstandard coding"

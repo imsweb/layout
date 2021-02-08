@@ -1,0 +1,266 @@
+017,Crop production
+018,Animal production
+019,Forestry except logging
+027,Logging
+028,"Fishing, hunting, and trapping"
+029,Support activities for agriculture and forestry
+037,Oil and gas extraction
+038,Coal mining
+039,Metal ore mining
+047,Nonmetallic mineral mining and quarrying
+048,Not specified type of mining
+049,Support activities for mining
+057,Electric power generation transmission and distribution
+058,Natural gas distribution
+059,Electric and gas and other combinations
+067,"Water, steam, air-conditioning, and irrigation systems"
+068,Sewage treatment facilities
+069,Not specified utilities
+077,Construction
+107,"Animal food, grain, and oilseed milling"
+108,Sugar and confectionery products
+109,Fruit and vegetable preserving and specialty food manufacturing
+117,Dairy product manufacturing
+118,Animal slaughtering and processing
+119,Retail bakeries
+127,Bakeries except retail
+128,Seafood and other miscellaneous foods n.e.c.
+129,Not specified food industries
+137,Beverage manufacturing
+139,Tobacco manufacturing
+147,"Fiber, yarn, and thread mills"
+148,"Fabric mills, except knitting"
+149,Textile and fabric finishing and coating mills
+157,Carpets and rugs manufacturing
+159,Textile product mills except carpets and rugs
+167,Knitting mills
+168,Cut and sew apparel manufacturing
+169,Apparel accessories and other apparel manufacturing
+177,Footwear manufacturing
+179,"Leather tanning and products, except footwear manufacturing"
+187,"Pulp, paper, and paperboard mills"
+188,Paperboard containers and boxes
+189,Miscellaneous paper and pulp products
+199,Printing and related support activities
+207,Petroleum refining
+209,Miscellaneous petroleum and coal products
+217,"Resin, synthetic rubber and fibers, and filaments manufacturing"
+218,Agricultural chemical manufacturing
+219,Pharmaceutical and medicine manufacturing
+227,"Paint, coating, and adhesives manufacturing"
+228,"Soap, cleaning compound, and cosmetic manufacturing"
+229,Industrial and miscellaneous chemicals
+237,Plastics product manufacturing
+238,Tire manufacturing
+239,"Rubber products, except tires, manufacturing"
+247,"Pottery, ceramics, and related products manufacturing"
+248,Structural clay product manufacturing
+249,Glass and glass product manufacturing
+257,"Cement, concrete, lime, and gypsum product manufacturing"
+259,Miscellaneous nonmetallic mineral product manufacturing
+267,Iron and steel mills and steel product manufacturing
+268,Aluminum production and processing
+269,"Nonferrous metal, except aluminum, production and processing"
+277,Foundries
+278,Metal forgings and stampings
+279,Cutlery and hand tool manufacturing
+287,Structural metals and tank and shipping container manufacturing
+288,Machine shops; turned product; screw nut and bolt manufacturing
+289,"Coating, engraving, heat treating and allied activities"
+297,Ordnance
+298,Miscellaneous fabricated metal products manufacturing
+299,Not specified metal industries
+307,Agricultural implement manufacturing
+308,Construction mining and oil field machinery manufacturing
+309,Commercial and service industry machinery manufacturing
+317,Metalworking machinery manufacturing
+318,"Engines, turbines, and power transmission equipment manufacturing"
+319,"Machinery manufacturing, n.e.c."
+329,Not specified machinery manufacturing
+336,Computer and peripheral equipment manufacturing
+337,"Communications, audio, and video equipment manufacturing"
+338,"Navigational, measuring, electromedical, and control instruments manufacturing"
+339,"Electronic component and product manufacturing, n.e.c."
+347,Household appliance manufacturing
+349,"Electrical machinery, equipment, and supplies manufacturing, n.e.c."
+357,Motor vehicles and motor vehicle equipment manufacturing
+358,Aircraft and parts manufacturing
+359,Aerospace product and parts manufacturing
+367,Railroad rolling stock manufacturing
+368,Ship and boat building
+369,Other transportation equipment manufacturing
+377,Sawmills and wood preservation
+378,"Veneer, plywood, and engineered wood product manufacturing"
+379,Prefabricated wood buildings and mobile homes manufacturing
+387,Miscellaneous wood product manufacturing
+389,Furniture and fixtures
+396,Medical equipment and supplies manufacturing 391
+397,"Toys, amusement, and sporting goods manufacturing"
+398,"Miscellaneous manufacturing, n.e.c."
+399,Not specified manufacturing industries
+407,"Motor vehicles, parts and supplies wholesalers"
+408,Furniture and home furnishing wholesalers
+409,Lumber and other construction materials wholesalers
+417,Professional and commercial equipment and supplies wholesalers
+418,"Metals and minerals, except petroleum, wholesalers"
+419,Electrical goods wholesalers
+426,"Hardware, plumbing and heating equipment, and supplies wholesalers"
+427,"Machinery, equipment, and supplies wholesalers"
+428,Recyclable material wholesalers
+429,Miscellaneous durable goods wholesalers
+437,Paper and paper product wholesalers
+438,"Drugs, sundries, and chemical and allied product wholesalers"
+439,"Apparel, fabrics, and notions wholesalers"
+447,Groceries and related product wholesalers
+448,Farm product raw material wholesalers
+449,Petroleum and petroleum product wholesalers
+456,Alcoholic beverage wholesalers
+457,Farm supplies wholesalers
+458,Miscellaneous nondurable goods wholesalers
+459,Not specified wholesale trade
+467,Automobile dealers
+468,Other motor vehicle dealers
+469,"Auto parts, accessories, and tire stores"
+477,Furniture and home furnishings stores
+478,Household appliance stores
+479,"Radio, TV, and computer stores"
+487,Building material and supplies dealers
+488,Hardware stores
+489,Lawn and garden equipment and supplies stores
+497,Grocery stores
+498,Specialty food stores
+499,"Beer, wine, and liquor stores"
+507,Pharmacies and drug stores
+508,"Health and personal care, except drug, stores"
+509,Gasoline stations
+517,"Clothing and accessories, except shoe, stores"
+518,Shoe stores
+519,"Jewelry, luggage, and leather goods stores"
+527,"Sporting goods, camera, and hobby and toy stores"
+528,"Sewing, needlework and piece goods stores"
+529,Music stores
+537,Book stores and news dealers
+538,Department stores
+539,Miscellaneous general merchandise stores
+547,Retail florists
+548,Office supplies and stationary stores
+549,Used merchandise stores
+557,"Gift, novelty, and souvenir shops"
+558,Miscellaneous retail stores
+559,Electronic shopping and mail-order houses
+567,Vending machine operators
+568,Fuel dealers
+569,Other direct selling establishments
+579,Not specified retail trade
+607,Air transportation
+608,Rail transportation
+609,Water transportation
+617,Truck transportation
+618,Bus service and urban transit
+619,Taxi and limousine service
+627,Pipeline transportation
+628,Scenic and sightseeing transportation
+629,Services incidental to transportation
+637,Postal Service
+638,Courier and messengers
+639,Warehousing and storage
+647,Newspaper publishers
+648,Publishing except newspapers and software
+649,Software publishing
+657,Motion pictures and video industries
+659,Sound recording industries
+667,Radio and television broadcasting and cable
+668,Wired telecommunications carriers
+669,Other telecommunication services
+677,Libraries and archives
+678,Other information services
+679,Data processing services
+687,Banking and related activities
+688,"Savings institutions, including credit unions"
+689,Non-depository credit and related activities
+697,"Securities, commodities, funds, trusts, and other financial investments"
+699,Insurance carriers and related activities
+707,Real estate
+708,Automotive equipment rental and leasing
+717,Video tape and disk rental
+718,Other consumer goods rental
+719,"Commercial, industrial, and other intangible assets rental and leasing"
+727,Legal services
+728,"Accounting, tax preparation, bookkeeping and payroll services"
+729,"Architectural, engineering, and related services"
+737,Specialized design services
+738,Computer systems design and related services
+739,"Management, scientific and technical consulting services"
+746,Scientific research and development services
+747,Advertising and related services
+748,Veterinary services
+749,"Other professional, scientific and technical services"
+757,Management of companies and enterprises
+758,Employment services
+759,Business support services
+767,Travel arrangement and reservation services
+768,Investigation and security services
+769,Services to buildings and dwellings
+777,Landscaping services
+778,Other administrative and other support services
+779,Waste management and remediation services
+786,Elementary and secondary schools
+787,"Colleges and universities, including junior colleges"
+788,"Business, technical, and trade schools and training"
+789,"Other schools, instruction, and educational services"
+797,Offices of physicians
+798,Offices of dentists
+799,Office of chiropractors
+807,Offices of optometrists
+808,Offices of other health practitioners
+809,Outpatient care centers
+817,Home health care services
+818,Other health care services
+819,Hospitals
+827,Nursing care facilities
+829,"Residential care facilities, without nursing"
+837,Individual and family services
+838,"Community food and housing, and emergency services"
+839,Vocational rehabilitation services
+847,Child day care services
+856,"Independent artists, performing arts, spectator sports, and related industries"
+857,"Museums, art galleries, historical sites, and similar institutions"
+858,Bowling centers
+859,"Other amusement, gambling, and recreation industries"
+866,Traveler accommodation
+867,"Recreational vehicle parks and camps, and rooming and boarding houses"
+868,Restaurants and other food services
+869,"Drinking places, alcoholic beverages"
+877,Automotive repair and maintenance
+878,Car washes
+879,Electronic and precision equipment repair and maintenance
+887,Commercial and industrial machinery and equipment repair and maintenance
+888,Personal and household goods repair and maintenance
+889,Footwear and leather goods repair
+897,Barber shops
+898,Beauty salons
+899,Nail salons and other personal care services
+907,Drycleaning and laundry services
+908,"Funeral homes, cemeteries and crematories"
+909,Other personal services
+916,Religious organizations
+917,"Civic, social, advocacy organizations, and grantmaking and giving services"
+918,Labor unions
+919,"Business, professional, political, and similar organizations"
+929,Private households
+937,Executive offices and legislative bodies
+938,Public finance activities
+939,Other general government and support
+947,"Justice, public order, and safety activities"
+948,Administration of human resource programs
+949,Administration of environmental quality and housing programs
+957,Administration of economic programs and space research
+959,National security and international affairs
+967,U. S. Army
+968,U. S. Air Force
+969,U. S. Navy
+977,U. S. Marines
+978,U. S. Coast Guard
+979,"U. S. Armed Forces, branch not specified"
+987,Military Reserves or National Guard
+992,"Unemployed, last worked 1994 or earlier or never worked none"

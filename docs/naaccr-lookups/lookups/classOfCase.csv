@@ -1,0 +1,24 @@
+00,DX at Rpt facility; TX elsewhere
+10,DX and 1st Course TX (NOS - All or Part) at Rpt facility
+11,DX by Staff Phys; Part of 1st Course TX at Rpt facility
+12,DX by Staff Phys; All of 1st Course TX at Rpt facility
+13,DX and Part of 1st Course TX at Rpt facility
+14,DX and All of 1st Course TX at Rpt facility
+20,DX elsewhere; 1st Course TX (NOS - All or Part) at Rpt facility
+21,DX elsewhere; Part of TX at Rpt facility
+22,DX elsewhere; All of TX at Rpt facility
+30,DX and TX elsewhere; Rpt facility in diagnostic workup
+31,DX and TX elsewhere; Rpt facility gave in-transit care
+32,DX and TX elsewhere; Recurr/Persistent at Rpt facility
+33,DX and TX elsewhere; History of CA at Rpt facility
+34,CoC does not require accessioning; DX and TX at Rpt facility
+35,Prior to Reference Date; DX and TX at Rpt facility
+36,CoC does not require accessioning; DX elsewhere; TX at Rpt facility
+37,Prior to Reference Date; DX elsewhere; TX at Rpt facility
+38,DX at Autopsy at Rpt facility
+40,DX and TX by single Staff Phys in office
+41,DX and TX by multiple Staff Phys in offices
+42,DX and TX by unrelated Non-staff Phys or Non-CoC facility; accessioned by Rpt facility
+43,Path or Lab specimen only
+49,Death Certificate only
+99,CoC does not require accessioning; Unknown relationship to Rpt facility

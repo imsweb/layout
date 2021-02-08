@@ -1,0 +1,15 @@
+000,No mass/tumor found
+001,1 mm or described as less than 1 mm
+002-988,Exact size in millimeters (2 mm to 988 mm)
+989,989 mm or larger
+990,Microscopic focus or foci only and no size of focus given
+998,"Site Specific - Alternate descriptions for tumor size; if no size is documented
+Familial/multiple polyposis [Colon, Rectosigmoid, Rectum (C180, C182-C189, C199, C209)]
+Circumferential [Esophagus (C150-C155, C158-C159)]
+Diffuse; widespread: 3/4s or more; linitis plastica [Stomach and Esophagus GE Junction (C160-C166, C168-C169)]
+Diffuse, entire lung or NOS [Lung and main stem bronchus (C340-C343, C348-C349)]
+Diffuse [Breast (C500-C506, C508-C509)]"
+999,"Unknown; size not stated
+Not documented in patient record
+Size of tumor cannot be assessed
+Not applicable"

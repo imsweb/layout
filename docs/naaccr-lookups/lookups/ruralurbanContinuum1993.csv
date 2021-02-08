@@ -1,0 +1,14 @@
+00,Central counties of metropolitan areas of 1 million population or more
+01,Fringe counties of metropolitan areas of 1 million population or more
+02,"Counties in metropolitan areas of 250,000-1,000,000 population"
+03,"Counties in metropolitan areas of less than 250,000 population"
+04,"Urban population of 20,000 or more, adjacent to a metropolitan area"
+05,"Urban population of 20,000 or more, not adjacent to a metropolitan area"
+06,"Urban population of 2,500-19,999, adjacent to a metropolitan area"
+07,"Urban population of 2,500-19,999, not adjacent to a metropolitan area"
+08,"Completely rural (no places with a population of 2,500 or more) adjacent to a metropolitan area"
+09,"Completely rural (no places with a population of 2,500 or more) not adjacent to a metropolitan area"
+96,Invalid state abbreviation or county code
+97,Insufficient population data for county to determine rural urban code
+98,Valid state/county combination but rural urban code not found
+99,Missing or unknown state or county

@@ -1,0 +1,12 @@
+00,Single tumor
+10,Multiple benign
+11,Multiple borderline
+12,Benign and borderline
+20,Multiple in situ
+30,In situ and invasive
+31,Polyp and adenocarcinoma
+32,FAP with carcinoma
+40,Multiple invasive
+80,Unk in situ or invasive
+88,NA
+99,Unknown

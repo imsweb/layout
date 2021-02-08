@@ -1,0 +1,3 @@
+000,Radiation therapy was not administered to the patient.
+001-998,Number of fractions administered to the patient during the first phase of radiation therapy.
+999,"Phase I Radiation therapy was administered, but the number of fractions is unknown; It is unknown whether radiation therapy was administered."
