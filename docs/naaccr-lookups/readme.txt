@@ -19,7 +19,7 @@ to extract. The lookups provided in this folder are meant to be easily
 consumed by a program without having to parse the HTML of the NAACCR
 website.
 
-You are welcome to download the lookups and use them in your programs,
+You are welcome to download the lookups and use them in your programs, 
 but they are provided as-is. You are welcome to report a wrong code or 
 label if you find one, but that does not necessarily mean it will be 
 fixed.

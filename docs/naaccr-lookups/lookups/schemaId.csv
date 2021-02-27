@@ -68,7 +68,7 @@
 00480,Breast
 00500,Vulva
 00510,Vagina
-00520,Cervix
+00520,Cervix [8th: 2018-2020]
 00530,Corpus Carcinoma and Carcinosarcoma
 00541,Corpus Sarcoma
 00542,Corpus Adenosarcoma
@@ -115,4 +115,5 @@
 00821,Plasma Cell Myeloma
 00822,Plasma Cell Disorders
 00830,HemeRetic
+09520,Cervix [9th: 2021+]
 99999,Ill-Defined Other

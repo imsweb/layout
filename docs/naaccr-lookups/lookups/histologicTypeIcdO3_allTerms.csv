@@ -351,6 +351,10 @@
 8157,3,"Enteroglucagonoma, malignant (C25._)",preferred
 8158,1,"Endocrine tumor, functioning, NOS",preferred
 8158,1,ACTH-producing tumor,alternate
+8158,3,"ACTH-producing tumor [REPORTABLE 2021+. FOR PRE-2021, USE CODE 8158/1]",preferred
+8158,3,"Endocrine tumor, functioning, NOS [REPORTABLE 2021+. FOR PRE-2021, USE CODE 8158/1]",alternate
+8158,3,"Tumor, ACTH-producing [REPORTABLE 2021+. FOR PRE-2021, USE CODE 8158/1]",alternate
+8158,3,"Tumor, endocrine functioning, NOS [REPORTABLE 2021+. FOR PRE-2021, USE CODE 8158/1]",alternate
 8160,0,"Bile duct adenoma (C22.1, C24.0)",preferred
 8160,0,Cholangioma,alternate
 8160,2,"Bile duct adenocarcinoma in situ (C22.1, C24.0)",preferred
@@ -572,6 +576,9 @@
 8272,0,"Pituitary adenoma, NOS (C75.1)",preferred
 8272,1,"Pituitary, borderline malignancy (C75.1)",preferred
 8272,3,"Pituitary carcinoma, NOS (C75.1)",preferred
+8273,3,Pituitary blastoma (C75.1) [REPORTABLE 2021+],preferred
+8273,3,"Blastoma, pituitary (C75.1) [REPORTABLE 2021+]",alternate
+8273,3,Embryoma [REPORTABLE 2021+],alternate
 8280,0,Acidophil adenoma (C75.1),preferred
 8280,0,Eosinophil adenoma,alternate
 8280,3,Acidophil carcinoma (C75.1),preferred
@@ -661,6 +668,10 @@
 8333,3,Fetal adenocarcinoma,preferred
 8334,0,Macrofollicular adenoma (C73.9),preferred
 8334,0,Colloid adenoma,alternate
+8335,1,Follicular tumor of uncertain malignant potential (C73.9),preferred
+8335,1,"Carcinoma, follicular, encapsulated (C73.9) [2021+ NOT REPORTABLE; FOR PRE-2021, USE 8335/3]",alternate
+8335,1,"Encapsulated follicular carcinoma (C73.9) [2021+ NOT REPORTABLE; FOR PRE-2021, USE 8335/3]",alternate
+8335,1,"Follicular carcinoma, encapsulated (C73.9) [2021+ NOT REPORTABLE; FOR PRE-2021, USE 8335/3]",alternate
 8335,2,Macrofollicular carcinoma in situ (C73.9),preferred
 8335,3,"Follicular carcinoma, minimally invasive (C73.9)",preferred
 8335,3,"Follicular carcinoma, encapsulated",alternate
@@ -690,6 +701,22 @@
 8345,3,C cell carcinoma,alternate
 8346,3,Mixed medullary-follicular carcinoma (C73.9),preferred
 8347,3,Mixed medullary-papillary carcinoma (C73.9),preferred
+8349,1,"Non-invasive follicular thyroid neoplasm with papillary-like nuclear features (NIFTP) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",preferred
+8349,1,"Carcinoma, encapsulated follicular variant of papillary thyroid carcinoma, non-invasive (non-invasive EFVPTC) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Carcinoma, papillary thyroid, follicular variant, non-invasive encapsulated (non-invasive EFVPTC) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"EFVPTC (Encapsulated follicular variant of papillary thyroid carcinoma), non-invasive (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Encapsulated follicular variant of papillary thyroid carcinoma, non-invasive (non-invasive EFVPTC) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Follicular thyroid neoplasm w/papillary-like nuclear features, non-invasive (NIFTP) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Follicular variant of papillary thyroid carcinoma, encapsulated non-invasive (non-invasive EFVPTC) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Follicular variant of papillary thyroid carcinoma, non-invasive encapsulated (non-invasive EFVPTC) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"FTP, non-invasive (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Neoplasm, follicular thyroid w/papillary-like nuclear features, non-invasive (NIFTP) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"NIFTP (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Non-invasive EFVPTC (encapsulated follicular variant of papillary thyroid carcinoma) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Non-invasive encapsulated follicular variant of papillary thyroid carcinoma (non-invasive EFVPTC) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Non-invasive follicular thyroid neoplasm with papillary-like nuclear features (NIFTP) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Non-invasive FTP (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
+8349,1,"Papillary thyroid carcinoma, follicular variant, encapsulated non-invasive (non-invasive EFVPTC) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
 8350,3,Nonencapsulated sclerosing carcinoma (C73.9),preferred
 8350,3,Nonencapsulated sclerosing adenocarcinoma,alternate
 8350,3,Nonencapsulated sclerosing tumor,alternate
@@ -1208,7 +1235,11 @@
 8680,1,"Paraganglioma, NOS (C75.5)",preferred
 8680,3,"Paraganglioma, malignant (C75.5)",preferred
 8681,1,Sympathetic paraganglioma (C75.5),preferred
+8681,3,Sympathetic paraganglioma [REPORTABLE 2021+],preferred
+8681,3,"Paraganglioma, sympathetic [REPORTABLE 2021+]",alternate
 8682,1,Parasympathetic paraganglioma (C75.5),preferred
+8682,3,Parasympathetic paraganglioma [REPORTABLE 2021+],preferred
+8682,3,"Paraganglioma, parasympathetic [REPORTABLE 2021+]",alternate
 8683,0,Gangliocytic paraganglioma (C17.0),preferred
 8683,3,"Gangliocytic paraganglioma, malignant (C17.0)",preferred
 8690,1,"Glomus jugulare tumor, NOS (C75.5)",preferred
@@ -1283,6 +1314,11 @@
 8740,3,Malignant melanoma in junctional nevus (C44._),preferred
 8741,2,"Precancerous melanosis, NOS (C44._)",preferred
 8741,3,Malignant melanoma in precancerous melanosis (C44._),preferred
+8742,0,Lentiginous melanocytic nevus (C44._) [2021+],preferred
+8742,0,Lentigo simplex (C44._) [2021+],alternate
+8742,0,"Melanocytic nevus, lentiginous (C44._) [2021+]",alternate
+8742,0,"Nevus, lentiginous melanocytic (C44._) [2021+]",alternate
+8742,0,Simple lentigo (C44._) [2021+],alternate
 8742,2,Lentigo maligna (C44._),preferred
 8742,2,"Hutchinson melanotic freckle, NOS",alternate
 8742,3,Lentigo maligna melanoma (C44._),preferred
@@ -1419,9 +1455,17 @@
 8832,0,"Cutaneous histiocytoma, NOS",alternate
 8832,0,Subepidermal nodular fibrosis,alternate
 8832,0,Dermatofibroma lenticulare,alternate
+8832,1,"Dermatofibrosarcoma protuberans, NOS (C44._) [2021+, NOT REPORTABLE. FOR PRE-2021 USE CODE 8832/3.]",preferred
+8832,1,"Dermatofibrosarcoma, NOS (C44._) [2021+, NOT REPORTABLE. FOR PRE-2021 USE CODE 8832/3.]",alternate
+8832,1,"Protuberans, dermatofibrosarcoma, NOS (C44._) [2021+, NOT REPORTABLE. FOR PRE-2021 USE CODE 8832/3.]",alternate
 8832,3,"Dermatofibrosarcoma, NOS (C44._)",preferred
 8832,3,Fibrosarcomatous dermatofibrosarcoma protuberans,alternate
 8832,3,"Dermatofibrosarcoma protuberans, NOS",alternate
+8833,1,"Pigmented dermatofibrosarcoma protuberans (C44._) [2021+, NOT REPORTABLE. FOR PRE-2021 USE CODE 8833/3.]",preferred
+8833,1,"Bednar tumor (C44._) [2021+, NOT REPORTABLE. FOR PRE-2021 USE CODE 8833/3.]",alternate
+8833,1,"Dermatofibrosarcoma protuberans, pigmented (C44._) [2021+, NOT REPORTABLE. FOR PRE-2021 USE CODE 8833/3.]",alternate
+8833,1,"Protuberans, dermatofibrosarcoma, pigmented (C44._) [2021+, NOT REPORTABLE. FOR PRE-2021 USE CODE 8833/3.]",alternate
+8833,1,"Tumor, Bednar (C44._) [2021+, NOT REPORTABLE. FOR PRE-2021 USE CODE 8833/3.]",alternate
 8833,3,Pigmented dermatofibrosarcoma protuberans (C44._),preferred
 8833,3,Bednar tumor,alternate
 8834,1,Giant cell fibroblastoma,preferred
@@ -2274,6 +2318,10 @@
 9590,3,"Malignant lymphoma, NOS",preferred
 9590,3,"Lymphoma, NOS",alternate
 9590,3,Microglioma,alternate
+9591,1,"Monoclonal B-cell lymphocytosis, NOS [2021+]",preferred
+9591,1,"Lymphocytosis, monoclonal B-cell, non-CLL type [2021+]",alternate
+9591,1,"Lymphocytosis, monoclonal B-cell, NOS [2021+]",alternate
+9591,1,"Monoclonal B-cell lymphocytosis, non-CLL type [2021+]",alternate
 9591,3,"Non-Hodgkin lymphoma, NOS",preferred
 9591,3,Hairy cell leukemia variant (HCL-v),alternate
 9591,3,"Non-Hodgkin lymphoma, NOS",alternate
@@ -2344,6 +2392,10 @@
 9671,3,Immunocytoma,alternate
 9671,3,"Malignant lymphoma, plasmacytoid",alternate
 9671,3,Plasmacytic lymphoma,alternate
+9673,1,In situ mantle cell neoplasia [2021+],preferred
+9673,1,In situ mantle cell lymphoma [2021+],alternate
+9673,1,"Lymphoma, in situ mantle cell [2021+]",alternate
+9673,1,"Neoplasia, in situ mantle cell [2021+]",alternate
 9673,3,Mantle cell lymphoma,preferred
 9673,3,Malignant lymphomatous polyposis,alternate
 9673,3,Mantle zone lymphoma,alternate
@@ -2357,6 +2409,9 @@
 9678,3,Primary effusion lymphoma,preferred
 9679,3,"Primary mediastinal (thymic) large B-cell lymphoma (C37.9, C38.3)",preferred
 9679,3,Thymic large B-cell lymphoma,alternate
+9680,1,EBV positive mucocutaneous ulcer [2021+],preferred
+9680,1,"Mucocutaneous ulcer, EBV positive [2021+]",alternate
+9680,1,"Ulcer, mucocutaneous, EBV positive [2021+]",alternate
 9680,3,Diffuse large B-cell lymphoma (DLBCL),preferred
 9680,3,"Diffuse large B-cell lymphoma, NOS",alternate
 9680,3,"Malignant lymphoma, large cell, NOS",alternate
@@ -2409,6 +2464,10 @@
 9691,3,"Malignant lymphoma, mixed cell type, follicular",alternate
 9691,3,"Malignant lymphoma, mixed cell type, nodular",alternate
 9691,3,"Malignant lymphoma, mixed small cleaved and large cell, follicular",alternate
+9695,1,In situ follicular neoplasia [2021+],preferred
+9695,1,In situ follicular lymphoma [2021+],alternate
+9695,1,"Lymphoma, in situ follicular [2021+]",alternate
+9695,1,"Neoplasia, in situ follicular [2021+]",alternate
 9695,3,"Follicular lymphoma, grade 1",preferred
 9695,3,"Malignant lymphoma, small cleaved cell, follicular",alternate
 9695,3,"Follicular lymphoma, small cleaved cell",alternate
@@ -2435,6 +2494,9 @@
 9700,3,Pagetoid reticulosis,alternate
 9701,3,Sezary syndrome (C44._),preferred
 9701,3,Sezary disease,alternate
+9702,1,Indolent T-cell lymphoproliferative disorder of the gastrointestinal tract [2021+],preferred
+9702,1,"Disorder, lymphoproliferative, Indolent T-cell of the gastrointestinal tract [2021+]",alternate
+9702,1,"Lymphoproliferative disorder of the gastrointestinal tract, indolent T-cell [2021+]",alternate
 9702,3,"Peripheral T-cell lymphoma, NOS",preferred
 9702,3,"Peripheral T-cell lymphoma, NOS",alternate
 9702,3,"T-cell lymphoma, NOS",alternate
@@ -2448,6 +2510,9 @@
 9705,3,"Peripheral T-cell lymphoma, AILD (Angioimmunoblastic",alternate
 9705,3,Angioimmunoblastic lymphoma,alternate
 9708,3,Subcutaneous panniculitis-like T-cell lymphoma (C49._),preferred
+9709,1,Primary cutaneous CD4-positive small/medium T-cell lymphoproliferative disorder (C44._) [2021+ NOT REPORTABLE],preferred
+9709,1,"Lymphoproliferative disorder, primary cutaneous CD4-positive small/medium T-cell (C44._) [2021+ NOT REPORTABLE]",alternate
+9709,1,Primary cutaneous CD4-positive small/medium T-cell lymphoma (C44._) [obs] [2021+ NOT REPORTABLE],alternate
 9709,3,Primary cutaneous T-cell lymphoma (C44._),preferred
 9709,3,"Cutaneous lymphoma, NOS",alternate
 9712,3,Intravascular large B-cell lymphoma (ICD-O-3 update),preferred
@@ -2456,6 +2521,25 @@
 9714,3,Large cell (Ki-1+) lymphoma,alternate
 9714,3,"Anaplastic large cell lymphoma, NOS",alternate
 9714,3,"Anaplastic large cell lymphoma, CD30+",alternate
+9715,3,"Anaplastic large cell lymphoma, ALK negative [2021+]",preferred
+9715,3,"Lymphoma (malignant), Breast implant-associated, large cell, anaplastic (C50._) [2021+]",alternate
+9715,3,"Lymphoma (malignant), large cell, anaplastic, ALK negative [2021+]",alternate
+9715,3,"Lymphoma (malignant), large cell, anaplastic, Breast implant-associated (C50._) [2021+]",alternate
+9715,3,"Lymphoma, ALK negative, anaplastic large cell [2021+]",alternate
+9715,3,"Lymphoma, ALK negative, large cell, anaplastic [2021+]",alternate
+9715,3,"Lymphoma, anaplastic large cell, ALK negative [2021+]",alternate
+9715,3,"Lymphoma, anaplastic large cell, Breast implant-associated (C50._) [2021+]",alternate
+9715,3,"Lymphoma, Breast implant-associated, anaplastic large cell (C50._) [2021+]",alternate
+9715,3,"Lymphoma, Breast implant-associated, large cell, anaplastic (C50._) [2021+]",alternate
+9715,3,"Lymphoma, large cell, anaplastic, ALK negative [2021+]",alternate
+9715,3,"Lymphoma, large cell, anaplastic, Breast implant-associated (C50._) [2021+]",alternate
+9715,3,"Anaplastic large cell lymphoma, Breast implant-associated (C50._) [2021+]",alternate
+9715,3,Breast implant-associated anaplastic large cell lymphoma (C50._) [2021+],alternate
+9715,3,"Lymphoma (malignant), ALK negative, anaplastic large cell [2021+]",alternate
+9715,3,"Lymphoma (malignant), ALK negative, large cell, anaplastic [2021+]",alternate
+9715,3,"Lymphoma (malignant), anaplastic large cell, ALK negative [2021+]",alternate
+9715,3,"Lymphoma (malignant), anaplastic large cell, Breast implant-associated (C50._) [2021+]",alternate
+9715,3,"Lymphoma (malignant), Breast implant-associated, anaplastic large cell (C50._) [2021+]",alternate
 9716,3,Hepatosplenic T-cell lymphoma (C42.2),preferred
 9717,3,Enteropathy-associated T-cell lymphoma,preferred
 9717,3,Enteropathy type intestinal T-cell lymphoma,alternate
@@ -2472,6 +2556,8 @@
 9719,3,Malignant midline reticulosis,alternate
 9719,3,Polymorphic reticulosis,alternate
 9724,3,Systemic EBV-positive T-cell lymphoproliferative disease of childhood (ICD-O-3 update),preferred
+9725,1,Hydroa vacciniforme-like lymphoproliferative disorder [2021 AND LATER NOT REPORTABLE. FOR PRE-2010 USE CODE 9725/3],preferred
+9725,1,Hydroa vacciniforme-like lymphoma [2021 AND LATER NOT REPORTABLE. FOR PRE-2010 USE CODE 9725/3],alternate
 9725,3,Hydroa vacciniforme-like lymphoma (ICD-O-3 update) (C44.._),preferred
 9726,3,"Primary cutaneous gamma delta T-cell lymphoma (ICD-O-3 update) (C44._, C49._)",preferred
 9727,3,Blastic plasmacytoid dendritic cell neoplasm,preferred
@@ -2495,6 +2581,7 @@
 9734,3,Extraosseous plasmacytoma,preferred
 9735,3,Plasmablastic lymphoma (ICD-O-3 update),preferred
 9737,3,ALK-positive large B-cell lymphoma,preferred
+9738,1,HHV8-positive germinotrophic-lymphoproliferative disorder,preferred
 9738,3,Large B-cell lymphoma arising in HHV8-associated multicentric Castleman disease (ICD-O-3 update),preferred
 9740,1,Solitary mastocytoma of skin,preferred
 9740,1,"Mast cell tumor, NOS",alternate
@@ -2505,6 +2592,8 @@
 9741,3,Systemic mastocytosis (C42.1),preferred
 9741,3,Systemic tissue mast cell disease,alternate
 9742,3,Mast cell leukemia (C42.1),preferred
+9749,3,Erdheim-Chester disease [2021+],preferred
+9749,3,"Disease, Erdheim-Chester [2021+]",alternate
 9750,3,"Malignant histiocytosis [OBS], see code 9751/3 (ICD-O-3 update)",preferred
 9750,3,Histiocytic medullary reticulosis,alternate
 9751,1,"Langerhans cell histiocytosis, NOS",preferred
@@ -2533,6 +2622,8 @@
 9758,3,Follicular dendritic cell tumor,alternate
 9759,3,Fibroblastic reticular cell tumor (ICD-O-3 update),preferred
 9760,3,"Immunoproliferative disease, NOS [OBS] (ICD-O-3 update)",preferred
+9761,1,IgM monoclonal gammopathy of undetermined significance [2021+],preferred
+9761,1,"Gammopathy, IgM monoclonal of undetermined significance [2021+]",alternate
 9761,3,Waldenstrom macroglobulinemia (C42.0),preferred
 9762,3,Heavy chain disease,preferred
 9762,3,Mu heavy chain disease,alternate
@@ -2577,6 +2668,8 @@
 9816,3,B Lymphoblastic leukemia/lymphoma with hypodiploidy (Hypodiploid ALL) (ICD-O-3 update),preferred
 9817,3,B Lymphoblastic leukemia/lymphoma with t(5;14)(q31;q32); IL3-IGH (ICD-O-3 update),preferred
 9818,3,B Lymphoblastic leukemia/lymphoma with t(1;19)(q23;p13.3);E2A-PBX1 (TCF3-PBX1) (ICD-O-3 update),preferred
+9819,3,"B lymphoblastic leukemia/lymphoma, BCR-ABL-like [2021+]",preferred
+9819,3,"Leukemia/lymphoma, B lymphoblastic, BCR-ABL-like [2021+]",alternate
 9820,3,"Lymphoid leukemia, NOS (C42.1)",preferred
 9820,3,"Lymphocytic leukemia, NOS",alternate
 9820,3,"Lymphatic leukemia, NOS",alternate
@@ -2587,6 +2680,9 @@
 9820,3,Aleukemic lymphocytic leukemia,alternate
 9820,3,Aleukemic lymphatic leukemia,alternate
 9820,3,Lymphosarcoma cell leukemia,alternate
+9823,1,"Monoclonal B-cell lymphocytosis, CLL-type [2021+]",preferred
+9823,1,"Lymphocytosis, Monoclonal B-cell, CLL-type [2021+]",alternate
+9823,1,"B-cell lymphocytosis, monoclonal, CLL-type [2021+]",alternate
 9823,3,Chronic lymphocytic leukemia/small lymphocytic lymphoma (ICD-O-3 update),preferred
 9823,3,"Chronic lymphocytic leukemia, B-cell type",alternate
 9823,3,Chronic lymphocytic leukemia,alternate
@@ -2702,6 +2798,21 @@
 9875,3,"Chronic myelogenous leukemia, t(9",alternate
 9876,3,"Atypical chronic myeloid leukemia, BCR-ABL1 negative (C42.1)",preferred
 9876,3,"Atypical chronic myeloid leukemia, Philadelphia chromosome (Ph1) negative",alternate
+9877,3,Acute myeloid leukemia with mutated NPM1 [2021+],preferred
+9877,3,"Leukemia, acute, myeloid, with mutated NPM1 [2021+]",alternate
+9877,3,"Leukemia, myeloid, acute, with mutated NPM1 [2021+]",alternate
+9877,3,"Leukemia, myeloid, with mutated NPM1, acute [2021+]",alternate
+9877,3,"Leukemia, with mutated NPM1, acute myeloid [2021+]",alternate
+9878,3,Acute myeloid leukemia with biallelic mutation of CEBPA [2021+],preferred
+9878,3,"Leukemia, acute, myeloid, with biallelic mutation of CEBPA [2021+]",alternate
+9878,3,"Leukemia, myeloid, acute, with biallelic mutation of CEBPA [2021+]",alternate
+9878,3,"Leukemia, myeloid, with biallelic mutation of CEBPA, acute [2021+]",alternate
+9878,3,"Leukemia, with biallelic mutation of CEBPA, acute myeloid [2021+]",alternate
+9879,3,Acute myeloid leukemia with mutated RUNX1 [2021+],preferred
+9879,3,"Leukemia, acute, myeloid, with mutated RUNX1 [2021+]",alternate
+9879,3,"Leukemia, myeloid, acute, with mutated RUNX1 [2021+]",alternate
+9879,3,"Leukemia, myeloid, with mutated RUNX1, acute [2021+]",alternate
+9879,3,"Leukemia, with mutated RUNX1, acute myeloid [2021+]",alternate
 9891,3,Acute monoblastic and monocytic leukemia,preferred
 9891,3,Acute monoblastic leukemia,alternate
 9891,3,"Monoblastic leukemia, NOS",alternate
@@ -2721,6 +2832,11 @@
 9910,3,Megakaryocytic leukemia,alternate
 9910,3,FAB M7,alternate
 9911,3,Acute myeloid leukemia (megakaryoblastic) with t(1;22)(p13;q13); RBM15-MKL1 (ICD-O-3 update) (C42.1),preferred
+9912,3,Acute myleoid leukemia with BCR-ABL1 [2021+],preferred
+9912,3,"Leukemia, with BCR-ABL1, acute myeloid [2021+]",alternate
+9912,3,"Leukemia, acute, myeloid, with BCR-ABL1 [2021+]",alternate
+9912,3,"Leukemia, myeloid, acute, with BCR-ABL1 [2021+]",alternate
+9912,3,"Leukemia, myeloid, with BCR-ABL1, acute [2021+]",alternate
 9920,3,Therapy-related myeloid neoplasm (ICD-O-3 update) (C42.1),preferred
 9920,3,"Therapy-related acute myeloid leukemia, epipodophyllotoxin-related",alternate
 9920,3,"Therapy-related acute myeloid leukemia, alkylating agent related",alternate
@@ -2763,6 +2879,12 @@
 9965,3,Myeloid and lymphoid neoplasms with PDGFRA rearrangement (ICD-O-3 update) (C42.1),preferred
 9966,3,Myeloid neoplasms with PDGFRB rearrangement (ICD-O-3 update) (C42.1),preferred
 9967,3,Myeloid and lymphoid neoplasms with FGFR1 ICD-O-3 update) (C42.1),preferred
+9968,3,Myeloid or lymphoid neoplasm with PCM1-JAK2 [2021+],preferred
+9968,3,Lymphoid or Myeloid neoplasm with PCM1-JAK2 [2021+],alternate
+9968,3,"Neoplasm with PCM1-JAK2, lymphoid or myeloid [2021+]",alternate
+9968,3,"Neoplasm with PCM1-JAK2, myeloid or lymphoid [2021+]",alternate
+9968,3,"Neoplasm, lymphoid or myeloid with PCM1-JAK2 [2021+]",alternate
+9968,3,"Neoplasm, myeloid or lymphoid with PCM1-JAK2 [2021+]",alternate
 9970,1,"Lymphoproliferative disorder, NOS",preferred
 9970,1,"Lymphoproliferative disease, NOS",alternate
 9970,3,"Lymphoproliferative disease, malignant, NOS",preferred
@@ -2791,3 +2913,6 @@
 9989,3,Preleukemic syndrome,alternate
 9991,3,Refractory neutropenia (ICD-O-3 update) (C42.1),preferred
 9992,3,Refractory thrombocytopenia (ICD-O-3 Update) (C42.1),preferred
+9993,3,Myelodysplastic syndrome with ring sideroblasts and multilineage dysplasia [2021+],preferred
+9993,3,"Syndrome, myelodysplastic, with ring sideroblasts and multilineage dysplasia [2021+]",alternate
+9993,3,"Syndrome, with ring sideroblasts and multilineage dysplasia, myelodysplastic [2021+]",alternate

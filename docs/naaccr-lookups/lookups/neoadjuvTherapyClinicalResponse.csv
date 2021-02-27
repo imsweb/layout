@@ -1,0 +1,11 @@
+0,Neoadjuvant therapy not given
+1,Complete clinical response (CR) (per managing/treating physician statement)
+2,Partial clinical response (PR) (per managing/treating physician statement)
+3,Progressive disease (PD) (per managing/treating physician statement)
+4,Stable disease (SD) (per managing/treating physician statement)
+5,No response (NR) (per managing/treating physician statement); Not stated as progressive disease (PD) or stable disease (SD)
+6,"Neoadjuvant therapy done, managing/treating physician interpretation not available, treatment response inferred from imaging, biomarkers, or yc stage"
+7,Complete clinical response based on pathology report (per pathologist assessment)
+8,"Neoadjuvant therapy done, response not documented or unknown"
+9,"Unknown if neoadjuvant therapy performed;
+Death Certificate only (DCO)"

@@ -15,4 +15,5 @@
 14,"Radioisotopes, Radium-232"
 15,"Radioisotopes, Strontium-89"
 16,"Radioisotopes, Strontium-90"
-99,Treatment radiation modality unknown; Unknown if radiation treatment administered
+98,Radiation therapy administered but treatment modality is not specified or unknown
+99,Unknown if radiation treatment administered
