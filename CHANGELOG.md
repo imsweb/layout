@@ -2,6 +2,7 @@
 
 **Changes in version 3.3**
 
+- Changed padding of sentinelLymphNodesExamined, sentinelLymphNodesPositive and phase1DosePerFraction to be leftZero in N18 layout.
 - Updated NAACCR XML library from version 7.7 to version 7.10.
 - Updated XStream dependency from version 1.4.15 to version 1.4.16.
 - Updated CSV library from version 5.3 to version 5.4.

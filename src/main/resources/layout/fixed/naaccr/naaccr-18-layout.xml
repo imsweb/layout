@@ -226,9 +226,9 @@
         <field name="dateRegionalLNDissectionDay" start="1008" end="1009" short-label="Reg LN Diss Day" long-label="Date Regional Lymph Node Dissection (Day)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
     </field>
     <field name="dateRegionalLNDissectionFlag" start="1010" end="1011" short-label="Reg LN Diss Fg" long-label="Date Regional Lymph Node Dissection Flag" naaccr-item-num="683" section="Stage/Prognostic Factors"/>
-    <field name="sentinelLymphNodesPositive" start="1012" end="1013" short-label="SLN Pos" long-label="Sentinel Lymph Nodes Positive" naaccr-item-num="835" section="Stage/Prognostic Factors"/>
-    <field name="sentinelLymphNodesExamined" start="1014" end="1015" short-label="SLN Exam" long-label="Sentinel Lymph Nodes Examined" naaccr-item-num="834" section="Stage/Prognostic Factors"/>
-    <field name="dateSentinelLymphNodeBiopsy" start="1016" end="1023" short-label="SLN Biop Dt" long-label="Date of Sentinel Lymph Node Biopsy" naaccr-item-num="832" align="right" pad-char="0" section="Stage/Prognostic Factors">
+    <field name="sentinelLymphNodesPositive" start="1012" end="1013" short-label="SLN Pos" long-label="Sentinel Lymph Nodes Positive" naaccr-item-num="835" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
+    <field name="sentinelLymphNodesExamined" start="1014" end="1015" short-label="SLN Exam" long-label="Sentinel Lymph Nodes Examined" naaccr-item-num="834" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
+    <field name="dateSentinelLymphNodeBiopsy" start="1016" end="1023" short-label="SLN Biop Dt" long-label="Date of Sentinel Lymph Node Biopsy" naaccr-item-num="832" section="Stage/Prognostic Factors">
         <field name="dateSentinelLymphNodeBiopsyYear" start="1016" end="1019" short-label="SLN Biop Yr" long-label="Date of Sentinel Lymph Node Biopsy (Year)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
         <field name="dateSentinelLymphNodeBiopsyMonth" start="1020" end="1021" short-label="SLN Biop Mth" long-label="Date of Sentinel Lymph Node Biopsy (Month)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
         <field name="dateSentinelLymphNodeBiopsyDay" start="1022" end="1023" short-label="SLN Biop Day" long-label="Date of Sentinel Lymph Node Biopsy (Day)" align="right" pad-char="0" section="Stage/Prognostic Factors"/>
