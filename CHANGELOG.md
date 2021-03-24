@@ -1,5 +1,11 @@
 ## Layout Framework Version History
 
+**Changes in version 3.3**
+
+- Updated NAACCR XML library from version 7.7 to version 7.10.
+- Updated XStream dependency from version 1.4.15 to version 1.4.16.
+- Updated CSV library from version 5.3 to version 5.4.
+
 **Changes in version 3.2**
 
 - Relaxed validation of comma-separated and fixed-columns layouts.

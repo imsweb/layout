@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'checkstyle'
-    id 'com.github.spotbugs' version '3.0.0'
+    id 'com.github.spotbugs' version '4.5.1'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.21.2'
 }
@@ -23,11 +23,11 @@ repositories {
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:7.7'
+    api 'com.imsweb:naaccr-xml:7.10-SNAPSHOT'
 
     implementation 'commons-io:commons-io:2.7'
-    implementation 'com.opencsv:opencsv:5.3'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.15'
+    implementation 'com.opencsv:opencsv:5.4'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.16'
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'com.imsweb:seerutils-gui:1.15'
@@ -120,7 +120,7 @@ if (version.endsWith('-SNAPSHOT'))
 
 // Gradle wrapper, this allows to build the project without having to install Gradle!
 wrapper {
-    gradleVersion = '6.0.1'
+    gradleVersion = '6.7'
     distributionType = Wrapper.DistributionType.ALL
 }
 
