@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 3.4**
+
+- Updated NAACCR XML library from version 7.10 to version 7.13.
+- Updated XStream dependency from version 1.4.16 to version 1.4.17.
+
 **Changes in version 3.3**
 
 - Changed padding of sentinelLymphNodesExamined, sentinelLymphNodesPositive and phase1DosePerFraction to be leftZero in N18 layout.
