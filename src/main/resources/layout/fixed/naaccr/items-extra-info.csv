@@ -835,3 +835,15 @@ ncdbSarsCov2Test,COV2 Test,Special Use
 ncdbSarsCov2Pos,COV2 Pos,Special Use
 ncdbSarsCov2PosDate,COV2 Dt,Special Use
 ncdbCovid19TxImpact,COVID Impact,Special Use
+ihsPurchRefCareDeliveryArea,IHS P/R Care Area,Demographic
+urbanIndianHealthOrganization,UIHO,Demographic
+uihoFacility,HIHO City,Demographic
+tobaccoUseSmokingStatus,Tob Use Stat,Demographic
+edpMdeLinkDate,EDP Link Dt,Demographic
+edpMdeLink,EDP Link,Demographic
+macroscopicEvalOfTheMesorectum,Macro Eval Meso,Stage/Prognostic Factors
+derivedRaiStage,Rai Stg,Stage/Prognostic Factors
+p16,p16,Stage/Prognostic Factors
+lnStatusPelvic,LN St Pelvic,Stage/Prognostic Factors
+lnStatusParaAortic,LN St Para-Aor,Stage/Prognostic Factors
+lnStatusFemoralInguinal,LN ST Fem-Ing,Stage/Prognostic Factors

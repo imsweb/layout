@@ -23,16 +23,16 @@ repositories {
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:7.13'
+    api 'com.imsweb:naaccr-xml:8.0'
 
-    implementation 'commons-io:commons-io:2.7'
-    implementation 'com.opencsv:opencsv:5.4'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'com.opencsv:opencsv:5.5.1'
     implementation 'com.thoughtworks.xstream:xstream:1.4.17'
 
     testImplementation 'junit:junit:4.13'
-    testImplementation 'com.imsweb:seerutils-gui:1.15'
+    testImplementation 'com.imsweb:seerutils-gui:1.18'
     testImplementation 'com.imsweb:seerutils:5.6'
-    testImplementation 'org.xhtmlrenderer:flying-saucer-core:9.1.19'
+    testImplementation 'org.xhtmlrenderer:flying-saucer-core:9.1.22'
 }
 
 // enforce UTF-8, display the compilation warnings

@@ -193,8 +193,13 @@ public class NaaccrXmlLayout implements Layout {
         _recordType = recordType;
         _baseDictionary = NaaccrXmlDictionaryUtils.getBaseDictionaryByVersion(naaccrVersion);
         _userDictionaries = dictionaries;
-        if (_userDictionaries == null || _userDictionaries.isEmpty())
-            _userDictionaries = Collections.singletonList(NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion));
+        if (_userDictionaries == null || _userDictionaries.isEmpty()) {
+            NaaccrDictionary defaultUserDictionary = NaaccrXmlDictionaryUtils.getDefaultUserDictionaryByVersion(naaccrVersion);
+            if (defaultUserDictionary != null)
+                _userDictionaries = Collections.singletonList(defaultUserDictionary);
+            else
+                _userDictionaries = Collections.emptyList();
+        }
         _layoutDesc = StringUtils.stripToNull(description);
 
         // only load dictionaries/fields if specified, otherwise avoid expensive operations
@@ -451,6 +456,9 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     protected String getDocFolder() {
+        // there is always a delay before the documentation is released on the NAACCR website, use N21 doc for N22 until the new ones is available...
+        if ("220".equals(_naaccrVersion))
+            return "naaccr21";
         return "naaccr" + _naaccrVersion.substring(0, 2);
     }
 
