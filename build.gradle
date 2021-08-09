@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:8.0'
+    api 'com.imsweb:naaccr-xml:8.1'
 
     implementation 'commons-io:commons-io:2.11.0'
     implementation 'com.opencsv:opencsv:5.5.1'

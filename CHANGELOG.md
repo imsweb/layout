@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 4.1**
+
+- Updated NAACCR XML library from version 8.0 to version 8.1.
+
 **Changes in version 4.0**
 
 - Added NAACCR 22 XML layout; documentation is not available yet for new data items.
