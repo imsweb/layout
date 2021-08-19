@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 4.2**
+
+- Added new option for comma-separated layouts to force quoting all written values.
+
 **Changes in version 4.1**
 
 - Updated NAACCR XML library from version 8.0 to version 8.1.

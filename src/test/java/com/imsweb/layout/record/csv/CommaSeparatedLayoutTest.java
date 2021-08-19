@@ -475,11 +475,15 @@ public class CommaSeparatedLayoutTest {
         CommaSeparatedLayout layout = new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml"));
         Assert.assertEquals(',', layout.getSeparator());
 
+        RecordLayoutOptions options = new RecordLayoutOptions();
+        options.setQuoteAllValues(true);
+
         Map<String, String> rec = new HashMap<>();
         rec.put("recordType", "0");
         rec.put("field1", "123");
         rec.put("field2", "456");
         Assert.assertEquals("0,123,456", layout.createLineFromRecord(rec, null));
+        Assert.assertEquals("\"0\",\"123\",\"456\"", layout.createLineFromRecord(rec, options));
         rec.put("field1", "12,3");
         Assert.assertEquals("0,\"12,3\",456", layout.createLineFromRecord(rec, null));
         rec.put("field1", "1\"2\"3");
@@ -510,6 +514,7 @@ public class CommaSeparatedLayoutTest {
         Assert.assertEquals("0,\"1\r\n2\r\n3\",456", layout.createLineFromRecord(rec, null));
         rec.put("field1", "\n123\n");
         Assert.assertEquals("0,\"\n123\n\",456", layout.createLineFromRecord(rec, null));
+        Assert.assertEquals("\"0\",\"\n123\n\",\"456\"", layout.createLineFromRecord(rec, options));
     }
 
     @Test

@@ -31,6 +31,9 @@ public class RecordLayoutOptions {
     // when reading and writing records, the encoding to use (defaults to UTF-8)
     protected Charset _encoding;
 
+    // when writing records, do we need to force every value to be quoted; applicable to CSV layouts only (defaults to false meaning we quote when needed)
+    protected boolean _quoteAllValues;
+
     /**
      * Default Constructor.
      */
@@ -41,6 +44,7 @@ public class RecordLayoutOptions {
         _applyPadding = true;
         _lineSeparator = NEW_LINE_OS;
         _encoding = StandardCharsets.UTF_8;
+        _quoteAllValues = false;
     }
 
     public boolean trimValues() {
@@ -91,5 +95,13 @@ public class RecordLayoutOptions {
 
     public void setEncoding(Charset encoding) {
         _encoding = encoding;
+    }
+
+    public boolean quoteAllValues() {
+        return _quoteAllValues;
+    }
+
+    public void setQuoteAllValues(boolean quoteAllValues) {
+        _quoteAllValues = quoteAllValues;
     }
 }

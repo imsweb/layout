@@ -307,10 +307,12 @@ public class CommaSeparatedLayout extends RecordLayout {
             values[field.getIndex() - 1] = val;
         }
 
+        boolean forceQuotes = options != null && options.quoteAllValues();
+
         for (String val : values) {
             if (val != null) {
                 // this is following the specs from RFC4180 (https://tools.ietf.org/html/rfc4180)
-                if (val.indexOf(_separator) > -1 || val.indexOf('\n') > -1 || val.indexOf('"') > -1)
+                if (forceQuotes || val.indexOf(_separator) > -1 || val.indexOf('\n') > -1 || val.indexOf('"') > -1)
                     result.append("\"").append(StringUtils.replace(val, "\"", "\"\"")).append("\"");
                 else
                     result.append(val);
