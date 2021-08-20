@@ -142,6 +142,8 @@ public class NaaccrDocScraper {
                     case "346":
                         html = html.replace("< 100", "&lt; 100").replace("< 50", "&lt; 50");
                         break;
+                    case "2156":
+                        html = html.replace("<span style=\"background-color: #ffffff;\">of</span><span style=\"background-color: #ffffff;\"> 08.XX.XX</span><span style=\"background-color: #ffffff;\"> d</span>uring", "of 08.XX.XX during");
                     default:
                         // ignored, nothing to do
                 }
@@ -216,22 +218,30 @@ public class NaaccrDocScraper {
 
         // split by rows
         Matcher rowMatcher = Pattern.compile("<tr( class=\".+?\")?>(.+?)</tr>", Pattern.MULTILINE | Pattern.DOTALL).matcher(txt);
-        int rowStart = 0, rowIdx = 0;
+        int rowStart = 0, rowIdx = 0, colIdx = 0, colIdxToIgnore = -1;
         while (rowMatcher.find(rowStart)) {
             if (rowStart != 0) { // we ignore the first row which is the field name
                 String row = rowMatcher.group(2);
                 rowIdx++;
+                colIdx = 0;
 
                 buf.append("\r\n  <tr>");
                 Matcher cellMatcher = Pattern.compile("<td(.*?)>(.*?)</td>", Pattern.MULTILINE | Pattern.DOTALL).matcher(row);
                 int cellStart = 0;
                 while (cellMatcher.find(cellStart)) {
+                    colIdx++;
+
                     String cell = cellMatcher.group(2).replace("<a href='#sources'>", "").replace("</a>", "");
 
-                    if (rowIdx == 1)
-                        buf.append("\r\n    <th class=\"naaccr-summary-header naaccr-borders\">").append(cell).append("</th>");
-                    else
-                        buf.append("\r\n    <td class=\"naaccr-summary-cell naaccr-borders naaccr-summary-centered\">").append(cell).append("</td>");
+                    if ("Column #".equals(cell))
+                        colIdxToIgnore = colIdx;
+
+                    if (colIdx != colIdxToIgnore) {
+                        if (rowIdx == 1)
+                            buf.append("\r\n    <th class=\"naaccr-summary-header naaccr-borders\">").append(cell).append("</th>");
+                        else
+                            buf.append("\r\n    <td class=\"naaccr-summary-cell naaccr-borders naaccr-summary-centered\">").append(cell).append("</td>");
+                    }
                     cellStart = cellMatcher.end();
                 }
                 buf.append("\r\n  </tr>");
