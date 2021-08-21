@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -244,7 +246,6 @@ public class NaaccrXmlLayout implements Layout {
                         yearItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField yearFld = new NaaccrXmlField(yearItem);
                         yearFld.setShortLabel(shortLbl + " Yr");
-                        _fieldsCachedByNaaccrNumber.put(yearFld.getNaaccrItemNum(), yearFld);
                         _fieldsCachedByName.put(yearFld.getNaaccrId(), yearFld);
 
                         NaaccrDictionaryItem monthItem = new NaaccrDictionaryItem();
@@ -255,7 +256,6 @@ public class NaaccrXmlLayout implements Layout {
                         monthItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField monthFld = new NaaccrXmlField(monthItem);
                         monthFld.setShortLabel(shortLbl + " Mth");
-                        _fieldsCachedByNaaccrNumber.put(monthFld.getNaaccrItemNum(), monthFld);
                         _fieldsCachedByName.put(monthFld.getNaaccrId(), monthFld);
 
                         NaaccrDictionaryItem dayItem = new NaaccrDictionaryItem();
@@ -266,7 +266,6 @@ public class NaaccrXmlLayout implements Layout {
                         dayItem.setDataType(NaaccrXmlDictionaryUtils.NAACCR_DATA_TYPE_DIGITS);
                         NaaccrXmlField dayFld = new NaaccrXmlField(dayItem);
                         dayFld.setShortLabel(shortLbl + " Day");
-                        _fieldsCachedByNaaccrNumber.put(dayFld.getNaaccrItemNum(), dayFld);
                         _fieldsCachedByName.put(dayFld.getNaaccrId(), dayFld);
 
                         field.setSubFields(Arrays.asList(yearFld, monthFld, dayFld));
@@ -407,15 +406,23 @@ public class NaaccrXmlLayout implements Layout {
 
     @Override
     public String getFieldDocByName(String name) {
-        return getFieldDocByNameOrNumber(name, null);
+        return getFieldDocByName(name, null);
+    }
+
+    public String getFieldDocByName(String name, File archivedDocFile) {
+        return getFieldDocByNameOrNumber(name, null, archivedDocFile);
     }
 
     @Override
     public String getFieldDocByNaaccrItemNumber(Integer num) {
-        return getFieldDocByNameOrNumber(null, num);
+        return getFieldDocByNaaccrItemNumber(num, null);
     }
 
-    protected String getFieldDocByNameOrNumber(String name, Integer number) {
+    public String getFieldDocByNaaccrItemNumber(Integer num, File archivedDocFile) {
+        return getFieldDocByNameOrNumber(null, num, archivedDocFile);
+    }
+
+    protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile) {
         NaaccrXmlField field = name != null ? getFieldByName(name) : getFieldByNaaccrItemNumber(number);
 
         String filename = null;
@@ -427,28 +434,47 @@ public class NaaccrXmlLayout implements Layout {
         if (filename == null)
             return null;
 
-        // NAACCR started to provide the documentation for reserved fields in version 18...
-        boolean reservedField = field != null && field.getName().startsWith("reserved") && Integer.parseInt(_naaccrVersion) < 180;
-
-        URL docPath;
-        if (reservedField)
-            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/reserved.html");
-        else
-            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + filename + ".html");
-        if (docPath == null)
-            return null;
-
         String result = null;
-        try (Reader reader = new InputStreamReader(docPath.openStream(), StandardCharsets.UTF_8); Writer writer = new StringWriter()) {
-            IOUtils.copy(reader, writer);
-            result = writer.toString();
-        }
-        catch (IOException e) {
-            /* do nothing, result will be null, as per specs */
-        }
 
-        if (reservedField && result != null)
-            result = result.replace("[:ITEM_NUM:]", field.getNaaccrItemNum().toString()).replace("[:COLUMNS:]", field.getStartColumn() + " - " + (field.getStartColumn() + field.getLength() - 1));
+        URL docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + filename + ".html");
+        if (docPath != null) {
+            try (Reader reader = new InputStreamReader(docPath.openStream(), StandardCharsets.UTF_8); Writer writer = new StringWriter()) {
+                IOUtils.copy(reader, writer);
+                result = writer.toString();
+            }
+            catch (IOException e) {
+                /* do nothing, result will be null, as per specs */
+            }
+        }
+        else if (archivedDocFile != null && archivedDocFile.exists()) {
+            if (archivedDocFile.isDirectory()) {
+                File targetFile = new File(archivedDocFile, getDocFolder() + "/" + filename + ".html");
+                if (targetFile.exists()) {
+                    try (InputStream is = new FileInputStream(targetFile)) {
+                        Writer writer = new StringWriter();
+                        IOUtils.copy(is, writer, StandardCharsets.UTF_8);
+                        result = writer.toString();
+                    }
+                    catch (IOException e) {
+                        /* do nothing, result will be null, as per specs */
+                    }
+                }
+            }
+            else {
+                try (ZipFile zf = new ZipFile(archivedDocFile)) {
+                    ZipEntry entry = zf.getEntry(getDocFolder() + "/" + filename + ".html");
+
+                    if (entry != null) {
+                        Writer writer = new StringWriter();
+                        IOUtils.copy(zf.getInputStream(entry), writer, StandardCharsets.UTF_8);
+                        result = writer.toString();
+                    }
+                }
+                catch (IOException e) {
+                    /* do nothing, result will be null, as per specs */
+                }
+            }
+        }
 
         return result;
     }

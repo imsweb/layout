@@ -3,12 +3,12 @@
  */
 package com.imsweb.layout.record.fixed.naaccr;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.apache.commons.io.IOUtils;
 
@@ -468,21 +470,33 @@ public class NaaccrLayout extends FixedColumnsLayout {
         return _naaccrLineLength;
     }
 
+    @Override
     public String getFieldDocByNaaccrItemNumber(Integer num) {
+        return getFieldDocByNaaccrItemNumber(num, null);
+    }
+
+    public String getFieldDocByNaaccrItemNumber(Integer num, File archivedDocFile) {
         Field field = getFieldByNaaccrItemNumber(num); // getting the field will ensure that we try to use the name for a legit (non-retired) field first
-        return getFieldDocByNameOrNumber(field != null ? field.getName() : null, num);
+        return getFieldDocByNameOrNumber(field != null ? field.getName() : null, num, archivedDocFile);
     }
 
     @Override
     public String getFieldDocByName(String name) {
-        return getFieldDocByNameOrNumber(name, null);
+        return getFieldDocByName(name, null);
     }
 
-    protected String getFieldDocByNameOrNumber(String name, Integer number) {
+    public String getFieldDocByName(String name, File archivedDocFile) {
+        return getFieldDocByNameOrNumber(name, null, archivedDocFile);
+    }
+
+    protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile) {
+
+        // since fixed-columns NAACCR format has been retired, the only way to access the documentation is via an archived file...
+        if (archivedDocFile == null || !archivedDocFile.exists())
+            return null;
+
         FixedColumnsField field = getFieldByName(name);
 
-        // documentation was added for retired fields starting with NAACCR 18; I used the NAACCR number for those since they isn't a corresponding field
-        //String filename = field != null ? field.getName() : number != null ? number.toString() : null;
         String filename;
         if (field != null) {
             filename = field.getName();
@@ -499,40 +513,41 @@ public class NaaccrLayout extends FixedColumnsLayout {
         if (filename == null)
             return null;
 
-        // NAACCR started to provide the documentation for reserved fields in version 18...
-        boolean reservedField = field != null && field.getName().startsWith("reserved") && Integer.parseInt(_majorNaaccrVersion) < 18;
-
-        URL docPath;
-        if (reservedField)
-            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/reserved.html");
-        else
-            docPath = Thread.currentThread().getContextClassLoader().getResource("layout/fixed/naaccr/doc/" + getDocFolder() + "/" + filename + ".html");
-        if (docPath == null)
-            return null;
-
         String result = null;
-        try (Reader reader = new InputStreamReader(docPath.openStream(), StandardCharsets.UTF_8); Writer writer = new StringWriter()) {
-            IOUtils.copy(reader, writer);
-            result = writer.toString();
+        if (archivedDocFile.isDirectory()) {
+            File targetFile = new File(archivedDocFile, "naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
+            if (targetFile.exists()) {
+                try (InputStream is = new FileInputStream(targetFile)) {
+                    Writer writer = new StringWriter();
+                    IOUtils.copy(is, writer, StandardCharsets.UTF_8);
+                    result = writer.toString();
+                }
+                catch (IOException e) {
+                    /* do nothing, result will be null, as per specs */
+                }
+            }
         }
-        catch (IOException e) {
-            /* do nothing, result will be null, as per specs */
-        }
+        else {
+            try (ZipFile zf = new ZipFile(archivedDocFile)) {
+                ZipEntry entry = zf.getEntry("naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
 
-        if (reservedField && result != null)
-            result = result.replace("[:ITEM_NUM:]", field.getNaaccrItemNum().toString()).replace("[:COLUMNS:]", field.getStart() + " - " + field.getEnd());
+                if (entry != null) {
+                    Writer writer = new StringWriter();
+                    IOUtils.copy(zf.getInputStream(entry), writer, StandardCharsets.UTF_8);
+                    result = writer.toString();
+                }
+            }
+            catch (IOException e) {
+                /* do nothing, result will be null, as per specs */
+            }
+        }
 
         return result;
     }
 
-    protected String getDocFolder() {
-        return "naaccr" + getMajorNaaccrVersion();
-    }
-
     @Override
     public String getFieldDocDefaultCssStyle() {
-        // I know, the correct way to do this is to use the class hierarchy, but I don't want to repeat the CSS in all the NAACCR sub-classes...
-        String docFolder = getDocFolder();
+        String docFolder = "naaccr" + getMajorNaaccrVersion();
 
         StringBuilder buf = new StringBuilder();
         buf.append(_CSS_STYLE_SUMMARY_TABLE);

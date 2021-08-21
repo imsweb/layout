@@ -34,6 +34,7 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
  *
  *     !!!!    MAKE SURE TO AUTO-FORMAT THE ENTIRE FOLDER AFTER CREATING THE FILES    !!!!
  *     !!!!    ALSO MAKE SURE YOU RUN THE VIEWER AND CHECKER AFTER AN UPDATE          !!!!
+ *     !!!!    REMEMBER TO RE-CREATE THE ZIP FILE IN DOCS/NAACCR-DOCUMENTATION        !!!!
  *
  *     This class also creates the styles that need to be copied into the NaaccrLayout class (they rarely change).
  *

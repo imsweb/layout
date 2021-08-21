@@ -16,23 +16,21 @@ import org.junit.Test;
 
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.TestingUtils;
-import com.imsweb.layout.record.RecordLayout;
 import com.imsweb.layout.record.fixed.FixedColumnsField;
-import com.imsweb.layout.record.fixed.FixedColumnsLayout;
 
 public class Naaccr14LayoutTest {
 
     @Test
     @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
     public void testNaaccr14() throws IOException {
-        RecordLayout layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14);
+        NaaccrLayout layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14);
 
         // test layout properties
         Assert.assertEquals("naaccr-14-abstract", layout.getLayoutId());
         Assert.assertEquals("NAACCR 14 Abstract", layout.getLayoutName());
         Assert.assertEquals("140", layout.getLayoutVersion());
         Assert.assertNotNull(layout.getLayoutDescription());
-        Assert.assertEquals(22824, ((FixedColumnsLayout)layout).getLayoutLineLength().intValue());
+        Assert.assertEquals(22824, layout.getLayoutLineLength().intValue());
 
         // test fields
         Assert.assertEquals(496, layout.getAllFields().size());
@@ -48,14 +46,16 @@ public class Naaccr14LayoutTest {
         Assert.assertNull(layout.getFieldByNaaccrItemNumber(null));
         Assert.assertNull(layout.getFieldByNaaccrItemNumber(1));
         Assert.assertNull(layout.getFieldByNaaccrItemNumber(-1));
-        Assert.assertNotNull(layout.getFieldDocByName("recordType"));
-        Assert.assertNull(layout.getFieldDocByName(null));
-        Assert.assertNull(layout.getFieldDocByName(""));
-        Assert.assertNull(layout.getFieldDocByName("?"));
-        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(10));
-        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(null));
-        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(1));
-        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(-1));
+        Assert.assertNull(layout.getFieldDocByName("recordType"));
+        Assert.assertNotNull(layout.getFieldDocByName("recordType", TestingUtils.getArchivedNaaccrDoc()));
+        Assert.assertNull(layout.getFieldDocByName(null, TestingUtils.getArchivedNaaccrDoc()));
+        Assert.assertNull(layout.getFieldDocByName("", TestingUtils.getArchivedNaaccrDoc()));
+        Assert.assertNull(layout.getFieldDocByName("?", TestingUtils.getArchivedNaaccrDoc()));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(10));
+        Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(10, TestingUtils.getArchivedNaaccrDoc()));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(null, TestingUtils.getArchivedNaaccrDoc()));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(1, TestingUtils.getArchivedNaaccrDoc()));
+        Assert.assertNull(layout.getFieldDocByNaaccrItemNumber(-1, TestingUtils.getArchivedNaaccrDoc()));
         Assert.assertNotNull(layout.getFieldDocDefaultCssStyle());
 
         // test read methods
@@ -75,7 +75,7 @@ public class Naaccr14LayoutTest {
         rec.put("recordType", "I");
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
-        layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_INCIDENCE);
+        layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_INCIDENCE);
         Assert.assertEquals(3339, layout.createLineFromRecord(rec, null).length());
         layout.writeRecord(file, rec); // write into a file
         rec = layout.readAllRecords(file).get(0);
@@ -88,7 +88,7 @@ public class Naaccr14LayoutTest {
         rec.clear();
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
-        layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_MODIFIED);
+        layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_MODIFIED);
         Assert.assertEquals(22824, layout.createLineFromRecord(rec, null).length());
         FileWriter writer = new FileWriter(file);
         layout.writeRecord(writer, rec); // write into a writer
@@ -104,7 +104,7 @@ public class Naaccr14LayoutTest {
         rec.put("recordType", "C");
         rec.put("primarySite", "C400");
         rec.put("nameLast", "depry");
-        layout = (RecordLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_CONFIDENTIAL);
+        layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14_CONFIDENTIAL);
         Assert.assertEquals(5564, layout.createLineFromRecord(rec, null).length());
         FileOutputStream stream = new FileOutputStream(file);
         layout.writeRecord(stream, rec); // write into an output stream
@@ -117,7 +117,7 @@ public class Naaccr14LayoutTest {
         file.delete();
 
         //Test that all fields have a section value and that subfields have the same section as their parent field
-        List<FixedColumnsField> fields = ((FixedColumnsLayout)layout).getAllFields();
+        List<FixedColumnsField> fields = layout.getAllFields();
         for (FixedColumnsField f : fields) {
             Assert.assertNotNull(f.getSection());
             List<FixedColumnsField> subFields = f.getSubFields();
@@ -132,15 +132,15 @@ public class Naaccr14LayoutTest {
 
     @Test
     public void testNaaccr14Documentation() {
-        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14);
+        NaaccrLayout layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14);
 
         for (FixedColumnsField field : layout.getAllFields()) {
             if (field.getNaaccrItemNum() != null)
-                Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum()));
+                Assert.assertNotNull(field.getName(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum(), TestingUtils.getArchivedNaaccrDoc()));
             if (field.getSubFields() != null) {
                 for (FixedColumnsField f : field.getSubFields()) {
                     if (f.getNaaccrItemNum() != null)
-                        Assert.assertNotNull(f.getName(), layout.getFieldDocByNaaccrItemNumber(f.getNaaccrItemNum()));
+                        Assert.assertNotNull(f.getName(), layout.getFieldDocByNaaccrItemNumber(f.getNaaccrItemNum(), TestingUtils.getArchivedNaaccrDoc()));
                 }
             }
         }
@@ -148,7 +148,7 @@ public class Naaccr14LayoutTest {
 
     @Test
     public void testNaaccr14Dates() {
-        FixedColumnsLayout layout = (FixedColumnsLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14);
+        NaaccrLayout layout = (NaaccrLayout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14);
 
         for (FixedColumnsField field : layout.getAllFields()) {
             if (field.getEnd() - field.getStart() + 1 == 8 && field.getName().toLowerCase().contains("date")) {

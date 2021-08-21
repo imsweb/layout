@@ -17,4 +17,8 @@ public class TestingUtils {
             throw new RuntimeException("Unable to create build directory!");
         return dir;
     }
+
+    public static File getArchivedNaaccrDoc() {
+        return new File(TestingUtils.getWorkingDirectory() + "\\docs\\naaccr-documentation");
+    }
 }

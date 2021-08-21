@@ -1,0 +1,9 @@
+.naaccr-summary-table { width: 100%; }
+.naaccr-summary-header { text-align: center; padding: 2px; background-color: #E0E0E0; }
+.naaccr-summary-cell { vertical-align:top; padding: 2px; }
+.naaccr-summary-centered { text-align: center; }
+.naaccr-borders { border: 1px solid gray; border-collapse: collapse; }
+.naaccr-underline { text-decoration:underline; }
+.naaccr-codes-cell { text-align: left; vertical-align:top; padding: 2px; padding-left: 5px; padding-right: 5px }
+.naaccr-codes-padding { padding-right: 40px; }
+.naaccr-codes-nowrap { white-space: nowrap; }
