@@ -338,8 +338,6 @@ public class NaaccrXmlLayout implements Layout {
         }
     }
 
-    //Getters/Setters
-
     @Override
     public String getLayoutId() {
         return _layoutId;
@@ -456,9 +454,6 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     protected String getDocFolder() {
-        // there is always a delay before the documentation is released on the NAACCR website, use N21 doc for N22 until the new ones is available...
-        if ("220".equals(_naaccrVersion))
-            return "naaccr21";
         return "naaccr" + _naaccrVersion.substring(0, 2);
     }
 
@@ -488,8 +483,6 @@ public class NaaccrXmlLayout implements Layout {
     public void setUserDictionaries(List<NaaccrDictionary> dictionaries) {
         _userDictionaries = dictionaries;
     }
-
-    //Writers and readers
 
     /**
      * Writes a single patient using a provided writer. Does not open or close the writer.

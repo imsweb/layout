@@ -42,27 +42,30 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
  *     2019/07/26 FD - I added support for "retired fields"; those will use their NAACCR number in the HTML
  *                     filename since there is no legit field name for them.  They can only be returned by
  *                     the "getFieldDocByNaaccrItemNumber" method.
+ *
  *     2020/10/11 FD - cleaned by hand ajccApiVersionCurrent and ajccApiVersionOriginal (complete mess);
  *                     also cleaned up ncdbSarsCov2Pos (complete mess as well);
  *                     also tweaked seerCodingSysCurrent and seerCodingSysOriginal (bad "i" tag)
+ *
+ *     2021/08/21 FD - I didn't have to fix anything this round!
  *********************************************************************************************************/
 @SuppressWarnings({"MismatchedQueryAndUpdateOfStringBuilder", "ConstantConditions"})
 public class NaaccrDocScraper {
 
     public static void main(String[] args) throws Exception {
         // output directory
-        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr21");
+        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr22");
 
         // the dictionary to use to gather the fields
         NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(NaaccrFormat.NAACCR_VERSION_210);
 
         // this is the URL to read the full HTML page from
         //URL url = new URL("http://datadictionary.naaccr.org/?c=10");
-        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-21.html");
+        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-22.html");
 
         // this is the URL to read the style sheet from
         //URL styleSheetUrl = new URL("http://datadictionary.naaccr.org/Styles/ContentReader.css");
-        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-21-style.css");
+        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-22-style.css");
 
         // create the stylesheet
         StringBuilder styleBuf = new StringBuilder();
