@@ -49,6 +49,10 @@ import com.imsweb.layout.Field;
 import com.imsweb.layout.Layout;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.TestingUtils;
+import com.imsweb.layout.naaccrxml.NaaccrXmlField;
+import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
+import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 import com.imsweb.seerutils.SeerUtils;
 import com.imsweb.seerutilsgui.SeerBoldTitlesTabbedPane;
 import com.imsweb.seerutilsgui.SeerBoldTitlesTabbedPanePage;
@@ -59,16 +63,17 @@ import com.imsweb.seerutilsgui.editor.SyntaxKit;
 @SuppressWarnings({"ConstantConditions", "FieldCanBeLocal", "SameParameterValue"})
 public class NaaccrDocViewer extends JFrame {
 
-    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr21");
+    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr22");
 
     private static final List<Layout> _LAYOUTS = new ArrayList<>();
 
     static {
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_22));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_21));
-        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_18));
-        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16));
-        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_15));
-        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_14));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_18));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_16));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_15));
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_14));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_13));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_12));
     }
@@ -92,6 +97,12 @@ public class NaaccrDocViewer extends JFrame {
                 field = layout.getFieldByNaaccrItemNumber(Integer.valueOf(name));
             else
                 field = layout.getFieldByName(name);
+            if (field == null && layout.getLayoutVersion().compareTo("140") >= 0) {
+                NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(layout.getLayoutVersion());
+                NaaccrDictionaryItem item = NumberUtils.isDigits(name) ? dictionary.getGroupedItemByNaaccrNum(Integer.valueOf(name)) : dictionary.getGroupedItemByNaaccrId(name);
+                if (item != null)
+                    field = new NaaccrXmlField(item);
+            }
             if (field != null)
                 return field;
         }
@@ -124,7 +135,7 @@ public class NaaccrDocViewer extends JFrame {
                     names.add(label);
                 }
                 else if (retired) {
-                    String label = "[RETIRED] No Name Available (#" + filenameNotExtension + ")";
+                    String label = "[RETIRED] _ No Name Available (#" + filenameNotExtension + ")";
                     labelMappings.put(label, filenameNotExtension);
                     names.add(label);
                 }

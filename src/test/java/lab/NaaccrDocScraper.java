@@ -58,7 +58,7 @@ public class NaaccrDocScraper {
         File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr22");
 
         // the dictionary to use to gather the fields
-        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(NaaccrFormat.NAACCR_VERSION_210);
+        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(NaaccrFormat.NAACCR_VERSION_220);
 
         // this is the URL to read the full HTML page from
         //URL url = new URL("http://datadictionary.naaccr.org/?c=10");
@@ -82,6 +82,9 @@ public class NaaccrDocScraper {
 
         // read the page
         String fullContent = new Scanner(url.openStream(), StandardCharsets.UTF_8.name()).useDelimiter("\\A").next();
+
+        // remove any HTML instructions, we don't support those
+        fullContent = Pattern.compile("<!--\\[if.+?<!\\[endif]-->", Pattern.MULTILINE | Pattern.DOTALL).matcher(fullContent).replaceAll("");
 
         // split by anchors (every item section starts with an anchor with its NAACCR number)
         Map<String, String> items = new HashMap<>();
@@ -121,9 +124,6 @@ public class NaaccrDocScraper {
                     case "180":
                         html = html.replace("SEER < 1988", "SEER &lt; 1988");
                         break;
-                    case "2130":
-                        html = html.replace("<i>2011 SEER Coding Manual", "<i>2011 SEER Coding Manual</i>");
-                        break;
                     case "2085":
                         html = html.replace("<span style=\"font-family:Symbol;\">&#183;<span style=\"Times New Roman&quot;\">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></span>", "");
                         break;
@@ -147,7 +147,14 @@ public class NaaccrDocScraper {
                         html = html.replace("< 100", "&lt; 100").replace("< 50", "&lt; 50");
                         break;
                     case "2156":
-                        html = html.replace("<span style=\"background-color: #ffffff;\">of</span><span style=\"background-color: #ffffff;\"> 08.XX.XX</span><span style=\"background-color: #ffffff;\"> d</span>uring", "of 08.XX.XX during");
+                        html = html.replace(
+                                "<span style=\"background-color: #ffffff;\">of</span><span style=\"background-color: #ffffff;\"> 08.XX.XX</span><span style=\"background-color: #ffffff;\"> d</span>uring",
+                                "of 08.XX.XX during");
+                        break;
+                    case "2120":
+                    case "2130":
+                        html = html.replace("</>", "</i>");
+                        break;
                     default:
                         // ignored, nothing to do
                 }
