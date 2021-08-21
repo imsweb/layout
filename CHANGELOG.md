@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 4.3**
+
+- Added NAACCR 22 documentation.
+- Removed start/end column from NAACCR 21 documentation.
+
 **Changes in version 4.2**
 
 - Added new option for comma-separated layouts to force quoting all written values.
