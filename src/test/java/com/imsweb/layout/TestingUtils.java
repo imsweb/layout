@@ -19,6 +19,6 @@ public class TestingUtils {
     }
 
     public static File getArchivedNaaccrDoc() {
-        return new File(TestingUtils.getWorkingDirectory() + File.pathSeparator + "docs" + File.pathSeparator + "naaccr-documentation");
+        return new File(TestingUtils.getWorkingDirectory() + File.separator + "docs" + File.separator + "naaccr-documentation");
     }
 }
