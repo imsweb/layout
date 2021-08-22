@@ -2,6 +2,7 @@
 
 **Changes in version 4.3**
 
+- Moved NAACCR 12 to 18 documentation out of the library; they can still be used externally.
 - Added NAACCR 22 documentation.
 - Removed start/end column from NAACCR 21 documentation.
 
