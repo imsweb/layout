@@ -8,7 +8,7 @@ import java.io.File;
 public class TestingUtils {
 
     public static String getWorkingDirectory() {
-        return System.getProperty("user.dir").replace(".idea\\modules", ""); // this will make it work in IntelliJ and outside of it...
+        return System.getProperty("user.dir");
     }
 
     public static File getBuildDirectory() {
@@ -19,6 +19,6 @@ public class TestingUtils {
     }
 
     public static File getArchivedNaaccrDoc() {
-        return new File(TestingUtils.getWorkingDirectory() + "\\docs\\naaccr-documentation");
+        return new File(TestingUtils.getWorkingDirectory() + File.pathSeparator + "docs" + File.pathSeparator + "naaccr-documentation");
     }
 }
