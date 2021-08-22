@@ -36,6 +36,14 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 public class NaaccrXmlLayoutTest {
 
     @Test
+    public void testDummy() {
+        System.out.println(TestingUtils.getArchivedNaaccrDoc().getPath());
+        System.out.println(TestingUtils.getArchivedNaaccrDoc().exists());
+        System.out.println(TestingUtils.getWorkingDirectory());
+        System.out.println(new File(TestingUtils.getWorkingDirectory()).exists());
+    }
+
+    @Test
     public void testStandardNaaccrXmlLayout() {
         for (String version : NaaccrFormat.getSupportedVersions())
             assertStandardNaaccrXmlLayout("naaccr-xml-" + version.substring(0, 2));
