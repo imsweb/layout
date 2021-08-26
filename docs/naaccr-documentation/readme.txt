@@ -7,5 +7,5 @@ And so I decided to "archive" the documentation files and use those externally i
 contains the documentation for the last 2 versions. To be consistent, I added all the versions to the archive folder.
 
 To use the documentation externally, ZIP up the "naaccrXX" documentation folder you want (or all of them) and pass
-the ZIP file as an argument to the layout methods that get the documentation for a given field. Those method work
-with either a ZIP file or an exploded directory.
+the ZIP file as an argument to the layout methods that get the documentation for a given field. Those methods work
+with either an external ZIP file, an external exploded directory or a provided ZIP stream.

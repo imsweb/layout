@@ -29,6 +29,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -406,23 +407,31 @@ public class NaaccrXmlLayout implements Layout {
 
     @Override
     public String getFieldDocByName(String name) {
-        return getFieldDocByName(name, null);
+        return getFieldDocByNameOrNumber(name, null, null, null);
     }
 
     public String getFieldDocByName(String name, File archivedDocFile) {
-        return getFieldDocByNameOrNumber(name, null, archivedDocFile);
+        return getFieldDocByNameOrNumber(name, null, archivedDocFile, null);
+    }
+
+    public String getFieldDocByName(String name, ZipInputStream archivedDocStream) {
+        return getFieldDocByNameOrNumber(name, null, null, archivedDocStream);
     }
 
     @Override
     public String getFieldDocByNaaccrItemNumber(Integer num) {
-        return getFieldDocByNaaccrItemNumber(num, null);
+        return getFieldDocByNameOrNumber(null, num, null, null);
     }
 
     public String getFieldDocByNaaccrItemNumber(Integer num, File archivedDocFile) {
-        return getFieldDocByNameOrNumber(null, num, archivedDocFile);
+        return getFieldDocByNameOrNumber(null, num, archivedDocFile, null);
     }
 
-    protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile) {
+    public String getFieldDocByNaaccrItemNumber(Integer num, ZipInputStream archivedDocStream) {
+        return getFieldDocByNameOrNumber(null, num, null, archivedDocStream);
+    }
+
+    protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile, ZipInputStream archivedDocStream) {
         NaaccrXmlField field = name != null ? getFieldByName(name) : getFieldByNaaccrItemNumber(number);
 
         String filename = null;
@@ -473,6 +482,23 @@ public class NaaccrXmlLayout implements Layout {
                 catch (IOException e) {
                     /* do nothing, result will be null, as per specs */
                 }
+            }
+        }
+        else if (archivedDocStream != null) {
+            String entryName = getDocFolder() + "/" + filename + ".html";
+            try {
+                ZipEntry entry = archivedDocStream.getNextEntry();
+                while (entry != null && !entryName.equals(entry.getName()))
+                    entry = archivedDocStream.getNextEntry();
+
+                if (entry != null) {
+                    Writer writer = new StringWriter();
+                    IOUtils.copy(archivedDocStream, writer, StandardCharsets.UTF_8);
+                    result = writer.toString();
+                }
+            }
+            catch (IOException e) {
+                /* do nothing, result will be null, as per specs */
             }
         }
 

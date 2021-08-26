@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.IOUtils;
 
@@ -472,24 +473,33 @@ public class NaaccrLayout extends FixedColumnsLayout {
 
     @Override
     public String getFieldDocByNaaccrItemNumber(Integer num) {
-        return getFieldDocByNaaccrItemNumber(num, null);
+        return getFieldDocByNameOrNumber(null, num, null, null);
     }
 
     public String getFieldDocByNaaccrItemNumber(Integer num, File archivedDocFile) {
         Field field = getFieldByNaaccrItemNumber(num); // getting the field will ensure that we try to use the name for a legit (non-retired) field first
-        return getFieldDocByNameOrNumber(field != null ? field.getName() : null, num, archivedDocFile);
+        return getFieldDocByNameOrNumber(field != null ? field.getName() : null, num, archivedDocFile, null);
+    }
+
+    public String getFieldDocByNaaccrItemNumber(Integer num, ZipInputStream archivedDocStream) {
+        Field field = getFieldByNaaccrItemNumber(num); // getting the field will ensure that we try to use the name for a legit (non-retired) field first
+        return getFieldDocByNameOrNumber(field != null ? field.getName() : null, num, null, archivedDocStream);
     }
 
     @Override
     public String getFieldDocByName(String name) {
-        return getFieldDocByName(name, null);
+        return getFieldDocByNameOrNumber(name, null, null, null);
     }
 
     public String getFieldDocByName(String name, File archivedDocFile) {
-        return getFieldDocByNameOrNumber(name, null, archivedDocFile);
+        return getFieldDocByNameOrNumber(name, null, archivedDocFile, null);
     }
 
-    protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile) {
+    public String getFieldDocByName(String name, ZipInputStream archivedDocStream) {
+        return getFieldDocByNameOrNumber(name, null, null, archivedDocStream);
+    }
+
+    protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile, ZipInputStream archivedDocStream) {
 
         // since fixed-columns NAACCR format has been retired, the only way to access the documentation is via an archived file...
         if (archivedDocFile == null || !archivedDocFile.exists())
@@ -514,26 +524,45 @@ public class NaaccrLayout extends FixedColumnsLayout {
             return null;
 
         String result = null;
-        if (archivedDocFile.isDirectory()) {
-            File targetFile = new File(archivedDocFile, "naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
-            if (targetFile.exists()) {
-                try (InputStream is = new FileInputStream(targetFile)) {
-                    Writer writer = new StringWriter();
-                    IOUtils.copy(is, writer, StandardCharsets.UTF_8);
-                    result = writer.toString();
+        if (archivedDocFile != null && archivedDocFile.exists()) {
+            if (archivedDocFile.isDirectory()) {
+                File targetFile = new File(archivedDocFile, "naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
+                if (targetFile.exists()) {
+                    try (InputStream is = new FileInputStream(targetFile)) {
+                        Writer writer = new StringWriter();
+                        IOUtils.copy(is, writer, StandardCharsets.UTF_8);
+                        result = writer.toString();
+                    }
+                    catch (IOException e) {
+                        /* do nothing, result will be null, as per specs */
+                    }
+                }
+            }
+            else {
+                try (ZipFile zf = new ZipFile(archivedDocFile)) {
+                    ZipEntry entry = zf.getEntry("naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
+
+                    if (entry != null) {
+                        Writer writer = new StringWriter();
+                        IOUtils.copy(zf.getInputStream(entry), writer, StandardCharsets.UTF_8);
+                        result = writer.toString();
+                    }
                 }
                 catch (IOException e) {
                     /* do nothing, result will be null, as per specs */
                 }
             }
         }
-        else {
-            try (ZipFile zf = new ZipFile(archivedDocFile)) {
-                ZipEntry entry = zf.getEntry("naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
+        else if (archivedDocStream != null) {
+            String entryName = "naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html";
+            try {
+                ZipEntry entry = archivedDocStream.getNextEntry();
+                while (entry != null && !entryName.equals(entry.getName()))
+                    entry = archivedDocStream.getNextEntry();
 
                 if (entry != null) {
                     Writer writer = new StringWriter();
-                    IOUtils.copy(zf.getInputStream(entry), writer, StandardCharsets.UTF_8);
+                    IOUtils.copy(archivedDocStream, writer, StandardCharsets.UTF_8);
                     result = writer.toString();
                 }
             }

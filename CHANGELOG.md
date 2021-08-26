@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 4.4**
+
+- Added support for getting old (archived) documentation using a ZipInputStream.
+
 **Changes in version 4.3**
 
 - Moved NAACCR 12 to 18 documentation out of the library; they can still be used externally.
