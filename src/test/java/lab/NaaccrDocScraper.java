@@ -48,7 +48,9 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
  *                     also cleaned up ncdbSarsCov2Pos (complete mess as well);
  *                     also tweaked seerCodingSysCurrent and seerCodingSysOriginal (bad "i" tag)
  *
- *     2021/08/21 FD - I didn't have to fix anything this round!
+ *     2021/08/21 FD - there were still the same issues, but I added rules to fix all of them, no manual fixes
+ *                     for this round!
+ *
  *********************************************************************************************************/
 @SuppressWarnings({"MismatchedQueryAndUpdateOfStringBuilder", "ConstantConditions"})
 public class NaaccrDocScraper {
