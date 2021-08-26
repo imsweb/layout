@@ -500,11 +500,6 @@ public class NaaccrLayout extends FixedColumnsLayout {
     }
 
     protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile, ZipInputStream archivedDocStream) {
-
-        // since fixed-columns NAACCR format has been retired, the only way to access the documentation is via an archived file...
-        if (archivedDocFile == null || !archivedDocFile.exists())
-            return null;
-
         FixedColumnsField field = getFieldByName(name);
 
         String filename;
