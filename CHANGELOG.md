@@ -2,6 +2,7 @@
 
 **Changes in version 4.4**
 
+- Updated NAACCR 22 documentation.
 - Added support for getting old (archived) documentation using a ZipInputStream.
 
 **Changes in version 4.3**
