@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 4.5**
+
+- Updated NAACCR XML library from version 8.1 to version 8.2.
+- Updated XStream dependency from version 1.4.17 to version 1.4.18.
+
 **Changes in version 4.4**
 
 - Updated NAACCR 22 documentation.
