@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 4.6**
+
+- Updated NAACCR XML library from version 8.2 to version 8.3.
+
 **Changes in version 4.5**
 
 - Updated NAACCR XML library from version 8.1 to version 8.2.
