@@ -5,6 +5,7 @@ package lab;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.zip.GZIPInputStream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -64,7 +66,7 @@ public class NaaccrDocScraper {
 
         // this is the URL to read the full HTML page from
         //URL url = new URL("http://datadictionary.naaccr.org/?c=10");
-        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-22.html");
+        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-22.html.gz");
 
         // this is the URL to read the style sheet from
         //URL styleSheetUrl = new URL("http://datadictionary.naaccr.org/Styles/ContentReader.css");
@@ -83,7 +85,10 @@ public class NaaccrDocScraper {
         //System.out.println(styleBuf);
 
         // read the page
-        String fullContent = new Scanner(url.openStream(), StandardCharsets.UTF_8.name()).useDelimiter("\\A").next();
+        String fullContent;
+        try (InputStream is = new GZIPInputStream(url.openStream())) {
+            fullContent = new Scanner(is, StandardCharsets.UTF_8.name()).useDelimiter("\\A").next();
+        }
 
         // remove any HTML instructions, we don't support those
         fullContent = Pattern.compile("<!--\\[if.+?<!\\[endif]-->", Pattern.MULTILINE | Pattern.DOTALL).matcher(fullContent).replaceAll("");
@@ -231,7 +236,7 @@ public class NaaccrDocScraper {
 
         // split by rows
         Matcher rowMatcher = Pattern.compile("<tr( class=\".+?\")?>(.+?)</tr>", Pattern.MULTILINE | Pattern.DOTALL).matcher(txt);
-        int rowStart = 0, rowIdx = 0, colIdx = 0, colIdxToIgnore = -1;
+        int rowStart = 0, rowIdx = 0, colIdx, colIdxToIgnore = -1;
         while (rowMatcher.find(rowStart)) {
             if (rowStart != 0) { // we ignore the first row which is the field name
                 String row = rowMatcher.group(2);
