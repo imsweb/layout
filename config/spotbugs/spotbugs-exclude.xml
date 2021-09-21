@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FindBugsFilter>
-<Match>
-  <Class name="com.imsweb.layout.LayoutUtils"/>
-  <Bug code="OS,RCN"/>
-</Match>
-<Match>
-  <Bug code="Dm"/>
-</Match>
-<Match>
-  <Class name="~.*\.*Test"/>
-</Match>
-<Match>
-  <Package name="lab"/>
-</Match>
+    <Match>
+        <Class name="com.imsweb.layout.LayoutUtils"/>
+        <Bug code="OS,RCN"/>
+    </Match>
+    <Match>
+        <Bug code="Dm"/>
+    </Match>
+    <Match>
+        <Class name="~.*\.*Test"/>
+    </Match>
+    <Match>
+        <Package name="lab"/>
+    </Match>
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/>
+    </Match>
 </FindBugsFilter>
