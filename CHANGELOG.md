@@ -5,6 +5,7 @@
 - Updated NAACCR 22 documentation.
 - Changed name of all NAACCR fixed-column layouts to include 'Flat'.
 - Updated NAACCR XML library from version 8.3 to version 8.5.
+- Updated CSV library from version 5.5.1 to version 5.5.2.
 
 **Changes in version 4.6**
 

@@ -30,11 +30,11 @@ dependencies {
     api 'com.imsweb:naaccr-xml:8.5'
 
     implementation 'commons-io:commons-io:2.11.0'
-    implementation 'com.opencsv:opencsv:5.5.1'
+    implementation 'com.opencsv:opencsv:5.5.2'
     implementation 'com.thoughtworks.xstream:xstream:1.4.18'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'com.imsweb:seerutils-gui:1.18'
+    testImplementation 'com.imsweb:seerutils-gui:1.19'
     testImplementation 'com.imsweb:seerutils:5.6'
     testImplementation 'org.xhtmlrenderer:flying-saucer-core:9.1.22'
 }
