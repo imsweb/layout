@@ -29,7 +29,7 @@ public class Naaccr15LayoutTest {
 
         // test layout properties
         Assert.assertEquals("naaccr-15-abstract", layout.getLayoutId());
-        Assert.assertEquals("NAACCR 15 Abstract", layout.getLayoutName());
+        Assert.assertEquals("NAACCR Flat 15 Abstract", layout.getLayoutName());
         Assert.assertEquals("150", layout.getLayoutVersion());
         Assert.assertNotNull(layout.getLayoutDescription());
         Assert.assertEquals(22824, layout.getLayoutLineLength().intValue());

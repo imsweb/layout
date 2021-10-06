@@ -271,13 +271,13 @@ public class LayoutFactoryTest {
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(5564, "C", "122"), options).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(3339, "I", "123"), options).isEmpty());
         LayoutInfo info = LayoutFactory.discoverFormat(createNaaccrLine(22824, null, null), options).get(0); // test the actual values
-        Assert.assertEquals("NAACCR 16 Abstract", info.getLayoutName());
+        Assert.assertEquals("NAACCR Flat 16 Abstract", info.getLayoutName());
         Assert.assertEquals(22824, info.getLineLength().intValue());
-        Assert.assertEquals("NAACCR 16 Abstract [22,824 char]", info.toString());
+        Assert.assertEquals("NAACCR Flat 16 Abstract [22,824 char]", info.toString());
         info = LayoutFactory.discoverFormat(createNaaccrLine(24194, null, null), options).get(0);
-        Assert.assertEquals("NAACCR 18 Abstract", info.getLayoutName());
+        Assert.assertEquals("NAACCR Flat 18 Abstract", info.getLayoutName());
         Assert.assertEquals(24194, info.getLineLength().intValue());
-        Assert.assertEquals("NAACCR 18 Abstract [24,194 char]", info.toString());
+        Assert.assertEquals("NAACCR Flat 18 Abstract [24,194 char]", info.toString());
 
         // bad line numbers (info is still returned but it will contain an error)
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(25, "A", "120")).isEmpty());
@@ -312,10 +312,10 @@ public class LayoutFactoryTest {
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(5564, null, null)).isEmpty());
         Assert.assertFalse(LayoutFactory.discoverFormat(createNaaccrLine(3339, null, null)).isEmpty());
         info = LayoutFactory.discoverFormat(createNaaccrLine(22824, null, null)).get(0); // make sure it defaults to an abstract
-        Assert.assertEquals("NAACCR 16 Abstract", info.getLayoutName());
+        Assert.assertEquals("NAACCR Flat 16 Abstract", info.getLayoutName());
         Assert.assertEquals(22824, info.getLineLength().intValue());
         info = LayoutFactory.discoverFormat(createNaaccrLine(24194, null, null)).get(0); // make sure it defaults to an abstract
-        Assert.assertEquals("NAACCR 18 Abstract", info.getLayoutName());
+        Assert.assertEquals("NAACCR Flat 18 Abstract", info.getLayoutName());
         Assert.assertEquals(24194, info.getLineLength().intValue());
 
         // if we enforced the strict format, the line length won't be used anymore
