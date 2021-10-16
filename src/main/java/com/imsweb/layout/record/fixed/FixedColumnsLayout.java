@@ -350,8 +350,14 @@ public class FixedColumnsLayout extends RecordLayout {
                         if (value == null)
                             value = child.getDefaultValue() != null ? child.getDefaultValue() : "";
                         int length = subEnd - subStart + 1;
-                        if (value.length() > length)
-                            throw new IOException("value too long for field '" + child.getName() + "'");
+                        if (value.length() > length) {
+                            if (options != null && RecordLayoutOptions.VAL_TOO_LONG_NULLIFY.equals(options.getValueTooLongHandling()))
+                                value = "";
+                            else if (options != null && RecordLayoutOptions.VAL_TOO_LONG_CUTOFF.equals(options.getValueTooLongHandling()))
+                                value = value.substring(0, length);
+                            else
+                                throw new IOException("value too long for field '" + field.getName() + "'");
+                        }
                         String paddingChar = !value.isEmpty() && applyPadding(options) ? child.getPadChar() : " ";
                         if (applyAlignment(options) && child.getAlign() == FieldAlignment.RIGHT)
                             value = LayoutUtils.pad(value, length, paddingChar, true);
