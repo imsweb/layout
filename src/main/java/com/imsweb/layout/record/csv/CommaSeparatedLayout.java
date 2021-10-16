@@ -349,24 +349,29 @@ public class CommaSeparatedLayout extends RecordLayout {
         }
 
         // parse the line
-        String[] values = new CSVParserBuilder().withSeparator(_separator).build().parseLine(line);
+        try {
+            String[] values = new CSVParserBuilder().withSeparator(_separator).build().parseLine(line);
 
-        for (CommaSeparatedField field : _fields) {
-            int index = field.getIndex() - 1;
+            for (CommaSeparatedField field : _fields) {
+                int index = field.getIndex() - 1;
 
-            if (index >= values.length)
-                break;
+                if (index >= values.length)
+                    break;
 
-            String value = values[index];
-            String trimmedValue = value.trim();
-            if (trimValues(options) && field.getTrim())
-                value = trimmedValue;
+                String value = values[index];
+                String trimmedValue = value.trim();
+                if (trimValues(options) && field.getTrim())
+                    value = trimmedValue;
 
-            if (!value.isEmpty())
-                result.put(field.getName(), value);
+                if (!value.isEmpty())
+                    result.put(field.getName(), value);
+            }
+
+            return result;
         }
-
-        return result;
+        catch (IOException e) {
+            throw new IOException("Line " + (lineNumber == null ? "?" : lineNumber) + ": " + e.getMessage());
+        }
     }
 
     @Override

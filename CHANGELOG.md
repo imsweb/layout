@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 4.8 (not released)**
+
+- Improved error message when reading unbalanced quoted values in CSV files.
+
 **Changes in version 4.7**
 
 - Updated NAACCR 22 documentation.
