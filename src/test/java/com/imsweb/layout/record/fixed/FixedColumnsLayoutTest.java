@@ -282,16 +282,22 @@ public class FixedColumnsLayoutTest {
             exception = true;
         }
         Assert.assertFalse(exception);
+        rec.clear();
+        rec.put("field1", "xxxx"); // field too long
+        options.setValueTooLongHandling(RecordLayoutOptions.VAL_TOO_LONG_NULLIFY);
+        Assert.assertEquals("X               ", layout.createLineFromRecord(rec, options));
+        options.setValueTooLongHandling(RecordLayoutOptions.VAL_TOO_LONG_CUTOFF);
+        Assert.assertEquals("Xxxx            ", layout.createLineFromRecord(rec, options));
+        options.setValueTooLongHandling(RecordLayoutOptions.VAL_TOO_LONG_EXCEPTION);
         exception = false;
         try {
-            rec.put("field1", "xxxx"); // field too long
             layout.createLineFromRecord(rec, options);
-            rec.put("field1", null);
         }
         catch (IOException e) {
             exception = true;
         }
         Assert.assertTrue(exception);
+        rec.put("field1", null);
         exception = false;
         try {
             rec.put("field4a", "XX"); // child field too long

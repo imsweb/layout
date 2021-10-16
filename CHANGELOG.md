@@ -2,6 +2,7 @@
 
 **Changes in version 4.8 (not released)**
 
+- Added new option to better deal with values too long when writing fixed-columns.
 - Improved error message when reading unbalanced quoted values in CSV files.
 
 **Changes in version 4.7**

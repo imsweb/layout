@@ -13,6 +13,11 @@ public class RecordLayoutOptions {
     public static final String NEW_LINE_LF = "\n";
     public static final String NEW_LINE_CRLF = "\r\n";
 
+    // the different options for dealing with values too long
+    public static final String VAL_TOO_LONG_EXCEPTION = "exception";
+    public static final String VAL_TOO_LONG_NULLIFY = "nullify";
+    public static final String VAL_TOO_LONG_CUTOFF = "cutoff";
+
     // when reading values, do we need to trim them (defaults to true)
     protected boolean _trimValues;
 
@@ -34,6 +39,9 @@ public class RecordLayoutOptions {
     // when writing records, do we need to force every value to be quoted; applicable to CSV layouts only (defaults to false meaning we quote when needed)
     protected boolean _quoteAllValues;
 
+    // when writing flat records, how to deal with a value too long (defaults to throwing an exception)
+    protected String _valueTooLongHandling;
+
     /**
      * Default Constructor.
      */
@@ -45,6 +53,7 @@ public class RecordLayoutOptions {
         _lineSeparator = NEW_LINE_OS;
         _encoding = StandardCharsets.UTF_8;
         _quoteAllValues = false;
+        _valueTooLongHandling = VAL_TOO_LONG_EXCEPTION;
     }
 
     public boolean trimValues() {
@@ -103,5 +112,13 @@ public class RecordLayoutOptions {
 
     public void setQuoteAllValues(boolean quoteAllValues) {
         _quoteAllValues = quoteAllValues;
+    }
+
+    public String getValueTooLongHandling() {
+        return _valueTooLongHandling;
+    }
+
+    public void setValueTooLongHandling(String valueTooLongHandling) {
+        _valueTooLongHandling = valueTooLongHandling;
     }
 }
