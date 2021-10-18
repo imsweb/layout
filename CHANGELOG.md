@@ -4,6 +4,7 @@
 
 - Added new option to better deal with values too long when writing fixed-columns.
 - Improved error message when reading unbalanced quoted values in CSV files.
+- Updated NAACCR XML library from version 8.5 to version 8.6.
 
 **Changes in version 4.7**
 
