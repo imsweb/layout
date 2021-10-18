@@ -1,6 +1,6 @@
 ## Layout Framework Version History
 
-**Changes in version 4.8 (not released)**
+**Changes in version 4.8**
 
 - Added new option to better deal with values too long when writing fixed-columns.
 - Improved error message when reading unbalanced quoted values in CSV files.
