@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 4.9 (not released yet)**
+
+- Updated NAACCR 22 documentation.
+
 **Changes in version 4.8**
 
 - Added new option to better deal with values too long when writing fixed-columns.
