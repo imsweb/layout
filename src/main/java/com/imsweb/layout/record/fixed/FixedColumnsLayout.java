@@ -213,15 +213,15 @@ public class FixedColumnsLayout extends RecordLayout {
         // update name cache
         _cachedByName.put(field.getName(), field);
         if (field.getSubFields() != null)
-            for (Field f : field.getSubFields())
-                _cachedByName.put(f.getName(), (FixedColumnsField)f);
+            for (FixedColumnsField f : field.getSubFields())
+                _cachedByName.put(f.getName(), f);
         // update NAACCR cache
         if (field.getNaaccrItemNum() != null)
             _cachedByNaaccrItemNumber.put(field.getNaaccrItemNum(), field);
         if (field.getSubFields() != null)
-            for (Field f : field.getSubFields())
+            for (FixedColumnsField f : field.getSubFields())
                 if (f.getNaaccrItemNum() != null)
-                    _cachedByNaaccrItemNumber.put(f.getNaaccrItemNum(), (FixedColumnsField)f);
+                    _cachedByNaaccrItemNumber.put(f.getNaaccrItemNum(), f);
     }
 
     public void setFields(Collection<FixedColumnsField> fields) {
@@ -335,9 +335,9 @@ public class FixedColumnsLayout extends RecordLayout {
 
             // get value; if the field defines subfields, always use the subfields (#162)
             if (field.getSubFields() != null && !field.getSubFields().isEmpty()) {
-                for (Field child : field.getSubFields()) {
-                    int subStart = ((FixedColumnsField)child).getStart();
-                    int subEnd = ((FixedColumnsField)child).getEnd();
+                for (FixedColumnsField child : field.getSubFields()) {
+                    int subStart = child.getStart();
+                    int subEnd = child.getEnd();
 
                     // adjust for the "leading" gap within the subfields
                     if (subStart > currentIndex)
@@ -418,7 +418,7 @@ public class FixedColumnsLayout extends RecordLayout {
     }
 
     @Override
-    @SuppressWarnings("RedundantStringConstructorCall")
+    @SuppressWarnings("StringOperationCanBeSimplified")
     public Map<String, String> createRecordFromLine(String line, Integer lineNumber, RecordLayoutOptions options) throws IOException {
         Map<String, String> result = new HashMap<>();
 
@@ -465,9 +465,9 @@ public class FixedColumnsLayout extends RecordLayout {
 
                 // handle children fields if any
                 if (field.getSubFields() != null) {
-                    for (Field child : field.getSubFields()) {
-                        start = ((FixedColumnsField)child).getStart();
-                        end = ((FixedColumnsField)child).getEnd();
+                    for (FixedColumnsField child : field.getSubFields()) {
+                        start = child.getStart();
+                        end = child.getEnd();
 
                         value = new String(line.substring(start - 1, end));
                         if (trimValues(options) && child.getTrim())
