@@ -26,11 +26,11 @@ repositories {
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:8.6'
+    api 'com.imsweb:naaccr-xml:8.10'
 
     implementation 'commons-io:commons-io:2.11.0'
-    implementation 'com.opencsv:opencsv:5.5.2'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.18'
+    implementation 'com.opencsv:opencsv:5.6'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.19'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'com.imsweb:seerutils-gui:1.19'
