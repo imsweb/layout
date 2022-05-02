@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 4.10 (not released yet)**
+
+- Updated upper limit for HL7 element index to 9999 instead from 999.
+
 **Changes in version 4.9**
 
 - Updated NAACCR 22 documentation.

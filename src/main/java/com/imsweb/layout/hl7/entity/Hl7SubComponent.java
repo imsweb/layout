@@ -23,8 +23,8 @@ public class Hl7SubComponent {
     public Hl7SubComponent(Hl7Component component, Integer index, String value) {
         if (index == null)
             throw new RuntimeException("Index is required");
-        if (index < 1 || index > 999)
-            throw new RuntimeException("Index must be between 1 and 999");
+        if (index < 1 || index > 9999)
+            throw new RuntimeException("Index must be between 1 and 9999");
         _component = component;
         _index = index;
         _value = value;
@@ -50,8 +50,8 @@ public class Hl7SubComponent {
     public void setIndex(Integer index) {
         if (index == null)
             throw new RuntimeException("Index is required");
-        if (index < 1 || index > 999)
-            throw new RuntimeException("Index must be between 1 and 999");
+        if (index < 1 || index > 9999)
+            throw new RuntimeException("Index must be between 1 and 9999");
         _index = index;
     }
 
