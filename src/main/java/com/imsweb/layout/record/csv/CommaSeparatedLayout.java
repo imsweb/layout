@@ -350,7 +350,7 @@ public class CommaSeparatedLayout extends RecordLayout {
 
         // parse the line
         try {
-            String[] values = new CSVParserBuilder().withSeparator(_separator).build().parseLine(line);
+            String[] values = new CSVParserBuilder().withSeparator(_separator).withEscapeChar('\0').build().parseLine(line);
 
             for (CommaSeparatedField field : _fields) {
                 int index = field.getIndex() - 1;

@@ -469,6 +469,12 @@ public class CommaSeparatedLayoutTest {
         Assert.assertEquals("1\r\n2\r\n3", rec.get("field1"));
         Assert.assertEquals("456", rec.get("field2"));
 
+        // escape character
+        rec = layout.createRecordFromLine("0,\"1\\2\\3\",\\", null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals("1\\2\\3", rec.get("field1"));
+        Assert.assertEquals("\\", rec.get("field2"));
+
         try {
             layout.createRecordFromLine("0,12\"3,456", 2, null);
             Assert.fail("Should have been an exception!");
