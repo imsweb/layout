@@ -1,6 +1,6 @@
 ## Layout Framework Version History
 
-**Changes in version 4.10 (not released yet)**
+**Changes in version 4.10**
 
 - Fixed behavior of comma-separated layouts when reading escaped characters.
 - Updated upper limit for HL7 element index to 9999 instead from 999.
