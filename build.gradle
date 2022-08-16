@@ -7,6 +7,7 @@ plugins {
     id 'io.github.gradle-nexus.publish-plugin' version '1.1.0'
     id 'org.sonatype.gradle.plugins.scan' version '2.2.2'
     id "com.github.ben-manes.versions" version '0.39.0'
+    id "org.sonarqube" version "3.3"
 }
 
 group = 'com.imsweb'
@@ -93,11 +94,49 @@ checkstyle {
     configProperties = ['suppressionFile': project(':').file('config/checkstyle/suppressions.xml')]
 }
 
+// jacoco plugin settings
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+test.finalizedBy jacocoTestReport
+
 // spotbugs plugin settings
 spotbugs {
     ignoreFailures = true
     excludeFilter = project(':').file("config/spotbugs/spotbugs-exclude.xml")
 }
+
+spotbugsMain {
+    reports {
+        xml {
+            enabled = true
+        }
+    }
+}
+
+spotbugsTest {
+    reports {
+        xml {
+            enabled = true
+        }
+    }
+}
+
+sonarqube {
+    properties {
+        property 'sonar.projectName', 'Library-Layout'
+        property 'sonar.projectKey', 'Library---Layout'
+        property 'sonar.organization', 'imsweb'
+        property 'sonar.host.url', project.ext.get('sonar.host.url')
+        property 'sonar.exclusions', '**/lab/*'
+        property 'sonar.coverage.exclusions', '**/lab/*'
+    }
+}
+
+if (!project.hasProperty('branch_name') || (project.ext.get('branch_name') != 'master' && project.ext.get('branch_name') != 'main'))
+    gradle.startParameter.excludedTaskNames += 'sonarqube'
 
 // needed to deploy to Maven Central
 publishing {
