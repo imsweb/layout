@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 4.11**
+
+- Updated NAACCR XML library from version 8.10 to version 9.0.
+- Remove old deprecated methods.
+
 **Changes in version 4.10**
 
 - Fixed behavior of comma-separated layouts when reading escaped characters.
