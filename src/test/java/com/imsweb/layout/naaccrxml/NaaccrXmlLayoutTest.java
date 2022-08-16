@@ -83,8 +83,10 @@ public class NaaccrXmlLayoutTest {
             Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), field.getLongLabel());
             Assert.assertNotEquals(layoutId + "/" + field.getNaaccrId(), "?", field.getShortLabel());
             Assert.assertNotEquals(layoutId + "/" + field.getNaaccrId(), "?", field.getSection());
-            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByName(field.getName(), TestingUtils.getArchivedNaaccrDoc()));
-            Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum(), TestingUtils.getArchivedNaaccrDoc()));
+            if (!"230".equals(layout.getNaaccrVersion())) {
+                Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByName(field.getName(), TestingUtils.getArchivedNaaccrDoc()));
+                Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum(), TestingUtils.getArchivedNaaccrDoc()));
+            }
 
             if (layout.getNaaccrVersion().compareTo(NaaccrFormat.NAACCR_VERSION_180) >= 0)
                 Assert.assertNotNull(layout.getFieldDocByNaaccrItemNumber(35, TestingUtils.getArchivedNaaccrDoc())); // retired field

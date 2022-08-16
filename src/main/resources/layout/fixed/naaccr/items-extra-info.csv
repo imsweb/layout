@@ -847,3 +847,9 @@ p16,p16,Stage/Prognostic Factors
 lnStatusPelvic,LN St Pelvic,Stage/Prognostic Factors
 lnStatusParaAortic,LN St Para-Aor,Stage/Prognostic Factors
 lnStatusFemoralInguinal,LN ST Fem-Ing,Stage/Prognostic Factors
+clinicalMarginWidth,Clin Marg Width,Stage/Prognostic Factors
+histologicSubtype,Hist Subtype,Stage/Prognostic Factors
+noPatientContactFlag,No Pat Contact,Follow-up/Recurrence/Death
+reportingFacilityRestrictionFlag,Rpt Fac Restrict,Follow-up/Recurrence/Death
+rxHospSurgPrimSite2023,RX Hosp Prim Site 23,Hospital-Specific
+rxSummSurgPrimSite2023,RX Summ Prim Site 23,Treatment-1st Course
