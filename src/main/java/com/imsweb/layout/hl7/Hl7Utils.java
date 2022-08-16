@@ -271,7 +271,11 @@ public final class Hl7Utils {
         String compChar = msg.getComponentSeparator();
         String subCompChar = msg.getSubComponentSeparator();
         return list.stream()
-                .map(c -> c == null ? "" : encode ? encodeEscapedSequences(c.getValue(), escapeChar, fieldChar, repeatingChar, compChar, subCompChar) : c.getValue())
+                .map(c -> {
+                    if (c == null)
+                        return "";
+                    return encode ? encodeEscapedSequences(c.getValue(), escapeChar, fieldChar, repeatingChar, compChar, subCompChar) : c.getValue();
+                })
                 .collect(Collectors.joining(subCompChar));
     }
 

@@ -4,12 +4,12 @@
 package com.imsweb.layout.record.fixed.naaccr;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -499,6 +499,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
         return getFieldDocByNameOrNumber(name, null, null, archivedDocStream);
     }
 
+    @SuppressWarnings("java:S1075") // hard-coded file path
     protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile, ZipInputStream archivedDocStream) {
         FixedColumnsField field = getFieldByName(name);
 
@@ -523,7 +524,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
             if (archivedDocFile.isDirectory()) {
                 File targetFile = new File(archivedDocFile, "naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
                 if (targetFile.exists()) {
-                    try (InputStream is = new FileInputStream(targetFile)) {
+                    try (InputStream is = Files.newInputStream(targetFile.toPath())) {
                         Writer writer = new StringWriter();
                         IOUtils.copy(is, writer, StandardCharsets.UTF_8);
                         result = writer.toString();

@@ -238,10 +238,38 @@ public final class LayoutFactory {
                 String type = StringUtils.capitalize(matcher.group(2));
                 String rType = type.substring(0, 1);
                 int lineLength;
-                if ("18".equals(version))
-                    lineLength = "A".equals(rType) || "M".equals(rType) ? 24194 : "C".equals(rType) ? 6154 : 4048;
-                else
-                    lineLength = "A".equals(rType) || "M".equals(rType) ? 22824 : "C".equals(rType) ? 5564 : 3339;
+                if ("18".equals(version)) {
+                    switch (rType) {
+                        case "A":
+                        case "M":
+                            lineLength = 24194;
+                            break;
+                        case "C":
+                            lineLength = 6154;
+                            break;
+                        case "I":
+                            lineLength = 4048;
+                            break;
+                        default:
+                            throw new IllegalStateException("Invalid record type: " + rType);
+                    }
+                }
+                else {
+                    switch (rType) {
+                        case "A":
+                        case "M":
+                            lineLength = 22824;
+                            break;
+                        case "C":
+                            lineLength = 5564;
+                            break;
+                        case "I":
+                            lineLength = 3339;
+                            break;
+                        default:
+                            throw new IllegalStateException("Invalid record type: " + rType);
+                    }
+                }
                 layout = new NaaccrLayout("12".equals(version) ? "122" : (version + "0"), type.substring(0, 1), lineLength, layoutId, loadFields, useDeprecatedFieldNames);
             }
         }

@@ -4,10 +4,10 @@
 package com.imsweb.layout.record.fixed;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -93,7 +93,7 @@ public class FixedColumnsLayout extends RecordLayout {
         if (!layoutFile.exists())
             throw new IOException("Unable to read from " + layoutFile.getPath());
 
-        try (InputStream is = new FileInputStream(layoutFile)) {
+        try (InputStream is = Files.newInputStream(layoutFile.toPath())) {
             init(LayoutUtils.readFixedColumnsLayout(is), false);
         }
     }
@@ -270,34 +270,6 @@ public class FixedColumnsLayout extends RecordLayout {
         return Collections.unmodifiableList(_fields);
     }
 
-    /**
-     * Returns the expected line length for the given data line.
-     * <p/>
-     * Created on Sep 16, 2011 by depryf
-     * @param line data line
-     * @return the expected line length for the given data line
-     * @deprecated Use getLayoutLineLength() instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unused")
-    protected Integer getLengthFromLine(String line) {
-        return _layoutLineLength;
-    }
-
-    /**
-     * Returns the expected line length for the given record.
-     * <p/>
-     * Created on Sep 16, 2011 by depryf
-     * @param record record
-     * @return the expected line length for the given record
-     * @deprecated Use getLayoutLineLength() instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unused")
-    protected Integer getLengthFromRecord(Map<String, String> record) {
-        return _layoutLineLength;
-    }
-
     @Override
     public String validateLine(String line, Integer lineNumber) {
 
@@ -316,6 +288,7 @@ public class FixedColumnsLayout extends RecordLayout {
     }
 
     @Override
+    @SuppressWarnings("java:S3776") // logic too complicated
     public String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException {
         StringBuilder result = new StringBuilder();
 
@@ -418,7 +391,7 @@ public class FixedColumnsLayout extends RecordLayout {
     }
 
     @Override
-    @SuppressWarnings("StringOperationCanBeSimplified")
+    @SuppressWarnings({"StringOperationCanBeSimplified", "java:S2129"}) // creating new String instances
     public Map<String, String> createRecordFromLine(String line, Integer lineNumber, RecordLayoutOptions options) throws IOException {
         Map<String, String> result = new HashMap<>();
 
@@ -470,7 +443,7 @@ public class FixedColumnsLayout extends RecordLayout {
                         end = child.getEnd();
 
                         value = new String(line.substring(start - 1, end));
-                        if (trimValues(options) && child.getTrim())
+                        if (trimValues(options) && Boolean.TRUE.equals(child.getTrim()))
                             value = value.trim();
 
                         if (!value.isEmpty()) {
@@ -560,7 +533,8 @@ public class FixedColumnsLayout extends RecordLayout {
                 }
             }
 
-            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>();
+            Set<String> names = new HashSet<>();
+            Set<String> naaccrItemNums = new HashSet<>();
             for (FixedColumnsField field : _fields) {
                 if (field.getName() == null)
                     throw new IllegalStateException("Field name is required");

@@ -171,28 +171,6 @@ public class LayoutFactoryTest {
         Assert.assertNotNull(getLayout("test-csv"));
     }
 
-    @Test(expected = RuntimeException.class)
-    public void testRegisterLayoutInternalId() {
-        // Test register internal layout
-        LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT, false, false));
-        Assert.assertNotNull(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT));
-        Assert.assertEquals("160", LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_16_ABSTRACT).getLayoutVersion());
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testRegisterLayoutDuplicateId() {
-        LayoutFactory.unregisterAllLayouts();
-
-        //Test register duplicate user created layout
-        LayoutFactory.registerLayout(new NaaccrLayout("140", "A", 1000, "test-id", false, false));
-        Assert.assertNotNull(LayoutFactory.getLayout("test-id"));
-        Assert.assertEquals("140", LayoutFactory.getLayout("test-id").getLayoutVersion());
-
-        LayoutFactory.registerLayout(new NaaccrLayout("130", "A", 1000, "test-id", false, false));
-        Assert.assertNotNull(LayoutFactory.getLayout("test-id"));
-        Assert.assertEquals("140", LayoutFactory.getLayout("test-id").getLayoutVersion());
-    }
-
     @Test(expected = IOException.class)
     public void testRegisterLayoutBadFixedFromXml() throws IOException {
         LayoutFactory.registerLayout(new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-fixed-columns-bad.xml")));

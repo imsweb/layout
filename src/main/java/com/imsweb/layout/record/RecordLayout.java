@@ -33,6 +33,7 @@ import com.imsweb.layout.record.csv.CommaSeparatedLayout;
  * Created on Jun 26, 2012 by Fabian
  * @author Fabian
  */
+@SuppressWarnings("unused")
 public abstract class RecordLayout implements Layout {
 
     // layout ID
@@ -49,12 +50,6 @@ public abstract class RecordLayout implements Layout {
 
     // parent layout ID
     protected String _parentLayoutId;
-
-    /**
-     * Constructor.
-     */
-    public RecordLayout() {
-    }
 
     @Override
     public String getLayoutId() {
@@ -411,6 +406,7 @@ public abstract class RecordLayout implements Layout {
      * @param options options to use (null means default option values will be used)
      * @return A list of the records created from the data in the File
      */
+    @SuppressWarnings("java:S2677") // not using the result of readline; we just want to ignore the header line for CSV file...
     public List<Map<String, String>> readAllRecords(File file, String zipEntry, RecordLayoutOptions options) throws IOException {
         List<Map<String, String>> result = new ArrayList<>();
 

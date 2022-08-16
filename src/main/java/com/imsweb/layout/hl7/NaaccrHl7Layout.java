@@ -5,7 +5,6 @@ package com.imsweb.layout.hl7;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,6 +13,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -116,7 +116,7 @@ public class NaaccrHl7Layout implements Layout {
         if (!layoutFile.exists())
             throw new IOException("Unable to read from " + layoutFile.getPath());
 
-        try (InputStream is = new FileInputStream(layoutFile)) {
+        try (InputStream is = Files.newInputStream(layoutFile.toPath())) {
             init(LayoutUtils.readHl7Layout(is));
         }
     }
@@ -263,7 +263,7 @@ public class NaaccrHl7Layout implements Layout {
 
         try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(LayoutUtils.createInputStream(file, zipEntryName), StandardCharsets.UTF_8))) {
             String line = reader.readLine();
-            while (line != null && reader.getLineNumber() < 25 && result == null) {
+            while (line != null && reader.getLineNumber() < 25) {
                 if (line.startsWith("MSH")) {
                     Hl7Segment segment = Hl7Utils.segmentFromString(new Hl7Message(), line);
 

@@ -4,10 +4,10 @@
 package com.imsweb.layout.record.csv;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -107,7 +107,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         if (!layoutFile.exists())
             throw new IOException("Unable to read from " + layoutFile.getPath());
 
-        try (InputStream is = new FileInputStream(layoutFile)) {
+        try (InputStream is = Files.newInputStream(layoutFile.toPath())) {
             init(LayoutUtils.readCommaSeparatedLayout(is));
         }
     }
@@ -360,7 +360,7 @@ public class CommaSeparatedLayout extends RecordLayout {
 
                 String value = values[index];
                 String trimmedValue = value.trim();
-                if (trimValues(options) && field.getTrim())
+                if (trimValues(options) && Boolean.TRUE.equals(field.getTrim()))
                     value = trimmedValue;
 
                 if (!value.isEmpty())
@@ -421,7 +421,8 @@ public class CommaSeparatedLayout extends RecordLayout {
 
         if (!_fields.isEmpty()) {
 
-            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>();
+            Set<String> names = new HashSet<>();
+            Set<String> naaccrItemNums = new HashSet<>();
             Set<Integer> indexes = new HashSet<>();
             for (CommaSeparatedField field : _fields) {
                 if (field.getName() == null)

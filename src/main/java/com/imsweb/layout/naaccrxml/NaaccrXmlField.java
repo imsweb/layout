@@ -9,9 +9,10 @@ import java.util.Objects;
 import com.imsweb.layout.Field;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
+@SuppressWarnings("unused")
 public class NaaccrXmlField extends Field {
 
-    private NaaccrDictionaryItem _item;
+    private final NaaccrDictionaryItem _item;
 
     private List<NaaccrXmlField> _subFields;
 
@@ -36,6 +37,7 @@ public class NaaccrXmlField extends Field {
         return _item.getStartColumn();
     }
 
+    @Override
     public Integer getLength() {
         return _item.getLength();
     }
@@ -49,7 +51,7 @@ public class NaaccrXmlField extends Field {
     }
 
     public boolean isAllowUnlimitedText() {
-        return _item.getAllowUnlimitedText() == null ? false : _item.getAllowUnlimitedText();
+        return _item.getAllowUnlimitedText() != null && _item.getAllowUnlimitedText();
     }
 
     public String getRecordTypes() {

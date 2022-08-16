@@ -17,6 +17,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -317,7 +318,8 @@ public class NaaccrXmlLayout implements Layout {
         if (!_allFields.isEmpty()) {
 
             // validate the NaaccrXmlFields
-            Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>();
+            Set<String> names = new HashSet<>();
+            Set<String> naaccrItemNums = new HashSet<>();
             for (NaaccrXmlField field : _allFields) {
                 if (field.getName() == null)
                     throw new IllegalStateException("Field name (NAACCR XML ID) is required");
@@ -432,6 +434,7 @@ public class NaaccrXmlLayout implements Layout {
         return getFieldDocByNameOrNumber(null, num, null, archivedDocStream);
     }
 
+    @SuppressWarnings("java:S1075") // hard-coded path separator
     protected String getFieldDocByNameOrNumber(String name, Integer number, File archivedDocFile, ZipInputStream archivedDocStream) {
         NaaccrXmlField field = name != null ? getFieldByName(name) : getFieldByNaaccrItemNumber(number);
 
@@ -460,7 +463,7 @@ public class NaaccrXmlLayout implements Layout {
             if (archivedDocFile.isDirectory()) {
                 File targetFile = new File(archivedDocFile, getDocFolder() + "/" + filename + ".html");
                 if (targetFile.exists()) {
-                    try (InputStream is = new FileInputStream(targetFile)) {
+                    try (InputStream is = Files.newInputStream(targetFile.toPath())) {
                         Writer writer = new StringWriter();
                         IOUtils.copy(is, writer, StandardCharsets.UTF_8);
                         result = writer.toString();
@@ -578,6 +581,7 @@ public class NaaccrXmlLayout implements Layout {
      * @param data Root data needed to create a PatientXmlWriter - is written as part of the writer's construction
      * @throws NaaccrIOException if patients cannot be written
      */
+    @SuppressWarnings("java:S2093") // use try-with-resources; this method doesn't close the writer!
     public void writeAllPatients(OutputStream outputStream, List<Patient> patients, NaaccrData data, NaaccrOptions options) throws NaaccrIOException {
         if (data == null)
             return;
@@ -647,6 +651,7 @@ public class NaaccrXmlLayout implements Layout {
      * @return List of all Patients read from the stream.
      * @throws NaaccrIOException if patients cannot be read
      */
+    @SuppressWarnings("java:S2093") // use try-with-resources; this method doesn't close the writer!
     public List<Patient> readAllPatients(InputStream inputStream, String encoding, NaaccrOptions options) throws NaaccrIOException {
         List<Patient> patients;
 
