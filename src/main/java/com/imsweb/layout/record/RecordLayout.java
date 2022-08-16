@@ -93,7 +93,7 @@ public abstract class RecordLayout implements Layout {
     }
 
     public void setLayoutNumberOfFields(Integer numFields) {
-        throw new RuntimeException("Number of fields is not supported for this layout");
+        throw new IllegalStateException("Number of fields is not supported for this layout");
     }
 
     public String getParentLayoutId() {

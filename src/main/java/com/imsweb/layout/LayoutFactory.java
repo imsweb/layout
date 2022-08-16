@@ -111,7 +111,7 @@ public final class LayoutFactory {
     public static final String LAYOUT_ID_NAACCR_HL7_V5 = "naaccr-hl7-5.0";
     public static final String LAYOUT_ID_NAACCR_HL7_V4 = "naaccr-hl7-4.0";
 
-    // regular expressions for some of the the internal IDs
+    // regular expressions for some internal IDs
     private static final Pattern _REGEX_NAACCR_XML_IDS = Pattern.compile("naaccr-xml-(\\d\\d)-(abstract|modified|confidential|incidence)");
     private static final Pattern _REGEX_NAACCR_FIXED_IDS = Pattern.compile("naaccr-(\\d\\d)-(abstract|modified|confidential|incidence)");
 
@@ -140,7 +140,7 @@ public final class LayoutFactory {
     // make sure to add the most recent layouts first, they will be "tried" in that order (important for discovery mechanism)
     static {
         //NAACCR XML
-        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_22, "NAACCR XML 21 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_22, "NAACCR XML 22 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_22_ABSTRACT, "NAACCR XML 22 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_22_MODIFIED, "NAACCR XML 22 Modified");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_22_CONFIDENTIAL, "NAACCR XML 22 Confidential");
@@ -255,7 +255,7 @@ public final class LayoutFactory {
         }
 
         if (layout == null)
-            throw new RuntimeException("Unknown internal layout: " + layoutId);
+            throw new IllegalStateException("Unknown internal layout: " + layoutId);
 
         return layout;
     }
@@ -277,7 +277,7 @@ public final class LayoutFactory {
         Layout layout = getLayout(layoutId);
         if (layout instanceof NaaccrXmlLayout)
             return (NaaccrXmlLayout)layout;
-        throw new RuntimeException("Requested a NaaccrXmlLayout but it was a " + layout.getClass().getSimpleName());
+        throw new IllegalStateException("Requested a NaaccrXmlLayout but it was a " + layout.getClass().getSimpleName());
     }
 
     /**
@@ -289,7 +289,7 @@ public final class LayoutFactory {
         Layout layout = getLayout(layoutId);
         if (layout instanceof NaaccrLayout)
             return (NaaccrLayout)layout;
-        throw new RuntimeException("Requested a NaaccrLayout but it was a " + layout.getClass().getSimpleName());
+        throw new IllegalStateException("Requested a NaaccrLayout but it was a " + layout.getClass().getSimpleName());
     }
 
     /**
@@ -301,7 +301,7 @@ public final class LayoutFactory {
         Layout layout = getLayout(layoutId);
         if (layout instanceof NaaccrHl7Layout)
             return (NaaccrHl7Layout)layout;
-        throw new RuntimeException("Requested a NaaccrHl7Layout but it was a " + layout.getClass().getSimpleName());
+        throw new IllegalStateException("Requested a NaaccrHl7Layout but it was a " + layout.getClass().getSimpleName());
     }
 
     /**
@@ -313,7 +313,7 @@ public final class LayoutFactory {
         Layout layout = getLayout(layoutId);
         if (layout instanceof FixedColumnsLayout)
             return (FixedColumnsLayout)layout;
-        throw new RuntimeException("Requested a FixedColumnsLayout but it was a " + layout.getClass().getSimpleName());
+        throw new IllegalStateException("Requested a FixedColumnsLayout but it was a " + layout.getClass().getSimpleName());
     }
 
     /**
@@ -325,7 +325,7 @@ public final class LayoutFactory {
         Layout layout = getLayout(layoutId);
         if (layout instanceof CommaSeparatedLayout)
             return (CommaSeparatedLayout)layout;
-        throw new RuntimeException("Requested a CommaSeparatedLayout but it was a " + layout.getClass().getSimpleName());
+        throw new IllegalStateException("Requested a CommaSeparatedLayout but it was a " + layout.getClass().getSimpleName());
     }
 
     /**
@@ -376,7 +376,7 @@ public final class LayoutFactory {
             return layout;
         }
 
-        throw new RuntimeException("Unknown layout ID: " + layoutId);
+        throw new IllegalStateException("Unknown layout ID: " + layoutId);
     }
 
     /**
@@ -391,10 +391,10 @@ public final class LayoutFactory {
 
         // make sure the layout is valid
         if (layout == null)
-            throw new RuntimeException("Provided layout instance is null");
+            throw new IllegalStateException("Provided layout instance is null");
         //Layout ID's must be unique
         if (_INTERNAL_LAYOUTS.containsKey(layout.getLayoutId()) || _LAYOUTS.containsKey(layout.getLayoutId()))
-            throw new RuntimeException("Layout ID must be unique: '" + layout.getLayoutId() + "' has already been registered");
+            throw new IllegalStateException("Layout ID must be unique: '" + layout.getLayoutId() + "' has already been registered");
         if (layout instanceof FixedColumnsLayout)
             ((FixedColumnsLayout)layout).verify();
         else if (layout instanceof CommaSeparatedLayout)

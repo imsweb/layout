@@ -40,7 +40,7 @@ public class NaaccrDocChecker extends JFrame {
             fileContent = SeerUtils.readFile(file);
         }
         catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException(e);
         }
 
         StringBuilder buf = new StringBuilder();

@@ -28,7 +28,7 @@ public class Hl7Segment {
      */
     public Hl7Segment(Hl7Message message, String id) {
         if (id == null)
-            throw new RuntimeException("ID is required");
+            throw new IllegalStateException("ID is required");
 
         _message = message;
         _id = id;
@@ -54,7 +54,7 @@ public class Hl7Segment {
 
     public void setMessage(Hl7Message message) {
         if (message == null)
-            throw new RuntimeException("Parent message cannot be null");
+            throw new IllegalStateException("Parent message cannot be null");
         _message = message;
     }
 
@@ -64,7 +64,7 @@ public class Hl7Segment {
 
     public void setId(String id) {
         if (id == null)
-            throw new RuntimeException("ID is required");
+            throw new IllegalStateException("ID is required");
         _id = id;
     }
 

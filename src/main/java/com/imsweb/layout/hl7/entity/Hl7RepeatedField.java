@@ -39,7 +39,7 @@ public class Hl7RepeatedField {
 
     public void setField(Hl7Field field) {
         if (field == null)
-            throw new RuntimeException("Parent field cannot be null");
+            throw new IllegalStateException("Parent field cannot be null");
         _field = field;
     }
 

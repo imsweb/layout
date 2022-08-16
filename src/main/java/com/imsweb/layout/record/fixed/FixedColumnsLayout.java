@@ -508,25 +508,25 @@ public class FixedColumnsLayout extends RecordLayout {
 
         // ID is required
         if (_layoutId == null)
-            throw new RuntimeException("Layout ID is required");
+            throw new IllegalStateException("Layout ID is required");
 
         // name is required
         if (_layoutName == null)
-            throw new RuntimeException("Layout name is required");
+            throw new IllegalStateException("Layout name is required");
 
         // line length is required
         if (_layoutLineLength == null)
-            throw new RuntimeException("Line length is required");
+            throw new IllegalStateException("Line length is required");
 
         if (!_fields.isEmpty()) {
 
             // verify first field starts at 1 or greater
             if (_fields.get(0).getStart() <= 0)
-                throw new RuntimeException("First field start column must be greater or equals to 1");
+                throw new IllegalStateException("First field start column must be greater or equals to 1");
 
             // verify last field ends at line length or smaller
             if (_fields.get(_fields.size() - 1).getEnd() > _layoutLineLength)
-                throw new RuntimeException("Last field end column must be smaller or equals to defined line length");
+                throw new IllegalStateException("Last field end column must be smaller or equals to defined line length");
 
             // verify each field
             for (int i = 0; i < _fields.size() - 1; i++) {
@@ -534,15 +534,15 @@ public class FixedColumnsLayout extends RecordLayout {
 
                 // verify field start is within the allowed range
                 if (f1.getStart() <= 0 || f1.getStart() > _layoutLineLength)
-                    throw new RuntimeException("Field " + f1.getName() + " start value is invalid, must be within 1-" + _layoutLineLength + " but got " + f1.getStart());
+                    throw new IllegalStateException("Field " + f1.getName() + " start value is invalid, must be within 1-" + _layoutLineLength + " but got " + f1.getStart());
                 // verify field end is within the allowed range
                 if (f1.getEnd() <= 0 || f1.getEnd() > _layoutLineLength)
-                    throw new RuntimeException("Field " + f1.getName() + " end value is invalid, must be within 1-" + _layoutLineLength + " but got " + f1.getStart());
+                    throw new IllegalStateException("Field " + f1.getName() + " end value is invalid, must be within 1-" + _layoutLineLength + " but got " + f1.getStart());
 
                 // verify there is no overlapping
                 FixedColumnsField f2 = _fields.get(i + 1);
                 if (f1.getEnd() >= f2.getStart())
-                    throw new RuntimeException("Fields " + f1.getName() + " and " + f2.getName() + " are overlapping");
+                    throw new IllegalStateException("Fields " + f1.getName() + " and " + f2.getName() + " are overlapping");
 
                 // also verify the subfields, only need to do this on f1
                 if (f1.getSubFields() != null) {
@@ -551,11 +551,11 @@ public class FixedColumnsLayout extends RecordLayout {
                     for (int j = 0; j < size; j++) {
                         FixedColumnsField ff = list.get(j);
                         if (j == 0 && ff.getStart() < f1.getStart())
-                            throw new RuntimeException("Field " + f1.getName() + " defines a sub-field that starts before it");
+                            throw new IllegalStateException("Field " + f1.getName() + " defines a sub-field that starts before it");
                         if (j == size - 1 && ff.getEnd() > f1.getEnd())
-                            throw new RuntimeException("Field " + f1.getName() + " defines a sub-field that ends after it");
+                            throw new IllegalStateException("Field " + f1.getName() + " defines a sub-field that ends after it");
                         if (j < size - 1 && ff.getEnd() >= list.get(j + 1).getStart())
-                            throw new RuntimeException("Field " + f1.getName() + " defines overlapping subfields");
+                            throw new IllegalStateException("Field " + f1.getName() + " defines overlapping subfields");
                     }
                 }
             }
@@ -563,26 +563,26 @@ public class FixedColumnsLayout extends RecordLayout {
             Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>();
             for (FixedColumnsField field : _fields) {
                 if (field.getName() == null)
-                    throw new RuntimeException("Field name is required");
+                    throw new IllegalStateException("Field name is required");
                 if (names.contains(field.getName()))
-                    throw new RuntimeException("Field name must be unique, found duplicate name for '" + field.getName() + "'");
+                    throw new IllegalStateException("Field name must be unique, found duplicate name for '" + field.getName() + "'");
                 names.add(field.getName());
                 if (field.getNaaccrItemNum() != null) {
                     if (naaccrItemNums.contains(field.getNaaccrItemNum().toString()))
-                        throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
+                        throw new IllegalStateException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
                     naaccrItemNums.add(field.getNaaccrItemNum().toString());
                 }
 
                 if (field.getSubFields() != null) {
                     for (Field f : field.getSubFields()) {
                         if (f.getName() == null)
-                            throw new RuntimeException("Field name is required");
+                            throw new IllegalStateException("Field name is required");
                         if (names.contains(f.getName()))
-                            throw new RuntimeException("Field name must be unique, found duplicate name for '" + f.getName() + "'");
+                            throw new IllegalStateException("Field name must be unique, found duplicate name for '" + f.getName() + "'");
                         names.add(f.getName());
                         if (f.getNaaccrItemNum() != null) {
                             if (naaccrItemNums.contains(f.getNaaccrItemNum().toString()))
-                                throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + f.getNaaccrItemNum() + "'");
+                                throw new IllegalStateException("Field NAACCR item number must be unique, found duplicate number for '" + f.getNaaccrItemNum() + "'");
                             naaccrItemNums.add(f.getNaaccrItemNum().toString());
                         }
                     }

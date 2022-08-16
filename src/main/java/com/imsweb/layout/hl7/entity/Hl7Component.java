@@ -27,9 +27,9 @@ public class Hl7Component {
      */
     public Hl7Component(Hl7RepeatedField repeatedField, Integer index, String... values) {
         if (index == null)
-            throw new RuntimeException("Index is required");
+            throw new IllegalStateException("Index is required");
         if (index < 1 || index > 9999)
-            throw new RuntimeException("Index must be between 1 and 9999");
+            throw new IllegalStateException("Index must be between 1 and 9999");
         _repeatedField = repeatedField;
         _index = index;
         _subComponents = new HashMap<>();
@@ -48,7 +48,7 @@ public class Hl7Component {
 
     public void setRepeatedField(Hl7RepeatedField repeatedField) {
         if (repeatedField == null)
-            throw new RuntimeException("Parent repeated field cannot be null");
+            throw new IllegalStateException("Parent repeated field cannot be null");
         _repeatedField = repeatedField;
     }
 
@@ -58,9 +58,9 @@ public class Hl7Component {
 
     public void setIndex(Integer index) {
         if (index == null)
-            throw new RuntimeException("Index is required");
+            throw new IllegalStateException("Index is required");
         if (index < 1 || index > 9999)
-            throw new RuntimeException("Index must be between 1 and 9999");
+            throw new IllegalStateException("Index must be between 1 and 9999");
         _index = index;
     }
 

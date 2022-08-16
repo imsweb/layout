@@ -396,7 +396,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
         super();
 
         if (!(naaccrVersion.matches("\\d\\d\\d")))
-            throw new RuntimeException("Unexpected NAACCR version format for " + layoutId);
+            throw new IllegalStateException("Unexpected NAACCR version format for " + layoutId);
 
         _naaccrVersion = naaccrVersion;
         _majorNaaccrVersion = naaccrVersion.substring(0, 2);
@@ -414,7 +414,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
         else if ("I".equals(getRecordType()))
             fullRecType = "Incidence";
         else
-            throw new RuntimeException("Unsupported rec type: " + getRecordType());
+            throw new IllegalStateException("Unsupported rec type: " + getRecordType());
 
         try {
             FixedColumnLayoutXmlDto xmlLayout = new FixedColumnLayoutXmlDto();
@@ -439,14 +439,14 @@ public class NaaccrLayout extends FixedColumnsLayout {
                 // set default value for the record type
                 FixedColumnLayoutFieldXmlDto field = xmlLayout.getField().get(0);
                 if (!"recordType".equals(field.getName()))
-                    throw new RuntimeException("Record Type should be the first field of a NAACCR layout!");
+                    throw new IllegalStateException("Record Type should be the first field of a NAACCR layout!");
                 field.setDefaultValue(getRecordType());
             }
 
             init(xmlLayout, useDeprecatedFieldNames);
         }
         catch (IOException e) {
-            throw new RuntimeException("Unable to instantiate NAACCR layout", e);
+            throw new IllegalStateException("Unable to instantiate NAACCR layout", e);
         }
     }
 

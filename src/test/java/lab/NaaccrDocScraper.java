@@ -109,7 +109,7 @@ public class NaaccrDocScraper {
 
         // go through each field and create the corresponding file
         if (!outputDir.exists() && !outputDir.mkdirs())
-            throw new RuntimeException("Unable to create target folder!");
+            throw new IllegalStateException("Unable to create target folder!");
         for (Entry<String, String> entry : items.entrySet()) {
             String itemNum = entry.getKey();
             String html = entry.getValue();

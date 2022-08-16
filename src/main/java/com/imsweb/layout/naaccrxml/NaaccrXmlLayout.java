@@ -208,7 +208,8 @@ public class NaaccrXmlLayout implements Layout {
         // only load dictionaries/fields if specified, otherwise avoid expensive operations
         if (loadFields) {
 
-            Map<String, String> shortLabels = new HashMap<>(), sections = new HashMap<>();
+            Map<String, String> shortLabels = new HashMap<>();
+            Map<String, String> sections = new HashMap<>();
             try (BufferedReader in = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/items-extra-info.csv"), UTF_8))) {
                 in.lines().forEach(line -> {
                     String[] parts = StringUtils.split(line, ',');
@@ -219,7 +220,7 @@ public class NaaccrXmlLayout implements Layout {
                 });
             }
             catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new IllegalStateException(e);
             }
 
             // get all item definitions, create fields and add to layout's field list based on record type
@@ -284,32 +285,32 @@ public class NaaccrXmlLayout implements Layout {
 
         // ID is required
         if (_layoutId == null || _layoutId.isEmpty())
-            throw new RuntimeException("Layout ID is required");
+            throw new IllegalStateException("Layout ID is required");
 
         // name is required
         if (_layoutName == null || _layoutName.isEmpty())
-            throw new RuntimeException("Layout name is required");
+            throw new IllegalStateException("Layout name is required");
 
         // Record type is required and must be one of the following: A, M, C, I
         if (_recordType == null || _recordType.isEmpty())
-            throw new RuntimeException("Record type is required");
+            throw new IllegalStateException("Record type is required");
         else if (!_recordType.equals("A") && !_recordType.equals("M") && !_recordType.equals("C") && !_recordType.equals("I")) {
-            throw new RuntimeException("Record type not recognized: " + _recordType);
+            throw new IllegalStateException("Record type not recognized: " + _recordType);
         }
 
         // NAACCR Version is required and must be a version that is currently supported
         if (_naaccrVersion == null || !NaaccrFormat.isVersionSupported(_naaccrVersion))
-            throw new RuntimeException("Unsupported NAACCR version: " + _naaccrVersion);
+            throw new IllegalStateException("Unsupported NAACCR version: " + _naaccrVersion);
 
         // base dictionary is required
         if (_baseDictionary == null)
-            throw new RuntimeException("Base Dictionary is required");
+            throw new IllegalStateException("Base Dictionary is required");
 
         // validate the user dictionaries
         for (NaaccrDictionary userDictionary : _userDictionaries) {
             List<String> errors = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
             if (!errors.isEmpty())
-                throw new RuntimeException("Error found on user dictionary - " + errors.get(0));
+                throw new IllegalStateException("Error found on user dictionary - " + errors.get(0));
         }
 
         // if fields/dictionaries were supposed to be loaded, check validity of fields and dictionaries. Otherwise, this is the end of validation.
@@ -319,21 +320,21 @@ public class NaaccrXmlLayout implements Layout {
             Set<String> names = new HashSet<>(), naaccrItemNums = new HashSet<>();
             for (NaaccrXmlField field : _allFields) {
                 if (field.getName() == null)
-                    throw new RuntimeException("Field name (NAACCR XML ID) is required");
+                    throw new IllegalStateException("Field name (NAACCR XML ID) is required");
                 if (names.contains(field.getName()))
-                    throw new RuntimeException("Field name (NAACCR XML ID) must be unique, found duplicate name for '" + field.getName() + "'");
+                    throw new IllegalStateException("Field name (NAACCR XML ID) must be unique, found duplicate name for '" + field.getName() + "'");
                 names.add(field.getName());
                 if (field.getItem() == null)
-                    throw new RuntimeException("Field item definition is required, missing for field " + field.getName());
+                    throw new IllegalStateException("Field item definition is required, missing for field " + field.getName());
                 if (field.getNaaccrItemNum() != null) {
                     if (naaccrItemNums.contains(field.getNaaccrItemNum().toString()))
-                        throw new RuntimeException("Field NAACCR number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
+                        throw new IllegalStateException("Field NAACCR number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
                     naaccrItemNums.add(field.getNaaccrItemNum().toString());
                 }
                 if (field.getLength() == null)
-                    throw new RuntimeException("Field length is required, missing for field " + field.getName());
+                    throw new IllegalStateException("Field length is required, missing for field " + field.getName());
                 if (field.getParentXmlElement() == null)
-                    throw new RuntimeException("Field parent XML element is required, missing for field " + field.getName());
+                    throw new IllegalStateException("Field parent XML element is required, missing for field " + field.getName());
             }
         }
     }

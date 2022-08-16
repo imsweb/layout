@@ -87,7 +87,7 @@ public class NaaccrHl7Layout implements Layout {
             init(layoutXmlDto);
         }
         catch (IOException e) {
-            throw new RuntimeException("Unable to instantiate NAACCR HL7 layout", e);
+            throw new IllegalStateException("Unable to instantiate NAACCR HL7 layout", e);
         }
     }
 

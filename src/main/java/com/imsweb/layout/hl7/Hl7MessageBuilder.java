@@ -81,7 +81,7 @@ public class Hl7MessageBuilder {
      */
     public Hl7MessageBuilder withField(Integer index, String... values) {
         if (_currentSegment == null)
-            throw new RuntimeException("no segment has been created yet");
+            throw new IllegalStateException("no segment has been created yet");
         _currentField = new Hl7Field(_currentSegment, index, values);
         _currentRepeatedField = null;
         _currentComponent = null;
@@ -95,7 +95,7 @@ public class Hl7MessageBuilder {
      */
     public Hl7MessageBuilder withRepeatedField() {
         if (_currentField == null)
-            throw new RuntimeException("no field has been created yet");
+            throw new IllegalStateException("no field has been created yet");
         _currentRepeatedField = new Hl7RepeatedField(_currentField);
         _currentComponent = null;
         _currentSubComponent = null;
@@ -133,7 +133,7 @@ public class Hl7MessageBuilder {
      */
     public Hl7MessageBuilder withSubComponent(Integer index, String value) {
         if (_currentComponent == null)
-            throw new RuntimeException("no component has been created yet");
+            throw new IllegalStateException("no component has been created yet");
         _currentSubComponent = new Hl7SubComponent(_currentComponent, index, value);
         return this;
     }
@@ -145,7 +145,7 @@ public class Hl7MessageBuilder {
      */
     public Hl7MessageBuilder withValue(String value) {
         if (_currentSubComponent == null)
-            throw new RuntimeException("no sub-component has been created yet");
+            throw new IllegalStateException("no sub-component has been created yet");
         _currentSubComponent.setValue(value);
         _currentSubComponent = null;
         return this;

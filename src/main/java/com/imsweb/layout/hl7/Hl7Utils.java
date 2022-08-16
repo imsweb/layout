@@ -57,7 +57,7 @@ public final class Hl7Utils {
         if (!_SEGMENT_ID_PATTERN.matcher(id).matches()) {
             if (options.skipInvalidSegmentIds())
                 return null;
-            throw new RuntimeException("Index must be a mix of 3 uppercase letters and/or digits");
+            throw new IllegalStateException("Index must be a mix of 3 uppercase letters and/or digits");
         }
 
         Hl7Segment segment = new Hl7Segment(msg, id);

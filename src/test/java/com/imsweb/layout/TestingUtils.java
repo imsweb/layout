@@ -14,7 +14,7 @@ public class TestingUtils {
     public static File getBuildDirectory() {
         File dir = new File(TestingUtils.getWorkingDirectory(), "build");
         if (!dir.exists() && !dir.mkdir())
-            throw new RuntimeException("Unable to create build directory!");
+            throw new IllegalStateException("Unable to create build directory!");
         return dir;
     }
 

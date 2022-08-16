@@ -22,9 +22,9 @@ public class Hl7SubComponent {
      */
     public Hl7SubComponent(Hl7Component component, Integer index, String value) {
         if (index == null)
-            throw new RuntimeException("Index is required");
+            throw new IllegalStateException("Index is required");
         if (index < 1 || index > 9999)
-            throw new RuntimeException("Index must be between 1 and 9999");
+            throw new IllegalStateException("Index must be between 1 and 9999");
         _component = component;
         _index = index;
         _value = value;
@@ -39,7 +39,7 @@ public class Hl7SubComponent {
 
     public void setComponent(Hl7Component component) {
         if (component == null)
-            throw new RuntimeException("Parent component cannot be null");
+            throw new IllegalStateException("Parent component cannot be null");
         _component = component;
     }
 
@@ -49,9 +49,9 @@ public class Hl7SubComponent {
 
     public void setIndex(Integer index) {
         if (index == null)
-            throw new RuntimeException("Index is required");
+            throw new IllegalStateException("Index is required");
         if (index < 1 || index > 9999)
-            throw new RuntimeException("Index must be between 1 and 9999");
+            throw new IllegalStateException("Index must be between 1 and 9999");
         _index = index;
     }
 

@@ -180,7 +180,7 @@ public class NaaccrDocViewer extends JFrame {
                     return Integer.valueOf(num1).compareTo(Integer.valueOf(num2));
                 }
                 else
-                    throw new RuntimeException("Bad format: " + o1 + "; " + o2);
+                    throw new IllegalStateException("Bad format: " + o1 + "; " + o2);
             }
             return o1.compareToIgnoreCase(o2);
         });
@@ -298,7 +298,7 @@ public class NaaccrDocViewer extends JFrame {
             fileContent = SeerUtils.readFile(new File(_DIR, name + ".html"), "UTF-8");
         }
         catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException(e);
         }
         String content = addStyleAndBody(fileTitle, fileContent);
 

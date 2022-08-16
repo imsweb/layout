@@ -94,7 +94,7 @@ public class RecordLayoutOptions {
 
     public void setLineSeparator(String lineSeparator) {
         if (!NEW_LINE_OS.equals(lineSeparator) && !NEW_LINE_LF.equals(lineSeparator) && !NEW_LINE_CRLF.equals(lineSeparator))
-            throw new RuntimeException("Invalid new line separator option: " + lineSeparator);
+            throw new IllegalStateException("Invalid new line separator option: " + lineSeparator);
         _lineSeparator = lineSeparator;
     }
 

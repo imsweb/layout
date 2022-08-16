@@ -405,19 +405,19 @@ public class CommaSeparatedLayout extends RecordLayout {
 
         // ID is required
         if (_layoutId == null)
-            throw new RuntimeException("Layout ID is required");
+            throw new IllegalStateException("Layout ID is required");
 
         // name is required
         if (_layoutName == null)
-            throw new RuntimeException("Layout name is required");
+            throw new IllegalStateException("Layout name is required");
 
         // number of fields is required
         if (_numFields == null)
-            throw new RuntimeException("Number of fields is required");
+            throw new IllegalStateException("Number of fields is required");
 
         // number of fields is required
         if (_separator == '\0')
-            throw new RuntimeException("Separator is required");
+            throw new IllegalStateException("Separator is required");
 
         if (!_fields.isEmpty()) {
 
@@ -425,23 +425,23 @@ public class CommaSeparatedLayout extends RecordLayout {
             Set<Integer> indexes = new HashSet<>();
             for (CommaSeparatedField field : _fields) {
                 if (field.getName() == null)
-                    throw new RuntimeException("Field name is required");
+                    throw new IllegalStateException("Field name is required");
                 if (names.contains(field.getName()))
-                    throw new RuntimeException("Field name must be unique, found duplicate name for '" + field.getName() + "'");
+                    throw new IllegalStateException("Field name must be unique, found duplicate name for '" + field.getName() + "'");
                 names.add(field.getName());
                 if (field.getNaaccrItemNum() != null) {
                     if (naaccrItemNums.contains(field.getNaaccrItemNum().toString()))
-                        throw new RuntimeException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
+                        throw new IllegalStateException("Field NAACCR item number must be unique, found duplicate number for '" + field.getNaaccrItemNum() + "'");
                     naaccrItemNums.add(field.getNaaccrItemNum().toString());
                 }
                 if (field.getIndex() == null)
-                    throw new RuntimeException("Field index is required");
+                    throw new IllegalStateException("Field index is required");
                 if (field.getIndex() <= 0)
-                    throw new RuntimeException("Field index must be greater than zero");
+                    throw new IllegalStateException("Field index must be greater than zero");
                 if (field.getIndex() > _numFields)
-                    throw new RuntimeException("Field index must be smaller or equal to the defined number of fields");
+                    throw new IllegalStateException("Field index must be smaller or equal to the defined number of fields");
                 if (indexes.contains(field.getIndex()))
-                    throw new RuntimeException("Field index must be unique");
+                    throw new IllegalStateException("Field index must be unique");
                 indexes.add(field.getIndex());
             }
         }

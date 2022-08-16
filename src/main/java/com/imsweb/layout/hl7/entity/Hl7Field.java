@@ -27,9 +27,9 @@ public class Hl7Field {
      */
     public Hl7Field(Hl7Segment segment, Integer index, String... values) {
         if (index == null)
-            throw new RuntimeException("Index is required");
+            throw new IllegalStateException("Index is required");
         if (index < 1 || index > 9999)
-            throw new RuntimeException("Index must be between 1 and 9999");
+            throw new IllegalStateException("Index must be between 1 and 9999");
         _segment = segment;
         _index = index;
         _repeatedFields = new ArrayList<>();
@@ -50,7 +50,7 @@ public class Hl7Field {
 
     public void setSegment(Hl7Segment segment) {
         if (segment == null)
-            throw new RuntimeException("Parent segment cannot be null");
+            throw new IllegalStateException("Parent segment cannot be null");
         _segment = segment;
     }
 
@@ -60,9 +60,9 @@ public class Hl7Field {
 
     public void setIndex(Integer index) {
         if (index == null)
-            throw new RuntimeException("Index is required");
+            throw new IllegalStateException("Index is required");
         if (index < 1 || index > 9999)
-            throw new RuntimeException("Index must be between 1 and 9999");
+            throw new IllegalStateException("Index must be between 1 and 9999");
         _index = index;
     }
 
