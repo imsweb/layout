@@ -6,6 +6,7 @@ package com.imsweb.layout.hl7;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings("unused")
 public class Hl7LayoutOptions {
 
     // the different options for new lines

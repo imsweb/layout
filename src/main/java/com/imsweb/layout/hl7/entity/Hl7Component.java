@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.imsweb.layout.hl7.Hl7Utils;
 
+@SuppressWarnings("unused")
 public class Hl7Component {
 
     // the parent repeated field

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public class Hl7Message {
 
     // the line number of the first segment of this message (the MSH one), if applicable

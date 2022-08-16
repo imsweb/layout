@@ -24,7 +24,7 @@ public final class Hl7Utils {
 
     private static final Pattern _ESCAPED_SEQUENCES = Pattern.compile("\\\\([A-Z])([^\\\\]*)\\\\");
 
-    private static final Pattern _SEGMENT_ID_PATTERN = Pattern.compile("[A-Z0-9]{3}");
+    private static final Pattern _SEGMENT_ID_PATTERN = Pattern.compile("[A-Z\\d]{3}");
 
     /**
      * Private constructor, no instanciation!

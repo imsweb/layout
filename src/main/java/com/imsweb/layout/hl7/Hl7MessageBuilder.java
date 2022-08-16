@@ -13,6 +13,7 @@ import com.imsweb.layout.hl7.entity.Hl7SubComponent;
 /**
  * This class can be used to build HL7 message programmatically.
  */
+@SuppressWarnings("unused")
 public class Hl7MessageBuilder {
 
     /**

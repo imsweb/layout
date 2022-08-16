@@ -4,14 +4,13 @@
 package com.imsweb.layout;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -355,7 +354,7 @@ public final class LayoutUtils {
 
         InputStream is;
         if (name.endsWith(".gz") || name.endsWith(".gzip"))
-            is = new GZIPInputStream(new FileInputStream(file));
+            is = new GZIPInputStream(Files.newInputStream(file.toPath()));
         else if (name.endsWith(".zip")) {
             ZipFile zipFile = new ZipFile(file);
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
@@ -385,7 +384,7 @@ public final class LayoutUtils {
                 is = tmp;
         }
         else
-            is = new FileInputStream(file);
+            is = Files.newInputStream(file.toPath());
 
         return is;
     }
@@ -409,11 +408,11 @@ public final class LayoutUtils {
         String name = file.getName().toLowerCase();
 
         if (name.endsWith(".gz") || name.endsWith(".gzip"))
-            os = new GZIPOutputStream(new FileOutputStream(file));
+            os = new GZIPOutputStream(Files.newOutputStream(file.toPath()));
         else if (name.endsWith(".zip"))
-            os = new ZipOutputStream(new FileOutputStream(file));
+            os = new ZipOutputStream(Files.newOutputStream(file.toPath()));
         else
-            os = new FileOutputStream(file);
+            os = Files.newOutputStream(file.toPath());
 
         return os;
     }

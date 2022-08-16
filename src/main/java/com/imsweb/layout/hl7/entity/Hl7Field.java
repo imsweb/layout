@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.imsweb.layout.hl7.Hl7Utils;
 
+@SuppressWarnings("unused")
 public class Hl7Field {
 
     // the parent segment
