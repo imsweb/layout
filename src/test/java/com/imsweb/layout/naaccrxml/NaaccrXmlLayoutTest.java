@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.zip.ZipInputStream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import org.junit.Test;
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
 import com.imsweb.layout.LayoutInfoDiscoveryOptions;
+import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.TestingUtils;
 import com.imsweb.naaccrxml.NaaccrFormat;
 import com.imsweb.naaccrxml.NaaccrOptions;
@@ -779,5 +781,22 @@ public class NaaccrXmlLayoutTest {
         Assert.assertTrue(info.getRequestedUserDictionaries().contains(userDictionary1.getDictionaryUri()));
         Assert.assertTrue(info.getRequestedUserDictionaries().contains(userDictionary2.getDictionaryUri()));
         Assert.assertEquals(2, info.getRequestedUserDictionaries().size());
+    }
+
+    @Test
+    public void testGetFieldDoc() throws IOException {
+        NaaccrXmlLayout layout = LayoutFactory.getNaaccrXmlLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_22);
+
+        // test internal mechanism
+        Assert.assertNotNull(layout.getFieldDocByName("primarySite"));
+
+        // test reading from a zip file (can't call the method on the layout since it defaults to internal mechanism)
+        File zipFile = new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/doc/naaccr22-doc-test.zip");
+        Assert.assertNotNull(LayoutUtils.readNaaccrDocumentationFromFile("naaccr22/primarySite.html", zipFile));
+
+        // test reading from a zip input stream (can't call the method on the layout since it defaults to internal mechanism)
+        try (ZipInputStream archivedDocStream = new ZipInputStream(Thread.currentThread().getContextClassLoader().getResourceAsStream("doc/naaccr22-doc-test.zip"))) {
+            Assert.assertNotNull(LayoutUtils.readNaaccrDocumentationFromZipInputStream("naaccr22/primarySite.html", archivedDocStream));
+        }
     }
 }

@@ -6,8 +6,10 @@ package com.imsweb.layout;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,7 +21,10 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import org.apache.commons.io.IOUtils;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.basic.BooleanConverter;
@@ -55,12 +60,19 @@ import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
  */
 public final class LayoutUtils {
 
+    // maximum number of entries allowed in a ZIP file when creating an input stream from it
+    private static final int _ZIP_THRESHOLD_ENTRIES = 10000;
+
+    // the maximum compression ratio for a given ZIP entry
+    private static final int _ZIP_THRESHOLD_RATIO = 10;
+
     /**
      * Private constructor, no instanciation!
      * <p/>
      * Created on Aug 16, 2011 by depryf
      */
     private LayoutUtils() {
+        // utility class
     }
 
     /**
@@ -360,8 +372,11 @@ public final class LayoutUtils {
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
             // count the number of entries
             List<String> list = new ArrayList<>();
-            while (entries.hasMoreElements())
+            while (entries.hasMoreElements()) {
                 list.add(entries.nextElement().getName());
+                if (list.size() > _ZIP_THRESHOLD_ENTRIES)
+                    throw new IllegalStateException("Threshold of " + _ZIP_THRESHOLD_ENTRIES + " for maximum number of entries in ZIP file has been reached");
+            }
             // can't be empty
             if (list.isEmpty())
                 throw new IOException("Zip file is empty.");
@@ -522,5 +537,86 @@ public final class LayoutUtils {
                 builder.append(with);
 
         return builder.toString();
+    }
+
+    /**
+     * Returns the requested NAACCR documentation from the given file.
+     */
+    public static String readNaaccrDocumentationFromFile(String entryName, File archivedDocFile) {
+        String result = null;
+
+        if (archivedDocFile.isDirectory()) {
+            File targetFile = new File(archivedDocFile, entryName);
+            if (targetFile.exists()) {
+                try (InputStream is = Files.newInputStream(targetFile.toPath())) {
+                    Writer writer = new StringWriter();
+                    IOUtils.copy(is, writer, StandardCharsets.UTF_8);
+                    result = writer.toString();
+                }
+                catch (IOException e) {
+                    /* do nothing, result will be null, as per specs */
+                }
+            }
+        }
+        else {
+            try (ZipFile zf = new ZipFile(archivedDocFile)) {
+                ZipEntry entry = zf.getEntry(entryName);
+
+                if (entry != null) {
+                    Writer writer = new StringWriter();
+                    IOUtils.copy(zf.getInputStream(entry), writer, StandardCharsets.UTF_8);
+                    result = writer.toString();
+                }
+            }
+            catch (IOException e) {
+                /* do nothing, result will be null, as per specs */
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Returns the requested NAACCR documentation from the given input stream.
+     *
+     */
+    public static String readNaaccrDocumentationFromZipInputStream(String entryName, ZipInputStream archivedDocStream) {
+        String result = null;
+
+        try {
+            int entryCount = 0;
+            ZipEntry entry = archivedDocStream.getNextEntry();
+            while (entry != null && !entryName.equals(entry.getName())) {
+                entry = archivedDocStream.getNextEntry();
+                entryCount++;
+                if (entryCount > _ZIP_THRESHOLD_ENTRIES)
+                    throw new IllegalStateException("Threshold of " + _ZIP_THRESHOLD_ENTRIES + " for maximum number of entries in ZIP file has been reached");
+            }
+
+            if (entry != null) {
+                Writer writer = new StringWriter();
+                try (InputStreamReader reader = new InputStreamReader(archivedDocStream, StandardCharsets.UTF_8)) {
+
+                    int nBytes;
+                    char[] buffer = new char[2048];
+                    long totalSizeEntry = 0;
+
+                    while ((nBytes = reader.read(buffer)) > 0) {
+                        writer.write(buffer, 0, nBytes);
+                        totalSizeEntry += nBytes;
+
+                        long compressionRatio = totalSizeEntry / entry.getCompressedSize();
+                        if (compressionRatio > _ZIP_THRESHOLD_RATIO)
+                            throw new IllegalStateException("Threshold of " + _ZIP_THRESHOLD_RATIO + " for maximum compression ratio of ZIP entry has been reached");
+                    }
+                }
+                result = writer.toString();
+            }
+        }
+        catch (IOException e) {
+            /* do nothing, result will be null, as per specs */
+        }
+
+        return result;
     }
 }

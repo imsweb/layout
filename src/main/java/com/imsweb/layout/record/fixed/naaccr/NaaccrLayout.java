@@ -5,22 +5,13 @@ package com.imsweb.layout.record.fixed.naaccr;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
-
-import org.apache.commons.io.IOUtils;
 
 import com.imsweb.layout.Field;
 import com.imsweb.layout.LayoutFactory;
@@ -520,52 +511,10 @@ public class NaaccrLayout extends FixedColumnsLayout {
             return null;
 
         String result = null;
-        if (archivedDocFile != null && archivedDocFile.exists()) {
-            if (archivedDocFile.isDirectory()) {
-                File targetFile = new File(archivedDocFile, "naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
-                if (targetFile.exists()) {
-                    try (InputStream is = Files.newInputStream(targetFile.toPath())) {
-                        Writer writer = new StringWriter();
-                        IOUtils.copy(is, writer, StandardCharsets.UTF_8);
-                        result = writer.toString();
-                    }
-                    catch (IOException e) {
-                        /* do nothing, result will be null, as per specs */
-                    }
-                }
-            }
-            else {
-                try (ZipFile zf = new ZipFile(archivedDocFile)) {
-                    ZipEntry entry = zf.getEntry("naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html");
-
-                    if (entry != null) {
-                        Writer writer = new StringWriter();
-                        IOUtils.copy(zf.getInputStream(entry), writer, StandardCharsets.UTF_8);
-                        result = writer.toString();
-                    }
-                }
-                catch (IOException e) {
-                    /* do nothing, result will be null, as per specs */
-                }
-            }
-        }
-        else if (archivedDocStream != null) {
-            String entryName = "naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html";
-            try {
-                ZipEntry entry = archivedDocStream.getNextEntry();
-                while (entry != null && !entryName.equals(entry.getName()))
-                    entry = archivedDocStream.getNextEntry();
-
-                if (entry != null) {
-                    Writer writer = new StringWriter();
-                    IOUtils.copy(archivedDocStream, writer, StandardCharsets.UTF_8);
-                    result = writer.toString();
-                }
-            }
-            catch (IOException e) {
-                /* do nothing, result will be null, as per specs */
-            }
-        }
+        if (archivedDocFile != null && archivedDocFile.exists())
+            result = LayoutUtils.readNaaccrDocumentationFromFile("naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html", archivedDocFile);
+        else if (archivedDocStream != null)
+            result = LayoutUtils.readNaaccrDocumentationFromZipInputStream("naaccr" + getMajorNaaccrVersion() + "/" + filename + ".html", archivedDocStream);
 
         return result;
     }

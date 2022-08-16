@@ -17,7 +17,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,8 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.IOUtils;
@@ -459,52 +456,10 @@ public class NaaccrXmlLayout implements Layout {
                 /* do nothing, result will be null, as per specs */
             }
         }
-        else if (archivedDocFile != null && archivedDocFile.exists()) {
-            if (archivedDocFile.isDirectory()) {
-                File targetFile = new File(archivedDocFile, getDocFolder() + "/" + filename + ".html");
-                if (targetFile.exists()) {
-                    try (InputStream is = Files.newInputStream(targetFile.toPath())) {
-                        Writer writer = new StringWriter();
-                        IOUtils.copy(is, writer, StandardCharsets.UTF_8);
-                        result = writer.toString();
-                    }
-                    catch (IOException e) {
-                        /* do nothing, result will be null, as per specs */
-                    }
-                }
-            }
-            else {
-                try (ZipFile zf = new ZipFile(archivedDocFile)) {
-                    ZipEntry entry = zf.getEntry(getDocFolder() + "/" + filename + ".html");
-
-                    if (entry != null) {
-                        Writer writer = new StringWriter();
-                        IOUtils.copy(zf.getInputStream(entry), writer, StandardCharsets.UTF_8);
-                        result = writer.toString();
-                    }
-                }
-                catch (IOException e) {
-                    /* do nothing, result will be null, as per specs */
-                }
-            }
-        }
-        else if (archivedDocStream != null) {
-            String entryName = getDocFolder() + "/" + filename + ".html";
-            try {
-                ZipEntry entry = archivedDocStream.getNextEntry();
-                while (entry != null && !entryName.equals(entry.getName()))
-                    entry = archivedDocStream.getNextEntry();
-
-                if (entry != null) {
-                    Writer writer = new StringWriter();
-                    IOUtils.copy(archivedDocStream, writer, StandardCharsets.UTF_8);
-                    result = writer.toString();
-                }
-            }
-            catch (IOException e) {
-                /* do nothing, result will be null, as per specs */
-            }
-        }
+        else if (archivedDocFile != null && archivedDocFile.exists())
+            result = LayoutUtils.readNaaccrDocumentationFromFile(getDocFolder() + "/" + filename + ".html", archivedDocFile);
+        else if (archivedDocStream != null)
+            result = LayoutUtils.readNaaccrDocumentationFromZipInputStream(getDocFolder() + "/" + filename + ".html", archivedDocStream);
 
         return result;
     }
