@@ -59,18 +59,18 @@ public class NaaccrDocScraper {
 
     public static void main(String[] args) throws Exception {
         // output directory
-        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr22");
+        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr23");
 
         // the dictionary to use to gather the fields
-        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(NaaccrFormat.NAACCR_VERSION_220);
+        NaaccrDictionary dictionary = NaaccrXmlDictionaryUtils.getMergedDictionaries(NaaccrFormat.NAACCR_VERSION_230);
 
         // this is the URL to read the full HTML page from
         //URL url = new URL("http://datadictionary.naaccr.org/?c=10");
-        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-22.html.gz");
+        URL url = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-23.html.gz");
 
         // this is the URL to read the style sheet from
         //URL styleSheetUrl = new URL("http://datadictionary.naaccr.org/Styles/ContentReader.css");
-        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-22-style.css");
+        URL styleSheetUrl = Thread.currentThread().getContextClassLoader().getResource("doc/naaccr-23-style.css");
 
         // create the stylesheet
         StringBuilder styleBuf = new StringBuilder();
