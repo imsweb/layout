@@ -2,6 +2,7 @@
 
 **Changes in version 5.1**
 
+- Added NAACCR 23 documentation.
 - Updated NAACCR XML library from version 9.0 to version 9.1.
 - Updated XStream dependency from version 1.4.19 to version 1.4.20.
 - Updated CSV library from version 5.6 to version 5.7.1.

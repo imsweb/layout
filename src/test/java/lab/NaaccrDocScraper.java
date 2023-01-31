@@ -53,6 +53,8 @@ import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
  *     2021/08/21 FD - there were still the same issues, but I added rules to fix all of them, no manual fixes
  *                     for this round!
  *
+ *     2023/01/31 FD - did NAACCR 23, didn't change anything manually!
+ *
  *********************************************************************************************************/
 @SuppressWarnings({"MismatchedQueryAndUpdateOfStringBuilder", "ConstantConditions"})
 public class NaaccrDocScraper {
