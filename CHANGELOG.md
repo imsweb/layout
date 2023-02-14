@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 5.2**
+
+- Fixed NAACCR 23 documentation not properly returned.
+
 **Changes in version 5.1**
 
 - Added NAACCR 23 documentation.
