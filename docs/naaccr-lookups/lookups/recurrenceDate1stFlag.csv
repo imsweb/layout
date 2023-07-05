@@ -1,4 +1,0 @@
-10,"No information whatsoever can be inferred from this exceptional value (e.g, unknown if the patient had a first recurrence)"
-11,"No proper value is applicable in this context (e.g., patient became disease-free after treatment; never had a recurrence; or patient was never disease-free; autopsy only case)"
-12,"A proper value is appicable but not known (i.e., there was a recurrence, but the date is unknown)"
-Blank,"A valid date value is provided in item Recurrence Date--1st [1860], or the date was not expected to have been transmitted"

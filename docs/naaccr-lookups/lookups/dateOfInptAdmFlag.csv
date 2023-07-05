@@ -1,4 +1,0 @@
-10,"No information whatsoever can be inferred from this exceptional value (e.g, unknown if patient was an inpatient)."
-11,"No proper value is applicable in this context (e.g., patient was never an inpatient at the reporting facility)."
-12,"A proper value is applicable but not known. This event occurred, but the date is unknown (e.g., the patient was an inpatient but the date is unknown)."
-Blank,"A valid date value is provided in item Date of Inpt Adm [590], or the date was not expected to have been transmitted."

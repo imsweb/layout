@@ -26,9 +26,9 @@
 00169,Esophagus (including GE junction) (excluding Squamous)
 00170,Stomach
 00180,Small Intestine
-00190,Appendix
+00190,Appendix [8th: 2018-2022]
 00200,Colon and Rectum
-00210,Anus
+00210,Anus [8th: 2018-2022]
 00220,Liver
 00230,Bile Ducts Intrahepatic
 00241,Gallbladder
@@ -60,8 +60,9 @@
 00422,"Heart, Mediastinum and Pleura"
 00430,GIST
 00440,Retroperitoneum
-00450,Soft Tissue Other
+00450,Soft Tissue Rare
 00458,Kaposi Sarcoma
+00459,Soft Tissue Other
 00460,Merkel Cell Skin
 00470,Melanoma Skin
 00478,Skin Other
@@ -69,6 +70,7 @@
 00500,Vulva
 00510,Vagina
 00520,Cervix [8th: 2018-2020]
+00528,Cervix Sarcoma
 00530,Corpus Carcinoma and Carcinosarcoma
 00541,Corpus Sarcoma
 00542,Corpus Adenosarcoma
@@ -99,9 +101,9 @@
 00700,Orbital Sarcoma
 00710,Lymphoma Ocular Adnexa
 00718,Eye Other
-00721,Brain
-00722,CNS Other
-00723,Intracranial Gland
+00721,Brain [8th: 2018-2022]
+00722,CNS Other [8th: 2018-2022]
+00723,Intracranial Gland [8th: 2018-2022]
 00730,Thyroid
 00740,Thyroid Medullary
 00750,Parathyroid
@@ -115,5 +117,11 @@
 00821,Plasma Cell Myeloma
 00822,Plasma Cell Disorders
 00830,HemeRetic
-09520,Cervix [9th: 2021+]
+09190,Appendix [V9: 2023+]
+09210,Anus [V9: 2023+]
+09520,Cervix [V9: 2021+]
+09721,Brain [V9: 2023+]
+09722,CNS Other [V9: 2023+]
+09723,Intracranial Gland [V9: 2023+]
+09724,Medulloblastoma [V9: 2023+]
 99999,Ill-Defined Other

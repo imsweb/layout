@@ -1,5 +1,0 @@
-10,"No information whatsoever can be inferred from this exceptional value (e.g., unknown whether any radiation therapy administered)."
-11,"No proper value is applicable in this context (e.g., no radiation therapy administered; autopsy only case)."
-12,"A proper value is applicable but not known. This event occurred, but the date is unknown (e.g., radiation therapy administered but date is unknown)."
-15,"Information is not available at this time, but it is expected that it will be available later (e.g., radiation therapy is planned as part of the first course of therapy, but had not been started at the time of the most recent follow-up)."
-Blank,"A valid date value is provided in item RX Date Radiation [1210], or the date was not expected to have been transmitted."

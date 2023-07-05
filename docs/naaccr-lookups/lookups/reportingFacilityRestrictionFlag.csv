@@ -1,0 +1,8 @@
+00,No restrictions on release based on reporting facility
+01,OOS: Tumor records received only from Out of State (OOS) data exchange with another central registry
+02,VHA: Tumor records received only from Veterans Health Administration (VHA)
+03,DoD: Tumor records received only from Department of Defense (DOD)
+04,VHA and OOS
+05,DoD and OOS
+06,DoD and VHA
+07,"DoD, VHA and OOS"

@@ -1,5 +1,0 @@
-10,"No information whatsoever can be inferred from this exceptional (non-date) value. (e.g., unknown if the diagnosis was initially based on ambiguous terminology)."
-11,"No proper value is applicable in this context. (e.g., not applicable, initial diagnosis made by unambiguous terminology (Code 0 in data item Ambiguous Terminology DX [442])."
-12,"A proper value is applicable but not known (e.g., the initial ambiguous diagnosis was followed by a conclusive term, but the date of the conclusive term is unknown)."
-15,"Information is not available at this time, but it is expected that it will be available later (e.g., accessioned based on ambiguous terminology only (Code 1 in data item Ambiguous Terminology DX [442])."
-Blank,"A valid date value is provided in item Date Conclusive DX [443], or the date was not expected to have been transmitted."

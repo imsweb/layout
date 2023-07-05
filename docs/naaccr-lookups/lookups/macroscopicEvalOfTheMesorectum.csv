@@ -1,0 +1,7 @@
+00,Patient did not receive TME
+10,Incomplete
+20,Nearly complete
+30,Complete
+40,"TME performed not specified on pathology report as incomplete, nearly complete, or complete TME performed, but pathology report not available Physician statement that TME performed, no mention of incomplete, nearly complete, or complete status"
+99,Unknown if TME performed
+Blank,Site not rectum (C20.9)

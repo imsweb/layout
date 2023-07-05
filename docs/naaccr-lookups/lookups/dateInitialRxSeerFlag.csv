@@ -1,4 +1,0 @@
-10,"No information whatsoever can be inferred from this exceptional value (e.g, unknown if therapy was administered)"
-11,"No proper value is applicable in this context (e.g., therapy was not administered)"
-12,"A proper value is applicable but not known (e.g., therapy was administered and date is unknown)"
-Blank,"A valid date value is provided in item Date Initial RX SEER [1260], or the date was not expected to have been transmitted"

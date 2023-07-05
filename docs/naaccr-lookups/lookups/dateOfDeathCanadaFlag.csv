@@ -1,4 +1,0 @@
-10,"No information whatsoever can be inferred from this exceptional value (e.g, patient is not known to be deceased)"
-11,No proper value is applicable in this context (e.g. patient is alive)
-12,"A proper value is applicable but not known (e.g., date of death is unknown)"
-Blank,"A valid date value is provided in item Date of Death--Canada [1755], or the date was not expected to have been transmitted"

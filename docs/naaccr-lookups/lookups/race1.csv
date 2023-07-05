@@ -1,21 +1,21 @@
 01,White
-02,Black
-03,American Indian/Alaska Native
+02,Black or African American
+03,American Indian or Alaska Native
 04,Chinese
 05,Japanese
 06,Filipino
-07,Hawaiian
+07,Native Hawaiian
 08,Korean
 10,Vietnamese
 11,Laotian
 12,Hmong
-13,Kampuchean (Cambodian)
+13,Cambodian
 14,Thai
-15,"Asian Indian, Pakistani, NOS"
+15,"Asian Indian, NOS or Pakistani, NOS"
 16,Asian Indian
 17,Pakistani
 20,"Micronesian, NOS"
-21,Chamorro/Chamoru
+21,Chamorro
 22,"Guamanian, NOS"
 25,"Polynesian, NOS"
 26,Tahitian
@@ -23,7 +23,7 @@
 28,Tongan
 30,"Melanesian, NOS"
 31,Fiji Islander
-32,New Guinean
+32,Papua New Guinean
 88,No further race documented
 96,Other Asian
 97,"Pacific Islander, NOS"

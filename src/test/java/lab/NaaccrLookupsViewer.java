@@ -44,15 +44,11 @@ import com.imsweb.seerutilsgui.SeerList;
 
 public class NaaccrLookupsViewer extends JFrame {
 
-    private static final File _DIR = new File("C:\\dev\\tmp\\lookups");
+    private static final File _DIR = new File("C:\\dev\\tmp\\naaccr-lookups\\lookups");
 
-    private static final Border _BORDER_FIELD_OUT = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY), BorderFactory.createEmptyBorder(2, 2, 2, 1));
-    private static final Border _BORDER_FIELD_IN = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createEmptyBorder(2, 2, 2, 1));
-
-    private final JPanel _leftPnl, _rightPnl;
-    private final JSplitPane _splitPane;
     private JTextArea _textArea = null;
 
+    @SuppressWarnings("DataFlowIssue")
     public NaaccrLookupsViewer() {
         this.setTitle("NAACCR Lookups Viewer");
         this.setPreferredSize(new Dimension(1200, 800));
@@ -72,9 +68,9 @@ public class NaaccrLookupsViewer extends JFrame {
         this.getContentPane().add(contentPnl, BorderLayout.CENTER);
 
         // LEFT - list of fieds
-        _leftPnl = SeerGuiUtils.createPanel();
-        _leftPnl.setOpaque(true);
-        _leftPnl.setBackground(new Color(180, 191, 211));
+        JPanel leftPnl = SeerGuiUtils.createPanel();
+        leftPnl.setOpaque(true);
+        leftPnl.setBackground(new Color(180, 191, 211));
 
         // WEST/CENTER - list
         final SeerList<String> list = new SeerList<>(names, SeerList.DISPLAY_MODE_DOTTED_LINES, SeerList.FILTERING_MODE_CONTAINED);
@@ -98,14 +94,14 @@ public class NaaccrLookupsViewer extends JFrame {
             }
 
         });
-        _leftPnl.add(new JScrollPane(list), BorderLayout.CENTER);
+        leftPnl.add(new JScrollPane(list), BorderLayout.CENTER);
 
         // LEFT/NORTH - filter
         JPanel filterPnl = SeerGuiUtils.createPanel();
         filterPnl.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
         final JTextField filterFld = new JTextField(12);
-        filterFld.setBorder(_BORDER_FIELD_OUT);
-        filterFld.addFocusListener(createDefaultFocusListener(_BORDER_FIELD_IN, _BORDER_FIELD_OUT));
+        filterFld.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY), BorderFactory.createEmptyBorder(2, 2, 2, 1)));
+        filterFld.addFocusListener(createDefaultFocusListener());
         filterFld.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -119,27 +115,27 @@ public class NaaccrLookupsViewer extends JFrame {
             }
         });
         filterPnl.add(filterFld, BorderLayout.CENTER);
-        _leftPnl.add(filterPnl, BorderLayout.NORTH);
+        leftPnl.add(filterPnl, BorderLayout.NORTH);
 
         // RIGHT - doc
-        _rightPnl = SeerGuiUtils.createPanel();
-        _rightPnl.setOpaque(true);
-        _rightPnl.setBackground(new Color(180, 191, 211));
+        JPanel rightPnl = SeerGuiUtils.createPanel();
+        rightPnl.setOpaque(true);
+        rightPnl.setBackground(new Color(180, 191, 211));
         _textArea = new JTextArea();
         JScrollPane pane = new JScrollPane(_textArea);
-        _rightPnl.add(pane, BorderLayout.CENTER);
+        rightPnl.add(pane, BorderLayout.CENTER);
 
         // CENTER - split pane
-        _splitPane = new JSplitPane();
-        _splitPane.setBorder(null);
-        _splitPane.setDividerSize(5);
-        if (_splitPane.getUI() instanceof BasicSplitPaneUI) {
-            ((BasicSplitPaneUI)_splitPane.getUI()).getDivider().setBorder(null);
-            ((BasicSplitPaneUI)_splitPane.getUI()).getDivider().setBackground(new Color(180, 191, 211));
+        JSplitPane splitPane = new JSplitPane();
+        splitPane.setBorder(null);
+        splitPane.setDividerSize(5);
+        if (splitPane.getUI() instanceof BasicSplitPaneUI) {
+            ((BasicSplitPaneUI)splitPane.getUI()).getDivider().setBorder(null);
+            ((BasicSplitPaneUI)splitPane.getUI()).getDivider().setBackground(new Color(180, 191, 211));
         }
-        _splitPane.setLeftComponent(_leftPnl);
-        _splitPane.setRightComponent(_rightPnl);
-        contentPnl.add(_splitPane, BorderLayout.CENTER);
+        splitPane.setLeftComponent(leftPnl);
+        splitPane.setRightComponent(rightPnl);
+        contentPnl.add(splitPane, BorderLayout.CENTER);
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
@@ -151,16 +147,16 @@ public class NaaccrLookupsViewer extends JFrame {
         });
     }
 
-    private FocusListener createDefaultFocusListener(final Border in, final Border out) {
+    private FocusListener createDefaultFocusListener() {
         return new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                setFocus(e, in);
+                setFocus(e, BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createEmptyBorder(2, 2, 2, 1)));
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                setFocus(e, out);
+                setFocus(e, BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY), BorderFactory.createEmptyBorder(2, 2, 2, 1)));
             }
 
             private void setFocus(FocusEvent e, Border b) {
