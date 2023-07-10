@@ -26,6 +26,7 @@ import com.imsweb.seerutils.SeerUtils;
 public class FixedColumnsLayoutTest {
 
     @Test
+    @SuppressWarnings("java:S5961")
     public void testLayout() throws Exception {
 
         // test loading the layout from a URL

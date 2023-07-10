@@ -293,15 +293,15 @@ public class CommaSeparatedLayout extends RecordLayout {
     }
 
     @Override
-    public String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException {
+    public String createLineFromRecord(Map<String, String> rec, RecordLayoutOptions options) throws IOException {
         StringBuilder result = new StringBuilder();
 
-        if (record == null)
-            record = new HashMap<>();
+        if (rec == null)
+            rec = new HashMap<>();
 
         String[] values = new String[_numFields];
         for (CommaSeparatedField field : _fields) {
-            String val = record.get(field.getName());
+            String val = rec.get(field.getName());
             if (val == null && field.getDefaultValue() != null)
                 val = field.getDefaultValue();
             values[field.getIndex() - 1] = val;

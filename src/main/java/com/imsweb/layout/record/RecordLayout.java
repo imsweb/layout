@@ -149,10 +149,10 @@ public abstract class RecordLayout implements Layout {
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param outputStream outputStream to write to
-     * @param record record to be written
+     * @param rec record to be written
      */
-    public void writeRecord(OutputStream outputStream, Map<String, String> record) throws IOException {
-        writeRecord(outputStream, record, null);
+    public void writeRecord(OutputStream outputStream, Map<String, String> rec) throws IOException {
+        writeRecord(outputStream, rec, null);
     }
 
     /**
@@ -160,11 +160,11 @@ public abstract class RecordLayout implements Layout {
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param outputStream outputStream to write to
-     * @param record record to be written
+     * @param rec record to be written
      * @param options options to use (null means default option values will be used)
      */
-    public void writeRecord(OutputStream outputStream, Map<String, String> record, RecordLayoutOptions options) throws IOException {
-        outputStream.write(createLineFromRecord(record, options).getBytes(getEncoding(options)));
+    public void writeRecord(OutputStream outputStream, Map<String, String> rec, RecordLayoutOptions options) throws IOException {
+        outputStream.write(createLineFromRecord(rec, options).getBytes(getEncoding(options)));
         outputStream.write(getLineSeparator(options).getBytes(getEncoding(options)));
     }
 
@@ -188,8 +188,8 @@ public abstract class RecordLayout implements Layout {
      * @param options options to use (null means default option values will be used)
      */
     public void writeRecords(OutputStream outputStream, List<Map<String, String>> records, RecordLayoutOptions options) throws IOException {
-        for (Map<String, String> record : records) {
-            outputStream.write(createLineFromRecord(record, options).getBytes(getEncoding(options)));
+        for (Map<String, String> rec : records) {
+            outputStream.write(createLineFromRecord(rec, options).getBytes(getEncoding(options)));
             outputStream.write(getLineSeparator(options).getBytes(getEncoding(options)));
         }
     }
@@ -199,10 +199,10 @@ public abstract class RecordLayout implements Layout {
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param writer Writer to write to
-     * @param record Record to be written to the Writer
+     * @param rec Record to be written to the Writer
      */
-    public void writeRecord(Writer writer, Map<String, String> record) throws IOException {
-        writeRecord(writer, record, null);
+    public void writeRecord(Writer writer, Map<String, String> rec) throws IOException {
+        writeRecord(writer, rec, null);
     }
 
     /**
@@ -210,11 +210,11 @@ public abstract class RecordLayout implements Layout {
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param writer Writer to write to
-     * @param record Record to be written to the Writer
+     * @param rec Record to be written to the Writer
      * @param options options to use (null means default option values will be used)
      */
-    public void writeRecord(Writer writer, Map<String, String> record, RecordLayoutOptions options) throws IOException {
-        writer.write(createLineFromRecord(record, options));
+    public void writeRecord(Writer writer, Map<String, String> rec, RecordLayoutOptions options) throws IOException {
+        writer.write(createLineFromRecord(rec, options));
         writer.write(getLineSeparator(options));
     }
 
@@ -238,8 +238,8 @@ public abstract class RecordLayout implements Layout {
      * @param options options to use (null means default option values will be used)
      */
     public void writeRecords(Writer writer, List<Map<String, String>> records, RecordLayoutOptions options) throws IOException {
-        for (Map<String, String> record : records) {
-            writer.write(createLineFromRecord(record, options));
+        for (Map<String, String> rec : records) {
+            writer.write(createLineFromRecord(rec, options));
             writer.write(getLineSeparator(options));
         }
     }
@@ -251,10 +251,10 @@ public abstract class RecordLayout implements Layout {
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param file File to write to
-     * @param record Record to be written to the File
+     * @param rec Record to be written to the File
      */
-    public void writeRecord(File file, Map<String, String> record) throws IOException {
-        writeRecords(file, Collections.singletonList(record));
+    public void writeRecord(File file, Map<String, String> rec) throws IOException {
+        writeRecords(file, Collections.singletonList(rec));
     }
 
     /**
@@ -264,11 +264,11 @@ public abstract class RecordLayout implements Layout {
      * <p/>
      * Created on Jul 14, 2011 by murphyr
      * @param file File to write to
-     * @param record Record to be written to the File
+     * @param rec Record to be written to the File
      * @param options options to use (null means default option values will be used)
      */
-    public void writeRecord(File file, Map<String, String> record, RecordLayoutOptions options) throws IOException {
-        writeRecords(file, Collections.singletonList(record), options);
+    public void writeRecord(File file, Map<String, String> rec, RecordLayoutOptions options) throws IOException {
+        writeRecords(file, Collections.singletonList(rec), options);
     }
 
     /**
@@ -292,8 +292,8 @@ public abstract class RecordLayout implements Layout {
      */
     public void writeRecords(File file, List<Map<String, String>> records, RecordLayoutOptions options) throws IOException {
         try (BufferedOutputStream out = new BufferedOutputStream(LayoutUtils.createOutputStream(file))) {
-            for (Map<String, String> record : records) {
-                out.write(createLineFromRecord(record, options).getBytes(getEncoding(options)));
+            for (Map<String, String> rec : records) {
+                out.write(createLineFromRecord(rec, options).getBytes(getEncoding(options)));
                 out.write(getLineSeparator(options).getBytes(getEncoding(options)));
             }
         }
@@ -452,11 +452,11 @@ public abstract class RecordLayout implements Layout {
      * Converts the provided record into a data line.
      * <p/>
      * Created on Jul 14, 2011 by murphyr
-     * @param record record to convert
+     * @param rec record to convert
      * @param options the options to use to create the line (pass null to use all default options)
      * @return a data line
      */
-    public abstract String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException;
+    public abstract String createLineFromRecord(Map<String, String> rec, RecordLayoutOptions options) throws IOException;
 
     /**
      * Returns a layout info object if this instance of a layout can handle the provided data line, returns null otherwise.

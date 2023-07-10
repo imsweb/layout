@@ -289,11 +289,11 @@ public class FixedColumnsLayout extends RecordLayout {
 
     @Override
     @SuppressWarnings("java:S3776") // logic too complicated
-    public String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException {
+    public String createLineFromRecord(Map<String, String> rec, RecordLayoutOptions options) throws IOException {
         StringBuilder result = new StringBuilder();
 
-        if (record == null)
-            record = new HashMap<>();
+        if (rec == null)
+            rec = new HashMap<>();
 
         int currentIndex = 1;
         for (FixedColumnsField field : _fields) {
@@ -319,7 +319,7 @@ public class FixedColumnsLayout extends RecordLayout {
                     currentIndex = subStart;
 
                     if (subEnd <= end) { // do not write the current subfield out if it can potentially go out of the field
-                        String value = record.get(child.getName());
+                        String value = rec.get(child.getName());
                         if (value == null)
                             value = child.getDefaultValue() != null ? child.getDefaultValue() : "";
                         int length = subEnd - subStart + 1;
@@ -348,7 +348,7 @@ public class FixedColumnsLayout extends RecordLayout {
                 currentIndex = end + 1;
             }
             else if (end <= _layoutLineLength) { // do not write the current field out if it can potentially go out of the line
-                String value = record.get(field.getName());
+                String value = rec.get(field.getName());
                 if (value == null)
                     value = field.getDefaultValue() != null ? field.getDefaultValue() : "";
                 int length = end - start + 1;

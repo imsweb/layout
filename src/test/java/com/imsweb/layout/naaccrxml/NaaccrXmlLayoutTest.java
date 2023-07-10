@@ -505,6 +505,7 @@ public class NaaccrXmlLayoutTest {
     }
 
     @Test
+    @SuppressWarnings("java:S5961")
     public void testBuildFileInfo() throws IOException {
         String defaultUserDictionary = "http://naaccr.org/naaccrxml/user-defined-naaccr-dictionary-160.xml";
 

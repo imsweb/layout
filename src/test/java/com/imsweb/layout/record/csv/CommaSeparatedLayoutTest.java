@@ -284,7 +284,7 @@ public class CommaSeparatedLayoutTest {
             }
 
             @Override
-            public String createLineFromRecord(Map<String, String> record, RecordLayoutOptions options) throws IOException {
+            public String createLineFromRecord(Map<String, String> rec, RecordLayoutOptions options) throws IOException {
 
                 // handle subfields
                 for (CommaSeparatedField field : _fields) {
@@ -302,7 +302,7 @@ public class CommaSeparatedLayoutTest {
                                     result.append(' ');
                             currentIndex = end;
 
-                            String value = record.get(child.getName());
+                            String value = rec.get(child.getName());
                             if (value == null)
                                 value = child.getDefaultValue() != null ? child.getDefaultValue() : "";
                             int length = child.getEnd() - child.getStart() + 1;
@@ -314,11 +314,11 @@ public class CommaSeparatedLayoutTest {
                                 value = LayoutUtils.pad(value, length, value.isEmpty() ? " " : child.getPadChar(), false);
                             result.append(value);
                         }
-                        record.put(field.getName(), result.toString().trim());
+                        rec.put(field.getName(), result.toString().trim());
                     }
                 }
 
-                return super.createLineFromRecord(record, options);
+                return super.createLineFromRecord(rec, options);
             }
         };
         layout.setLayoutId("naaccr-partial-csv");

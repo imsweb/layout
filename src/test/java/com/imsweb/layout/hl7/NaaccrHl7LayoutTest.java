@@ -363,13 +363,8 @@ public class NaaccrHl7LayoutTest {
         options.setSkipInvalidSegmentIds(false);
 
         URL url = Thread.currentThread().getContextClassLoader().getResource("fake-naaccr-hl7-bad1.txt");
-        try {
-            layout.readAllMessages(new File(url.getPath()), options);
-            Assert.fail("Was expecting an exception!");
-        }
-        catch (RuntimeException e) {
-            // expected
-        }
+        File file = new File(url.getPath());
+        Assert.assertThrows(RuntimeException.class, () -> layout.readAllMessages(file, options));
 
         options.setSkipInvalidSegmentIds(true);
         Assert.assertEquals(1, layout.readAllMessages(new File(url.getPath()), options).size());
