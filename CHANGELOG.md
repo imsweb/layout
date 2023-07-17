@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 5.3**
+
+- Added NAACCR 24 XML layout; documentation is not available yet for new data items.
+- Updated NAACCR XML library from version 9.1 to version 10.0.
+
 **Changes in version 5.2**
 
 - Fixed NAACCR 23 documentation not properly returned.

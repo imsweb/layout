@@ -187,6 +187,7 @@ public class NaaccrXmlLayout implements Layout {
      * @param dictionaries List (of type NaaccrDictionary) of custom user dictionaries - used for making custom layouts
      * @param loadFields determines whether to load all the fields from all dictionaries into the allFields variable
      */
+    @SuppressWarnings("DataFlowIssue")
     public NaaccrXmlLayout(String naaccrVersion, String recordType, String layoutId, String layoutName, String description, List<NaaccrDictionary> dictionaries, boolean loadFields) {
         _naaccrVersion = naaccrVersion;
         _layoutName = layoutName;
@@ -465,6 +466,9 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     protected String getDocFolder() {
+        // there is always a delay before the documentation is released on the NAACCR website...
+        if ("240".equals(_naaccrVersion))
+            return "naaccr23";
         return "naaccr" + _naaccrVersion.substring(0, 2);
     }
 

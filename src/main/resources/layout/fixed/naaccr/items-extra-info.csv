@@ -853,3 +853,9 @@ noPatientContactFlag,No Pat Contact,Follow-up/Recurrence/Death
 reportingFacilityRestrictionFlag,Rpt Fac Restrict,Follow-up/Recurrence/Death
 rxHospSurgPrimSite2023,RX Hosp Prim Site 23,Hospital-Specific
 rxSummSurgPrimSite2023,RX Summ Prim Site 23,Treatment-1st Course
+brainPrimaryTumorLocation,Brain Prim Tum Loc,Stage/Prognostic Factors
+derivedSummaryGrade2018,Der Sum Grade 18,Stage/Prognostic Factors
+geocodingQualityCode,Geo Qual Code,Demographic
+geocodingQualityCodeDetail,Geo Qual Code Det,Demographic
+rxHospReconBreast,RX Hosp Recon Breast,Hospital-Specific
+rxSummReconBreast,RX Summ Recon Breast,Treatment-1st Course
