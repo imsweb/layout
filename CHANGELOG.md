@@ -1,5 +1,11 @@
 ## Layout Framework Version History
 
+**Changes in version 5.4**
+
+- Changed minimum Java version compatibility to Java 11.
+- Updated NAACCR XML library from version 10.0 to version 10.1.
+- Updated CSV library from version 5.7.1 to version 5.8.
+
 **Changes in version 5.3**
 
 - Added NAACCR 24 XML layout; documentation is not available yet for new data items.
