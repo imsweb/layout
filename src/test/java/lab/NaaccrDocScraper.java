@@ -31,7 +31,13 @@ import com.imsweb.naaccrxml.NaaccrXmlDictionaryUtils;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionary;
 import com.imsweb.naaccrxml.entity.dictionary.NaaccrDictionaryItem;
 
+
 /*********************************************************************************************************
+ *
+ *     ********************************************
+ *     !!!!!!   THIS CLASS IS NOW DEPRECATED  !!!!!
+ *     ********************************************
+ *
  *     Use this class to generate the NAACCR documentation from the NAACCR website.
  *
  *     !!!!    MAKE SURE TO AUTO-FORMAT THE ENTIRE FOLDER AFTER CREATING THE FILES    !!!!

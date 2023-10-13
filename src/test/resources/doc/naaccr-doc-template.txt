@@ -1,0 +1,48 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">${ITEM_NUMBER}</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">${ITEM_LENGTH}</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">${SOURCE_OF_STANDARD}</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">${YEAR_IMPLEMENTED}</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">${VERSION_IMPLEMENTED}</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">${YEAR_RETIRED}</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">${VERSION_RETIRED}</td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: ${DATA_LEVEL}.${XML_ID}<br/><br/>
+
+<#if (ALTERNATE_NAMES??)>
+<strong>Alternate Names</strong>
+<#list ALTERNATE_NAMES as name >
+    <br/>&nbsp;&nbsp;&nbsp;${name}
+</#list>
+</#if>
+
+<br/>
+<br/>
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>${DESCRIPTION}</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>${RATIONALE}</div>
+
+<#if (ALLOWED_CODES??)>
+<br/>
+<br/>
+<div class='content chap10-para'><strong>Codes</strong></div>
+<table>
+<#list ALLOWED_CODES as code >
+    <tr class='code-row'><td class='code-nbr'>${code.code}</td><td class='code-desc'>${code.description}</td></tr>
+</#list>
+</table>
+</#if>

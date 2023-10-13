@@ -35,9 +35,12 @@ dependencies {
     implementation 'com.thoughtworks.xstream:xstream:1.4.20'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'com.imsweb:seerutils-gui:1.20'
     testImplementation 'com.imsweb:seerutils:5.6'
-    testImplementation 'org.xhtmlrenderer:flying-saucer-core:9.3.1'
+    testImplementation 'com.imsweb:seerutils-gui:1.20'
+    testImplementation 'com.imsweb:naaccr-api-client:1.0-SNAPSHOT' // access NAACCR documentation API
+    testImplementation 'org.commonmark:commonmark:0.21.0' // convert markdown to HTML for NAACCR documentation
+    testImplementation 'org.freemarker:freemarker:2.3.32' // fill it template for NAACCR documentation
+    testImplementation 'org.xhtmlrenderer:flying-saucer-core:9.3.1' // Java Swing HTML renderer for NAACCR documentation lab
 }
 
 // enforce UTF-8, display the compilation warnings
