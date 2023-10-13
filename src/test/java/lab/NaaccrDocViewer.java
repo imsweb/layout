@@ -63,11 +63,12 @@ import com.imsweb.seerutilsgui.editor.SyntaxKit;
 @SuppressWarnings({"ConstantConditions", "FieldCanBeLocal", "SameParameterValue"})
 public class NaaccrDocViewer extends JFrame {
 
-    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr23");
+    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr24");
 
     private static final List<Layout> _LAYOUTS = new ArrayList<>();
 
     static {
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_24));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_23));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_22));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_21));
@@ -75,8 +76,8 @@ public class NaaccrDocViewer extends JFrame {
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_16));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_15));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_14));
-        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_13));
-        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_12));
+        //_LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_13));
+        //_LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_12));
     }
 
     private static final Boolean _SORT_BY_ITEM_NUMBER = false;

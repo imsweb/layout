@@ -20,25 +20,27 @@
 </table>
 
 <br/><strong>NAACCR XML</strong>: ${DATA_LEVEL}.${XML_ID}<br/><br/>
-
 <#if (ALTERNATE_NAMES??)>
 <strong>Alternate Names</strong>
+<br/>
 <#list ALTERNATE_NAMES as name >
-    <br/>&nbsp;&nbsp;&nbsp;${name}
+<br/>&nbsp;&nbsp;&nbsp;${name}
 </#list>
 </#if>
 
-<br/>
-<br/>
 <div class='content chap10-para-head'><strong>Description</strong></div>
-<div class='content chap10-para'>${DESCRIPTION}</div>
+<div class='content chap10-para'>
+${DESCRIPTION}
+</div>
 
+<#if (RATIONALE??)>
 <div class='content chap10-para-head'><strong>Rationale</strong></div>
-<div class='content chap10-para'>${RATIONALE}</div>
+<div class='content chap10-para'>
+${RATIONALE}
+</div>
+</#if>
 
 <#if (ALLOWED_CODES??)>
-<br/>
-<br/>
 <div class='content chap10-para'><strong>Codes</strong></div>
 <table>
 <#list ALLOWED_CODES as code >
