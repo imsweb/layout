@@ -280,7 +280,7 @@ public class NaaccrDocViewer extends JFrame {
         buf.append("\n");
         buf.append("<body>\n");
         buf.append("\n");
-        buf.append("<h1>").append(title.toUpperCase().replace("&", "&amp;")).append("</h1>\n");
+        buf.append("<h1>").append(title.replace("&", "&amp;")).append("</h1>\n");
         buf.append("\n");
         buf.append(content);
         buf.append("</body>\n");

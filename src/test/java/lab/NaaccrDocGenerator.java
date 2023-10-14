@@ -30,14 +30,9 @@ public class NaaccrDocGenerator {
         Parser parser = Parser.builder().build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
 
-        //        String test = "This is a   \n  \ntest...";
-        //        System.out.println(test);
-        //        System.out.println(renderer.render(parser.parse(test)));
-        //        System.out.println(cleanHtml(renderer.render(parser.parse(test))));
-
         File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr24");
 
-        for (String id : List.of("race1", "nameLast", "primarySite", "classOfCase")) {
+        for (String id : List.of("race1", "nameLast", "primarySite", "classOfCase", "ajccCancerSurvApiVersionCurrent")) {
             try (FileReader reader = new FileReader(System.getProperty("user.dir") + "/src/test/resources/doc/naaccr-doc-template.txt");
                  FileWriter writer = new FileWriter(new File(outputDir, id + ".html"))) { // TODO FD deal with retired items
 
@@ -56,56 +51,38 @@ public class NaaccrDocGenerator {
                 data.put("DATA_LEVEL", item.getXmlParentId());
                 data.put("XML_ID", item.getXmlNaaccrId());
                 data.put("ALTERNATE_NAMES", item.getAlternateNames());
-                data.put("DESCRIPTION", cleanHtml(renderer.render(parser.parse(item.getDescription()))));
+                if (item.getDescription() != null)
+                    data.put("DESCRIPTION", cleanHtml(renderer.render(parser.parse(item.getDescription()))));
                 if (item.getRationale() != null)
                     data.put("RATIONALE", cleanHtml(renderer.render(parser.parse(item.getRationale()))));
+                if (item.getClarification() != null)
+                    data.put("CLARIFICATION", cleanHtml(renderer.render(parser.parse(item.getClarification()))));
+                if (item.getGeneralNotes() != null)
+                    data.put("GENERAL_NOTES", cleanHtml(renderer.render(parser.parse(item.getGeneralNotes()))));
+                if (item.getCodeHeading() != null)
+                    data.put("CODE_HEADING", cleanHtml(renderer.render(parser.parse(item.getCodeHeading()))));
+                else
+                    data.put("CODE_HEADING", "<strong>Codes</strong>");
                 if (item.getAllowedCodes() != null) {
-                    for (NaaccrAllowedCode code : item.getAllowedCodes()) {
+                    for (NaaccrAllowedCode code : item.getAllowedCodes())
                         if (code.getCode() == null)
                             code.setCode("");
-                        if (code.getDescription() == null)
-                            code.setDescription("");
-                    }
                     data.put("ALLOWED_CODES", item.getAllowedCodes());
                 }
+                if (item.getCodeNote() != null)
+                    data.put("CODE_NOTE", cleanHtml(renderer.render(parser.parse(item.getCodeNote()))));
 
                 template.process(data, writer);
             }
         }
 
-        //        // TODO FD deal with replacing special characters in HTML... (see race1 for an example of a quote)
-
-        //        StringBuilder buf = new StringBuilder();
-        //        buf.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n");
-        //        buf.append("\n");
-        //        buf.append("<html>\n");
-        //        buf.append("\n");
-        //        buf.append("<head>\n");
-        //        buf.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n");
-        //        buf.append("<title>").append(item.getItemName().replace("&", "&amp;")).append("</title>\n");
-        //        buf.append("<style>\n");
-        //        buf.append("body { padding:5px; font-family:Tahoma; font-size: 14px; }\n");
-        //        buf.append("h1 { font-size:14px; margin-top:0px; }\n");
-        //        buf.append(style);
-        //        buf.append("</style>\n");
-        //        buf.append("</head>\n");
-        //        buf.append("\n");
-        //        buf.append("<body>\n");
-        //        buf.append("\n");
-        //        buf.append("<h1>").append(item.getItemName().replace("&", "&amp;")).append("</h1>\n");
-        //        buf.append("\n");
-        //        buf.append(content);
-        //        buf.append("</body>\n");
-        //        buf.append("</html>\n");
-        //
-        //        SeerUtils.writeFile(buf.toString(), new File(System.getProperty("user.dir") + "/build/test.html"));
+        // TODO FD deal with replacing special characters in HTML... (see race1 for an example of a quote)
     }
 
     private static String cleanHtml(String html) {
-        //html = Pattern.compile("^<p>").matcher(html).replaceAll("");
-        //html = Pattern.compile("</p>$").matcher(html).replaceAll("");
 
-        html = Pattern.compile("\\^(\\d+)\\^").matcher(html).replaceAll("<sup>$1</sup>");
+        html = Pattern.compile("</em>\\^(\\d+)\\^").matcher(html).replaceAll("</em>&nbsp;&nbsp;<sup>$1</sup>");
+        html = Pattern.compile("\\^(\\d+)\\^").matcher(html).replaceAll("&nbsp;<sup>$1</sup>");
 
         return html;
     }
