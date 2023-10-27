@@ -1,0 +1,56 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1,782</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">8</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2015</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">15</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.survDateActiveFollowup<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>The Surv-Date Active Followup is defined as the earlier of the Date of Last Contact [1750] and a study cutoff date. The study cut-off date is a pre-determined date based on the year of data submission and is set in the survival program used to derive the seven survival variables. If the Date of Last Contact [1750] is earlier than the study cut-off date and either the day or month is unknown or not available, the values are imputed by the survival program. The survival program is available from your standard setter or NAACCR.</p>
+<p><strong>Example 1</strong></p>
+<p>Date of Last Contact: 20111120</p>
+<p>Study Cut-off Date: 20111231</p>
+<p>Surv-Date Active Followup: 20111120</p>
+<p>Note: The date of last contact is earlier than the study cut-off date, and the date of last contact is complete, so the date of last contact is used in Surv-Date Active Followup.</p>
+<p><strong>Example 2</strong></p>
+<p>Date of Last Contact: 201111</p>
+<p>Study Cut-off Date: 20111231</p>
+<p>Surv-Date Active Followup: 20111115</p>
+<p>Note: Rationale is to take mid-point of possible values. For Nov (30 days) it would be FLOOR((1+30)/2) = 15, where FLOOR is a function that rounds a decimal down to an integer.</p>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>The Surv-Date Active Followup is needed to be able to recalculate survival months if a different study cut-off date is used and provides flexibility to recalculate survival without needing to rerun the survival program on the original data.</p>
+
+</div>
+
+
+<div class='content chap10-para'>
+<p>Additional information about the survival algorithm and what specific values are assigned in given missing date situations are available here: &lt;http://seer.cancer.gov/survivaltime/&gt;.</p>
+
+</div>
+
+
+<div class='content chap10-para'>
+<p>If Date of Last Contact [1750] is blank, Surv-Date Active Followup will also be blank.</p>
+
+</div>

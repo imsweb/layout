@@ -1,0 +1,44 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">87</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">14</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2024</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">24</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.geocodingQualityCodeDetail<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>This variable is an extension of the <strong>GEOCODING QUALITY CODE [86]</strong> and is comprised of details about multiple elements related to the quality of a geocode. Each digit of this code represents an element of the input address along with a hexadecimal score indicating either a full match (M) or a number corresponding to a type of error in the element. There are a total of 14 elements that are given codes to describe a full match (M) or an error in the element.</p>
+<p>The elements include: Input Type, Street Type, Street, ZIP, City, City Refs, Directionals, Qualifiers, Distance, Outliers, Census Block Groups, Census Tracts, Census Counties, Ref Match Count.</p>
+<p>This measure is currently referred to as Penalty Code in the NAACCR geocoder documentation and has been in use since November 2017.</p>
+
+</div>
+
+
+
+
+
+<div class='content chap10-para'>
+<p><strong>Application:</strong></p>
+<p>These codes provide researchers and registry staff a detailed assessment of the address components geocoded and the quality of the geocode. The codes provide a way to assess input reference data agreement, geographic accuracy, and micro-scale fitness for use at the sub-county level.</p>
+<p>This code is intended to be used by researchers or registry staff when manually reviewing geocoded cases in MI GeoCorrect Tool (for cases with an R or F code in the Geocoding Quality Measure).</p>
+<p>This variable is not coded directly. The code is directly output by the NAACCR/AGGIE Geocoder or MI GeoCorrect Tool. </p>
+XXXXXXXXXXXXXX<br/><strong>Interactive MMMMMMMMMMMMMM.&nbsp;</strong>Geocoding was completed and the address matched after manual review in MI GeoCorrect Tool.<br/><br/>
+14 digit Combination of M and/or F<br/>Each of the 14 positions has ‘M’ when the match for that element is good. Other alphanumeric codes describe any issues with the match. Codes meanings are specific to each of the 14 geocoding elements. For instance, ‘1’ for Input Type is ‘street only’ match but ‘1’ for Street Type is “PO Box”. See website for full details:&nbsp;<a href="https://geo.naaccr.org/Services/Geocode/About/TechnicalDetails.aspx">https://geo.naaccr.org/Services/Geocode/About/TechnicalDetails.aspx</a>&nbsp;
+
+</div>

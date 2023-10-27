@@ -1,0 +1,89 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">380</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">SEER</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.sequenceNumberCentral<br/><br/>
+<strong>Alternate Names</strong>
+<br/>&nbsp;&nbsp;&nbsp;Sequence Number (pre-96 SEER)
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>Code indicates the sequence of all reportable neoplasms over the lifetime of the person. This data item differs from Sequence Number-Hospital [560], because the definitions of reportable neoplasms often vary between a hospital and a central registry. Each neoplasm is assigned a different number. Sequence Number 00 indicates that the person has had only one <em>in situ</em> or one malignant neoplasm as defined by the Federal reportable list (regardless of central registry reference date). Sequence Number 01 indicates the first of two or more reportable neoplasms, but 02 indicates the second of two or more reportable neoplasms, and so on. Because the time period of Sequence Number is a person’s lifetime, reportable neoplasms not included in the central registry (those that occur outside the registry catchment area or before the reference date) also are allotted a sequence number. For example, a registry may contain a single record for a patient with a sequence number of 02 because the first reportable neoplasm preceded the central registry’s reference date. </p>
+<p><strong>Reporting Requirements: Federally Required and State/Province Defined</strong> </p>
+<p>The Federal or SEER/NPCR standard defining the reportable neoplasms is described in, <a href="https://apps.naaccr.org/data-dictionary/data-dictionary/version=24/chapter-view/standards-for-tumor-inclusion-and-reportability/"><strong>Standards For Tumor Inclusion and Reportability</strong></a><strong>.</strong> It is assumed that this shared standard is the “minimum” definition of reportability. Individual central cancer registries may define additional neoplasms as reportable.</p>
+<p>Numeric codes in the 00-59 range indicate the sequence of neoplasms of <em>in situ</em> or malignant behavior (2 or 3) at the time of diagnosis, which SEER/NPCR standards require to be reported. Codes 60 to 87 indicate the sequence of non-malignant tumors (as defined in <a href="https://apps.naaccr.org/data-dictionary/data-dictionary/version=24/chapter-view/standards-for-tumor-inclusion-and-reportability/"><strong>Standards For Tumor Inclusion and Reportability</strong></a><strong>.</strong>) and any other neoplasms that the central registry has defined as reportable. Neoplasms required by SEER/NPCR with an <em>in situ</em> or malignant behavior at the time of diagnosis are sequenced completely independently of this higher-numbered category. Sequence Number-Hospital does not affect Sequence Number-Central. The two notational systems are independent but central registries should take Sequence Number-Hospital [560] into account when coding Sequence Number Central.</p>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>The purpose of sequencing based on the patient’s lifetime is to truly identify the 00s, the people who only had one malignant primary in their lifetimes for survival analysis. If a central registry sequences by just what is reported to them, then it will be unclear whether 00 means the person only had one malignant primary in his lifetime or the person had one malignant primary since the central registry started collecting data. The Federally required reportable list has changed throughout the years, so the registry must use the appropriate reportable list for the year of diagnosis. The central registry reference date will not affect Sequence Number-Central.</p>
+
+</div>
+
+
+
+<div class='content chap10-para'><p><strong>Codes</strong></p>
+</div>
+<table>
+        <tr class='code-row'><td class='code-nbr' colspan='2'>....</td></tr>
+        <tr class='code-row'><td class='code-nbr'>00</td><td class='code-desc'>One primary in the patient's lifetime</td></tr>
+        <tr class='code-row'><td class='code-nbr'>01</td><td class='code-desc'>First of two or more primaries</td></tr>
+        <tr class='code-row'><td class='code-nbr'>02</td><td class='code-desc'>Second of two or more primaries</td></tr>
+        <tr class='code-row'><td class='code-nbr' colspan='2'>....</td></tr>
+        <tr class='code-row'><td class='code-nbr' colspan='2'>....</td></tr>
+        <tr class='code-row'><td class='code-nbr'>59</td><td class='code-desc'>Fifty-ninth or higher of fifty-nine or more primaries</td></tr>
+        <tr class='code-row'><td class='code-nbr'>99</td><td class='code-desc'>Unspecified or unknown sequence number of Federally required *in situ* or malignant tumors. Sequence number 99 can be used if there is a malignant tumor and its sequence number is unknown. If there is known to be more than one malignant tumor, then the tumors must be sequenced.)</td></tr>
+        <tr class='code-row'><td class='code-nbr' colspan='2'>....</td></tr>
+        <tr class='code-row'><td class='code-nbr'>60</td><td class='code-desc'>One non-malignant tumor or central registry-defined neoplasm</td></tr>
+        <tr class='code-row'><td class='code-nbr'>61</td><td class='code-desc'>First of two or more non-malignant tumor or central registry-defined neoplasms</td></tr>
+        <tr class='code-row'><td class='code-nbr'>62</td><td class='code-desc'>Second of two or more non-malignant tumor or central registry-defined neoplasms</td></tr>
+        <tr class='code-row'><td class='code-nbr' colspan='2'>....</td></tr>
+        <tr class='code-row'><td class='code-nbr'>88</td><td class='code-desc'>Unspecified or unknown sequence number for non-malignant tumor or central registry-defined neoplasms. (Sequence number 88 can be used if there is a non-malignant tumor and its sequence number is unknown. If there is known to be more than one non-malignant tumor, then the tumors must be sequenced.)</td></tr>
+        <tr class='code-row'><td class='code-nbr'>98</td><td class='code-desc'>Cervix carcinoma *in situ* (CIS)/CIN III, Diagnosis Years 1996-2002.</td></tr>
+</table>
+
+<div class='content chap10-para'>
+<p>The table that follows shows which sequence number series to use by type of neoplasm.</p>
+<table>
+  <tr>    <td> <strong>Neoplasm</strong> </td>    <td> <strong>SeqNum-Central</strong> </td>  </tr>
+  <tr>    <td> <em><strong>In Situ/Malignant as Federally Required based on Diagnosis Year</strong></em> </td>    <td> <em><strong>(Numeric Series)</strong></em> </td>  </tr>
+  <tr>    <td> <em>In Situ (behavior code = 2) (Cervix CIS/CIN III, Diagnosis Year before 1996) (includes VIN III, VAIN III, AIN III)</em> </td>    <td> <em>00 -- 59</em> </td>  </tr>
+  <tr>    <td> <em>Malignant (behavior code = 3)</em> </td>    <td> <em>00 -- 59</em> </td>  </tr>
+  <tr>    <td> <em>Juvenile Astrocytoma, Diagnosis Year 2001+ (*)</em> </td>    <td> <em>00 -- 59</em> </td>  </tr>
+  <tr>    <td> <em>Invasive following In Situ--New primary as defined by CoC</em> </td>    <td> <em>00 -- 59</em> </td>  </tr>
+  <tr>    <td> <em>Invasive following In Situ--New primary as defined by SEER</em> </td>    <td> <em>00 -- 59</em> </td>  </tr>
+  <tr>    <td> <em>Unspecified Federally Required Sequence Number  or Unknown</em> </td>    <td> <em>99</em> </td>  </tr>
+  <tr>    <td> <em><strong>Non-malignant Tumor as Federally Required based on Diagnosis Year or State/Province Registry-Defined</strong></em> </td>    <td>   </td>  </tr>
+  <tr>    <td> <em>Examples:</em> </td>    <td>   </td>  </tr>
+  <tr>    <td> <em>Non-malignant Tumor/Benign Brain</em> </td>    <td> <em>60 -- 87</em> </td>  </tr>
+  <tr>    <td> <em>Borderline Ovarian, Diagnosis Year 2001+</em> </td>    <td> <em>60 -- 87</em> </td>  </tr>
+  <tr>    <td> <em>Other Borderline/Benign</em> </td>    <td> <em>60 -- 87</em> </td>  </tr>
+  <tr>    <td> <em>Skin SCC/BCC</em> </td>    <td> <em>60 -- 87</em> </td>  </tr>
+  <tr>    <td> <em>PIN III</em> </td>    <td> <em>60 -- 87</em> </td>  </tr>
+  <tr>    <td> <em>Cervix CIS/CIN III, Diagnosis Year 2003+</em> </td>    <td> <em>60 -- 87</em> </td>  </tr>
+  <tr>    <td> <em>Unspecified Non-malignant Tumor or Central Registry-Defined Sequence Number</em> </td>    <td> <em>88</em> </td>  </tr>
+  <tr>    <td> <em>Cervix CIS/CIN III, Diagnosis Year 1996-2002</em> </td>    <td> <em>98</em> </td>  </tr>
+</table>
+
+<p>Note:* See the section on Sequence Number--Central in The <em>SEER Program Code Manual</em>. </p>
+<p><em>Note:</em> Conversion Guidance: The sequence numbers for neoplasms whose histologies were associated with behavior codes that changed from <em>in situ</em>/malignant to benign/borderline or vice versa during the conversion from ICD-O-2 to ICD-O-3 should not be re-sequenced.</p>
+
+</div>

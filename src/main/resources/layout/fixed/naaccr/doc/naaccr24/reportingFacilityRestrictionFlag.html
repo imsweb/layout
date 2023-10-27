@@ -1,0 +1,70 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1,856</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2023</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">23</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.reportingFacilityRestrictionFlag<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>This data item will flag tumor records that the central cancer registry may not be allowed to release for research and certain other types of uses due to the reporting facility (e.g., VA, DoD, interstate exchange). It is important to note that all cases, regardless of the reporting facility, can be released for routine surveillance reporting to NCI, CDC, and NAACCR, for which all reportable tumor records are to be submitted. This item will be used in combination with another newly proposed data item for “No Patient Contact Flag” to identify data that the registry may not be allowed to release.</p>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>Cancer registries have an obligation to manage the appropriate use and release of cancer data received from reporting facilities. Some reporting facilities (e.g., VA, DoD, interstate exchange) have restrictions about when the receiving central registry is allowed to release of data reported by their facility. Often times these restrictions depend on the agreements between the central registry and the reporting facility and focus on patient contact studies, research, and certain other types of studies that involve release of PII. These restrictions do not apply to release of data for routine surveillance activities.</p>
+<p>It is essential to have a standard way for central registries to identify and exclude potentially non-releasable records from a file that is transmitted to external parties for purposes other than routine surveillance. Currently, there is no standard data item to flag records that are potentially non-releasable based on the reporting facility and the methods to identify these records differ between registries. Many central registries have already been capturing information on potentially non-releasable records, but not in a standard manner. Registries have captured this content using various codes and various fields such as Unusual Follow Up Method [1850] or the State Requestor field, which will be retired in v22. For those registries that do not have a specific data item, queries on the reporting facilities are run to identify non-releasable records. This newly proposed data item will provide a standard and more efficient way for registries to flag records that potentially should not be released based on the reporting facilities.</p>
+
+</div>
+
+
+
+<div class='content chap10-para'><p><strong>Codes</strong></p>
+</div>
+<table>
+        <tr class='code-row'><td class='code-nbr'>00</td><td class='code-desc'>No restrictions on release based on reporting facility.\*</td></tr>
+        <tr class='code-row'><td class='code-nbr'>01</td><td class='code-desc'>OOS: Tumor records received only from Out of State (OOS) data exchange with another central registry</td></tr>
+        <tr class='code-row'><td class='code-nbr'>02</td><td class='code-desc'>VHA: Tumor records received only from Veterans Health Administration (VHA)</td></tr>
+        <tr class='code-row'><td class='code-nbr'>03</td><td class='code-desc'>DoD: Tumor records received only from Department of Defense (DOD)</td></tr>
+        <tr class='code-row'><td class='code-nbr'>04</td><td class='code-desc'>VHA and OOS</td></tr>
+        <tr class='code-row'><td class='code-nbr'>05</td><td class='code-desc'>DoD and OOS</td></tr>
+        <tr class='code-row'><td class='code-nbr'>06</td><td class='code-desc'>DoD and VHA</td></tr>
+        <tr class='code-row'><td class='code-nbr'>07</td><td class='code-desc'>DoD, VHA and OOS</td></tr>
+</table>
+
+<div class='content chap10-para'>
+<p>*<strong>Note</strong></p>
+<p>Code 00: This code is assigned if the tumor record is only reported by a facility without potential restrictions on release of data (e.g., in-state hospital, physician offices, pathology lab). The code is also assigned if the tumor record is reported by both a facility without restrictions and a facility listed below that potentially has restrictions. For example, if an in-state hospital and a VHA facility both report the same tumor, code 00 would be assigned upon consolidation.</p>
+<p>Allowable release:</p>
+<p>Code 00: These records can be released; however, the type of information released will depend on a registry’s policies/procedures/legislation/administrative rules.</p>
+<p>Codes 01-07: These records can be released, without permission from the reporting facility(ies), in these specific instances:</p>
+<ul>
+<li>Release for routine national surveillance activities (e.g., reporting to NCI, CDC, and NAACCR)</li>
+<li>Release of PII for public health surveillance activities (e.g., linkage for routine registry operations, use in cancer concern investigations, etc.)</li>
+<li>Release of a limited data set to researchers conducting linkage studies (e.g., cohort ID plus cancer information)</li>
+<li>Release of de-identified data</li>
+</ul>
+<p>Limitations on external release of PII for research:</p>
+<p>Code 00: Release of PII depends on a registry’s internal policies/procedures/legislation/administrative rules.</p>
+<p>Codes 01-07: Release of PII is dependent on a registry’s agreements with the reporting facility(ies) and is generally handled as follows:</p>
+<p>Codes 01-03 (records received from single reporting facility) may require that the registry seek permission from original reporting facility when PII is released.</p>
+<p>Code 04-07 (records received from multiple reporting facilities with potential restrictions) generally do not require approval for the registry to release PII.</p>
+
+</div>

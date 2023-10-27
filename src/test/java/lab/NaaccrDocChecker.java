@@ -20,7 +20,7 @@ import com.imsweb.seerutils.SeerUtils;
 @SuppressWarnings({"ConstantConditions"})
 public class NaaccrDocChecker extends JFrame {
 
-    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr23");
+    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr24");
 
     public static void main(String[] args) {
 
@@ -60,7 +60,7 @@ public class NaaccrDocChecker extends JFrame {
         buf.append("\n");
         buf.append("<body>\n");
         buf.append("\n");
-        buf.append("<h1>").append(title.toUpperCase().replace("&", "&amp;")).append("</h1>\n");
+        buf.append("<h1>").append(title.replace("&", "&amp;")).append("</h1>\n");
         buf.append("\n");
         buf.append(fileContent);
         buf.append("</body>\n");

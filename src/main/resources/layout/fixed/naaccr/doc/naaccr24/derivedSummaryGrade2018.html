@@ -1,0 +1,57 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1,975</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">SEER</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2024</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">24</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.derivedSummaryGrade2018<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>Grade is a measure of the aggressiveness of the tumor. Grade and cell type are important prognostic indicators for many cancers. Due to changes in 2018, it is difficult to compare grade information from previous years. By developing a Derived Summary Grade data item, comparison of Grade over time (prior to 2018 compared to 2018+) will be much easier. </p>
+<p>This data item will be derived from the following existing fields:</p>
+<ul>
+<li>3843: Grade Clinical</li>
+<li>3844: Grade Pathological</li>
+<li><em>Note: Prior to 2018, grade was collected prior to neoadjuvant therapy, which is why Grade Post-therapy Clin (yc) and Grade Post-Therapy (yp) are not part of the calculation</em></li>
+</ul>
+<p>This new data item will be applied to cases for 2018+ (would not be applicable for cases diagnosed prior to 2018). This would not be a conversion but deriving a new data item based on information already in the cancer registry systems. Once new cases are entered, then the Derived Summary Grade will be derived.</p>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>The algorithm for Derived Summary Grade is already used by the SEER program for schemas that need grade for EOD Stage group; however, that information is currently not stored anywhere. SEER will use the same algorithm to calculate the Derived Summary Grade and this data item will store that information. This algorithm will also make it possible for researchers to analyze grade over time more easily.</p>
+
+</div>
+
+
+
+<div class='content chap10-para'><strong>Codes</strong></div>
+<table>
+        <tr class='code-row'><td class='code-nbr'>1</td><td class='code-desc'>Site-specific grade system category</td></tr>
+        <tr class='code-row'><td class='code-nbr'>2</td><td class='code-desc'>Site-specific grade system category</td></tr>
+        <tr class='code-row'><td class='code-nbr'>3</td><td class='code-desc'>Site-specific grade system category</td></tr>
+        <tr class='code-row'><td class='code-nbr'>4</td><td class='code-desc'>Site-specific grade system category</td></tr>
+        <tr class='code-row'><td class='code-nbr'>5</td><td class='code-desc'>Site-specific grade system category</td></tr>
+        <tr class='code-row'><td class='code-nbr'>8</td><td class='code-desc'>Not applicable (Hematopoietic Schemas)</td></tr>
+        <tr class='code-row'><td class='code-nbr'>9</td><td class='code-desc'>Grade cannot be assessed; Unknown</td></tr>
+        <tr class='code-row'><td class='code-nbr'>H</td><td class='code-desc'>High grade</td></tr>
+        <tr class='code-row'><td class='code-nbr'>L</td><td class='code-desc'>Low grade</td></tr>
+</table>
+

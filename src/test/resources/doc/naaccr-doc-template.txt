@@ -19,7 +19,9 @@
   </tr>
 </table>
 
+<#if (XML_ID??)>
 <br/><strong>NAACCR XML</strong>: ${DATA_LEVEL}.${XML_ID}<br/><br/>
+</#if>
 <#if (ALTERNATE_NAMES??)>
 <strong>Alternate Names</strong>
 <#list ALTERNATE_NAMES as name >

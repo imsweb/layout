@@ -466,9 +466,6 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     protected String getDocFolder() {
-        // there is always a delay before the documentation is released on the NAACCR website...
-        if ("240".equals(_naaccrVersion))
-            return "naaccr23";
         return "naaccr" + _naaccrVersion.substring(0, 2);
     }
 
