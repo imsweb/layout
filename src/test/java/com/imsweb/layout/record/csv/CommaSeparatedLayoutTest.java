@@ -298,8 +298,7 @@ public class CommaSeparatedLayoutTest {
                             start = child.getStart();
                             end = child.getEnd();
                             if (start > currentIndex + 1)
-                                for (int i = 0; i < start - currentIndex - 1; i++)
-                                    result.append(' ');
+                                result.append(" ".repeat(Math.max(0, start - currentIndex - 1)));
                             currentIndex = end;
 
                             String value = rec.get(child.getName());
@@ -407,81 +406,60 @@ public class CommaSeparatedLayoutTest {
 
     @Test
     public void testReadingSpecialCases() throws IOException {
-        CommaSeparatedLayout layout = new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml"));
-        Assert.assertEquals(',', layout.getSeparator());
+        CommaSeparatedLayout legacyLayout = new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml"));
+        legacyLayout.setUseLegacyCsvParser(true);
 
-        Map<String, String> rec = layout.createRecordFromLine("0,123,456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("123", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0,\"12,3\",456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("12,3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0,\"123\",456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("123", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0,1\"2\"3,456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("1\"2\"3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0,\"1\"\"2\"\",3\",456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("1\"2\",3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
+        CommaSeparatedLayout rfc4180Layout = new CommaSeparatedLayout(Thread.currentThread().getContextClassLoader().getResource("testing-layout-comma-separated.xml"));
+        rfc4180Layout.setUseLegacyCsvParser(false);
 
-        layout.setSeparator('|');
-        rec = layout.createRecordFromLine("0|123|456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("123", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0|\"12|3\"|456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("12|3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0|12,3|456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("12,3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0|\"123\"|456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("123", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0|1\"2\"3|456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("1\"2\"3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0|\"1\"\"2\"\"|3\"|456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("1\"2\"|3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
+
+        assertCsvFields("0,123,456", legacyLayout, rfc4180Layout, "123", "456");
+        assertCsvFields("0,\"12,3\",456", legacyLayout, rfc4180Layout, "12,3", "456");
+        assertCsvFields("0,\"123\",456", legacyLayout, rfc4180Layout, "123", "456");
+        assertCsvFields("0,\"12\"\"3\"\"\",456", legacyLayout, rfc4180Layout, "12\"3\"", "456");
+        assertCsvFields("0,1\"2\"3,456", legacyLayout, rfc4180Layout, "1\"2\"3", "456");
+        assertCsvFields("0,\"1\"\"2\"\",3\",456", legacyLayout, rfc4180Layout, "1\"2\",3", "456");
+
+        legacyLayout.setSeparator('|');
+        rfc4180Layout.setSeparator('|');
+        assertCsvFields("0|123|456", legacyLayout, rfc4180Layout, "123", "456");
+        assertCsvFields("0|\"12|3\"|456", legacyLayout, rfc4180Layout, "12|3", "456");
+        assertCsvFields("0|12,3|456", legacyLayout, rfc4180Layout, "12,3", "456");
+        assertCsvFields("0|\"123\"|456", legacyLayout, rfc4180Layout, "123", "456");
+        assertCsvFields("0|1\"2\"3|456", legacyLayout, rfc4180Layout, "1\"2\"3", "456");
+        assertCsvFields("0|\"1\"\"2\"\"|3\"|456", legacyLayout, rfc4180Layout, "1\"2\"|3", "456");
+        legacyLayout.setSeparator(',');
+        rfc4180Layout.setSeparator(',');
 
         // the tricky part with new lines is actually reading all the lines together for a given value; but
         // in this test, we provide the line, and so it doesn't matter if it starts with quotes or not...
-        layout.setSeparator(',');
-        rec = layout.createRecordFromLine("0,\"1\r\n2\r\n3\",456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("1\r\n2\r\n3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
-        rec = layout.createRecordFromLine("0,1\r\n2\r\n3,456", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("1\r\n2\r\n3", rec.get("field1"));
-        Assert.assertEquals("456", rec.get("field2"));
+        assertCsvFields("0,\"1\r\n2\r\n3\",456", legacyLayout, rfc4180Layout, "1\r\n2\r\n3", "456");
+        assertCsvFields("0,1\r\n2\r\n3,456", legacyLayout, rfc4180Layout, "1\r\n2\r\n3", "456");
 
         // escape character
-        rec = layout.createRecordFromLine("0,\"1\\2\\3\",\\", null, null);
-        Assert.assertEquals("0", rec.get("recordType"));
-        Assert.assertEquals("1\\2\\3", rec.get("field1"));
-        Assert.assertEquals("\\", rec.get("field2"));
-
+        assertCsvFields("0,\"1\\2\\3\",\\", legacyLayout, rfc4180Layout, "1\\2\\3", "\\");
+        
+        // single quote, this is the only difference I could find between the legacy and RFC4180 parser (old one reports an error):
         try {
-            layout.createRecordFromLine("0,12\"3,456", 2, null);
+            legacyLayout.createRecordFromLine("0,12\"3,456", 2, null);
             Assert.fail("Should have been an exception!");
         }
         catch (IOException e) {
             Assert.assertTrue(e.getMessage().contains("Line 2"));
         }
+        assertCsvFields("0,12\"3,456", rfc4180Layout, "12\"3", "456");
+    }
+
+    private void assertCsvFields(String originalLine, CommaSeparatedLayout legacyLayout, CommaSeparatedLayout rfc4180Layout, String expectedField2, String expectedField3) throws IOException {
+        assertCsvFields(originalLine, legacyLayout, expectedField2, expectedField3);
+        assertCsvFields(originalLine, rfc4180Layout, expectedField2, expectedField3);
+    }
+    
+    private void assertCsvFields(String originalLine, CommaSeparatedLayout layout, String expectedField2, String expectedField3) throws IOException {
+        Map<String, String> rec = layout.createRecordFromLine(originalLine, null, null);
+        Assert.assertEquals("0", rec.get("recordType"));
+        Assert.assertEquals(expectedField2, rec.get("field1"));
+        Assert.assertEquals(expectedField3, rec.get("field2"));
     }
 
     @Test
