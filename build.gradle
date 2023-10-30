@@ -63,6 +63,14 @@ java {
     withSourcesJar()
 }
 
+// the labs need to reference libraries that no longer compatible with Java 8, so we need this temporary fix...
+tasks {
+    compileTestJava {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
 // customize the manifest
 jar {
     manifest {
