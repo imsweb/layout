@@ -103,12 +103,12 @@ comorbidComplication8,Comorb 8,Stage/Prognostic Factors
 comorbidComplication9,Comorb 9,Stage/Prognostic Factors
 computedEthnicity,Cmptd Eth,Demographic
 computedEthnicitySource,Cmptd Eth Src,Demographic
-countyAtDx,DX Cty Code,Demographic
-countyAtDxAnalysis,DX Anlys Cty ,Demographic
-countyAtDxGeocode1990,Cty DX Geo708090,Demographic
-countyAtDxGeocode2000,Cty DX Geo00,Demographic
-countyAtDxGeocode2010,Cty DX Geo10,Demographic
-countyAtDxGeocode2020,Cty DX Geo20,Demographic
+countyAtDx,DX Cty Rpt,Demographic
+countyAtDxAnalysis,DX Cty Anal,Demographic
+countyAtDxGeocode1990,DX Cty Geo90,Demographic
+countyAtDxGeocode2000,DX Cty Geo00,Demographic
+countyAtDxGeocode2010,DX Cty Geo10,Demographic
+countyAtDxGeocode2020,DX Cty Geo20,Demographic
 countyCurrent,Curr Cty,Follow-up/Recurrence/Death
 crcChecksum,CRC Checksum,Edit Overrides/Conversion History/System Admin
 creatininePretreatmentLabValue,Cre Pre Lab Val,Stage/Prognostic Factors
@@ -695,10 +695,10 @@ siteCodingSysOriginal,Site Cod Orig,Cancer Identification
 siteIcdO1,Site(O1),Edit Overrides/Conversion History/System Admin
 socialSecurityNumber,SSN,Patient-Confidential
 spanishHispanicOrigin,Hisp Orig,Demographic
-stateAtDxGeocode19708090,State DX Geo708090,Demographic
-stateAtDxGeocode2000,State Dx Geo00,Demographic
-stateAtDxGeocode2010,State Dx Geo10,Demographic
-stateAtDxGeocode2020,State Dx Geo20,Demographic
+stateAtDxGeocode19708090,DX State Geo90,Demographic
+stateAtDxGeocode2000,DX State Geo00,Demographic
+stateAtDxGeocode2010,DX State Geo10,Demographic
+stateAtDxGeocode2020,DX State Geo20,Demographic
 stateRequestorItems,State Req Item,Special Use
 subsqRx2ndCourseBrm,Subsq RX 2nd Course BRM,Treatment-Subsequent & Other
 subsqRx2ndCourseChemo,Subsq RX 2nd Course Chemo,Treatment-Subsequent & Other

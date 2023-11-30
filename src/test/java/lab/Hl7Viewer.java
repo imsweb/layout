@@ -31,8 +31,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutUtils;
 import com.imsweb.layout.hl7.Hl7MessageBuilder;
+import com.imsweb.layout.hl7.NaaccrHl7Layout;
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
@@ -106,16 +108,18 @@ public class Hl7Viewer extends JFrame {
         // @formatter:on
 
         // to display a file, uncomment the following
-        //                try {
-        //                    messages.clear();
-        //                    File file = new File("PATH_TO_YOUR_FILE");
-        //                    messages.addAll(((NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_2_5_1)).readAllMessages(file));
-        //                }
-        //                catch (IOException e) {
-        //                    e.printStackTrace();
-        //                }
+                        try {
+                            messages.clear();
+                            File file = new File("C:\\Users\\depryf\\Desktop\\Ochsner_LTR_20231102.hl7");
+                            messages.addAll(((NaaccrHl7Layout)LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_HL7_V5)).readAllMessages(file));
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
         // TODO FP let user select a file, support starting line for messages
+        
+        // TODO expand first message by default...
 
         DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Messages");
         for (Hl7Message message : messages)
