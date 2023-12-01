@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 5.5**
+
+- Fixed NAACCR 24 Incidence layout having the wrong name.
+
 **Changes in version 5.4**
 
 - Added NAACCR 24 documentation.
