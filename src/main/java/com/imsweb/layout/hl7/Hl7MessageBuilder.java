@@ -3,6 +3,9 @@
  */
 package com.imsweb.layout.hl7;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.imsweb.layout.hl7.entity.Hl7Component;
 import com.imsweb.layout.hl7.entity.Hl7Field;
 import com.imsweb.layout.hl7.entity.Hl7Message;
@@ -157,6 +160,26 @@ public class Hl7MessageBuilder {
      * @return the built HL7 message
      */
     public Hl7Message build() {
+
+        // apply MSH defaults if needed
+        Hl7Segment msh = _message.getSegment("MSH");
+        if (msh != null) {
+            if (msh.getField(1).getValue() == null)
+                msh.addField(new Hl7Field(msh, 1, "|"));
+            if (msh.getField(2).getValue() == null)
+                msh.addField(new Hl7Field(msh, 2, "^~\\&"));
+            if (msh.getField(7).getValue() == null)
+                msh.addField(new Hl7Field(msh, 7, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss.SSS"))));
+            if (msh.getField(9).getValue() == null)
+                msh.addField(new Hl7Field(msh, 9, "ORU", "R01", "ORU_R01"));
+            if (msh.getField(11).getValue() == null)
+                msh.addField(new Hl7Field(msh, 11, "P"));
+            if (msh.getField(12).getValue() == null)
+                msh.addField(new Hl7Field(msh, 12, "2.5.1"));
+            if (msh.getField(21).getValue() == null)
+                msh.addField(new Hl7Field(msh, 21, "VOL_V_50_ORU_R01", "NAACCR_CP"));
+        }
+
         return _message;
     }
 }

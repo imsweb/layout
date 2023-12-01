@@ -3,6 +3,8 @@
  */
 package com.imsweb.layout.hl7;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -135,6 +137,36 @@ public final class Hl7Utils {
         // make sure input is not null/empty
         if (message == null || message.getSegments().isEmpty())
             return "";
+
+        // apply defaults to some of the MSH fields if they are not set yet
+        Hl7Segment msh = message.getSegment("MSH");
+        if (msh != null) {
+            if (msh.getField(1).getValue() == null)
+                msh.getField(1).getComponent(1).getSubComponent(1).setValue("|");
+
+            if (msh.getField(2).getValue() == null)
+                msh.getField(2).getComponent(1).getSubComponent(1).setValue("^~\\&");
+
+            if (msh.getField(7).getValue() == null)
+                msh.getField(7).getComponent(1).getSubComponent(1).setValue(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss.SSS")));
+
+            if (msh.getField(9).getValue() == null) {
+                msh.getField(9).getComponent(1).getSubComponent(1).setValue("ORU");
+                msh.getField(9).getComponent(2).getSubComponent(1).setValue("R01");
+                msh.getField(9).getComponent(3).getSubComponent(1).setValue("ORU_R01");
+            }
+            
+            if (msh.getField(11).getValue() == null)
+                msh.getField(11).getComponent(1).getSubComponent(1).setValue("P");
+
+            if (msh.getField(12).getValue() == null)
+                msh.getField(12).getComponent(1).getSubComponent(1).setValue("2.5.1");
+
+            if (msh.getField(21).getValue() == null) {
+                msh.getField(21).getComponent(1).getSubComponent(1).setValue("VOL_V_50_ORU_R01");
+                msh.getField(21).getComponent(2).getSubComponent(1).setValue("NAACCR_CP");
+            }
+        }
 
         // write each element with a separator between them
         return message.getSegments().stream().map(Hl7Utils::segmentToString).filter(Objects::nonNull).collect(Collectors.joining(options.getLineSeparator()));
