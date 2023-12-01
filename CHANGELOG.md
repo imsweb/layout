@@ -3,6 +3,7 @@
 **Changes in version 5.5**
 
 - Fixed NAACCR 24 Incidence layout having the wrong name.
+- Defaults MSH values for HL7 messages are now applied only when writing messages and not when reading them.
 
 **Changes in version 5.4**
 
