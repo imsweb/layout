@@ -104,7 +104,7 @@ public final class Hl7Utils {
                                     String compChar = msg.getComponentSeparator();
                                     String subCompChar = msg.getSubComponentSeparator();
                                     String subCompValue = decodeEscapedSequences(subCompValues[subCompIdx], escapeChar, fieldChar, repeatingChar, compChar, subCompChar);
-                                    if (!subCompValue.isEmpty())
+                                    if (subCompValue != null && !subCompValue.isEmpty())
                                         new Hl7SubComponent(component, subCompIdx + 1, subCompValue);
                                 }
                             }
