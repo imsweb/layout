@@ -46,6 +46,11 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 public final class LayoutFactory {
 
     //XML Layouts - constants for the internal layout IDs
+    public static final String LAYOUT_ID_NAACCR_XML_25 = "naaccr-xml-25"; // shortcut for full abstract
+    public static final String LAYOUT_ID_NAACCR_XML_25_ABSTRACT = "naaccr-xml-25-abstract";
+    public static final String LAYOUT_ID_NAACCR_XML_25_MODIFIED = "naaccr-xml-25-modified";
+    public static final String LAYOUT_ID_NAACCR_XML_25_CONFIDENTIAL = "naaccr-xml-25-confidential";
+    public static final String LAYOUT_ID_NAACCR_XML_25_INCIDENCE = "naaccr-xml-25-incidence";
     public static final String LAYOUT_ID_NAACCR_XML_24 = "naaccr-xml-24"; // shortcut for full abstract
     public static final String LAYOUT_ID_NAACCR_XML_24_ABSTRACT = "naaccr-xml-24-abstract";
     public static final String LAYOUT_ID_NAACCR_XML_24_MODIFIED = "naaccr-xml-24-modified";
@@ -130,6 +135,7 @@ public final class LayoutFactory {
 
     // make sure to put all the "aliases" in this list...
     static {
+        _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_25, LAYOUT_ID_NAACCR_XML_25_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_24, LAYOUT_ID_NAACCR_XML_24_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_23, LAYOUT_ID_NAACCR_XML_23_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_22, LAYOUT_ID_NAACCR_XML_22_ABSTRACT);
@@ -152,6 +158,11 @@ public final class LayoutFactory {
     // make sure to add the most recent layouts first, they will be "tried" in that order (important for discovery mechanism)
     static {
         //NAACCR XML
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_25, "NAACCR XML 25 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_25_ABSTRACT, "NAACCR XML 25 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_25_MODIFIED, "NAACCR XML 25 Modified");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_25_CONFIDENTIAL, "NAACCR XML 25 Confidential");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_25_INCIDENCE, "NAACCR XML 25 Incidence");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_24, "NAACCR XML 24 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_24_ABSTRACT, "NAACCR XML 24 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_24_MODIFIED, "NAACCR XML 24 Modified");

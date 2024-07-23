@@ -859,3 +859,30 @@ geocodingQualityCode,Geo Qual Code,Demographic
 geocodingQualityCodeDetail,Geo Qual Code Det,Demographic
 rxHospReconBreast,RX Hosp Recon Breast,Hospital-Specific
 rxSummReconBreast,RX Summ Recon Breast,Treatment-1st Course
+chromosome16qLossHeterozygosity,Chrom 16q Heter,Stage/Prognostic Factors
+chromosome1qStatus,Chrom 1q Status,Stage/Prognostic Factors
+derivedPediatricM,Der Ped M,Stage/Prognostic Factors
+derivedPediatricStageGroup,Der Ped Stg Group,Stage/Prognostic Factors
+derivedPediatricT,Der Ped T,Stage/Prognostic Factors
+derivedPediatricTN,Der Ped N,Stage/Prognostic Factors
+ewsr1Fli1Fusion,EWSR1-FLI1 fusion,Stage/Prognostic Factors
+foxo1GeneRearrangements,FOXO1,Stage/Prognostic Factors
+inpc,INPC,Stage/Prognostic Factors
+inrgss,INRGSS,Stage/Prognostic Factors
+irssStageForEye2,IRSS Eye-2,Stage/Prognostic Factors
+nMycAmplification,n-MYC Amp,Stage/Prognostic Factors
+pdl1,PD-L1,Stage/Prognostic Factors
+pediatricId,Ped ID,Stage/Prognostic Factors
+pediatricIdVersionCurrent,Ped ID Ver Cur,Stage/Prognostic Factors
+pediatricIdVersionOriginal,Ped ID Ver Ori,Stage/Prognostic Factors
+pediatricMets,Ped Mets,Stage/Prognostic Factors
+pediatricPrimaryTumor,Ped Prim Tumor,Stage/Prognostic Factors
+pediatricRegionalNodes,Ped Reg Nodes,Stage/Prognostic Factors
+pretextClinicalStaging,Pretext Clin Stg,Stage/Prognostic Factors
+ptld,PTLD,Stage/Prognostic Factors
+torontoM,Tor M,Stage/Prognostic Factors
+torontoN,Tor N,Stage/Prognostic Factors
+torontoStageGroup,Tor Stg Group,Stage/Prognostic Factors
+torontoT,Tor T,Stage/Prognostic Factors
+torontoVersionNumber,Tor Ver Num,Stage/Prognostic Factors
+whiteBloodCellCount,Wh Blood Cell Ct,Stage/Prognostic Factors

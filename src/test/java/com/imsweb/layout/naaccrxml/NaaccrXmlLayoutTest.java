@@ -83,7 +83,7 @@ public class NaaccrXmlLayoutTest {
             Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), field.getLongLabel());
             Assert.assertNotEquals(layoutId + "/" + field.getNaaccrId(), "?", field.getShortLabel());
             Assert.assertNotEquals(layoutId + "/" + field.getNaaccrId(), "?", field.getSection());
-            if (!"240".equals(layout.getNaaccrVersion())) {
+            if (!"250".equals(layout.getNaaccrVersion())) {
                 Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByName(field.getName(), TestingUtils.getArchivedNaaccrDoc()));
                 Assert.assertNotNull(layoutId + "/" + field.getNaaccrId(), layout.getFieldDocByNaaccrItemNumber(field.getNaaccrItemNum(), TestingUtils.getArchivedNaaccrDoc()));
             }

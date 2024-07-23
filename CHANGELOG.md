@@ -1,5 +1,11 @@
 ## Layout Framework Version History
 
+**Changes in version 5.6**
+
+- Added NAACCR 25 XML layout; documentation is not available yet for new data items.
+- Updated NAACCR XML library from version 10.1 to version 11.0.
+- Updated CSV library from version 5.8 to version 5.9.
+
 **Changes in version 5.5**
 
 - Fixed NAACCR 24 Incidence layout having the wrong name.
