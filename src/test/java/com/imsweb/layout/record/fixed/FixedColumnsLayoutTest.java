@@ -23,6 +23,7 @@ import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutFieldXmlDto;
 import com.imsweb.layout.record.fixed.xml.FixedColumnLayoutXmlDto;
 import com.imsweb.seerutils.SeerUtils;
 
+@SuppressWarnings("ALL")
 public class FixedColumnsLayoutTest {
 
     @Test
@@ -342,29 +343,29 @@ public class FixedColumnsLayoutTest {
 
     @Test
     public void testStateRequestorItems() throws IOException {
-        Map<String, String> record = new HashMap<>();
-        record.put("registryField1", "X");
+        Map<String, String> rec = new HashMap<>();
+        rec.put("registryField1", "X");
 
         // this layout defines a 1-char field at the beginning of the state requestor items
         RecordLayout layout = new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-state-requestor-items-1.xml"));
-        String line = layout.createLineFromRecord(record, null);
+        String line = layout.createLineFromRecord(rec, null);
         Assert.assertEquals(3339, line.length());
-        record = layout.createRecordFromLine(line, null, null);
-        Assert.assertEquals("X", record.get("registryField1"));
+        rec = layout.createRecordFromLine(line, null, null);
+        Assert.assertEquals("X", rec.get("registryField1"));
 
         // this layout defines a 1-char field in the middle of the state requestor items
         layout = new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-state-requestor-items-2.xml"));
-        line = layout.createLineFromRecord(record, null);
+        line = layout.createLineFromRecord(rec, null);
         Assert.assertEquals(3339, line.length());
-        record = layout.createRecordFromLine(line, null, null);
-        Assert.assertEquals("X", record.get("registryField1"));
+        rec = layout.createRecordFromLine(line, null, null);
+        Assert.assertEquals("X", rec.get("registryField1"));
 
         // this layout defines a 1-char field at the end of the state requestor items
         layout = new FixedColumnsLayout(Thread.currentThread().getContextClassLoader().getResource("testing-state-requestor-items-3.xml"));
-        line = layout.createLineFromRecord(record, null);
+        line = layout.createLineFromRecord(rec, null);
         Assert.assertEquals(3339, line.length());
-        record = layout.createRecordFromLine(line, null, null);
-        Assert.assertEquals("X", record.get("registryField1"));
+        rec = layout.createRecordFromLine(line, null, null);
+        Assert.assertEquals("X", rec.get("registryField1"));
     }
 
     @Test

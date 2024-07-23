@@ -34,8 +34,8 @@ public class NaaccrLayoutTest {
     public void testBuildFileInfo() throws IOException {
         RecordLayout layout = (RecordLayout)LayoutFactory.getLayout(LAYOUT_ID_NAACCR_16_INCIDENCE);
 
-        Map<String, String> record = layout.readAllRecords(new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/fake-naaccr16-1-rec.txt")).get(0);
-        StringBuilder buf = new StringBuilder(layout.createLineFromRecord(record, null));
+        Map<String, String> rec = layout.readAllRecords(new File(TestingUtils.getWorkingDirectory() + "/src/test/resources/fake-naaccr16-1-rec.txt")).get(0);
+        StringBuilder buf = new StringBuilder(layout.createLineFromRecord(rec, null));
         String line = buf.toString();
         String lineShort = line.substring(0, 25);
 
@@ -143,12 +143,12 @@ public class NaaccrLayoutTest {
         buf.replace(0, 1, "A");
         buf.replace(16, 19, "160");
         Assert.assertNull(layout.buildFileInfo(buf.toString(), options));
-        Assert.assertNull(layout.buildFileInfo(buf.toString().substring(0, 25), options));
+        Assert.assertNull(layout.buildFileInfo(buf.substring(0, 25), options));
 
         // wrong version
         buf.replace(0, 1, "I");
         buf.replace(16, 19, "150");
         Assert.assertNull(layout.buildFileInfo(buf.toString(), options));
-        Assert.assertNull(layout.buildFileInfo(buf.toString().substring(0, 25), options));
+        Assert.assertNull(layout.buildFileInfo(buf.substring(0, 25), options));
     }
 }

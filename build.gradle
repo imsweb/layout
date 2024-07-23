@@ -125,8 +125,8 @@ sonarqube {
         property "sonar.projectKey", "imsweb_layout"
         property "sonar.organization", "imsweb"
         property "sonar.host.url", "https://sonarcloud.io"
-        property 'sonar.exclusions', '**/lab/*'
-        property 'sonar.coverage.exclusions', '**/lab/*'
+        property "sonar.exclusions", "**/lab/**"
+        property "sonar.coverage.exclusions", "**/lab/**"
     }
 }
 

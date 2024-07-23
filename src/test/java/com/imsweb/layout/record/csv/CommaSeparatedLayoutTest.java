@@ -335,10 +335,10 @@ public class CommaSeparatedLayoutTest {
         // read the data file using the new layout
         List<Map<String, String>> records = layout.readAllRecords(file);
         Assert.assertEquals(3, records.size());
-        for (Map<String, String> record : records) {
-            Assert.assertNotNull(record.get("recordType"));
-            Assert.assertNotNull(record.get("patientIdNumber"));
-            Assert.assertNotNull(record.get("race1"));
+        for (Map<String, String> rec : records) {
+            Assert.assertNotNull(rec.get("recordType"));
+            Assert.assertNotNull(rec.get("patientIdNumber"));
+            Assert.assertNotNull(rec.get("race1"));
         }
         Assert.assertEquals("20100615", records.get(0).get("dateOfBirth"));
         Assert.assertEquals("2010", records.get(0).get("dateOfBirthYear"));
