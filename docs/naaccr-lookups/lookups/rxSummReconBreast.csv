@@ -1,0 +1,31 @@
+A000,"No reconstruction
+
+No immediate reconstruction was performed at any facility"
+A100,"Tissue expanded placement
+
+Tissue expanders were placed without implant or tissue placement"
+A200,"Direct to implant placement
+
+Permanent implant is placed immediately following resection
+
+Example: A mastectomy is performed by the breast surgeon and an implant is placed at the same time by a plastic surgeon (some general /breast surgeons may place implants, but most are placed by plastics)"
+A300,"Oncoplastic tissue rearrangement (not a formal mastopexy/reduction)
+
+Reconstruction performed with parenchymal flap or adjacent tissue transfer"
+A400,"Oncoplastic reduction and/or mastopexy
+
+Breast conserving resection and a breast reduction/lift is performed"
+A500,"Oncoplastic reconstruction with regional tissue flaps
+
+Breast conserving resection and reconstruction is performed with skin flaps"
+A600,"Mastectomy reconstruction with autologous tissue, source not specified
+
+Autologous tissue source is unknown or not specified"
+A610,Mastectomy reconstruction WITH abdominal tissue
+A620,Mastectomy reconstruction WITH thigh tissue
+A630,Mastectomy reconstruction WITH gluteal tissue
+A640,Mastectomy reconstruction WITH back tissue
+A900,"Reconstruction performed, method unknown"
+A970,"Implant based reconstruction, NOS"
+A980,"Autologous tissue-based reconstruction, NOS"
+A990,Unknown if immediate reconstruction was performed

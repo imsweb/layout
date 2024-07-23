@@ -1,0 +1,4 @@
+F,Fail/non-match. Geocoding was completed and the address needs to be manually reviewed and modified and geocoded again.
+I,Interactive. Geocoding was completed and the address matched after manual review in MI GeoCorrect Tool.
+M,Match. Geocoding was completed and the address matched.
+R,Review. Geocoding was completed and the address needs to be manually reviewed before using below county-level.

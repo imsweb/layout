@@ -106,8 +106,12 @@
 8020,3,"Carcinoma, dedifferentiated [2021+]",alternate
 8020,3,"Carcinoma, poorly differentiated, NOS [2021+]",alternate
 8020,3,Dedifferentiated carcinoma [2021+],alternate
+8020,3,"Carcinoma, poorly differentiated urothelial [2024+]",alternate
 8020,3,"Poorly differentiated carcinoma, NOS [2021+]",alternate
+8020,3,"Carcinoma, urothelial, poorly differentiated [2024+]",alternate
 8020,3,"Undifferentiated carcinoma, NOS",alternate
+8020,3,Poorly differentiated urothelial carcinoma [2024+],alternate
+8020,3,"Urothelial carcinoma, poorly differentiated [2024+]",alternate
 8021,3,"Carcinoma, anaplastic, NOS",preferred
 8021,3,"Anaplastic carcinoma, NOS",alternate
 8022,2,Pleomorphic carcinoma in situ,preferred
@@ -292,6 +296,9 @@
 8070,3,"Epithelioma, squamous cell",alternate
 8070,3,Squamous carcinoma,alternate
 8070,3,Squamous cell epithelioma,alternate
+8070,3,"Carcinoma, pure squamous, of urothelial tract [2024+]",alternate
+8070,3,Pure squamous carcinoma of urothelial tract [2024+],alternate
+8070,3,"Squamous carcinoma, pure, of urothelial tract [2024+]",alternate
 8070,3,"Carcinoma, epidermoid, NOS",alternate
 8070,3,"Carcinoma, squamous",alternate
 8070,3,"Carcinoma, squamous cell, NOS",alternate
@@ -462,16 +469,16 @@
 8084,3,"Carcinoma, squamous cell, clear cell type",alternate
 8084,3,Clear cell type squamous cell carcinoma,alternate
 8085,3,"Squamous cell carcinoma, HPV-positive (C01.9, C09.9, C10.2, C10.3, C10.8, C10.9, C31.0-C31.3, C31.9)",preferred
-8085,3,"Carcinoma, squamous cell, HPV-associated (C53._) [2021+]",alternate
-8085,3,HPV-associated squamous cell carcinoma (C53._) [2021+],alternate
-8085,3,"Squamous cell carcinoma, HPV-associated (C53._) [2021+]",alternate
+8085,3,"Carcinoma, squamous cell, HPV-associated (C53._) [2021+] (C60._, C63.2) [2024+]",alternate
+8085,3,"HPV-associated squamous cell carcinoma (C53._) [2021+] (C60._, C63.2) [2024+]",alternate
+8085,3,"Squamous cell carcinoma, HPV-associated (C53._) [2021+] (C60._, C63.2) [2024+]",alternate
 8085,3,"Carcinoma, squamous cell, HPV-positive (C01.9, C09.9, C10.2, C10.3, C10.8, C10.9, C31.0–C31.3, C31.9) [2018+]",alternate
 8085,3,"HPV-positive squamous cell carcinoma (C01.9, C09.9, C10.2, C10.3, C10.8, C10.9, C31.0–C31.3, C31.9) [2018+]",alternate
 8086,3,"Squamous cell carcinoma, HPV-negative (C01.9, C09.9, C10.2, C10.3, C10.8, C10.9, C31.0-C31.3, C31.9)",preferred
-8086,3,"Carcinoma, squamous cell, HPV-independent (C53._) [2021+]",alternate
-8086,3,HPV-independent squamous cell carcinoma (C53._) [2021+],alternate
+8086,3,"Carcinoma, squamous cell, HPV-independent (C53._) [2021+] (C60._, C63.2) [2024+]",alternate
+8086,3,"HPV-independent squamous cell carcinoma (C53._) [2021+] (C60._, C63.2) [2024+]",alternate
 8086,3,"Carcinoma, squamous cell, HPV-negative (C01.9, C09.9, C10.2, C10.3, C10.8, C10.9, C31.0–C31.3, C31.9) [2018+]",alternate
-8086,3,"Squamous cell carcinoma, HPV-independent (C53._) [2021+]",alternate
+8086,3,"Squamous cell carcinoma, HPV-independent (C53._) [2021+] (C60._, C63.2) [2024+]",alternate
 8086,3,"HPV-negative squamous cell carcinoma (C01.9, C09.9, C10.2, C10.3, C10.8, C10.9, C31.0–C31.3, C31.9) [2018+]",alternate
 8090,1,Basal cell tumor (C44._),preferred
 8090,1,"Tumor, basal cell (C44._)",alternate
@@ -630,17 +637,29 @@
 8120,3,"Carcinoma, urothelial, NOS",alternate
 8120,3,"Clear cell (glycogen-rich) urothelial carcinoma (C65.9, C66.9, C67._, C68._) [2018+]",alternate
 8120,3,"Lipid-rich urothelial carcinoma (C65.9, C66.9, C67._, C68._) [2018+]",alternate
+8120,3,"Carcinoma, urothelial, conventional (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Microcystic urothelial carcinoma (C65.9, C66.9, C67._, C68._) [2018+]",alternate
+8120,3,"Carcinoma, urothelial, large nested (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Nested urothelial carcinoma (C65.9, C66.9, C67._, C68._) [2018+]",alternate
+8120,3,"Carcinoma, urothelial, microcystic AND tubular (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,Squamotransitional carcinoma [2018+],alternate
+8120,3,"Carcinoma, urothelial, tubular AND microcystic (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,Squamotransitional cell carcinoma (C53._) [2018+],alternate
+8120,3,"Conventional urothelial carcinoma (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,Transitional carcinoma,alternate
+8120,3,"Large nested urothelial carcinoma (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Urothelial carcinoma with divergent differentiation (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,"Microcystic AND tubular urothelial carcinoma (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Urothelial carcinoma with squamous differentiation (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,"Tubular AND microcystic urothelial carcinoma (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Urothelial carcinoma with trophoblastic differentiation (C65.9, C66.9, C67._, C68._)",alternate
+8120,3,"Urothelial carcinoma, conventional (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Urothelial carcinoma, clear cell (glycogen-rich) (C65.9, C66.9, C67._, C68._) [2018+]",alternate
+8120,3,"Urothelial carcinoma, large nested (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Urothelial carcinoma, lipid-rich (C65.9, C66.9, C67._, C68._) [2018+]",alternate
+8120,3,"Urothelial carcinoma, microcystic AND tubular (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Urothelial carcinoma, microcystic (C65.9, C66.9, C67._, C68._) [2018+]",alternate
+8120,3,"Urothelial carcinoma, tubular AND microcystic (C65.9, C66.9, C67._, C68._) [2024+]",alternate
 8120,3,"Urothelial carcinoma, nested (C65.9, C66.9, C67._, C68._) [2018+]",alternate
 8120,3,"Urothelial carcinoma, NOS",alternate
 8121,0,"Schneiderian papilloma, NOS (C30.0, C31._)",preferred
@@ -678,17 +697,20 @@
 8121,3,"Carcinoma, Schneiderian (C30.0, C31._)",alternate
 8121,3,"Cylindrical cell carcinoma (C30.0, C31._)",alternate
 8122,3,"Transitional cell carcinoma, spindle cell",preferred
-8122,3,"Transitional cell carcinoma, sarcomatoid",alternate
-8122,3,"Transitional cell carcinoma, spindle cell",alternate
-8122,3,"Urothelial carcinoma, spindle cell",alternate
 8122,3,"Carcinoma, transitional cell, sarcomatoid",alternate
+8122,3,"Carcinoma, urothelial, plasmacytoid [2024+]",alternate
 8122,3,"Carcinoma, transitional cell, spindle cell",alternate
+8122,3,Plasmacytoid urothelial carcinoma [2024+],alternate
 8122,3,"Carcinoma, urothelial, sarcomatoid",alternate
+8122,3,"Urothelial carcinoma, plasmacytoid [2024+]",alternate
 8122,3,"Carcinoma, urothelial, spindle cell",alternate
 8122,3,Sarcomatoid transitional cell carcinoma,alternate
 8122,3,Sarcomatoid urothelial carcinoma,alternate
 8122,3,Spindle cell transitional cell carcinoma,alternate
 8122,3,Spindle cell urothelial cell carcinoma,alternate
+8122,3,"Transitional cell carcinoma, sarcomatoid",alternate
+8122,3,"Transitional cell carcinoma, spindle cell",alternate
+8122,3,"Urothelial carcinoma, spindle cell",alternate
 8123,2,"Basaloid carcinoma, in situ (C21.1)",preferred
 8123,3,Basaloid carcinoma (C21.1),preferred
 8123,3,"Carcinoma, basaloid",alternate
@@ -704,6 +726,16 @@
 8130,1,"Transitional cell neoplasm, papillary, low malignant potential (C67._)",alternate
 8130,1,"Urothelial neoplasm, papillary, of low malignant potential (C67._)",alternate
 8130,2,"Papillary transitional cell carcinoma, non-invasive (C65.9, C66.9, C67._)",preferred
+8130,2,"Papillary carcinoma, urothelial, non-invasive, high-grade (C67._) [2024+]",alternate
+8130,2,"Papillary carcinoma, urothelial, non-invasive, low-grade (C67._) [2024+]",alternate
+8130,2,"Papillary urothelial carcinoma, low-grade, with an inverted growth pattern (C67._) [2024+]",alternate
+8130,2,"Papillary urothelial carcinoma, non-invasive, high-grade (C67._) [2024+]",alternate
+8130,2,"Papillary urothelial carcinoma, non-invasive, high-grade, with an inverted growth pattern (C67._) [2024+]",alternate
+8130,2,"Papillary urothelial carcinoma, non-invasive, low-grade (C67._) [2024+]",alternate
+8130,2,"Carcinoma, non-invasive, papillary transitional cell (C67._)",alternate
+8130,2,"Carcinoma, non-invasive, papillary urothelial (C67._)",alternate
+8130,2,"Carcinoma, papillary transitional cell, non-invasive (C67._)",alternate
+8130,2,"Carcinoma, papillary urothelial, non-invasive (C67._)",alternate
 8130,2,"Carcinoma, transitional cell, papillary, non-invasive (C67._)",alternate
 8130,2,"Carcinoma, urothelial, non-invasive, papillary (C67._)",alternate
 8130,2,"Carcinoma, urothelial, papillary, non-invasive (C67._)",alternate
@@ -713,10 +745,27 @@
 8130,2,"Papillary urothelial carcinoma, non-invasive (C67._)",alternate
 8130,2,"Transitional cell carcinoma, papillary, non-invasive (C67._)",alternate
 8130,2,"Urothelial carcinoma, papillary, non-invasive (C67._)",alternate
-8130,2,"Carcinoma, non-invasive, papillary transitional cell (C67._)",alternate
-8130,2,"Carcinoma, non-invasive, papillary urothelial (C67._)",alternate
-8130,2,"Carcinoma, papillary transitional cell, non-invasive (C67._)",alternate
-8130,2,"Carcinoma, papillary urothelial, non-invasive (C67._)",alternate
+8130,2,"Carcinoma, non-invasive, papillary urothelial, high-grade (C67._) [2024+]",alternate
+8130,2,"Carcinoma, non-invasive, papillary urothelial, low-grade (C67._) [2024+]",alternate
+8130,2,"Carcinoma, papillary urothelial, low-grade, with an inverted growth pattern (C67._) [2024+]",alternate
+8130,2,"Carcinoma, papillary urothelial, non-invasive, high-grade (C67._) [2024+]",alternate
+8130,2,"Carcinoma, papillary urothelial, non-invasive, high-grade, with an inverted growth pattern (C67._) [2024+]",alternate
+8130,2,"Carcinoma, papillary urothelial, non-invasive, low-grade (C67._) [2024+]",alternate
+8130,2,"Carcinoma, urothelial, papillary, low-grade, with an inverted growth pattern (C67._) [2024+]",alternate
+8130,2,"Carcinoma, urothelial, papillary, non-invasive, high-grade (C67._) [2024+]",alternate
+8130,2,"Carcinoma, urothelial, papillary, non-invasive, high-grade, with an inverted growth pattern (C67._) [2024+]",alternate
+8130,2,"Carcinoma, urothelial, papillary, non-invasive, low-grade (C67._) [2024+]",alternate
+8130,2,High-grade non-invasive papillary urothelial carcinoma (C67._) [2024+],alternate
+8130,2,"High-grade papillary urothelial carcinoma, non-invasive (C67._) [2024+]",alternate
+8130,2,"High-grade papillary urothelial carcinoma, non-invasive, with an inverted growth pattern (C67._) [2024+]",alternate
+8130,2,Low-grade non-invasive papillary urothelial carcinoma (C67._) [2024+],alternate
+8130,2,Low-grade papillary urothelial carcinoma with an inverted growth pattern (C67._) [2024+],alternate
+8130,2,"Low-grade papillary urothelial carcinoma, non-invasive (C67._) [2024+]",alternate
+8130,2,Non-invasive high-grade papillary urothelial carcinoma with an inverted growth pattern (C67._) [2024+],alternate
+8130,2,"Non-invasive papillary urothelial carcinoma, high-grade (C67._) [2024+]",alternate
+8130,2,"Non-invasive papillary urothelial carcinoma, low-grade (C67._) [2024+]",alternate
+8130,2,"Papillary carcinoma, urothelial, high-grade, non-invasive, with an inverted growth pattern (C67._) [2024+]",alternate
+8130,2,"Papillary carcinoma, urothelial, low-grade with an inverted growth pattern (C67._) [2024+]",alternate
 8130,3,Papillary transitional cell carcinoma,preferred
 8130,3,"Urothelial carcinoma, papillary (C67._)",alternate
 8130,3,"Carcinoma, papillary transitional cell (C67._)",alternate
@@ -753,7 +802,9 @@
 8140,3,Parathyroid tumor (C75.0) [REPORTABLE 2021+],alternate
 8140,3,"Tumor, endolymphatic sac [REPORTABLE 2021+]",alternate
 8140,3,"Tumor, parathyroid (C75.0) [REPORTABLE 2021+]",alternate
+8140,3,"Carcinoma, prostatic intraepithelial-like (C61.9) [2024+]",alternate
 8140,3,Usual type adenocarcinoma,alternate
+8140,3,Prostatic intraepithelial-like carcinoma (C61.9) [2024+],alternate
 8140,3,Acinar adenocarcinoma (C61.9 ONLY) [DO NOT USE 8550/3 OR 8551/3 FOR PROSTATE] [2018+],alternate
 8140,3,"Adenocarcinoma, acinar (C61.9 ONLY) [DO NOT USE 8550/3 OR 8551/3 FOR PROSTATE] [2018+]",alternate
 8140,3,"Adenocarcinoma, endocervical, usual type (C53._) [2018+]",alternate
@@ -802,6 +853,8 @@
 8147,0,"Adenoma, basal cell",alternate
 8147,3,"Basal cell adenocarcinoma (C07._, C08._)",preferred
 8147,3,"Adenocarcinoma, basal cell",alternate
+8147,3,Adenoid cystic (basal cell) carcinoma (C61.9) [2024+],alternate
+8147,3,"Carcinoma, adenoid cystic (basal cell) (C61.9) [2024+]",alternate
 8148,2,"Glandular intraepithelial neoplasia, grade III",preferred
 8148,2,Grade III glandular intraepithelial neoplasia,alternate
 8148,2,"Intraepithelial neoplasia, grade III, glandular",alternate
@@ -1370,6 +1423,8 @@
 8257,3,"Adenocarcinoma, minimally invasive, mucinous (C34._) [2018+]",alternate
 8257,3,"Mucinous adenocarcinoma, minimally invasive (C34._) [2018+]",alternate
 8260,0,"Papillary adenoma, NOS",preferred
+8260,0,"Adenoma, tubulopapillary [2024+; NOT REPORTABLE; SEE STANDARD SETTER REQUIREMENTS FOR REPORTABILITY.]",alternate
+8260,0,Tubulopapillary adenoma [2024+; NOT REPORTABLE; SEE STANDARD SETTER REQUIREMENTS FOR REPORTABILITY.],alternate
 8260,0,"Adenoma, papillary, NOS",alternate
 8260,0,Glandular papilloma,alternate
 8260,0,"Papilloma, glandular",alternate
@@ -1546,6 +1601,30 @@
 8311,3,MiT family translocation renal cell carcinoma (C64.9) [2018+],alternate
 8311,3,"Renal cell carcinoma, associated with hereditary leiomyomatosis (C64.9) [2018+]",alternate
 8311,3,"Renal cell carcinoma, MiT family translocation (C64.9) [2018+]",alternate
+8311,3,ALK-rearranged RCC (C64.9) [2024+],alternate
+8311,3,"Carcinoma, renal cell, ALK-rearranged RCC (C64.9) [2024+]",alternate
+8311,3,"Carcinoma, renal cell, eosinophilic solid AND cystic (C64.9) [2024+]",alternate
+8311,3,"Carcinoma, renal cell, fumarate hydratase-deficient (C64.9) [2024+]",alternate
+8311,3,"Carcinoma, renal cell, mutated, ELOC (formerly TCEB1) (C64.9) [2024+]",alternate
+8311,3,"Carcinoma, renal cell, t(6;11) (C64.9) [2024+]",alternate
+8311,3,"Carcinoma, renal cell, TFE3-rearranged (C64.9) [2024+]",alternate
+8311,3,"Carcinoma, renal cell, TFEB-altered (C64.9) [2024+]",alternate
+8311,3,"Carcinoma, renal cell, Xp11 translocation (C64.9) [2024+]",alternate
+8311,3,ELOC (formerly TCEB1) mutated RCC (C64.9) [2024+],alternate
+8311,3,Eosinophilic solid AND cystic RCC (C64.9) [2024+],alternate
+8311,3,Fumarate hydratase-deficient RCC (C64.9) [2024+],alternate
+8311,3,"Renal cell carcinoma, ALK-rearranged (C64.9) [2024+]",alternate
+8311,3,"Renal cell carcinoma, eosinophilic solid AND cystic (C64.9) [2024+]",alternate
+8311,3,"Renal cell carcinoma, fumarate hydratase-deficient (C64.9) [2024+]",alternate
+8311,3,"Renal cell carcinoma, mutated, ELOC (formerly TCEB1) (C64.9) [2024+]",alternate
+8311,3,"Renal cell carcinoma, t(6;11) (C64.9) [2024+]",alternate
+8311,3,"Renal cell carcinoma, TFE3-rearranged (C64.9) [2024+]",alternate
+8311,3,"Renal cell carcinoma, TFEB-altered (C64.9) [2024+]",alternate
+8311,3,"Renal cell carcinoma, Xp11 translocation (C64.9) [2024+]",alternate
+8311,3,t(6;11) RCC (C64.9) [2024+],alternate
+8311,3,TFE3-rearranged RCC (C64.9) [2024+],alternate
+8311,3,TFEB-altered RCC (C64.9) [2024+],alternate
+8311,3,Xp11 translocation RCC (C64.9) [2024+],alternate
 8312,2,Renal cell carcinoma in situ (C64.9),preferred
 8312,3,Renal cell carcinoma (C64.9),preferred
 8312,3,"Adenocarcinoma, renal cell (C64.9)",alternate
@@ -1834,6 +1913,9 @@
 8361,0,Juxtaglomerular tumor (C64._),preferred
 8361,0,Reninoma (C64.9),alternate
 8361,0,"Tumor, juxtaglomerular (C64.9)",alternate
+8361,1,Non-functioning juxtaglomerular cell tumor [2024+; NOT REPORTABLE],preferred
+8361,1,"Juxtaglomerular cell tumor, non-functioning [2024+; NOT REPORTABLE]",alternate
+8361,1,"Tumor, juxtaglomerular cell, non-functioning [2024+; NOT REPORTABLE]",alternate
 8370,0,"Adrenal cortical adenoma, NOS (C74.0)",preferred
 8370,0,"Adenoma, adrenal cortical, NOS (C74.0)",alternate
 8370,0,"Adrenal cortical tumor, benign (C74.0)",alternate
@@ -2667,14 +2749,20 @@
 8509,3,"Sweat gland carcinoma, endocrine mucin-producing (C44. _)",alternate
 8510,2,"Medullary carcinoma in situ, NOS (C73.9)",preferred
 8510,3,"Medullary carcinoma, NOS (C73.9)",preferred
-8510,3,Renal medullary carcinoma (C64.9),alternate
+8510,3,"Renal cell carcinoma, SMARCB1-deficient dedifferentiated of other specific subtypes (C64.9) [2024+]",alternate
+8510,3,"Renal cell carcinoma, SMARCB1-deficient medullary-like (C64.9) [2024+]",alternate
+8510,3,"Renal cell carcinoma, SMARCB1-deficient undifferentiated, NOS (C64.9) [2024+]",alternate
 8510,3,"Adenocarcinoma, medullary",alternate
+8510,3,SMARCB1-deficient dedifferentiated RCC of other specific subtypes (C64.9) [2024+],alternate
 8510,3,"Carcinoma, medullary, NOS [DO NOT USE FOR THYROID 2018+, USE 8345/3.]",alternate
+8510,3,SMARCB1-deficient medullary-like RCC (C64.9) [2024+],alternate
 8510,3,"Carcinoma, medullary-like",alternate
+8510,3,"SMARCB1-deficient undifferentiated RCC, NOS (C64.9) [2024+]",alternate
 8510,3,"Carcinoma, renal medullary (C64.9)",alternate
 8510,3,Medullary adenocarcinoma,alternate
 8510,3,"Medullary carcinoma, renal (C64.9)",alternate
 8510,3,Medullary-like carcinoma,alternate
+8510,3,Renal medullary carcinoma (C64.9),alternate
 8512,2,Medullary carcinoma in situ with lymphoid stroma (C50._),preferred
 8512,3,Medullary carcinoma with lymphoid stroma (C50._),preferred
 8512,3,"Carcinoma, medullary with lymphoid stroma",alternate
@@ -3115,6 +3203,9 @@
 8589,3,"Thymic carcinoma, intrathyroid (C73.9) [2021+]",alternate
 8589,3,"Thymus-like differentiation, carcinoma showing",alternate
 8589,3,"Thymus-like element, carcinoma showing",alternate
+8590,0,Myoid gonadal stromal tumor [2024+; NOT REPORTABLE],preferred
+8590,0,"Stromal tumor, myoid gonadal [2024+; NOT REPORTABLE]",alternate
+8590,0,"Tumor, stromal, myoid gonadal [2024+; NOT REPORTABLE]",alternate
 8590,1,"Sex cord-gonadal stromal tumor, NOS (C56.9 [F], C62._[M])",preferred
 8590,1,"Sex cord tumor, NOS",alternate
 8590,1,"Sex cord-gonadal stromal tumor, NOS",alternate
@@ -3970,6 +4061,9 @@
 8859,3,"Liposarcoma, myxoid pleomorphic [2022+]",alternate
 8859,3,"Pleomorphic liposarcoma, myxoid [2022+]",alternate
 8860,0,Angiomyolipoma,preferred
+8860,0,Oncocytic angiomyolipoma [2024+; NOT REPORTABLE],alternate
+8860,0,Angiomyolipoma with epithelial cysts [2024+; NOT REPORTABLE],alternate
+8860,0,"Angiomyolipoma, oncocytic [2024+; NOT REPORTABLE]",alternate
 8860,3,Angiomyoliposarcoma (C49._),preferred
 8861,0,"Angiolipoma, NOS",preferred
 8862,0,Chondroid lipoma,preferred
@@ -4229,6 +4323,15 @@
 8959,3,"Nephroma, cystic, malignant (C64.9)",alternate
 8959,3,"Nephroma, cystic, multilocular, malignant (C64.9)",alternate
 8960,1,Mesoblastic nephroma (C64._),preferred
+8960,1,Cellular congenital mesoblastic nephroma (C64.9) [2024+; NOT REPORTABLE],alternate
+8960,1,Classic congenital mesoblastic nephroma (C64.9) [2024+; NOT REPORTABLE],alternate
+8960,1,"Mesoblastic nephroma, cellular congenital (C64.9) [2024+; NOT REPORTABLE]",alternate
+8960,1,"Mesoblastic nephroma, classic congenital (C64.9) [2024+; NOT REPORTABLE]",alternate
+8960,1,"Mesoblastic nephroma, mixed congenital (C64.9) [2024+; NOT REPORTABLE]",alternate
+8960,1,Mixed congenital mesoblastic nephroma (C64.9) [2024+; NOT REPORTABLE],alternate
+8960,1,"Nephroma, mesoblastic, cellular congenital (C64.9) [2024+; NOT REPORTABLE]",alternate
+8960,1,"Nephroma, mesoblastic, classic congenital (C64.9) [2024+; NOT REPORTABLE]",alternate
+8960,1,"Nephroma, mesoblastic, mixed congenital (C64.9) [2024+; NOT REPORTABLE]",alternate
 8960,1,"Nephroma, mesoblastic",alternate
 8960,3,"Nephroblastoma, NOS (C64._)",preferred
 8960,3,"Nephroma, NOS (C64.9)",alternate
@@ -4251,9 +4354,13 @@
 8966,0,Renomedullary fibroma (C64.9),alternate
 8966,0,"Tumor, renomedullary interstitial cell (C64.9)",alternate
 8967,0,Ossifying renal tumor (C64._),preferred
+8967,0,Ossifying renal tumor of infancy (C64.9) [2024+; NOT REPORTABLE],alternate
 8967,0,"Renal tumor, ossifying (C64.9)",alternate
+8967,0,"Renal tumor of infancy, ossifying (C64.9) [2024+; NOT REPORTABLE]",alternate
 8967,0,"Tumor, ossifying renal (C64.9)",alternate
+8967,0,"Tumor, ossifying renal, of infancy (C64.9) [2024+; NOT REPORTABLE]",alternate
 8967,0,"Tumor, renal, ossifying (C64.9)",alternate
+8967,0,"Tumor, renal, ossifying, of infancy (C64.9) [2024+; NOT REPORTABLE]",alternate
 8970,3,Hepatoblastoma (C22.0),preferred
 8970,3,"Hepatoblastoma, mixed epithelial-mesenchymal (C22.0)",alternate
 8970,3,"Hepatoma, embryonal (C22.0)",alternate
@@ -4457,13 +4564,19 @@
 9055,3,"Multicystic mesothelioma, malignant (C48._)",preferred
 9060,2,"Dysgerminoma, in situ (C56.9 [F], C62._[M])",preferred
 9060,3,"Dysgerminoma (C56.9 [F], C62._[M])",preferred
-9061,2,"Seminoma, in situ (C62._)",preferred
+9061,2,Intratubular seminoma (C62._) [2024+],preferred
+9061,2,"Trophoblast, intratubular (C62._) [2024+]",alternate
+9061,2,Intratubular trophoblast (C62._) [2024+],alternate
+9061,2,"Seminoma, intratubular (C62._) [2024+]",alternate
 9061,3,"Seminoma, NOS (C62._)",preferred
+9061,3,Seminoma with syncytiotrophoblastic cells (C62._) [2024+],alternate
 9062,3,"Seminoma, anaplastic (C62._)",preferred
 9062,3,Anaplastic seminoma (C62._),alternate
 9062,3,Seminoma with high mitotic index (C62._),alternate
 9063,2,"Spermatocytic seminoma, in situ (C62._)",preferred
 9063,3,Spermatocytic seminoma (C62._),preferred
+9063,3,Spermatocytic tumor with sarcomatous differentiation (C62._) [2024+],alternate
+9063,3,"Tumor with sarcomatous differentiation, spermatocytic (C62._) [2024+]",alternate
 9063,3,"Seminoma, spermatocytic (C62._)",alternate
 9063,3,Spermatocytoma (C62._),alternate
 9064,2,Intratubular malignant germ cells (C62._),preferred
@@ -4477,11 +4590,16 @@
 9065,3,"Germ cell tumor, nonseminomatous (C62._)",preferred
 9065,3,"Tumor, germ cell, nonseminomatous (C62._)",alternate
 9065,3,"Tumor, nonseminomatous germ cell (C62._)",alternate
-9070,2,"Embryonal carcinoma, NOS, in situ",preferred
+9070,2,Intratubular embryonal carcinoma [2024+],preferred
+9070,2,"Carcinoma, embryonal, intratubular [2024+]",alternate
+9070,2,"Embryonal carcinoma, intratubular [2024+]",alternate
 9070,3,"Embryonal carcinoma, NOS",preferred
 9070,3,"Adenocarcinoma, embryonal",alternate
 9070,3,"Carcinoma, embryonal, NOS",alternate
 9070,3,Embryonal adenocarcinoma,alternate
+9071,2,Intratubular yolk sac tumor [2024+],preferred
+9071,2,"Tumor, yolk sac, intratubular [2024+]",alternate
+9071,2,"Yolk sac tumor, intratubular [2024+]",alternate
 9071,3,"Yolk sac tumor (C56.9 [F], C62._[M])",preferred
 9071,3,"Tumor, yolk sac",alternate
 9071,3,"Tumor, yolk sac, hepatoid",alternate
@@ -4529,12 +4647,15 @@
 9080,1,"Teratoma, immature (C37.9) [2021+, NOT REPORTABLE]",alternate
 9080,1,"Teratoma, immature (C73.9) [2021+, NOT REPORTABLE]",alternate
 9080,1,"Teratoma, solid",alternate
-9080,2,"Teratoma, in situ",preferred
-9080,3,"Teratoma, malignant, NOS",preferred
+9080,2,Intratubular teratoma [2024+],preferred
+9080,2,"Teratoma, intratubular [2024+]",alternate
+9080,3,"Teratoma, postpubertal-type [2024+]",preferred
 9080,3,"Teratoblastoma, malignant",alternate
 9080,3,"Teratoma, embryonal",alternate
 9080,3,"Teratoma, immature, malignant",alternate
 9080,3,"Teratoma, immature, NOS [FOR 2021+, USE CODE 9080/1 FOR C34._, C37.9, C73.9]",alternate
+9080,3,"Teratoma, malignant, NOS",alternate
+9080,3,Postpubertal-type teratoma [2024+],alternate
 9080,3,Embryonal teratoma,alternate
 9080,3,"Immature teratoma, malignant",alternate
 9080,3,"Immature teratoma, NOS [FOR 2021+, USE CODE 9080/1 FOR C34._, C37.9, C73.9]",alternate
@@ -4578,6 +4699,12 @@
 9085,3,"Teratoma and seminoma, mixed",alternate
 9085,3,"Tumor, germ cell, mixed",alternate
 9085,3,"Tumor, mixed germ cell",alternate
+9085,3,Diffuse embryoma [2024+],alternate
+9085,3,"Embryoma, diffuse [2024+]",alternate
+9085,3,Mixed teratoma AND yolk sac tumor [2024+],alternate
+9085,3,"Teratoma, mixed AND yolk sac tumor [2024+]",alternate
+9085,3,"Tumor, yolk sac AND mixed teratoma [2024+]",alternate
+9085,3,Yolk sac tumor AND mixed teratoma [2024+],alternate
 9085,3,"Germ cell tumor, mixed",alternate
 9085,3,Mixed seminoma and teratoma,alternate
 9086,3,Germ cell tumors with associated hematological malignancy (C37.9),preferred
@@ -4642,7 +4769,10 @@
 9104,1,"Trophoblastic tumor, placental site (C58.9)",alternate
 9104,1,"Tumor, placental site trophoblastic (C58.9)",alternate
 9104,1,"Tumor, trophoblastic, placental site (C58.9)",alternate
-9104,3,Malignant placental site trophoblastic tumor (C58.9),preferred
+9104,3,Placental site trophoblastic tumor of testis (C62._) [REPORTABLE FOR C62._ ONLY 2024+],preferred
+9104,3,"Trophoblastic tumor of testis, placental site (C62._) [REPORTABLE FOR C62._ ONLY 2024+]",alternate
+9104,3,"Tumor, placental site trophoblastic of testis (C62._) [REPORTABLE FOR C62._ ONLY 2024+]",alternate
+9104,3,"Tumor, trophoblastic, placental site of testis (C62._) [REPORTABLE FOR C62._ ONLY 2024+]",alternate
 9105,3,"Trophoblastic tumor, epithelioid",preferred
 9105,3,Epithelioid trophoblastic tumor,alternate
 9105,3,"Tumor, trophoblastic, epithelioid",alternate

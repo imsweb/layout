@@ -24,7 +24,7 @@ import com.opencsv.exceptions.CsvValidationException;
 public class NaaccrLookupsToSasFormats {
 
     public static void main(String[] args) throws IOException, CsvValidationException {
-        String version = "230";
+        String version = "240";
 
         File inFile = new File(System.getProperty("user.dir") + "\\docs\\naaccr-lookups\\naaccr-lookups-" + version + ".zip");
         File outFile = new File(System.getProperty("user.dir") + "\\docs\\naaccr-lookups\\naaccr-lookups-" + version + "-sas-formats.sas.gz");

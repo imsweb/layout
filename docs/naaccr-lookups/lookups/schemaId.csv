@@ -39,13 +39,13 @@
 00278,Biliary Other
 00280,Pancreas
 00288,Digestive Other
-00290,NET Stomach
-00301,NET Duodenum
-00302,NET Ampulla of Vater
-00310,NET Jejunum and Ileum
-00320,NET Appendix
-00330,NET Colon and Rectum
-00340,NET Pancreas
+00290,NET Stomach [8th: 2018-2023]
+00301,NET Duodenum [8th: 2018-2023]
+00302,NET Ampulla of Vater [8th: 2018-2023]
+00310,NET Jejunum and Ileum [8th: 2018-2023]
+00320,NET Appendix [8th: 2018-2023]
+00330,NET Colon and Rectum [8th: 2018-2023]
+00340,NET Pancreas [8th: 2018-2023]
 00350,Thymus
 00358,Trachea
 00360,Lung
@@ -67,7 +67,7 @@
 00470,Melanoma Skin
 00478,Skin Other
 00480,Breast
-00500,Vulva
+00500,Vulva [8th: 2018-2023]
 00510,Vagina
 00520,Cervix [8th: 2018-2020]
 00528,Cervix Sarcoma
@@ -119,6 +119,14 @@
 00830,HemeRetic
 09190,Appendix [V9: 2023+]
 09210,Anus [V9: 2023+]
+09290,NET Stomach [V9: 2024+]
+09301,NET Duodenum [V9: 2024+]
+09302,NET Ampulla of Vater [V9: 2024+]
+09310,NET Jejunum and Ileum [V9: 2024+]
+09320,NET Appendix [V9: 2024+]
+09330,NET Colon and Rectum [V9: 2024+]
+09340,NET Pancreas [V9: 2024+]
+09500,Vulva [V9: 2024+]
 09520,Cervix [V9: 2021+]
 09721,Brain [V9: 2023+]
 09722,CNS Other [V9: 2023+]

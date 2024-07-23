@@ -42,9 +42,12 @@ import com.opencsv.exceptions.CsvException;
 import com.imsweb.seerutilsgui.SeerGuiUtils;
 import com.imsweb.seerutilsgui.SeerList;
 
+/**
+ * Lookups need to be generated from the "ExtractLookupsLab" in SEER*DMS.
+ */
 public class NaaccrLookupsViewer extends JFrame {
 
-    private static final File _DIR = new File("C:\\dev\\tmp\\naaccr-lookups\\lookups");
+    private static final File _DIR = new File("C:\\dev\\temp\\naaccr-lookups\\naaccr-lookups-240");
 
     private JTextArea _textArea = null;
 

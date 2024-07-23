@@ -1,0 +1,33 @@
+1a1,Acute Lymphoblastic Leukemia
+2a,Hodgkin Lymphoma
+2b2,NHL: Mature B-cell lymphomas
+2b3,NHL: Mature T-cell and NK-cell lymphomas
+2b4,NHL: NOS
+2c,NHL: Burkitt lymphoma
+3a,Ependymoma
+3b,Astrocytoma
+3c1,Medulloblastoma
+3c2,Medulloblastoma: pNET
+3c3,Medulloblastoma: Medulloepithelioma
+3c4,Medulloblastoma: Atypical teratoid/rhabdoid
+3e3,Medulloblastoma: Pineoblastoma
+4a,Neuroblastoma
+5,Retinoblastoma
+6a1,Renal Tumors: Nephroblastoma
+6a2,Renal Tumors: Rhabdoid Renal Tumor
+6a3,Renal Tumors: Kidney Sarcomas
+6a4,Renal Tumors: Ewing Sarcoma of Kidney
+6c,Renal Tumors: Unspecified Malignant Renal Tumors
+7a,Hepatoblastoma
+8a,Malignant Bone Tumors: Osteosarcoma
+8b,Malignant Bone Tumors: Chondrosarcomas
+8c,Malignant Bone Tumors: Ewing
+8d,Malignant Bone Tumors: Other specified
+8e,Malignant Bone Tumors: Unspecified
+9a,Rhabdomyosarcoma
+9b,Non-Rhabdomyosarcoma: Fibrosarcomas
+9d,Non-Rhabdomyosarcoma: Other specified
+9e,Non-Rhabdomyosarcoma: Unspecified
+10c1,Testicular
+10c2,Ovarian
+XX,Adult/Other Non-Pediatric

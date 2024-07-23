@@ -101,6 +101,7 @@
 8096/0,Intraepidermal epithelioma of Jadassohn (C44._)
 8325/0,Metanephric adenoma (C64._)
 8097/3,"Basal cell carcinoma, nodular (C44._)"
+8044/3,"Small cell carcinoma, intermediate cell"
 8098/3,Adenoid basal cell carcinoma (C53._)
 8100/0,Trichoepithelioma (C44._)
 8101/0,Trichofolliculoma (C44._)
@@ -197,6 +198,8 @@
 8215/3,Adenocarcinoma of anal glands (C21.1)
 8220/0,Adenomatous polyposis coli (C18._)
 8220/2,Adenocarcinoma in situ in adenomatous polyposis coli (C18._)
+8100/3,Trichoblastic carcinoma (C44._) [2022+]
+8211/2,"Tubular adenoma, high grade [2022+; NOT REPORTABLE; SEE STANDARD SETTER REQUIREMENTS FOR REPORTABILITY.]"
 8220/3,Adenocarcinoma in adenomatous polyposis coli (C18._)
 8221/0,Multiple adenomatous polyps
 8221/2,Adenocarcinoma in situ in multiple adenomatous polyposis coli
@@ -289,6 +292,7 @@
 8331/3,Follicular adenocarcinoma well differentiated (C73.9)
 8332/3,Follicular adenocarcinoma trabecular (C73.9)
 8333/0,"Microfollicular adenoma, NOS (C73.9)"
+8243/3,Goblet cell adenocarcinoma [2022+]
 8333/3,Fetal adenocarcinoma
 8334/0,Macrofollicular adenoma (C73.9)
 8335/3,"Follicular carcinoma, minimally invasive (C73.9)"
@@ -378,6 +382,9 @@
 8452/1,Solid pseudopapillary tumor (C25._)
 8452/3,Solid pseudopapillary carcinoma (C25._)
 8380/3,Endometrioid adenocarcinoma
+8380/2,Endometrioid intraepithelial neoplasia (C54._) [2018+; REPORTABLE 2021+]
+8406/3,Syringocystadenocarcinoma papilliferum [2022+]
+8409/2,Porocarcinoma in situ [2022+]
 8453/0,Intraductal papillary-mucinous adenoma (C25._)
 8453/2,"Intraductal papillary-mucinous carcinoma, non-invasive (C25._)"
 8453/3,"Intraductal papillary-mucinous carcinoma, invasive (C25._)"
@@ -465,6 +472,7 @@
 8521/3,Infiltrating ductular carcinoma (C50._)
 8472/2,Papillary mucinous carcinoma in situ
 9563/0,"Nerve sheath tumor, NOS"
+8503/2,"Ductal carcinoma in situ, papillary (C50._)"
 8571/3,Adenocarcinoma with cartilaginous and osseous metaplasia
 8572/0,Adenoma with spindle cell metaplasia
 8572/3,Adenocarcinoma with spindle cell metaplasia
@@ -660,6 +668,8 @@
 8840/3,Myxosarcoma (C49._)
 8841/1,Angiomyxoma (C49._)
 8841/3,"Angiomyxoma, malignant (C49._)"
+8821/1,Aggressive fibromatosis
+8821/3,"Aggressive fibromatosis, malignant (C49._) [pre-2023]"
 8842/0,Ossifying fibromyxoid tumor
 8842/3,"Ossifying fibromyxoid tumor, malignant"
 8850/0,"Lipoma, NOS"
@@ -794,7 +804,6 @@
 9055/3,"Multicystic mesothelioma, malignant (C48._)"
 9060/2,"Dysgerminoma, in situ (C56.9 [F], C62._[M])"
 9060/3,"Dysgerminoma (C56.9 [F], C62._[M])"
-9061/2,"Seminoma, in situ (C62._)"
 9061/3,"Seminoma, NOS (C62._)"
 9062/3,"Seminoma, anaplastic (C62._)"
 9063/2,"Spermatocytic seminoma, in situ (C62._)"
@@ -802,15 +811,12 @@
 9064/2,Intratubular malignant germ cells (C62._)
 9064/3,Germinoma (C62._)
 9065/3,"Germ cell tumor, nonseminomatous (C62._)"
-9070/2,"Embryonal carcinoma, NOS, in situ"
 9070/3,"Embryonal carcinoma, NOS"
 9071/3,"Yolk sac tumor (C56.9 [F], C62._[M])"
 9072/3,Polyembryoma
 9073/1,"Gonadoblastoma (C56.9 [F], C62._[M])"
 9080/0,"Teratoma, benign"
 9080/1,"Teratoma, NOS"
-9080/2,"Teratoma, in situ"
-9080/3,"Teratoma, malignant, NOS"
 9081/2,"Teratocarcinoma, in situ (C22.0)"
 9081/3,Teratocarcinoma (C22.0)
 9082/3,"Malignant teratoma, undifferentiated"
@@ -834,7 +840,6 @@
 9103/0,Partial hydatidiform mole (C58.9)
 9103/3,"Partial hydatidiform mole, malignant (C58.9)"
 9104/1,Placental site trophoblastic tumor (C58.9)
-9104/3,Malignant placental site trophoblastic tumor (C58.9)
 9105/3,"Trophoblastic tumor, epithelioid"
 9110/0,"Mesonephroma, benign"
 9110/1,"Mesonephric tumor, NOS"
@@ -875,6 +880,7 @@
 9180/0,"Osteoma, NOS (C40._, C41._)"
 9180/3,"Osteosarcoma, NOS (C40._, C41._)"
 9181/3,"Chondroblastic osteosarcoma (C40._, C41._)"
+9110/3,"Adenocarcinoma, HPV-independent, mesonephric type [2021+]"
 9182/3,"Fibroblastic osteosarcoma (C40._, C41._)"
 9183/3,"Telangiectatic osteosarcoma (C40._, C41._)"
 9184/3,"Osteosarcoma in Paget disease of bone (C40._, C41._)"
@@ -973,6 +979,8 @@
 9384/3,"Supependymal giant cell astrocytoma, malignant (C71._)"
 9390/0,"Choroid plexus papilloma, NOS (C71.5)"
 9390/1,Atypical choroid plexus papilloma (C71.5)
+9200/0,"Osteoblastoma, NOS (C40._, C41._) [PRE-2022 ONLY. FOR 2022+ USE CODE 9200/1; NOT REPORTABLE]"
+9200/1,"Osteoblastoma, NOS (C40._, C41._) [2022+. FOR PRE-2022, USE CODE 9200/0; NOT REPORTABLE]"
 9390/3,"Choroid plexus papilloma, malignant (C71.5)"
 9392/3,"Ependymoma, anaplastic (C71._)"
 9393/0,"Papillary ependymoma, benign (C71._)"
@@ -1072,6 +1080,8 @@
 9580/0,"Granular cell tumor, NOS (C49._)"
 9500/0,"Neuroblastoma, benign"
 9500/3,"Neuroblastoma, NOS"
+9391/3,Sellar ependymoma (C75.1) [2021+]
+9480/3,"Cerebellar sarcoma, NOS (C71.6) [obs]"
 9580/3,"Granular cell tumor, malignant (C49._)"
 9581/3,Alveolar soft part sarcoma (C49._)
 9582/0,Granular cell tumor of the sellar region (C49._)
@@ -1157,6 +1167,7 @@
 9768/1,T gamma-lymphoproliferative disease
 9769/1,Immunoglobulin deposition disease
 9769/3,"Immunoglobulin deposition disease, malignant"
+9699/3,"Marginal zone B-cell lymphoma, NOS [SEE HEMATOPOIETIC DATABASE FOR REPORTING]"
 9800/3,"Leukemia, NOS (C42.1)"
 9801/3,Acute undifferentiated leukemia (C42.1)
 9805/3,"Acute biphenotypic leukemia [OBS], See codes 9806/3-9809/3 (ICD-O-3 update) (C42.1)"
@@ -1316,6 +1327,7 @@
 9715/3,"Anaplastic large cell lymphoma, ALK negative [2021+]"
 9725/1,Hydroa vacciniforme-like lymphoproliferative disorder [2021 AND LATER NOT REPORTABLE. FOR PRE-2010 USE CODE 9725/3]
 9749/3,Erdheim-Chester disease [2021+]
+8509/3,Tall cell carcinoma with reversed polarity [2022+]
 9761/1,IgM monoclonal gammopathy of undetermined significance [2021+]
 9819/3,"B lymphoblastic leukemia/lymphoma, BCR-ABL-like [2021+]"
 9823/1,"Monoclonal B-cell lymphocytosis, CLL-type [2021+]"
@@ -1342,44 +1354,35 @@
 9509/0,Multinodular and vacuolating neuronal tumor (MVNT) (C71.2) [2023+. FOR PRE-2023 USE 9505/0]
 9509/3,Diffuse leptomeningeal glioneuronal tumor (C71._) [2023+]
 9749/1,Juvenile xanthogranuloma (C71.5) [2023+; SEE HEMATOPOIETIC DATABASE FOR REPORTING]
-8976/3,Gastroblastoma (C16._) [2022+]
 9222/1,Atypical cartilaginous tumor [2021+]
 9222/3,"Chondrosarcoma, grade 1 (C40._, C41._) [REPORTABLE 2022+. FOR PRE-2022 USE CODE 9222/1]"
-8044/3,"Small cell carcinoma, intermediate cell"
-8100/3,Trichoblastic carcinoma (C44._) [2022+]
 8144/2,"Intestinal-type adenoma, high grade (C16._, C17._) [REPORTABLE 2022+ FOR STOMACH AND SMALL INTESTINE ONLY; SEE STANDARD SETTER REQUIREMENTS FOR REPORTABILITY.]"
-8211/2,"Tubular adenoma, high grade [2022+; NOT REPORTABLE; SEE STANDARD SETTER REQUIREMENTS FOR REPORTABILITY.]"
 8213/2,"Serrated dysplasia, high grade (C16._, C17._) [REPORTABLE 2022+ FOR STOMACH AND SMALL INTESTINE ONLY; SEE STANDARD SETTER REQUIREMENTS FOR REPORTABILITY.]"
-8243/3,Goblet cell adenocarcinoma [2022+]
-8380/2,Endometrioid intraepithelial neoplasia (C54._) [2018+; REPORTABLE 2021+]
-8406/3,Syringocystadenocarcinoma papilliferum [2022+]
-8409/2,Porocarcinoma in situ [2022+]
 8455/2,"Intraductal oncocytic papillary neoplasm, NOS (C25._) [2022+]"
 8455/3,Intraductal oncocytic papillary neoplasm with associated invasive carcinoma (C25._) [2022+]
 8480/1,Low grade appendiceal mucinous neoplasm (LAMN) (C18.1) [2018-2021 NOT REPORTABLE; 2022+ USE 8480/2 PER STANDARD SETTERS SINCE TERM AND CORRESPONDING CODE NOT INCLUDED IN ICD-O-3.2; SEE STANDARD SETTER REQUIREMENTS FOR REPORTABILITY]
 8480/2,High grade appendiceal mucinous neoplasm (HAMN) (C181) [2022+]
 8483/3,"Adenocarcinoma, HPV-associated (C53._) [2021+]"
 8484/3,"Adenocarcinoma, HPV-independent, NOS (C53._) [2021+]"
-8503/2,"Ductal carcinoma in situ, papillary (C50._)"
-8509/3,Tall cell carcinoma with reversed polarity [2022+]
 8693/1,"Extra-adrenal paraganglioma, NOS [PRE-2021 ONLY. FOR 2021+ USE CODE 8693/3.]"
 8693/3,"Extra-adrenal paraganglioma, NOS [REPORTABLE 2021+]"
-8821/1,Aggressive fibromatosis
-8821/3,"Aggressive fibromatosis, malignant (C49._) [pre-2023]"
 8859/3,Myxoid pleomorphic liposarcoma [2022+]
-9110/3,"Adenocarcinoma, HPV-independent, mesonephric type [2021+]"
+8976/3,Gastroblastoma (C16._) [2022+]
 9111/3,"Mesonephric-like adenocarcinoma (C54._, C56.9) [2022+]"
 9174/1,"Lymphangiomyomatosis [PRE-2023, NOT REPORTABLE. FOR 2023+ USE CODE 9174/3]"
-9200/0,"Osteoblastoma, NOS (C40._, C41._) [PRE-2022 ONLY. FOR 2022+ USE CODE 9200/1; NOT REPORTABLE]"
-9200/1,"Osteoblastoma, NOS (C40._, C41._) [2022+. FOR PRE-2022, USE CODE 9200/0; NOT REPORTABLE]"
 9366/3,Round cell sarcoma with EWSR1-non-ETS fusions [2022+]
 9367/3,CIC-rearranged sarcoma [2022+]
 9368/3,Sarcoma with BCOR genetic alterations [2022+]
-9391/3,Sellar ependymoma (C75.1) [2021+]
 9421/1,"Diffuse astrocytoma, MYB- or MYBL1-altered (C71._) [2023+]"
 9421/3,High-grade astrocytoma with piloid features (HGAP) (C71._) [2023+]
 9473/3,"Central primitive neuroectodermal tumor, NOS (C71._)"
-9480/3,"Cerebellar sarcoma, NOS (C71.6) [obs]"
 9505/0,Multinodular and vacuolating neuronal tumor (MVNT) (C71.2) [FOR USE 2021-2022. FOR 2023+ USE 9509/0]
-9699/3,"Marginal zone B-cell lymphoma, NOS [SEE HEMATOPOIETIC DATABASE FOR REPORTING]"
 9738/1,HHV8-positive germinotropic-lymphoproliferative disorder
+8361/1,Non-functioning juxtaglomerular cell tumor [2024+; NOT REPORTABLE]
+8590/0,Myoid gonadal stromal tumor [2024+; NOT REPORTABLE]
+9071/2,Intratubular yolk sac tumor [2024+]
+9061/2,Intratubular seminoma (C62._) [2024+]
+9070/2,Intratubular embryonal carcinoma [2024+]
+9080/2,Intratubular teratoma [2024+]
+9104/3,Placental site trophoblastic tumor of testis (C62._) [REPORTABLE FOR C62._ ONLY 2024+]
+9080/3,"Teratoma, postpubertal-type [2024+]"
