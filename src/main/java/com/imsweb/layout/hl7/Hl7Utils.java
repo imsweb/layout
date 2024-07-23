@@ -343,7 +343,8 @@ public final class Hl7Utils {
             // we are going to use this as a default value in several of the cases
             String fullOriginalGroup = escapeChar + matcher.group(1) + matcher.group(2) + escapeChar;
 
-            switch (matcher.group(1)) {
+            String matchedGroups = matcher.group(1);
+            switch (matchedGroups) {
                 case "F":
                     buf.append(fieldChar);
                     break;
@@ -359,35 +360,14 @@ public final class Hl7Utils {
                 case "E":
                     buf.append(escapeChar);
                     break;
-                case "X":
-                    String codeValue = matcher.group(2);
-
-                    // that would be weird, but if there is an X without any hex value, don't report an error, don't copy the escaped X
-                    if (codeValue.isEmpty())
-                        break;
-
-                    // the codes are supposed to be pairs of hex values, if that's not the case, copy back original value
-                    if (codeValue.length() % 2 != 0) {
-                        buf.append(fullOriginalGroup);
-                        break;
-                    }
-
-                    // if anything goes wrong, copy back the original value (so this is an all or nothing operation)
-                    try {
-                        StringBuilder tmpBuf = new StringBuilder();
-                        for (int i = 0; i < matcher.group(2).length(); i += 2)
-                            tmpBuf.append((char)(Integer.parseInt(matcher.group(2).substring(i, i + 2), 16)));
-                        buf.append(tmpBuf);
-                    }
-                    catch (NumberFormatException e) {
-                        buf.append(fullOriginalGroup);
-                    }
-                    break;
                 case "C":
-                case "H":
                 case "M":
-                case "N":
+                case "X":
                 case "Z":
+                    buf.append(getHexadecimalResult(matcher.group(1) + matcher.group(2)));
+                    break;
+                case "H":
+                case "N":
                     // these are legit HL7 escaped sequence but they are not supported, so don't replace them
                     break;
                 default:
@@ -399,6 +379,40 @@ public final class Hl7Utils {
         buf.append(value.substring(currentIdx));
 
         return buf.toString();
+    }
+
+    private static String getHexadecimalResult(String value) {
+        String result;
+        char startingChar = value.charAt(0);
+        String codeValue = value.substring(1);
+        int codeLength = codeValue.length();
+        boolean isInvalidHexadecimal = (startingChar == 'X' || startingChar == 'Z') && codeLength % 2 != 0;
+        boolean isInvalidSingleByte = startingChar == 'C' && codeLength != 4;
+        boolean isInvalidMultiByte = startingChar == 'M' && codeLength != 4 && codeLength != 6;
+
+        // that would be weird, but if there is a starting character without any hex value, don't report an error, don't copy the escaped character
+        if (StringUtils.isBlank(codeValue))
+            result = "";
+            // the codes are supposed to be pairs of hex values, if that's not the case, copy back original value
+        else if (isInvalidHexadecimal || isInvalidSingleByte || isInvalidMultiByte)
+            result = "\\\\" + value + "\\\\";
+        else {
+            // convert to hexadecimal. If anything goes wrong, copy back the original value (so this is an all or nothing operation)
+            try {
+                StringBuilder tmpBuf = new StringBuilder();
+                for (int i = 0; i < codeValue.length(); i += 2)
+                    tmpBuf.append((char)Integer.parseInt(codeValue.substring(i, i + 2), 16));
+
+                //"Xdd.." is the only hexadecimal escape sequence to be converted, the others are removed.
+                if (startingChar == 'X')
+                    result = tmpBuf.toString();
+                else result = "";
+            }
+            catch (NumberFormatException e) {
+                result = "\\\\" + value + "\\\\";
+            }
+        }
+        return result;
     }
 
     /**
