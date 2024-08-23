@@ -4,12 +4,12 @@ plugins {
     id 'java-library'
     id 'checkstyle'
     id 'jacoco'
-    id 'com.github.spotbugs' version '6.0.19'
+    id 'com.github.spotbugs' version '6.0.20'
     id 'maven-publish'
     id 'signing'
     id 'io.github.gradle-nexus.publish-plugin' version '2.0.0' // publish to Maven Central
     id 'com.github.ben-manes.versions' version '0.51.0' // check for out-of-date dependencies (run 'dependencyUpdates' manually)
-    id 'org.sonatype.gradle.plugins.scan' version '2.8.2' // scan for vulnerabilities
+    id 'org.sonatype.gradle.plugins.scan' version '2.8.3' // scan for vulnerabilities
     id 'org.sonarqube' version '5.1.0.4882' // sonarQube analysis
 }
 
@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    api 'com.imsweb:naaccr-xml:11.0'
+    api 'com.imsweb:naaccr-xml:11.1'
 
     implementation 'commons-io:commons-io:2.16.1'
     implementation 'com.opencsv:opencsv:5.9'
