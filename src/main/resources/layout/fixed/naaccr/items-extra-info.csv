@@ -864,7 +864,7 @@ chromosome1qStatus,Chrom 1q Status,Stage/Prognostic Factors
 derivedPediatricM,Der Ped M,Stage/Prognostic Factors
 derivedPediatricStageGroup,Der Ped Stg Group,Stage/Prognostic Factors
 derivedPediatricT,Der Ped T,Stage/Prognostic Factors
-derivedPediatricTN,Der Ped N,Stage/Prognostic Factors
+derivedPediatricN,Der Ped N,Stage/Prognostic Factors
 ewsr1Fli1Fusion,EWSR1-FLI1 fusion,Stage/Prognostic Factors
 foxo1GeneRearrangements,FOXO1,Stage/Prognostic Factors
 inpc,INPC,Stage/Prognostic Factors
