@@ -1,5 +1,12 @@
 ## Layout Framework Version History
 
+**Changes in version 6.0**
+
+- Updated minimum Java language from Java 8 to Java 11.
+- Retired legacy mode of CSV layout; the only mode available is the RFC4180 one.
+- Updated NAACCR XML library from version 11.1 to version 11.2.
+- Updated XStream dependency from version 1.4.20 to version 1.4.21.
+
 **Changes in version 5.7**
 
 - Updated NAACCR XML library from version 11.0 to version 11.1. 

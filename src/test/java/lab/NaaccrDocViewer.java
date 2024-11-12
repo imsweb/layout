@@ -43,6 +43,7 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.xhtmlrenderer.simple.FSScrollPane;
+import org.xhtmlrenderer.swing.NaiveUserAgent;
 import org.xhtmlrenderer.swing.ScalableXHTMLPanel;
 
 import com.imsweb.layout.Field;
@@ -310,7 +311,7 @@ public class NaaccrDocViewer extends JFrame {
         _pane.setCenterTitles(true);
         _pane.setTabPlacement(JTabbedPane.BOTTOM);
 
-        ScalableXHTMLPanel pnl = new ScalableXHTMLPanel();
+        ScalableXHTMLPanel pnl = new ScalableXHTMLPanel(new NaiveUserAgent());
         pnl.getSharedContext().getTextRenderer().setSmoothingThreshold(-1);
         try {
             pnl.setDocument(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)), "");

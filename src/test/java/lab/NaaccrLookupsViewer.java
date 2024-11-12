@@ -14,7 +14,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -36,8 +35,8 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
+import de.siegmar.fastcsv.reader.CsvReader;
+import de.siegmar.fastcsv.reader.CsvRecord;
 
 import com.imsweb.seerutilsgui.SeerGuiUtils;
 import com.imsweb.seerutilsgui.SeerList;
@@ -81,17 +80,16 @@ public class NaaccrLookupsViewer extends JFrame {
         list.getSelectionModel().addListSelectionListener(e -> {
             if (e.getValueIsAdjusting())
                 return;
-            String name = (String)list.getSelectedValue();
+            String name = list.getSelectedValue();
             if (name != null) {
-                try (CSVReader reader = new CSVReader(new FileReader(new File(_DIR, name)))) {
+                try (CsvReader<CsvRecord> reader = CsvReader.builder().ofCsvRecord(new File(_DIR, name).toPath())) {
                     StringBuilder buf = new StringBuilder();
-                    for (String[] row : reader.readAll())
-                        buf.append(row[0]).append(": ").append(row[1]).append("\n");
+                    reader.stream().forEach(line -> buf.append(line.getField(0)).append(": ").append(line.getField(1)).append("\n"));
                     _textArea.setText(buf.toString());
                     _textArea.setCaretPosition(0);
 
                 }
-                catch (IOException | CsvException ex) {
+                catch (IOException ex) {
                     _textArea.setText(ex.getMessage());
                 }
             }

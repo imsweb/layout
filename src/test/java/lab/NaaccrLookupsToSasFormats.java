@@ -16,14 +16,12 @@ import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.RFC4180Parser;
-import com.opencsv.exceptions.CsvValidationException;
+import de.siegmar.fastcsv.reader.CsvReader;
+import de.siegmar.fastcsv.reader.NamedCsvRecord;
 
 public class NaaccrLookupsToSasFormats {
 
-    public static void main(String[] args) throws IOException, CsvValidationException {
+    public static void main(String[] args) throws IOException {
         String version = "240";
 
         File inFile = new File(System.getProperty("user.dir") + "\\docs\\naaccr-lookups\\naaccr-lookups-" + version + ".zip");
@@ -77,17 +75,20 @@ public class NaaccrLookupsToSasFormats {
                     writer.write("    value $" + field + "F\r\n");
 
                     try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(zFile.getInputStream(entry), StandardCharsets.UTF_8));
-                         CSVReader csvReader = new CSVReaderBuilder(reader).withCSVParser(new RFC4180Parser()).build()) {
-                        String[] line = csvReader.readNext();
-                        while (line != null) {
-                            String code = line[0].replace("'", "''");
-                            String label = line[1].replace("'", "''");
+                         CsvReader<NamedCsvRecord> csvReader = CsvReader.builder().ofNamedCsvRecord(reader)) {
+                        csvReader.stream().forEach(line -> {
+                            String code = line.getField(0).replace("'", "''");
+                            String label = line.getField(1).replace("'", "''");
                             int idx = label.indexOf("\n");
                             if (idx != -1)
                                 label = label.substring(0, idx);
-                            writer.write("        '" + code + "'='" + label + "'\r\n");
-                            line = csvReader.readNext();
-                        }
+                            try {
+                                writer.write("        '" + code + "'='" + label + "'\r\n");
+                            }
+                            catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
                     }
 
                     writer.write("        ;\r\n\r\n");

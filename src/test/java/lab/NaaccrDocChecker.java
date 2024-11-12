@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.ScrollPaneConstants;
 
 import org.xhtmlrenderer.simple.FSScrollPane;
+import org.xhtmlrenderer.swing.NaiveUserAgent;
 import org.xhtmlrenderer.swing.ScalableXHTMLPanel;
 
 import com.imsweb.layout.Field;
@@ -66,7 +67,7 @@ public class NaaccrDocChecker extends JFrame {
         buf.append("</body>\n");
         buf.append("</html>\n");
 
-        ScalableXHTMLPanel pnl = new ScalableXHTMLPanel();
+        ScalableXHTMLPanel pnl = new ScalableXHTMLPanel(new NaiveUserAgent());
         pnl.getSharedContext().getTextRenderer().setSmoothingThreshold(-1);
         try {
             pnl.setDocument(new ByteArrayInputStream(buf.toString().getBytes()), "");
