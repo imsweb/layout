@@ -41,15 +41,15 @@ public class NaaccrDocGenerator {
                 Template template = new Template(item.getXmlNaaccrId(), reader, null);
 
                 Map<String, Object> data = new HashMap<>();
-                data.put("ITEM_LENGTH", item.getItemLength() == null ? "" : item.getItemLength());
-                data.put("ITEM_NUMBER", item.getItemNumber());
+                data.put("ITEM_LENGTH", Objects.toString(item.getItemLength(), ""));
+                data.put("ITEM_NUMBER", Objects.toString(item.getItemNumber(), ""));
                 data.put("SOURCE_OF_STANDARD", Objects.toString(item.getSourceOfStandard(), ""));
                 data.put("YEAR_IMPLEMENTED", Objects.toString(item.getYearImplemented(), ""));
                 data.put("VERSION_IMPLEMENTED", Objects.toString(item.getVersionImplemented(), ""));
                 data.put("YEAR_RETIRED", Objects.toString(item.getYearRetired(), ""));
                 data.put("VERSION_RETIRED", Objects.toString(item.getVersionRetired(), ""));
-                data.put("DATA_LEVEL", item.getXmlParentId());
-                data.put("XML_ID", item.getXmlNaaccrId());
+                data.put("DATA_LEVEL", Objects.toString(item.getXmlParentId(), ""));
+                data.put("XML_ID", Objects.toString(item.getXmlNaaccrId(), ""));
                 if (item.getAlternateNames() != null) {
                     List<String> cleanedNames = new ArrayList<>();
                     for (String name : item.getAlternateNames())
