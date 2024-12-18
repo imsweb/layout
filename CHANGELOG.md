@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 6.1**
+
+- Fixed a number formatting issue in the NAACCR 24 documentation. 
+
 **Changes in version 6.0**
 
 - Updated minimum Java language from Java 8 to Java 11.
