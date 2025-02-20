@@ -1,0 +1,96 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1188</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR/SEER</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2025</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">25</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.irssStageForEye2<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>Bilateral retinoblastoma is abstracted as a single primary regardless of timing, but there is no effective way to measure the different extent of diseases or stages for each eye beyond text. Currently, abstractors are required to enter the information of the most advanced eye in the staging data fields, losing all measurable data on the stage the less advanced eye.</p>
+<p>This field allows the abstractor to enter the individual stages for each eye in cases of bilateral retinoblastoma at the time of diagnosis.</p>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>Even though staging information for only one retinoblastoma tumor can currently be captured in data form, abstractors are still required to put treatment information for bilaterally affected eyes into the treatment fields of the abstract. The ability to capture measurable staging data of the contralateral eye will provide substantiation of the treatment captured for both eyes in the abstract.</p>
+
+</div>
+
+
+<div class='content chap10-para'>
+<p><strong>Source documents:</strong> imaging, pathology report, clinician’s statement</p>
+
+</div>
+
+<div class='content chap10-para'><strong>Codes</strong></div>
+<table>
+        <tr class='code-row'><td class='code-nbr'>0</td><td class='code-desc'>Stage 0
+
+*   Tumor confined to the globe
+*   Enucleation has not been performed
+*   Patient treated conservatively with either focal therapies or chemotherapy</td></tr>
+        <tr class='code-row'><td class='code-nbr'>1</td><td class='code-desc'>Stage I
+
+*   Enucleation with negative margins (R0)
+*   Completely resected histologically</td></tr>
+        <tr class='code-row'><td class='code-nbr'>2</td><td class='code-desc'>Stage II
+
+*   Enucleation with positive/microscopic residual tumor</td></tr>
+        <tr class='code-row'><td class='code-nbr'>3</td><td class='code-desc'>Stage III
+
+*   Regional extension, involvement of 
+    *   Orbit
+    *   Preauricular extension
+    *   Cervical lymph node involvement</td></tr>
+        <tr class='code-row'><td class='code-nbr'>4</td><td class='code-desc'>Stage IV
+
+*   Distant metastatic disease</td></tr>
+        <tr class='code-row'><td class='code-nbr'>7</td><td class='code-desc'>Not applicable: Only one eye is involved, and staging collected in Pediatric Primary Tumor, Pediatric Regional Nodes and Pediatric Mets
+
+*   Unilateral retinoblastoma</td></tr>
+        <tr class='code-row'><td class='code-nbr'>8</td><td class='code-desc'>Not applicable: Information not collected for this case  
+(If this information is required by your standard setter, use of code 8 may result in an edit error.)</td></tr>
+        <tr class='code-row'><td class='code-nbr'>9</td><td class='code-desc'>Not documented in medical record  
+International Retinoblastoma Staging System (IRSS) not assessed or unknown if assessed</td></tr>
+</table>
+
+<div class='content chap10-para'>
+<p><strong>Note 1: Effective years</strong></p>
+<ul>
+<li>This SSDI is effective for diagnosis years 2024+</li>
+<li>For cases diagnosed 2018-2023, this SSDI must be blank</li>
+</ul>
+<p><strong>Note 2: Bilateral retinoblastomas</strong></p>
+<ul>
+<li>This data item records the stage of the second eye when there are bilateral retinoblastomas.
+<ul>
+<li><strong>Code 7</strong> if only one eye is involved (unilateral retinoblastoma)</li>
+<li>Extension of one eye (unilateral retinoblastoma) is coded in Pediatric Primary Tumor</li>
+</ul>
+</li>
+<li>If there are bilateral retinoblastomas, record the Stage Group of the lesser/lower stage in this data item (more advanced/higher stage is recorded in Pediatric Primary Tumor)
+<ul>
+<li>Do not record a stage (Stage 0-IV) in this data item if only one eye is invovled</li>
+</ul>
+</li>
+</ul>
+
+</div>
