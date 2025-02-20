@@ -789,7 +789,7 @@ public class NaaccrXmlLayoutTest {
     @Test
     @SuppressWarnings("DataFlowIssue")
     public void testGetFieldDoc() throws IOException {
-        NaaccrXmlLayout layout = LayoutFactory.getNaaccrXmlLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_22);
+        NaaccrXmlLayout layout = LayoutFactory.getNaaccrXmlLayout("naaccr-xml-" + NaaccrFormat.NAACCR_VERSION_LATEST.substring(0, 2));
 
         // test internal mechanism
         Assert.assertNotNull(layout.getFieldDocByName("primarySite"));

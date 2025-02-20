@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 6.2**
+
+- Added NAACCR 25 documentation.
+
 **Changes in version 6.1**
 
 - Fixed a number formatting issue in the NAACCR 24 documentation. 

@@ -21,7 +21,7 @@ import com.imsweb.seerutils.SeerUtils;
 @SuppressWarnings({"ConstantConditions"})
 public class NaaccrDocChecker extends JFrame {
 
-    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr24");
+    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr25");
 
     public static void main(String[] args) {
 

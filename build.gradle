@@ -4,12 +4,12 @@ plugins {
     id 'java-library'
     id 'checkstyle'
     id 'jacoco'
-    id 'com.github.spotbugs' version '6.0.26'
+    id 'com.github.spotbugs' version '6.1.5'
     id 'maven-publish'
     id 'signing'
     id 'io.github.gradle-nexus.publish-plugin' version '2.0.0' // publish to Maven Central
-    id 'com.github.ben-manes.versions' version '0.51.0' // check for out-of-date dependencies (run 'dependencyUpdates' manually)
-    id 'org.sonatype.gradle.plugins.scan' version '2.8.3' // scan for vulnerabilities
+    id 'com.github.ben-manes.versions' version '0.52.0' // check for out-of-date dependencies (run 'dependencyUpdates' manually)
+    id 'org.sonatype.gradle.plugins.scan' version '3.0.0' // scan for vulnerabilities
     id 'org.sonarqube' version '6.0.1.5171' // sonarQube analysis
 }
 
@@ -40,8 +40,10 @@ dependencies {
     testImplementation 'com.imsweb:seerutils-gui:1.20'
     testImplementation 'com.imsweb:naaccr-api-client:1.1' // access NAACCR documentation API
     testImplementation 'org.commonmark:commonmark:0.24.0' // convert markdown to HTML for NAACCR documentation
-    testImplementation 'org.freemarker:freemarker:2.3.33' // fill it template for NAACCR documentation
-    testImplementation 'org.xhtmlrenderer:flying-saucer-core:9.11.2' // Java Swing HTML renderer for NAACCR documentation lab
+    testImplementation 'org.freemarker:freemarker:2.3.34' // fill it template for NAACCR documentation
+    testImplementation('org.xhtmlrenderer:core-renderer:R8') { // Java Swing HTML renderer for NAACCR documentation lab
+        exclude module: 'itext'
+    }
 }
 
 // enforce UTF-8, display the compilation warnings
@@ -184,7 +186,7 @@ publishing {
 
 // setup JAR signing
 signing {
-    required { !project.version.endsWith('-SNAPSHOT') }
+    required = { !project.version.endsWith('-SNAPSHOT') }
 
     String signingKey = project.findProperty('signingKey') ?: ''
     String signingPassword = project.findProperty('signingPassword') ?: ''
@@ -216,7 +218,7 @@ nexusPublishing {
 
 // Gradle wrapper, this allows to build the project without having to install Gradle!
 wrapper {
-    gradleVersion = '8.11'
+    gradleVersion = '8.12.1'
     distributionType = Wrapper.DistributionType.ALL
 }
 

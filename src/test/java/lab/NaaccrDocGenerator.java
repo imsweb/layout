@@ -33,9 +33,9 @@ public class NaaccrDocGenerator {
         Parser parser = Parser.builder().build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
 
-        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr24");
+        File outputDir = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr25");
 
-        for (NaaccrDataItem item : client.getDataItems("24")) {
+        for (NaaccrDataItem item : client.getDataItems("25")) {
             try (FileReader reader = new FileReader(System.getProperty("user.dir") + "/src/test/resources/doc/naaccr-doc-template.txt")) {
 
                 Template template = new Template(item.getXmlNaaccrId(), reader, null);
