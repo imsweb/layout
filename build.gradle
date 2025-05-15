@@ -31,7 +31,7 @@ dependencies {
     api 'com.imsweb:naaccr-xml:11.3'
 
     implementation 'com.thoughtworks.xstream:xstream:1.4.21'
-    implementation 'de.siegmar:fastcsv:3.47.0'
+    implementation 'de.siegmar:fastcsv:3.7.0'
     implementation 'commons-io:commons-io:2.19.0'
     implementation 'org.apache.commons:commons-lang3:3.17.0'
 
