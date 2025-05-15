@@ -190,6 +190,7 @@ public class NaaccrLookupsViewer extends JFrame {
         System.setErr(new PrintStream(new OutputStream() {
             @Override
             public void write(int b) {
+                // do nothing!
             }
         }));
 

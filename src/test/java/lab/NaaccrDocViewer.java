@@ -207,7 +207,7 @@ public class NaaccrDocViewer extends JFrame {
         list.getSelectionModel().addListSelectionListener(e -> {
             if (e.getValueIsAdjusting())
                 return;
-            String name = (String)list.getSelectedValue();
+            String name = list.getSelectedValue();
             if (name != null)
                 displayDoc(labelMappings.get(name));
         });
@@ -411,6 +411,7 @@ public class NaaccrDocViewer extends JFrame {
         System.setErr(new PrintStream(new OutputStream() {
             @Override
             public void write(int b) {
+                // do nothing!
             }
         }));
 
