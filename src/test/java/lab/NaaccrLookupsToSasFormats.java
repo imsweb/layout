@@ -22,7 +22,7 @@ import de.siegmar.fastcsv.reader.NamedCsvRecord;
 public class NaaccrLookupsToSasFormats {
 
     public static void main(String[] args) throws IOException {
-        String version = "240";
+        String version = "250";
 
         File inFile = new File(System.getProperty("user.dir") + "\\docs\\naaccr-lookups\\naaccr-lookups-" + version + ".zip");
         File outFile = new File(System.getProperty("user.dir") + "\\docs\\naaccr-lookups\\naaccr-lookups-" + version + "-sas-formats.sas.gz");

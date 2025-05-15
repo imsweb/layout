@@ -7,7 +7,7 @@
 00076,Buccal Mucosa
 00077,Mouth Other
 00080,Major Salivary Glands
-00090,Nasopharynx
+00090,Nasopharynx [8th: 2018-2024]
 00100,Oropharynx HPV-Mediated (p16+)
 00111,Oropharynx (p16-)
 00112,Hypopharynx
@@ -46,10 +46,10 @@
 00320,NET Appendix [8th: 2018-2023]
 00330,NET Colon and Rectum [8th: 2018-2023]
 00340,NET Pancreas [8th: 2018-2023]
-00350,Thymus
+00350,Thymus [8th: 2018-2024]
 00358,Trachea
-00360,Lung
-00370,Pleural Mesothelioma
+00360,Lung [8th: 2018-2024]
+00370,Pleural Mesothelioma [8th: 2018-2024]
 00378,Respiratory Other
 00381,Bone Appendicular Skeleton
 00382,Bone Spine
@@ -117,6 +117,7 @@
 00821,Plasma Cell Myeloma
 00822,Plasma Cell Disorders
 00830,HemeRetic
+09090,Nasopharynx [V9: 2025+]
 09190,Appendix [V9: 2023+]
 09210,Anus [V9: 2023+]
 09290,NET Stomach [V9: 2024+]
@@ -126,6 +127,9 @@
 09320,NET Appendix [V9: 2024+]
 09330,NET Colon and Rectum [V9: 2024+]
 09340,NET Pancreas [V9: 2024+]
+09350,Thymus [V9: 2025+]
+09360,Lung [V9: 2025+]
+09370,Pleural Mesothelioma [V9: 2025+]
 09500,Vulva [V9: 2024+]
 09520,Cervix [V9: 2021+]
 09721,Brain [V9: 2023+]

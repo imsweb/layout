@@ -1,2 +1,4 @@
-0,"Record sent for linkage, no IHS match"
-1,"Record sent for linkage, IHS match"
+0,No IHS match
+1,IHS match
+2,"IHS match, manual review required"
+3,"No IHS match, manual review required"
