@@ -2,7 +2,7 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=imsweb_layout&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=imsweb_layout)
 [![integration](https://github.com/imsweb/layout/workflows/integration/badge.svg)](https://github.com/imsweb/layout/actions)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.imsweb/layout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.imsweb/layout)
+[![Maven Central](https://img.shields.io/maven-central/v/com.imsweb/layout.svg)](https://central.sonatype.com/artifact/com.imsweb/layout)
 
 The layout framework is a Java library that allows file formats to be declared using XML definition files;
 those formats can then be used to read and write corresponding data files.
