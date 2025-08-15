@@ -1,5 +1,11 @@
 ## Layout Framework Version History
 
+**Changes in version 6.4**
+
+- Added support for NAACCR 26 XML.
+- Added new CSV option that allows characters to appear after the last closing quote.
+- Updated dependencies.
+
 **Changes in version 6.3**
 
 - Updated NAACCR XML library from version 11.2 to version 11.3.

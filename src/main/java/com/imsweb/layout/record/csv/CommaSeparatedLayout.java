@@ -19,9 +19,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import de.siegmar.fastcsv.reader.CsvReader;
+import de.siegmar.fastcsv.reader.CsvRecord;
 
 import com.imsweb.layout.LayoutFactory;
 import com.imsweb.layout.LayoutInfo;
@@ -280,9 +281,14 @@ public class CommaSeparatedLayout extends RecordLayout {
         if (line == null || line.isEmpty())
             msg.append("line ").append(lineNumber).append(": line is empty");
         else {
-            int numFields = parseLine(line).size();
-            if (numFields != _numFields)
-                msg.append("line ").append(lineNumber).append(": wrong number of fields, expected ").append(_numFields).append(" but got ").append(numFields);
+            try {
+                int numFields = parseLine(line, null).size();
+                if (numFields != _numFields)
+                    msg.append("line ").append(lineNumber).append(": wrong number of fields, expected ").append(_numFields).append(" but got ").append(numFields);
+            }
+            catch (IOException e) {
+                msg.append("line ").append(lineNumber).append(": ").append(e.getMessage());
+            }
         }
 
         return msg.length() == 0 ? null : msg.toString();
@@ -309,7 +315,7 @@ public class CommaSeparatedLayout extends RecordLayout {
             if (val != null) {
                 // this is following the specs from RFC4180 (https://tools.ietf.org/html/rfc4180)
                 if (forceQuotes || val.indexOf(_separator) > -1 || val.indexOf('\n') > -1 || val.indexOf('"') > -1)
-                    result.append("\"").append(StringUtils.replace(val, "\"", "\"\"")).append("\"");
+                    result.append("\"").append(Strings.CS.replace(val, "\"", "\"\"")).append("\"");
                 else
                     result.append(val);
             }
@@ -345,7 +351,7 @@ public class CommaSeparatedLayout extends RecordLayout {
         }
 
         // parse the line
-        List<String> values = parseLine(line);
+        List<String> values = parseLine(line, options);
         for (CommaSeparatedField field : _fields) {
             int index = field.getIndex() - 1;
 
@@ -370,19 +376,29 @@ public class CommaSeparatedLayout extends RecordLayout {
 
         // this default implementation is based only on the number of fields, only if we don't enforce the strict format
         if (firstRecord != null && options.isCommaSeparatedAllowDiscoveryFromNumFields()) {
-            if (parseLine(firstRecord).size() == _numFields) {
-                result = new LayoutInfo();
-                result.setLayoutId(getLayoutId());
-                result.setLayoutName(getLayoutName());
-                result.setNumFields(getLayoutNumberOfFields());
+            try {
+                if (parseLine(firstRecord, null).size() == _numFields) {
+                    result = new LayoutInfo();
+                    result.setLayoutId(getLayoutId());
+                    result.setLayoutName(getLayoutName());
+                    result.setNumFields(getLayoutNumberOfFields());
+                }
+            }
+            catch (IOException e) {
+                // ignored, result will remain null
             }
         }
 
         return result;
     }
 
-    protected List<String> parseLine(String line) {
-        return CsvReader.builder().fieldSeparator(_separator).ofCsvRecord(line).stream().flatMap(l -> l.getFields().stream()).collect(Collectors.toList());
+    protected List<String> parseLine(String line, RecordLayoutOptions options) throws IOException {
+        try (CsvReader<CsvRecord> reader = CsvReader.builder()
+                .fieldSeparator(_separator)
+                .acceptCharsAfterQuotes(options != null && options.allowCharactersAfterLastQuote())
+                .ofCsvRecord(line)) {
+            return reader.stream().flatMap(l -> l.getFields().stream()).collect(Collectors.toList());
+        }
     }
 
     /**

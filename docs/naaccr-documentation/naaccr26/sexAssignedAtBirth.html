@@ -1,0 +1,55 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">225</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2026</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">26</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Patient.sexAssignedAtBirth<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>This new data item will replace existing data item Sex [220] for all cases regardless of diagnosis year. Existing data in Sex [220] will be converted and used to populate the new data item.</p>
+
+</div>
+
+
+
+<div class='content chap10-para'>
+<p><strong>Coding Instructions</strong></p>
+<ol>
+<li>Assign the sex of the patient assigned at birth.</li>
+<li>When the patient’s sex is documented as male or female, and there is no other information to indicate the patient was assigned a different sex at birth, assign code 1 or 2, respectively.</li>
+<li>When sex is not known.<br />
+a. Assign code 1 when the primary site is C600-C639.<br />
+b. Assign code 2 when the primary site is C510-C589.<br />
+c. Assign code 9 for primary sites not included above.</li>
+<li>Assign code 9 when sex is unknown (excluding number 3a and 3b above) or sex is not yet determined.<br />
+a. Do not assign code 9 when sex is documented as male or female and there is no other information about sex assigned at birth.</li>
+<li>Assign code 9 if patient is born with Disorders of Sexual Development (DSD) and sex is not clearly defined.</li>
+<li>Assign code 9 when patient’s sex is documented as other than male or female (e.g., non-binary, transsexual), and there is no additional information about sex assigned at birth.</li>
+</ol>
+
+</div>
+
+<div class='content chap10-para'><strong>Codes</strong></div>
+<table>
+        <tr class='code-row'><td class='code-nbr'>1</td><td class='code-desc'>Male</td></tr>
+        <tr class='code-row'><td class='code-nbr'>2</td><td class='code-desc'>Female</td></tr>
+        <tr class='code-row'><td class='code-nbr'>9</td><td class='code-desc'>Not Stated/Unknown</td></tr>
+</table>
+

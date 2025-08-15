@@ -39,8 +39,12 @@ public class RecordLayoutOptions {
     // when writing records, do we need to force every value to be quoted; applicable to CSV layouts only (defaults to false meaning we quote when needed)
     protected boolean _quoteAllValues;
 
+    // when reading CSV, do we allow characters to appear after the last quote (defaults to false)
+    protected boolean _allowCharactersAfterLastQuote;
+
     // when writing flat records, how to deal with a value too long (defaults to throwing an exception)
     protected String _valueTooLongHandling;
+
 
     /**
      * Default Constructor.
@@ -53,6 +57,7 @@ public class RecordLayoutOptions {
         _lineSeparator = NEW_LINE_OS;
         _encoding = StandardCharsets.UTF_8;
         _quoteAllValues = false;
+        _allowCharactersAfterLastQuote = false;
         _valueTooLongHandling = VAL_TOO_LONG_EXCEPTION;
     }
 
@@ -112,6 +117,14 @@ public class RecordLayoutOptions {
 
     public void setQuoteAllValues(boolean quoteAllValues) {
         _quoteAllValues = quoteAllValues;
+    }
+
+    public boolean allowCharactersAfterLastQuote() {
+        return _allowCharactersAfterLastQuote;
+    }
+
+    public void setAllowCharactersAfterLastQuote(boolean allowCharactersAfterLastQuote) {
+        _allowCharactersAfterLastQuote = allowCharactersAfterLastQuote;
     }
 
     public String getValueTooLongHandling() {

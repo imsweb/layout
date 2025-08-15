@@ -79,6 +79,7 @@ public class CommaSeparatedLayoutTest {
         RecordLayoutOptions options = new RecordLayoutOptions();
         options.setTrimValues(true);
         options.setEnforceStrictFormat(true);
+        options.setAllowCharactersAfterLastQuote(false);
 
         // test layout info
         Assert.assertEquals("test-csv", layout.getLayoutId());
@@ -200,6 +201,7 @@ public class CommaSeparatedLayoutTest {
         Assert.assertEquals("X,,", layout.createLineFromRecord(rec, options)); // first field has a default value
     }
 
+    @SuppressWarnings("resource")
     @Test
     public void testPartialNaaccrLayout() throws Exception {
 

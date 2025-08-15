@@ -268,6 +268,8 @@ followUpSource,Fup Src,Follow-up/Recurrence/Death
 followUpSourceCentral,Fup Src Cntl,Follow-up/Recurrence/Death
 followingRegistry,Follow Reg,Hospital-Confidential
 followupContactCountry,FU Contact Country,Demographic
+geocodingAccuracyScore,Geo Acc Score,Demographic
+geocodingAccuracyType,Geo Acc Type,Demographic
 gestationalTrophoblasticPxIndex,GTP Ind,Stage/Prognostic Factors
 gisCoordinateQuality,GIS Qual,Demographic
 gleasonPatternsClinical,Gleas Pat Clin,Stage/Prognostic Factors
@@ -575,11 +577,14 @@ reserved13,Res13,Pathology
 reserved14,Res14,Text-Miscellaneous
 reserved15,Res15,Stage/Prognostic Factors
 reserved16,Res16,Demographic
+residualCancerBurdenClass,Res Can Bur Class,Stage/Prognostic Factors
+residualCancerBurdenRCB,Res Can Bur RCB,Stage/Prognostic Factors
 residualTumVolPostCytoreduction,Tum Vol Cyto,Stage/Prognostic Factors
 responseToNeoadjuvantTherapy,Neo Thpy Resp,Stage/Prognostic Factors
 rqrsNcdbSubmissionFlag,RQRS/NCDB Sub Fg,Edit Overrides/Conversion History/System Admin
 ruca2000,RUCA 2000,Demographic
 ruca2010,RUCA 2010,Demographic
+ruca2020,RUCA 2020,Demographic
 ruralurbanContinuum1993,Rur Urb Cont 93,Demographic
 ruralurbanContinuum2003,Rur Urb Cont 03,Demographic
 ruralurbanContinuum2013,Rur Urb Cont 13,Demographic
@@ -690,11 +695,13 @@ sequenceNumberHospital,Hosp Seq#,Hospital-Specific
 serumAlbuminPretreatmentLevel,Alb Pre Lvl,Stage/Prognostic Factors
 serumBeta2MicroglobulinPretxLvl,Beta Pre Lvl,Stage/Prognostic Factors
 sex,Sex,Demographic
+sexAssignedAtBirth,Sex at Birth,Demographic
 siteCodingSysCurrent,Site Cod Curr,Cancer Identification
 siteCodingSysOriginal,Site Cod Orig,Cancer Identification
 siteIcdO1,Site(O1),Edit Overrides/Conversion History/System Admin
 socialSecurityNumber,SSN,Patient-Confidential
 spanishHispanicOrigin,Hisp Orig,Demographic
+spreadThroughAirSpacesStas,Spread Air/Spaces,Stage/Prognostic Factors
 stateAtDxGeocode19708090,DX State Geo90,Demographic
 stateAtDxGeocode2000,DX State Geo00,Demographic
 stateAtDxGeocode2010,DX State Geo10,Demographic
@@ -785,6 +792,7 @@ ulceration,Ulcer,Stage/Prognostic Factors
 unusualFollowUpMethod,Unusual FU Meth,Follow-up/Recurrence/Death
 uric2000,URIC 2000,Demographic
 uric2010,URIC 2010,Demographic
+uric2020,URIC 2020,Demographic
 vendorName,Vendor,Edit Overrides/Conversion History/System Admin
 visceralParietalPleuralInvasion,Vis Par Pl Inv,Stage/Prognostic Factors
 vitalStatus,VS,Follow-up/Recurrence/Death

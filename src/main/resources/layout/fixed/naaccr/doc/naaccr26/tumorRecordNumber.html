@@ -1,0 +1,43 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">60</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2011</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">12.2</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.tumorRecordNumber<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>A system-generated number that, together with Patient ID Number [20], can be used to uniquely identify a tumor over time. Tumor Record Number is assigned to each of a patient’s tumors sequentially in the order in which the tumor record is created by the central registry. A patient’s first tumor record is assigned Tumor Record Number 01. Tumor Record Number is assigned to each of a patient’s tumors sequentially in the order in which the tumor record is created by the central registry and may not match timing based on Diagnosis Date. </p>
+<p>For example, the first tumor created in the database is diagnosed 12/2022 and is assigned Tumor Record Number = 01; the registry later learns the patient had a separate tumor diagnosed 5/2020, this is the second tumor created in the database and assigned Tumor Record Number = 02.</p>
+<p>If a tumor is deleted or replaced, the Tumor Record Number associated with the deleted case is not reused.</p>
+<p>For example, Patient has three cancers, Tumor Record Numbers = 01, 02 and 03. Upon review, it is determined that the cancer assigned Tumor Record Number 02 is actually a recurrence of 01 and it is deleted.</p>
+<p>Patient now has two cancers, Tumor Record Numbers = 01 and 03. If a new tumor is created for this patient, 02 will never be reused and Tumor Record Number will be assigned as 04.</p>
+<p>Unlike Sequence Number, behavior code has no effect on how Tumor Record Number is assigned.</p>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>It is important to be able to track a specific de-identified tumor over time for linkage purposes. Sequence Number—Central [380] and Sequence Number—Hospital [560] can change as more information becomes available about a case (i.e., diagnosis of a second primary changes sequence number 00 to 01, or discovery of a prior diagnosis may change sequence number 02 to 03). Sequence numbers are also reused if a tumor is deleted. Therefore, sequence number cannot be used to uniquely link a specific tumor. Tumor Record Number, together with Patient ID Number, provide the continuity to uniquely identify a specific tumor over time.</p>
+
+</div>
+
+
+
+
