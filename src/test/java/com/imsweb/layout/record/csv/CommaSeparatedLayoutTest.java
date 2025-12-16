@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,9 +36,6 @@ import com.imsweb.seerutils.SeerUtils;
  */
 public class CommaSeparatedLayoutTest {
 
-    /**
-     * Created on Jun 25, 2012 by depryf
-     */
     @Test
     public void testLayout() throws Exception {
 
@@ -221,7 +217,7 @@ public class CommaSeparatedLayoutTest {
         // regular CSV fields don't have subfields; only fixed-column fields have those, so we have to tweak the design a bit...
         final Map<Integer, List<FixedColumnsField>> subFields = new HashMap<>();
         int idx = 1;
-        for (String header : CsvReader.builder().ofCsvRecord(firstLine).stream().flatMap(f -> f.getFields().stream()).collect(Collectors.toList())) {
+        for (String header : CsvReader.builder().ofCsvRecord(firstLine).stream().flatMap(f -> f.getFields().stream()).toList()) {
             FixedColumnsField field = null;
             if (header.matches("#\\d+"))
                 field = naaccrLayout.getFieldByNaaccrItemNumber(Integer.valueOf(header.substring(1)));
@@ -251,8 +247,8 @@ public class CommaSeparatedLayoutTest {
                         newSubField.setDefaultValue(ff.getDefaultValue());
                         newSubField.setAlign(ff.getAlign());
                         newSubField.setPadChar(ff.getPadChar());
-                        newSubField.setStart(ff.getStart() - field.getSubFields().get(0).getStart() + 1);
-                        newSubField.setEnd(ff.getEnd() - field.getSubFields().get(0).getStart() + 1);
+                        newSubField.setStart(ff.getStart() - field.getSubFields().getFirst().getStart() + 1);
+                        newSubField.setEnd(ff.getEnd() - field.getSubFields().getFirst().getStart() + 1);
                         newSubFields.add(newSubField);
                     }
                 }
@@ -271,7 +267,7 @@ public class CommaSeparatedLayoutTest {
                     List<FixedColumnsField> fields = subFields.get(field.getIndex());
                     if (fields != null) {
                         String originalValue = result.get(field.getName());
-                        if (originalValue != null && originalValue.length() >= fields.get(fields.size() - 1).getEnd()) {
+                        if (originalValue != null && originalValue.length() >= fields.getLast().getEnd()) {
                             for (FixedColumnsField child : fields) {
                                 String value = originalValue.substring(child.getStart() - 1, child.getEnd());
                                 if (trimValues(options))
@@ -332,7 +328,7 @@ public class CommaSeparatedLayoutTest {
         LayoutFactory.registerLayout(layout);
 
         // make sure we can now recognize the file
-        LayoutInfo info = LayoutFactory.discoverFormat(file).get(0);
+        LayoutInfo info = LayoutFactory.discoverFormat(file).getFirst();
         Assert.assertNotNull(info);
 
         // read the data file using the new layout
@@ -343,8 +339,8 @@ public class CommaSeparatedLayoutTest {
             Assert.assertNotNull(rec.get("patientIdNumber"));
             Assert.assertNotNull(rec.get("race1"));
         }
-        Assert.assertEquals("20100615", records.get(0).get("dateOfBirth"));
-        Assert.assertEquals("2010", records.get(0).get("dateOfBirthYear"));
+        Assert.assertEquals("20100615", records.getFirst().get("dateOfBirth"));
+        Assert.assertEquals("2010", records.getFirst().get("dateOfBirthYear"));
         Assert.assertEquals("06", records.get(0).get("dateOfBirthMonth"));
         Assert.assertEquals("15", records.get(0).get("dateOfBirthDay"));
         Assert.assertEquals("2010", records.get(1).get("dateOfBirth"));
@@ -357,8 +353,8 @@ public class CommaSeparatedLayoutTest {
         RecordLayoutOptions options = new RecordLayoutOptions();
         options.setTrimValues(false);
         records = layout.readAllRecords(file, options);
-        Assert.assertEquals("20100615", records.get(0).get("dateOfBirth"));
-        Assert.assertEquals("2010", records.get(0).get("dateOfBirthYear"));
+        Assert.assertEquals("20100615", records.getFirst().get("dateOfBirth"));
+        Assert.assertEquals("2010", records.getFirst().get("dateOfBirthYear"));
         Assert.assertEquals("06", records.get(0).get("dateOfBirthMonth"));
         Assert.assertEquals("15", records.get(0).get("dateOfBirthDay"));
         Assert.assertEquals("2010    ", records.get(1).get("dateOfBirth"));
@@ -507,6 +503,19 @@ public class CommaSeparatedLayoutTest {
         Assert.assertNotNull(layout.buildFileInfo(file, null, options));
 
         options.setCommaSeparatedAllowDiscoveryFromNumFields(false);
+        Assert.assertNull(layout.buildFileInfo(file, null, options));
+        options.setCommaSeparatedAllowDiscoveryFromNumFields(true);
+
+        SeerUtils.writeFile("\"A\",\"B\",\"C\"", file);
+        Assert.assertNotNull(layout.buildFileInfo(file, null, options));
+
+        SeerUtils.writeFile("A|B|C", file);
+        Assert.assertNull(layout.buildFileInfo(file, null, options));
+
+        SeerUtils.writeFile("\"A\"|\"B\"|\"C\"", file);
+        Assert.assertNull(layout.buildFileInfo(file, null, options));
+
+        SeerUtils.writeFile("   ", file);
         Assert.assertNull(layout.buildFileInfo(file, null, options));
     }
 }

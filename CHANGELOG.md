@@ -1,5 +1,11 @@
 ## Layout Framework Version History
 
+**Changes in version 7.0**
+
+- Updated minimum Java language from Java 11 to Java 21.
+- Fixed runtime exception being thrown when evaluating CSV format discovery.
+- Updated all dependencies.
+
 **Changes in version 6.4**
 
 - Added support for NAACCR 26 XML.

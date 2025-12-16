@@ -286,12 +286,12 @@ public class CommaSeparatedLayout extends RecordLayout {
                 if (numFields != _numFields)
                     msg.append("line ").append(lineNumber).append(": wrong number of fields, expected ").append(_numFields).append(" but got ").append(numFields);
             }
-            catch (IOException e) {
+            catch (IOException | RuntimeException e) {
                 msg.append("line ").append(lineNumber).append(": ").append(e.getMessage());
             }
         }
 
-        return msg.length() == 0 ? null : msg.toString();
+        return msg.isEmpty() ? null : msg.toString();
     }
 
     @Override
@@ -384,7 +384,7 @@ public class CommaSeparatedLayout extends RecordLayout {
                     result.setNumFields(getLayoutNumberOfFields());
                 }
             }
-            catch (IOException e) {
+            catch (IOException | RuntimeException e) {
                 // ignored, result will remain null
             }
         }
@@ -395,9 +395,12 @@ public class CommaSeparatedLayout extends RecordLayout {
     protected List<String> parseLine(String line, RecordLayoutOptions options) throws IOException {
         try (CsvReader<CsvRecord> reader = CsvReader.builder()
                 .fieldSeparator(_separator)
-                .acceptCharsAfterQuotes(options != null && options.allowCharactersAfterLastQuote())
+                .allowExtraCharsAfterClosingQuote(options != null && options.allowCharactersAfterLastQuote())
                 .ofCsvRecord(line)) {
             return reader.stream().flatMap(l -> l.getFields().stream()).collect(Collectors.toList());
+        }
+        catch (RuntimeException e) {
+            throw new IOException(e.getMessage());
         }
     }
 
