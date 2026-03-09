@@ -1,5 +1,9 @@
 ## Layout Framework Version History
 
+**Changes in version 7.1**
+
+- Updated all dependencies.
+
 **Changes in version 7.0**
 
 - Updated minimum Java language from Java 11 to Java 21.
