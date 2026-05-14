@@ -16,13 +16,14 @@ import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import de.siegmar.fastcsv.reader.CsvParseException;
 import de.siegmar.fastcsv.reader.CsvReader;
-import de.siegmar.fastcsv.reader.NamedCsvRecord;
+import de.siegmar.fastcsv.reader.CsvRecord;
 
 public class NaaccrLookupsToSasFormats {
 
     public static void main(String[] args) throws IOException {
-        String version = "250";
+        String version = "260";
 
         File inFile = new File(System.getProperty("user.dir") + "\\docs\\naaccr-lookups\\naaccr-lookups-" + version + ".zip");
         File outFile = new File(System.getProperty("user.dir") + "\\docs\\naaccr-lookups\\naaccr-lookups-" + version + "-sas-formats.sas.gz");
@@ -75,7 +76,7 @@ public class NaaccrLookupsToSasFormats {
                     writer.write("    value $" + field + "F\r\n");
 
                     try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(zFile.getInputStream(entry), StandardCharsets.UTF_8));
-                         CsvReader<NamedCsvRecord> csvReader = CsvReader.builder().ofNamedCsvRecord(reader)) {
+                         CsvReader<CsvRecord> csvReader = CsvReader.builder().ofCsvRecord(reader)) {
                         csvReader.stream().forEach(line -> {
                             String code = line.getField(0).replace("'", "''");
                             String label = line.getField(1).replace("'", "''");
@@ -86,9 +87,12 @@ public class NaaccrLookupsToSasFormats {
                                 writer.write("        '" + code + "'='" + label + "'\r\n");
                             }
                             catch (IOException e) {
-                                throw new RuntimeException(e);
+                                throw new RuntimeException("Unable to process " + entry.getName(), e);
                             }
                         });
+                    }
+                    catch (CsvParseException e) {
+                        throw new RuntimeException("Unable to process " + entry.getName(), e);
                     }
 
                     writer.write("        ;\r\n\r\n");

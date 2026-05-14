@@ -1,5 +1,5 @@
-10,HPV-Mediated (p16+) Oropharyngeal Cancer
-11.1,Oropharynx (p16-)
+10,Oropharynx HPV-Associated [8th: 2018-2025]
+11.1,Oropharynx (HPV-Independent) and Hypopharynx
 11.2,Hypopharynx
 12.1,Maxillary Sinus
 12.2,Nasal Cavity and Ethmoid Sinus
@@ -96,7 +96,7 @@
 79.5,Non-Hodgkin Lymphomas: Chronic Lymphocytic Leukemia/Small Lymphocytic Lymphoma
 79.6,Non-Hodgkin Lymphomas: Peripheral T-cell Lymphoma
 79.7,Hodgkin Lymphoma
-8,Major Salivary Glands
+8,Salivary Glands
 80.1,Pediatric Hodgkin Lymphomas
 80.2,Pediatric Non-Hodgkin Lymphomas
 81.1,Primary Cutaneous Lymphoma: Mycosis Fungoides and Sezary Syndrome
@@ -125,4 +125,6 @@
 9014,Lung (V9)
 9015,Diffuse Pleural Mesothelioma (V9)
 9016,Nasopharynx (V9)
+9017,Salivary Glands (V9)
+9018,Oropharynx (HPV-Associated) (V9)
 XX,No AJCC Chapter

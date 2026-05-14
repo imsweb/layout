@@ -46,7 +46,7 @@ import com.imsweb.seerutilsgui.SeerList;
  */
 public class NaaccrLookupsViewer extends JFrame {
 
-    private static final File _DIR = new File("C:\\dev\\temp\\naaccr-lookups\\naaccr-lookups-240");
+    private static final File _DIR = new File("D:\\temp\\naaccr-lookups\\naaccr-lookups-260");
 
     private JTextArea _textArea = null;
 

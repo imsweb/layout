@@ -6,10 +6,10 @@
 00075,Palate Hard
 00076,Buccal Mucosa
 00077,Mouth Other
-00080,Major Salivary Glands
+00080,Major Salivary Glands [8th: 2018-2025]
 00090,Nasopharynx [8th: 2018-2024]
-00100,Oropharynx HPV-Mediated (p16+)
-00111,Oropharynx (p16-)
+00100,Oropharynx HPV-Associated [8th: 2018-2025]
+00111,Oropharynx HPV-Independent
 00112,Hypopharynx
 00118,Pharynx Other
 00119,Middle Ear
@@ -117,7 +117,9 @@
 00821,Plasma Cell Myeloma
 00822,Plasma Cell Disorders
 00830,HemeRetic
+09081,Major Salivary Glands [V9: 2026+]
 09090,Nasopharynx [V9: 2025+]
+09100,Oropharynx HPV-Associated [V9: 2026+]
 09190,Appendix [V9: 2023+]
 09210,Anus [V9: 2023+]
 09290,NET Stomach [V9: 2024+]

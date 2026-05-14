@@ -104,7 +104,6 @@
 8020,3,"Carcinoma, anaplastic undifferentiated (C73.9) [2021+]",alternate
 8020,3,"Carcinoma, dedifferentiated [2021+]",alternate
 8020,3,"Carcinoma, poorly differentiated, NOS [2021+]",alternate
-8020,3,"Carcinoma, poorly differentiated, NOS [2021+]",alternate
 8020,3,"Carcinoma, poorly differentiated urothelial [2024+]",alternate
 8020,3,"Poorly differentiated carcinoma, NOS [2021+]",alternate
 8020,3,"Carcinoma, urothelial, poorly differentiated [2024+]",alternate
@@ -321,7 +320,6 @@
 8071,3,Keratinizing epidermoid carcinoma,alternate
 8072,2,"Squamous cell carcinoma, large cell, nonkeratinizing, in situ",preferred
 8072,3,"Squamous cell carcinoma, large cell, nonkeratinizing, NOS",preferred
-8072,3,"Squamous cell carcinoma, nonkeratinizing, NOS",alternate
 8072,3,"Carcinoma, epidermoid, large cell, nonkeratinizing",alternate
 8072,3,"Carcinoma, large cell epidermoid, nonkeratinizing",alternate
 8072,3,"Carcinoma, large cell, squamous cell, nonkeratinizing, NOS",alternate
@@ -333,6 +331,7 @@
 8072,3,"Nonkeratinizing epidermoid carcinoma, large cell",alternate
 8072,3,"Nonkeratinizing squamous cell carcinoma, large cell, NOS",alternate
 8072,3,"Nonkeratinizing squamous cell carcinoma, NOS",alternate
+8072,3,"Squamous cell carcinoma, nonkeratinizing, NOS",alternate
 8073,2,"Squamous cell carcinoma, small cell, nonkeratinizing, in situ",preferred
 8073,3,"Squamous cell carcinoma, small cell, nonkeratinizing",preferred
 8073,3,"Carcinoma, epidermoid, small cell, nonkeratinizing",alternate
@@ -490,11 +489,6 @@
 8090,3,"Basal cell carcinoma, pigmented (C44._)",alternate
 8091,2,"Multicentric basal cell carcinoma, in situ (C44._)",preferred
 8091,3,Superficial basal cell carcinoma (C44._),preferred
-8091,3,"Carcinoma, multicentric basal cell (C44._)",alternate
-8091,3,"Carcinoma, multifocal superficial basal cell (C44._)",alternate
-8091,3,Multicentric basal cell carcinoma (C44._),alternate
-8091,3,Multifocal superficial basal cell carcinoma (C44._),alternate
-8091,3,"Superficial basal cell carcinoma, multifocal (C44._)",alternate
 8091,3,"Basal cell carcinoma, multicentric (C44._)",alternate
 8091,3,"Basal cell carcinoma, multifocal superficial (C44._)",alternate
 8091,3,"Basal cell carcinoma, superficial (C44._)",alternate
@@ -502,6 +496,11 @@
 8091,3,"Carcinoma, basal cell, multifocal superficial (C44._)",alternate
 8091,3,"Carcinoma, basal cell, superficial (C44._)",alternate
 8091,3,"Carcinoma, basal cell, superficial, multifocal (C44._)",alternate
+8091,3,"Carcinoma, multicentric basal cell (C44._)",alternate
+8091,3,"Carcinoma, multifocal superficial basal cell (C44._)",alternate
+8091,3,Multicentric basal cell carcinoma (C44._),alternate
+8091,3,Multifocal superficial basal cell carcinoma (C44._),alternate
+8091,3,"Superficial basal cell carcinoma, multifocal (C44._)",alternate
 8092,3,"Infiltrating basal cell carcinoma, NOS (C44._)",preferred
 8092,3,"Infiltrating basal cell carcinoma, sclerosing (C44._)",alternate
 8092,3,Morpheic basal cell carcinoma (C44._),alternate
@@ -1041,10 +1040,6 @@
 8173,3,"Sarcomatoid carcinoma, hepatocellular (C22.0)",alternate
 8173,3,"Spindle cell variant, hepatocellular carcinoma (C22.0)",alternate
 8174,3,"Hepatocellular carcinoma, clear cell type (C22.0)",preferred
-8174,3,Lymphocyte-rich hepatocellular carcinoma (C22.0) [2022+],alternate
-8174,3,Macrotrabecular massive hepatocellular carcinoma (C22.0) [2022+],alternate
-8174,3,Neutrophil-rich hepatocellular carcinoma (C22.0) [2022+],alternate
-8174,3,Steatohepatic hepatocellular carcinoma (C22.0) [2022+],alternate
 8174,3,Chromophobe hepatocellular carcinoma (C22.0) [2022+],alternate
 8174,3,"Hepatocellular carcinoma, chromophobe (C22.0) [2022+]",alternate
 8174,3,"Carcinoma, hepatocellular, clear cell type (C22.0)",alternate
@@ -1053,6 +1048,10 @@
 8174,3,Clear cell type hepatocellular carcinoma (C22.0),alternate
 8174,3,"Hepatocellular carcinoma, neutrophil-rich (C22.0) [2022+]",alternate
 8174,3,"Hepatocellular carcinoma, steatohepatic (C22.0) [2022+]",alternate
+8174,3,Lymphocyte-rich hepatocellular carcinoma (C22.0) [2022+],alternate
+8174,3,Macrotrabecular massive hepatocellular carcinoma (C22.0) [2022+],alternate
+8174,3,Neutrophil-rich hepatocellular carcinoma (C22.0) [2022+],alternate
+8174,3,Steatohepatic hepatocellular carcinoma (C22.0) [2022+],alternate
 8175,3,"Hepatocellular carcinoma, pleomorphic type (C22.0)",preferred
 8175,3,"Carcinoma, hepatocellular, pleomorphic type (C22.0)",alternate
 8175,3,"Pleomorphic type, hepatocellular carcinoma (C22.0)",alternate
@@ -1544,7 +1543,6 @@
 8290,0,Hurthle cell tumor (C73.9),alternate
 8290,2,Oxyphilic adenocarcinoma in situ (C73.9),preferred
 8290,3,Oxyphilic adenocarcinoma,preferred
-8290,3,Oxyphilic cell follicular carcinoma (C73.9),alternate
 8290,3,"Adenocarcinoma, Hurthle cell (C73.9)",alternate
 8290,3,"Adenocarcinoma, oncocytic",alternate
 8290,3,"Adenocarcinoma, oxyphilic",alternate
@@ -1556,6 +1554,7 @@
 8290,3,Hurthle cell carcinoma (C73.9),alternate
 8290,3,Oncocytic adenocarcinoma,alternate
 8290,3,Oncocytic carcinoma,alternate
+8290,3,Oxyphilic cell follicular carcinoma (C73.9),alternate
 8300,0,Basophil adenoma (C75.1),preferred
 8300,0,"Adenoma, basophil (C75.1)",alternate
 8300,0,"Adenoma, mucoid cell (C75.1)",alternate
@@ -1571,17 +1570,17 @@
 8310,2,Clear cell adenocarcinoma in situ,preferred
 8310,3,"Clear cell adenocarcinoma, NOS",preferred
 8310,3,Mesonephroid clear cell adenocarcinoma,alternate
+8310,3,"Adenocarcinoma, HPV-independent, clear cell type (C53._) [2021+]",alternate
+8310,3,"HPV-independent adenocarcinoma, clear cell type (C53._) [2021+]",alternate
+8310,3,"Carcinoma, clear cell, hyalinizing [2023+]",alternate
 8310,3,"Clear cell carcinoma, hyalinizing [2023+]",alternate
 8310,3,Hyalinizing clear cell carcinoma [2023+],alternate
 8310,3,"Adenocarcinoma, clear cell, mesonephroid",alternate
 8310,3,"Adenocarcinoma, clear cell, NOS",alternate
 8310,3,"Adenocarcinoma, mesonephroid, clear cell",alternate
 8310,3,"Carcinoma, clear cell",alternate
-8310,3,"Adenocarcinoma, HPV-independent, clear cell type (C53._) [2021+]",alternate
 8310,3,"Clear cell adenocarcinoma, mesonephroid",alternate
-8310,3,"HPV-independent adenocarcinoma, clear cell type (C53._) [2021+]",alternate
 8310,3,Clear cell carcinoma,alternate
-8310,3,"Carcinoma, clear cell, hyalinizing [2023+]",alternate
 8311,1,Hypernephroid tumor [obs],preferred
 8311,1,"Tumor, hypernephroid [obs]",alternate
 8311,3,Hereditary leiomyomatosis and renal cell carcinoma (RCC- associated renal cell carcinoma) (C64.9) [2018+],preferred
@@ -1879,7 +1878,6 @@
 8349,1,"Non-invasive encapsulated follicular variant of papillary thyroid carcinoma (non-invasive EFVPTC) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
 8349,1,"Non-invasive follicular thyroid neoplasm with papillary-like nuclear features (NIFTP) (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
 8349,1,"Non-invasive FTP (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
-8349,1,"Non-invasive FTP (C73.9) [2021+ NOT REPORTABLE. FOR 2017-2020, USE CODE 8343/2]",alternate
 8350,3,Nonencapsulated sclerosing carcinoma (C73.9),preferred
 8350,3,"Carcinoma, sclerosing, nonencapsulated (C73.9)",alternate
 8350,3,"Diffuse papillary carcinoma, sclerosing (C73.9)",alternate
@@ -2072,7 +2070,6 @@
 8407,3,"Carcinoma, sweat duct, sclerosing (C44._)",alternate
 8407,3,"Carcinoma, syringomatous (C44._)",alternate
 8407,3,"Duct carcinoma, sclerosing sweat (C44._)",alternate
-8407,3,"Sweat duct carcinoma, sclerosing (C44._)",alternate
 8407,3,Sclerosing sweat duct carcinoma (C44._),alternate
 8407,3,"Sweat duct carcinoma, sclerosing (C44._)",alternate
 8407,3,Syringomatous carcinoma (C44._),alternate
@@ -2279,7 +2276,6 @@
 8460,2,"Micropapillary variant, serous borderline tumor (C56.9) [2018+ CASES ONLY; NOT REPORTABLE]",alternate
 8460,2,Serous borderline tumor-micropapillary variant (C56.9) [2018+ CASES ONLY; NOT REPORTABLE],alternate
 8460,2,"Serous carcinoma, non-invasive low grade (C56.9)",alternate
-8460,2,"Tumor, serous borderline-micropapillary variant (C56.9) [2018+ CASES ONLY; NOT REPORTABLE]",alternate
 8460,2,"Tumor, serous borderline-micropapillary variant (C56.9) [2018+ CASES ONLY; NOT REPORTABLE]",alternate
 8460,2,"Carcinoma, non-invasive low grade serous (C56.9)",alternate
 8460,3,"Low-grade serous carcinoma (C56.9, C48._, C57.0, C57.1-C57.3)",preferred
@@ -2656,7 +2652,6 @@
 8503,3,"Adenocarcinoma, papillary, infiltrating",alternate
 8503,3,"Adenocarcinoma, papillary, intraductal, with invasion (C50._)",alternate
 8503,3,"Carcinoma, invasive, associated with intracystic papillary neoplasm",alternate
-8503,3,"Carcinoma, invasive, associated with intracystic papillary neoplasm",alternate
 8503,3,Infiltrating and papillary adenocarcinoma,alternate
 8503,3,Infiltrating papillary adenocarcinoma,alternate
 8503,3,Intracystic papillary neoplasm with associated invasive carcinoma,alternate
@@ -2690,7 +2685,6 @@
 8504,2,Intracystic noninfiltrating carcinoma,alternate
 8504,2,"Intracystic papillary adenocarcinoma [2021+. FOR PRE-2021, USE CODE 8504/3]",alternate
 8504,2,"Intracystic papillary carcinoma [2021+. FOR PRE-2021, USE CODE 8504/3]",alternate
-8504,2,"Papillary intracystic carcinoma [2021+. FOR PRE-2021, USE CODE 8504/3]",alternate
 8504,2,"Noninfiltrating carcinoma, intracystic",alternate
 8504,2,Noninfiltrating intracystic carcinoma,alternate
 8504,2,"Papillary adenocarcinoma, intracystic [2021+. FOR PRE-2021, USE CODE 8504/3]",alternate
@@ -2894,7 +2888,6 @@
 8523,3,Infiltrating duct and tubular carcinoma (C50._),alternate
 8523,3,Mixed acinar ductal carcinoma [FOR USE 2015-2017. FOR 2018+ USE 8552/3],alternate
 8523,3,"Mixed duct, infiltrating, with other types of carcinoma (C50._)",alternate
-8523,3,"Mixed duct, infiltrating, with other types of carcinoma (C50._)",alternate
 8523,3,Mixed infiltrating duct with other types of carcinoma (C50._),alternate
 8523,3,Mucinous and infiltrating duct carcinoma (C50._),alternate
 8523,3,"Other types of carcinoma, infiltrating duct mixed with (C50._)",alternate
@@ -2982,7 +2975,6 @@
 8551,3,"Adenocarcinoma, acinar (C34._) [ FOR LUNG 2018+. FOR LUNG < 2018 USE 8550/3. USE 8140/3 FOR PROSTATE]",alternate
 8551,3,"Cystadenocarcinoma, acinar cell",alternate
 8552,3,"Mixed acinar ductal carcinoma [2018+. FOR PRE-2018, USE CODE 8523/3]",preferred
-8552,3,"Acinar ductal carcinoma, mixed [2018+. FOR PRE-2018, USE CODE 8523/3]",alternate
 8552,3,"Acinar ductal carcinoma, mixed [2018+. FOR PRE-2018, USE CODE 8523/3]",alternate
 8552,3,"Carcinoma, mixed acinar ductal [2018+; FOR PRE-2018, USE CODE 8523/3]",alternate
 8552,3,"Ductal acinar carcinoma, mixed [2018+. FOR PRE-2018, USE CODE 8523/3]",alternate
@@ -3228,7 +3220,6 @@
 8590,1,"Tumor, sex cord, NOS",alternate
 8590,1,"Tumor, sex cord-gonadal stromal, NOS",alternate
 8590,1,"Tumor, testicular stromal (C62._)",alternate
-8590,1,"Tumor, testicular stromal (C62._)",alternate
 8590,1,"Tumor, uterine, resembling ovarian sex cord tumor [2022+; NOT REPORTABLE]",alternate
 8590,1,Uterine tumor resembling ovarian sex cord tumor [2022+; NOT REPORTABLE],alternate
 8590,1,Gonadal stromal tumor and sex cord tumor,alternate
@@ -3278,6 +3269,10 @@
 8620,1,"Tumor, granulosa cell, adult type (C56.9) [PRE-2021 ONLY. FOR 2021+ USE CODE 8620/3.]",alternate
 8620,1,"Tumor, granulosa cell, NOS (C56.9)",alternate
 8620,3,Adult granulosa cell tumor (C56.9 ONLY) [2018+ CASES ONLY;NOT REPORTABLE. REPORTABLE 2021+],preferred
+8620,3,"Adult type, granulosa cell tumor (C56.9) [REPORTABLE 2021+]",alternate
+8620,3,"Carcinoma, granulosa cell (C56.9)",alternate
+8620,3,Granulosa cell carcinoma (C56.9),alternate
+8620,3,"Granulosa cell tumor, adult (C56.9 ONLY) [2018+ CASES ONLY; NOT REPORTABLE. REPORTABLE 2021+]",alternate
 8620,3,"Granulosa cell tumor, adult type (C56.9) [REPORTABLE 2021+]",alternate
 8620,3,"Granulosa cell tumor, malignant (C56.9)",alternate
 8620,3,"Granulosa cell tumor, sarcomatoid (C56.9)",alternate
@@ -3286,10 +3281,6 @@
 8620,3,"Tumor, granulosa cell, adult type (C56.9) [REPORTABLE 2021+]",alternate
 8620,3,"Tumor, granulosa cell, malignant (C56.9)",alternate
 8620,3,"Tumor, granulosa cell, sarcomatoid (C56.9)",alternate
-8620,3,"Adult type, granulosa cell tumor (C56.9) [REPORTABLE 2021+]",alternate
-8620,3,"Carcinoma, granulosa cell (C56.9)",alternate
-8620,3,Granulosa cell carcinoma (C56.9),alternate
-8620,3,"Granulosa cell tumor, adult (C56.9 ONLY) [2018+ CASES ONLY; NOT REPORTABLE. REPORTABLE 2021+]",alternate
 8621,1,Granulosa cell-theca cell tumor (C56.9),preferred
 8621,1,Theca cell-granulosa cell tumor (C56.9),alternate
 8621,1,"Tumor, granulosa cell-theca cell (C56.9)",alternate
@@ -3860,7 +3851,6 @@
 8815,3,Hemangiopericytoma/solitary fibrous tumor Grade 3 (CNS) (C71._) [2018+],alternate
 8815,3,"Malignant hemangiopericytoma [2021+ ONLY. FOR PRE-2021, USE CODE 9150/3]",alternate
 8815,3,Solitary fibrous tumor/hemangiopericytoma Grade 3 (CNS) (C71._) [2018+],alternate
-8815,3,Solitary fibrous tumor/hemangiopericytoma Grade 3 (CNS) (C71._) [2018+],alternate
 8815,3,"Tumor, fibrous, solitary, malignant",alternate
 8815,3,"Tumor, solitary fibrous/hemangiopericytoma Grade 3 (CNS) (C71._) [2018+]",alternate
 8816,0,Calcifying aponeurotic fibroma [2021+],preferred
@@ -3935,10 +3925,6 @@
 8830,1,"Fibroxanthoma, atypical",alternate
 8830,1,"Histiocytoma, fibrous, atypical",alternate
 8830,3,Malignant fibrous histiocytoma (C49._),preferred
-8830,3,"Sarcoma, pleomorphic, undifferentiated high-grade",alternate
-8830,3,"Sarcoma, pleomorphic, undifferentiated high-grade of bone (C40._)",alternate
-8830,3,Undifferentiated high-grade pleomorphic sarcoma,alternate
-8830,3,Undifferentiated high-grade pleomorphic sarcoma of bone (C40._),alternate
 8830,3,"Fibrous histiocytoma, malignant",alternate
 8830,3,"Fibrous histiocytoma, malignant (MFH) of bone",alternate
 8830,3,"Fibroxanthoma, malignant",alternate
@@ -3947,6 +3933,10 @@
 8830,3,Malignant fibrous histiocytoma (MFH) of bone,alternate
 8830,3,"Pleomorphic sarcoma, undifferentiated high-grade",alternate
 8830,3,"Pleomorphic sarcoma, undifferentiated high-grade of bone (C40._)",alternate
+8830,3,"Sarcoma, pleomorphic, undifferentiated high-grade",alternate
+8830,3,"Sarcoma, pleomorphic, undifferentiated high-grade of bone (C40._)",alternate
+8830,3,Undifferentiated high-grade pleomorphic sarcoma,alternate
+8830,3,Undifferentiated high-grade pleomorphic sarcoma of bone (C40._),alternate
 8831,0,"Histiocytoma, NOS (C49._)",preferred
 8831,0,Deep histiocytoma,alternate
 8831,0,"Histiocytoma, deep",alternate
@@ -4676,7 +4666,6 @@
 9080,3,"Teratoma, embryonal",alternate
 9080,3,"Teratoma, immature, malignant",alternate
 9080,3,"Teratoma, immature, NOS [FOR 2021+, USE CODE 9080/1 FOR C34._, C37.9, C73.9]",alternate
-9080,3,"Teratoma, malignant, NOS",alternate
 9080,3,"Teratoma, malignant, NOS",alternate
 9080,3,Postpubertal-type teratoma [2024+],alternate
 9080,3,Embryonal teratoma,alternate
@@ -5478,18 +5467,18 @@
 9420,3,"Astrocytoma, fibrous (C71._)",alternate
 9420,3,Fibrous astrocytoma (C71._),alternate
 9421,1,"Diffuse astrocytoma, MYB- or MYBL1-altered (C71._) [2023+]",preferred
-9421,1,"Astrocytoma, diffuse, MYB- or MYBL1-altered (C71._) [2023+]",alternate
-9421,1,"Diffuse low-grade glioma, MAPK pathway–altered (C71._) [2023+]",alternate
-9421,1,"Glioma, diffuse low-grade, MAPK pathway–altered (C71._) [2023+]",alternate
-9421,1,MAPK pathway–altered diffuse low-grade glioma(C71._) [2023+],alternate
-9421,1,MYB- or MYBL1-altered diffuse astrocytoma (C71._) [2023+],alternate
-9421,1,Pilocytic astrocytoma (C71._) [WHO behavior; 2023+ USE 9421/1. FOR PRE-2023 USE 9421/3],alternate
 9421,1,"Astrocytoma, juvenile (C71._) [WHO behavior; 2023+ USE 9421/1. FOR PRE-2023 USE 9421/3]",alternate
 9421,1,"Astrocytoma, pilocytic (C71._) [WHO behavior; 2023+ USE 9421/1. FOR PRE-2023 USE 9421/3]",alternate
 9421,1,"Astrocytoma, piloid (C71._) [WHO behavior; 2023+ USE 9421/1. FOR PRE-2023 USE 9421/3]",alternate
 9421,1,Juvenile astrocytoma (C71._) [WHO behavior; 2023+ USE 9421/1. FOR PRE-2023 USE 9421/3],alternate
 9421,1,Piloid astrocytoma (C71._) [WHO behavior; 2023+ USE 9421/1. FOR PRE-2023 USE 9421/3],alternate
 9421,1,"Spongioblastoma, NOS (C71._) [obs] [WHO behavior]",alternate
+9421,1,"Astrocytoma, diffuse, MYB- or MYBL1-altered (C71._) [2023+]",alternate
+9421,1,"Diffuse low-grade glioma, MAPK pathway–altered (C71._) [2023+]",alternate
+9421,1,"Glioma, diffuse low-grade, MAPK pathway–altered (C71._) [2023+]",alternate
+9421,1,MAPK pathway–altered diffuse low-grade glioma(C71._) [2023+],alternate
+9421,1,MYB- or MYBL1-altered diffuse astrocytoma (C71._) [2023+],alternate
+9421,1,Pilocytic astrocytoma (C71._) [WHO behavior; 2023+ USE 9421/1. FOR PRE-2023 USE 9421/3],alternate
 9421,3,High-grade astrocytoma with piloid features (HGAP) (C71._) [2023+],preferred
 9421,3,Juvenile astrocytoma (C71._) [N. America behavior; FOR PRE-2023. 2023+ USE 9421/1],alternate
 9421,3,Piloid astrocytoma (C71._) [N. America behavior; FOR PRE-2023. 2023+ USE 9421/1],alternate
@@ -6538,7 +6527,6 @@
 9718,1,"Cutaneous CD30+ T-cell lymphoproliferative disorder,primary (C44._) [2021+ NOT REPORTABLE; FOR PRE-2021 USE CODE 9718/3.]",alternate
 9718,1,Lymphomatoid papulosis (C44._) [2010-2020 NOT REPORTABLE; FOR PRE-2010 USE CODE 9718/3; FOR 2021+ USE CODE 9766/1; SEE HEMATOPOIETIC DATABASE FOR REPORTING],alternate
 9718,1,"Lymphoproliferative disorder, primary cutaneous CD30+ T-cell (C44._) [2021+ NOT REPORTABLE; FOR PRE-2021 USE CODE 9718/3.]",alternate
-9718,1,"Lymphoproliferative disorder, primary cutaneous CD30+ T-cell (C44._) [2021+ NOT REPORTABLE; FOR PRE-2021 USE CODE 9718/3.]",alternate
 9718,1,"Papulosis, lymphomatoid (C44._) [2010-2020 NOT REPORTABLE; FOR PRE-2010 USE CODE 9718/3; FOR 2021+ USE CODE 9766/1; SEE HEMATOPOIETIC DATABASE FOR REPORTING]",alternate
 9718,1,"T-cell lymphoproliferative disorder, primary cutaneous CD30+ (C44._) [2021+ NOT REPORTABLE; FOR PRE-2021 USE CODE 9718/3.]",alternate
 9718,3,Primary cutaneous anaplastic large cell lymphoma (C44._) [SEE HEMATOPOIETIC DATABASE FOR REPORTING],preferred
@@ -6553,7 +6541,6 @@
 9718,3,"Lymphoma (malignant), primary cutaneous CD30+ large T-cell (C44._)",alternate
 9718,3,"Lymphoma (malignant), T-cell, primary cutaneous CD30+ large (C44._)",alternate
 9718,3,Lymphomatoid papulosis (C44._) [PRE-2010 REPORTABLE. FOR 2010-2020 USE CODE 9718/1; FOR 2021+ USE CODE 9766/1; SEE HEMATOPOIETIC DATABASE FOR REPORTING],alternate
-9718,3,"Lymphoproliferative disorder, primary cutaneous CD30+ T-cell (C44._) [PRE-2021 REPORTABLE. FOR 2021+ USE CODE 9718/1.]",alternate
 9718,3,"Lymphoproliferative disorder, primary cutaneous CD30+ T-cell (C44._) [PRE-2021 REPORTABLE. FOR 2021+ USE CODE 9718/1.]",alternate
 9718,3,"Papulosis, lymphomatoid (C44._) [PRE-2010 REPORTABLE. FOR 2010-2020 USE CODE 9718/1; FOR 2021+ USE CODE 9766/1; SEE HEMATOPOIETIC DATABASE FOR REPORTING]",alternate
 9718,3,Primary cutaneous CD30+ large T-cell lymphoma (C44._),alternate

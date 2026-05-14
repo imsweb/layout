@@ -1,0 +1,7 @@
+1,"Urban commuting area - RUCA codes 1.0, 1.1, 2.0, 2.1, 3.0, 4.1, 5.1, 7.1, 8.1, and 10.1"
+2,Not an urban commuting area - all other RUCA codes except 99
+9,RUCA code is 99
+A,"State, county, or tract are invalid"
+B,"State and tract are valid, but county was not reported"
+C,State + county + tract combination was not found
+D,"State, county, or tract are blank or unknown"
