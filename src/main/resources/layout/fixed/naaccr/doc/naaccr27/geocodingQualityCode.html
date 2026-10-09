@@ -1,0 +1,56 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">86</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2024</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">24</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.geocodingQualityCode<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>Spatial analysis of cancer data often requires identifying case records that were geocoded. Researchers and registry staff can use this code to select geocoded records and determine which records need to be reviewed and geocoded again. </p>
+<p>Historically, Census Tract Certainty [369] and NAACCR GIS Coordinate Quality [366] codes have been used to determine which geocoded cases require manual review. However, this code represents an improvement over these variables and is based on the geocoded data's precision and accuracy. </p>
+<p>Code describing the quality of the geocoding match. The code indicates whether an address run through the NAACCR geocoder matched, failed to match, or needs to be reviewed. </p>
+<p>This measure is referred to as Micro Match Status in the NAACCR geocoder documentation and has been in use since July 2017.</p>
+
+</div>
+
+
+
+<div class='content chap10-para'>
+<p><strong>Application:</strong></p>
+<ul>
+<li>Cases in the “M” or “I” categories are considered high quality matches for state, county, or sub-county (small area) uses. </li>
+<li>Cases in the “R” category require manual review prior to using the data for geospatial analysis below county (small area), but can be used for county-based uses. These “Review” cases should be run through the NAACCR Geocoder as a separate batch run using “Exhaustive Search.” NAACCR has made an interface available, MI GeoCorrect Tool, to assist users in manually selecting among multiple potential addresses (or label as “Fail”). </li>
+<li>Cases in the “F” or “Fail” category geocoding will need to be reviewed, possibly corrected, and geocoded again before use.</li>
+</ul>
+
+</div>
+
+<div class='content chap10-para'><strong>Codes</strong></div>
+<table>
+        <tr class='code-row'><td class='code-nbr'>M</td><td class='code-desc'>**Match**. Geocoding was competed and the address matched</td></tr>
+        <tr class='code-row'><td class='code-nbr'>I</td><td class='code-desc'>**Interactive.** Geocoding was completed and the address matched after manual review in MI GeoCorrect Tool.</td></tr>
+        <tr class='code-row'><td class='code-nbr'>R</td><td class='code-desc'>**Review**. Geocoding was completed and the address needs to be manually reviewed before using below county-level.</td></tr>
+        <tr class='code-row'><td class='code-nbr'>F</td><td class='code-desc'>**Fail/non-match.** Geocoding was completed and the address needs to manually reviewed and modified and geocoded again.</td></tr>
+</table>
+
+<div class='content chap10-para'>
+<p>This variable is not coded directly. The code is directly output by the NAACCR/AGGIE Geocoder or MI GeoCorrect Tool.</p>
+
+</div>

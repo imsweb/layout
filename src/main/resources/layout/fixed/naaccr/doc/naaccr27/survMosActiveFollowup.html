@@ -1,0 +1,55 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1784</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">4</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2015</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">15</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.survMosActiveFollowup<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>The survival interval in months is calculated using the month, day, and year of the Surv-Date DX Recode [1788] and the month, day, and year of the Surv-Date Active Followup [1782]. The survival interval is calculated by a program available from your standard setter or NAACCR.</p>
+<p><strong>Example of a case diagnosed in 2011 and submitted in 2013.</strong></p>
+<p>Date of submission: 20131101</p>
+<p>Date of diagnosis: 20110915</p>
+<p>Date of last contact: 20111017</p>
+<p>Vital status: Alive</p>
+<p>Study cutoff date: 20111231</p>
+<p>20111017 would be used as the date of last contact for the survival calculation. The survival time would be 1 month.</p>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>Accurate survival estimates are crucial for monitoring trends in population-based cancer survival and assessing the effectiveness of healthcare delivery to cancer patients. With the aim of obtaining the most precise estimates of survival, it is necessary to use complete dates (month, day, and year components) in the calculation of the survival interval. The survival interval in months is calculated using complete dates, and the algorithm imputes missing components of dates when they are not available in central registry records.</p>
+
+</div>
+
+
+<div class='content chap10-para'>
+<p>Additional information about the algorithm and what specific values are assigned in given missing date situations are available here: &lt;http://seer.cancer.gov/survivaltime/&gt;.</p>
+
+</div>
+
+
+<div class='content chap10-para'>
+<p><strong>Calculation</strong></p>
+<p>Survival months = FLOOR((endpoint – date of diagnosis) / days in a month)</p>
+<p>The FLOOR function rounds a decimal down to an integer, e.g., FLOOR(1.68) = 1. Days in a month is assigned as 365.24/12.</p>
+
+</div>

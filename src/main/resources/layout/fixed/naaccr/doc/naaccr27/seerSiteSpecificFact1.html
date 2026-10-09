@@ -1,0 +1,80 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">3700</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">SEER</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">2010</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">12</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.seerSiteSpecificFact1<br/><br/>
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>A two character field to be used when information for a particular primary site needs to be collected by SEER.</p>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>This field is a place holder when site-specific information is needed for SEER.</p>
+
+</div>
+
+
+
+<div class='content chap10-para'><strong>Codes</strong></div>
+<table>
+        <tr class='code-row'><td class='code-nbr'>Blank</td><td class='code-desc'>Field not coded</td></tr>
+        <tr class='code-row'><td class='code-nbr'>10</td><td class='code-desc'>HPV negative by p16 test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>11</td><td class='code-desc'>HPV positive by p16 test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>20</td><td class='code-desc'>HPV negative for viral DNA by ISH test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>21</td><td class='code-desc'>HPV positive for viral DNA by ISH test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>30</td><td class='code-desc'>HPV negative for viral DNA by PCR test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>31</td><td class='code-desc'>HPV positive for viral DNA by PCR test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>40</td><td class='code-desc'>HPV negative by ISH E6/E7 RNA test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>41</td><td class='code-desc'>HPV positive by ISH E6/E7 RNA test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>50</td><td class='code-desc'>HPV negative by RT-PCR E6/E7 RNA test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>51</td><td class='code-desc'>HPV positive by RT-PCR E6/E7 RNA test</td></tr>
+        <tr class='code-row'><td class='code-nbr'>70</td><td class='code-desc'>HPV status reported in medical records as negative, but test type is unknown</td></tr>
+        <tr class='code-row'><td class='code-nbr'>71</td><td class='code-desc'>HPV status reported in medical records as positive, but test type is unknown</td></tr>
+        <tr class='code-row'><td class='code-nbr'>97</td><td class='code-desc'>Test done, results not in chart</td></tr>
+        <tr class='code-row'><td class='code-nbr'>99</td><td class='code-desc'>Not documented in medical record  
+HPV test not done, not assessed, or unknown if assessed</td></tr>
+</table>
+
+<div class='content chap10-para'>
+<p><strong>Note 1:</strong> There is evidence that human papilloma virus (HPV) plays a role in the pathogenesis of some cancers. HPV testing may be performed for prognostic purposes; testing may also be performed on metastatic sites to aid in determination of the primary site.</p>
+<p><strong>Note 2:</strong> Record the results of any HPV testing performed on pathological specimens including surgical and cytological (from cell blocks) tissue from the primary tumor or a metastatic site, including lymph nodes. Do not record the results of blood tests or serology.</p>
+<p><strong>Note 3:</strong> There are several methods for determination of HPV status. The most frequently used test is IHC for p16 expression which is surrogate marker for HPV infection. The rest of the tests (based on ISH, PCR, RT-PCR technologies) detect the viral DNA or RNA. </p>
+<p><strong>Note 4:</strong> HPV-type 16 refers to virus type and is different from p16 overexpression (p16+).</p>
+<p><strong>Note 5:</strong> Codes 10-51 are hierarchical; use the highest code that applies.</p>
+<p><strong>Note 6:</strong> For cases in the Oropharynx HPV-Mediated p16+ schema.</p>
+<ul>
+<li>If an additional HPV test is done in addition to p16, code those test results in this data item.</li>
+<li>If no additional HPV test is done, code 11 in this data item (Schema Discriminator 2 coded to 2).</li>
+</ul>
+<p><strong>Note 7:</strong> For cases in the Oropharynx (p16-) schema.</p>
+<ul>
+<li>If an additional HPV test is done in addition to p16, code those test results in this data item.</li>
+<li>If no additional HPV test is done.
+<ul>
+<li>Code 10 in this data item if Shema Discriminator 2 is coded to 1.</li>
+<li>Code 99 in this data item if Schema Discriminator 2 is coded to 9.</li>
+</ul>
+</li>
+</ul>
+
+</div>

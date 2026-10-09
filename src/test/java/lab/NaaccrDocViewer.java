@@ -64,11 +64,12 @@ import com.imsweb.seerutilsgui.editor.SyntaxKit;
 @SuppressWarnings({"ConstantConditions", "FieldCanBeLocal", "SameParameterValue"})
 public class NaaccrDocViewer extends JFrame {
 
-    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr26");
+    private static final File _DIR = new File(TestingUtils.getWorkingDirectory() + "\\src\\main\\resources\\layout\\fixed\\naaccr\\doc\\naaccr27");
 
     private static final List<Layout> _LAYOUTS = new ArrayList<>();
 
     static {
+        _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_27));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_26));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_25));
         _LAYOUTS.add(LayoutFactory.getLayout(LayoutFactory.LAYOUT_ID_NAACCR_XML_24));
@@ -115,7 +116,7 @@ public class NaaccrDocViewer extends JFrame {
     }
 
     public static String getFieldDocDefaultCssStyle() {
-        return _LAYOUTS.get(0).getFieldDocDefaultCssStyle();
+        return _LAYOUTS.getFirst().getFieldDocDefaultCssStyle();
     }
 
     /**

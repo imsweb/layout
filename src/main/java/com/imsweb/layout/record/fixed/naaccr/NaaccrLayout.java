@@ -395,17 +395,13 @@ public class NaaccrLayout extends FixedColumnsLayout {
         _recordType = recordType;
         _naaccrLineLength = naaccrLineLength;
 
-        String fullRecType;
-        if ("A".equals(getRecordType()))
-            fullRecType = "Abstract";
-        else if ("M".equals(getRecordType()))
-            fullRecType = "Modified";
-        else if ("C".equals(getRecordType()))
-            fullRecType = "Confidential";
-        else if ("I".equals(getRecordType()))
-            fullRecType = "Incidence";
-        else
-            throw new IllegalStateException("Unsupported rec type: " + getRecordType());
+        String fullRecType = switch (getRecordType()) {
+            case "A" -> "Abstract";
+            case "M" -> "Modified";
+            case "C" -> "Confidential";
+            case "I" -> "Incidence";
+            case null, default -> throw new IllegalStateException("Unsupported rec type: " + getRecordType());
+        };
 
         try {
             FixedColumnLayoutXmlDto xmlLayout = new FixedColumnLayoutXmlDto();
@@ -428,7 +424,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
                 xmlLayout.setField(fields);
 
                 // set default value for the record type
-                FixedColumnLayoutFieldXmlDto field = xmlLayout.getField().get(0);
+                FixedColumnLayoutFieldXmlDto field = xmlLayout.getField().getFirst();
                 if (!"recordType".equals(field.getName()))
                     throw new IllegalStateException("Record Type should be the first field of a NAACCR layout!");
                 field.setDefaultValue(getRecordType());
@@ -566,7 +562,7 @@ public class NaaccrLayout extends FixedColumnsLayout {
                         getMajorNaaccrVersion()).append("'.");
         }
 
-        return msg.length() == 0 ? null : msg.toString();
+        return msg.isEmpty() ? null : msg.toString();
     }
 
     @Override

@@ -309,7 +309,7 @@ public class NaaccrXmlLayout implements Layout {
         for (NaaccrDictionary userDictionary : _userDictionaries) {
             List<String> errors = NaaccrXmlDictionaryUtils.validateUserDictionary(userDictionary);
             if (!errors.isEmpty())
-                throw new IllegalStateException("Error found on user dictionary - " + errors.get(0));
+                throw new IllegalStateException("Error found on user dictionary - " + errors.getFirst());
         }
 
         // if fields/dictionaries were supposed to be loaded, check validity of fields and dictionaries. Otherwise, this is the end of validation.
@@ -466,7 +466,6 @@ public class NaaccrXmlLayout implements Layout {
     }
 
     protected String getDocFolder() {
-        // there is always a delay before the documentation is released on the NAACCR website...
         return "naaccr" + _naaccrVersion.substring(0, 2);
     }
 

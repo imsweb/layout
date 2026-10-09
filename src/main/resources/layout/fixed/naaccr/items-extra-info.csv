@@ -894,3 +894,54 @@ torontoStageGroup,Tor Stg Group,Stage/Prognostic Factors
 torontoT,Tor T,Stage/Prognostic Factors
 torontoVersionNumber,Tor Ver Num,Stage/Prognostic Factors
 whiteBloodCellCount,Wh Blood Cell Ct,Stage/Prognostic Factors
+cancerStatusFollowing1stCrsTx,CA Status Fol 1st Course,Follow-up/Recurrence/Death
+dateOfCaStatusFollowing1stCrsTx,Date CA Status Fol 1st Course,Follow-up/Recurrence/Death
+geoAddrAtDxCity,Geo Addr City,Demographic
+geoAddrAtDxNoStreet,Geo Addr DX Street,Demographic
+geoAddrAtDxPostalCode,Geo Addr DX Zip,Demographic
+geoAddrAtDxState,Geo Addr DX State,Demographic
+minorSalivaryTumorLocation,Minor Sal Tum Loc,Stage/Prognostic Factors
+overRideSexAssignedAtBirth,Over-ride Sex at Birth,Edit Overrides/Conversion History/System Admin
+rectalTumorLocation,Rectal Tum Loc,Stage/Prognostic Factors
+thoracicNodalStation10lEx,Thor Nod Sta 10L Ex,Stage/Prognostic Factors
+thoracicNodalStation10lPos,Thor Nod Sta 10L Pos,Stage/Prognostic Factors
+thoracicNodalStation10rEx,Thor Nod Sta 10R Ex,Stage/Prognostic Factors
+thoracicNodalStation10rPos,Thor Nod Sta 10R Pos,Stage/Prognostic Factors
+thoracicNodalStation11lEx,Thor Nod Sta 11L Ex,Stage/Prognostic Factors
+thoracicNodalStation11lPos,Thor Nod Sta 11L Pos,Stage/Prognostic Factors
+thoracicNodalStation11rEx,Thor Nod Sta 11R Ex,Stage/Prognostic Factors
+thoracicNodalStation11rPos,Thor Nod Sta 11R Pos,Stage/Prognostic Factors
+thoracicNodalStation12l14lEx,Thor Nod Sta 12L-14L Ex,Stage/Prognostic Factors
+thoracicNodalStation12l14lPos,Thor Nod Sta 12L-14L Pos,Stage/Prognostic Factors
+thoracicNodalStation12r14rEx,Thor Nod Sta 12R-14R Ex,Stage/Prognostic Factors
+thoracicNodalStation12r14rPos,Thor Nod Sta 12R-14R Pos,Stage/Prognostic Factors
+thoracicNodalStation1lEx,Thor Nod Sta 1L Ex,Stage/Prognostic Factors
+thoracicNodalStation1lPos,Thor Nod Sta 1L Pos,Stage/Prognostic Factors
+thoracicNodalStation1rEx,Thor Nod Sta 1R Ex,Stage/Prognostic Factors
+thoracicNodalStation1rPos,Thor Nod Sta 1R Pos,Stage/Prognostic Factors
+thoracicNodalStation2lEx,Thor Nod Sta 2L Ex,Stage/Prognostic Factors
+thoracicNodalStation2lPos,Thor Nod Sta 2L Pos,Stage/Prognostic Factors
+thoracicNodalStation2rEx,Thor Nod Sta 2R Ex,Stage/Prognostic Factors
+thoracicNodalStation2rPos,Thor Nod Sta 2R Pos,Stage/Prognostic Factors
+thoracicNodalStation3aEx,Thor Nod Sta 3a Ex,Stage/Prognostic Factors
+thoracicNodalStation3aPos,Thor Nod Sta 3a Pos,Stage/Prognostic Factors
+thoracicNodalStation3pEx,Thor Nod Sta 3p Ex,Stage/Prognostic Factors
+thoracicNodalStation3pPos,Thor Nod Sta 3p Pos,Stage/Prognostic Factors
+thoracicNodalStation4lEx,Thor Nod Sta 4L Ex,Stage/Prognostic Factors
+thoracicNodalStation4lPos,Thor Nod Sta 4L Pos,Stage/Prognostic Factors
+thoracicNodalStation4rEx,Thor Nod Sta 4R Ex,Stage/Prognostic Factors
+thoracicNodalStation4rPos,Thor Nod Sta 4R Pos,Stage/Prognostic Factors
+thoracicNodalStation5Ex,Thor Nod Sta 5 Ex,Stage/Prognostic Factors
+thoracicNodalStation5Pos,Thor Nod Sta 5 Pos,Stage/Prognostic Factors
+thoracicNodalStation6Ex,Thor Nod Sta 6 Ex,Stage/Prognostic Factors
+thoracicNodalStation6Pos,Thor Nod Sta 6 Pos,Stage/Prognostic Factors
+thoracicNodalStation7Ex,Thor Nod Sta 7 Ex,Stage/Prognostic Factors
+thoracicNodalStation7Pos,Thor Nod Sta 7 Pos,Stage/Prognostic Factors
+thoracicNodalStation8lEx,Thor Nod Sta 8L Ex,Stage/Prognostic Factors
+thoracicNodalStation8lPos,Thor Nod Sta 8L Pos,Stage/Prognostic Factors
+thoracicNodalStation8rEx,Thor Nod Sta 8R Ex,Stage/Prognostic Factors
+thoracicNodalStation8rPos,Thor Nod Sta 8R Pos,Stage/Prognostic Factors
+thoracicNodalStation9lEx,Thor Nod Sta 9L Ex,Stage/Prognostic Factors
+thoracicNodalStation9lPos,Thor Nod Sta 9L Pos,Stage/Prognostic Factors
+thoracicNodalStation9rEx,Thor Nod Sta 9R Ex,Stage/Prognostic Factors
+thoracicNodalStation9rPos,Thor Nod Sta 9R Pos,Stage/Prognostic Factors

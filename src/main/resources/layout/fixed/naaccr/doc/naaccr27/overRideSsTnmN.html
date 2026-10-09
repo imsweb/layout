@@ -1,0 +1,58 @@
+<table class="naaccr-summary-table naaccr-borders">
+  <tr>
+    <th class="naaccr-summary-header naaccr-borders">Item #</th>
+    <th class="naaccr-summary-header naaccr-borders">Length</th>
+    <th class="naaccr-summary-header naaccr-borders">Source of Standard</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Implemented</th>
+    <th class="naaccr-summary-header naaccr-borders">Year Retired</th>
+    <th class="naaccr-summary-header naaccr-borders">Version Retired</th>
+  </tr>
+  <tr>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1982</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">1</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered">NAACCR</td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+    <td class="naaccr-summary-cell naaccr-borders naaccr-summary-centered"></td>
+  </tr>
+</table>
+
+<br/><strong>NAACCR XML</strong>: Tumor.overRideSsTnmN<br/><br/>
+<strong>Alternate Names</strong>
+<br/>&nbsp;&nbsp;&nbsp;Over-ride Summary Stage/TNM-N
+
+<div class='content chap10-para-head'><strong>Description</strong></div>
+<div class='content chap10-para'>
+<p>Some computer edits identify errors. Others indicate possible errors that require manual review for resolution. To eliminate the need to review the same cases repeatedly, over-ride flags have been developed to indicate that data in a record (or records) have been reviewed and, while unusual, are correct.</p>
+<p>This over-ride is used with the following edits in the NAACCR Metafile of the EDITS software:</p>
+<ul>
+<li>Summary Stage 1977, TNM-N (NAACCR)</li>
+<li>Summary Stage 2000, TNM-N (NAACCR)</li>
+</ul>
+
+</div>
+
+<div class='content chap10-para-head'><strong>Rationale</strong></div>
+<div class='content chap10-para'>
+<p>Some edits check for code combinations that are possible, but quite rare. If the code combination generates an error message and review of the case indicates that the codes are correct for the case, then the over-ride flag is used to skip the edit in the future. See <a href="https://www.naaccr.org/standard-data-edits/"><strong>Standards for Cancer Registries, Standard Data Edits</strong></a>.</p>
+<p><strong>Over-ride Flag as Used in the EDITS Software Package</strong></p>
+<p>The edit Summary Stage 1977, TNM-N (NAACCR) checks SEER Summary Stage 1977 against the TNM-N and generates an error if the SEER Summary Stage 1977 indicates regional nodal involvement and the TNM-N does not. (TNM-N is derived from TNM Path N and TNM Clin N, with TNM Path N having precedence.) It also generates an error if the SEER Summary Stage 1977 is ‘_in situ_’ or ‘localized’ and the TNM-N is greater than or equal to ‘1’. The edit Summary Stage 2000, TNM-N (NAACCR) checks SEER Summary Stage 2000 against the TNM-N and generates an error if the SEER Summary Stage 2000 indicates regional nodal involvement and the TNM-N does not. It also generates an error if the SEER Summary Stage 2000 is ‘_in situ_’ or ‘localized’ and the TNM-N is greater than or equal to ‘1’.</p>
+<p><strong>Instructions for Coding</strong></p>
+<ul>
+<li>Leave blank if the program does not generate an error message for the edit Summary Stage 1977, TNM-N (NAACCR) or the edit Summary Stage 2000, TNM-N (NAACCR).</li>
+<li>Leave blank and correct any errors for the case if an item is discovered to be incorrect.</li>
+<li>Code 1 if the case has been reviewed and it has been verified that both SEER Summary Stage 1977 and TNM-N or both SEER Summary Stage 2000 and TNM-N have been coded correctly.</li>
+</ul>
+
+</div>
+
+
+
+<div class='content chap10-para'><strong>Codes</strong></div>
+<table>
+        <tr class='code-row'><td class='code-nbr'>Blank</td><td class='code-desc'>Not reviewed or reviewed and corrected</td></tr>
+        <tr class='code-row'><td class='code-nbr'>1</td><td class='code-desc'>Reviewed and confirmed as reported</td></tr>
+</table>
+

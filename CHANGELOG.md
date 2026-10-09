@@ -1,5 +1,10 @@
 ## Layout Framework Version History
 
+**Changes in version 7.2**
+
+- Added support for NAACCR 27 XML.
+- Updated all dependencies.
+
 **Changes in version 7.1**
 
 - Updated all dependencies.

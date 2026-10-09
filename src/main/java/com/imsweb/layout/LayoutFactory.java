@@ -46,6 +46,11 @@ import com.imsweb.layout.record.fixed.naaccr.NaaccrLayout;
 public final class LayoutFactory {
 
     //XML Layouts - constants for the internal layout IDs
+    public static final String LAYOUT_ID_NAACCR_XML_27 = "naaccr-xml-27"; // shortcut for full abstract
+    public static final String LAYOUT_ID_NAACCR_XML_27_ABSTRACT = "naaccr-xml-27-abstract";
+    public static final String LAYOUT_ID_NAACCR_XML_27_MODIFIED = "naaccr-xml-27-modified";
+    public static final String LAYOUT_ID_NAACCR_XML_27_CONFIDENTIAL = "naaccr-xml-27-confidential";
+    public static final String LAYOUT_ID_NAACCR_XML_27_INCIDENCE = "naaccr-xml-27-incidence";
     public static final String LAYOUT_ID_NAACCR_XML_26 = "naaccr-xml-26"; // shortcut for full abstract
     public static final String LAYOUT_ID_NAACCR_XML_26_ABSTRACT = "naaccr-xml-26-abstract";
     public static final String LAYOUT_ID_NAACCR_XML_26_MODIFIED = "naaccr-xml-26-modified";
@@ -140,6 +145,7 @@ public final class LayoutFactory {
 
     // make sure to put all the "aliases" in this list...
     static {
+        _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_27, LAYOUT_ID_NAACCR_XML_27_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_26, LAYOUT_ID_NAACCR_XML_26_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_25, LAYOUT_ID_NAACCR_XML_25_ABSTRACT);
         _INTERNAL_LAYOUT_ID_ALIASES.put(LAYOUT_ID_NAACCR_XML_24, LAYOUT_ID_NAACCR_XML_24_ABSTRACT);
@@ -164,6 +170,11 @@ public final class LayoutFactory {
     // make sure to add the most recent layouts first, they will be "tried" in that order (important for discovery mechanism)
     static {
         //NAACCR XML
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_27, "NAACCR XML 27 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_27_ABSTRACT, "NAACCR XML 27 Abstract");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_27_MODIFIED, "NAACCR XML 27 Modified");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_27_CONFIDENTIAL, "NAACCR XML 27 Confidential");
+        _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_27_INCIDENCE, "NAACCR XML 27 Incidence");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_26, "NAACCR XML 26 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_26_ABSTRACT, "NAACCR XML 26 Abstract");
         _INTERNAL_LAYOUTS.put(LAYOUT_ID_NAACCR_XML_26_MODIFIED, "NAACCR XML 26 Modified");
@@ -283,36 +294,20 @@ public final class LayoutFactory {
                 String rType = type.substring(0, 1);
                 int lineLength;
                 if ("18".equals(version)) {
-                    switch (rType) {
-                        case "A":
-                        case "M":
-                            lineLength = 24194;
-                            break;
-                        case "C":
-                            lineLength = 6154;
-                            break;
-                        case "I":
-                            lineLength = 4048;
-                            break;
-                        default:
-                            throw new IllegalStateException("Invalid record type: " + rType);
-                    }
+                    lineLength = switch (rType) {
+                        case "A", "M" -> 24194;
+                        case "C" -> 6154;
+                        case "I" -> 4048;
+                        default -> throw new IllegalStateException("Invalid record type: " + rType);
+                    };
                 }
                 else {
-                    switch (rType) {
-                        case "A":
-                        case "M":
-                            lineLength = 22824;
-                            break;
-                        case "C":
-                            lineLength = 5564;
-                            break;
-                        case "I":
-                            lineLength = 3339;
-                            break;
-                        default:
-                            throw new IllegalStateException("Invalid record type: " + rType);
-                    }
+                    lineLength = switch (rType) {
+                        case "A", "M" -> 22824;
+                        case "C" -> 5564;
+                        case "I" -> 3339;
+                        default -> throw new IllegalStateException("Invalid record type: " + rType);
+                    };
                 }
                 layout = new NaaccrLayout("12".equals(version) ? "122" : (version + "0"), type.substring(0, 1), lineLength, layoutId, loadFields, useDeprecatedFieldNames);
             }
